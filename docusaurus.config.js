@@ -66,23 +66,32 @@ const config = {
       navbar: {
         title: 'Ant Media Documentation',
         logo: {
-          alt: 'Ant Media Logo',
-          src: 'img/logo.svg',
+          href: '/',
+          alt: 'Ant Media Documentation',
+          src: 'img/logo.svg'
         },
         items: [
           {
             type: 'doc',
             docId: 'introduction',
             label: 'Guides',
+            position: 'left'
           },
           {
             label: 'SDK references',
-            href: '/sdk-reference'
+            href: '/sdk-reference',
+            position: 'left'
           },
           {
             label: 'Blog',
-            href: 'https://antmedia.io/blog/'
-          }
+            href: 'https://antmedia.io/blog/',
+            position: 'left'
+          },
+          {
+            label: 'Ant Media',
+            href: 'https://antmedia.io/',
+            position: 'right'
+          },
           /*{to: '/blog', label: 'Blog', position: 'left'},
           {
             href: 'https://github.com/facebook/docusaurus',
