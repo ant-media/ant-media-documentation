@@ -1,0 +1,9 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Ant Media Server Issues
+    url: https://github.com/ant-media/Ant-Media-Server/issues
+    about: Please use the ant-media/Ant-Media-Server repo for these issues.
+
+  - name: Doubt? Discuss here:
+    url: https://github.com/ant-media/Ant-Media-Server/discussions
+    about: Please ask and answer questions at Github Discussion.
