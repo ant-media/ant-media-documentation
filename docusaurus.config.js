@@ -8,17 +8,17 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'Ant Media Documentation',
   tagline: 'Ant Media Documentation',
-  url: 'https://timantmedia.github.io',
+  url: 'https://antmedia.io',
   baseUrl: '/docs',
   trailingSlash: true,
-  onBrokenLinks: 'ignore',
-  onBrokenMarkdownLinks: 'ignore',
+  onBrokenLinks: 'warn', // replace with 'throw' to stop building if broken links
+  onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'timantmedia', // Usually your GitHub org/user name.
-  projectName: 'resources', // Usually your repo name.
+  organizationName: 'ant-media', // Usually your GitHub org/user name.
+  projectName: 'documentation', // Usually your repo name.
   deploymentBranch: 'master', // The branch that GitHub pages deploys from.
 
   // Even if you don't use internalization, you can use this field to set useful
@@ -40,7 +40,7 @@ const config = {
           breadcrumbs: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl: 'https://github.com/timantmedia/resources/tree/master/docs',
+          editUrl: 'https://github.com/ant-media/documentation/tree/master/docs',
         },
         blog: {
           showReadingTime: true,
@@ -124,8 +124,8 @@ const config = {
             title: 'Community',
             items: [
               {
-                label: 'Developer Community',
-                href: 'https://community.antmedia.io/',
+                label: 'Developer Discussion',
+                href: 'https://github.com/ant-media/Ant-Media-Server/discussions',
               },
               {
                 label: 'Stackoverflow',
@@ -142,7 +142,7 @@ const config = {
             ],
           },
           {
-            title: 'More',
+            title: 'Resources',
             items: [
               {
                 label: 'My Account',
