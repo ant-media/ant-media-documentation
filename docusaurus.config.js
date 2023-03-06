@@ -52,6 +52,10 @@ const config = {
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
+        gtag: {
+          trackingID: 'G-S9KBTW5Q32',
+          anonymizeIP: true,
+        },
       }),
     ],
   ],
@@ -68,7 +72,8 @@ const config = {
         logo: {
           href: '/',
           alt: 'Ant Media Documentation',
-          src: 'img/logo.svg'
+          src: 'img/Ant-Media-Logo-dark.png',
+          srcDark: 'img/Ant-Media-Logo-light.png',
         },
         items: [
           {
