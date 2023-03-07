@@ -5,7 +5,7 @@ In this tutorial we will create a WebRTC play page from scratch together. Before
 Step 0. Be Prepared
 -------------------
 
-*   Install AMS if you haven't done. You may check [installation document](https://resources.antmedia.io/docs/installation).
+*   Install AMS if you haven't done. You may check [installation document](/guides/installing-on-linux/Installing-AMS-on-Linux/).
 *   You should have a web server to test your publish page we will create in this tutorial. If you don't know how you have a webserver, please check [this](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/set_up_a_local_testing_server) to run one in minutes.
 *   Create a workspace which can be served by your webserver.
 *   Create an empty play.html file in your workspace. This file will be our play page in minutes.
@@ -100,8 +100,8 @@ Now we have to create an ```WebRTCAdaptor``` instance which is provided by JS SD
 *   _**sdpConstraints**_ defines sdp options. Since we play remote video and audio, we enabled both video and audio receive. You may check [this](https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/createOffer) for more information.
 *   _**remoteVideoId**_ is the ```id``` parameter of the ```video``` element.
 *   _**isPlayMode**_ should be set to ```true```.
-*   _**callback**_ is the callback function called by the JS SDK in case of some specific events. Here we will create alert in case of getting **_play\_started_** and **_play\_finished_**. You may check [this](https://resources.antmedia.io/docs/javascript-sdk#webrtc-javascript-info-callbacks) for more information about callbacks.
-*   _**callbackError**_ is the callback function called by the JS SDK in case of some specific errors. Here we create allert in case of any error. You may check [this](https://resources.antmedia.io/docs/javascript-sdk#webrtc-javascript-error-callbacks) for more information about error callbacks.
+*   _**callback**_ is the callback function called by the JS SDK in case of some specific events. Here we will create alert in case of getting **_play\_started_** and **_play\_finished_**. You may check [this](/guides/developer-sdk-and-api/sdk-integration/Javascript-SDK#webrtc-javascript-info-callbacks) for more information about callbacks.
+*   _**callbackError**_ is the callback function called by the JS SDK in case of some specific errors. Here we create allert in case of any error. You may check [this](/guides/developer-sdk-and-api/sdk-integration/Javascript-SDK#webrtc-javascript-error-callbacks) for more information about error callbacks.
 
 ### Create Start/Stop functions
 
@@ -130,7 +130,7 @@ Lets bind our stop/stop functions to the buttons now.
     document.getElementById("stop").addEventListener("click", stopPlaying);
     
 
-That's all for WebRTC playback. If you need to learn more about WebRTCAdaptor please check [this](https://resources.antmedia.io/docs/javascript-sdk).
+That's all for WebRTC playback. If you need to learn more about WebRTCAdaptor please check [this](/guides/developer-sdk-and-api/sdk-integration/Javascript-SDK).
 
 ### Final Check
 

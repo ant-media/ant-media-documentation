@@ -68,7 +68,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'Ant Media Documentation',
+        title: '',
         logo: {
           href: '/',
           alt: 'Ant Media Documentation',
