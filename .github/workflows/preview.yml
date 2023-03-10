@@ -1,0 +1,29 @@
+# Title: This GitHub Action Workflow is designed to prepare quick previews of every raised PR.
+# Use-case: This will enable reviewers/maintainers to preview changes before PR needs to be merged. 
+# Inspired from: https://github.com/marketplace/actions/vercel-preview-deployments#standalone
+
+name: Preview Pull Request.
+
+env:
+  VERCEL_ACCESS_TOKEN: ${{ secrets.VERCEL_ACCESS_TOKEN }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+on:
+  pull_request:
+    types: [opened, synchronize, closed]
+    branches:
+      - master
+
+jobs:
+  deploy:
+    if: ${{ github.event.action == 'opened' || github.event.action == 'synchronize' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: snaplet/vercel-action@v3
+  delete:
+    if: ${{ github.event.action == 'closed' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: snaplet/vercel-action@v3
+        with:
+          delete: true
