@@ -10,7 +10,7 @@ export default function VideoPlayer({children, video, youtube}){
           {children}
           <br/><br/><br/>
           </>
-          )
+        )
     } else {
         return (
             <div>Not implemented any custom player yet.</div>
