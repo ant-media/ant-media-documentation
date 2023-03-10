@@ -1,6 +1,6 @@
 <a href="https://www.producthunt.com/posts/ant-media-streaming-server?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-ant&#0045;media&#0045;streaming&#0045;server" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=334960&theme=light&period=daily" alt="Ant&#0032;Media&#0032;Streaming&#0032;Server - Stream&#0032;your&#0032;live&#0032;videos&#0032;the&#0032;ultra&#0045;low&#0032;latency&#0032;way | Product Hunt" style="width: 250px; height: 54px;" width="160" height="35" /></a><br>
 
-![image](https://user-images.githubusercontent.com/54481799/95862105-16cb0e00-0d6b-11eb-9087-88888889825d.png)
+![Ant Media Logo](https://user-images.githubusercontent.com/54481799/95862105-16cb0e00-0d6b-11eb-9087-88888889825d.png)
 
 
 ## Ant Media Documentation
@@ -29,7 +29,7 @@ Ant Media server is available in your favorite cloud platform:
 * [Digital Ocean](https://marketplace.digitalocean.com/apps/antmedia-server-enterprise-edition-3) 
 * [Linode](https://www.linode.com/marketplace/apps/ant-media/ant-media-community-edition/)
 
- ## 🌱 Links
+## 🌱 Links
 
 * [Web site](https://antmedia.io)
 * [Documentation](https://antmedia.io/docs)
@@ -37,18 +37,10 @@ Ant Media server is available in your favorite cloud platform:
 * [Community Edition vs. Enterprise Edition](https://github.com/ant-media/Ant-Media-Server/wiki#community-edition--enterprise-edition) 
 * [Your Scalable, Real-Time Video Streaming Platform Ready in 5 Minutes](https://www.youtube.com/watch?v=y7bP0u0jQRQ)
 
-
-## ⚡ Releases
-
-Ant Media Server Community Edition Releases are [automatically deployed here](https://github.com/ant-media/Ant-Media-Server/releases), with auto-generated changelog. 
-
-Ant Media Server Enterprise Editions are available through several cloud marketplaces ([AWS](https://aws.amazon.com/marketplace/pp/prodview-464ritgzkzod6?sr=0-1&ref_=beagle&applicationId=AWSMPContessa), [Azure](https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=Ant%20Media%20Server&page=1), [Alibaba](https://marketplace.alibabacloud.com/products/56712002/Ant_Media_Server_Enterprise_2_2_1-sgcmjj00025347.html), [Digital Ocean](https://marketplace.digitalocean.com/apps/antmedia-server-enterprise-edition-3) and [Linode](https://www.linode.com/marketplace/apps/ant-media/ant-media-community-edition/)). You can also download Enterprise Edition via subscription on [antmedia.io](https://antmedia.io)
-
-
 ## 📫 Contact
 
-* For more information and blog posts visit [antmedia.io](https://antmedia.io/blog/)
-* For general inquiries, [contact@antmedia.io](mailto:contact@antmedia.io)
+* For more information and blog posts visit [antmedia.io/blog](https://antmedia.io/blog/)
+* For general inquiries: [contact@antmedia.io](mailto:contact@antmedia.io)
 
 ## ⭐️ Supporting Ant Media Server
 
