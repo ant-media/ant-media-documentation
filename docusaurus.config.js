@@ -9,7 +9,7 @@ const config = {
   title: 'Ant Media Documentation',
   tagline: 'Ant Media Documentation',
   url: 'https://antmedia.io',
-  baseUrl: '/docs',
+  baseUrl: '/docs/',
   trailingSlash: true,
   onBrokenLinks: 'warn', // replace with 'throw' to stop building if broken links
   onBrokenMarkdownLinks: 'warn',
@@ -68,7 +68,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'Ant Media Documentation',
+        title: 'Documentation',
         logo: {
           href: '/',
           alt: 'Ant Media Documentation',
