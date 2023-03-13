@@ -94,3 +94,29 @@ https://{edge}.{example}.{com}
 
 You can customize the Ant Media Cluster installation using the following parameters.
 
+| Parameter                               | Description                                                                                              | Default                                                                            |
+|------------------------------------------------| -------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `image.repository`                                        | image repository                                                                                         | `antmedia/enterprise` |
+| `image.tag`                                        | image tag                                                                                         | `latest` |
+| `origin`                                       | Domain name of Origin server                                                                             | `{}`                                                                        |
+| `edge`                                         | Domain name of Edge server                                                                               | `{}`                                                                     |
+| `hostNetwork`                                  | If `false`, use turn server                                                                              | `true`                                                                            |
+| `mongodb`                                      | MongoDB host                                                                                             | `mongo`                                                                     |
+| `licenseKey`                                      | License key                                                                                            | `{}`                                                                     |
+| `autoscalingOrigin.targetCPUUtilizationPercentage`                            | Target CPU utilization percentage for autoscaler for Origin                                                                          | `60`                                                                               |
+| `autoscalingOrigin.minReplicas`                                 | Minimum number of deployment replicas for the compute container.                                                                                | `1`                                                                               |
+| `autoscalingOrigin.maxReplicas`                                  | Maximum number of deployment replicas for the compute container.                                    | `10`                                                                               |
+| `autoscalingEdge.targetCPUUtilizationPercentage`                                 | Target CPU utilization percentage for autoscaler for Edge                         | `60`                                                                                |
+| `autoscalingEdge.minReplicas`                          | Minimum number of deployment replicas for the compute container.     | `1`                                                                               |
+| `autoscalingEdge.maxReplicas`                               | Maximum number of deployment replicas for the compute container.                                                         | `10`                                                                               |
+| `MongoDBNodeSelector`                               | Node Affinity for MongoDB deployment.                                                         | `{}`                                                                               |
+| `EdgeNodeSelector`                               | Node Affinity for AMS Edge deployment.                                                         | `{}`                                                                               |
+| `OriginNodeSelector`                               | Node Affinity for Edge Origin deployment.                                                         | `{}`                                                                               |
+
+
+
+## Example Usage
+```
+helm install antmedia antmedia/antmedia --set origin=origin.antmedia.io --set edge=edge.antmedia.io --set autoscalingEdge.targetCPUUtilizationPercentage=20 --set autoscalingEdge.minReplicas=2 --namespace antmedia --create-namespace
+
+```
