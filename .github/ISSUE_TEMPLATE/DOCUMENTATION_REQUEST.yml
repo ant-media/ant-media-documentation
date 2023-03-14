@@ -1,14 +1,14 @@
 name: 🎉 Documentation Request
 description: Suggest a new part of the documentation we are probably missing!
-title: "[Request]: "
-labels: "type: doc request"
+title: "[Doc Request]: "
+labels: "type: 📃doc-request"
 body:
   - type: checkboxes
     attributes:
       label: Is there an existing issue for this?
-      description: Please search to see if an issue already exists
+      description: Please search to see if an issue already exists. If so, you may comment there to bring it to our attention.
       options:
-        - label: I have searched existing issues, it hasn't been reported yet
+        - label: I have searched existing issues, it hasn't been reported yet.
           required: true
   - type: textarea
     attributes:
@@ -31,6 +31,6 @@ body:
   - type: input
     attributes:
       label: Related issue(s)/PR(s)
-      placeholder: "Let us know if this is related to any issue/pull request."
+      placeholder: "Let us know if this is related/extending with any issue/pull request."
     validations:
       required: false
