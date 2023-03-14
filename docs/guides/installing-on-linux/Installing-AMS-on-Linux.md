@@ -68,11 +68,11 @@ Open your browser and type ```http://SERVER_IP_ADDRESS:5080``` to go to the web 
 
 ## Docker installation
 
-Please visit for more information [Docker and Docker Compose](https://resources.antmedia.io/docs/docker-and-docker-compose-installation).
+Please visit for more information [Docker and Docker Compose](/guides/clustering-and-scaling/docker/Docker-and-Docker-Compose-Installation/).
 
 ## Cluster installation
 
-Cluster installation is an advanced topic and it has its own page. Please visit [Clustering & Scaling](https://resources.antmedia.io/docs/scaling-ant-media-server).
+Cluster installation is an advanced topic and it has its own page. Please visit [Clustering & Scaling](/category/clustering-and-scaling/).
 
 ## Server ports
 
