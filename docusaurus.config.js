@@ -9,7 +9,7 @@ const config = {
   title: 'Ant Media Documentation',
   tagline: 'Ant Media Documentation',
   url: 'https://antmedia.io',
-  baseUrl: '/',
+  baseUrl: '/docs',
   trailingSlash: true,
   onBrokenLinks: 'warn', // replace with 'throw' to stop building if broken links
   onBrokenMarkdownLinks: 'warn',
