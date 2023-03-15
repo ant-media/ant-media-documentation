@@ -1,7 +1,6 @@
 # coTURN quick installation
 
-What is a TURN Server?
-----------------------
+## What is a TURN Server?
 
 A TURN server is a network entity in charge of relaying media in VoIP related protocols. This includes SIP, H.323, WebRTC and other protocols.
 
@@ -13,11 +12,11 @@ So we use TURN server for this solution.
 
 Ant Media Server does not require TURN server even if there is Symmetric NAT. However it's required if UDP ports are blocked for any reason or Ant Media Server is used as signaling server in P2P communication.
 
-### Install TURN server
+## 1 Install TURN server
 
 ```apt-get update && apt-get install coturn```
 
-### Enable TURN server
+## 2 Enable TURN server
 
 Edit the following file.
 
@@ -27,7 +26,7 @@ add the below line
 
 ```TURNSERVER_ENABLED=1```
 
-### Configure TURN server
+## 3 Configure TURN server
 
 Edit the following file.
 
@@ -35,43 +34,51 @@ Edit the following file.
 
 just add it to the 2 lines below.
 
+```
 user=username:password
-
 realm=your_public_ip_address
+```
+
+
 and restart TURN server
 
 ```systemctl restart coturn```
 
-* If you use AWS EC2 instance, you need to add extra the below lines
+### Optional step for AWS
 
+If you use AWS EC2 instance, you need to add extra the below lines
+
+  ```
   #EC2 private ip address
-
   relay-ip=your_private_ip
 
   #EC2 Public/Private ip address
-
   external-ip=your_public_ip/your_private_ip
-* Open the following ports on AWS console
+  ```
 
+Open the following ports on AWS console
+
+  ```
   TCP 443 #TLS listening port
-
   TCP 3478-3479 #coturn listening port
-
   TCP 32355-65535 #relay ports range
-
   UDP 3478-3479 #coturn listening port
-
   UDP 32355-65535 #relay ports range
+  ```
 
 That 's it.
 
-### How to test Turn Server
+## 3 Testing Turn Server
 
-#### Command Line
+Below are a couple of ways to test your new TURN server installation.
 
+### Command Line
+
+```
 turnutils\_uclient -v -t -T -u username -w password -p 3478 turn\_server\_ip
+```
 
-#### Web Browser
+### Web Browser
 
 Open the following link and fill in the blanks then ```Add Server```
 
@@ -82,15 +89,20 @@ Open the following link and fill in the blanks then ```Add Server```
 
 ![](https://raw.githubusercontent.com/wiki/ant-media/Ant-Media-Server/images/turn3.png)
 
-### How to add Turn Server to Ant Media sample pages
+## How to add Turn Server to Ant Media sample pages
 
 Go to the codes of index.html, play.html or player.html and change the pc\_config like;
 
+```
 var pc_config = {
-		'iceServers' : [ {
-			'urls' : 'turn:`<turn_server_address>`:`<port_number>`',
-                             'username': "username",
-                             'credential': "password",
-		} ]
-	};
+  'iceServers' : [ 
+    {
+     'urls' : 'turn:`<turn_server_address>`:`<port_number>`',
+     'username': "username",
+     'credential': "password",
+    } 
+   ]
+};
+```
+
 In v2.4.4 & above, TURN server can be configured on server side. Please check [**here**](/guides/configuration-and-testing/Configuring-STUN-addresses/#configuring-for-ant-media-244-and-later-versions).

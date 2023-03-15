@@ -14,7 +14,7 @@
   --ifm-color-primary-lighter: #359962;
   --ifm-color-primary-lightest: #3cad6e;
   --ifm-code-font-size: 90%;
-  --ifm-code-border-radius: 10px;
+  --ifm-code-border-radius: 2px;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
@@ -31,9 +31,11 @@
 }
 
 article{
-  font-size: 19px;
+  font-size: 17px;
   line-height: 1.7em;
+  font-family: "__akkurat_bd6215","__akkurat_Fallback_bd6215","Helvetica Neue",Helvetica,sans-serif;
 }
+
 
 .theme-code-block{
   border: 1px solid #e3e3e3;
@@ -50,4 +52,23 @@ article{
   margin-bottom: 1rem;
   padding: 0.75rem 1.25rem;
   position: relative;
+}
+
+p img{
+  border: 1px solid #eae7e7;
+  border-radius: 0px;
+  margin: 15px 0;
+}
+
+nav{
+  font-size: 16px;
+}
+
+code{
+  border:0;
+  padding: 6px;
+}
+
+.codeBlockContainer_node_modules-\@docusaurus-theme-classic-lib-theme-CodeBlock-Container-styles-module{
+  box-shadow: 0 0 0 0 !important;
 }
