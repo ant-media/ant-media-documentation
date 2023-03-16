@@ -35,23 +35,24 @@ Edit the following file.
 
 just add it to the 2 lines below.
 
+```
 user=username:password
-
 realm=your_public_ip_address
-and restart TURN server
+```
 
-```systemctl restart coturn```
+After making the changes, restart TURN server with ```systemctl restart coturn```.
 
-* If you use AWS EC2 instance, you need to add extra the below lines
+* If you use an AWS EC2 instance, you must add the following lines in the turnserver.conf file.
 
-  #EC2 private ip address
+  **#EC2 private ip address**
 
-  relay-ip=your_private_ip
+  ```relay-ip=your_private_ip```
 
-  #EC2 Public/Private ip address
+  **#EC2 Public/Private ip address**
 
-  external-ip=your_public_ip/your_private_ip
-* Open the following ports on AWS console
+  ```external-ip=your_public_ip/your_private_ip```
+
+* Open the following ports on AWS security group
 
   TCP 443 #TLS listening port
 
@@ -84,8 +85,9 @@ Open the following link and fill in the blanks then ```Add Server```
 
 ### How to add Turn Server to Ant Media sample pages
 
-Go to the codes of index.html, play.html or player.html and change the pc\_config like;
+To add TURN server on client side, edit publish_webrtc.html in the _/antmedia/webapps/App-Name/samples_ folder for WebRTC publish sample, and edit play.html, player.html, and other sample pages in the _/antmedia/webapps/App-Name_ folder.
 
+```
 var pc_config = {
 		'iceServers' : [ {
 			'urls' : 'turn:`<turn_server_address>`:`<port_number>`',
@@ -93,4 +95,6 @@ var pc_config = {
                              'credential': "password",
 		} ]
 	};
-In v2.4.4 & above, TURN server can be configured on server side. Please check [**here**](https://resources.antmedia.io/docs/configuring-stun-server#configuring-for-ant-media-244-and-later-versions).
+```
+
+In v2.5.0 & above, TURN server can be configured on server side as well. Please check [**here**](https://antmedia.io/docs/guides/configuration-and-testing/Configuring-STUN-addresses/#configuring-for-ant-media-244-and-later-versions).
