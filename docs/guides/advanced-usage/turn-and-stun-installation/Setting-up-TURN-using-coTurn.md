@@ -50,8 +50,10 @@ We always prefer to install the Database Server on a separate server and we choo
 ### 1 Install MariaDB
 
 Update the repository and install MariaDB with the following command:
-    
-        apt-get update && apt-get install mariadb-server -y
+
+```shell   
+apt-get update && apt-get install mariadb-server -y
+```
     
 ### 2 Edit Configuration file
 
@@ -66,13 +68,17 @@ innodb_large_prefix=1
     
 ### 3 Restart the MariaDB Server.
     
-    ```systemctl restart mysqld```
+```shell
+systemctl restart mysqld
+```
     
 ### 4 Login to Mariadb:
 
 Login to Mariadb shell using the following command:
-    
-    ```mysql -uroot -p```
+ 
+```shell
+mysql -uroot -p
+```
     
 ### 5 Create coturn credentials
 
@@ -149,7 +155,7 @@ Make sure you're doing this step on Coturn1 and Coturn2 server separately. The s
     
 ### 6 Import SQL schema
 
-Import the SQL schema ```/usr/share/coturn/schema.sql``` to the database server. The file ```/usr/share/coturn/schema.sql``` is in one of the turn servers. Upload to the database server and ```schema.sql```is imported.
+Import the SQL schema ```/usr/share/coturn/schema.sql``` to the database server. The file ```/usr/share/coturn/schema.sql``` is in one of the turn servers. Upload to the database server and ```schema.sql``` is imported.
     
 ```shell
 scp -r /usr/share/coturn/schema.sql root@192.168.1.200:
@@ -191,6 +197,10 @@ If everything is fine, your output will be as follows
 
 You can use the following command to check that DNS Round-Robin is working correctly:
 
-```nslookup turn.antmedia.io``````![](@site/static/img/coturn-nslookup.png)```
+```shell
+nslookup turn.antmedia.io
+```
+
+![](@site/static/img/coturn-nslookup.png)
 
 If you have any questions, please just drop a line to contact (at) antmedia.io
