@@ -1,5 +1,5 @@
 ---
-title: Introduction
+title: Scaling Ant Media Server
 sidebar_position: 1
 ---
 # Scaling Ant Media Server
