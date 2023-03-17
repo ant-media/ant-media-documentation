@@ -40,7 +40,7 @@ const config = {
           breadcrumbs: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl: 'https://github.com/ant-media/ant-media-documentation/tree/master/docs',
+          editUrl: 'https://github.com/ant-media/ant-media-documentation/edit/master/docs',
         },
         blog: false,
         theme: {
