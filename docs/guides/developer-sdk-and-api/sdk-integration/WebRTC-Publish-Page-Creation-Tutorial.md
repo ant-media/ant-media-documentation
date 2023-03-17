@@ -5,7 +5,7 @@ In this tutorial we will create a WebRTC publish page from scratch together. Bef
 Step 0. Be Prepared
 -------------------
 
-*   Install AMS if you haven't done. You may check [installation document](https://resources.antmedia.io/docs/installation).
+*   Install AMS if you haven't done. You may check [installation document](/guides/installing-on-linux/Installing-AMS-on-Linux/).
 *   You should have a web server to test your publish page we will create in this tutorial. Since we will access device camera and mic in our page, we should serve the page in a secure site with https or you can use a local webserver. If you don't know how you have a webserver, please check [this](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/set_up_a_local_testing_server) to run one in minutes.
 *   Create a workspace which can be served by your webserver.
 *   Create an empty publish.html file in your workspace. This file will be our publsh page in minutes.
@@ -99,8 +99,8 @@ Now we have to create an ```WebRTCAdaptor``` instance which is provided by JS SD
 *   _**peerconnection\_config**_ defines the peer connection parameters. We will pass only STUN server as parameter in this page. You may check [this](https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/setConfiguration) for more information.
 *   _**sdpConstraints**_ defines sdp options. Since we publish only from this page no we will disable video and audio receive here. You may check [this](https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/createOffer) for more information.
 *   _**localVideoId**_ is the ```id``` parameter of the ```video``` element.
-*   _**callback**_ is the callback function called by the JS SDK in case of some specific events. Here we will create alert in case of getting **_publish\_started_** and **_publish\_finished_**. You may check [this](https://resources.antmedia.io/docs/javascript-sdk#webrtc-javascript-info-callbacks) for more information about callbacks.
-*   _**callbackError**_ is the callback function called by the JS SDK in case of some specific errors. Here we create allert in case of any error. You may check [this](https://resources.antmedia.io/docs/javascript-sdk#webrtc-javascript-error-callbacks) for more information about error callbacks.
+*   _**callback**_ is the callback function called by the JS SDK in case of some specific events. Here we will create alert in case of getting **_publish\_started_** and **_publish\_finished_**. You may check [this](/guides/developer-sdk-and-api/sdk-integration/Javascript-SDK/#webrtc-javascript-info-callbacks) for more information about callbacks.
+*   _**callbackError**_ is the callback function called by the JS SDK in case of some specific errors. Here we create allert in case of any error. You may check [this](/guides/developer-sdk-and-api/sdk-integration/Javascript-SDK/#webrtc-javascript-error-callbacks) for more information about error callbacks.
 
 ### Create Start/Stop functions
 
@@ -129,7 +129,7 @@ Lets bind our start/stop functions to the buttons now.
     document.getElementById("stop").addEventListener("click", stopPublishing);
     
 
-That's all for WebRTC publishing. If you need to learn more about WebRTCAdaptor please check [this](https://resources.antmedia.io/docs/javascript-sdk).
+That's all for WebRTC publishing. If you need to learn more about WebRTCAdaptor please check [this](/guides/developer-sdk-and-api/sdk-integration/Javascript-SDK/).
 
 ### Final Check
 

@@ -93,6 +93,5 @@ var pc_config = {
                              'credential': "password",
 		} ]
 	};
-```
 
 In v2.5.0 & above, TURN server can be configured on server side as well. Please check [**here**](https://antmedia.io/docs/guides/configuration-and-testing/Configuring-STUN-addresses/#configuring-for-ant-media-244-and-later-versions).
