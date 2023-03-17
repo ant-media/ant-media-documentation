@@ -42,27 +42,25 @@ realm=your_public_ip_address
 
 After making the changes, restart TURN server with ```systemctl restart coturn```.
 
-* If you use an AWS EC2 instance, you must add the following lines in the turnserver.conf file.
+* If you use an AWS EC2 instance, you must add the following lines in the ```turnserver.conf``` file.
 
-  **#EC2 private ip address**
+  **EC2 private ip address**
 
   ```relay-ip=your_private_ip```
 
-  **#EC2 Public/Private ip address**
+  **EC2 Public/Private ip address**
 
   ```external-ip=your_public_ip/your_private_ip```
 
 * Open the following ports on AWS security group
 
+```
   TCP 443 #TLS listening port
-
   TCP 3478-3479 #coturn listening port
-
   TCP 32355-65535 #relay ports range
-
   UDP 3478-3479 #coturn listening port
-
   UDP 32355-65535 #relay ports range
+```
 
 That 's it.
 
@@ -70,11 +68,11 @@ That 's it.
 
 #### Command Line
 
-turnutils\_uclient -v -t -T -u username -w password -p 3478 turn\_server\_ip
+```shell turnutils\_uclient -v -t -T -u username -w password -p 3478 turn\_server\_ip```
 
 #### Web Browser
 
-Open the following link and fill in the blanks then ```Add Server```
+Open the following link and fill in the blanks. Thereafter, **Add Server**
 
 [https://webrtc.github.io/samples/src/content/peerconnection/trickle-ice/](https://webrtc.github.io/samples/src/content/peerconnection/trickle-ice/)
 ![](@site/static/img/turn1.png)
