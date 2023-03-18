@@ -35,13 +35,13 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          routeBasePath: 'docs',
+          routeBasePath: '/',
           sidebarPath: require.resolve('./sidebars.js'),
           breadcrumbs: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           // editUrl: 'https://github.com/facebook/docusaurus/edit/main/website/',
-          editUrl: 'https://github.com/ant-media/ant-media-documentation/edit/master/docs/',
+          editUrl: 'https://github.com/ant-media/ant-media-documentation/edit/master/',
         },
         blog: false,
         theme: {
