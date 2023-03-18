@@ -45,6 +45,6 @@ curl -X POST -H "Content-Type: application/json" "https://{domain:port}/{applica
 
 You can play the playlist in HLS and WebRTC.
 
-[Here is HLS player documentation](https://resources.antmedia.io/docs/hls-playing)
+[Here is HLS player documentation](/guides/playing-live-stream/HLS-Playing/)
 
-[Here is WebRTC play documentation](https://resources.antmedia.io/docs/webrtc-playing)
+[Here is WebRTC play documentation](/guides/playing-live-stream/WebRTC-Playing/)

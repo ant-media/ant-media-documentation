@@ -9,7 +9,7 @@ const config = {
   title: 'Ant Media Documentation',
   tagline: 'Ant Media Documentation',
   url: 'https://antmedia.io',
-  baseUrl: '/docs',
+  baseUrl: '/',
   trailingSlash: true,
   onBrokenLinks: 'warn', // replace with 'throw' to stop building if broken links
   onBrokenMarkdownLinks: 'warn',
@@ -40,15 +40,10 @@ const config = {
           breadcrumbs: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl: 'https://github.com/ant-media/documentation/tree/master/docs',
+          // editUrl: 'https://github.com/facebook/docusaurus/edit/main/website/',
+          editUrl: 'https://github.com/ant-media/ant-media-documentation/edit/master/',
         },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-        },
+        blog: false,
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
@@ -68,7 +63,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'Ant Media Documentation',
+        title: 'Documentation',
         logo: {
           href: '/',
           alt: 'Ant Media Documentation',
@@ -84,7 +79,7 @@ const config = {
           },
           {
             label: 'SDK references',
-            href: '/sdk-reference',
+            href: '/sdk-reference/',
             position: 'left'
           },
           {

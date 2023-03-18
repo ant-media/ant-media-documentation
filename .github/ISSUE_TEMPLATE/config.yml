@@ -1,5 +1,8 @@
 blank_issues_enabled: false
 contact_links:
-  - name: In case of any doubt? Kindly initiate discussion here:
+  - name: Community Support
     url: https://github.com/ant-media/Ant-Media-Server/discussions
     about: Please ask and answer questions at Github Discussion.
+  - name: Ant Media Server Issues
+    url: https://github.com/ant-media/Ant-Media-Server/issues
+    about: If it is Product's Bug, kindly raise your issues at ant-media/Ant-Media-Server repository.

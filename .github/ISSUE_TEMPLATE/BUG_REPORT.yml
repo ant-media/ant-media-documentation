@@ -1,4 +1,4 @@
-name: 🐛Documentation Bug Report
+name: 🐛 Documentation Bug Report
 description: Create a report to help us improve the Ant Media's documentation.
 title: "[Bug]: "
 labels: "type: bug"
@@ -6,7 +6,7 @@ body:
   - type: input
     attributes:
       label: Link to the documentation page or resource
-      placeholder: https://antmedia.io/docs/guides/playing-live-stream/HLS-Playing
+      placeholder: Example:https://antmedia.io/docs/guides/playing-live-stream/HLS-Playing
     validations:
       required: true
   - type: textarea
