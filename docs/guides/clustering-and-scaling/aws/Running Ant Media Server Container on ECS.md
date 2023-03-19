@@ -75,7 +75,7 @@ In this document we will tell how you can run Ant Media Server Enterprise editio
 - Click *Run New Task*
 - Select *EC2* as Launch type
 
-  ![](@site/static/img/ecs-cluster/run-task-1.png)
+  ![](@site/static/img/ecs-standalone/run-task-1.png)
 
 - Select *ams-task-definition* as Task Definition
 - Click *Run Task*
