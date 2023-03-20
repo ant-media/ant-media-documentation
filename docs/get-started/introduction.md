@@ -121,9 +121,9 @@ Meanwhile, users can use any deep models to execute live streams on the fly.
 
 ## Ant Media Community discussion
 
-There is a user community available. You can ask or answer questions by joining the community on [https://community.antmedia.io/](https://community.antmedia.io/?forumId=4)
+There is a user community available. You can ask or answer questions by joining the community at [community.antmedia.io](https://community.antmedia.io/)
 
-You can also ask your questions at StackOverflow with the [ant-media-server] tag.
+You can also ask your questions at StackOverflow with the tag ```[ant-media-server]```.
 
 ## Contact
 
