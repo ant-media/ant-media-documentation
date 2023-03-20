@@ -30,8 +30,6 @@ To run AMS in a cluster please follow these steps.
 
 ## Installing the Mongodb database
 
-### 1\. Installing the database
-
 You can install MongoDB to an instance or even you can make cluster installation for MongoDB. In this documentation, we explain how to install MongoDB to an Ubuntu Linux machine. As the commands are specific to Ubuntu, you can use corresponding Linux commands to deploy to a yum based Linux distribution as well.
 
 Connect your instance and run the following commands. Make sure you download the latest MongoDB edition by modifying the version number below.
@@ -159,5 +157,5 @@ You can monitor all nodes in the cluster by visiting the web page below in any n
 
 Install the load balancer using either one of the below two options. AMS uses Nginx by default, bu you can also use HAProxy as your load balancer. You can read how to install either of these options in the documents below.
 
-* [Nginx Load Balancer](/v1/docs/installing-with-nginx-load-balancer)
-* [HAProxy Load Balancer](/v1/docs/load-balancer-with-haproxy-ssl-termination)
+* [Nginx Load Balancer](/guides/clustering-and-scaling/load-balancing/Installing-with-nginx-load-balancer/)
+* [HAProxy Load Balancer](/guides/clustering-and-scaling/load-balancing/load-balancer-with-haproxy-ssl-termination/)
