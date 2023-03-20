@@ -51,3 +51,15 @@ article{
   padding: 0.75rem 1.25rem;
   position: relative;
 }
+
+.card{
+  border: 1px solid #cccccc;
+  border-radius: 0;
+  margin: 2px;
+  box-shadow: none !important;
+  padding:4px 8px;
+}
+.card .row{
+  justify-content: center ;
+}
+
