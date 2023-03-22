@@ -27,7 +27,7 @@ For example in the LiveApp application, it can be found at the following locatio
 <iframe width="560" height="315" src="https://your_domain_name:5443/LiveApp/play.html?id=125214322064017559554903" frameborder="0" allowfullscreen></iframe>
 ```
 
-Below is an example of the ```play.html``` page having been embed within a webpage using the iFrame. 
+Below is an example of the ```play.html``` page having been embedded within a webpage using the iFrame. 
 
 ![](@site/static/img/embedded-player-example.png)
 
