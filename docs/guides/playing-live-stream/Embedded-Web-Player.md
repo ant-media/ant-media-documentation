@@ -1,8 +1,16 @@
 # Embedded Web Player
 
-You can use ```play.html``` page on your website with IFrame. ```play.html``` page is in the Application folder on Ant Media Server.
+You can embed the ```play.html``` page on your website using an iFrame. The ```play.html``` page is in the application folder on Ant Media Server. 
 
-```play.html``` page accepts the below arguments
+For example in the LiveApp application, it can be found at the following location:
+
+```shell
+/usr/local/antmedia/webapps/LiveApp/play.html
+```
+
+## Play.html URL Parameters
+
+```play.html``` page accepts the below URL parameters
 
 *   **```id```** : The stream id to play. It is ***mandatory***.
 *   **```token```** : The token to play the stream. It's mandatory if token security is enabled on the server-side.
@@ -13,14 +21,13 @@ You can use ```play.html``` page on your website with IFrame. ```play.html``` pa
 *   **```targetLatency```** : To define target latency for the DASH player. Optional. Default value is ```3```.
 *   **```is360```** : To play the stream in 360. Default value is false.
 
-**You can use** **play.html** **in IFrame as below:**
+## iFrame Embed Code 
 
 ```html
-<iframe width="560" height="315" src="https://your_domain_name:5443/LiveApp/play.html?name=125214322064017559554903" frameborder="0" allowfullscreen>``</iframe>
+<iframe width="560" height="315" src="https://your_domain_name:5443/LiveApp/play.html?id=125214322064017559554903" frameborder="0" allowfullscreen></iframe>
 ```
 
-#### ![](@site/static/img/ant-media-server-iframe-player.png)
+Below is an example of the ```play.html``` page having been embedded within a webpage using the iFrame. 
 
-#### Change width/height resolution in ```play.html``` page
+![](@site/static/img/embedded-player-example.png)
 
-If you want to change width/height parameters, you just need to change your IFrame code snippets. If you don't enter any parameter, play.html covers all screen.
