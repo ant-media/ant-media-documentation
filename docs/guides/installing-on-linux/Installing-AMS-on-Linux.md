@@ -4,7 +4,7 @@ title: Installing AMS on Linux
 
 Ant Media can be installed on Linux, specifically Ubuntu (18.04, 20.04, and 22.04), CentOS (8 and 9), Rocky Linux (8 and 9), and Alma Linux (8 and 9). It is compatible with both the x86-64 and Arm64 architectures.
 
-To run AMS on a single instance, you'll need at least 4 vCPU dedicated compute optimized servers with 8 GB of RAM. In terms of smooth write/read performance, SSD disks are highly recommended.
+To run AMS on a single instance, you'll need at least 4 vCPU dedicated compute optimized servers with 8 GB of RAM. In terms of smooth read-write performance, SSD disks are highly recommended.
 
 This document describes how to install both the Community Edition and the Enterprise Edition. There are several installation methods available, including deployment to a full VM, Docker, or Kubernetes.
 
@@ -42,7 +42,7 @@ cd path/to/where/ant-media-server....zip
 
 Download the ```install_ant-media-server.sh``` shell script.
 
-    sudo wget https://raw.githubusercontent.com/ant-media/Scripts/master/install_ant-media-server.sh && chmod 755 install_ant-media-server.sh
+    sudo wget https://raw.githubusercontent.com/ant-media/Scripts/master/install_ant-media-server.sh && sudo chmod 755 install_ant-media-server.sh
 
 ## Run the installation script
 
