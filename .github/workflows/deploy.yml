@@ -23,9 +23,8 @@ jobs:
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
         ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
         
-    - name: connect and pull
+    - name: connect and upload
       run: |
-        ls -alh 
         scp -r docs.tar ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}":"
         ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "tar -zxvf docs.tar && rm -rf docs.tar"
     - name: cleanup
