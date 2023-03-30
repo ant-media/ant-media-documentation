@@ -1,21 +1,33 @@
 on:
   push:
     branches:
-      - published
+      - master
   workflow_dispatch:
   
 jobs:
   run_pull:
-    name: run pull
+    name: docs
     runs-on: ubuntu-latest
     
     steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '16.x'
+    - run: npm install
+    - run: npm run build
+    - run: cd build && tar -zcvf ../docs.tar .
     - name: install ssh keys
       run: |
         install -m 600 -D /dev/null ~/.ssh/id_rsa
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
         ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
+        
     - name: connect and pull
-      run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} your commands"
+      run: |
+        ls -alh 
+        scp -r docs.tar ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}":"
+        ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "tar -zxvf docs.tar && rm -rf docs.tar"
     - name: cleanup
       run: rm -rf ~/.ssh
+
