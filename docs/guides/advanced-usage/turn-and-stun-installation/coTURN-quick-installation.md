@@ -83,7 +83,7 @@ To add TURN server on client side, edit `publish_webrtc.html` in the _/antmedia/
 ```
 var pc_config = {
 		'iceServers' : [ {
-			                       'urls' : 'turn:turn_server_address:port_number`',
+			     'urls' : 'turn:turn_server_address:port_number',
                              'username': "username",
                              'credential': "password",
 		} ]
