@@ -12,7 +12,6 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - run: sed -i "s^baseUrl:.*^baseUrl:'/docs',^" docusaurus.config.js
-    - run: cat docusaurus.config.js | grep -i baseurl
     - uses: actions/setup-node@v2
       with:
         node-version: '16.x'
