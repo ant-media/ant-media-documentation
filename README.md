@@ -5,7 +5,7 @@
 
 ## Ant Media Documentation
 
-This repository is dedicated to Ant Media Sever's Documentation. _If you are looking for the Ant Media Server's code, kindly navigate to [Ant Media Server](https://github.com/ant-media/Ant-Media-Server)._
+This repository is dedicated to Ant Media Server's Documentation. _If you are looking for the Ant Media Server's code, kindly navigate to [Ant Media Server](https://github.com/ant-media/Ant-Media-Server)._
 
 Ant Media Server is a streaming engine software that provides adaptive, ultra-low latency streaming by using WebRTC technology with ~0.5 seconds latency or low latency by using HLS or CMAF. Ant Media Server a.k.a. AMS is highly scalable both horizontally and vertically, running on-premises or on any cloud provider of your choice.
 
