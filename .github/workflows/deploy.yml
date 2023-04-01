@@ -12,7 +12,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - run: sed -i "s^baseUrl:.*^baseUrl:'/docs',^" docusaurus.config.js
-    - uses: actions/setup-node@v2
+    - uses: actions/setup-node@v3
       with:
         node-version: '16.x'
     - run: npm install
