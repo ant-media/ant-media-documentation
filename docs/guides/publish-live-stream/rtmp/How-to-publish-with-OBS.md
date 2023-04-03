@@ -57,7 +57,7 @@ Stream health parameters are located at the bottom right. There are 3 stream hea
 
 ![](@site/static/img/obs-broadcast-health.png)
 
-### OBS cncoding overloaded warning
+### OBS encoding overloaded warning
 
 If your PC cannot handle the stream with the parameters you set, this warning appears. In this case, you may want to decrease the resolution, bitrate, or change the encoder preset value to one with high speed and low quality.
 
