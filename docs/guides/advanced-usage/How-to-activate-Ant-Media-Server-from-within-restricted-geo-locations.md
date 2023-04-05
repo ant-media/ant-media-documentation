@@ -9,6 +9,8 @@ For this reason, it’s not possible to verify the Ant Media license key using G
 
 In this article, I'll provide two options to get around these restrictions and explain them step by step.
 
+<image align="center" src="https://github.com/ant-media/ant-media-documentation/blob/master/static/img/ams-proxy.png">
+
 The two options are:
 
 - A proxy service that is provided free for Ant Media Enterprise users.
