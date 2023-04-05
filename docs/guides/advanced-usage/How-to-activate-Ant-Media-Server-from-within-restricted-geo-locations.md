@@ -37,13 +37,13 @@ apt install squid apache2-utils -y
 ```
 #### 2. Backup existing configuration.
 
-mv /etc/squid/squid.conf{,_bck}
+`mv /etc/squid/squid.conf{,_bck}`
 
 #### 3. Modify the squid configuration
 
-Open the squid.conf file located at /etc/squid/squid.conf with an editor
+Open the `squid.conf` file located at `/etc/squid/squid.conf` with an editor
 
-**vim /etc/squid/squid.conf**
+`vim /etc/squid/squid.conf`
 
 Add the following lines into squid.conf file.
 
