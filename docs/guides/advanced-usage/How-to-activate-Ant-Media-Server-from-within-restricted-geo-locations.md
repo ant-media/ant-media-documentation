@@ -9,7 +9,7 @@ For this reason, it’s not possible to verify the Ant Media license key using G
 
 In this article, I'll provide two options to get around these restrictions and explain them step by step.
 
-![image](https://github.com/ant-media/ant-media-documentation/blob/master/static/img/ams-proxy.png)
+![image](https://raw.githubusercontent.com/ant-media/ant-media-documentation/fc3a808ccea9a2df81d716a6a988ca5774128a64/static/img/ams-proxy.png)
 
 The two options are:
 
