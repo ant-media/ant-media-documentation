@@ -1,14 +1,12 @@
-# Management Panel REST API services
+# Management Panel REST API Services
 
 Some REST commands which are not application specific, such as creating and deleting an app, creating a new user, etc, require an authentication filter by logging in to the management panel. This creates a few limitations for people who don't want to use the web panel every time and want access to all of the REST commands.
 
-Earlier ,there are two separate methods to access the Dashboard REST services, via **JWT API Filter** and also via **User Authentication**.
+Earlier ,there are two separate methods to access the Dashboard REST services, via **JWT Tokens** and also via **User Authentication**.
 
 In JWT API Filter, it was needed to edit web.xml file under conf directory first and then make the Dashboard API calls. No with the new versions, we have updated the method and hence JWT Filter along with Username and Password can be used simultaneously.
 
-## Accessing Management Panel REST API
-
-### Enable JWT filter for web panel REST API
+## Accessing Management Panel REST API with JWT Tokens
 
 First, open the ```conf/red5.properties``` file and find and replace the following lines:
 
@@ -34,13 +32,24 @@ REST API for the web panel is listed [Management REST Service](https://antmedia.
 
 ### Example
 
-Let's assume that we've entered this key (```cizvvh7f6ys0w3x0s1gzg6c2qzpk0gb9```) as ```server.jwtServerSecretKey```
+#### * Generate JWT Token
+Let's assume that we've entered this key (`cizvvh7f6ys0w3x0s1gzg6c2qzpk0gb9`) as `server.jwtServerSecretKey`
 
 First, generate the JWT Token at [JWT Debugger](https://jwt.io/#debugger-io). We've entered the Secret key and removed the data field because we don't send payload as shown below. This way, JWT token that we can use is ```eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.e30.tA6sZwz_MvD9Nocf3Xv_DXhJaeTNgfsHPlg3RHEoZRk```
 
 ![](@site/static/img/JWT_debugger_sample_for_web_panel_ant_media_server.png)
 
-## Authenticating the User:
+#### * Make curl Request
+Let's use the JWT Token in `ProxyAuthorization` header as follows
+
+```
+curl -X GET -H "Content-Type: application/json" -H "ProxyAuthorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.e30.tA6sZwz_MvD9Nocf3Xv_DXhJaeTNgfsHPlg3RHEoZRk" "https://example.com:5443/rest/v2/system-resources"
+```
+Then Ant Media Server responds with system resources information such as CPU Load, Memory, etc. For all REST Methods, please visit the [Management REST Service Reference](https://antmedia.io/rest/#/ManagementRestService) 
+
+
+
+## Accessing Management Panel REST API with Authenticating the User
 
 Now, we need to authenticate the username and password.
 
