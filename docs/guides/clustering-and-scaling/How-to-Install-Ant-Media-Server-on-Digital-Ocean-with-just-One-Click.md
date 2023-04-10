@@ -11,20 +11,20 @@ In this article, I'm going to explain how to install Ant Media Server K8s on Dig
 
 Login to Digital Ocean, click on the Marketplace tab.
 
-Image Link
+![image.png](@site/static/img/ams-do-marketpace-1.png)
 
 Then enter **"Ant Media Server Enterprise"** in the search field and select it as shown in the screenshot.
 
-Image Link
+![image.png](@site/static/img/ams-do-marketpace-2.png)
 
 Click **"Install App"** and then click **"Install"**.
 
-Image Link
+![image.png](@site/static/img/ams-do-marketpace-3.png)
 
 Choose the location, NodePool, and other settings and start the cluster setup.
 
-Image Link
-Image Link
+![image.png](@site/static/img/ams-do-marketpace-4-1.png)
+![image.png](@site/static/img/ams-do-marketpace-4-2.png)
 
 After the installation is complete, download the kubernetes configuration file from the **Actions > Download Config** menu and export it as follows.
 
