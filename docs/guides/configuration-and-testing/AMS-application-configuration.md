@@ -15,7 +15,7 @@ Login to the Ant Media Server dashboard and click on the application you want to
 
 Highlighted below is how to enable VP8 encoding in the management panel. 
 
-![](@site/static/img/application-settings-dashboard.png)
+![](@site/static/img/configuration-and-testing/application-settings-dashboard.png)
 
 ## Application properties file
 
@@ -23,7 +23,7 @@ To edit the configuration file directly, navigate to the file located at ```<AMS
 
 Highlighted below is how to enable VP8 encoding by editing the configuration file.
 
-![](@site/static/img/application-settings-properties.png)
+![](@site/static/img/configuration-and-testing/application-settings-properties.png)
 
 
 ## Adding additional settings
@@ -54,7 +54,7 @@ To confirm the function of the setting, additional information is provided in th
 
 ### 3 Update the confguration file
 
-To add an additional setting to the configuration file, open the applications ```red5-web.properties``` file located at ```<AMS\_DIR>/webapps/<AppName>/WEB-INF/red5-web.properties```.
+To add an additional setting to the configuration file, open the applications ```red5-web.properties``` file located at ```<AMS_DIR>/webapps/<AppName>/WEB-INF/red5-web.properties```.
 
 Following the example of ```aacEncodingEnabled``` setting, the below can be appended to the file:
 
