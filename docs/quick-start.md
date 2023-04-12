@@ -63,7 +63,7 @@ Run ```./enable_ssl.sh``` script in the directory where AMS has been installed. 
 sudo ./enable_ssl.sh -d {DOMAIN_NAME}
 ```
 
-For detailed information about SSL, follow [SSL Setup](https://portal.document360.io/v1/docs/setting-up-ssl).
+For detailed information about how to configure SSL for Ant Media Server, reference the [SSL Setup guide](/guides/installing-on-linux/Setting-up-SSL/).
 
 ## Ultra-low latency publishing/playing
 
