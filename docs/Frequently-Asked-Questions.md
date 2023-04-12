@@ -4,33 +4,37 @@ title: Frequently Asked Questions
 ---
 # Frequently Asked Questions
 
-## How to install SSL on the AWS EC2 server instance?
+## How can I install SSL on an AWS EC2 instance?
 
-1.  Please use an Elastic IP address.
-2.  Add A record in your Elastic IP address.
-3.  After that please check DNS records in here ->` [https://dnschecker.org/](https://dnschecker.org/)
-4.  If everything is fine, follow the [SSL Setup Tutorial](/v1/docs/setting-up-ssl)
+1.  Configure an Elastic IP address.
+2.  Add an A record to your Elastic IP address.
+3.  Check the new A record exists using [dnschecker](https://dnschecker.org/)
+4.  Then follow the [SSL Setup Tutorial](/guides/installing-on-linux/Setting-up-SSL/)
 
-## Where can I download JavaScript SDK?
+## Where can I download the JavaScript SDK?
 
-JavaScript SDK is available in the Ant Media Server. It can be accessed via ```http://SERVER_ADDR:5080/LiveApp/js/webrtc_adaptor.js```. Its file location is ```/usr/local/antmedia/webapps/LiveApp/js/webrtc_adaptor.js```. Its source code is also available [here](https://github.com/ant-media/StreamApp/blob/master/src/main/webapp/js/webrtc_adaptor.js)
+The JavaScript SDK is available for Ant Media Server and can be accessed via ```http://SERVER_ADDR:5080/LiveApp/js/webrtc_adaptor.js```. 
+
+Its file location is ```/usr/local/antmedia/webapps/LiveApp/js/webrtc_adaptor.js``` and the source code is available [here](https://github.com/ant-media/StreamApp/blob/master/src/main/webapp/js/webrtc_adaptor.js)
 
 ## Can I use Docker to deploy Ant Media Server?
 
-Yes. Utilizing Docker images is a very common way of deploying Ant Media Server. Check the [Installation](https://github.com/ant-media/Ant-Media-Server/wiki/Installation#docker-installation)
+Yes. Utilizing a Docker image is a very common way of deploying Ant Media Server. Check the [Installation](/guides/clustering-and-scaling/docker/Docker-and-Docker-Compose-Installation/) and the official Ant Media Server Docker images [here](https://hub.docker.com/u/antmedia)
 
 ## I cannot login to AMS dashboard after upgrading
 
-Starting from version 2.2, Ant Media stores passwords with MD5 encryption. For this reason, you need to change your passwords to MD5 encryption. You can encrypt your password basically any MD5 encrypter tool like: [https://www.md5online.org/md5-encrypt.html](https://www.md5online.org/md5-encrypt.html)
+Starting from version 2.2, Ant Media stores passwords with MD5 encryption. For this reason, you need to change your passwords to MD5 encryption. You can encrypt your password using any MD5 encryption tool like: [hmd5online.org](https://www.md5online.org/md5-encrypt.html)
 
 Here are the steps:
 
 1.  Login to MongoDB
-2.  Run commands below:
+2.  Run the commands below:
 
-*   ```use serverdb```
-*   ```db.getCollection('User').find() //Get User details```
-*   ```db.User.updateOne({"_id": "5e978ef3c9e77c0001228040"}, {$set:{password: "md5Password"}}) //Use User ID in updateOne section and use password with MD5 protection```
+```js
+use serverdb
+db.getCollection('User').find() //Get User details```
+db.User.updateOne({"_id": "5e978ef3c9e77c0001228040"}, {$set:{password: "md5Password"}}) //Use User ID in updateOne section and use password with MD5 protection
+```
 
 ## How can I reset the admin password?
 
@@ -38,7 +42,7 @@ Here are the steps:
 *   Delete the ```server.db``` file under ```/usr/local/antmedia/```
 *   Start the server using ```service antmedia start```
 
-If you're using ```mongodb``` as database, your password will be in ```serverdb``` database and in ```User``` collection.
+If you're using ```mongodb``` as the database, your password will be stored in the ```serverdb``` database under the ```User``` collection.
 
 *   Connect to your ```mongodb``` server with ```mongo``` client.
 *   Type ```use serverdb;```
@@ -51,41 +55,43 @@ If you're using ```mongodb``` as database, your password will be in ```serverdb`
 
 The HLS (HTTP Live Streaming) protocol was developed by Apple. The HLS streaming protocol works by chopping MPEG-TS video content into short chunks. On slow network speeds, HLS allows the player to use a lower quality video, thus reducing bandwidth usage. HLS videos can be made highly available by providing multiple servers for the same video, allowing the player to swap seamlessly if one of the servers fails.
 
-## How can I reduce latency for RTMP to HLS streaming
+## How can I reduce the latency for RTMP to HLS streaming
 
-To reduce the HLS latency, you need to modify a few parameters. This way, the latency can be reduced to 8-10 secs.
+To reduce the HLS latency, you need to modify a few parameters to achieve a reduced latency of around 8-10 secs.
 
-*   Make HLS segment time 2 seconds. You can decrease this value to have lower latency but then players start to poll servers more frequently, and it is a waste of resources.
-*   Make key frame interval to 2 seconds (this value should be consistent with the HLS segment time). Open Broadcaster Software (OBS) sends key frames every 10 seconds by default.
+*   Update the HLS segment time to 2 seconds. You can decrease this value to have lower latency but players start to poll servers more frequently which is a waste of resources.
+*   Update the key frame interval to 2 seconds (this value should be consistent with the HLS segment time). Open Broadcaster Software (OBS) sends key frames every 10 seconds by default.
 
 ![](@site/static/img/image-1645447048346.png)
 
-After doing these adjustments, your latency will significantly be reduced.
+After making these adjustments, the latency should be significantly reduced.
 
 ## How can I enable SSL for Ant Media Server?
 
-Follow the [SSL Setup Tutorial](/v1/docs/setting-up-ssl)
+Follow the [SSL Setup Tutorial](/guides/installing-on-linux/Setting-up-SSL/)
 
 ## How can I remove port forwarding?
 
-Check that which port forwardings exist in your system with the command below.
+Check that which port forwarding exist in your system with the command below.
 
-    sudo iptables -t nat --line-numbers -L
+```shell
+sudo iptables -t nat --line-numbers -L
+```
 
 The command above should give an output live as follows:
 
-    Chain PREROUTING (policy ACCEPT)
-    num  target     prot opt source               destination         
-    1    REDIRECT   tcp  --  anywhere             anywhere             tcp dpt:https redir ports 5443
-    2    REDIRECT   tcp  --  anywhere             anywhere             tcp dpt:http redir ports 5080
-    
-    ...
+```shell
+  Chain PREROUTING (policy ACCEPT)
+  num  target     prot opt source               destination         
+  1    REDIRECT   tcp  --  anywhere             anywhere             tcp dpt:https redir ports 5443
+  2    REDIRECT   tcp  --  anywhere             anywhere             tcp dpt:http redir ports 5080
+```
 
-Delete a rule by line number. For instance, in order to delete the http ->` 5080 forwarding, run the command below
+You can delete any rule in the output by referencing its line number. For instance, in order to delete the rule for port 5080 forwarding, run the below command. Notice the second parameter is the line number.
 
-    iptables -t nat -D PREROUTING 2
-
-The second parameter is the line number.
+```shell
+iptables -t nat -D PREROUTING 2
+```
 
 ## How can I fix "Make sure that your domain name was entered correctly and the DNS A/AAAA record(s)" error?
 
@@ -95,7 +101,7 @@ The second parameter is the line number.
 
 ## How can I fix "NotSupportedError" while publishing ?
 
-To solve this problem you must enable SSL. Follow the [SSL Setup Tutorial](/v1/docs/setting-up-ssl)
+To solve this problem you must enable SSL. Follow the [SSL Setup Tutorial](/guides/installing-on-linux/Setting-up-SSL/)
 
 ## WebRTC stream stops after a few seconds.
 
@@ -103,42 +109,53 @@ This issue is generally caused by closed UDP ports. Please make sure that UDP po
 
 ## How can I fix a 403 Forbidden error?
 
-Please see [this](/v1/docs/rest-api-guide#security-%E2%80%93-ip-filtering) document.
+Please see [this](/guides/developer-sdk-and-api/rest-api-guide/#rest-api-security-with-ip-filtering) document.
 
-## How does adaptive bitrate work?
+## How does adaptive bitrate work (ABR)?
 
-Ant Media Server measures the client's bandwidth and chooses the best quality in the adaptive bitrates according to the bandwidth of the client. For instance, if there are three bitrates, 2000Kbps, 1500Kbps, 1000Kbps and client's bandwidth is 1700Kbps, then the video with 1500Kbps will be sent to the client automatically.
+Ant Media Server measures the client's bandwidth and chooses the best quality in the adaptive bitrates according to the bandwidth of the client. 
 
-## How can I set up an auto-scaling cluster with Ant Media Server?
+For instance, if there are three bitrates, 2000Kbps, 1500Kbps, 1000Kbps and client's bandwidth is 1700Kbps, then the video with 1500Kbps will be sent to the client automatically.
 
-Please see [this document.](/v1/docs/clustering-and-scaling-ant-media-server)
+## How to configure auto-scaling and clustering with Ant Media Server?
 
-## What is the difference between LiveApp and WebRTCAppEE?
+Please refer to the auto-scaling documentation [here](/guides/clustering-and-scaling/scaling-ant-media-server/).
 
-There are no differences between them and they are just names of applications. Users can have different options and configurations in the same server by using different applications (such as enabling H.264 in one app and enabling VP8 in the other).
+## What is the difference between the LiveApp and the WebRTCAppEE?
+
+The only difference between the two applications is the name. For increased flexibility of Ant Media Server, each application has its own options and configurations.
+
+The two applications shipped with Ant Media Server enable you to use two different applications using different settings that may represent two different use cases. Such as enabling H.264 in one app and enabling VP8 in the other. 
 
 ## How can I improve WebRTC bit rate?
 
-You can set the ```bandwidth``` property to any value you want to use in ```WebRTCAdaptor``` in the Javascript SDK. This is the maximum bitrate value that WebRTC can use. Its default value is 900kbps.
+You can set the ```bandwidth``` property to any value you want to use in ```WebRTCAdaptor``` using the Javascript SDK. This is the maximum bitrate value that WebRTC can use. Its default value is set to 900kbps.
 
 ## What latencies can I achieve with Ant Media Server Enterprise Edition?
 
-*   ~0.15 seconds latency with WebRTC to WebRTC streaming path with AWS Wavelength.
-*   ~0.5 seconds latency with WebRTC to WebRTC streaming path.
-*   0.5-1 seconds latency with RTSP/RTMP to WebRTC streaming path.
-*   8-12 seconds latency with RTMP/WebRTC to HLS streaming path.
+| **Latency (seconds)** | **Publish**       | **Play**   | **Platform**       |
+|-------------------|---------------|--------|----------------|
+| 0.15              | WebRTC        | WebRTC | AWS Wavelength |  
+| 0.5               | WebRTC        | WebRTC | Standard       | 
+| 0.5-1             | RTSP / RTMP   | WebRTC | Standard       | 
+| 8-12              | RTMP / WebRTC | HLS    | Standard       |  
+
 
 ## How many different bit rates are possible with Ant Media Server Enterprise Edition?
 
-There is no soft limit. Generally, it's recommended to use 2 or 3 bitrates for most of the cases.
+There is no soft limit. Generally, it's recommended to use 2 or 3 bitrates for most cases.
 
 The recommended resolutions and corresponding bitrates are:
 
-*   **240p:** 500 Kbps
-*   **360p**: 800 Kbps
-*   **480p:** 1000 Kbps
-*   **720p:** 1500 Kbps
-*   **1080p:** 2000 Kbps
+| **Resolution** | **Bitrate (Kbps)** |
+|----------------|--------------------|
+| 240p           | 500                |
+| 360p           | 800                |
+| 480p           | 1000               | 
+| 720p           | 1500               | 
+| 1080p          | 2000               | 
+
+
 
 ## Does ultra-low latency streaming support adaptive bit rates?
 
@@ -154,43 +171,62 @@ MP4 files are recorded to the streams folder under the web apps. A soft link can
 
 ## How to use Self-Signed Certificate on Ant Media Server?
 
-**1.** Install OpenSSL package. This example is for Ubuntu, but you can install self-signed certificate using yum under CentOS as well.
+### 1.Install OpenSSL package. 
 
-```apt-get update && apt-get install openssl -y```
+This example is for Ubuntu, but you can install self-signed certificate using yum under CentOS as well.
 
-**2.** Create a self-signed certificate as follows.
+```
+apt-get update && apt-get install openssl -y
+```
+
+### 2. Create a self-signed certificate.
+
+Use the below command to create a self-signed certificate.
 
 ams.crt = your certificate file
-
 ams.key = your key file
 
-```openssl req -newkey rsa:4096 -x509 -sha256 -days 3650 -nodes -out ams.crt -keyout ams.key```
+```
+openssl req -newkey rsa:4096 -x509 -sha256 -days 3650 -nodes -out ams.crt -keyout ams.key
+```
 
-**3.** Submit the requested information and press the Enter button.
+### 3.Submit the requested
 
-    Country Name (2 letter code) [AU]:UK
-    State or Province Name (full name) [Some-State]:London
-    Locality Name (eg, city) []:London
-    Organization Name (eg, company) [Internet Widgits Pty Ltd]:Ant Media
-    Organizational Unit Name (eg, section) []:Support
-    Common Name (e.g. server FQDN or YOUR name) []:domain.com
-    Email Address []: contact@antmedia.io
+ Submit the information and press the Enter button.
 
-**4.** The certificate and private key will be created at the specified location. Run the ```enable_ssl.sh``` script as below.
+```
+Country Name (2 letter code) [AU]:UK
+State or Province Name (full name) [Some-State]:London
+Locality Name (eg, city) []:London
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:Ant Media
+Organizational Unit Name (eg, section) []:Support
+Common Name (e.g. server FQDN or YOUR name) []:domain.com
+Email Address []: contact@antmedia.io
+```
 
-```/usr/local/antmedia/enable_ssl.sh -f ams.crt -p ams.key -c ams.crt -d ams_server_ip```
+### 4. Enable SSH
 
-Note:
+The certificate and private key will be created at the specified location. Run the ```enable_ssl.sh``` script as below.
 
-If you want to use a domain address with your local network, you need to add the parameter below in ```/etc/hosts``` file.
+```
+/usr/local/antmedia/enable_ssl.sh -f ams.crt -p ams.key -c ams.crt -d ams_server_ip
+```
 
-```ams_server_ip domain.com```
+#### Enable SSH locally
 
-When you add domain address in your hosts file, you need run ```enable_ssl.sh``` script.
+If you want to use a domain name with your local network, you need to add the parameter below in ```/etc/hosts``` file.
 
-```/usr/local/antmedia/enable_ssl.sh -f ams.crt -p ams.key -c ams.crt -d domain.com```
+```
+ams_server_ip domain.com
+```
 
-## How can I install custom SSL by building a chain certificate?
+When you add a domain name in your hosts file, you need run ```enable_ssl.sh``` script.
+
+```
+/usr/local/antmedia/enable_ssl.sh -f ams.crt -p ams.key -c ams.crt -d domain.com
+```
+
+## How can I install a custom SSL by building a chain certificate?
 
 The most important reason to upload your intermediate certificate with your SSL certificate is that the browser attempts to verify whether your SSL certificate is real or not.
 
@@ -198,41 +234,49 @@ You are able to provide intermediate certificates from the certificate provider 
 
 The order of the certificate should be as follows.
 
-    Root Certificate
-    Intermediate Certificate
+```
+Root Certificate
+Intermediate Certificate
+```
 
-To give an example for Comodo;
+To give an example for Comodo:
 
-```cat COMODORSAAddTrustCA.crt COMODORSADomainValidationSecureServerCA.crt AddTrustExternalCARoot.crt >` chain.crt```
+```
+cat COMODORSAAddTrustCA.crt COMODORSADomainValidationSecureServerCA.crt AddTrustExternalCARoot.crt > chain.crt
+```
 
 Now, your full chain certificate is ```chain.crt```
 
 ## How can I change the default HTTP port (5080)?
 
-You can use a specific HTTP port instead of 5080. For this, you need to change the parameters below:
+If you need to run Ant Media Server on a HTTP port that's not the default 5080, you need to update a setting in the server configuration file. 
 
-Change ```http.port``` in ```/AMS-FOLDER/conf/red5.properties```
+Change the value of the ```http.port``` setting in the file located at ```/AMS-FOLDER/conf/red5.properties```. For example, to change the default port of ```5080``` to ```8080```, use the below setting.
 
-    http.port=5080 // You need to change `5080` port what you want
+```conf
+http.port=8080 // the value has been updated from 5080 to 8080
+```
 
-Change **RequestDispatherFilter** parameter in /AMS-FOLDER/webapps/root/WEB-INF/web.xml as shown below:
+After the server configuration file has been changed, it's necessary to change the **RequestDispatherFilter** parameter in the file located at ```/AMS-FOLDER/webapps/root/WEB-INF/web.xml``` as shown below:
 
-      	`<servlet>`
-    	  `<servlet-name>`RequestDispatherFilter`</servlet-name>`
-    	  `<servlet-class>`io.antmedia.console.servlet.ProxyServlet`</servlet-class>`
-    	  `<init-param>`
-    	    `<param-name>`targetUri`</param-name>`
-    	    `<param-value>`http://localhost:5080/{_path}`</param-value>`  // You need to change `5080` port what you want
-    	  `</init-param>`
-    	  `<init-param>`
-    	    `<param-name>`log`</param-name>`
-    	    `<param-value>`false`</param-value>`
-    	  `</init-param>`
-    	  `<init-param>`
-    	  	`<param-name>`forwardip`</param-name>`
-    	  	`<param-value>`false`</param-value>`
-    	  `</init-param>`
-    	`</servlet>`
+```xml
+<servlet>
+  <servlet-name>RequestDispatherFilter</servlet-name>
+  <servlet-class>io.antmedia.console.servlet.ProxyServlet</servlet-class>
+  <init-param>
+    <param-name>targetUri</param-name>
+    <param-value>http://localhost:8080/{_path}</param-value>  // value has changed from 5080 to 8080
+  </init-param>
+  <init-param>
+    <param-name>log</param-name>
+    <param-value>false</param-value>
+  </init-param>
+  <init-param>
+    <param-name>forwardip</param-name>
+    <param-value>false</param-value>
+  </init-param>
+</servlet>
+```
 
 ## Where can I get WebRTC viewers information?
 
@@ -240,34 +284,42 @@ Ant Media Server doesn't get any information for WebRTC viewers on the server si
 
 This data is involved in the return of the [webrtc-client-stats](https://antmedia.io/rest/#/BroadcastRestService/getWebRTCClientStatsListV2) REST method and also in Grafana reports.
 
-You should pass this information by setting the \`viewerInfo\` field of WebRTCAdaptor object in your WebRTC player.
+You should pass this information by setting the ```viewerInfo``` field of WebRTCAdaptor object in your WebRTC player.
 
-For example, to assign IDs to viewers according to the time, you can add  \`viewerInfo : "test\_"+Date.now()\` in player.html. Then, you can check it by calling this REST method:
+For example, to assign IDs to viewers according to the time, you can add ```viewerInfo : "test_"+Date.now()``` in player.html. 
 
-\`http://AMS\_URL/APP\_NAME/rest/v2/broadcasts/STREAM\_ID/webrtc-client-stats/0/5\`
+Then make an API request to the REST method to see the result:
+
+```
+http://AMS_URL/APP_NAME/rest/v2/broadcasts/STREAM_ID/webrtc-client-stats/0/5
+```
 
 ## How to set Apache Reverse Proxy settings for Ant Media Server?
 
-    `<VirtualHost *:80>`
-        RewriteEngine On
-        RewriteCond %{HTTP_HOST} ^(.*)$
-        RewriteRule ^(.*)$ https://%1$1 [R=Permanent,L,QSA]
-    `</VirtualHost>`
-    
-    `<VirtualHost *:443>`
-        ServerName yourdomain.com
-        SSLEngine On
-        SSLCertificateFile /etc/apache2/ssl/yourdomain.crt
-        SSLCertificateKeyFile /etc/apache2/ssl/server.key
-        SSLCertificateChainFile /etc/apache2/ssl/yourchain.crt
-        RewriteEngine on
-        RewriteCond %{HTTP:Upgrade} =websocket [NC]
-        RewriteRule /(.*)           ws://localhost:5080/$1 [P,L]
-        RewriteCond %{HTTP:Upgrade} !=websocket [NC]
-        RewriteRule /(.*)           http://localhost:5080/$1 [P,L]
-        ProxyPass / http://localhost:5080/
-        ProxyPassReverse / http://localhost:5080/
-    `</VirtualHost>`
+Use the below configuration to setup an Apache virtual host as a reverse proxy.
+
+```xml
+<VirtualHost *:80>
+    RewriteEngine On
+    RewriteCond %{HTTP_HOST} ^(.*)$
+    RewriteRule ^(.*)$ https://%1$1 [R=Permanent,L,QSA]
+</VirtualHost>
+
+<VirtualHost *:443>
+    ServerName yourdomain.com
+    SSLEngine On
+    SSLCertificateFile /etc/apache2/ssl/yourdomain.crt
+    SSLCertificateKeyFile /etc/apache2/ssl/server.key
+    SSLCertificateChainFile /etc/apache2/ssl/yourchain.crt
+    RewriteEngine on
+    RewriteCond %{HTTP:Upgrade} =websocket [NC]
+    RewriteRule /(.*)           ws://localhost:5080/$1 [P,L]
+    RewriteCond %{HTTP:Upgrade} !=websocket [NC]
+    RewriteRule /(.*)           http://localhost:5080/$1 [P,L]
+    ProxyPass / http://localhost:5080/
+    ProxyPassReverse / http://localhost:5080/
+</VirtualHost>
+```
 
 ## How can I install the Ant Media Server on Ubuntu 18.04 with ARM64?
 
