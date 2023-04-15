@@ -14,13 +14,13 @@ const FeatureList = [
   {
     title: 'Installing AMS on Linux Server',
     Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
-    link: '/docs/guides/installing-on-linux/Installing-AMS-on-Linux/',
+    link: '/docs/guides/installing-on-linux/installing-ams-on-linux/',
     description: 'Ant Media can be installed on Linux, particularly Ubuntu and CentOS distributions.',
   },
   {
     title: 'Simulcasting to social media channels',
     Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
-    link: '/docs/guides/publish-live-stream/Simulcasting/',
+    link: '/docs/guides/publish-live-stream/simulcasting/',
     description: 'This guide describes how to live stream to social media and other third party RTMP end points using Ant Media Server.',
   },
   {

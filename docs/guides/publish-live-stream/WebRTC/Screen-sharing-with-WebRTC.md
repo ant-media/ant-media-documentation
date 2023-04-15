@@ -10,7 +10,7 @@ First of all, you should have a ```getDisplayMedia``` supported browser. You can
 
 Visit the WebRTC publishing web page which is ```https://domainAddress:5443/WebRTCApp``` (Community Edition) or ```https://domainAddress:5443/WebRTCAppEE``` (Enterprise Edition). Before this, you need to assign a domain name to your server and [install SSL](/v1/docs/ssl-setup). Otherwise, your browser won't let you access the camera or screen.
 
-> Quick Link: [Learn How to Install SSL to your Ant Media Server](/v1/docs/setting-up-ssl)
+> Quick Link: [Learn How to Install SSL to your Ant Media Server](/guides/installing-on-linux/setting-up-ssl/)
 
 ## Using WebRTC Screen Sharing 
 

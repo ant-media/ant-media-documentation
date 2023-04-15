@@ -45,6 +45,6 @@ curl -X POST -H "Content-Type: application/json" "https://{domain:port}/{applica
 
 You can play the playlist in HLS and WebRTC.
 
-[Here is HLS player documentation](/guides/playing-live-stream/HLS-Playing/)
+[Here is HLS player documentation](/guides/playing-live-stream/hls-playing/)
 
-[Here is WebRTC play documentation](/guides/playing-live-stream/WebRTC-Playing/)
+[Here is WebRTC play documentation](/guides/playing-live-stream/webrtc-playing/)

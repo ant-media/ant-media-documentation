@@ -331,4 +331,4 @@ Ant Media Server also supports the ConferenceRoom feature. For this, you need to
                     this
          );
 
-Also check conference document for more details: [here](/guides/playing-live-stream/WebRTC-conference-call/)
+Also check conference document for more details: [here](/guides/playing-live-stream/webrtc-conference-call/)

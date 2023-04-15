@@ -58,7 +58,7 @@ Here is OBS settings for the One Time Token.
 
 **WebRTC usage:**
 
-**\-Playing usage:** Again the token parameter should be inserted to play WebSocket message. Also please have a look at the principles described in the [WebRTC playing wiki page](/v1/docs/webrtc-websocket-messaging-reference#playing-webrtc-stream).
+**\-Playing usage:** Again the token parameter should be inserted to play WebSocket message. Also please have a look at the principles described in the [WebRTC playing wiki page](/guides/publish-live-stream/webrtc-websocket-messaging-reference#playing-webrtc-stream).
 
 TODO: Please tell or give link how to get token from Ant Media Server -->`
 
@@ -71,7 +71,7 @@ TODO: Please tell or give link how to get token from Ant Media Server -->`
     token : "tokenId",
     }
 
-**\-Publishing usage:** Again the token parameter should be inserted to WebSocket message. Also please have a look at the principles described in the [WebRTC publishing wiki page](/v1/docs/webrtc-websocket-messaging-reference#publishing-webrtc-stream).
+**\-Publishing usage:** Again the token parameter should be inserted to WebSocket message. Also please have a look at the principles described in the [WebRTC publishing wiki page](/guides/publish-live-stream/webrtc-websocket-messaging-reference#publishing-webrtc-stream).
 
     Secure WebSocket: wss://SERVER_NAME:5443/WebRTCAppEE/websocket
     WebSocket without Secure: ws://SERVER_NAME:5080/WebRTCAppEE/websocket
@@ -211,7 +211,7 @@ You need to generate a hash value using the formula sha256(STREAM\_ID + ROLE + S
     token : "hash",
     }
 
->` Please have a look at the principles described in the [WebRTC WebSocket wiki page](/v1/docs/webrtc-websocket-messaging-reference).
+>` Please have a look at the principles described in the [WebRTC WebSocket wiki page](/guides/publish-live-stream/webrtc-websocket-messaging-reference).
 
 #### Evaluation of the Hash
 
@@ -287,7 +287,7 @@ Expire Date format is Unix Timestamp. Check also ->` [https://www.epochconverter
 
 #### WebRTC Publish/Play Usage
 
-*   Play: Again the JWT token parameter should be inserted to play WebSocket message. Also please have a look at the principles described in the [WebRTC playing wiki page](/v1/docs/webrtc-websocket-messaging-reference#playing-webrtc-stream).
+*   Play: Again the JWT token parameter should be inserted to play WebSocket message. Also please have a look at the principles described in the [WebRTC playing wiki page](/guides/publish-live-stream/webrtc-websocket-messaging-reference#playing-webrtc-stream).
 
     {
     command : "play",
@@ -295,7 +295,7 @@ Expire Date format is Unix Timestamp. Check also ->` [https://www.epochconverter
     token : "tokenId",
     }
 
-*   Publish: Again the JWT token parameter should be inserted to publish WebSocket message. Also please have a look at the principles described in the [WebRTC publishing wiki page](/v1/docs/webrtc-websocket-messaging-reference#publishing-webrtc-stream).
+*   Publish: Again the JWT token parameter should be inserted to publish WebSocket message. Also please have a look at the principles described in the [WebRTC publishing wiki page](/guides/publish-live-stream/webrtc-websocket-messaging-reference#publishing-webrtc-stream).
 
     {
     command : "publish",

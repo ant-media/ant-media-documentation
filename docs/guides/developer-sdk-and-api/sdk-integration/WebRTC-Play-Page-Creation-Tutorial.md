@@ -5,7 +5,7 @@ In this tutorial we will create a WebRTC play page from scratch together. Before
 Step 0. Be Prepared
 -------------------
 
-*   Install AMS if you haven't done. You may check [installation document](/guides/installing-on-linux/Installing-AMS-on-Linux/).
+*   Install AMS if you haven't done. You may check [installation document](/guides/installing-on-linux/installing-ams-on-linux/).
 *   You should have a web server to test your publish page we will create in this tutorial. If you don't know how you have a webserver, please check [this](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/set_up_a_local_testing_server) to run one in minutes.
 *   Create a workspace which can be served by your webserver.
 *   Create an empty play.html file in your workspace. This file will be our play page in minutes.

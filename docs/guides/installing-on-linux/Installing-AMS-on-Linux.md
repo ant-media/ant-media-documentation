@@ -81,7 +81,7 @@ Run ```./enable_ssl.sh``` script in the AMS installation directory. Please don't
 sudo ./enable_ssl.sh -d {DOMAIN_NAME}
 ```
 
-For detailed information about SSL, follow [SSL Setup](/docs/guides/installing-on-linux/Setting-up-SSL/).
+For detailed information about SSL, follow [SSL Setup](/guides/installing-on-linux/setting-up-ssl/).
 
 ## Accessing the web panel
 

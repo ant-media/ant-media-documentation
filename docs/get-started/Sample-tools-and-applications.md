@@ -74,7 +74,7 @@ WebRTC Conference is available in **Enterprise Edition**. This feature allows o
 
 File is located at `/usr/local/antmedia/webapps/LiveApp/conference.html`.
 
-For technical and detailed information about conference alls, please follow the [link](https://portal.document360.io/v1/docs/webrtc-conference-call).
+For technical and detailed information about conference alls, please follow the [link](/guides/playing-live-stream/webrtc-conference-call/).
 
 ![](@site/static/img/image-1645105628540.png )
 
@@ -88,7 +88,7 @@ https://domain-name.com:5443/LiveApp/peer.html
 
 File is located at `/usr/local/antmedia/webapps/LiveApp/peer.html`
 
-If you would like to dive in further regarding the technology behind live streaming, you can also analyze the WebRTC video/audio publish example. For technical details, please follow the [link](https://portal.document360.io/v1/docs/webrtc-peer-to-peer-communication).
+If you would like to dive in further regarding the technology behind live streaming, you can also analyze the WebRTC video/audio publish example. For technical details, please follow the [link](/guides/publish-live-stream/webrtc-peer-to-peer-communication).
 
 ## 7. WebRTC multitrack player
 

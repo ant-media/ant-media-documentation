@@ -24,7 +24,7 @@ Step by Step Deployment
 
 ![](@site/static/img/wavelength-standalone-2.png)
 
-If you do not configure SSL automatically, you should leave these fields (**DomainName, Route53HostedZoneId, PolicyName**) blank and set ```**EnableSSL: False**``` and you can use [this link](/v1/docs/setting-up-ssl) to install SSL later.
+If you do not configure SSL automatically, you should leave these fields (**DomainName, Route53HostedZoneId, PolicyName**) blank and set ```**EnableSSL: False**``` and you can use [this link](/guides/installing-on-linux/setting-up-ssl/) to install SSL later.
 
 Here are the information about fields.
 

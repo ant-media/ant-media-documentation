@@ -9,7 +9,7 @@ title: Frequently Asked Questions
 1.  Configure an Elastic IP address.
 2.  Add an A record to your Elastic IP address.
 3.  Check the new A record exists using [dnschecker](https://dnschecker.org/)
-4.  Then follow the [SSL Setup Tutorial](/guides/installing-on-linux/Setting-up-SSL/)
+4.  Then follow the [SSL Setup Tutorial](/guides/installing-on-linux/setting-up-ssl/)
 
 ## Where can I download the JavaScript SDK?
 
@@ -68,7 +68,7 @@ After making these adjustments, the latency should be significantly reduced.
 
 ## How can I enable SSL for Ant Media Server?
 
-Follow the [SSL Setup Tutorial](/guides/installing-on-linux/Setting-up-SSL/)
+Follow the [SSL Setup Tutorial](/guides/installing-on-linux/setting-up-ssl/)
 
 ## How can I remove port forwarding?
 
@@ -101,7 +101,7 @@ iptables -t nat -D PREROUTING 2
 
 ## How can I fix "NotSupportedError" while publishing ?
 
-To solve this problem you must enable SSL. Follow the [SSL Setup Tutorial](/guides/installing-on-linux/Setting-up-SSL/)
+To solve this problem you must enable SSL. Follow the [SSL Setup Tutorial](/guides/installing-on-linux/setting-up-ssl/)
 
 ## WebRTC stream stops after a few seconds.
 

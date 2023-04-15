@@ -63,7 +63,7 @@ Run ```./enable_ssl.sh``` script in the directory where AMS has been installed. 
 sudo ./enable_ssl.sh -d {DOMAIN_NAME}
 ```
 
-For detailed information about how to configure SSL for Ant Media Server, reference the [SSL Setup guide](/guides/installing-on-linux/Setting-up-SSL/).
+For detailed information about how to configure SSL for Ant Media Server, reference the [SSL Setup guide](/guides/installing-on-linux/setting-up-ssl/).
 
 ## Ultra-low latency publishing/playing
 
@@ -96,7 +96,7 @@ Ant Media Server Enterprise Edition provides 0.5 seconds end-to-end latency. So 
 Both default play and publish pages have some options to customise the experience, incuding a data channel for sending and receiving text messages. 
 
 <InfoBox>
-  The data channel is covered here <a title="using the ant media server data channel" target="_blank" href="guides/publish-live-stream/data-channel/">using the data channel</a>
+  The data channel is covered here <a title="using the ant media server data channel" target="_blank" href="/guides/publish-live-stream/data-channel/">using the data channel</a>
 </InfoBox>
 
 ### Publishing

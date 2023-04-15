@@ -56,7 +56,7 @@ ShellActionScript
 sudo ./enable_ssl.sh -d {DOMAIN_NAME}
 ```
 
-For detailed information about SSL, follow [SSL Setup](https://portal.document360.io/v1/docs/setting-up-ssl).
+For detailed information about SSL, follow [SSL Setup](/guides/installing-on-linux/setting-up-ssl/).
 
 #### **3. Ultra-low latency publishing/playing**
 

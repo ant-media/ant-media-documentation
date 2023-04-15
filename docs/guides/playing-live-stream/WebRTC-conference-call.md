@@ -10,7 +10,7 @@ Let’s proceed step by step on how to implement a simple conference call. Befor
 
 If you haven’t got any domain for your Ant Media Server, you can get a free domain in [Freenom](https://www.freenom.com/).
 
-> Quick Link: [Learn How to Install SSL to your Ant Media Server](/v1/docs/setting-up-ssl)
+> Quick Link: [Learn How to Install SSL to your Ant Media Server](/guides/installing-on-linux/setting-up-ssl/)
 
 ## Preparing the web page
 

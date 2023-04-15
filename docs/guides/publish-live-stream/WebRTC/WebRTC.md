@@ -33,4 +33,4 @@ By clicking on Options on the sample page, you can also change the Max Video Bit
 
 Learn more about playing this stream with WebRTC to complete the loop and stream with ~0.5-Second latency.
 
-> Quick Link: [Learn How to Play with WebRTC](/guides/playing-live-stream/WebRTC-Playing/).
+> Quick Link: [Learn How to Play with WebRTC](/guides/playing-live-stream/webrtc-playing/).
