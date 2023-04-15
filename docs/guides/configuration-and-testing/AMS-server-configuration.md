@@ -1,12 +1,10 @@
 # AMS server configuration
 
-The Ant Media Server configurations can be made directly from the files as well as through the management console. The configurations file is more detailed.
+Ant Media Server can be configured either through the web panel or directly modifying the configuration files. However, the majority of configuration settings are set directly in the configuration files. 
 
-### Settings File Under Server Configuration Folder
+## Server Configuration File
 
-These settings are set stored in the file ```<AMS_DIR>`/conf/red5.properties```.
-
-The table below summarises the available Ant Media Server settings.
+These settings are stored in the file located at ```<AMS_DIR>/conf/red5.properties```.  The below table lists all available server configuration options for Ant Media Server.
 
 *   ```policy.host```: This is a Socket Policy host. Default value is ```0.0.0.0```
 *   ```policy.port```: This is a policy port. If you use this, the port should open. Default value is ```843```
