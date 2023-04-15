@@ -1,16 +1,20 @@
 # How to publish with Wirecast
 
-Wirecast is a live video streaming production tool by Telestream. It allows users to create live or on-demand broadcasts for the web. Wirecast supports various sources for capturing such as webcams, IP cameras, NDIs and capture cards. 
+Wirecast is a live video streaming production tool by Telestream. It allows users to create live or on-demand broadcasts for the web. Wirecast supports various sources for capturing such as webcams, IP cameras, NDIs and capture cards. 
 
 ## Create a live stream in AMS
 
-To publish with WireCast, we need to create a live stream in Ant Media Server, because we will use this live stream id for publishing the stream in Wirecast. 
+To publish with WireCast, we must first create a live stream in Ant Media Server, as this live stream id will be used to publish the stream in Wirecast.
 
 In Ant Media Server, create a live stream with the name ```WireCast1``` as in the screen:
 
-![](@site/static/img/image6.png)
+![](@site/static/img/publish-live-stream/wirecast/Wirecast-dashboard.png)
 
-Live stream will be added to the table. Note the stream id of ```WireCast1``` stream as we will use this later.
+A live stream will be added to the LiveApp application dashboard. Take note of the ```WireCast1``` stream Id as we will need it later. The server generates a random stream Id by default, but a custom stream Id can also be specified.
+
+Once the stream has been created, we can copy the RTMP Url by selecting ```Copy Publish URL``` from the Actions menu, as shown in the image below.
+
+![](@site/static/img/publish-live-stream/wirecast/Publish-Url.png)
 
 ## Create a live stream in Wirecast
 
@@ -28,15 +32,15 @@ We are going to publish stream to an RTMP URL in Ant Media Server. Click **Outpu
 
 ![](@site/static/img/image8.png)
 
-Fill the settings using the Stream Id that you noted in previous steps as in the screenshot:
+Put in the RTMP URL and Stream Id that we copied earlier from the Ant Media Server LiveApp application's dashboard.
 
 ![](@site/static/img/image1.png)
 
 ## Tune for ultra-low latency streaming
 
-Wirecast by default is not optimized for ultra low latency streaming. If you push RTMP stream with Wirecast and play with WebRTC, please open Output Settings >` Edit Encoding configuration and make **Baseline** for profile. Also you can configure the bitrate according to your quality and internet bandwidth requirements.
+Wirecast by default is not optimized for ultra low latency streaming. If you push RTMP stream with Wirecast and play with WebRTC, please open ```Output``` > ```Output Settings```> Edit ```Encoding configuration``` and make **Baseline** for profile. Also you can configure the bitrate according to your quality and internet bandwidth requirements.
 
-![](@site/static/img/wirecast-encoding-settings.png) Click the right arrow to select the source of the video stream as in the screenshot:
+![](@site/static/img/wirecast-encoding-settings.png) Click the right arrow to select the source of the video stream as in the screenshot:
 
 ![](@site/static/img/image11.png)
 
