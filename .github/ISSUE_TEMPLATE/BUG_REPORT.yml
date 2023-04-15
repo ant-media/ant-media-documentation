@@ -6,7 +6,7 @@ body:
   - type: input
     attributes:
       label: Link to the documentation page or resource
-      placeholder: Example:https://antmedia.io/docs/guides/playing-live-stream/HLS-Playing
+      placeholder: Example:https://antmedia.io/docs/guides/playing-live-stream/hls-playing
     validations:
       required: true
   - type: textarea

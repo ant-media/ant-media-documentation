@@ -157,5 +157,5 @@ You can monitor all nodes in the cluster by visiting the web page below in any n
 
 Install the load balancer using either one of the below two options. AMS uses Nginx by default, bu you can also use HAProxy as your load balancer. You can read how to install either of these options in the documents below.
 
-* [Nginx Load Balancer](/guides/clustering-and-scaling/load-balancing/Installing-with-nginx-load-balancer/)
+* [Nginx Load Balancer](/guides/clustering-and-scaling/load-balancing/nginx-load-balancer/)
 * [HAProxy Load Balancer](/guides/clustering-and-scaling/load-balancing/load-balancer-with-haproxy-ssl-termination/)

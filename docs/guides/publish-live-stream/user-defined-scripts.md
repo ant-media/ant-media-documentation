@@ -49,7 +49,7 @@ Mark the file as executable with below code:
 chmod +x scriptFile.sh
 ```
 
-Setting References: [settings.muxerFinishScript Setting](/v1/docs/ams-application-configuration)
+Setting References: [settings.muxerFinishScript Setting](/guides/configuration-and-testing/ams-application-configuration)
 
 ### MP4 Muxing script usage instructions
 
@@ -104,7 +104,7 @@ Mark the file as executable with below code:
 chmod +x scriptFile.sh
 ```
 
-Setting References: [settings.vodUploadFinishScript Setting](/v1/docs/ams-application-configuration)
+Setting References: [settings.vodUploadFinishScript Setting](/guides/configuration-and-testing/ams-application-configuration)
 
 ### VoD Upload script usage instructions
 

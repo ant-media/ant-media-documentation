@@ -113,7 +113,7 @@ const config = {
             items: [
               {
                 label: 'Sample Applications',
-                to: '/get-started/Sample-tools-and-applications/',
+                to: '/get-started/sample-tools-and-applications/',
               },
               {
                 label: 'Clustering & Scaling',
