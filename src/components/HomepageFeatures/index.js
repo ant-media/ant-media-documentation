@@ -26,7 +26,7 @@ const FeatureList = [
   {
     title: 'Ant Media Server REST API',
     Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
-    link: '/docs/developer-sdk-and-api/rest-api-guide/',
+    link: '/docs/guides/developer-sdk-and-api/rest-api-guide/rest-api-guide',
     description: 'When designing the Ant Media Server, we made sure everything is accessible through REST API.',
   }
 ];

@@ -100,8 +100,8 @@ Now we have to create an ```WebRTCAdaptor``` instance which is provided by JS SD
 *   _**sdpConstraints**_ defines sdp options. Since we play remote video and audio, we enabled both video and audio receive. You may check [this](https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/createOffer) for more information.
 *   _**remoteVideoId**_ is the ```id``` parameter of the ```video``` element.
 *   _**isPlayMode**_ should be set to ```true```.
-*   _**callback**_ is the callback function called by the JS SDK in case of some specific events. Here we will create alert in case of getting **_play\_started_** and **_play\_finished_**. You may check [this](/guides/developer-sdk-and-api/sdk-integration/Javascript-SDK#webrtc-javascript-info-callbacks) for more information about callbacks.
-*   _**callbackError**_ is the callback function called by the JS SDK in case of some specific errors. Here we create allert in case of any error. You may check [this](/guides/developer-sdk-and-api/sdk-integration/Javascript-SDK#webrtc-javascript-error-callbacks) for more information about error callbacks.
+*   _**callback**_ is the callback function called by the JS SDK in case of some specific events. Here we will create alert in case of getting **_play\_started_** and **_play\_finished_**. You may check [this](/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/#webrtc-javascript-info-callbacks) for more information about callbacks.
+*   _**callbackError**_ is the callback function called by the JS SDK in case of some specific errors. Here we create allert in case of any error. You may check [this](/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/#webrtc-javascript-error-callbacks) for more information about error callbacks.
 
 ### Create Start/Stop functions
 
@@ -130,7 +130,7 @@ Lets bind our stop/stop functions to the buttons now.
     document.getElementById("stop").addEventListener("click", stopPlaying);
     
 
-That's all for WebRTC playback. If you need to learn more about WebRTCAdaptor please check [this](/guides/developer-sdk-and-api/sdk-integration/Javascript-SDK).
+That's all for WebRTC playback. If you need to learn more about WebRTCAdaptor please check [this](/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/).
 
 ### Final Check
 

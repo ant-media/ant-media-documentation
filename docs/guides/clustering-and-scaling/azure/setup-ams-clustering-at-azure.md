@@ -8,7 +8,7 @@ For streaming applications, you will need a clustering solution when you have hi
 
 To set up media server, Having an Azure account and a ready AntMedia Server Image are needed.
 
-The architecture of the cluster setup could be found [here](/v1/docs/load-testing#cluster-setup). Introduction to clustering with AntMedia Server could be found [here](/v1/docs/clustering).
+The architecture of the cluster setup could be found [here](/guides/configuration-and-testing/load-testing#cluster-setup). Introduction to clustering with AntMedia Server could be found [here](/v1/docs/clustering).
 
 #### Step 1: Create a Resource Group
 

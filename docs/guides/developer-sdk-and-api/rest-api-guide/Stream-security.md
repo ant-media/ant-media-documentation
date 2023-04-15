@@ -8,7 +8,7 @@ This setting shortly is checking if live stream is registered in Ant Media Serve
 
 For example: If Ant Media Server accepts undefined streams, it accepts any incoming streams. If accepting undefined Streams is disabled, only streams with their stream id in the database are being accepted by Ant Media Server.
 
-You can find in more detail in [here](/v1/docs/ams-application-configuration)
+You can find in more detail in [here](/guides/configuration-and-testing/ams-application-configuration)
 
 After modifying the configuration, please add the streamId, stream name in "broadcast" collections of your App.
 

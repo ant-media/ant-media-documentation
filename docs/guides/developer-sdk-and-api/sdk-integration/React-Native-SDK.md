@@ -4,29 +4,29 @@ Ant Media's WebRTC React Native SDK lets you build your own React Native applica
 
 In this doc, we're going to cover the following topics.
 
-*   [Pre-Requisite For React Native Development](/v1/docs/react-native-sdk#prerequisite-for-react-native-development)
+*   [Pre-Requisite For React Native Development](/guides/developer-sdk-and-api/sdk-integration/react-native-sdk#prerequisite-for-react-native-development)
     
-    *   [Software Requirements](/v1/docs/react-native-sdk#software-requirements)
-    *   [Verify React Native Installation By running a sample app](/v1/docs/react-native-sdk#how-to-setup-your-first-application)
-*   [Download and ready WebRTC sample apps](/v1/docs/react-native-sdk#download-and-ready-webrtc-sample-apps)
+    *   [Software Requirements](/guides/developer-sdk-and-api/sdk-integration/react-native-sdk#software-requirements)
+    *   [Verify React Native Installation By running a sample app](/guides/developer-sdk-and-api/sdk-integration/react-native-sdk#how-to-setup-your-first-application)
+*   [Download and ready WebRTC sample apps](/guides/developer-sdk-and-api/sdk-integration/react-native-sdk#download-and-ready-webrtc-sample-apps)
     
-    *   [Download the Sample React Native projects](/v1/docs/react-native-sdk#download-the-sample-react-native-projects)
-    *   [Install dependencies and run sample projects](/v1/docs/react-native-sdk#install-dependencies-and-run-sample-projects)
-*   [Run the sample WebRTC React Native apps](/v1/docs/react-native-sdk#run-the-sample-react-native-app)
+    *   [Download the Sample React Native projects](/guides/developer-sdk-and-api/sdk-integration/react-native-sdk#download-the-sample-react-native-projects)
+    *   [Install dependencies and run sample projects](/guides/developer-sdk-and-api/sdk-integration/react-native-sdk#install-dependencies-and-run-sample-projects)
+*   [Run the sample WebRTC React Native apps](/guides/developer-sdk-and-api/sdk-integration/react-native-sdk#run-the-sample-react-native-app)
     
-    *   [Publish stream from your React Native sample app](/v1/docs/react-native-sdk#publish-stream-from-your-sample-react-native-app)
-    *   [Play stream on your React Native sample app](/v1/docs/react-native-sdk#play-stream-from-your-sample-react-native-app)
-    *   [P2P communication with your React Native sample app](/v1/docs/react-native-sdk#p2p-communication-with-sample-react-native-app)
-    *   [Conference with your React Native sample app](/v1/docs/react-native-sdk#conference-with-your-react-native-sample-app)
-    *   [Data Channel with your React Native Sample app](/v1/docs/react-native-sdk#data-channel-with-your-react-native-sample-app)
-*   [Using WebRTC React Native SDK](/v1/docs/react-native-sdk#using-webrtc-react-native-sdk)
+    *   [Publish stream from your React Native sample app](/guides/developer-sdk-and-api/sdk-integration/react-native-sdk#publish-stream-from-your-sample-react-native-app)
+    *   [Play stream on your React Native sample app](/guides/developer-sdk-and-api/sdk-integration/react-native-sdk#play-stream-from-your-sample-react-native-app)
+    *   [P2P communication with your React Native sample app](/guides/developer-sdk-and-api/sdk-integration/react-native-sdk#p2p-communication-with-sample-react-native-app)
+    *   [Conference with your React Native sample app](/guides/developer-sdk-and-api/sdk-integration/react-native-sdk#conference-with-your-react-native-sample-app)
+    *   [Data Channel with your React Native Sample app](/guides/developer-sdk-and-api/sdk-integration/react-native-sdk#data-channel-with-your-react-native-sample-app)
+*   [Using WebRTC React Native SDK](/guides/developer-sdk-and-api/sdk-integration/react-native-sdk#using-webrtc-react-native-sdk)
     
-    *   [Install @antmedia/react-native-ant-media Package](/v1/docs/react-native-sdk#install-antmediareactnativeantmedia-package)
-    *   [How to publish](/v1/docs/react-native-sdk#how-to-publish-a-stream)
-    *   [How to play](/v1/docs/react-native-sdk#how-to-play-a-stream)
-    *   [How to use peer 2 peer](/v1/docs/react-native-sdk#how-to-use-peer-2-peer)
-    *   [How to use conference](/v1/docs/react-native-sdk#how-to-use-conference)
-    *   [How to use the data channel](/v1/docs/react-native-sdk#how-to-use-the-data-channel)
+    *   [Install @antmedia/react-native-ant-media Package](/guides/developer-sdk-and-api/sdk-integration/react-native-sdk#install-antmediareactnativeantmedia-package)
+    *   [How to publish](/guides/developer-sdk-and-api/sdk-integration/react-native-sdk#how-to-publish-a-stream)
+    *   [How to play](/guides/developer-sdk-and-api/sdk-integration/react-native-sdk#how-to-play-a-stream)
+    *   [How to use peer 2 peer](/guides/developer-sdk-and-api/sdk-integration/react-native-sdk#how-to-use-peer-2-peer)
+    *   [How to use conference](/guides/developer-sdk-and-api/sdk-integration/react-native-sdk#how-to-use-conference)
+    *   [How to use the data channel](/guides/developer-sdk-and-api/sdk-integration/react-native-sdk#how-to-use-the-data-channel)
 
 Pre-Requisite for React Native development
 ------------------------------------------
@@ -174,7 +174,7 @@ Run the sample React Native app
 
 ![](@site/static/img/image-1654599250441.png)
 
-*   Move to **/samples/publish** folder and follow the [Install dependencies and run sample projects](/v1/docs/react-native-sdk#install-dependencies-and-run-sample-projects) steps to run the **Publish** sample React native app.
+*   Move to **/samples/publish** folder and follow the [Install dependencies and run sample projects](/guides/developer-sdk-and-api/sdk-integration/react-native-sdk#install-dependencies-and-run-sample-projects) steps to run the **Publish** sample React native app.
 
 ![](@site/static/img/image-1654599372613.png)
 
@@ -185,7 +185,7 @@ Run the sample React Native app
 
 *   Open **/samples/play/src/Play.tsx** file and update **defaultStreamName** variable for stream name and update **webSocketUrl** variable with server name.![](@site/static/img/image-1654599250441.png)
 
-*   Go to **/samples/play** folder and follow the [Install dependencies and run sample projects](/v1/docs/react-native-sdk#install-dependencies-and-run-sample-projects) steps to run the **Play** sample React native app.
+*   Go to **/samples/play** folder and follow the [Install dependencies and run sample projects](/guides/developer-sdk-and-api/sdk-integration/react-native-sdk#install-dependencies-and-run-sample-projects) steps to run the **Play** sample React native app.
 
 *   Before playing, make sure that there is a stream that is already publishing to the server with the same stream id in your **defaultStreamName** variable(You can quickly publish to the Ant Media Server via ```https://your_domain:5443/WebRTCAppEE```).
 
@@ -198,7 +198,7 @@ Run the sample React Native app
 ### P2P communication with sample React Native app
 
 *   Open **/samples/peer/src/Peer.tsx** file and update **defaultStreamName** variable for stream name and update **webSocketUrl** variable with server name.![](@site/static/img/image-1654599250441.png)
-*   Go to **/samples/peer** folder and follow the [Install dependencies and run sample projects](https://portal.document360.io/v1/docs/react-native-sdk#install-dependencies-and-run-sample-projects) steps to run the **Peer** sample React native app.
+*   Go to **/samples/peer** folder and follow the [Install dependencies and run sample projects](https://portal.document360.io/guides/developer-sdk-and-api/sdk-integration/react-native-sdk#install-dependencies-and-run-sample-projects) steps to run the **Peer** sample React native app.
 
 ![](@site/static/img/image-1654601111460.png)
 
@@ -214,7 +214,7 @@ Run the sample React Native app
 
 ![](@site/static/img/image-1655196972089.png)
 
-*   Go to **/samples/conference** folder and follow the [Install dependencies and run sample projects](https://portal.document360.io/v1/docs/react-native-sdk#install-dependencies-and-run-sample-projects) steps to run the C**onference** sample React native app.
+*   Go to **/samples/conference** folder and follow the [Install dependencies and run sample projects](https://portal.document360.io/guides/developer-sdk-and-api/sdk-integration/react-native-sdk#install-dependencies-and-run-sample-projects) steps to run the C**onference** sample React native app.
 
 ![](@site/static/img/image-1655197421323.png)
 
@@ -229,7 +229,7 @@ Run the sample React Native app
 
 *   Open **/samples/DataChannel/src/[](https://github.com/ant-media/WebRTC-React-Native-SDK/blob/develop/samples/DataChannel/src/Chat.tsx "Chat.tsx")**[](https://github.com/ant-media/WebRTC-React-Native-SDK/blob/develop/samples/DataChannel/src/Chat.tsx "Chat.tsx")[**Chat**.](https://github.com/ant-media/WebRTC-React-Native-SDK/blob/develop/samples/DataChannel/src/Chat.tsx "Chat.tsx")[](https://github.com/ant-media/WebRTC-React-Native-SDK/blob/develop/samples/DataChannel/src/Chat.tsx "Chat.tsx")**[](https://github.com/ant-media/WebRTC-React-Native-SDK/blob/develop/samples/DataChannel/src/Chat.tsx "Chat.tsx").tsx** file and update **defaultStreamName** variable for stream name and update **webSocketUrl** variable with server name.![](@site/static/img/image-1654599250441.png)
 
-*   Go to **/samples/DataChannel** folder and follow the [Install dependencies and run sample projects](/v1/docs/react-native-sdk#install-dependencies-and-run-sample-projects) steps to run the **Play** sample React native app.
+*   Go to **/samples/DataChannel** folder and follow the [Install dependencies and run sample projects](/guides/developer-sdk-and-api/sdk-integration/react-native-sdk#install-dependencies-and-run-sample-projects) steps to run the **Play** sample React native app.
 *   Tap **Publish** button to start publishing in data channel.
 
 ![](@site/static/img/image-1656673042845.png)

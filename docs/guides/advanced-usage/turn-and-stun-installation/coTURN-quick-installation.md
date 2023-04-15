@@ -89,4 +89,4 @@ var pc_config = {
 		} ]
 	};
 ```
-From Ant Media Server v2.5.0 & above, TURN server can be configured on server side as well. Refer: [https://antmedia.io/docs/guides/configuration-and-testing/Configuring-STUN-addresses/#configuring-for-ant-media-244-and-later-versions](https://antmedia.io/docs/guides/configuration-and-testing/Configuring-STUN-addresses/#configuring-for-ant-media-244-and-later-versions).
+From Ant Media Server v2.5.0 & above, TURN server can be configured on server side as well. [Learn More](/guides/configuration-and-testing/configuring-stun-addresses/#configuring-for-ant-media-244-and-later-versions)

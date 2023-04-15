@@ -78,4 +78,5 @@ Now, your HLS streams will record.
 After version 2.4.1, the filename structure has added bitrate to the name. So for previous versions, the filename was "stream1_240p0001.ts", now it is "stream1_240p_300kbps0001.ts" , this change was needed because we enabled the same resolution with different bitrates
     
 
-> Quick Link: [App Configurations](/v1/docs/ams-application-configuration) Quick Link: [FFmpeg Configurations](https://ffmpeg.org/ffmpeg-formats.html#toc-Options-6)
+> Quick Link: [App Configurations](/guides/configuration-and-testing/ams-application-configuration/) 
+> Quick Link: [FFmpeg Configurations](https://ffmpeg.org/ffmpeg-formats.html#toc-Options-6)

@@ -134,7 +134,7 @@ xhr.send(data);
 
 You can get more info in [REST API](https://antmedia.io/rest/#/BroadcastRestService/removeEndpointV2).
 
-Click for more detail about [REST API Guide](/v1/docs/rest-api-guide).
+Click for more detail about [REST API Guide](/guides/developer-sdk-and-api/rest-api-guide/rest-api-guide).
 
 **PS:** Please be sure to add your IP Address to the **Use IP Filtering for RESTful API** option on Application Settings.
 

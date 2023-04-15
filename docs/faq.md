@@ -109,7 +109,7 @@ This issue is generally caused by closed UDP ports. Please make sure that UDP po
 
 ## How can I fix a 403 Forbidden error?
 
-Please see [this](/guides/developer-sdk-and-api/rest-api-guide/#rest-api-security-with-ip-filtering) document.
+Please see [this](/guides/developer-sdk-and-api/rest-api-guide/rest-api-guide/#rest-api-security-with-ip-filtering) document.
 
 ## How does adaptive bitrate work (ABR)?
 
