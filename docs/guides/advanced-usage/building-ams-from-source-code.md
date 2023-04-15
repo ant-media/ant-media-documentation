@@ -1,4 +1,4 @@
-# Building AMS from source
+# Building AMS from Source Code
 
 #### Linux (Ubuntu)
 

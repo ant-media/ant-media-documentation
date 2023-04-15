@@ -1,4 +1,4 @@
-# AMS Kubernetes Deployment
+# Deploy Ant Media Server on Kubernetes 
 
 Sample AMS Deployment File
 --------------------------

@@ -1,4 +1,4 @@
-# Deploying on AWS Wavelength
+# Deploying Ant Media Server at AWS Wavelength
 
 AWS Wavelength enables developers to build applications that deliver ultra-low latencies to mobile devices and end users. Wavelength deploys standard AWS compute and storage services to the edge of telecommunication carriers' 5G networks. 
 
@@ -14,5 +14,7 @@ You can use Ant Media Server v2.4.1 and later for AWS Wavelength Deployments.
 
 *   [Install SSL](/v1/docs/installing-ssl)
 *   [Configure STUN Server](/v1/docs/configuring-stun-server)
-*   [Standalone Server Deployment with Cloudformation](/v1/docs/aws-wavelength-standalone-deployment)
-*   [Auto-Scalable Cluster Deployment with Cloudformation](/v1/docs/aws-wavelength-cluster-deployment)
+*   [Standalone Server Deployment with Cloudformation](guides/clustering-and-scaling/aws/aws-wavelength-standalone-deployment)
+*   [Auto-Scalable Cluster Deployment with Cloudformation](guides/clustering-and-scaling/aws/aws-wavelength-cluster-deployment/)
+
+docs/guides/clustering-and-scaling/aws/aws-wavelength-standalone-deployment

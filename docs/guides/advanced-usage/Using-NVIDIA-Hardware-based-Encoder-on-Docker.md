@@ -6,7 +6,7 @@ You can use NVIDIA hardware-based encoder on Docker with Ant Media Server.
 
 On host(18.04 and 20.04)
 
-*   [Install CUDA Drivers](/guides/advanced-usage/Using-Nvidia-GPUs/)
+*   [Install CUDA Drivers](/guides/advanced-usage/using-nvidia-gpu/)
 *   Install docker-ce according to the link - [https://docs.docker.com/install/](https://docs.docker.com/install/)
 
     sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common

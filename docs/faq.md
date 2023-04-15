@@ -19,7 +19,7 @@ Its file location is ```/usr/local/antmedia/webapps/LiveApp/js/webrtc_adaptor.js
 
 ## Can I use Docker to deploy Ant Media Server?
 
-Yes. Utilizing a Docker image is a very common way of deploying Ant Media Server. Check the [Installation](/guides/clustering-and-scaling/docker/Docker-and-Docker-Compose-Installation/) and the official Ant Media Server Docker images [here](https://hub.docker.com/u/antmedia)
+Yes. Utilizing a Docker image is a very common way of deploying Ant Media Server. Check the [Installation](/guides/clustering-and-scaling/docker/docker-and-docker-compose-installation/) and the official Ant Media Server Docker images [here](https://hub.docker.com/u/antmedia)
 
 ## I cannot login to AMS dashboard after upgrading
 

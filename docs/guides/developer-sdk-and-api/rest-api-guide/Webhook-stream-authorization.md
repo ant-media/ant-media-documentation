@@ -34,4 +34,4 @@ Please try to publish the stream again but this time as the response will be 300
     WARN  i.a.s.AcceptOnlyStreamsWithWebhook - Connection object is null for stream1
     INFO  i.a.e.w.WebSocketEnterpriseHandler - Is publish allowed through Webhook Authentication: false
 
-For more details about using webhook in Ant Media Server, please check [webhook documentation](/guides/advanced-usage/Webhooks/).
+For more details about using webhook in Ant Media Server, please check [webhook documentation](/guides/advanced-usage/webhooks/).

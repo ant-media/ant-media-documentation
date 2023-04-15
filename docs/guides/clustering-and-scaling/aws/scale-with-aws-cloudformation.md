@@ -110,8 +110,4 @@ I have covered most of the topics around Cloud Formation. Coming to the question
 -   AutoScale
 -   Load Balancer
 
-If you have any questions, please just drop a line to contact (at) antmedia.io
-
-605 words
-
-Published 23 Feb 2022
+If you have any questions, please just drop your query at https://github.com/orgs/ant-media/discussions

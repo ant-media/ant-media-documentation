@@ -7,7 +7,7 @@ Before we start with the installation, let’s take a look at what exactly the t
 Prerequisite
 ------------
 
-*   Subscribe the [Ant Media Server on AWS Marketplace](https://aws.amazon.com/marketplace/pp/prodview-464ritgzkzod6). If you don't know how to do that [just follow the 3 steps here](/v1/docs/cloudformation-installation-for-scaling-ant-media-server)
+*   Subscribe the [Ant Media Server on AWS Marketplace](https://aws.amazon.com/marketplace/pp/prodview-464ritgzkzod6). If you don't know how to do that [just follow the 3 steps here](/guides/clustering-and-scaling/aws/scale-with-aws-cloudformation/)
 
 Step by Step Deployment
 -----------------------

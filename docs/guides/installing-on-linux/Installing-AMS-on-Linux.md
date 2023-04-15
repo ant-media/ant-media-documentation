@@ -81,7 +81,7 @@ Run ```./enable_ssl.sh``` script in the AMS installation directory. Please don't
 sudo ./enable_ssl.sh -d {DOMAIN_NAME}
 ```
 
-For detailed information about SSL, follow [SSL Setup](https://antmedia.io/docs/guides/installing-on-linux/Setting-up-SSL/).
+For detailed information about SSL, follow [SSL Setup](/docs/guides/installing-on-linux/Setting-up-SSL/).
 
 ## Accessing the web panel
 
@@ -92,11 +92,11 @@ If an SSL certificate is installed, the server can be reached at
 
 ## Docker installation
 
-Please visit for more information [Docker and Docker Compose](https://antmedia.io/docs/guides/clustering-and-scaling/docker/Docker-and-Docker-Compose-Installation/).
+Please visit for more information [Docker and Docker Compose](/guides/clustering-and-scaling/docker/docker-and-docker-compose-installation).
 
 ## Cluster installation
 
-Cluster installation is an advanced topic and it has its own page. Please visit [Clustering & Scaling](https://antmedia.io/docs/guides/clustering-and-scaling/cluster-installation/).
+Cluster installation is an advanced topic and it has its own page. Please visit [Clustering & Scaling](/guides/clustering-and-scaling/cluster-installation/).
 
 ## Server ports
 

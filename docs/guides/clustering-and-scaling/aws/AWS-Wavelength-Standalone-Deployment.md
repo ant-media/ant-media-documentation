@@ -7,7 +7,7 @@ The template creates the VPC, Carrier IP, and Internet Gateway configuration aut
 Prerequisite
 ------------
 
-*   Subscribe the [Ant Media Server on AWS Marketplace](https://aws.amazon.com/marketplace/pp/prodview-464ritgzkzod6). If you don't know how to do that [just follow the 3 steps here](/v1/docs/cloudformation-installation-for-scaling-ant-media-server)
+*   Subscribe the [Ant Media Server on AWS Marketplace](https://aws.amazon.com/marketplace/pp/prodview-464ritgzkzod6). If you don't know how to do that [just follow the 3 steps here](/guides/clustering-and-scaling/aws/scale-with-aws-cloudformation/)
 
 Step by Step Deployment
 -----------------------
