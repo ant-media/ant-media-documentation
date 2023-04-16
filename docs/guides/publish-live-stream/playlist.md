@@ -26,7 +26,7 @@ If you have your mp4 files on your local system before creating the playlist, yo
 
 The uploaded mp4 files are saved in the applications streams folder by default, and we must provide that path as a file URL when creating the playlist.
 
-Simply enter the Playlist name, Stream Id, and Playlist URL into the appropriate fields and click the "Create" button. You can add more Playlist Items based on the number of files or URLs in your playlist.
+Simply enter the Playlist name, Stream Id, and Playlist URL into the appropriate fields and click the ```Create``` button. You can add more Playlist Items based on the number of files or URLs in your playlist.
 
 ![image.png](@site/static/img/publish-live-stream/playlist/create-playlist.png)
 
