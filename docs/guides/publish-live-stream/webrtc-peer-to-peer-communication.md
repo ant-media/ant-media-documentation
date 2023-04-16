@@ -15,7 +15,7 @@ File is located under ```/usr/local/antmedia/webapps/LiveApp/peer.html```
 
  Let’s proceed step by step for implementing a peer to peer call. Before starting the implementation, make sure that you've installed SSL to your Ant Media Server Enterprise Edition. If you haven’t got any domain for your Ant Media Server, you can get a free domain in [Freenom](https://www.freenom.com/).
 
-> Quick Link: [Learn How to Install SSL to your Ant Media Server](/v1/docs/setting-up-ssl)
+> Quick Link: [Learn How to Install SSL to your Ant Media Server](/guides/installing-on-linux/setting-up-ssl/)
 
 ### Preparing the web page
 

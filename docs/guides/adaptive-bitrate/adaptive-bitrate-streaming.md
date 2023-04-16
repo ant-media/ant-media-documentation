@@ -38,7 +38,7 @@ Note:
 
 Adaptive streaming detects the device's bandwidth and CPU capacity and adjusts the streaming rate and video quality accordingly. Therefore, you'll see a higher CPU load, and we recommend enabling the GPU for AMS.
 
-> Quick Link: [Learn How to Enable GPU for Ant Media Server](/guides/advanced-usage/Using-Nvidia-GPUs/)
+> Quick Link: [Learn How to Enable GPU for Ant Media Server](/guides/advanced-usage/using-nvidia-gpu/)
 
 The configuration above will create videos at 1080p, 720p, and 360p resolutions if the incoming stream resolution is higher than 1080p. If the incoming stream resolution is 480p, then 480p and 360p versions of the stream will be created on the fly.
 
