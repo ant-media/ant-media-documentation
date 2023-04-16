@@ -38,6 +38,10 @@ If you don’t have command-line tools experience, you can use OBS to push an SR
 
 ![](@site/static/img/Screen-Shot-2022-04-20-at-14.48.30-1024x811.png)
 
+If the publish type token is enabled, then SRT publishing URL will be as follows:
+```
+srt://ant.media.server.address:4200?streamid=Application-Name/streamId,token=tokenId
+```
 ## Play SRT with Ant Media Server
 
 Once the SRT stream has been published, it can be viewed using WebRTC, HLS, or CMAF (Dash). Please see the document [here](https://antmedia.io/docs/category/playing-live-streams/) for more information.
