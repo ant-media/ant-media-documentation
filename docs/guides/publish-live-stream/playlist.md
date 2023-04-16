@@ -1,6 +1,6 @@
 # Playlist
 
-This guide describes how to use Playlist feature on Ant Media Server. You can use this feature in both Community Edition and Enterprise Edition.
+This guide describes how to use Playlist feature on Ant Media Server. You can use this feature in both Community Edition and Enterprise Edition of Ant Media Server.
 
 ![image.png](@site/static/img/image(2).png)
 
@@ -14,32 +14,47 @@ Live linear streaming is a “passive” video viewing experience, meaning viewe
 
 ## How to create a Playlist?
 
-You can create a playlist in Ant Media Server Dashboard. Your playlist is ready in 2 steps. Here are the steps 🙂
+You can create a playlist in Ant Media Server Dashboard. Your playlist is ready in 3 steps. Here are the steps 🙂
 
 Click `New Live Stream > Playlist` as shown above.
 
-![image.png](@site/static/img/image(3).png)
+![image.png](@site/static/img/publish-live-stream/playlist/playlist.png)
 
-Just type the Playlist name and Playlist URL into the fields and click “Create” button.
+If you have your mp4 files on your local system before creating the playlist, you can upload them to Ant Media Server from the VoD section, as shown below.
 
-![image.png](@site/static/img/image(4).png)
+![image.png](@site/static/img/publish-live-stream/playlist/vod-upload.png)
 
-**Note: Please make sure your VoD files can be accessible with AMS.**
+The uploaded mp4 files are saved in the applications streams folder by default, and we must provide that path as a file URL when creating the playlist.
 
-## How to Build your online TV channel in AMS?
+Simply enter the Playlist name, Stream Id, and Playlist URL into the appropriate fields and click the ```Create``` button. You can add more Playlist Items based on the number of files or URLs in your playlist.
 
-You can build your online TV channel with Ant Media Server. You just need mp4 files for the streams. Furthermore, there is no need to store those mp4 files on your server. Ant Media Server can pull the mp4 files from any place that is stored.
+![image.png](@site/static/img/publish-live-stream/playlist/create-playlist.png)
+
+**Note:** Furthermore, uploading mp4 files to your Ant Media Server is optional. Ant Media Server can retrieve mp4 files from any location. You simply need to ensure that the file URL is accessible to AMS.
+
+After you've created your playlist, you can start it by clicking the ```Start Broadcast``` button.
+
+![image.png](@site/static/img/publish-live-stream/playlist/start-playlist.png)
+
+Rest API can also be used to start and stop a playlist. Check out the APIs for [start broadcast](https://antmedia.io/rest/#/BroadcastRestService/startStreamSourceV2) and [stop broadcast](https://antmedia.io/rest/#/BroadcastRestService/stopStreamingV2).
 
 ## How can I use Playlist API?
 
-You just need to playlist and playListItemList in Broadcast.
-
 Here is the sample create Playlist CURL command:
 
-```js
-curl -X POST -H "Content-Type: application/json" "https://{domain:port}/{application}/rest/v2/broadcasts/create" -d '{ "name":"streamName", "playListItemList":[ { "streamUrl": "http://SAMPLE_STREAM_URL.com/sample.mp4", "type": "VoD" } ], "type":"playlist" }'
-```
+    curl -X POST -H "Content-Type: application/json" "https://AMS-domain:port/Application-Name/rest/v2/broadcasts/create" -d 
+    '{  
+    "name": "your-streamName",
+    "streamId": "your-streamId",
+    "type":"playlist",
+    "playListItemList": [
+        {
+                 "streamUrl":  "http://sample-stream-URL.com/sample.mp4",
+                 "type":  "VoD"
+        }
+    ]}'
     
+You can use the [update Broadcast](https://antmedia.io/rest/#/BroadcastRestService/updateBroadcast) Rest API to update the playlist on the fly.
 
 ## How to play Linear Live Streaming?
 
@@ -48,3 +63,5 @@ You can play the playlist in HLS and WebRTC.
 [Here is HLS player documentation](/guides/playing-live-stream/hls-playing/)
 
 [Here is WebRTC play documentation](/guides/playing-live-stream/webrtc-playing/)
+
+Check out the [following discussion](https://github.com/orgs/ant-media/discussions/4879) for some tweaks to improve playlist playback.
