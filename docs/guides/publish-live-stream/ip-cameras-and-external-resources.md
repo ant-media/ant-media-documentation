@@ -33,7 +33,7 @@ The Ant Media Server can save IP camera streams in MP4 format. You can see these
 
 ![](@site/static/img/publish-live-stream/IP-Camera-and-External-Sources/IP-Camera-Recording.png)
 
-Check Recording Live Streams section for more information.
+For more information, see [Recording Live Streams](https://antmedia.io/docs/guides/recording-live-streams/).
 
 ## Restreaming external sources
 
