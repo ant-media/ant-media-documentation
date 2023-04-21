@@ -1,35 +1,12 @@
-# React Native SDK
+---
+title: React Native SDK
+---
 
 Ant Media's WebRTC React Native SDK lets you build your own React Native application that can publish and play WebRTC broadcasts with just a few lines of code.
 
 In this doc, we're going to cover the following topics.
 
-*   [Pre-Requisite For React Native Development](/guides/developer-sdk-and-api/sdk-integration/react-native-sdk#prerequisite-for-react-native-development)
-    
-    *   [Software Requirements](/guides/developer-sdk-and-api/sdk-integration/react-native-sdk#software-requirements)
-    *   [Verify React Native Installation By running a sample app](/guides/developer-sdk-and-api/sdk-integration/react-native-sdk#how-to-setup-your-first-application)
-*   [Download and ready WebRTC sample apps](/guides/developer-sdk-and-api/sdk-integration/react-native-sdk#download-and-ready-webrtc-sample-apps)
-    
-    *   [Download the Sample React Native projects](/guides/developer-sdk-and-api/sdk-integration/react-native-sdk#download-the-sample-react-native-projects)
-    *   [Install dependencies and run sample projects](/guides/developer-sdk-and-api/sdk-integration/react-native-sdk#install-dependencies-and-run-sample-projects)
-*   [Run the sample WebRTC React Native apps](/guides/developer-sdk-and-api/sdk-integration/react-native-sdk#run-the-sample-react-native-app)
-    
-    *   [Publish stream from your React Native sample app](/guides/developer-sdk-and-api/sdk-integration/react-native-sdk#publish-stream-from-your-sample-react-native-app)
-    *   [Play stream on your React Native sample app](/guides/developer-sdk-and-api/sdk-integration/react-native-sdk#play-stream-from-your-sample-react-native-app)
-    *   [P2P communication with your React Native sample app](/guides/developer-sdk-and-api/sdk-integration/react-native-sdk#p2p-communication-with-sample-react-native-app)
-    *   [Conference with your React Native sample app](/guides/developer-sdk-and-api/sdk-integration/react-native-sdk#conference-with-your-react-native-sample-app)
-    *   [Data Channel with your React Native Sample app](/guides/developer-sdk-and-api/sdk-integration/react-native-sdk#data-channel-with-your-react-native-sample-app)
-*   [Using WebRTC React Native SDK](/guides/developer-sdk-and-api/sdk-integration/react-native-sdk#using-webrtc-react-native-sdk)
-    
-    *   [Install @antmedia/react-native-ant-media Package](/guides/developer-sdk-and-api/sdk-integration/react-native-sdk#install-antmediareactnativeantmedia-package)
-    *   [How to publish](/guides/developer-sdk-and-api/sdk-integration/react-native-sdk#how-to-publish-a-stream)
-    *   [How to play](/guides/developer-sdk-and-api/sdk-integration/react-native-sdk#how-to-play-a-stream)
-    *   [How to use peer 2 peer](/guides/developer-sdk-and-api/sdk-integration/react-native-sdk#how-to-use-peer-2-peer)
-    *   [How to use conference](/guides/developer-sdk-and-api/sdk-integration/react-native-sdk#how-to-use-conference)
-    *   [How to use the data channel](/guides/developer-sdk-and-api/sdk-integration/react-native-sdk#how-to-use-the-data-channel)
-
-Pre-Requisite for React Native development
-------------------------------------------
+## Pre-Requisite for React Native development
 
 ### Software requirements
 
@@ -42,7 +19,7 @@ Pre-Requisite for React Native development
 
 First of all, you’re required to install the node on your system. If your machine already has Node.js installed, then skip this step.
 
-**Node.js Installation**
+### Node.js Installation
 
 ![](@site/static/img/image(83).png)
 
@@ -54,34 +31,24 @@ Furthermore, make ascertain that the Node and NPM have been installed.
 
 Use the Below Commands-
 
-Text
+```shell
+node -v
+```    
+```shell
+npm –v
+```   
 
-Text
+### React Native
 
-    node -v
-    
+Use the command:
 
-Text
-
-Text
-
-    npm –v
-    
-
-**React Native**
-
-Use the command
-
-Text
-
-Text
-
-    npm install -g react-native-cli
-    
+```shell
+ npm install -g react-native-cli
+```   
 
 in the command terminal to install React Native.
 
-**Android Development Environment**
+### Android Development Environment
 
 Download & Install the Android Studio [https://developer.android.com/studio/install.html](https://developer.android.com/studio/install.html)
 
@@ -93,30 +60,21 @@ The Android Studio lets you run the Reactive Native application in an emulator a
 
 We’ll be building a project using React Native by running the following command:
 
-Text
-
-Text
-
-    react-native init MySampleApp
-    
+```shell
+react-native init MySampleApp
+```
 
 in the terminal from the folder where you will be creating the application.
 
 Now, run commands below:
 
-Text
+```shell
+react-native start
+``` 
 
-Text
-
-    react-native start
-    
-
-Text
-
-Text
-
-    react-native run-android
-    
+```shell
+react-native run-android
+``` 
 
  Make sure you’ve started the emulator on your machine.
 
@@ -124,8 +82,8 @@ This Is how the sample project will look like in the Emulator:
 
 ![](@site/static/img/image(85).png)
 
-Download and install WebRTC sample apps
----------------------------------------
+## Download and install WebRTC sample apps
+
 
 ### Download sample React Native projects
 
@@ -165,8 +123,8 @@ Run ```yarn android``` if using yarn
 
 After the project starts successfully, sample app will appear on the device/emulator.
 
-Run the sample React Native app
--------------------------------
+## Run the sample React Native app
+
 
 ### Publish a stream from your sample React Native app
 
@@ -243,143 +201,102 @@ Using WebRTC React Native SDK
 
 Before moving forward with using WebRTC React Native SDK, we highly recommend using the sample project to get started with your application. It's good to know the dependencies and how it works in general.
 
-### **Install @antmedia/react-native-ant-media Package**
+### Install @antmedia/react-native-ant-media Package
 
 **```npm```**
 
-Text
-
-Text
-
-    npm i @antmedia/react-native-ant-media react-native-webrtc
+```shell
+npm i @antmedia/react-native-ant-media react-native-webrtc
+```
 
 **```yarn```**
 
-Text
+```shell
+yarn add @antmedia/react-native-ant-media react-native-webrtc
+```
 
-Text
+### initialize useAntMedia adaptor
 
-    yarn add @antmedia/react-native-ant-media react-native-webrtc
-    
 
-### **initialize useAntMedia adaptor**
+```js
 
-TypeScript
+import { useAntMedia, rtc_view } from "@antmedia/react-native-ant-media";
 
-TypeScript
+const adaptor = useAntMedia({
+  url: webSocketUrl, // your web socket server URL
+  mediaConstraints: {
+    // mediaConstraints
+    audio: true,
+    video: {
+      width: 640,
+      height: 480,
+      frameRate: 30,
+      facingMode: "front",
+    },
+  },
+  onlyDataChannel: false, // for using only data channel not audio and video
+  callback(command, data) {}, // check info callbacks
+  callbackError: (err, data) =>` {}, // // check error callbacks
+  peer_connection_config: {
+    // peerconnection_config
+    iceServers: [{ urls: "stun:stun1.l.google.com:19302" }],
+  },
+  debug: true, // debug true / false
+});
 
-    // . . .
-    
-    import { useAntMedia, rtc_view } from "@antmedia/react-native-ant-media";
-    
-    const adaptor = useAntMedia({
-      url: webSocketUrl, // your web socket server URL
-      mediaConstraints: {
-        // mediaConstraints
-        audio: true,
-        video: {
-          width: 640,
-          height: 480,
-          frameRate: 30,
-          facingMode: "front",
-        },
-      },
-      onlyDataChannel: false, // for using only data channel not audio and video
-      callback(command, data) {}, // check info callbacks
-      callbackError: (err, data) =>` {}, // // check error callbacks
-      peer_connection_config: {
-        // peerconnection_config
-        iceServers: [{ urls: "stun:stun1.l.google.com:19302" }],
-      },
-      debug: true, // debug true / false
-    });
-    
-    // Then, in another part of your script, you can start streaming by calling the publish method
-    adaptor.publish(streamName);
-    
-    // . . .
+// Then, in another part of your script, you can start streaming by calling the publish method
+adaptor.publish(streamName);
+
+```
     
 
 The example above is taken from [ant-media / WebRTC-React-Native-SDK](https://github.com/ant-media/WebRTC-React-Native-SDK/blob/main/samples/publish/src/App.tsx)
 
-### **How to publish a stream**
+### How to publish a stream
 
 The method below is used to publish a stream.
 
-TypeScript
-
-TypeScript
-
-    // . . .
-    
-    adaptor.publish(streamName);
-    
-    // . . .
+```js    
+adaptor.publish(streamName);
+```
     
     
 
 The method below is used to stop publish
 
-TypeScript
-
-TypeScript
-
-    // . . .
-    
-    adaptor.stop(streamName);
-    
-    // . . .
+```js 
+adaptor.stop(streamName);
+```
     
     
 
 Detailed code can be viewed in [ant-media / WebRTC-React-Native-SDK Publish](https://github.com/ant-media/WebRTC-React-Native-SDK/blob/main/samples/publish/src/App.tsx)
 
-### **How to play a stream**
+### How to play a stream
 
 The method below is used to play a stream.
 
-TypeScript
-
-TypeScript
-
-    // . . .
+```js
+adaptor.play(streamName);
+```
     
-    adaptor.play(streamName);
-    
-    // . . .
-    
-    
-
 Detailed code can be viewed in [ant-media / WebRTC-React-Native-SDK Play](https://github.com/ant-media/WebRTC-React-Native-SDK/blob/main/samples/play/src/Play.tsx)
 
 ### How to use peer 2 peer
 
 The method method is used to join a room.
 
-TypeScript
-
-TypeScript
-
-    // . . .
-    
-    adaptor.join(streamName);
-    
-    // . . .
+```js
+adaptor.join(streamName);
+```
     
     
 
 The method below is used to leave a room.
 
-TypeScript
-
-TypeScript
-
-    // . . .
-    
-    adaptor.leave(streamName);
-    
-    // . . .
-    
+```js
+adaptor.leave(streamName);
+```
     
 
 Detailed code can be viewed in [ant-media / WebRTC-React-Native-SDK p2p](https://github.com/ant-media/WebRTC-React-Native-SDK/blob/main/samples/peer/src/Peer.tsx)
@@ -388,50 +305,28 @@ Detailed code can be viewed in [ant-media / WebRTC-React-Native-SDK p2p](https:/
 
 The method below is used to join a room.
 
-TypeScript
-
-TypeScript
-
-    // . . .
-    
-    adaptor.joinRoom(room);
-    
-    // . . .
+```js
+adaptor.joinRoom(room);
+```
     
     
 
 The method below is used to leave a room.
 
-TypeScript
-
-TypeScript
-
-    // . . .
+```js
+adaptor.leaveFromRoom(room);
+```
     
-    adaptor.leaveFromRoom(room);
-    
-    // . . .
-    
-    
-
 Detailed code can be viewed in [ant-media / WebRTC-React-Native-SDK Conference](https://github.com/ant-media/WebRTC-React-Native-SDK/blob/main/samples/conference/src/conference.tsx)
 
 ### How to use the data channel
 
 The method below is used to send messages.
 
-TypeScript
-
-TypeScript
-
-    // . . .
+```js
+adaptor.sendData(streamId, message);
+```
     
-    adaptor.sendData(streamId, message);
-    
-    // . . .
-    
-    
-
 Detailed code can be viewed in [ant-media / WebRTC-React-Native-SDK Data Channel](https://github.com/ant-media/WebRTC-React-Native-SDK/blob/develop/samples/DataChannel/src/Chat.tsx)
 
 >` Check Also: [WebRTC-React-Native-SDK](https://github.com/ant-media/WebRTC-React-Native-SDK)
