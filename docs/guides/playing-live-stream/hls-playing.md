@@ -23,7 +23,8 @@ The HLS stream will start to play automatically when it becomes live.
 
 Autoplay is enabled by default in a player but it may not be activated for some policies in Chrome and Firefox. So you may need to click the player button to get it started. Look at the following links:
 
-[Chrome policy](https://developers.google.com/web/updates/2017/09/autoplay-policy-changes) 
+[Chrome policy](https://developers.google.com/web/updates/2017/09/autoplay-policy-changes)
+
 [Firefox policy](https://hacks.mozilla.org/2019/02/firefox-66-to-block-automatically-playing-audible-video-and-audio/)
 
 Congrats. You're playing with HLS.
@@ -77,5 +78,5 @@ sudo service antmedia restart
 Now, your HLS streams will record.
     
 
-> Quick Link: [App Configurations](https://antmedia.io/docs/guides/configuration-and-testing/ams-application-configuration/ 
+> Quick Link: [App Configurations](https://antmedia.io/docs/guides/configuration-and-testing/ams-application-configuration/)
 > Quick Link: [FFmpeg Configurations](https://ffmpeg.org/ffmpeg-formats.html#toc-Options-6)
