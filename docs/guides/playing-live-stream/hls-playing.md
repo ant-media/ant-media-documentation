@@ -2,53 +2,55 @@
 
 HLS Playing is available in both the Community and Enterprise Editions. Before playing a stream, make sure that stream is broadcasting on the server.
 
-> Quick Link: [Learn How to Publish Live Streams](/v1/docs/publishing-live-streams)
+> Quick Link: [Learn How to Publish Live Streams](https://antmedia.io/docs/category/publish-live-stream/)
 
 ## 1. Navigate to the video player  
 
-You can use play.html under the Application. Visit ```https://your_domain_name:5443/WebRTCAppEE/play.html```. If you're running Ant Media Server on your local computer, you can also visit ```http://localhost:5080/WebRTCAppEE/play.html```
-    
-You will encounter a Stream ID doesn't exist popup error.
-    
-![](@site/static/img/image-1645523240043.png)
-    
+Under the application, you can use play.html. Please go to ```https://your_domain_name:5443/WebRTCAppEE/play.html```. If you have Ant Media Server installed on your computer, you may also go to ```http://localhost:5080/WebRTCAppEE/play.html```.
 
-## 2. Add the necessary URL parametres
-
-Pass the stream ID & HLS play order parameters in URL. 
+To play an HLS stream, provide ```streamId``` as the name and ```hls``` as the playOrder parameters in the URL shown below. 
     
-```https://your_domain_name:5443/WebRTCAppEE/play.html?name=stream1&playOrder=hls```
+```https://your_domain_name:5443/WebRTCAppEE/play.html?name=test&playOrder=hls```
     
-![](@site/static/img/image-1645523879129.png)
+![](@site/static/img/playing-live-streams/hls-playing/hls-player.png)
     
 
 ## 3. Playback starts automatically
 
 The HLS stream will start to play automatically when it becomes live.
     
-![](@site/static/img/image-1645523922843.png)
-    
+![](@site/static/img/playing-live-streams/hls-playing/hls-started.png)
 
-Autoplay may not be activated for some policies in Chrome and Firefox. So you may need to click the player button to get it started. Look at the following links:
+Autoplay is enabled by default in a player but it may not be activated for some policies in Chrome and Firefox. So you may need to click the player button to get it started. Look at the following links:
 
-[https://developers.google.com/web/updates/2017/09/autoplay-policy-changes](https://developers.google.com/web/updates/2017/09/autoplay-policy-changes) [https://hacks.mozilla.org/2019/02/firefox-66-to-block-automatically-playing-audible-video-and-audio/](https://hacks.mozilla.org/2019/02/firefox-66-to-block-automatically-playing-audible-video-and-audio/)
+[Chrome policy](https://developers.google.com/web/updates/2017/09/autoplay-policy-changes) 
+[Firefox policy](https://hacks.mozilla.org/2019/02/firefox-66-to-block-automatically-playing-audible-video-and-audio/)
 
 Congrats. You're playing with HLS.
 
 ## More Details About HLS
 
-Make sure that HLS muxing is enabled in your application. By checking the HLS Muxing checkbox in the app's settings on the web management panel, you can verify it.
+Make sure HLS muxing is enabled in your application. You may confirm this by clicking the ```Create HLS Streaming``` checkbox in the app's settings on the web management panel.
 
-Assume that HLS muxing is enabled and there is a stream publishing to Ant Media Server with an RTMP URL in this format: ```rtmp://`<SERVER_NAME>`/LiveApp/`<STREAM_ID>```
+![](@site/static/static/img/playing-live-streams/hls-playing/hls-enabled.png)
 
-*   HLS URL is in this format: ```http://<SERVER_NAME>:5080/LiveApp/streams/<STREAM_ID>.m3u8```
-*   If there are adaptive streams enabled in Enterprise Edition, HLS Master URL is in this format: ```http://<SERVER_NAME>:5080/LiveApp/streams/<STREAM_ID>_adaptive.m3u8```
+Assume HLS muxing is enabled and a stream is published to Ant Media Server.
+
+* Default HLS (.m3u8) URL: 
+```http://AMS-domain-or-IP:5080/LiveApp/streams/StreamId.m3u8```
+*   If adaptive bit rates are enabled in the application (Enterprise Edition), the HLS (.m3u8) URL will be as follows: 
+```http://AMS-domain-or-IP:5080/LiveApp/streams/StreamId_adaptive.m3u8```
+
+**Note:** Beginning with version 2.4.1, the filename structure included the bitrate in the name. For example, 480p ABR is enabled on the server and you want to play it.
+In prior versions, the HLS filename was ```streamId_480p.m3u8```, but now it is ```stream1_480p1000kbps.m3u8```, as we enabled the same resolution with multiple bitrates.
+
+If you would like to use the old structure, check the [following post](https://github.com/orgs/ant-media/discussions/4984).
 
 ## Save HLS Records
 
 HLS streaming is a more cost-effective and secure method than VOD streaming. You can record your HLS streams. You just need to change your application's HLS settings as below:
 
-*   Open your apps ```red5-web.properties``` and change the below mentioned settings. The file is located under `/usr/local/antmedia/webapps/<App-name>/WEB-INF` folder.
+*   Open your apps ```red5-web.properties``` and change the below mentioned settings. The file is located under `/usr/local/antmedia/webapps/App-Name/WEB-INF` folder.
     
 ```js 
 settings.hlsPlayListType=event
@@ -73,10 +75,7 @@ sudo service antmedia restart
 ```
     
 Now, your HLS streams will record.
-
-## Announcement for v2.4.1:
-After version 2.4.1, the filename structure has added bitrate to the name. So for previous versions, the filename was "stream1_240p0001.ts", now it is "stream1_240p_300kbps0001.ts" , this change was needed because we enabled the same resolution with different bitrates
     
 
-> Quick Link: [App Configurations](/guides/configuration-and-testing/ams-application-configuration/) 
+> Quick Link: [App Configurations](https://antmedia.io/docs/guides/configuration-and-testing/ams-application-configuration/ 
 > Quick Link: [FFmpeg Configurations](https://ffmpeg.org/ffmpeg-formats.html#toc-Options-6)
