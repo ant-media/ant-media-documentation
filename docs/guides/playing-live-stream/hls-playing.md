@@ -32,7 +32,7 @@ Congrats. You're playing with HLS.
 
 Make sure HLS muxing is enabled in your application. You may confirm this by clicking the ```Create HLS Streaming``` checkbox in the app's settings on the web management panel.
 
-![](@site/static/static/img/playing-live-streams/hls-playing/hls-enabled.png)
+![](@site/static/img/playing-live-streams/hls-playing/hls-enabled.png)
 
 Assume HLS muxing is enabled and a stream is published to Ant Media Server.
 
