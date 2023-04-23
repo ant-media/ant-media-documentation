@@ -9,7 +9,15 @@ The Common Media Application Format (CMAF) is essentially a new format to reduce
 How to use CMAF
 ---------------
 
-In Ant Media Server **v2.4.3** and earlier, you must enable it in your application's configuration file, as shown below. It is now possible to enable it directly from the Ant Media dashboard starting with version **2.5.0**.
+In Ant Media Server **v2.4.3** and earlier, you must enable it in your application's configuration file. It is now possible to enable it directly from the Ant Media dashboard starting with version **2.5.0**.
+
+![](@site/static/img/playing-live-streams/dash-playing/dash-enabled.png)
+
+To play Dash stream, provide ```streamId``` as the name and ```dash``` as the playOrder parameters in the URL shown below. 
+    
+```https://your_domain_name:5443/WebRTCAppEE/play.html?name=test&playOrder=dash```
+
+In order to enable the dash programmatically, follow below steps:
 
 **1.** Open the following file with your favorite editor
 
@@ -26,14 +34,6 @@ If you want to enable LL-HLS (an experimental feature), you also need to set the
 **3.** Restart the Ant Media Server
 
     sudo service antmedia restart
-
-**4.** Send the WebRTC stream to Ant Media Server via the WebRTC publisher page. Let’s assume your stream id is ```“stream1”```
-
-    https://YOUR_DOMAIN:5443/WebRTCAppEE
-
-**5.** Play the stream with CMAF using the following URL:
-
-    https://YOUR_DOMAIN:5443/WebRTCAppEE/play.html?id=stream1&playOrder=dash
 
 There are a few more options for CMAF and their default values. You can assume that the following values are in use if they are not specified in the properties file:
 
@@ -53,3 +53,9 @@ There are a few more options for CMAF and their default values. You can assume t
     
     #Enable low latency dash. This settings is effective if dash is enabled
     settings.dash.llEnabled=true
+
+**Note:** If you're using Dash streaming with ABR enabled, make sure the following property is enabled in your application's ```red5-web.properties``` file.
+
+    settings.forceAspectRationInTranscoding=false
+
+The value is false by default. Check [here](https://antmedia.io/javadoc/io/antmedia/AppSettings.html#forceAspectRatioInTranscoding) for more information on this property.
