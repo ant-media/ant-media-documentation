@@ -6,11 +6,11 @@ HLS Playing is available in both the Community and Enterprise Editions. Before p
 
 ## 1. Navigate to the video player  
 
-Under the application, you can use play.html. Please go to ```https://your_domain_name:5443/WebRTCAppEE/play.html```. If you have Ant Media Server installed on your computer, you may also go to ```http://localhost:5080/WebRTCAppEE/play.html```.
+Under the application, you can use play.html. Please go to ```https://AMS-domain-name:5443/WebRTCAppEE/play.html```. If you have Ant Media Server installed on your computer, you may also go to ```http://localhost:5080/WebRTCAppEE/play.html```.
 
 To play an HLS stream, provide ```streamId``` as the name and ```hls``` as the playOrder parameters in the URL shown below. 
     
-```https://your_domain_name:5443/WebRTCAppEE/play.html?name=test&playOrder=hls```
+```https://AMS-domain-name:5443/WebRTCAppEE/play.html?name=test&playOrder=hls```
     
 ![](@site/static/img/playing-live-streams/hls-playing/hls-player.png)
     
@@ -79,4 +79,5 @@ Now, your HLS streams will record.
     
 
 > Quick Link: [App Configurations](https://antmedia.io/docs/guides/configuration-and-testing/ams-application-configuration/)
+
 > Quick Link: [FFmpeg Configurations](https://ffmpeg.org/ffmpeg-formats.html#toc-Options-6)
