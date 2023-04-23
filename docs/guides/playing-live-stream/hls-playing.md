@@ -15,7 +15,7 @@ To play an HLS stream, provide ```streamId``` as the name and ```hls``` as the p
 ![](@site/static/img/playing-live-streams/hls-playing/hls-player.png)
     
 
-## 3. Playback starts automatically
+## 2. Playback starts automatically
 
 The HLS stream will start to play automatically when it becomes live.
     
