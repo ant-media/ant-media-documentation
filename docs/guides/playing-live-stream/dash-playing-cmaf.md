@@ -15,7 +15,7 @@ In Ant Media Server **v2.4.3** and earlier, you must enable it in your applicati
 
 To play Dash stream, provide ```streamId``` as the name and ```dash``` as the playOrder parameters in the URL shown below. 
     
-```https://your_domain_name:5443/WebRTCAppEE/play.html?name=test&playOrder=dash```
+```https://AMS-domain-name:5443/WebRTCAppEE/play.html?name=test&playOrder=dash```
 
 In order to enable the dash programmatically, follow below steps:
 
