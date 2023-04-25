@@ -1,5 +1,6 @@
 ---
 title: Introduction
+slug: /
 sidebar_position: 1
 ---
 Ant Media server provides a ready-to-use, highly scalable, real-time video streaming solution.  It supports both Ultra-Low Latency (WebRTC) and Low Latency (CMAF & HLS) live streaming.

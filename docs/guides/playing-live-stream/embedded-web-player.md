@@ -1,6 +1,9 @@
-# Embedded Web Player
+---
+title: Embedded Web Player
+sidebar_position: 4
+---
 
-You can embed the ```play.html``` page on your website using an iFrame. The ```play.html``` page is in the application folder on Ant Media Server. 
+You can embed the ```play.html``` page on your website using an iFrame. The ```play.html``` page is in the application folder on the Ant Media Server. 
 
 For example in the LiveApp application, it can be found at the following location:
 

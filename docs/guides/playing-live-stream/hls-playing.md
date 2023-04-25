@@ -1,4 +1,7 @@
-# HLS Playing
+---
+title: HLS Playing
+sidebar_position: 2
+---
 
 HLS Playing is available in both the Community and Enterprise Editions. Before playing a stream, make sure that stream is broadcasting on the server.
 

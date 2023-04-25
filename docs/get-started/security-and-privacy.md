@@ -1,4 +1,7 @@
-# Security and privacy
+---
+title: Security and privacy
+sidebar_position: 3
+---
 
 Having more than 1200 paying customers managing more than 7000 Ant Media instances worldwide, we take security seriously here in Ant Media. As such, there are several measures we have undertaken to make sure Ant Media can answer your hardest security questions.
 

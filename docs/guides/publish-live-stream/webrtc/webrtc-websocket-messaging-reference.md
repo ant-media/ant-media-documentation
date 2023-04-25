@@ -1,4 +1,7 @@
-# WebRTC WebSocket Messaging Reference
+---
+title: WebRTC WebSocket Messaging Reference
+sidebar_position: 6
+---
 
 This documentation is for developers who needs to implement signalling between Ant Media Server and clients for publishing & playing streams. Let's make it step by step
 

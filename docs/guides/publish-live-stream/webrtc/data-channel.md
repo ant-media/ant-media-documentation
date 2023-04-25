@@ -1,4 +1,7 @@
-# Using the data channel
+---
+title: Using the data channel
+sidebar_position: 3
+---
 
 Data channel is another channel in WebRTC other than video and audio. In the data channel, you can send any kind of information to the other clients. Data channels can be utilized in various use cases including chat, control messages or file sharing. Ant Media Server provides a generic data channel infrastructure that can be used in all use cases.
 

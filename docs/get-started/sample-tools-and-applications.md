@@ -1,6 +1,6 @@
 ---
-sidebar_position: 2
 title: Sample tools and Apps
+sidebar_position: 1
 ---
 
 Ant Media Server comes with some sample applications to demonstrate different use-cases for ease of use. You can review and also execute these samples to see Ant Media Server in action.

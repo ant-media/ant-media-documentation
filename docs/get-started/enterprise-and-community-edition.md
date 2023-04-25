@@ -1,5 +1,6 @@
 ---
 title: Enterprise and Community Edition
+sidebar_position: 2
 ---
 
 # Ant Media Server Enterprise and Community Edition

@@ -1,4 +1,7 @@
-# Sharing screen with WebRTC
+---
+title: Sharing screen with WebRTC
+sidebar_position: 2
+---
 
 Seamless switch between WebRTC screen sharing and streaming using a camera is available on both Community Edition and and Enterprise Edition. This means that you can switch between screen and camera within the same session.
 

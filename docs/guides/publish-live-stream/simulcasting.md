@@ -1,4 +1,7 @@
-# Simulcasting to social media channels
+---
+title: Simulcasting to social media channels
+sidebar_position: 7
+---
 
 This guide will show you how to use Ant Media Server to live stream to social media and other third-party RTMP end points.
 

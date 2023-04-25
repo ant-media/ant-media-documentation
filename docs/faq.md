@@ -1,6 +1,6 @@
 ---
-sidebar_position: 8
 title: Frequently Asked Questions
+sidebar_position: 3
 ---
 # Frequently Asked Questions
 
