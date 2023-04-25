@@ -1,4 +1,7 @@
-# WebRTC Playback
+---
+title: WebRTC Playback
+sidebar_position: 1
+---
 
 WebRTC playback is only available in Ant Media Server Enterprise Edition (EE).
 
