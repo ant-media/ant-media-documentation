@@ -1,6 +1,5 @@
 ---
 title: Quick start with AMS
-id: introduction
 sidebar_position: 1
 ---
 <VideoPlayer video="https://www.youtube.com/embed/EH6v-yUyzjU" youtube="true">

@@ -1,5 +1,6 @@
 ---
 title: Introduction
+id: Introduction
 slug: /
 sidebar_position: 1
 ---
