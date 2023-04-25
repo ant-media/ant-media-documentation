@@ -1,4 +1,7 @@
-# WebRTC publishing
+---
+title: WebRTC publishing
+sidebar_position: 1
+---
 
 Ant Media Server can ingest your streams with WebRTC to make sure that you deliver a real-time streaming experience with minimal latency. 
 

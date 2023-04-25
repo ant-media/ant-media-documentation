@@ -1,5 +1,6 @@
 ---
 title: Glossary
+sidebar_position: 5
 ---
 
 # Online video streaming glossary

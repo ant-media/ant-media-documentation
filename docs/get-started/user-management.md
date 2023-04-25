@@ -1,4 +1,7 @@
-# User Management
+---
+title: User Management
+sidebar_position: 4
+---
 
 Ant Media supports different user roles. You can, for example, create an admin user to virtually do everything to read-only users, who only can view the dashboard and not do something harmful like removing an application. These permission models are both in API and Ant Media administration tools.
 

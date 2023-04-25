@@ -1,7 +1,9 @@
-# Embedded Web Player
+---
+title: Embedded Web Player
+sidebar_position: 4
+---
 
-Ant Media Server's embedded web player (play.html) is a custom player that allows you to play WebRTC, HLS, and Dash.
-You can also use an iFrame code to embed the ```play.html``` page on your website. The ```play.html``` page is located in Ant Media Server's application folder. 
+You can embed the ```play.html``` page on your website using an iFrame. The ```play.html``` page is in the application folder on Ant Media Server. 
 
 For example, it can be found in the LiveApp application at the following location:
 

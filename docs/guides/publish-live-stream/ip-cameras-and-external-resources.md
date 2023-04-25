@@ -1,5 +1,6 @@
 ---
 title: IP Cameras
+sidebar_position: 5
 ---
 
 # Streaming IP cameras and External sources (HLS, RTMP, RTSP)
