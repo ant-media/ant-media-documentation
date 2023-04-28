@@ -50,6 +50,12 @@ const config = {
         gtag: {
           trackingID: 'G-S9KBTW5Q32',
           anonymizeIP: true,
+        },        
+        sitemap: {
+          changefreq: 'weekly',
+          priority: 0.5,
+          ignorePatterns: ['/tags/**'],
+          filename: 'sitemap.xml',
         },
       }),
     ],
