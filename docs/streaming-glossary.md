@@ -1,5 +1,7 @@
 ---
-title: Glossary
+title: Streaming Glossary
+description: Learn about video streaming glossary or streaming terminology. Most commonly used live streaming terms explained for professionals.
+keywords: [video streaming glossary, streaming terminology, Guide for Streaming professionals]
 sidebar_position: 5
 ---
 
