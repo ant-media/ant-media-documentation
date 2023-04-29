@@ -68,11 +68,12 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      metadata: [{name: 'keywords', content: 'Ant Media Documentation, Ant Media Server, Ant Media, Ultra Low Latency Streaming, WebRTC streaming, HLS Streaming'}],
       navbar: {
         title: 'Documentation',
         logo: {
           href: '/',
-          alt: 'Ant Media Documentation',
+          alt: 'Ant Media Server Documentation',
           src: 'img/Ant-Media-Logo-dark.png',
           srcDark: 'img/Ant-Media-Logo-light.png',
         },
