@@ -1,9 +1,11 @@
 ---
-title: Quick start with Ant Media Server
+title: Quick-start
 description: Deploy Ant Media Server to choice of your cloud within minutes.
 keywords: [Download Ant Media Server, Setup Ant Media Server, Deploy Ant Media Server, Tutorial to deploy Ant Media Server, Ant Media Documentation]
 sidebar_position: 1
 ---
+
+# Quick start for Ant Media Server
 
 <VideoPlayer video="https://www.youtube.com/embed/EH6v-yUyzjU" youtube="true">
   <div><center><strong><i>Video tutorial of AWS marketplace installation</i></strong></center></div>
