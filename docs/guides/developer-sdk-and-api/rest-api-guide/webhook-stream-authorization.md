@@ -1,3 +1,9 @@
+---
+title: Title 
+description: A short description of this page
+keywords: [Ant Media Server Documentation, Ant Media Server Tutorials]
+---
+
 # Webhook stream authorization
 
 There are plenty of [Security options for Publishing and Playing Streams](/guides/developer-sdk-and-api/rest-api-guide/stream-security/) available in Ant Media Server, however, if these are not suitable for your use case and you want to control which stream to be published directly from your own end, then you can use your own webhook structure for stream authentication.

@@ -1,3 +1,9 @@
+---
+title: Kubernetes Autoscaling 
+description: Kubernetes Autoscaling
+keywords: [Kubernetes Autoscaling, Ant Media Server Documentation, Ant Media Server Tutorials]
+---
+
 # Kubernetes Autoscaling
 
 Kubernetes lets you scale the pods automatically to optimize resource usage and make the backend ready according to the load in your service. Horizontal Pod Autoscaler which is a built-in component can scale your pods automatically.

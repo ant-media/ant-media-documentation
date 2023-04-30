@@ -1,5 +1,7 @@
 ---
 title: WebRTC WebSocket Messaging Reference
+description: WebRTC WebSocket Messaging Reference
+keywords: [WebRTC WebSocket Messaging Reference, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 6
 ---
 

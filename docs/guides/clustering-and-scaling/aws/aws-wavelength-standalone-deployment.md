@@ -1,3 +1,9 @@
+---
+title: AWS Wavelength Standalone Deployment 
+description: AWS Wavelength Standalone Deployment
+keywords: [AWS Wavelength Standalone Deployment, Ant Media Server Documentation, Ant Media Server Tutorials]
+---
+
 # AWS Wavelength Standalone Deployment
 
 In this documentation, we would like to demonstrate how to set up an Ant Media Server Standalone on the Wavelength zone. In this template, you can add SSL automatically if you want, or you can install it manually.

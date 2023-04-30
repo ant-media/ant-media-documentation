@@ -1,7 +1,11 @@
 ---
 title: Embedded Web Player
+description: Embedded Web Player to your webpage using an iFrame.
+keywords: [Embedded Web Player, Embedded Player using iFrame, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 4
 ---
+
+# Embedded Web Player
 
 You can embed the ```play.html``` page on your website using an iFrame. The ```play.html``` page is in the application folder on Ant Media Server. 
 

@@ -1,7 +1,11 @@
 ---
 title: Playlist
+description: Playlist feature on Ant Media Server
+keywords: [Playlist, Create Playlist, Linear Live Streaming, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 8
 ---
+
+# Playlist
 
 This guide describes how to use Playlist feature on Ant Media Server. You can use this feature in both Community Edition and Enterprise Edition of Ant Media Server.
 

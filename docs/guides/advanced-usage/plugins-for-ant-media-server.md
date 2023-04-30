@@ -1,6 +1,12 @@
+---
+title: Plugins for Ant Media Server 
+description: Ant Media Community Contributions for Ant Media Plugins.
+keywords: [Plugins for Ant Media Server, Ant Media Server Documentation, Ant Media Server Tutorials, Community Plugins for Ant Media Server, Add-ons for Ant Media Server]
+---
+
 # Plugins for Ant Media Server
 
-There are different plugins listed below that can be used with the Ant Media Server.
+Community as well as our team contributed Ant Media with some plugins as listed below that can be used with the Ant Media Server. You may extend Ant Media Server as we tried with plugins, you may refer and inspire from the referenced repositories.
 
 ### Filter Plugin
 
@@ -19,3 +25,5 @@ The Tensorflow plugin project is for detecting and recognizing objects in a stre
 The Zixi Broadcaster is the central component of the Zixi Video Network. It accepts video streams from the Zixi Feeder and processes them, allowing transcoding, transmuxing, recording, and distribution to any device, anywhere, in multiple bit rates and protocols.  
 
 For more details about the deployment and use of Zixi Broadcaster with the Ant Media Plugin, check [here](https://github.com/ant-media/Plugins/tree/master/ZixiPlugin).
+
+Know More about recent plugins developed, kindly visit [Ant Media Marketplace](https://antmedia.io/marketplace/).

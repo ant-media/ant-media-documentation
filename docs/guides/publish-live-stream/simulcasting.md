@@ -1,5 +1,7 @@
 ---
 title: Simulcasting to social media channels
+description: Simulcasting to social media channels
+keywords: [Simulcasting to social media channels, Restreaming, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 7
 ---
 

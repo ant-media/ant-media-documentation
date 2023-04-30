@@ -1,3 +1,9 @@
+---
+title: Title 
+description: A short description of this page
+keywords: [Ant Media Server Documentation, Ant Media Server Tutorials]
+---
+
 # WebRTC Play Page Creation Tutorial
 
 In this tutorial we will create a WebRTC play page from scratch together. Before we start, let us remind that Ant Media Server (AMS) comes with default streaming web applications which have some sample pages. You can access the samples from ```https://YOUR_DOMAIN:5443/APP_NAME/samples.html``` You can also access the WebRTC player page with several features from ```https://YOUR_DOMAIN:5443/APP_NAME/player.html``` We will create a simple version of this player page in this tutorial. Our page will have a video player and two buttons. Lets start to create it step by step.

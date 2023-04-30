@@ -1,6 +1,8 @@
 ---
 id: introduction
-title: Introduction
+title: Publishing Live Streams
+description: A short description of this page
+keywords: [Publishing Live Streams, WebRTC publishing, RTMP Publishing, Re-streaming, Simulcasting, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 1
 ---
 
@@ -10,7 +12,7 @@ Ant Media Server can ingest/accept WebRTC and RTMP streams. It can also re-strea
 
 Additionally, it can also convert RTMP/RTSP stream source inputs to WebRTC output and provide ultra-low latency streaming.
 
-### WebRTC publishing
+### WebRTC Publishing
 
 There are three ways for WebRTC publishing, [check out for detailed information](/v1/docs/publishing-live-streams-1#webrtc-publishing):
 
@@ -18,7 +20,7 @@ There are three ways for WebRTC publishing, [check out for detailed information]
 *   Publishing with a mobile application (Android and iOS)
 *   Publishing with an embedded SDK
 
-### RTMP publishing
+### RTMP Publishing
 
 There are three ways for RTMP publishing, [check out for detailed information](/v1/docs/publishing-live-streams-1#rtmp-publishing):
 

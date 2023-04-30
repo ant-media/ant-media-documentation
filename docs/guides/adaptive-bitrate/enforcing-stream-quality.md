@@ -1,5 +1,7 @@
 ---
 title: Enforcing Stream Quality
+description: You want to deliver Full-HD or 4K stream, or vice-versa enforce yours users to consume content at enforced stream quality like 480p or 360p. You may simply achieve it with Ant Media Server.
+keywords: [Enforcing Stream Quality, Ant Media Server Documentation, Ant Media Server Tutorials]
 ---
 # Enforcing the stream quality
 

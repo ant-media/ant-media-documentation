@@ -1,3 +1,9 @@
+---
+title: Title 
+description: A short description of this page
+keywords: [Ant Media Server Documentation, Ant Media Server Tutorials]
+---
+
 # JWT REST API filter
 
 In this section, we're going to explain simply how to use ```JWT REST API Filter``` in Ant Media Server. By default, ```JWT REST API Filter``` is disabled and ```REST API IP Filter``` is enabled. You can use JWT Filter when you consume REST API from different endpoints. Before starting, you can get more information about JWT on [jwt.io](https://jwt.io/). 

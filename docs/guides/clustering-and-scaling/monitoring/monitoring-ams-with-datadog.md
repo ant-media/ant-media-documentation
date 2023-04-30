@@ -1,3 +1,9 @@
+---
+title: Monitoring AMS with Datadog
+description: Monitoring AMS with Datadog
+keywords: [Monitoring AMS with Datadog, Datadog, Ant Media Server Documentation, Ant Media Server Tutorials]
+---
+
 # Monitoring AMS with Datadog
 
 In this document, you'll learn how to monitor Ant Media Servers with Datadog. First, we need to install Datadog. Here is a step-by-step guide to installing your monitoring system.

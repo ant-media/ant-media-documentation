@@ -1,5 +1,7 @@
 ---
 title: Enterprise and Community Edition
+description: Analyse what you may achieve with Ant Media Server Enterprise Edition.
+keywords: [Ant Media Server Enterprise Edition, Ant Media Community v/s Enterprise edition, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 2
 ---
 

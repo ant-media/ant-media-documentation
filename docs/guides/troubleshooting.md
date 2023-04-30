@@ -1,6 +1,8 @@
 ---
 id: troubleshooting
 title: Troubleshooting Guide
+description: There may be plenty of new things at Ant Media Server. But, this troubleshooting guide will prove to be saviour for you.
+keywords: [Ant Media Server Troubleshooting Guide, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 17
 ---
 

@@ -1,5 +1,7 @@
 ---
 title: Scaling with Mongodb Atlas
+description: Using MongoDB Atlas with AMS
+keywords: [Using MongoDB Atlas with AMS, MongoDB Atlas, Ant Media Server Documentation, Ant Media Server Tutorials]
 ---
 
 # Using MongoDB Atlas with AMS

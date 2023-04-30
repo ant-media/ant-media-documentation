@@ -1,7 +1,11 @@
 ---
 title: AMS application configuration
+description: Configure Ant Media Server through configuration file or management console.
+keywords: [Ant Media Configuration File, Ant Media Server Documentation, Ant Media Server Tutorials, Ant Media Management Panel, Ant Media Settings, Ant Media Configuration]
 sidebar_position: 0
 ---
+
+# AMS application configuration
 
 Ant Media Server can be configured either by editing a configuration file or through the application settings tab in the management console. 
 
