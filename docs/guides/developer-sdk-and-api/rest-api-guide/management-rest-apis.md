@@ -1,3 +1,9 @@
+---
+title: Title 
+description: A short description of this page
+keywords: [Ant Media Server Documentation, Ant Media Server Tutorials]
+---
+
 # Management Panel REST API Services
 
 Some REST commands which are not application specific, such as creating and deleting an app, creating a new user, etc, require an authentication filter by logging in to the management panel. This creates a few limitations for people who don't want to use the web panel every time and want access to all of the REST commands.

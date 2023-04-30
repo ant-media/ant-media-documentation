@@ -1,3 +1,9 @@
+---
+title: Docker Swarm 
+description: Docker Swarm
+keywords: [Docker Swarm, Ant Media Server Documentation, Ant Media Server Tutorials]
+---
+
 # Docker Swarm
 
 Docker Swarm is a container orchestration tool. It is a cluster management tool that manages and scales virtual servers as a cluster and ensures the continuity of services without interruption. In this post, I will explain how to run Ant Media Server onto the docker swarm.

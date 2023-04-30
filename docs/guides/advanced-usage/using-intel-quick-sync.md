@@ -1,4 +1,10 @@
-# Using Intel Quick Sync
+---
+title: Using QuickSync Encoders 
+description: Using QuickSync Encoders for Ant Media Server.
+keywords: [Intel QuickSync Encoders, Use external encoders, Ant Media Server Documentation, Ant Media Server Tutorials]
+---
+
+# Using Intel QuickSync Encoders
 
 In order to use QuickSync encoders, the following packages should be installed. This setup procedure is for ubuntu 18.04.
 

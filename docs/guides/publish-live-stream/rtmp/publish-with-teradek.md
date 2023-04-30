@@ -1,3 +1,9 @@
+---
+title: How to publish with Teradek 
+description: How to publish with Teradek
+keywords: [Ant Media Server Documentation, Ant Media Server Tutorials]
+---
+
 # How to publish with Teradek
 
 Teradek Vidiu Pro is fully compatible with Ant Media Server. Before starting, you need to create a live stream in Ant Media Server web panel. You can create a stream in LiveApp or WebRTCAppEE, as there are differences between them. However, your RTMP URL changes depending on which one to choose. When you create a live stream, your RTMP URL will be in the following format:

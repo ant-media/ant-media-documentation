@@ -1,3 +1,9 @@
+---
+title: Dash playing (CMAF) 
+description: Common Media Application Format (CMAF) is essentially a new format to reduce HTTP delivery latency as it aims to reduce the cost, complexity, and latency of streaming.
+keywords: [Dash playing, Common Media Application Format, Ant Media Server Documentation, Ant Media Server Tutorials]
+---
+
 # Dash playing (CMAF)
 
 ### What Is CMAF (Common Media Application Format)?
@@ -6,7 +12,7 @@ The Common Media Application Format (CMAF) is essentially a new format to reduce
 
 ![](@site/static/img/126611-CMAF-Fig1-ORG.jpg)
 
-How to use CMAF
+### How to use CMAF
 ---------------
 
 In Ant Media Server **v2.4.3** and earlier, you must enable it in your application's configuration file, as shown below. It is now possible to enable it directly from the Ant Media dashboard starting with version **2.5.0**.

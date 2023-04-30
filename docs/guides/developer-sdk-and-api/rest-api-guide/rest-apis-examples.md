@@ -1,3 +1,9 @@
+---
+title: Title 
+description: A short description of this page
+keywords: [Ant Media Server Documentation, Ant Media Server Tutorials]
+---
+
 # REST API examples
 
 Here are some handy examples that you can consume on REST API. Please replace curly braces with your own configuration. Typical values for ```{domain}``` is either your server's accessible IP address or fully qualified domain name, ```port``` is 5080 for HTTP and 5443 for HTTPS. ```{application}``` can be either ```LiveApp``` or any other one.

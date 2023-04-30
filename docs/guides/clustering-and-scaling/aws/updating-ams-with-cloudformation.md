@@ -1,3 +1,9 @@
+---
+title: Updating AMS with CloudFormation 
+description: Updating AMS with CloudFormation
+keywords: [Updating AMS with CloudFormation, AWS CloudFormation, Ant Media Server Documentation, Ant Media Server Tutorials]
+---
+
 # Updating AMS with CloudFormation
 
 If you have installed Ant Media Server with Cloudformation and then want to update it, simply follow the steps below.

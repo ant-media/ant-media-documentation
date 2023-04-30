@@ -1,7 +1,10 @@
 ---
 title: Cluster Installation
+description: A short description of this page
+keywords: [Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 2
 ---
+
 # Cluster installation
 
 AMS can run in cluster mode. This way, a number of AMS nodes can work together to increase the number of viewers and publishers. In other words, you can publish a live stream to one node of AMS in the cluster and you can watch the stream in another node in the cluster.

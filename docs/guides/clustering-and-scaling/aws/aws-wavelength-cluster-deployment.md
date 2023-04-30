@@ -1,3 +1,9 @@
+---
+title: AWS Wavelength Cluster Deployment 
+description: AWS Wavelength Cluster Deployment
+keywords: [AWS Wavelength Cluster Deployment, Ant Media Server Documentation, Ant Media Server Tutorials]
+---
+
 # AWS Wavelength Cluster Deployment
 
 In this documentation, we would like to demonstrate how to set up an Auto-Scalable Ant Media Server Cluster on the Wavelength zone. We will be using the Cloudformation template and we will go over the steps to set up a cluster.

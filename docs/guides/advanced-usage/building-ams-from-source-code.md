@@ -1,3 +1,9 @@
+---
+title: Building AMS from Source Code 
+description: Building Ant Media Server from Source Code for contribution or further development.
+keywords: [Building AMS from Source Code, Ant Media Server Documentation, Ant Media Server Tutorials]
+---
+
 # Building AMS from Source Code
 
 #### Linux (Ubuntu)

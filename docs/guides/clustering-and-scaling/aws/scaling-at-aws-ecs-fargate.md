@@ -1,3 +1,11 @@
+---
+title: Scale AMS with AWS ECS Fargate 
+description: Scale AMS with AWS ECS Fargate
+keywords: [Scale AMS with AWS ECS Fargate, Ant Media Server Documentation, Ant Media Server Tutorials]
+---
+
+# Scale AMS with AWS ECS Fargate
+
 In this document, we’re going to explain how to setup a Scalable Ant Media Server Cluster in Amazon Web Services (AWS) ECS Fargate with Ant Media Server Container. If you are not familiar with Ant Media Server Cluster, you may check the introduction part of [this](https://github.com/ant-media/Ant-Media-Server/wiki/Scaling-and-Load-Balancing) to be familiar with the definitions and the components.
 
 Please consider there will be two different _"Cluster"_ word usage in this document. First one is [Ant Media Server Scalable Cluster](https://antmedia.io/ant-media-server-cluster) and we will use _Ant Media Server Cluster_ to refer it. The other is the AWS [ECS Cluster](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/clusters.html) which is a logical grouping of tasks or services and we will use _ECS Cluster_ to refer it.

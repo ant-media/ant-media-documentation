@@ -1,6 +1,12 @@
+---
+title: Creating a new application 
+description: Ant Media Server supports creating application development on the fly. You may create seprate applications for each stream domains if you are managing multiple streams from same server.
+keywords: [Creating New Application, Creating Application Ant Media Server, Application Development, Ant Media Server Documentation, Ant Media Server Tutorials]
+---
+
 # Creating a new application
 
-Ant Media Server supports application deployment on the fly. This feature actually resolves the multi-tenancy problem for online video platforms.Ant Media Server has 2 built-in applications. Users want to able to use different settings for each application and able to specify the name of the application.
+Ant Media Server supports application development on the fly. This feature actually resolves the multi-tenancy problem for online video platforms.Ant Media Server has 2 built-in applications. Users want to able to use different settings for each application and able to specify the name of the application.
 
 Because of that, customers want to add/create new applications. There are several ways to create/delete application. Let us tell how to do that.
 

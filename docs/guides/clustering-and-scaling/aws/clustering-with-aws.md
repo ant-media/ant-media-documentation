@@ -1,3 +1,9 @@
+---
+title: Clustering with AWS 
+description: Clustering with AWS
+keywords: [Clustering with AWS, Ant Media Server Documentation, Ant Media Server Tutorials]
+---
+
 # Clustering with AWS
 
 In this document, we’re going to explain how to setup a Scalable Ant Media Server Cluster in Amazon Web Services. Scaling is required when a single server cannot meet the required demand. You can also estimate your cost and server requirement through our [cost calculator](https://antmedia.io/cost-calculator/) and down the page you can see the table for supported values as per server CPU resources.

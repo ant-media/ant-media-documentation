@@ -1,9 +1,11 @@
 ---
 title: Adaptive Bitrate Streaming
+description: Achieve Adaptive Bitrate Streaming with Ant Media Server to enable smooth streaming at Low Bandwith or on Unstable Network. Offer option to your users to switch based on their device, network or bandwidth.
+keywords: [Adaptive Bitrate Streaming, ABS Streaming, Switch stream among 1080p to 720p, Switch stream among 720p to 480p, Ant Media Server Documentation, Ant Media Server Tutorials]
 ---
 # Adaptive Bitrate Streaming
 
-Adaptive bitrate streaming (also known as "dynamic adaptive streaming" or "multi-bitrate streaming") allows you to deliver the optimum video quality according to the network bandwidth between you and the media server. This enables users to play videos smoothly, regardless of their internet connection speed or device.
+Adaptive Bitrate Streaming (also known as "dynamic adaptive streaming" or "multi-bitrate streaming") allows you to deliver the optimum video quality according to the network bandwidth between you and the media server. This enables users to play videos smoothly, regardless of their internet connection speed or device.
 
 ## Why use adaptive bitrate
 

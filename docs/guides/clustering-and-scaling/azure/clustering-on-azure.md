@@ -1,3 +1,11 @@
+---
+title: Ant Media Server Clustering on Azure 
+description: Ant Media Server Clustering on Azure
+keywords: [Ant Media Server Clustering on Azure, Clustering on Azure, Ant Media Server Documentation, Ant Media Server Tutorials]
+---
+
+# Ant Media Server Clustering on Azure
+
 In this guide, I will explain how to setup Ant Media Server Clustering on Azure. When your load is high, one server instance is not enough for you and you can handle that load with a clustering solution.
 
 For streaming applications, you will need a clustering solution when you have high numbers of publishers and viewers. Especially when you require ultra-low latency and adaptive bitrate because they need more processing power. Ultra-low latency is achieved by WebRTC and it is a CPU intensive protocol. Adaptive bitrating is downgrading video quality in bad networks if needed. It is also CPU intensive because there is video conversion. Luckily, Ant Media Server Enterprise Edition supports clustering, so that you can handle the high load in your streaming applications.
