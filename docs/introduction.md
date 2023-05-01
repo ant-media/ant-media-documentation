@@ -1,8 +1,14 @@
 ---
 title: Introduction
+slug: /
+description: Deploy Ant Media Server to choice of your cloud within minutes.
+keywords: [Free Streaming Server Software, Ant Media Community v/s Enterprise Edition, Use Cases, Streaming Software for Classroom, Live Streaming Server Software]
 sidebar_position: 1
 ---
-Ant Media server provides a ready-to-use, highly scalable, real-time video streaming solution.  It supports both Ultra-Low Latency (WebRTC) and Low Latency (CMAF & HLS) live streaming.
+
+# Introduction to Ant Media Server
+
+Ant Media server provides a ready-to-use, highly scalable, real-time video streaming solution. It supports both Ultra-Low Latency (WebRTC) and Low Latency (CMAF & HLS) live streaming.
 
 Ant Media Server (AMS) can be deployed easily and quickly on-premise or on public cloud networks such as AWS, Azure, Digital Ocean, Linode, and Alibaba Cloud.
 

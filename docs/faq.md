@@ -1,6 +1,8 @@
 ---
-sidebar_position: 8
 title: Frequently Asked Questions
+description: Ant Media Server Frequently Asked Questions and Solutions
+keywords: [Ant Media Server Frequently Asked Questions and Solutions, Ant Media Server FAQ, Deploy Ant Media Server, Tutorial to deploy Ant Media Server, Support Ant Media]
+sidebar_position: 4
 ---
 # Frequently Asked Questions
 

@@ -2,6 +2,7 @@
   "label": "Adaptive Bitrate",
   "position": 4,
   "link": {
-    "type": "generated-index"
+    "type": "generated-index",
+    "description": "Adaptive Bitrate Streaming with Ant Media Server helps you to serve videos smoothly, regardless of their internet connection speed or device."
   }
 }

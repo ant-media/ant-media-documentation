@@ -1,3 +1,9 @@
+---
+title: Configuring STUN addresses 
+description: Fix limitations of AWS Wavelength Zones both server side as well as client side. This guide will help you to setup custom TURN server for Android SDK and IOS SDK.
+keywords: [STUN addresses, AWS Wavelength Zones, red5-web Properties, Ant Media Server Documentation, Ant Media Server Tutorials]
+---
+
 # Configuring STUN addresses
 
 There are some limitations in AWS Wavelength Zones regarding getting ICE candidates. In order to resolve this issue, Ant Media provides free-to-use STUN servers that are reachable in AWS Wavelength Zones. There are a couple of instances are running behind ```stun.wavelength.antmedia.cloud``` address.

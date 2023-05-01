@@ -1,3 +1,9 @@
+---
+title: Title 
+description: A short description of this page
+keywords: [Ant Media Server Documentation, Ant Media Server Tutorials]
+---
+
 # Securing the REST API
 
 This guide explains how to control REST API security on Ant Media Server. You could secure your REST services with the IP Filter feature.

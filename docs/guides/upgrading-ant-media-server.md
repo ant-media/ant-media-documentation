@@ -1,7 +1,11 @@
 ---
 title: Upgrading Ant Media Server
+description: This guide will explain how to upgrade Ant Media Server from an earlier version to latest version.
+keywords: [Upgrade to latest version, Upgrade Ant Media Server, Ant Media Server Documentation, Ant Media Server Tutorials]
 ---
-This guide will explain how to upgrade Ant Media Server from an earlier version to a more recent version.
+
+# Upgrading Ant Media Server
+This guide will explain how to upgrade Ant Media Server from an earlier version to latest version.
 
 -   If you have purchased a license from Ant Media, then in the downloads section of your [antmedia.io](https://antmedia.io/my-account/downloads/) account, you can download the most recent version zip file. 
 -   In the case of Ant Media Server's Marketplace image on AWS, Azure, and Alibaba, you can send an email to support@antmedia.io and ask for the new version zip file.

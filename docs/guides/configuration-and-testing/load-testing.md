@@ -1,3 +1,9 @@
+---
+title: Load Testing 
+description: Simple guide to make a load testing on your Ant Media Server.
+keywords: [Ant Media Load Testing, WebRTC test tool, Ant Media Server Documentation, Ant Media Server Tutorials]
+---
+
 # Load testing
 
 In this tutorial, we'll explain how to make a load testing on your Ant Media Server. The test environment has two parts: test server and SUT (system under test). We have two different setups for two different SUTs.

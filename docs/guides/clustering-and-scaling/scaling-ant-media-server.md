@@ -1,5 +1,7 @@
 ---
 title: Scaling Ant Media Server
+description: Scaling Ant Media Server
+keywords: [Scaling Ant Media Server, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 1
 ---
 # Scaling Ant Media Server

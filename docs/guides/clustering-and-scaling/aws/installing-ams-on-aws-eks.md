@@ -1,3 +1,9 @@
+---
+title: Installing Ant Media Server on AWS EKS 
+description: Installing Ant Media Server on AWS EKS
+keywords: [Installing Ant Media Server on AWS EKS, AWS EKS, Ant Media Server Documentation, Ant Media Server Tutorials]
+---
+
 # Installing Ant Media Server on AWS EKS
 
 In this post, we are going to guide you on how to run Ant Media Server on AWS EKS step by step.

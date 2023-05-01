@@ -1,5 +1,7 @@
 ---
 title: Android SDK
+description: A short description of this page
+keywords: [Ant Media Server Documentation, Ant Media Server Tutorials]
 ---
 
 

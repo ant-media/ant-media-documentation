@@ -1,3 +1,9 @@
+---
+title: How to Setup Ant Media Server Clustering on Azure 
+description: How to Setup Ant Media Server Clustering on Azure
+keywords: [Ant Media Server Documentation, Ant Media Server Tutorials]
+---
+
 # How to Setup Ant Media Server Clustering on Azure
 
 In this guide, I will explain how to setup Ant Media Server Clustering on Azure. When your load is high, one server instance is not enough for you and you can handle that load with a clustering solution.

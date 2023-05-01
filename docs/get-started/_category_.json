@@ -2,6 +2,7 @@
     "label": "Get Started",
     "position": 2,
     "link": {
-      "type": "generated-index"
+      "type": "generated-index",
+      "description": "Getting started with Ant Media Server is seamless and easy. Documents will help you understand to difference between Community Edition and Enterprise Edition offerings, WebRTC samples where you can play and test your use-cases and security guides as well as user management guide with Ant Media Server."
     }
   }

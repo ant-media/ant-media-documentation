@@ -1,3 +1,9 @@
+---
+title: Configuring RTMP LB in AWS 
+description: Configuring RTMP LB in AWS
+keywords: [Configuring RTMP LB in AWS, Ant Media Server Documentation, Ant Media Server Tutorials]
+---
+
 # Configuring RTMP LB in AWS
 
 Follow the instructions below to configure RTMP Load Balancer in Ant Media Server Auto Scaling structure.

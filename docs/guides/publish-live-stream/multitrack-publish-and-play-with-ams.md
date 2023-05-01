@@ -1,3 +1,10 @@
+---
+title: Multitrack publish and play with AMS
+description: Multitrack publish and play with AMS
+keywords: [Multitrack Publish, Multitrack conference, Ant Media Server Documentation, Ant Media Server Tutorials]
+sidebar_position: 6
+---
+
 # Multitrack publish and play with AMS
 
 WebRTC multitrack lets us stream multiple audio/video tracks through a single WebRTC connection. In order to use Multitrack feature, the SDP semantic should be set as **Unified Plan** which is also set by default in AMS v2.4.3 and above.

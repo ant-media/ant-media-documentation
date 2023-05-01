@@ -1,5 +1,8 @@
 ---
 title: IP Cameras
+description: Streaming IP cameras and External sources (HLS, RTMP, RTSP)
+keywords: [Streaming IP cameras, Ant Media Server Documentation, Ant Media Server Tutorials]
+sidebar_position: 5
 ---
 
 # Streaming IP cameras and External sources (HLS, RTMP, RTSP)

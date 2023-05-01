@@ -1,3 +1,10 @@
+---
+title: Sharing screen with WebRTC
+description: Sharing screen with WebRTC
+keywords: [Sharing screen with WebRTC, Ant Media Server Documentation, Ant Media Server Tutorials]
+sidebar_position: 2
+---
+
 # Sharing screen with WebRTC
 
 Seamless switch between WebRTC screen sharing and streaming using a camera is available on both Community Edition and and Enterprise Edition. This means that you can switch between screen and camera within the same session.

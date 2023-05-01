@@ -1,7 +1,11 @@
 ---
-title: How to activate Ant Media Server from within restricted geo locations
+title: Activate Ant Media Server from within restricted geo locations
+description: Activate Ant Media Server from within restricted geo locations
+keywords: [Activate AMS within self-hosted proxy server, restricted geo locations, proxy server, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 8
 ---
+
+# Activate Ant Media Server from within restricted geo locations
 
 Ant Media uses Google services to verify the license key and those services are banned in China and Hong Kong. 
 

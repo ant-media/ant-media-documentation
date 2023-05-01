@@ -1,7 +1,10 @@
 ---
 title: SRT Ingest Guide
+description: SRT Ingest Guide
+keywords: [SRT Ingest Guide, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 1
 ---
+
 # SRT Ingest Guide
 
 You can use SRT to push streams to Ant Media Server and play them not only with WebRTC but also with all other formats (e.g., HLS, CMAF) and record them as MP4. SRT ingest also supports adaptive streaming. This feature is available beginning with 2.4.3.

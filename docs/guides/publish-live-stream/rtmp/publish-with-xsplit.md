@@ -1,3 +1,9 @@
+---
+title: How to publish with XSplit 
+description: How to publish with XSplit
+keywords: [Ant Media Server Documentation, Ant Media Server Tutorials]
+---
+
 # How to publish with XSplit
 
 XSplit is a free and open source software for live streaming and video recording. It is easy to use and provides a great canvas with a screen share option for different purposes (PC gaming, talk shows or presentations). Embedded or external cameras and audio sources can be used with XSplit.

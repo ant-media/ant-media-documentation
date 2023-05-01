@@ -1,7 +1,10 @@
 ---
-title: Introduction
+title: REST API guide
+description: A short description of this page
+keywords: [Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 1
 ---
+
 # REST API guide
 
 When designing the Ant Media Server, we made sure everything is accessible through REST API. By using the REST API, you can almost do anything on Ant Media Server. Here is an abstract list of available methods in REST API:

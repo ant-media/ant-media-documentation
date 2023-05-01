@@ -1,3 +1,9 @@
+---
+title: Installing with Nginx load balancer 
+description: Installing with Nginx load balancer
+keywords: [Installing with Nginx load balancer, Nginx Load Balancer, Ant Media Server Documentation, Ant Media Server Tutorials]
+---
+
 # Installing with Nginx load balancer
 
 What is Nginx ?
