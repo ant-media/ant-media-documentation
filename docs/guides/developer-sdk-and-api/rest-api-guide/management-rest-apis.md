@@ -1,7 +1,7 @@
 ---
-title: Title 
-description: A short description of this page
-keywords: [Ant Media Server Documentation, Ant Media Server Tutorials]
+title: Management Panel REST API Services 
+description: This document helps you to access Management Panel REST API Services with JWT Tokens.
+keywords: [JWT Tokens, REST API, Management Panel REST API Services, Ant Media Server Documentation, Ant Media Server Tutorials]
 ---
 
 # Management Panel REST API Services

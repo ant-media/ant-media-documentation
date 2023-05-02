@@ -1,7 +1,7 @@
 ---
-title: Title 
-description: A short description of this page
-keywords: [Ant Media Server Documentation, Ant Media Server Tutorials]
+title: Stream quality filtering  
+description: Quality filter feature is implemented in order to filter the streams sent to the server. This document will help you to understand, how quality filtering can be setup.
+keywords: [Stream quality filtering, Ant Media Server Documentation, Ant Media Server Tutorials]
 ---
 
 # Stream quality filtering 

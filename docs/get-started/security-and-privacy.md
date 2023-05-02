@@ -1,6 +1,6 @@
 ---
 title: Security and Privacy
-description: A short description of this page
+description: Security and Privacy at Ant Media.
 keywords: [Ant Media Server Documentation, Ant Media Server Tutorials, Security, Privacy]
 sidebar_position: 3
 ---

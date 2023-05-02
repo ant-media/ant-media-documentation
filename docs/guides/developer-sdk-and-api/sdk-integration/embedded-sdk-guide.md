@@ -1,7 +1,7 @@
 ---
-title: Title 
-description: A short description of this page
-keywords: [Ant Media Server Documentation, Ant Media Server Tutorials]
+title: Embedded SDK guide 
+description: How to use the embedded SDK guide.
+keywords: [Embedded SDK guide, Ant Media Server SDK, Ant Media Server Documentation, Ant Media Server Tutorials]
 ---
 
 # Embedded SDK guide

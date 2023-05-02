@@ -1,7 +1,7 @@
 ---
 id: introduction
 title: Publishing Live Streams
-description: A short description of this page
+description: Ant Media Server can ingest/accept WebRTC and RTMP streams. It can also re-stream RTMP, HLS and RTSP streams by pulling them from other stream sources.
 keywords: [Publishing Live Streams, WebRTC publishing, RTMP Publishing, Re-streaming, Simulcasting, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 1
 ---
