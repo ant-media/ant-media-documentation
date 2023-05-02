@@ -1,14 +1,12 @@
 ---
-title: Title 
+title: JavaScript SDK
 description: A short description of this page
 keywords: [Ant Media Server Documentation, Ant Media Server Tutorials]
 ---
 
-# Javascript SDK
-
 Ant Media Server provides a WebSocket interface in publishing and playing WebRTC streams. In this document, you will learn the basics of WebRTC JavaScript SDK and JavaScript Error Callbacks.
 
-### WebRTCAdaptor methods
+## WebRTCAdaptor methods
 
 ```WebRTCAdaptor``` object has the following methods:
 
@@ -53,7 +51,7 @@ Ant Media Server provides a WebSocket interface in publishing and playing WebRTC
 
 This documentation is for developers who need to callbacks and their descriptions for WebRTC operations.
 
-### WebRTC JavaScript Info Callbacks
+## WebRTC JavaScript Info Callbacks
 
 *   ```initialized```: WebSocket connection is initialized successfully in this state.
 *   ```publish_started```: WebRTC stream publishing has been started in this state.
@@ -66,7 +64,7 @@ This documentation is for developers who need to callbacks and their description
 *   ```ice_connection_state_changed```: If Ice Connection is changed, the server sends changed info.
 *   ```updated_stats```: When Peer stats are changed, the server sends updated values.
 
-### WebRTC JavaScript Error Callbacks
+## WebRTC JavaScript Error Callbacks
 
 *   ```WebSocketNotSupported```: WebSocket connection is not supported for environment or connection is not in the correct state.
 *   ```AbortError```: Although the user and operating system both granted access to the hardware device, and no hardware issues occurred that would cause a NotReadableError, some problems occurred which prevented the device from being used.
@@ -87,41 +85,41 @@ This documentation is for developers who need to callbacks and their description
 *   ```notSetLocalDescription```: It is sent when the local description is not sent successfully.
 *   ```screen_share_permission_denied```: It is sent when the user does not allow screen share
 
-Using the WebRTCAdaptor in your projects as a Module
-----------------------------------------------------
+## Using the WebRTCAdaptor in your project as a Module
 
 In your project, run:
 
-    npm i @antmedia/webrtc_adaptor --save-dev
+```shell
+npm i @antmedia/webrtc_adaptor --save-dev
+```
 
 Then inside your javascript file initialize the WebRTCAdaptor.
 
-    // ...
-    import { WebRTCAdaptor } from '@ant-media/webrtc_adaptor';
-    
-    const webRTCAdaptor = new WebRTCAdaptor({
-        websocket_url: "wss://your-domain.tld:5443/WebRTCAppEE/websocket",
-        mediaConstraints: {
-            video: true,
-            audio: true,
-        },
-        peerconnection_config: {
-            'iceServers': [{'urls': 'stun:stun1.l.google.com:19302'}]
-        },
-        sdp_constraints: {
-            OfferToReceiveAudio : false,
-            OfferToReceiveVideo : false,
-        },
-        localVideoId: "id-of-video-element", // `<video id="id-of-video-element" autoplay muted>``</video>`
-        bandwidth: int|string, // default is 900 kbps, string can be 'unlimited'
-        dataChannelEnabled: true|false, // enable or disable data channel
-        callback: (info, obj) =>` {}, // check info callbacks bellow
-        callbackError: function(error, message) {}, // check error callbacks bellow
-    });
-    
-    // Then, in another part of your script, you can start streaming by calling the publish method
-    webRTCAdaptor.publish(streamId, token, subscriberId, subscriberCode, streamName);
-    
-    //...
+```js
+import { WebRTCAdaptor } from '@ant-media/webrtc_adaptor';
+
+const webRTCAdaptor = new WebRTCAdaptor({
+    websocket_url: "wss://your-domain.tld:5443/WebRTCAppEE/websocket",
+    mediaConstraints: {
+        video: true,
+        audio: true,
+    },
+    peerconnection_config: {
+        'iceServers': [{'urls': 'stun:stun1.l.google.com:19302'}]
+    },
+    sdp_constraints: {
+        OfferToReceiveAudio : false,
+        OfferToReceiveVideo : false,
+    },
+    localVideoId: "id-of-video-element", // `<video id="id-of-video-element" autoplay muted>``</video>`
+    bandwidth: int|string, // default is 900 kbps, string can be 'unlimited'
+    dataChannelEnabled: true|false, // enable or disable data channel
+    callback: (info, obj) =>` {}, // check info callbacks bellow
+    callbackError: function(error, message) {}, // check error callbacks bellow
+});
+
+// Then, in another part of your script, you can start streaming by calling the publish method
+webRTCAdaptor.publish(streamId, token, subscriberId, subscriberCode, streamName);
+```
 
 Above example taken from the [StreamApp repository](https://github.com/ant-media/StreamApp/blob/master/src/main/webapp/index.html#L511).
