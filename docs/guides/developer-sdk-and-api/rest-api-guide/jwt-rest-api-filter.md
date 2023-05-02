@@ -1,7 +1,7 @@
 ---
-title: Title 
-description: A short description of this page
-keywords: [Ant Media Server Documentation, Ant Media Server Tutorials]
+title: JWT REST API filter 
+description: This document contains guide for JWT REST API filter, JWT tokens and JWT token with expiration time.
+keywords: [JWT REST API filter, Ant Media Server Documentation, Ant Media Server Tutorials]
 ---
 
 # JWT REST API filter

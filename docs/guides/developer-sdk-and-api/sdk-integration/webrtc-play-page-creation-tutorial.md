@@ -1,7 +1,7 @@
 ---
-title: Title 
-description: A short description of this page
-keywords: [Ant Media Server Documentation, Ant Media Server Tutorials]
+title: WebRTC Play Page Creation Tutorial 
+description: create a WebRTC play page from scratch
+keywords: [WebRTC Play Page Creation Tutorial, WebRTC play page, Ant Media Server Documentation, Ant Media Server Tutorials]
 ---
 
 # WebRTC Play Page Creation Tutorial

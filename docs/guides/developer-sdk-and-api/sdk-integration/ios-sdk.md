@@ -1,7 +1,7 @@
 ---
-title: Title 
-description: A short description of this page
-keywords: [Ant Media Server Documentation, Ant Media Server Tutorials]
+title: iOS SDK 
+description: Ant Media's WebRTC iOS SDK lets you build your own iOS application that can publish and play WebRTC broadcasts with your iPhone with just a few lines of code.
+keywords: [iOS SDK, Publish Stream from your iPhone, Download the WebRTC iOS SDK, Ant Media Server Documentation, Ant Media Server Tutorials]
 ---
 
 # iOS SDK

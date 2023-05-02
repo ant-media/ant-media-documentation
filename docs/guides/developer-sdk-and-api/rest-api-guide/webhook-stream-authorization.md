@@ -1,7 +1,7 @@
 ---
-title: Title 
-description: A short description of this page
-keywords: [Ant Media Server Documentation, Ant Media Server Tutorials]
+title: Webhook stream authorization 
+description: Webhook stream authorization
+keywords: [Webhook stream authorization, Stream Security, Ant Media Server Documentation, Ant Media Server Tutorials]
 ---
 
 # Webhook stream authorization

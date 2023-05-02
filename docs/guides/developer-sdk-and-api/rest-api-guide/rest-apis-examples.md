@@ -1,7 +1,7 @@
 ---
-title: Title 
-description: A short description of this page
-keywords: [Ant Media Server Documentation, Ant Media Server Tutorials]
+title: REST API examples 
+description: REST API examples
+keywords: [REST API examples, Ant Media Server Documentation, Ant Media Server Tutorials]
 ---
 
 # REST API examples

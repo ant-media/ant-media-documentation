@@ -1,9 +1,10 @@
 ---
 title: Android SDK
-description: A short description of this page
-keywords: [Ant Media Server Documentation, Ant Media Server Tutorials]
+description: Ant Media Server WebRTC Android SDK lets you build your own Android application that can publish and play WebRTC broadcasts. This simple guide will help you to achieve developing your android app with just a few lines of code.
+keywords: [Ant Media Server SDK, WebRTC Android SDK, Ant Media Server Documentation, Ant Media Server Tutorials]
 ---
 
+# Android SDK
 
 Ant Media's WebRTC Android SDK lets you build your own Android application that can publish and play WebRTC broadcasts with just a few lines of code. Follow the below steps to run the sample WebRTC Android app.
 

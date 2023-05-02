@@ -1,7 +1,7 @@
 ---
 title: How to Install Ant Media Server on Digital Ocean with just One Click
-description: A short description of this page
-keywords: [Ant Media Server Documentation, Ant Media Server Tutorials]
+description: Install Ant Media Server on Digital Ocean with just One Click
+keywords: [How to Install Ant Media Server on Digital Ocean with just One Click, One Click Application, Digital Ocean, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 8
 ---
 

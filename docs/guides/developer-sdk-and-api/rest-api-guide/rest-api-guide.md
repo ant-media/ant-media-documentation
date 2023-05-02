@@ -1,7 +1,7 @@
 ---
 title: REST API guide
-description: A short description of this page
-keywords: [Ant Media Server Documentation, Ant Media Server Tutorials]
+description: REST API guide for Ant Media Server.
+keywords: [REST API guide, REST API Documentation, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 1
 ---
 
