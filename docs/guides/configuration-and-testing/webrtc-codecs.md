@@ -1,4 +1,7 @@
-# WebRTC codecs
+---
+title: WebRTC codecs
+sidebar_position: 6
+---
 
 In this section, we're going to explain simply how to use H.264 & VP8 in Ant Media Server. VP8 and H.264 are mandatory codecs in WebRTC according to RFC 7742. On the other hand, not all browsers support VP8 and H.264 codecs at the same time.  
 ![](@site/static/img/image-1645442735337.png)
