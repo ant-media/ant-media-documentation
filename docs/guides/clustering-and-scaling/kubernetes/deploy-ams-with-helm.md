@@ -1,3 +1,8 @@
+---
+title: Installing Ant Media Server with Helm
+sidebar_position: 5
+---
+
 To briefly mention Helm, Helm is a tool that allows you to manage applications on Kubernetes easily. It's possible to deploy, upgrade, and control versions with Helm.
 
 The key point, you can deploy Ant Media Server to your Kubernetes via Helm. Today, we are going to take a look at a step-by-step how to deploy Ant Media Server with helm. The part that excites me is that you can create an Ant Media Server Cluster environment with one click.

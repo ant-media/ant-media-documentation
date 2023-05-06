@@ -1,4 +1,7 @@
-# Load Balancer with HAProxy SSL Termination
+---
+title: Load Balancer with HAProxy SSL Termination
+sidebar_position: 2
+---
 
 Load Balancer is the sister of cluster so If you make Ant Media Server instances run in Cluster Mode. Then a load balancer will be required to balance the load. In this documentation, you will learn how to install HAProxy Load Balancer with SSL termination.
 

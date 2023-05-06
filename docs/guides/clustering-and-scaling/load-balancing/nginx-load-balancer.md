@@ -1,4 +1,7 @@
-# Installing with Nginx load balancer
+---
+title: Installing with Nginx load balancer
+sidebar_position: 1
+---
 
 What is Nginx ?
 ---------------

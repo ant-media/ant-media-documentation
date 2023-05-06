@@ -1,3 +1,7 @@
+---
+title: Scaling Ant Media Server Cluster with AWS CloudFormation
+sidebar_position: 3
+---
 Now let's start on to the CloudFormation setup and continue step by step.
 
 [Watch the YouTube Video: Setting up an Ant Media Server Scaling Solution with CloudFormation In 5 minutes](https://www.youtube.com/watch?v=y7bP0u0jQRQ)

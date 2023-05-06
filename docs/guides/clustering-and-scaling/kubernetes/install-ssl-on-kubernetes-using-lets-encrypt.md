@@ -1,4 +1,7 @@
-# Install SSL on Kubernetes Using Let's Encrypt
+---
+title: Install SSL on Kubernetes Using Let's Encrypt
+sidebar_position: 3
+---
 
 Now let's move on to cert-manager installation.
 

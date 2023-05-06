@@ -1,4 +1,7 @@
-# Preparation of Kubernetes Environment for AMS Deployment
+---
+title: Preparation of Kubernetes Environment for AMS Deployment
+sidebar_position: 1
+---
 
 Kubernetes as known is the open source container orchestration tool that is widely used in all over the world. With the version 2.2.0+, Ant Media Server is fully compatible with Kubernetes. 
 

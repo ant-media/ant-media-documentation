@@ -1,4 +1,7 @@
-# Updating AMS with CloudFormation
+---
+title: Updating AMS with CloudFormation
+sidebar_position: 4
+---
 
 If you have installed Ant Media Server with Cloudformation and then want to update it, simply follow the steps below.
 

@@ -1,6 +1,6 @@
 ---
 title: How to Install Ant Media Server on Digital Ocean with just One Click
-sidebar_position: 8
+sidebar_position: 7
 ---
 
 Hello,
