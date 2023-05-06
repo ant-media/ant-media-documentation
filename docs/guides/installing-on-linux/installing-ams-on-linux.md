@@ -1,5 +1,6 @@
 ---
 title: Installing AMS on Linux
+sidebar_position: 1
 ---
 
 Ant Media can be installed on Linux, specifically Ubuntu (18.04, 20.04, and 22.04), CentOS (8 and 9), Rocky Linux (8 and 9), and Alma Linux (8 and 9). It is compatible with both the x86-64 and Arm64 architectures.

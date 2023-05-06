@@ -1,5 +1,6 @@
 ---
 title: Upgrading Ant Media Server
+sidebar_position: 3
 ---
 This guide will explain how to upgrade Ant Media Server from an earlier version to a more recent version.
 

@@ -1,5 +1,6 @@
 ---
 title: User Defined Scripts
+sidebar_position: 3
 ---
 # User defined Scripts
 

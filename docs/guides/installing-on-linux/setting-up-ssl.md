@@ -1,5 +1,6 @@
 ---
 title: Setting up SSL
+sidebar_position: 2
 ---
 Setting up SSL is a mandatory task when requesting access to the microphone and camera. Also, you need to enable HTTPS and WSS (WebSocket Secure) for Chrome to run WebRTC and WebSocket applications.
 

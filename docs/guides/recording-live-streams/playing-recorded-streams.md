@@ -1,4 +1,7 @@
-# Recording live streams
+---
+title: Recording live streams
+sidebar_position: 1
+---
 
 Ant Media Server supports various types of live stream recording. Recording features are controlled by the REST API for which some of the APIs are available from the web panel. There are two options for recording: you can either enable recording for all of incoming streams or enable recording for a specific stream ID. In this document, we will go through mp4 and WebM recording and REST calls to enable them.
 
