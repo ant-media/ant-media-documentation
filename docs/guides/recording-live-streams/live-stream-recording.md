@@ -1,4 +1,4 @@
-# Live Stream Recording
+# Playing VoD
 
 Ant Media Server can create an MP4 asset when you finish broadcasting to your live stream. 
 
