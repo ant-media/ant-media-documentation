@@ -1,4 +1,7 @@
-# Decreasing the boot time
+---
+title: Decreasing the boot time
+sidebar_position: 3
+---
 
 In this post, we are going to guide you to increase your system performance.
 

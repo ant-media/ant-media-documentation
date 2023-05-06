@@ -1,6 +1,6 @@
 ---
 title: AMS application configuration
-sidebar_position: 0
+sidebar_position: 1
 ---
 
 Ant Media Server can be configured either by editing a configuration file or through the application settings tab in the management console. 

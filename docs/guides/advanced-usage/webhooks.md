@@ -1,6 +1,6 @@
 ---
 title: Webhooks
-sidebar_position: 16
+sidebar_position: 3
 ---
 
 # Using webhooks

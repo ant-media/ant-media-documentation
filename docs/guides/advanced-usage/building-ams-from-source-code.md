@@ -1,4 +1,7 @@
-# Building AMS from Source Code
+---
+title: Building AMS from Source Code
+sidebar_position: 15
+---
 
 #### Linux (Ubuntu)
 

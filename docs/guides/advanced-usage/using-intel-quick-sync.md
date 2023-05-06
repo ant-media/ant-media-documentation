@@ -1,4 +1,7 @@
-# Using Intel Quick Sync
+---
+title: Using Intel Quick Sync
+sidebar_position: 9
+---
 
 In order to use QuickSync encoders, the following packages should be installed. This setup procedure is for ubuntu 18.04.
 

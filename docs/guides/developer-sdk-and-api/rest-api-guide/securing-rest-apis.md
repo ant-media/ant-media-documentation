@@ -1,4 +1,7 @@
-# Securing the REST API
+---
+title: Securing the REST API
+sidebar_position: 2
+---
 
 This guide explains how to control REST API security on Ant Media Server. You could secure your REST services with the IP Filter feature.
 

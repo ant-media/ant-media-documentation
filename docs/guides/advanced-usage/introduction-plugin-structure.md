@@ -1,4 +1,7 @@
-# Introduction to plug-in structure
+---
+title: Introduction to plug-in structure
+sidebar_position: 10
+---
 
 Ant Media plug-in architecture allows developers to customize the video feed while keeping the server source codes untouched. Plug-in structure have various scenarios to address the needs of the developers, for example MCU usage is developed as a plug-in by the Ant Media dev team for emphasizing the wide-range use cases for plug-in architecture.
 

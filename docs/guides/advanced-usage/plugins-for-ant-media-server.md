@@ -1,4 +1,7 @@
-# Plugins for Ant Media Server
+---
+title: Plugins for Ant Media Server
+sidebar_position: 11
+---
 
 There are different plugins listed below that can be used with the Ant Media Server.
 

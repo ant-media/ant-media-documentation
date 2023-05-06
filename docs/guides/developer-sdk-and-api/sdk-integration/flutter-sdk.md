@@ -1,4 +1,7 @@
-# Flutter SDK
+---
+title: Flutter SDK
+sidebar_position: 3
+---
 
 Ant Media WebRTC Flutter SDK helps you in building your Flutter application that can publish and play WebRTC broadcasts with just a few lines of code. This document explains how to configure Flutter SDK and run the sample applications.
 

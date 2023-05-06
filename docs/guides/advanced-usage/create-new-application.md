@@ -1,4 +1,7 @@
-# Creating a new application
+---
+title: Creating a new application
+sidebar_position: 1
+---
 
 Ant Media Server supports application deployment on the fly. This feature actually resolves the multi-tenancy problem for online video platforms.Ant Media Server has 2 built-in applications. Users want to able to use different settings for each application and able to specify the name of the application.
 

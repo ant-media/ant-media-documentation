@@ -1,4 +1,7 @@
-# Configuring STUN addresses
+---
+title: Configuring STUN addresses
+sidebar_position: 6
+---
 
 There are some limitations in AWS Wavelength Zones regarding getting ICE candidates. In order to resolve this issue, Ant Media provides free-to-use STUN servers that are reachable in AWS Wavelength Zones. There are a couple of instances are running behind ```stun.wavelength.antmedia.cloud``` address.
 

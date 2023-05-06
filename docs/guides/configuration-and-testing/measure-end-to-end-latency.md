@@ -1,4 +1,7 @@
-# How to measure end to end latency
+---
+title: How to measure end to end latency
+sidebar_position: 5
+---
 
 Sometimes you may want to calculate the time it takes for a stream to be transmitted from one point to another. In this guide, we'll guide you on how to calculate the duration between the publisher and the player this step by step.
 

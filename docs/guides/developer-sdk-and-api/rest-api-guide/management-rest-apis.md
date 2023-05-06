@@ -1,4 +1,7 @@
-# Management Panel REST API Services
+---
+title: Management Panel REST API Services
+sidebar_position: 5
+---
 
 Some REST commands which are not application specific, such as creating and deleting an app, creating a new user, etc, require an authentication filter by logging in to the management panel. This creates a few limitations for people who don't want to use the web panel every time and want access to all of the REST commands.
 

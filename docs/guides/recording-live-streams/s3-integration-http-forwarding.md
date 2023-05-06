@@ -1,4 +1,7 @@
-# S3 Integration and HTTP Forwarding
+---
+title: S3 Integration and HTTP Forwarding
+sidebar_position: 3
+---
 
 In this document, we are going to see how we can record streams to S3-compatible systems(AWS, OVH, Digital Ocean etc.) and Configure HTTP forwarding.
 

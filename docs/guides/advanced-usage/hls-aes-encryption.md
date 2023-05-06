@@ -1,4 +1,7 @@
-# HLS AES encryption
+---
+title: HLS AES encryption
+sidebar_position: 5
+---
 
 HLS AES encryption refers to video streaming using HLS protocol, where the video files are encrypted by using AES-128 algorithms. There are many types of encryption algorithms, and the most common used method for HLS is AES-128.
 

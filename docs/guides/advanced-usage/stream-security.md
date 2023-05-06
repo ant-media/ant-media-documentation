@@ -1,4 +1,7 @@
-# Stream security
+---
+title: Stream security
+sidebar_position: 2
+---
 
 This guide explains stream security options in Ant Media Server. Briefly, Stream Security options are;
 

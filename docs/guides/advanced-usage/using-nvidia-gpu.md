@@ -1,4 +1,7 @@
-# Using Nvidia GPUs
+---
+title: Using Nvidia GPUs
+sidebar_position: 7
+---
 
 Ant Media Server can use a hardware-based encoder that is available in NVIDIA GPUs. If you have an NVIDIA GPU, you can check whether your GPU contains a hardware-based encoder in [Video Encode and Decode GPU Support Matrix](https://developer.nvidia.com/video-encode-decode-gpu-support-matrix)
 

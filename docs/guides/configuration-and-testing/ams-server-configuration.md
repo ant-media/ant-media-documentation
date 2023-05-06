@@ -1,4 +1,7 @@
-# AMS server configuration
+---
+title: AMS server configuration
+sidebar_position: 2
+---
 
 Ant Media Server can be configured either through the web panel or directly modifying the configuration files. However, the majority of configuration settings are set directly in the configuration files. 
 

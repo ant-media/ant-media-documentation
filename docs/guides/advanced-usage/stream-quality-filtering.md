@@ -1,4 +1,7 @@
-# Stream quality filtering 
+---
+title: Stream quality filtering
+sidebar_position: 6
+---
 
 Quality filter feature is implemented in order to filter the streams sent to the server. If the stream does not meet the qualifications, it won't be published. This is usually used when users want to set some sort of quality standard or eliminate streams that may impact the server.
 

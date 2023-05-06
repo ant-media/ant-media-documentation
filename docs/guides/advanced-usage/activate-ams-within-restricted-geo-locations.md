@@ -1,6 +1,6 @@
 ---
 title: How to activate Ant Media Server from within restricted geo locations
-sidebar_position: 8
+sidebar_position: 12
 ---
 
 Ant Media uses Google services to verify the license key and those services are banned in China and Hong Kong. 

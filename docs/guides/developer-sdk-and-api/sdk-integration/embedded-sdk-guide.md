@@ -1,4 +1,7 @@
-# Embedded SDK guide
+---
+title: Embedded SDK guide
+sidebar_position: 7
+---
 
 Ant Media server can stream from IP cameras, and this solution is for IP camera manufacturers. If you just want to use peer to peer connection between an IP camera and a web browser, Ant Media can also provide a solution for this case as well.
 
