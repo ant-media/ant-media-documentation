@@ -5,13 +5,13 @@ sidebar_position: 1
 ---
 Ant Media server provides a ready-to-use, highly scalable, real-time video streaming solution.  It supports both Ultra-Low Latency (WebRTC) and Low Latency (CMAF & HLS) live streaming.
 
-Ant Media Server (AMS) can be deployed easily and quickly on-premise or on public cloud networks such as AWS, Azure, Digital Ocean, Linode, and Alibaba Cloud.
+Ant Media Server (AMS) can be deployed easily and quickly on-premise or on public cloud networks such as AWS, Azure, Google Cloud, Digital Ocean, OVH, Linode, and Alibaba Cloud.
 
 There are two versions of Ant Media Server: Community Edition and Enterprise Edition. You can find a comparison table below.
 
 Ant Media Server can be configured in cluster mode to dynamically scale horizontally and vertically to support thousands of viewers and broadcasters simultaneously in an automated and controlled way.
 
-Playback of live streams is supported in any web browser and in addition to this, SDKs for iOS, Android, and JavaScript are provided freely to enable customers to expand their reach to a broader audience.
+Playback of live streams is supported in any web browser and in addition to this, SDKs for iOS, Android, Flutter, React Native, Unity and JavaScript are provided freely to enable customers to expand their reach to a broader audience.
 
 ## Usage scenarios
 
@@ -92,7 +92,7 @@ You can download Ant Media Server Community Edition from [Github](https://githu
 Ant Media Server has two types of licenses.
 
 1. Ant Media Server Community Edition is free to use, with Apache license.
-2. Ant Media Server Enterprise Edition needs a paid license per instance/server. Paid license options are hourly, monthly, annually and perpetual and can purchase a license directly from [antmedia.io](https://antmedia.io). 
+2. Ant Media Server Enterprise Edition needs a paid license per instance/server. Paid license options are monthly, annually and perpetual and can purchase a license directly from [antmedia.io](https://antmedia.io). 
 
 ### Enterprise Edition cluster license
 
@@ -110,7 +110,7 @@ Ant Media provides **free Enterprise Edition licenses** for students, academics
 
 ## Supported Environments
 
-Ant Media Server runs on **Linux (Ubuntu and CentOS)**. It supports only x64 architecture, and deployment scripts are provided for Ubuntu (starting from 18.04) and CentOS 8. In addition, Ant Media Server can be successfully deployed on MacOS, SuSE, Debian, and Red Hat Enterprise Linux distributions as well.
+Ant Media Server runs on **Linux (Ubuntu and CentOS)**. It supports bith x64 as well as ARM architecture, and deployment scripts are provided for Ubuntu (starting from 18.04 to 20.04 and 22.04) and CentOS 8. In addition, Ant Media Server can be successfully deployed on MacOS, SuSE, Debian, WSL and Red Hat Enterprise Linux distributions as well.
 
 ## Extensions
 
@@ -122,9 +122,9 @@ Meanwhile, users can use any deep models to execute live streams on the fly.
 
 ## Ant Media Community discussion
 
-There is a user community available. You can ask or answer questions by joining the community at [community.antmedia.io](https://community.antmedia.io/)
+There is a user community available. You can ask or answer questions by joining the community at [GitHub Discussions](https://github.com/orgs/ant-media/discussions)
 
-You can also ask your questions at StackOverflow with the tag ```[ant-media-server]```.
+You can also ask your questions in [Discussions Q&A](https://github.com/orgs/ant-media/discussions/categories/q-a)
 
 ## Contact
 
