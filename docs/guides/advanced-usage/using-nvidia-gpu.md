@@ -11,18 +11,20 @@ Ant Media Server can take advantage of a hardware-based encoder found in NVIDIA 
 **Why use NVIDIA GPU encoder**
 ------------------------------
 
-The short answer is performance. In some cases, encoding performance increases 5x compared to ```x264``` or ```openh264``` CPU optimized encoders. If there is no GPU in the system, Ant Media Server utilizes the ```openh264``` encoder by default starting with version 2.5.1. Previously, AMS used the ```x264``` encoder as the default.
+The primary reason is performance. In certain scenarios, encoding performance can improve up to 5 times when compared to CPU optimized encoders such as ```x264``` or ```openh264```. In the absence of a GPU on the system, Ant Media Server by default use the ```openh264``` encoder from version 2.5.1 onwards. Prior to that, the x264 encoder was the default choice for AMS.
+
+The utilization of a GPU is advised for demanding transcoding tasks. If you want to publish numerous streams featuring multiple ABRs, using a GPU-optimized server rather than a CPU-optimized one would be a good decision. For instance, a single 4-core CPU-optimized server would struggle to manage a single stream with four ABRs (1080, 720, 480, and 360), and this approach is not recommended. However, a single 4-core GPU-optimized server can effortlessly handle 5-6 streams that have the same ABRs enabled.
 
 ![](@site/static/img/gpu.png)
 
 Install the CUDA toolkit
 ------------------------
 
-After you are sure that your GPU contains a hardware based encoder, the only thing left is installing CUDA toolkit to your system.
+Once you have confirmed the existence of a hardware-based encoder in your GPU, the only remaining step is to install the CUDA toolkit onto your system.
 
 Installation on Ubuntu 18.04, 20.04 and 22.04
 ---------------------------------------------
-With CUDA version 11.8, AMS automatically uses the GPU, therefore we'll install it. To install, browse to [this link](https://developer.nvidia.com/cuda-11-8-0-download-archive) and choose settings based on your architecture and operating system, then use those commands to install it. Check the screenshot below.
+Ant Media Server now automatically utilizes the GPU with CUDA version 11.8, which is why it is necessary to install it. To install, follow [the link](https://developer.nvidia.com/cuda-11-8-0-download-archive) provided and select the settings according to your operating system and architecture. You can then use the commands provided to complete the installation. Refer to the screenshot below for further guidance.
 
 ![](@site/static/img/adavanced-usage/using-nvidia-gpu/cuda-11.8.png)
 
@@ -79,7 +81,7 @@ You will see output as below if the GPU is in use.
 Using NVIDIA hardware based encoder
 -----------------------------------
 
-If you use CUDA 11.8, Ant Media Server will check and log if there is a hardware-based GPU encoder in the system at launch, and it will use it automatically. Nothing needs to be done.
+When using CUDA 11.8, Ant Media Server will verify and record the presence of a hardware-based GPU encoder during startup, and will use it automatically without requiring any additional action.
 
 However, if you are using CUDA 12 or later, you must add the following property to the ```red5-web.properties``` file in the ```/usr/loca/antmedia/webapps/LiveApp/WEB-INF``` folder in order to use GPU with Ant Media Server.
 
