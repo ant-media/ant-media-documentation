@@ -2,6 +2,7 @@
 title: Deploying Ant Media Server at AWS Wavelength 
 description: Deploying Ant Media Server at AWS Wavelength
 keywords: [Deploying Ant Media Server at AWS Wavelength, AWS Wavelength, Ant Media Server Documentation, Ant Media Server Tutorials]
+sidebar_position: 5
 ---
 
 # Deploying Ant Media Server at AWS Wavelength

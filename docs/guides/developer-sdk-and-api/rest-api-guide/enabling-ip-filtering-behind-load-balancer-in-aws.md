@@ -2,6 +2,7 @@
 title: Enabling IP filtering behind a load balancer in AWS 
 description: Enabling IP filtering behind a load balancer in AWS
 keywords: [Load Balancer, Ant Media Server Documentation, Ant Media Server Tutorials]
+sidebar_position: 6
 ---
 
 # Enabling IP filtering behind a load balancer in AWS

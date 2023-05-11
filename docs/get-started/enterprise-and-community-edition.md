@@ -69,7 +69,7 @@ Ant Media Server has two versions. One of them is the Community Edition(Free) an
 Ant Media Server has basically two types of licenses.
 
 1.  Ant Media Server Community Edition is free to use.
-2.  Ant Media Server Enterprise Edition has a paid license per instance/server. Paid license options are hourly, monthly, annually, triannual and perpetual. You can get licenses from [antmedia.io](https://antmedia.io/) or you can use hourly/monthly/yearly licenses from Marketplaces in [AWS Marketplace](https://aws.amazon.com/marketplace/search/results?x=0&y=0&searchTerms=Ant+Media+Server&page=1&ref_=nav_search_box), [Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/antmedia.ant_media_server_enterprise?tab=Overview), [Digital Ocean](https://marketplace.digitalocean.com/apps/ant-media-server-enterprise-edition), [Alibaba](https://marketplace.alibabacloud.com/products/56712002/Ant_Media_Server_Enterprise_2_2_1-sgcmjj00025347.html), and [Linode](https://www.linode.com/marketplace/apps/ant-media/ant-media-community-edition/)
+2.  Ant Media Server Enterprise Edition has a paid license per instance/server. Paid license options are monthly, annually, and perpetual. You can get licenses from [antmedia.io](https://antmedia.io/) or you can use hourly/monthly/yearly licenses from Marketplaces in [AWS Marketplace](https://aws.amazon.com/marketplace/search/results?x=0&y=0&searchTerms=Ant+Media+Server&page=1&ref_=nav_search_box), [Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/antmedia.ant_media_server_enterprise?tab=Overview), [Digital Ocean](https://marketplace.digitalocean.com/apps/ant-media-server-enterprise-edition), [Alibaba](https://marketplace.alibabacloud.com/products/56712002/Ant_Media_Server_Enterprise_2_2_1-sgcmjj00025347.html), and [Linode](https://www.linode.com/marketplace/apps/ant-media/ant-media-community-edition/)
 
 ### Enterprise Cluster License
 
@@ -87,7 +87,7 @@ Ant Media provides _free Enterprise Licenses_\* for the \*students, academics, a
 
 ## Supported Environments
 
-Ant Media Server runs on **Linux(Ubuntu)** and **MacOS**. it supports only x64 architecture. Ubuntu 18.04 is officially supported and auxiliary scripts are provided for Ubuntu 20.04 and CentOS 8. In addition, It's known that Ant Media Server is used on SUSE, Debian, RHLE distributions as well.
+Ant Media Server runs on **Linux(Ubuntu)** and **MacOS**. it supports both x64 and ARM architecture. Ubuntu 20.04, Ubuntu 22.04 and CentOS 8 are officially supported. In addition, It's known that Ant Media Server is used on SUSE, Debian, WSL, and RHLE distributions as well.
 
 ## Extensions
 
@@ -99,9 +99,9 @@ Meanwhile, users can use any deep models to execute the live streams on the fly.
 
 ## Community
 
-There is a developer community. You can join the google group, and ask or answer questions: [https://community.antmedia.io/](https://community.antmedia.io/)
+There is a user community available. You can ask or answer questions by joining the community at [GitHub Discussions](https://github.com/orgs/ant-media/discussions)
 
-You can also ask your questions at StackOverflow with the ```ant-media-server``` tag.
+You can also ask your questions in [Discussions Q&A](https://github.com/orgs/ant-media/discussions/categories/q-a)
 
 ## Case Studies
 

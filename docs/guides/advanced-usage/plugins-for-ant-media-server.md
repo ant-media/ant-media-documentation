@@ -2,6 +2,7 @@
 title: Plugins for Ant Media Server 
 description: Ant Media Community Contributions for Ant Media Plugins.
 keywords: [Plugins for Ant Media Server, Ant Media Server Documentation, Ant Media Server Tutorials, Community Plugins for Ant Media Server, Add-ons for Ant Media Server]
+sidebar_position: 11
 ---
 
 # Plugins for Ant Media Server

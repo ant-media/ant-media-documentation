@@ -2,6 +2,7 @@
 title: Preparation of Kubernetes Environment for AMS Deployment 
 description: Preparation of Kubernetes Environment for AMS Deployment
 keywords: [Kubernetes Environment for AMS Deployment, Ant Media Server Deployment, Ant Media Server Documentation, Ant Media Server Tutorials]
+sidebar_position: 1
 ---
 
 # Preparation of Kubernetes Environment for AMS Deployment

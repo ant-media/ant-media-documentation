@@ -2,6 +2,7 @@
 title: JWT REST API filter 
 description: This document contains guide for JWT REST API filter, JWT tokens and JWT token with expiration time.
 keywords: [JWT REST API filter, Ant Media Server Documentation, Ant Media Server Tutorials]
+sidebar_position: 4
 ---
 
 # JWT REST API filter

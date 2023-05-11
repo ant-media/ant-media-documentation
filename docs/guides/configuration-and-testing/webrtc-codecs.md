@@ -2,6 +2,7 @@
 title: WebRTC codecs 
 description: Simplified understanding of H.264 & VP8 used with Ant Media Server. This guide also explains how to enable or disable H.264 and VP8.
 keywords: [Enable H.264 and VP8, Disable H.264 and VP8, WebRTC codecs, Ant Media Server Documentation, Ant Media Server Tutorials]
+sidebar_position: 6
 ---
 
 # WebRTC codecs
