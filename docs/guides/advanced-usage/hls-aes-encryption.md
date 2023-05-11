@@ -66,7 +66,7 @@ ActionScript
 
 ActionScript
 
-4.  Publish any stream and check ```<AMS-FOLDER>`/webapps/WebRTCAppEE/streams/streamId.m3u8``` file. You should see ```EXT-X-KEY``` parameters like below:
+4.  Publish any stream and check ```<AMS-FOLDER>/webapps/WebRTCAppEE/streams/streamId.m3u8``` file. You should see ```EXT-X-KEY``` parameters like below:
 
     #EXTM3U
     #EXT-X-VERSION:3

@@ -38,13 +38,13 @@ The Server creates tokens with [getTokenV2](https://github.com/ant-media/Ant-Med
 
 The sample token creation service URL in Publish Scenario:
 
-    http://[IP_Address]:5080/`<Application_Name>`/rest/v2/broadcasts/`<Stream_Id>`/token?expireDate=`<Expire_Date>`&type=publish
+    http://[IP_Address]:5080/<Application_Name>/rest/v2/broadcasts/<Stream_Id>/token?expireDate=<Expire_Date>&type=publish
 
 The sample token creation service URL in Play Scenario:
 
-    http://[IP_Address]:5080/`<Application_Name>`/rest/v2/broadcasts/`<Stream_Id>`/token?expireDate=`<Expire_Date>`&type=play
+    http://[IP_Address]:5080/<Application_Name>/rest/v2/broadcasts/<Stream_Id>/token?expireDate=<Expire_Date>&type=play
 
-Expire Date format is Unix Timestamp. Check also ->` [https://www.epochconverter.com/](https://www.epochconverter.com/)
+Expire Date format is Unix Timestamp. Check also -> [https://www.epochconverter.com/](https://www.epochconverter.com/)
 
 **RTMP & SRT URL usage:**
 
@@ -58,15 +58,15 @@ Here is OBS settings for the One Time Token.
 
 **Live Stream / VoD URL usage:**
 
-    http://[IP_Address]/`<Application_Name>`/streams/streamID.mp4?token=tokenId
-    http://[IP_Address]/`<Application_Name>`/streams/streamID.m3u8?token=tokenId
-    http://[IP_Address]/`<Application_Name>`/play.html?name=streamID&playOrder=hls&token=tokenId
+    http://[IP_Address]/<Application_Name>/streams/streamID.mp4?token=tokenId
+    http://[IP_Address]/<Application_Name>/streams/streamID.m3u8?token=tokenId
+    http://[IP_Address]/`<Application_Name>/play.html?name=streamID&playOrder=hls&token=tokenId
 
 **WebRTC usage:**
 
 **\-Playing usage:** Again the token parameter should be inserted to play WebSocket message. Also please have a look at the principles described in the [WebRTC playing wiki page](/guides/publish-live-stream/webrtc-websocket-messaging-reference#playing-webrtc-stream).
 
-TODO: Please tell or give link how to get token from Ant Media Server -->`
+TODO: Please tell or give link how to get token from Ant Media Server -->
 
     Secure WebSocket: wss://SERVER_NAME:5443/WebRTCAppEE/websocket
     WebSocket without Secure: ws://SERVER_NAME:5080/WebRTCAppEE/websocket
@@ -92,62 +92,66 @@ TODO: Please tell or give link how to get token from Ant Media Server -->`
 
 CORS(Cross-Origin Resource Sharing) Filter is enabled and accepts requests from everywhere by default.
 
-If you want to customize by yourself CORS Filters in Application, you can access in ```SERVER_FOLDER``` / ```webapps``` / ```{Application}``` / ```WEB-INF``` / web.xml
+If you want to customize by yourself CORS Filters in Application, you can access in ```SERVER_FOLDER/webapps/{Application}/ WEB-INF/web.xml```
 
-    `<filter>`
-          `<filter-name>`CorsFilter`</filter-name>`
-          `<filter-class>`io.antmedia.filter.CorsHeaderFilter`</filter-class>`
-          `<init-param>`
-             `<param-name>`cors.allowed.origins`</param-name>`
-             `<param-value>`*`</param-value>`
-           `</init-param>`
-           `<init-param>`
-                `<param-name>`cors.allowed.methods`</param-name>`
-                `<param-value>`GET,POST,HEAD,OPTIONS,PUT,DELETE`</param-value>`
-           `</init-param>`
-    
-            `<!-- cors.allowed.origins ->` * and credentials are not supported at the same time.
-            If you set to cors.allowed.origins to specific domains and support credentials open the below lines
-            `<init-param>`
-                `<param-name>`cors.support.credentials`</param-name>`
-                `<param-value>`true`</param-value>`
-            `</init-param>`
-             -->`
-            `<init-param>`
-                `<param-name>`cors.allowed.headers`</param-name>`
-                `<param-value>`Accept, Origin, X-Requested-With, Access-Control-Request-Headers, Content-Type, Access-Control-Request-Method, Authorization`</param-value>`
-             `</init-param>`
-             `<async-supported>`true`</async-supported>`
-    `</filter>`
-    `<filter-mapping>`
-         `<filter-name>`CorsFilter`</filter-name>`
-         `<url-pattern>`/*`</url-pattern>`
-    `</filter-mapping>`
+```xml
+<filter>
+    <filter-name>CorsFilter</filter-name>
+    <filter-class>io.antmedia.filter.CorsHeaderFilter</filter-class>
+    <init-param>
+        <param-name>cors.allowed.origins</param-name>
+        <param-value>*</param-value>
+      </init-param>
+      <init-param>
+          <param-name>cors.allowed.methods</param-name>
+          <param-value>GET,POST,HEAD,OPTIONS,PUT,DELETE</param-value>
+      </init-param>
+
+      <!-- cors.allowed.origins -> * and credentials are not supported at the same time.
+      If you set to cors.allowed.origins to specific domains and support credentials open the below lines
+      <init-param>
+          <param-name>cors.support.credentials</param-name>
+          <param-value>true</param-value>
+      </init-param>
+        -->
+      <init-param>
+          <param-name>cors.allowed.headers</param-name>
+          <param-value>Accept, Origin, X-Requested-With, Access-Control-Request-Headers, Content-Type, Access-Control-Request-Method, Authorization</param-value>
+        </init-param>
+        <async-supported>true</async-supported>
+</filter>
+<filter-mapping>
+    <filter-name>CorsFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+</filter-mapping>
+```
 
 If you want to customize by yourself CORS Filters in Root, you can access in ```SERVER_FOLDER``` / ```webapps``` / ```root``` / ```WEB-INF``` / web.xml
 
-    `<filter>`
-    	`<filter-name>`CorsFilter`</filter-name>`
-    	`<filter-class>`io.antmedia.filter.CorsHeaderFilter`</filter-class>`
-    	`<init-param>`
-    	  `<param-name>`cors.allowed.origins`</param-name>`
-    	  `<param-value>`*`</param-value>`
-    	`</init-param>`
-    	`<init-param>`
-    	  `<param-name>`cors.allowed.methods`</param-name>`
-    	  `<param-value>`GET,POST,HEAD,OPTIONS,PUT,DELETE`</param-value>`
-    	`</init-param>`
-    `</filter>`
-    `<filter-mapping>`
-    	`<filter-name>`CorsFilter`</filter-name>`
-    	`<url-pattern>`/*`</url-pattern>`
-    `</filter-mapping>`
+```xml
+<filter>
+  <filter-name>CorsFilter</filter-name>
+  <filter-class>io.antmedia.filter.CorsHeaderFilter</filter-class>
+  <init-param>
+    <param-name>cors.allowed.origins</param-name>
+    <param-value>*</param-value>
+  </init-param>
+  <init-param>
+    <param-name>cors.allowed.methods</param-name>
+    <param-value>GET,POST,HEAD,OPTIONS,PUT,DELETE</param-value>
+  </init-param>
+</filter>
+<filter-mapping>
+  <filter-name>CorsFilter</filter-name>
+  <url-pattern>/*</url-pattern>
+</filter-mapping>
+```
 
->` Quick Learn: [Tomcat CORS Filter](https://tomcat.apache.org/tomcat-8.0-doc/api/index.html?org/apache/catalina/filters/CorsFilter.html)
+> Quick Learn: [Tomcat CORS Filter](https://tomcat.apache.org/tomcat-8.0-doc/api/index.html?org/apache/catalina/filters/CorsFilter.html)
 
 ### 4\. Hash-Based Token
 
-Firstly, settings should be enabled from the settings file of the application in ```SERVER_FOLDER``` / ```webapp``` / ```{Application}``` / ```WEB-INF``` / ```red5-web.properties```
+Firstly, settings should be enabled from the settings file of the application in ```SERVER_FOLDER/webapp/{Application}/WEB-INF/red5-web.properties```
 
     settings.hashControlPublishEnabled=true
     settings.hashControlPlayEnabled=true
@@ -155,7 +159,7 @@ Firstly, settings should be enabled from the settings file of the application in
 
 Set true ```settings.hashControlPublishEnabled``` to enable secret based hash control for publishing operations, and ```settings.hashControlPlayEnabled``` for playing operations.
 
->` Also, do not forget to define a secret key for generating a hash value.
+> Also, do not forget to define a secret key for generating a hash value.
 
 #### Publishing Scenario
 
@@ -169,9 +173,9 @@ You need to generate a hash value using the formula ```sha256(STREAM_ID+ROLE+SEC
 
 **Step 2. Request with Hash**
 
-The system controls hash validity during publishing or playing. **Keep in mind that there is NO '+' in calculating the hash in this formula** ```**sha256(STREAM_ID+ROLE+SECRET)**``` Here is an example for that.
+The system controls hash validity during publishing or playing. **Keep in mind that there is NO '+' in calculating the hash in this formula** ```sha256(STREAM_ID+ROLE+SECRET)``` Here is an example for that.
 
-Let's say ```STREAM_ID: stream1```, ```ROLE: publish```, ```SECRET: this_is_secret``` Your hash is the result of this calculation: ```sha256(stream1publishthis_is_secret)```
+Let's say ```STREAM_ID: stream1``` , ```ROLE: publish```, ```SECRET: this_is_secret``` Your hash is the result of this calculation: ```sha256(stream1publishthis_is_secret)```
 
 Go to [JavaScript SHA-256](https://geraintluff.github.io/sha256/) for online demo
 
