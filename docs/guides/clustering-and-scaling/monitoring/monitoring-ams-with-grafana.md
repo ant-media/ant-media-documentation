@@ -220,7 +220,7 @@ If you want to monitor Ant Media Server, you need to set the IP address of your 
 Install Elasticsearch and Logstash
 ----------------------------------
 
-### Instal Elasticseach
+### Install Elasticseach
 
 **1.** Import GPG key and Repo
 
