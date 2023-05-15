@@ -9,15 +9,34 @@ This documentation is for developers who needs to implement signalling between A
 
 ##  Publishing WebRTC Stream
 
-Client connects to Ant Media Server through WebSocket. URL of the WebSocket interface is something like
+To connect to Ant Media Server, clients use WebSocket with a URL in the format:
     
 `ws://SERVER_NAME:5080/WebRTCAppEE/websocket`
     
 
-Client sends publish JSON command to the server with stream name parameter. (Remove token parameter if token control is not enabled) Only ```Command``` and ```streamId``` is mandatory. Audio and video is enabled default, it can be overwritten. ```Token```, ```subscriberId``` and ```subscriberCode``` is for stream security and optional like setting audio and video. You can take a look at this [guide](https://antmedia.io/time-based-one-time-password-totp-makes-streams-secure/) to learn more about ```subscriberId``` and ```subscriberCode``` and how to use them. For general ```stream security``` information take a look at [here](/guides/developer-sdk-and-api/rest-api-guide/stream-security/).
+To publish a stream, clients first call the `publish` JSON function on the JavaScript SDK, which sends a `sendPublishCommand` to the server to start the stream.
 
-If Server accepts the stream, it replies back with start command
+The `sendPublishCommand` function can take the following parameters:
+- `streamId`: This is a unique ID for the stream.
 
+- `token`: The `token` field is required if any stream security (token control) is enabled. If the user has enabled [stream-security](docs/guides/developer-sdk-and-api/rest-api-guide/stream-security/), they need to fill in the `token` field with the correct token.
+
+- `subscriberId` and `subscriberCode`: These are the values for the Time-based One-time Password (TOTP). If the user is using the TOTP mechanism, they need to pass the `subscriberId` and `subscriberCode`.
+
+- `streamName`: Zombie streams are streams that aren't in the database. Therefore, users can give these "on the fly" streams a `streamName`.
+- `mainTrack`: `mainTrack` is related to multitrack streaming and is required if the user wants to start the stream as a ``subtrack`` for this `mainTrack`. For multitrack conferences, `mainTrack` is set as the room ID.
+
+- `metaData`: The `metaData` is free text information for the stream to server.
+
+- `enableVideo` and `enableAudio`: These parameters define whether to enable video and audio for the stream.
+If `enableVideo` is true, then video will be sent to the server. If `enableAudio` is true, then audio will be sent to the server.
+If `enableVideo` is false and `enbleAudio` is true, then it means it's an audio-only stream.
+
+When the server receives the `sendPublishCommand`, it checks whether the license is suspended, whether the server has enough resources, and retrieves the token if necessary.
+
+Only ```sendPublishCommand``` and ```streamId``` are mandatory. Audio and video is enabled default.
+
+1. If Server accepts the stream, it replies back with `start` command
 ```json
 {
   command : "start",
@@ -25,9 +44,7 @@ If Server accepts the stream, it replies back with start command
 }
 ```  
 
-
-
-4.  Client inits peer connections, creates offer sdp and send the sdp configuration to the server with takeConfiguration command
+2.  Client inits peer connections, creates offer sdp and send the sdp configuration to the server with `takeConfiguration` command
 ```json
 {
   command : "takeConfiguration",
@@ -37,8 +54,7 @@ If Server accepts the stream, it replies back with start command
 }
 ```    
 
-5.  Server creates answer sdp and send the sdp configuration to the client with takeConfiguration command
-
+3.  Server creates answer sdp and send the sdp configuration to the client with `takeConfiguration` command
 ```json
 {
   command : "takeConfiguration",
@@ -48,8 +64,7 @@ If Server accepts the stream, it replies back with start command
 }
 ```
 
-6.  Client and Server get ice candidates several times and sends to each other with takeCandidate command
-
+4.  Client and Server get ice candidates several times and sends to each other with `takeCandidate` command
 ```json 
 {
   command : "takeCandidate",
@@ -58,17 +73,34 @@ If Server accepts the stream, it replies back with start command
   id : "${CANDIDATE.SDP_MID}",
   candidate : "${CANDIDATE.CANDIDATE}"
 }
-```        
-    
+```  
 
-7.  Clients sends stop JSON command to stop publishing
+5. After a stream has started, the server sends a `publish_started` command
+```json
+{
+  command : "notification"
+definition : "publish_started"
+streamId : "stream1"
+}
+ ```
 
+6. Clients sends stop JSON command to stop publishing
 ```json
 {
   command : "stop",
   streamId: "stream1"
 }
 ```    
+
+7. Server responds with publish_finished message to indicate that the stream has stopped.
+```json
+{
+  command : "notification",
+  definition : "publish_finished",
+  streamId: "stream1"
+}
+```
+
 
 ## Playing WebRTC Stream
 
@@ -311,12 +343,13 @@ Any user can leave the room by sending below message
 }
  ```  
  
-```not_allowed_unregistered_streams```: This is sent back to the user if the publisher wants to send a stream with an unregistered id and server is configured not to allow this kind of streams.
+```not_allowed_unregistered_streams```: The `not_allowed_unregistered_streams` error message is returned to the user when they try to send a stream with an unregistered `streamId`, and server is configured not to accept undefined streams.
 
 ```json     
 {
   command : "error",
-  definition: "not_allowed_unregistered_streams",
+  definition : "not_allowed_unregistered_streams",
+  streamId : "stream1",
 }
  ```   
 
@@ -328,12 +361,13 @@ Any user can leave the room by sending below message
   definition : "no_room_specified",
 }
  ```   
-```unauthorized_access```: This is sent back to the user when the token is not validated.
+```unauthorized_access```: When stream security is enabled but the token is either incorrect or not validated, or the subscriberId and/or subscriberCode are incorrect.
 
 ```json     
 {
   command : "error",
   definition : "unauthorized_access",
+  streamId: "stream1",
 }
  ```   
 
@@ -373,21 +407,24 @@ Any user can leave the room by sending below message
 }
 ```   
 
-```streamIdInUse```: The server sends this message if it detects that there is already an active stream(preparing or publishing state) with that same stream id when a user tries to publish a stream. One may get this error if s/he tries to re-publish a stream with the same stream id without closing the previous WebRTC connection.
-
+```streamIdInUse```: The `streamIdInUse` error message is returned by the server when a user tries to publish a stream with a `streamId` that is already in use by an active stream in either the preparing or publishing state. This error can occur if a user attempts to re-publish a stream with the same `streamId` without first closing the previous WebRTC connection.
 ```json     
 {
   command : "error",
   definition : "streamIdInUse",
+  streamId : "stream1",
 }
-```    
+```   
 
-```publishTimeoutError```: The server sends this message if WebRTC publishing is not started in a specified time period. This value is configurable via ```settings.webrtc.client.start.timeoutMs``` property in App Configuration. Its default value is 5000 milliseconds.
+```publishTimeoutError```: The server sends the `publishTimeoutError` message when WebRTC publishing fails to start within a specified time period.
+This may occur due to network issues, such as the lack of an established ICE connection or the failure to send video and audio streams to the server. The timeout value can be customized using the `settings.webrtc.client.start.timeoutMs` property in the [App-Configuration](/docs/guides/configuration-and-testing/ams-application-configuration/), with a default value of 5000 milliseconds.
+Using a [TURN-server](/docs/guides/advanced-usage/turn-and-stun-installation/coturn-quick-installation/) helps mitigate these network-related issues.
 
 ```json     
 {
   command : "error",
   definition : "publishTimeoutError",
+  streamId : "stream1",
 }
  ```
    
@@ -422,14 +459,32 @@ Any user can leave the room by sending below message
   streamId: "stream1"
 }
  ```   
-```already_publishing```: This is sent back to the user when a new publish message received while there it is publishing or it about to publish
+```already_publishing```: This message is sent when a new publish message is received while the server is either publishing or about to publish. The message indicates that publishing is already in progress.
  ```json    
 {
   command : "error",
   definition : "already_publishing",
   streamId: "stream1"
 }
-```    
+```
+```encoderNotOpened```: If the encoder fails to open, the server sends this error message to the client indicating that the encoder could not be opened.
+```json
+{
+  command : "error",
+  definition : "encoderNotOpened",
+  streamId : "stream1", 
+}
+```
+
+```encoderBlocked```: The server sends this error message if the encoder is blocked for some reason or not performing efficiently.
+```json
+{
+  command : "error",
+  definition : "encoderBlocked",
+  streamId : "stream1",
+}
+```
+
 ```no_codec_enabled_in_the_server```: This is sent back to the user when there is no codec enabled in the server and someone try to make a publish
 ```json     
 {
@@ -438,11 +493,12 @@ Any user can leave the room by sending below message
   streamId: "stream1"
 }
  ```   
-```stream_not_active_or_expired```: This is sent back to the user when stream plannedStartDate and plannedEndDate values are in interval or not.
+```stream_not_active_or_expired```: The message `stream_not_active_or_expired` is returned to the user when the `plannedStartDate` and `plannedEndDate` of a stream are either not in the specified interval or have expired.
  ```json    
 {
   command : "error",
   definition : "stream_not_active_or_expired",
+  streamId : "stream1",
 }
 ```    
 ```viewerLimitReached```: This is send when viewer limit reached. when user is trying to watch a broadcast that already hit the limit, this error is send to client.
@@ -455,7 +511,9 @@ Any user can leave the room by sending below message
 
 ## Miscellaneous WebSocket Methods
 
-```ping``` & ```pong``` Whenever you send a ping command to the server, it will respond you with pong command. Ping Command
+```ping``` & ```pong```
+Some load balancers may start to close connections after a certain amount of time to prevent idle connections from consuming resources.
+To prevent this from happening, the client sends `ping` messages to the server, and server returns with a `pong` response. This keeps the connection active and prevents it from being closed by the load balancer.
  ```json    
 {
 command : "ping",
