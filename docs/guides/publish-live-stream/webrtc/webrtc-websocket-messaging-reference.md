@@ -412,10 +412,8 @@ Any user can leave the room by sending below message
 ```   
 
 - ```streamIdInUse```: This error message is returned by the server when a user tries to publish a stream with a `streamId` that is already in use by an active stream in either the preparing or publishing state.
-
 This error can occur if a user attempts to re-publish a stream with the same `streamId` without first closing the previous WebRTC connection.
-
-```json     
+```json
 {
   command : "error",
   definition : "streamIdInUse",
@@ -450,24 +448,23 @@ Using a [TURN-server](/docs/guides/advanced-usage/turn-and-stun-installation/cot
 ```json     
 {
   command : "error",
-  definition : "data_store_not_available"
+  definition : "data_store_not_available",
 }
  ```   
 - ```license_suspended_please_renew_license```: It's send when license is suspended
  ```json    
 {
   command : "error",
-  definition : "license_suspended_please_renew_license"
+  definition : "license_suspended_please_renew_license",
 }
 ```
 
 - ```already_playing```: This is sent back to the user when a new play message received while it is playing or it is about to play.
-
-```json     
+```json
 {
   command : "error",
   definition : "already_playing",
-  streamId: "stream1"
+  streamId: "stream1",
 }
  ```
 
@@ -476,12 +473,11 @@ Using a [TURN-server](/docs/guides/advanced-usage/turn-and-stun-installation/cot
 {
   command : "error",
   definition : "already_publishing",
-  streamId: "stream1"
+  streamId: "stream1",
 }
 ```
 
 - ```encoderNotOpened```: If the encoder fails to open, the server sends this error message to the client indicating that the encoder could not be opened.
-
 ```json
 {
   command : "error",
@@ -519,7 +515,7 @@ Using a [TURN-server](/docs/guides/advanced-usage/turn-and-stun-installation/cot
 
 - ```viewerLimitReached```: This is send when viewer limit reached. when user is trying to watch a broadcast that already hit the limit, this error is send to client.
 
- ```json    
+ ```json
 {
   command : "error",
   definition : "viewerLimitReached",
