@@ -14,12 +14,14 @@ To connect to Ant Media Server, clients use WebSocket with a URL in the format:
 `ws://SERVER_NAME:5080/WebRTCAppEE/websocket`
     
 
-To publish a stream, clients first call the `publish` JSON function on the JavaScript SDK, which sends a `sendPublishCommand` to the server to start the stream.
+To publish a stream, clients first calls the `publish` JSON function on the JavaScript SDK, which sends a `sendPublishCommand` to the server to start the stream.
 
 The `sendPublishCommand` function can take the following parameters:
 - `streamId`: This is a unique ID for the stream.
 
-- `token`: The `token` field is required if any stream security (token control) is enabled. If the user has enabled [stream-security](docs/guides/developer-sdk-and-api/rest-api-guide/stream-security/), they need to fill in the `token` field with the correct token.
+- `token`: The `token` field is required if any stream security (token control) is enabled.
+
+If the user has enabled [stream-security](https://antmedia.io/docs/guides/advanced-usage/stream-security/), they need to fill in the `token` field with the correct token.
 
 - `subscriberId` and `subscriberCode`: These are the values for the Time-based One-time Password (TOTP). If the user is using the TOTP mechanism, they need to pass the `subscriberId` and `subscriberCode`.
 
@@ -29,6 +31,7 @@ The `sendPublishCommand` function can take the following parameters:
 - `metaData`: The `metaData` is free text information for the stream to server.
 
 - `enableVideo` and `enableAudio`: These parameters define whether to enable video and audio for the stream.
+
 If `enableVideo` is true, then video will be sent to the server. If `enableAudio` is true, then audio will be sent to the server.
 If `enableVideo` is false and `enbleAudio` is true, then it means it's an audio-only stream.
 
@@ -78,9 +81,9 @@ Only ```sendPublishCommand``` and ```streamId``` are mandatory. Audio and video 
 5. After a stream has started, the server sends a `publish_started` command
 ```json
 {
-  command : "notification"
-definition : "publish_started"
-streamId : "stream1"
+  command : "notification",
+  definition : "publish_started",
+  streamId : "stream1",
 }
  ```
 
@@ -88,7 +91,7 @@ streamId : "stream1"
 ```json
 {
   command : "stop",
-  streamId: "stream1"
+  streamId: "stream1",
 }
 ```    
 
@@ -97,7 +100,7 @@ streamId : "stream1"
 {
   command : "notification",
   definition : "publish_finished",
-  streamId: "stream1"
+  streamId: "stream1",
 }
 ```
 
@@ -407,7 +410,9 @@ Any user can leave the room by sending below message
 }
 ```   
 
-```streamIdInUse```: The `streamIdInUse` error message is returned by the server when a user tries to publish a stream with a `streamId` that is already in use by an active stream in either the preparing or publishing state. This error can occur if a user attempts to re-publish a stream with the same `streamId` without first closing the previous WebRTC connection.
+```streamIdInUse```: The `streamIdInUse` error message is returned by the server when a user tries to publish a stream with a `streamId` that is already in use by an active stream in either the preparing or publishing state.
+
+This error can occur if a user attempts to re-publish a stream with the same `streamId` without first closing the previous WebRTC connection.
 ```json     
 {
   command : "error",
@@ -417,7 +422,9 @@ Any user can leave the room by sending below message
 ```   
 
 ```publishTimeoutError```: The server sends the `publishTimeoutError` message when WebRTC publishing fails to start within a specified time period.
-This may occur due to network issues, such as the lack of an established ICE connection or the failure to send video and audio streams to the server. The timeout value can be customized using the `settings.webrtc.client.start.timeoutMs` property in the [App-Configuration](/docs/guides/configuration-and-testing/ams-application-configuration/), with a default value of 5000 milliseconds.
+
+This may occur due to network issues, such as the lack of an established ICE connection or the failure to send video and audio streams to the server. The timeout value can be customized using the `settings.webrtc.client.start.timeoutMs` property in the [App-Configuration](https://antmedia.io/docs/guides/advanced-usage/turn-and-stun-installation/coturn-quick-installation/), with a default value of 5000 milliseconds.
+
 Using a [TURN-server](/docs/guides/advanced-usage/turn-and-stun-installation/coturn-quick-installation/) helps mitigate these network-related issues.
 
 ```json     
@@ -513,6 +520,7 @@ Using a [TURN-server](/docs/guides/advanced-usage/turn-and-stun-installation/cot
 
 ```ping``` & ```pong```
 Some load balancers may start to close connections after a certain amount of time to prevent idle connections from consuming resources.
+
 To prevent this from happening, the client sends `ping` messages to the server, and server returns with a `pong` response. This keeps the connection active and prevents it from being closed by the load balancer.
  ```json    
 {
