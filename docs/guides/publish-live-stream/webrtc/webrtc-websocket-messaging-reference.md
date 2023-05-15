@@ -339,22 +339,21 @@ Any user can leave the room by sending below message
 
 - ```noStreamNameSpecified```: it is sent when stream id is not specified in the message.
 
- ```json
+```json
 {
   command : "error",
   definition : "noStreamNameSpecified",
 }
- ```  
+```  
  
 - ```not_allowed_unregistered_streams```: The `not_allowed_unregistered_streams` error message is returned to the user when they try to send a stream with an unregistered `streamId`, and server is configured not to accept undefined streams.
-
 ```json
 {
   command : "error",
   definition : "not_allowed_unregistered_streams",
   streamId : "stream1",
 }
- ```   
+```   
 
 - ```no_room_specified```: This is sent back to the user when there is no room specified in joining the video conference.
 
@@ -363,7 +362,7 @@ Any user can leave the room by sending below message
   command : "error",
   definition : "no_room_specified",
 }
- ```
+```
 
 - ```unauthorized_access```: When stream security is enabled but the token is either incorrect or not validated, or the subscriberId and/or subscriberCode are incorrect.
 
@@ -373,16 +372,16 @@ Any user can leave the room by sending below message
   definition : "unauthorized_access",
   streamId: "stream1",
 }
- ```   
+```   
 
 - ```no_encoder_settings```: This is sent back to the user when there are no encoder settings available in publishing the stream.
 
- ```json
+```json
 {
   command : "error",
   definition : "no_encoder_settings",
 }
- ```   
+```   
 
 - ```no_peer_associated_before```: This is peer to peer connection error definition.It is sent back to the user when there is no peer associated with the stream.
 
@@ -403,16 +402,16 @@ Any user can leave the room by sending below message
 
 - ```highResourceUsage```: It is sent when server is overloaded. Server overload means over CPU usage or over RAM usage. Over CPU usage means CPU load is more than the ```server.cpu_limit``` value in ```conf/red5.properties```. Its default value is %85. Over RAM usage means available memory in the system is less than ```server.min_free_ram``` value in conf/red5.properties. Its unit is MB and default value is 10.
 
- ```json
+```json
 {
   command : "error",
   definition : "highResourceUsage",
 }
 ```   
 
-* ```streamIdInUse```: This error message is returned by the server when a user tries to publish a stream with a `streamId` that is already in use by an active stream in either the preparing or publishing state.
+- ```streamIdInUse```: This error message is returned by the server when a user tries to publish a stream with a `streamId` that is already in use by an active stream in either the preparing or publishing state.
 This error can occur if a user attempts to re-publish a stream with the same `streamId` without first closing the previous WebRTC connection.
-```json
+```json     
 {
   command : "error",
   definition : "streamIdInUse",
@@ -432,7 +431,7 @@ Using a [TURN-server](/docs/guides/advanced-usage/turn-and-stun-installation/cot
   definition : "publishTimeoutError",
   streamId : "stream1",
 }
- ```
+```
    
 - ```invalidStreamName```: it is send when stream name contains special characters.
 
@@ -444,31 +443,32 @@ Using a [TURN-server](/docs/guides/advanced-usage/turn-and-stun-installation/cot
 ```    
 
 - ```data_store_not_available```: It's sent when data store is not available. It's not available if it's not initialized or closed.
-```json
+```json     
 {
   command : "error",
-  definition : "data_store_not_available",
-}
- ```   
-- ```license_suspended_please_renew_license```: It's send when license is suspended
- ```json
-{
-  command : "error",
-  definition : "license_suspended_please_renew_license",
+  definition : "data_store_not_available"
 }
 ```
 
-* ```already_playing```: This is sent back to the user when a new play message received while it is playing or it is about to play.
-```json
+- ```license_suspended_please_renew_license```: It's send when license is suspended
+```json    
+{
+  command : "error",
+  definition : "license_suspended_please_renew_license"
+}
+```
+
+- ```already_playing```: This is sent back to the user when a new play message received while it is playing or it is about to play.
+```json     
 {
   command : "error",
   definition : "already_playing",
-  streamId: "stream1",
+  streamId: "stream1"
 }
- ```
+```  
 
-* ```already_publishing```: This message is sent when a new publish message is received while the server is either publishing or about to publish. The message indicates that publishing is already in progress.
- ```json
+- ```already_publishing```: This message is sent when a new publish message is received while the server is either publishing or about to publish. The message indicates that publishing is already in progress.
+```json
 {
   command : "error",
   definition : "already_publishing",
@@ -476,7 +476,7 @@ Using a [TURN-server](/docs/guides/advanced-usage/turn-and-stun-installation/cot
 }
 ```
 
-* ```encoderNotOpened```: If the encoder fails to open, the server sends this error message to the client indicating that the encoder could not be opened.
+- ```encoderNotOpened```: If the encoder fails to open, the server sends this error message to the client indicating that the encoder could not be opened.
 ```json
 {
   command : "error",
@@ -501,7 +501,7 @@ Using a [TURN-server](/docs/guides/advanced-usage/turn-and-stun-installation/cot
   definition : "no_codec_enabled_in_the_server",
   streamId: "stream1"
 }
- ```
+```
 
 * ```stream_not_active_or_expired```: The message `stream_not_active_or_expired` is returned to the user when the `plannedStartDate` and `plannedEndDate` of a stream are either not in the specified interval or have expired.
 ```json
@@ -513,8 +513,7 @@ Using a [TURN-server](/docs/guides/advanced-usage/turn-and-stun-installation/cot
 ```
 
 - ```viewerLimitReached```: This is send when viewer limit reached. when user is trying to watch a broadcast that already hit the limit, this error is send to client.
-
- ```json
+```json
 {
   command : "error",
   definition : "viewerLimitReached",
