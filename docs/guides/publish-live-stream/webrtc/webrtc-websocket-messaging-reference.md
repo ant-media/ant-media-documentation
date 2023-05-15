@@ -411,9 +411,10 @@ Any user can leave the room by sending below message
 }
 ```   
 
-- ```streamIdInUse```: The `streamIdInUse` error message is returned by the server when a user tries to publish a stream with a `streamId` that is already in use by an active stream in either the preparing or publishing state.
+- ```streamIdInUse```: This error message is returned by the server when a user tries to publish a stream with a `streamId` that is already in use by an active stream in either the preparing or publishing state.
 
 This error can occur if a user attempts to re-publish a stream with the same `streamId` without first closing the previous WebRTC connection.
+
 ```json     
 {
   command : "error",
@@ -460,7 +461,8 @@ Using a [TURN-server](/docs/guides/advanced-usage/turn-and-stun-installation/cot
 }
 ```
 
-- ```already_playing```: This is sent back to the user when a new play message received while it is playing or it is about to play
+- ```already_playing```: This is sent back to the user when a new play message received while it is playing or it is about to play.
+
 ```json     
 {
   command : "error",
@@ -479,6 +481,7 @@ Using a [TURN-server](/docs/guides/advanced-usage/turn-and-stun-installation/cot
 ```
 
 - ```encoderNotOpened```: If the encoder fails to open, the server sends this error message to the client indicating that the encoder could not be opened.
+
 ```json
 {
   command : "error",
@@ -515,6 +518,7 @@ Using a [TURN-server](/docs/guides/advanced-usage/turn-and-stun-installation/cot
 ```
 
 - ```viewerLimitReached```: This is send when viewer limit reached. when user is trying to watch a broadcast that already hit the limit, this error is send to client.
+
  ```json    
 {
   command : "error",
