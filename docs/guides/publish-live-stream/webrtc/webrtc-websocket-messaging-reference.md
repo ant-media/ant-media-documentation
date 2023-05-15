@@ -512,7 +512,7 @@ Using a [TURN-server](/docs/guides/advanced-usage/turn-and-stun-installation/cot
 }
 ```
 
-* ```viewerLimitReached```: This is send when viewer limit reached. when user is trying to watch a broadcast that already hit the limit, this error is send to client.
+- ```viewerLimitReached```: This is send when viewer limit reached. when user is trying to watch a broadcast that already hit the limit, this error is send to client.
 
  ```json
 {
