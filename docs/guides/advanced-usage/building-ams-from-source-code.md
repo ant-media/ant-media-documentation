@@ -2,6 +2,7 @@
 title: Building AMS from Source Code 
 description: Building Ant Media Server from Source Code for contribution or further development.
 keywords: [Building AMS from Source Code, Ant Media Server Documentation, Ant Media Server Tutorials]
+sidebar_position: 12
 ---
 
 # Building AMS from Source Code

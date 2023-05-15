@@ -2,6 +2,7 @@
 title: Load Balancer with HAProxy SSL Termination 
 description: Load Balancer with HAProxy SSL Termination
 keywords: [Load Balancer with HAProxy SSL Termination, Ant Media Server Documentation, Ant Media Server Tutorials]
+sidebar_position: 2
 ---
 
 # Load Balancer with HAProxy SSL Termination

@@ -7,64 +7,27 @@ sidebar_position: 1
 
 # Quick start for Ant Media Server
 
+This quick start guide shows you how to set up Ant Media Server (AMS) in just a few minutes and try ultra-low latency streaming using the enterprise edition on popular cloud marketplaces.
+
 <VideoPlayer video="https://www.youtube.com/embed/EH6v-yUyzjU" youtube="true">
   <div><center><strong><i>Video tutorial of AWS marketplace installation</i></strong></center></div>
 </VideoPlayer>
 
-# Installation
+<VideoPlayer video="https://www.youtube.com/embed/uE8uzWhKSBE" youtube="true">
+  <div><center><strong><i>Video tutorial of Azure marketplace installation</i></strong></center></div>
+</VideoPlayer>
 
-This quick start guide shows you how to set up Ant Media Server (AMS) in just a few minutes and try ultra-low latency streaming using the enterprise edition.
+# Installation
 
 The installation process for Ant Media Server Community and Enterprise Editions are the same so you can install The Community Edition by following the same instructions.
 
 There are two ways to install Ant Media Server (AMS).
 
-1. Manual installation to a remote server with a public IP address
+1. Manual installation to a remote server with a public IP address:
+The installation process for manually installing Ant Media Server Community and Enterprise Editions are the same, please refer to the [Installation instructions](/guides/installing-on-linux/installing-ams-on-linux/)
+
 2. Launch in one of the cloud marketplaces [AWS](https://aws.amazon.com/marketplace/search/results?x=0&y=0&searchTerms=Ant+Media+Server&page=1&ref_=nav_search_box), [Azure](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/antmedia.ant_media_server_enterprise?tab=Overview), [DigitalOcean](https://marketplace.digitalocean.com/apps/ant-media-server-enterprise-edition) (video tutorial above).
 
-In this guide, we'll be going through the manual installation.
-
-## Download Ant Media Server
-
-You can download the Community Edition from [Releases](https://github.com/ant-media/Ant-Media-Server/releases) or if you have already purchased a license, you can download the enterprise edition by logging into your account at [antmedia.io](https://antmedia.io).
-
-After you download Community Edition AMS, you will have a compressed zip file that contains the Ant Media Server.
-
-## Install Ant Media Server
-
-If you didn't download AMS directly to your remote server, make sure to upload the downloaded .zip file first.
-
-```shell
-cd /path/to/where/ant-media-server/is/downloaded
-```
-
-Get the installation script `install_ant-media-server.sh`.
-
-```shell
-wget https://raw.githubusercontent.com/ant-media/Scripts/master/install_ant-media-server.sh && chmod 755 install_ant-media-server.sh
-```
-
-Install Ant Media Server(AMS) as follows. Please don't forget to replace `[ANT_MEDIA_SERVER_INSTALLATION_FILE]` below with the name of the downloaded .zip file that was fetched at step 1.
-
-```shell
-sudo ./install_ant-media-server.sh -i [ANT_MEDIA_SERVER_DOWNLOADED_FILE] 
-```
-
-## Install SSL for Ant Media Server
-
-First make sure that your server instance has a public IP address and a valid domain name is pointing to your servers public IP address.
-
-Then go to the folder where Ant Media Server is installed. Default directory is `/usr/local/antmedia`
-
-```shell
-cd /usr/local/antmedia
-```
-
-Run ```./enable_ssl.sh``` script in the directory where AMS has been installed. Don't forget to replace `{DOMAIN_NAME}` with your domain name.
-
-```shell
-sudo ./enable_ssl.sh -d {DOMAIN_NAME}
-```
 
 For detailed information about how to configure SSL for Ant Media Server, reference the [SSL Setup guide](/guides/installing-on-linux/setting-up-ssl/).
 

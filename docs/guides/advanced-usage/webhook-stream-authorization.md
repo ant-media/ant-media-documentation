@@ -2,6 +2,7 @@
 title: Webhook stream authorization 
 description: Webhook stream authorization
 keywords: [Webhook stream authorization, Stream Security, Ant Media Server Documentation, Ant Media Server Tutorials]
+sidebar_position: 4
 ---
 
 # Webhook stream authorization

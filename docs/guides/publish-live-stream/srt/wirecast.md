@@ -2,6 +2,7 @@
 title: Wirecast
 description: SRT Ingest using Wirecast
 keywords: [SRT Ingest using Wirecast, Ant Media Server Documentation, Ant Media Server Tutorials]
+sidebar_position: 3
 ---
 
 # SRT Ingest using Wirecast

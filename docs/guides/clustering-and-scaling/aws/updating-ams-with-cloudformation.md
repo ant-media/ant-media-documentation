@@ -2,6 +2,7 @@
 title: Updating AMS with CloudFormation 
 description: Updating AMS with CloudFormation
 keywords: [Updating AMS with CloudFormation, AWS CloudFormation, Ant Media Server Documentation, Ant Media Server Tutorials]
+sidebar_position: 4
 ---
 
 # Updating AMS with CloudFormation

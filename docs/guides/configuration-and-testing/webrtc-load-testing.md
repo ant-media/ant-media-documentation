@@ -2,6 +2,7 @@
 title: Load Testing 
 description: Simple guide to make a load testing on your Ant Media Server.
 keywords: [Ant Media Load Testing, WebRTC test tool, Ant Media Server Documentation, Ant Media Server Tutorials]
+sidebar_position: 4
 ---
 
 # Load testing

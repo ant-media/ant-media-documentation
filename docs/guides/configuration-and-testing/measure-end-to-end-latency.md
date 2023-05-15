@@ -2,6 +2,7 @@
 title: How to measure end to end latency 
 description: Measure latency or the delay for a stream to be transmitted from one point to another. This guide will help you to setup TimeServer, Setup OCR, AWS Rekognition or Google's Vision API
 keywords: [Measure latency, Measure end-to-end latency, TimeServer, OCR, AWS Rekognition, Google's Vision API, Ant Media Server Documentation, Ant Media Server Tutorials]
+sidebar_position: 5
 ---
 
 # How to measure end to end latency

@@ -2,6 +2,7 @@
 title: Recording live streams 
 description: Recording live streams enables you for mp4 recording for every stream in application.
 keywords: [Recording live streams, Ant Media Server Documentation, Ant Media Server Tutorials]
+sidebar_position: 1
 ---
 
 # Recording live streams

@@ -2,6 +2,7 @@
 title: Kubernetes Autoscaling 
 description: Kubernetes Autoscaling
 keywords: [Kubernetes Autoscaling, Ant Media Server Documentation, Ant Media Server Tutorials]
+sidebar_position: 4
 ---
 
 # Kubernetes Autoscaling

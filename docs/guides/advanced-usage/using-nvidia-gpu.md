@@ -2,6 +2,7 @@
 title: Using Nvidia GPUs 
 description: To enhance encoding performance with GPU Encoder or GPU intence encoding, you may leverage Nvidia Graphics Cards. It is also helpful with Video Encode and Decode GPU Support Matrix.
 keywords: [Using Nvidia GPUs, Nvidia GPUs for Encoding, Enhance Encoding Performance with GPU Encoder, Ant Media Server Documentation, Ant Media Server Tutorials]
+sidebar_position: 7
 ---
 
 # Using Nvidia GPUs
@@ -51,7 +52,6 @@ sudo apt-get -y install cuda
 ```
 
 #### Ubuntu 22.04
-
 Ant Media Server officially supports Ubuntu 22.04 on versions 2.6 and higher.
 
 ```
@@ -78,8 +78,15 @@ You will see output as below if the GPU is in use.
 
 ![](@site/static/img/adavanced-usage/using-nvidia-gpu/gpu-use.png)
 
+You will see output as below if the GPU is in use.
+
+![](@site/static/img/adavanced-usage/using-nvidia-gpu/gpu-use.png)
+
 Using NVIDIA hardware based encoder
 -----------------------------------
+When using CUDA 11.8, Ant Media Server will verify and record the presence of a hardware-based GPU encoder during startup, and will use it automatically without requiring any additional action.
+
+However, if you are using CUDA 12 or later, you must add the following property to the ```red5-web.properties``` file in the ```/usr/loca/antmedia/webapps/LiveApp/WEB-INF``` folder in order to use GPU with Ant Media Server.
 
 When using CUDA 11.8, Ant Media Server will verify and record the presence of a hardware-based GPU encoder during startup, and will use it automatically without requiring any additional action.
 

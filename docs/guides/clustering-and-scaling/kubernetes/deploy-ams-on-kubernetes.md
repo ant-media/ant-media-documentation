@@ -2,6 +2,7 @@
 title: Deploy Ant Media Server on Kubernetes 
 description: Deploy Ant Media Server on Kubernetes
 keywords: [Deploy Ant Media Server on Kubernetes, Kubernetes, Ant Media Server Documentation, Ant Media Server Tutorials]
+sidebar_position: 2
 ---
 
 # Deploy Ant Media Server on Kubernetes 

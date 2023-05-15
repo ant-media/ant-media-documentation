@@ -1,7 +1,8 @@
 ---
-title: Live Stream Recording 
+title: Playing Recorded Files 
 description: Ant Media Server can create an MP4 asset when you finish broadcasting to your live stream.
 keywords: [Live Stream Recording, Ant Media Server Documentation, Ant Media Server Tutorials]
+sidebar_position: 2
 ---
 
 # Live Stream Recording
