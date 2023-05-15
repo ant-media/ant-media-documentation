@@ -2,6 +2,7 @@
 title: vMix
 description: How to Ingest SRT with VMix
 keywords: [Ingest SRT with VMix, Ant Media Server Documentation, Ant Media Server Tutorials]
+sidebar_position: 2
 ---
 
 # How to Ingest SRT with VMix

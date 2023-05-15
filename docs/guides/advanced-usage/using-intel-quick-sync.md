@@ -2,6 +2,7 @@
 title: Using QuickSync Encoders 
 description: Using QuickSync Encoders for Ant Media Server.
 keywords: [Intel QuickSync Encoders, Use external encoders, Ant Media Server Documentation, Ant Media Server Tutorials]
+sidebar_position: 9
 ---
 
 # Using Intel QuickSync Encoders

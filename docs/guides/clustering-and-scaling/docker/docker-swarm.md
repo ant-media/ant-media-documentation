@@ -2,6 +2,7 @@
 title: Docker Swarm 
 description: Docker Swarm
 keywords: [Docker Swarm, Ant Media Server Documentation, Ant Media Server Tutorials]
+sidebar_position: 2
 ---
 
 # Docker Swarm

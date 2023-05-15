@@ -2,6 +2,7 @@
 title: How to publish with Teradek 
 description: How to publish with Teradek
 keywords: [Ant Media Server Documentation, Ant Media Server Tutorials]
+sidebar_position: 4
 ---
 
 # How to publish with Teradek

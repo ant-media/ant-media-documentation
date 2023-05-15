@@ -2,6 +2,7 @@
 title: How to publish with OBS 
 description: How to publish with OBS
 keywords: [Ant Media Server Documentation, Ant Media Server Tutorials]
+sidebar_position: 1
 ---
 
 # How to publish with OBS

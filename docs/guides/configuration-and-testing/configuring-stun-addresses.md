@@ -2,6 +2,7 @@
 title: Configuring STUN addresses 
 description: Fix limitations of AWS Wavelength Zones both server side as well as client side. This guide will help you to setup custom TURN server for Android SDK and IOS SDK.
 keywords: [STUN addresses, AWS Wavelength Zones, red5-web Properties, Ant Media Server Documentation, Ant Media Server Tutorials]
+sidebar_position: 6
 ---
 
 # Configuring STUN addresses

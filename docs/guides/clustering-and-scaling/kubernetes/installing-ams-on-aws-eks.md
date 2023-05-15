@@ -2,6 +2,7 @@
 title: Installing Ant Media Server on AWS EKS 
 description: Installing Ant Media Server on AWS EKS
 keywords: [Installing Ant Media Server on AWS EKS, AWS EKS, Ant Media Server Documentation, Ant Media Server Tutorials]
+sidebar_position: 6
 ---
 
 # Installing Ant Media Server on AWS EKS
