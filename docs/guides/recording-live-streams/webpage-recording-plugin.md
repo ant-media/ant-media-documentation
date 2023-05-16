@@ -12,6 +12,10 @@ You can broadcast the whole web page with video and audio in realtime.
 
 You can record the broadcast if needed. But you need to start the recording manually with REST Api or on Ant Media Server Dashboard.
 
+## Prerequisites  
+
+ - Ant Media Server v2.6.0+
+
 ## How to Install 
 
 ### Install Google Chrome 112
