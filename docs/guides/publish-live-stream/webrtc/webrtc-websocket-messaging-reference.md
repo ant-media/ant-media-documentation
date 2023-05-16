@@ -541,7 +541,7 @@ command : "pong",
 ```json     
 {
  command: "getStreamInfo",
- streamId: "stream_id_that_you_want_to_get_info"
+ streamId: "stream_id_that_you_want_to_get_info",
 } 
 ```    
     Server returns in two ways. It may return stream information as follows
@@ -550,11 +550,11 @@ command : "pong",
  command: "streamInformation",
  streamId: "stream_id_of_the_stream_information",
  streamInfo: [{
-     streamWidth: resolution_width,
-     streamHeight: resolution_height,
-     videoBitrate: video_bitrate,
-     audioBitrate: audio_bitrate,
-     videoCodec: codec_of_the_video 
+     streamWidth: "resolution_width",
+     streamHeight: "resolution_height",
+     videoBitrate: "video_bitrate",
+     audioBitrate: "audio_bitrate",
+     videoCodec: "codec_of_the_video", 
      },
    ...
    ]
@@ -565,7 +565,7 @@ command : "pong",
 {
 command : "error",
 definition : "no_stream_exist",
-streamId: "id_of_the_stream"
+streamId: "id_of_the_stream",
 }
 ```    
 ```getRoomInfo```: Get Room Information from server that returns the whole active streams in the room. Client should send the following message to get the response from the server.
@@ -573,7 +573,7 @@ streamId: "id_of_the_stream"
 {
  command: "getRoomInfo",
  room: "room_id_that_you_want_to_get_info",
- streamId: "server_returns_while_you_join_the_room"
+ streamId: "server_returns_while_you_join_the_room",
 } 
  ```   
     Server responds in following format
@@ -583,67 +583,70 @@ streamId: "id_of_the_stream"
   room: "room_id_that_this_information_belongs_to",
   streams: [ stream_id_1, stream_id_2, ...]
 }
-```    
+```
+
 ```bitrateMeasurement```: Server periodically sends this information to the WebRTC viewers. It lets develop show a message to the user if it's internet bandwidth is not good enough. If the ```targetBitrate``` is bigger than the sum of ```videoBitrate``` and ```audioBitrate```, it means internet bandwidth is good enough to play the video. If the ```targetBitrate``` is less than the sum of ```videoBitrate``` and ```audioBitrate```, it means some playback issues(pixelating, packet drop, etc.) may happen and it disturbs the user experience.
 ```json     
 {
   command : "notification",
   definition : "bitrateMeasurement",
   streamId: "unique_stream_id_returned_by_the_server"
-  targetBitrate: measured_bandwidth_of_the_client,
-  videoBitrate: video_bitrate_of_the_current_playing_video,
-  audioBitrate: "audio_bitrate_of_the_current_playing_audio
+  targetBitrate: "measured_bandwidth_of_the_client",
+  videoBitrate: "video_bitrate_of_the_current_playing_video",
+  audioBitrate: "audio_bitrate_of_the_current_playing_audio",
 }
 ```
     
 ```forceStreamQuality```: If there are adaptive-bitrates(multi-bitrate) for that stream, you can get bitrates with ```getStreamInfo``` method and then you can make the Ant Media Server force to send you a specific resolution. If you want to switch back to auto stream quality, you can use give ```0``` for ```streamHeight``` and send the message below.
-    
+```json    
 {
 command: "forceStreamQuality",
 streamId: "write_the_stream_id",
-streamHeight: write_the_height_of_the_resolution_you_want_to_force
+streamHeight: "write_the_height_of_the_resolution_you_want_to_force",
 }
-    
+```
+
 ```server_will_stop```: It's sent when server is in shutdown process.
-    
-{
-        
+```json    
+{ 
 command : "notification",
-definition : "server_will_stop"
+definition : "server_will_stop",
 }
-    
+```
+
 ```leavedFromRoom```: It's sent after stop command received or if client sents leaveFromRoom command.
-    
-{
-        
+```json    
+{        
 command : "notification",
 definition : "leavedFromRoom",
-ATTR_ROOM_NAME: "roomName"
+ATTR_ROOM_NAME: "roomName",
 }
-    
+```
+
 ```getTrackList```: Sends a request to server to get track list in specified stream. Token is not mandatory. If stream has token, token needs to be used, otherwise not needed.
-    
-{
-        
+```json    
+{ 
 command : "getTrackList",
 streamId: "stream1",
-token: "token"
+token: "token",
 }
-    
+```
+
 ```trackList```: Server returns track list of the specified stream after receiving getTrackList command.
-    
-{
-        
+```json    
+{ 
 command : "trackList",
 streamId: "stream1",
-trackList: [tracks]
+trackList: "tracks",
 }
-    
+```
+
 ```enableTrack```: Publisher can enable or disable the tracks in the broadcast.
-    
+```json    
 {
 command : "enableTrack",
 streamId: "stream1",
 trackId: "id of track",
-enabled: boolean
+enabled: "boolean",
 }
+```
