@@ -113,7 +113,7 @@ In that file, copy the following contents. Please change the content in curl bra
     #        listen 4200 udp;
     #        proxy_pass srt_stream_backend;
     #    }    
-    }
+    #}
     
     user nginx;
     worker_processes auto;
