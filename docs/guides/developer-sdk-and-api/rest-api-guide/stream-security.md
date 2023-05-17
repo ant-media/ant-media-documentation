@@ -8,7 +8,7 @@ keywords: [Enable or Disable Undefined Streams, Accept Undefined Streams, One Ti
 
 This guide explains stream security options in Ant Media Server. Briefly, Stream Security options are;
 
-### **1\. Enable/Disable Accepting Undefined Streams**
+## **1\. Enable/Disable Accepting Undefined Streams**
 
 This setting shortly is checking if live stream is registered in Ant Media Server.
 
@@ -20,7 +20,7 @@ After modifying the configuration, please add the streamId, stream name in "broa
 
 ![](@site/static/img/image-1645191373332.png)
 
-### 2\. One Time Token Control
+## 2\. One Time Token Control
 
 One Time Token Control feature usage is in Dashboard / Application(LiveApp or etc.) / Publish/Play with One-time Tokens section.
 
@@ -88,7 +88,7 @@ TODO: Please tell or give link how to get token from Ant Media Server -->
     token : "tokenId",
     }
 
-### 3\. CORS Filter
+## 3\. CORS Filter
 
 CORS(Cross-Origin Resource Sharing) Filter is enabled and accepts requests from everywhere by default.
 
@@ -149,7 +149,7 @@ If you want to customize by yourself CORS Filters in Root, you can access in ```
 
 > Quick Learn: [Tomcat CORS Filter](https://tomcat.apache.org/tomcat-8.0-doc/api/index.html?org/apache/catalina/filters/CorsFilter.html)
 
-### 4\. Hash-Based Token
+## 4\. Hash-Based Token
 
 Firstly, settings should be enabled from the settings file of the application in ```SERVER_FOLDER/webapp/{Application}/WEB-INF/red5-web.properties```
 
@@ -161,7 +161,7 @@ Set true ```settings.hashControlPublishEnabled``` to enable secret based hash co
 
 > Also, do not forget to define a secret key for generating a hash value.
 
-#### Publishing Scenario
+### Publishing Scenario
 
 **Step 1. Generate a Hash**
 
@@ -197,7 +197,7 @@ Here is OBS settings for the Hash-Based Token
     token : "hash",
     }
 
-#### Playing Scenario
+### Playing Scenario
 
 **Step 1. Generate a Hash**
 
@@ -223,7 +223,7 @@ You need to generate a hash value using the formula sha256(STREAM\_ID + ROLE + S
 
 >` Please have a look at the principles described in the [WebRTC WebSocket wiki page](/guides/publish-live-stream/webrtc-websocket-messaging-reference).
 
-#### Evaluation of the Hash
+### Evaluation of the Hash
 
 If related settings are enabled, Ant Media Server first generates hash values based on the formula sha256(STREAM\_ID + ROLE + SECRET) using streamId, role parameters and secret string which is defined in the settings file.
 
@@ -231,7 +231,7 @@ Then compare this generated hash value with the client's hash value during authe
 
 Once the hash is successfully validated by Ant Media Server, the client is granted either to publish or play according to application setting and user request.
 
-### 5\. Publisher IP Filter
+## 5\. Publisher IP Filter
 
 >` Publisher IP Filter feature is available for later versions of the 1.9.0+ version.
 
@@ -243,7 +243,7 @@ Example: ```settings.allowedPublisherCIDR=10.20.30.40/24,127.0.0.1/32``` allows 
 
 You can [read more](https://whatismyipaddress.com/cidr/) about CIDR notation.
 
-### 6\. JWT Stream Security Filter
+## 6\. JWT Stream Security Filter
 
 JWT Stream Security feature is enabled/disabled in ```Dashboard/LiveApp( or any other)/ Settings/Publish/Play with JWT Filter```. Just take a look at the image for the related part. You can use JWT Stream Security Filter for Stream Publishing and Playing. Publish/Play requests without JWT tokens will not be streamed if you enable the JWT Stream Security Filter as shown below by also adding Secret Key on web panel.
 
@@ -263,7 +263,7 @@ As shown above, we use HS256 as algorithm and use our secret key ```zautXStXM9iW
 
 As shown above, the expiration time of the token is Mar 08, 2021 02:14:08 GMT+3. It means that you can use the generated token until the expiration time. The unit of expiration time is [unix timestamp](https://www.unixtimestamp.com/). When it expires, the JWT token becomes invalid.
 
-#### Generate JWT Token with REST API
+### Generate JWT Token with REST API
 
 You can also generate Publish/Play JWT Token with REST API. The Server creates JWT tokens with [getJwtTokenV2](https://antmedia.io/rest/#/BroadcastRestService/getJwtTokenV2) Rest Service getting ```streamId```, ```expireDate``` and ```type``` parameters with query parameters. Service returns ```tokenId``` and other parameters. It is important that ```streamId``` and ```type``` parameters should be defined properly. Because ```tokenId``` needs to match with both ```streamId``` and ```type```.
 
@@ -279,7 +279,7 @@ Expire Date format is Unix Timestamp. Check also ->` [https://www.epochconverter
 
 ### How to use JWT Token
 
-#### RTMP URL usage
+### RTMP URL usage
 
     rtmp://IP_Address/Application_Name/StreamId?token=tokenId
     
@@ -289,13 +289,13 @@ Expire Date format is Unix Timestamp. Check also ->` [https://www.epochconverter
 
 ![](@site/static/img/ant-media-server-one-time-token.png)
 
-#### HLS/ VoD & Embedded Player Usage
+## HLS/ VoD & Embedded Player Usage
 
     http://[IP_Address]/`<Application_Name>`/streams/streamID.mp4?token=tokenId
     http://[IP_Address]/`<Application_Name>`/streams/streamID.m3u8?token=tokenId
     http://[IP_Address]/`<Application_Name>`/play.html?name=streamID&playOrder=hls&token=tokenId
 
-#### WebRTC Publish/Play Usage
+### WebRTC Publish/Play Usage
 
 *   Play: Again the JWT token parameter should be inserted to play WebSocket message. Also please have a look at the principles described in the [WebRTC playing wiki page](/guides/publish-live-stream/webrtc-websocket-messaging-reference#playing-webrtc-stream).
 
@@ -315,7 +315,7 @@ Expire Date format is Unix Timestamp. Check also ->` [https://www.epochconverter
 
 **This feature is available in Ant Media Server 2.3.3+ versions.**
 
-### 7\. Time based One Time Password
+## 7\. Time based One Time Password
 
 The Time-based One-time Password algorithm (TOTP) is an extension of the HMAC-based One-time Password algorithm (HOTP) that generates a one-time password (OTP) by instead taking uniqueness from the current time.
 
