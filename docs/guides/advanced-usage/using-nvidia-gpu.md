@@ -64,6 +64,16 @@ sudo apt-get update
 sudo apt-get -y install cuda
 ```
 
+### NVIDIA A10 Tensor Core GPU
+If you are using a GPU instance of the NV4as_v4/NV6ads family from Azure Marketplace, which features the NVIDIA A10 Tensor Core GPU, you may need to install the NVIDIA GRID drivers to ensure proper GPU functionality.
+
+```
+sudo wget https://storage.googleapis.com/nvidia-drivers-us-public/GRID/vGPU15.2/NVIDIA-Linux-x86_64-525.105.17-grid.run
+sudo chmod +x NVIDIA-Linux-x86_64-525.105.17-grid.run
+sudo ./NVIDIA-Linux-x86_64-525.105.17-grid.run
+sudo reboot
+```
+
 ## Check the usage of GPU
 
 After installation of CUDA toolkit, you can run the command below to see the status of your GPU.
@@ -74,10 +84,6 @@ You can install Ant Media Server using the usual method, or if you have already 
 
     sudo service antmedia restart
  
-You will see output as below if the GPU is in use.
-
-![](@site/static/img/adavanced-usage/using-nvidia-gpu/gpu-use.png)
-
 You will see output as below if the GPU is in use.
 
 ![](@site/static/img/adavanced-usage/using-nvidia-gpu/gpu-use.png)
