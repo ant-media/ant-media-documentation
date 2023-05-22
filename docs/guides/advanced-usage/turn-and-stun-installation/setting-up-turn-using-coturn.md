@@ -149,6 +149,8 @@ In this section, we will install and configure CoTurn on Coturn1 and Coturn2 ser
 
 You can use the following command to check that DNS Round-Robin is working correctly:
 
-```nslookup turn.antmedia.io``````![](@site/static/img/coturn-nslookup.png)```
+```nslookup turn.antmedia.io```
+
+![](@site/static/img/coturn-nslookup.png)
 
 If you have any questions, please just drop a line to contact (at) antmedia.io

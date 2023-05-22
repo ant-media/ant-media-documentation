@@ -7,13 +7,17 @@ sidebar_position: 8
 
 # Playlist
 
-This guide describes how to use Playlist feature on Ant Media Server. You can use this feature in both Community Edition and Enterprise Edition of Ant Media Server.
+This guide describes how to use the Playlist feature on Ant Media Server. You can use this feature in both Community Edition and Enterprise Edition of Ant Media Server.
 
 ![image.png](@site/static/img/image(2).png)
 
 ## What is Linear Live Streaming?
 
-Linear Live Streaming is basically about scheduling your streams for a 7/24 live streaming and can be delivered with different methods. Live Streams and VoD streams can be used in your scheduled live streams which means Linear as well.
+Linear Live Streaming, or pre-recorded live streaming as its sometimes referred to is a technique that involves live streaming a pre-recording video. 
+
+This method is widely used and involves recording a video of yourself in a way that simulates a live stream. The recorded video is then scheduled to be broadcasted as if it were a live stream, creating the illusion that you are streaming in real-time.
+
+It's quite common to use this method to enable a 24/7 live stream across different social platforms like YouTube. 
 
 So, Linear Live Streams have some programs which have a start and end date streams in the program. Furthermore, Linear Live Streaming is a live event in which all viewers are watching the same live event at the same time. This means you don’t get any spoiler before viewing.
 
