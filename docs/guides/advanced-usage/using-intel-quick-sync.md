@@ -15,7 +15,7 @@ QuickSync is supported in Ant Media Server v2.4.0 and later versions.
 
     sudo apt install cmake build-essential pkg-config autoconf libtool libdrm-dev libva-dev libx11-dev
 
-Make sure to enable the graphics cards in BIOS (```Chipset``` >` ```North Bridge``` >` ```Graphics Configuration):```
+Make sure to enable the graphics cards in BIOS (Chipset > North Bridge  > Graphics Configuration):
 
 ![](@site/static/img/quick_sync_bios_configuration.jpeg)
 
