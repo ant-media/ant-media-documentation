@@ -13,7 +13,7 @@ A TURN server is a network entity in charge of relaying media in VoIP related pr
 
 When you try reaching out directly from one browser to another with voice or video data (sometimes other arbitrary kind of data), you end up going through different network devices. Some of these devices include Firewalls and NATs (Network Address Translators) which may decide due to internal policies not to pass your data.
 
-When there are some network securities like firewall, then data packet does not transfer and we do not get proper streaming of another user.
+A TURN server acts as a relay point in peer-to-peer communication scenarios, allowing clients to relay their data through the server to establish a connection when direct communication is not feasible.
 
 So we use TURN server for this solution.
 
@@ -95,4 +95,7 @@ var pc_config = {
 		} ]
 	};
 ```
+
+Turn server is only used if there is strict firewalls  otherwise a direct connection will be made to Ant Media Server from the client.So if we want test whether the Turn server is working with Ant Media server properly and every thing is configured correctly we can use iceTransportPolicy: 'relay' in pc_config for testing, this will force connection to be relayed through TURN server instead of direct connection to Ant Media Server if you can play the stream after adding this property that means that TURN server is configured and working correctly with Ant Media Server .(please note that this property is  only for testing purpose and not to be used in production )
+
 From Ant Media Server v2.5.0 & above, TURN server can be configured on server side as well. [Learn More](/guides/configuration-and-testing/configuring-stun-addresses/#configuring-for-ant-media-244-and-later-versions)
