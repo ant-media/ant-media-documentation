@@ -122,5 +122,8 @@ const webRTCAdaptor = new WebRTCAdaptor({
 // Then, in another part of your script, you can start streaming by calling the publish method
 webRTCAdaptor.publish(streamId, token, subscriberId, subscriberCode, streamName);
 ```
-
 Above example taken from the [StreamApp repository](https://github.com/ant-media/StreamApp/blob/master/src/main/webapp/index.html#L511).
+
+### Tutorial for Creating Publish and Play Page using JS SDK
+[play page creation using JS SDK](https://github.com/ant-media/ant-media-documentation/blob/master/docs/guides/advanced-usage/webrtc-play-page-creation-tutorial.md) <br>
+[publish page creation using JS SDK](https://github.com/ant-media/ant-media-documentation/blob/master/docs/guides/advanced-usage/webrtc-publish-page-creation-tutorial.md)
