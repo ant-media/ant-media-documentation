@@ -33,18 +33,17 @@ Step 2. Write the UI content of the play page
 
 We want to keep this page as simple as possible. So it will contain only a video player and 2 buttons. The video player will play the remote WebRTC stream from AMS. Note that to give an ```id``` attribute to the ```video``` element is important because we will use it later. The buttons are for start/stop the WebRTC play.
 
-    `<html>`
-    `<body>`
-      `<video width="320" height="240" id="myRemoteVideo" autoplay controls playsinline>``</video>`
-      `<br>`
-      `<button type="button" id="start">`Start`</button>`
-      `<button type="button" id="stop">`Stop`</button>`
-    `</body>`
-    
-    `<script type="module" lang="javascript">`
+    <body>
+      <video width="320" height="240" id="myRemoteVideo" autoplay controls playsinline></video>
+      <br>
+      <button type="button" id="start">Start</button>
+      <button type="button" id="stop">Stop</button>
+    </body>
+
+    <script type="module" lang="javascript">
       //Script content will be here 
-    `</script>`
-    `</html>`
+    </script>
+    </html>
     
 
 ### Step 3. Write the script content of the play page
@@ -58,24 +57,24 @@ First we need to import ```WebRTCAdaptor``` class from the JS SDK.
 
 Now we have to create an ```WebRTCAdaptor``` instance which is provided by JS SDK. This instance will be the only interaction point between our page and the JS SDK.
 
-    let websocketURL =  "ws://ovh36.antmedia.io:5080/LiveApp/websocket";
-    
+let websocketURL =  "ws://ovh36.antmedia.io:5080/LiveApp/websocket";
+
     let mediaConstraints = {
       video : false,
       audio : false
     };
-            
+
     let pc_config = {
       'iceServers' : [ {
         'urls' : 'stun:stun1.l.google.com:19302'
       } ]
     };
-    
+
     let sdpConstraints = {
       OfferToReceiveAudio : true,
       OfferToReceiveVideo : true
     };
-    
+
     var webRTCAdaptor = new WebRTCAdaptor({
       websocket_url : websocketURL,
       mediaConstraints : mediaConstraints,
@@ -83,7 +82,7 @@ Now we have to create an ```WebRTCAdaptor``` instance which is provided by JS SD
       sdp_constraints : sdpConstraints,
       remoteVideoId : "myRemoteVideo",
       isPlayMode : true,
-      callback : (info, obj) =>` {
+      callback : (info, obj) => {
         if (info == "play_started") {
           alert("play started");
         } else if (info == "play_finished") {
@@ -143,72 +142,72 @@ That's all for WebRTC playback. If you need to learn more about WebRTCAdaptor pl
 
 The resultant page should be like this:
 
-    `<html>`
-    `<body>`
-      `<video width="320" height="240" id="myRemoteVideo" autoplay controls playsinline>``</video>`
-      `<br>`
-      `<button type="button" id="start">`Start`</button>`
-      `<button type="button" id="stop">`Stop`</button>`
-    `</body>`
-    
-    `<script type="module" lang="javascript">`
-      import {WebRTCAdaptor} from "./webrtc_adaptor.js"
-        
-      let websocketURL =  "ws://ovh36.antmedia.io:5080/LiveApp/websocket";
-    
-      let mediaConstraints = {
-        video : false,
-        audio : false
-      };
-            
-      let pc_config = {
-        'iceServers' : [ {
-          'urls' : 'stun:stun1.l.google.com:19302'
-        } ]
-      };
-    
-      let sdpConstraints = {
-        OfferToReceiveAudio : true,
-        OfferToReceiveVideo : true
-      };
-      
-      var webRTCAdaptor = new WebRTCAdaptor({
-        websocket_url : websocketURL,
-        mediaConstraints : mediaConstraints,
-        peerconnection_config : pc_config,
-        sdp_constraints : sdpConstraints,
-        remoteVideoId : "myRemoteVideo",
-        isPlayMode : true,
-        callback : (info, obj) =>` {
-          if (info == "play_started") {
-            alert("play started");
-          } else if (info == "play_finished") {
-            alert("play finished");
+     <html>
+      <body>
+        <video width="320" height="240" id="myRemoteVideo" autoplay controls playsinline></video>
+        <br>
+        <button type="button" id="start">Start</button>
+        <button type="button" id="stop">Stop</button>
+      </body>
+
+      <script type="module" lang="javascript">
+        import {WebRTCAdaptor} from "./webrtc_adaptor.js"
+
+        let websocketURL =  "ws://ovh36.antmedia.io:5080/LiveApp/websocket";
+
+        let mediaConstraints = {
+          video : false,
+          audio : false
+        };
+
+        let pc_config = {
+          'iceServers' : [ {
+            'urls' : 'stun:stun1.l.google.com:19302'
+          } ]
+        };
+
+        let sdpConstraints = {
+          OfferToReceiveAudio : true,
+          OfferToReceiveVideo : true
+        };
+
+        var webRTCAdaptor = new WebRTCAdaptor({
+          websocket_url : websocketURL,
+          mediaConstraints : mediaConstraints,
+          peerconnection_config : pc_config,
+          sdp_constraints : sdpConstraints,
+          remoteVideoId : "myRemoteVideo",
+          isPlayMode : true,
+          callback : (info, obj) => {
+            if (info == "play_started") {
+              alert("play started");
+            } else if (info == "play_finished") {
+              alert("play finished");
+            }
+            else {
+              console.log( info + " notification received");
+            }
+          },
+          callbackError : function(error, message) {
+            alert("error callback: " +  JSON.stringify(error));
           }
-          else {
-            console.log( info + " notification received");
-          }
-        },
-        callbackError : function(error, message) {
-          alert("error callback: " +  JSON.stringify(error));
+        });
+
+
+        let streamId = "MyStream";
+
+        document.getElementById("start").addEventListener("click", startPlaying);
+        document.getElementById("stop").addEventListener("click", stopPlaying);
+
+        function startPlaying() {
+          webRTCAdaptor.play(streamId, "", "", [], "", "");
         }
-      });
-      
-    
-      let streamId = "MyStream";
-    
-      document.getElementById("start").addEventListener("click", startPlaying);
-      document.getElementById("stop").addEventListener("click", stopPlaying);
-    
-      function startPlaying() {
-        webRTCAdaptor.play(streamId, "", "", [], "", "");
-      }
-    
-      function stopPlaying() {
-        webRTCAdaptor.stop(streamId);
-      }
-    `</script>`
-    `</html>`
+
+        function stopPlaying() {
+          webRTCAdaptor.stop(streamId);
+        }
+      </script>
+      </html>
     
 
 Step 4. Test the play page
