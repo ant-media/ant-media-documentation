@@ -7,7 +7,7 @@ sidebar_position: 13
 
 # WebRTC Publish Page Creation Tutorial
 
-In this tutorial we will create a WebRTC publish page from scratch together. Before we start, let us remind that Ant Media Server (AMS) comes with default streaming web applications which have some sample pages. You can access the samples from ```https://YOUR_DOMAIN:5443/APP_NAME/samples.html``` You can also access the WebRTC publish page with several features from ```https://YOUR_DOMAIN:5443/APP_NAME/index.html``` We will create a simple version of this publish page in this tutorial. Our page will have a video player and two buttons. Lets start to create it step by step.
+In this tutorial we will create a WebRTC publish page from scratch together. Before we start, let us remind that Ant Media Server (AMS) comes with default streaming web applications which have some sample pages. You can access the samples from https://YOUR_DOMAIN:5443/APP_NAME/samples.html You can also access the WebRTC publish page with several features from https://YOUR_DOMAIN:5443/APP_NAME/index.html We will create a simple version of this publish page in this tutorial. Our page will have a video player and two buttons. Lets start to create it step by step.
 
 Step 0. Be Prepared
 -------------------
@@ -31,33 +31,33 @@ JS SDK consists of several js files and dependencies. Please download these js f
 Step 2. Write the UI content of the publish page
 ------------------------------------------------
 
-We want to keep this page as simple as possible. So it will contain only a video player and 2 buttons. The video player will play the camera stream that we will publish. Note that to give an ```id``` attribute to the ```video``` element is important because we will use it later. The buttons are for start/stop the WebRTC publish.
+We want to keep this page as simple as possible. So it will contain only a video player and 2 buttons. The video player will play the camera stream that we will publish. Note that to give an id attribute to the video element is important because we will use it later. The buttons are for start/stop the WebRTC publish.
 
-    `<html>`
-    `<body>`
-      `<video width="320" height="240" id="myLocalVideo" autoplay muted controls playsinline>``</video>`
-      `<br>`
-      `<button type="button" id="start">`Start`</button>`
-      `<button type="button" id="stop">`Stop`</button>`
-    `</body>`
+    <html>
+    <body>
+      <video width="320" height="240" id="myLocalVideo" autoplay muted controls playsinline></video>
+      <br>
+      <button type="button" id="start">Start</button>
+      <button type="button" id="stop">Stop</button>
+    </body>
     
-    `<script type="module" lang="javascript">`
+    <script type="module" lang="javascript">
       //Script content will be here 
-    `</script>`
-    `</html>`
+    </script>
+    </html>
     
 
 Step 3. Write the script content of the publish page
 ----------------------------------------------------
 
-We should write our script content in between ```script``` element.
+We should write our script content in between script element.
 
-First we need to import ```WebRTCAdaptor``` class from the JS SDK.  
-```import {WebRTCAdaptor} from "./webrtc_adaptor.js"```
+First we need to import WebRTCAdaptor class from the JS SDK.  
+import {WebRTCAdaptor} from "./webrtc_adaptor.js"
 
 ### Create WebRTCAdaptor Instance
 
-Now we have to create an ```WebRTCAdaptor``` instance which is provided by JS SDK. This instance will be the only interaction point between our page and the JS SDK.
+Now we have to create an WebRTCAdaptor instance which is provided by JS SDK. This instance will be the only interaction point between our page and the JS SDK.
 
     let websocketURL =  "ws://ovh36.antmedia.io:5080/LiveApp/websocket";
     
@@ -83,7 +83,7 @@ Now we have to create an ```WebRTCAdaptor``` instance which is provided by JS SD
       peerconnection_config : pc_config,
       sdp_constraints : sdpConstraints,
       localVideoId : "myLocalVideo",
-      callback : (info, obj) =>` {
+      callback : (info, obj) => {
         if (info == "publish_started") {
           alert("publish started");
         } else if (info == "publish_finished") {
@@ -101,11 +101,11 @@ Now we have to create an ```WebRTCAdaptor``` instance which is provided by JS SD
 
 #### WebRTCAdaptor Constructor Parameters:
 
-*   _**websocket\_url**_ should be like ```ws://{YOUR_AMS_URL}:5080/{APP_NAME}/websocket``` and points websocket endpoint on your AMS and the used application name.
+*   _**websocket\_url**_ should be like ws://{YOUR_AMS_URL}:5080/{APP_NAME}/websocket and points websocket endpoint on your AMS and the used application name.
 *   _**mediaConstraints**_ simply defines video and audio availability and their settings. You may check [this](https://developer.mozilla.org/en-US/docs/Web/API/Media_Streams_API/Constraints) for more information.
 *   _**peerconnection\_config**_ defines the peer connection parameters. We will pass only STUN server as parameter in this page. You may check [this](https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/setConfiguration) for more information.
 *   _**sdpConstraints**_ defines sdp options. Since we publish only from this page no we will disable video and audio receive here. You may check [this](https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/createOffer) for more information.
-*   _**localVideoId**_ is the ```id``` parameter of the ```video``` element.
+*   _**localVideoId**_ is the id parameter of the video element.
 *   _**callback**_ is the callback function called by the JS SDK in case of some specific events. Here we will create alert in case of getting **_publish\_started_** and **_publish\_finished_**. You may check [this](/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/#webrtc-javascript-info-callbacks) for more information about callbacks.
 *   _**callbackError**_ is the callback function called by the JS SDK in case of some specific errors. Here we create allert in case of any error. You may check [this](/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/#webrtc-javascript-error-callbacks) for more information about error callbacks.
 
@@ -124,9 +124,9 @@ Now we will use the WebRTCAdaptor instance we created to start and stop WebRTC s
     }
     
 
-As you see we simply call WebRTCAdaptor ```publish``` method only. That's enough to start a WebRTC stream. We should pass a ```streamId``` parameter which defines the id of the stream on the server. ```publish``` methods also gets some parameters related to security or other features but we don't use them here. So we pass empty for all parameters other than ```streamId```.
+As you see we simply call WebRTCAdaptor publish method only. That's enough to start a WebRTC stream. We should pass a streamId parameter which defines the id of the stream on the server. publish methods also gets some parameters related to security or other features but we don't use them here. So we pass empty for all parameters other than streamId.
 
-Similarly we simply call WebRTCAdaptor ```stop``` method to stop streaming. It has just ```streamId``` parameter.
+Similarly we simply call WebRTCAdaptor stop method to stop streaming. It has just streamId parameter.
 
 ### Bind Start/Stop functions to UI elements
 
@@ -142,15 +142,15 @@ That's all for WebRTC publishing. If you need to learn more about WebRTCAdaptor 
 
 The resultant page should be like this:
 
-    `<html>`
-    `<body>`
-        `<video width="320" height="240" id="myLocalVideo" autoplay muted controls playsinline>``</video>`
-        `<br>`
-        `<button type="button" id="start">`Start`</button>`
-        `<button type="button" id="stop">`Stop`</button>`
-    `</body>`
+    <html>
+    <body>
+        <video width="320" height="240" id="myLocalVideo" autoplay muted controls playsinline></video>
+        <br>
+        <button type="button" id="start">Start</button>
+        <button type="button" id="stop">Stop</button>
+    </body>
     
-    `<script type="module" lang="javascript">`
+    <script type="module" lang="javascript">
       import {WebRTCAdaptor} from "./webrtc_adaptor.js"
         
       let websocketURL =  "ws://ovh36.antmedia.io:5080/LiveApp/websocket";
@@ -177,7 +177,7 @@ The resultant page should be like this:
         peerconnection_config : pc_config,
         sdp_constraints : sdpConstraints,
         localVideoId : "myLocalVideo",
-        callback : (info, obj) =>` {
+        callback : (info, obj) => {
           if (info == "publish_started") {
             alert("publish started");
           } else if (info == "publish_finished") {
@@ -204,8 +204,8 @@ The resultant page should be like this:
       function stopPublishing() {
         webRTCAdaptor.stop(streamId);
       }
-    `</script>`
-    `</html>`
+    </script>
+    </html>
     
 
 Step 4. Test the publish page
