@@ -27,7 +27,7 @@ Ant Media offers this to Enterprise users for free. To access the free service, 
 After receiving a username and password, run the following command then restart the Ant Media Server.
 
 ```
-echo "proxy.address=username:password@proxy.antmedia.io:80" >> /usr/local/antmedia/conf/red5.properties
+echo "proxy.address=proxy.antmedia.io:80" >> /usr/local/antmedia/conf/red5.properties
 systemctl restart antmedia
 ```
 
