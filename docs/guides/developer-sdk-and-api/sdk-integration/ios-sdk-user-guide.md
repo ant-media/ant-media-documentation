@@ -20,50 +20,50 @@ Additionally, in the consequent updates, we will explore screen sharing on iOS a
 ![](@site/static/img/ios-SDK/xcode.png)
 
 - Choose "App" from the options and click "Next."
-![](@site/static/img/ios-sdk/choose-app.png)
+![](@site/static/img/ios-SDK/choose-app.png)
 
 - Provide a name for your application and click "Next."
-![](@site/static/img/ios-sdk/naming-app.png)
+![](@site/static/img/ios-SDK/naming-app.png)
 
 - Congratulations! You have successfully created your WebRTC iOS application project.
-![](@site/static/img/ios-sdk/success.png)
+![](@site/static/img/ios-SDK/success.png)
 
 ## Step 2: Add WebRTC-iOS-SDK Dependency
 - Right click on your application and select "Add Package" from the context menu.
-![](@site/static/img/ios-sdk/add-package.png)
+![](@site/static/img/ios-SDK/add-package.png)
 
 - In the Package URL box, enter the GitHub repository: https://github.com/ant-media/WebRTC-iOS-SDK
-![](@site/static/img/ios-sdk/add-repo.png)
+![](@site/static/img/ios-SDK/add-repo.png)
 
 - Click "Add Package."
 - On the next screen, click "Add Package" again.
-![](@site/static/img/ios-sdk/ios-package.png)
+![](@site/static/img/ios-SDK/ios-package.png)
 
 - Congratulations! You have successfully added the WebRTC-iOS-SDK dependency.
-![](@site/static/img/ios-sdk/repo-added.png)
+![](@site/static/img/ios-SDK/repo-added.png)
 
 ## Step 3: Publish a WebRTC Live Stream in iOS
 - Open "Main.storyboard" and go to View > Show Library. Search for "UIView" in the library search box.
-![](@site/static/img/ios-sdk/UI-view.png)
+![](@site/static/img/ios-SDK/UI-view.png)
 
 - Drag the "View" onto the Main.storyboard and adjust its size as needed.
-![](@site/static/img/ios-sdk/view-size.png)
+![](@site/static/img/ios-SDK/view-size.png)
 
 - Connect the UIView to the ViewController using the following steps:
     1. Open two editors: one for Main.storyboard and another for ViewController.swift.
     2. Right-click on the UIView in Main.storyboard, drag it to the next editor, and release the right-click. Name your Outlet.
-![](@site/static/img/ios-sdk/view-controller.png)
+![](@site/static/img/ios-SDK/view-controller.png)
 
 - Then it should look like below.
-![](@site/static/img/ios-sdk/view-final.png)
+![](@site/static/img/ios-SDK/view-final.png)
 
 - Add Privacy descriptions to Info.plist:
     1. Right-click on Info.plist and select "Add Row."
     2. Add descriptions for Camera Usage and Microphone Usage.
-![](@site/static/img/ios-sdk/privacy.png)
+![](@site/static/img/ios-SDK/privacy.png)
 
 - Finally, Info.plist looks like below
-![](@site/static/img/ios-sdk/info-list.png)
+![](@site/static/img/ios-SDK/info-list.png)
 
 - Edit the `ViewController.swift` file. Here we just initialize the `AntMediaClient` and set the WebSocket URL as Ant Media’s Test URL(or just use your own Ant Media Server URL) and call the publish with `streamId` parameter.
 `streamId` is unique and it’s recommend to use your random stream id if you use Ant Media’s Test URL.
@@ -84,16 +84,16 @@ class ViewController: UIViewController {
     }
 }
 ```
-![](@site/static/img/ios-sdk/ui-kit.png)
+![](@site/static/img/ios-SDK/ui-kit.png)
 
 - Run your application on your device and grant Camera and Microphone Usage permissions.
-![](@site/static/img/ios-sdk/mobile-permissions.png)
+![](@site/static/img/ios-SDK/mobile-permissions.png)
 
 - Congratulations! You are now publishing your live stream.
-![](@site/static/img/ios-sdk/publish.png)
+![](@site/static/img/ios-SDK/publish.png)
 
 - To play the stream, visit Ant Media's Test WebRTC Player, enter the `streamId` "stream123456" in the box, and click "Start Playing."
-![](@site/static/img/ios-sdk/play.png)
+![](@site/static/img/ios-SDK/play.png)
 
 ## Step 4: Play WebRTC Live Stream in iOS
 - Playing a WebRTC live stream in your iOS application is easier once you've created the project and published the stream.
@@ -115,12 +115,12 @@ class ViewController: UIViewController {
     }
 }
 ```
-![](@site/static/img/ios-sdk/view-play.png)
+![](@site/static/img/ios-SDK/view-play.png)
 
 - Visit the [WebRTC Publish page](https://antmedia.io/webrtc-samples/webrtc-publish-webrtc-play/), enter "stream123456" in the box, and click "Start Publishing" to make the stream available.
 
 - Run your WebRTC iOS application to play the stream.
-![](@site/static/img/ios-sdk/play-ios.png)
+![](@site/static/img/ios-SDK/play-ios.png)
 
 - Congratulations! You have successfully played a WebRTC live stream in iOS.
 
