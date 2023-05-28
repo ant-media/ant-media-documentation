@@ -87,7 +87,7 @@ class ViewController: UIViewController {
 ![](@site/static/img/ios-SDK/ui-kit.png)
 
 - Run your application on your device and grant Camera and Microphone Usage permissions.
-![](@site/static/img/ios-SDK/mobile-permissions.png)
+![](@site/static/img/ios-SDK/mobile-premissions.png)
 
 - Congratulations! You are now publishing your live stream.
 ![](@site/static/img/ios-SDK/publish.png)
