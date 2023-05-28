@@ -5,7 +5,7 @@ keywords: [Using Redis with AMS, Redis Database, Ant Media Server Documentation,
 sidebar_position: 10
 ---
 
-AMS already supports databases like MapDB for standalone server deployments and [MongoDB] (https://antmedia.io/docs/guides/clustering-and-scaling/cluster-installation/#installing-the-mongodb-database)(including [MongoDB Atlas](https://antmedia.io/docs/guides/clustering-and-scaling/scaling-with-mongodb-atlas/)) for both standalone and cluster environments, the recent addition of Redis integration with AMS EE v2.5 presents new opportunities for optimizing streaming workflows. With its unique advantages, Redis offers distinct benefits over MongoDB and MapDB in certain use cases.
+AMS already supports databases like MapDB for standalone server deployments and [MongoDB](https://antmedia.io/docs/guides/clustering-and-scaling/cluster-installation/#installing-the-mongodb-database)(including [MongoDB Atlas](https://antmedia.io/docs/guides/clustering-and-scaling/scaling-with-mongodb-atlas/)) for both standalone and cluster environments, the recent addition of Redis integration with AMS EE v2.5 presents new opportunities for optimizing streaming workflows. With its unique advantages, Redis offers distinct benefits over MongoDB and MapDB in certain use cases.
 
 ## Why Use Redis?
 Redis, a high-performance in-memory database system, brings several advantages to the table when integrated with AMS:
@@ -25,7 +25,7 @@ There are various Redis deployment options:
 1. Self-Managed Deployments:
 You can manually install and configure Redis on local machine or dedicated cloud servers for complete control. Please Refer to the [Redis documentation](https://redis.io/docs/getting-started/) for guidance on self-managed Redis deployments on your preferred OS.
 2. Cloud-Based Deployment:
-We can Utilize managed Redis services provided by cloud platforms for simplified deployment and management. AWS offers [MemoryDB for Redis](https://aws.amazon.com/memorydb/) and [ElasticCache for Redis](https://aws.amazon.com/elasticache/redis/), Microsoft Azure has [Azure Cache for Redis] (https://azure.microsoft.com/en-in/products/cache/), and GCP offers [Google Cloud Memorystore](link: https://cloud.google.com/memorystore).
+We can Utilize managed Redis services provided by cloud platforms for simplified deployment and management. AWS offers [MemoryDB for Redis](https://aws.amazon.com/memorydb/) and [ElasticCache for Redis](https://aws.amazon.com/elasticache/redis/), Microsoft Azure has [Azure Cache for Redis] (https://azure.microsoft.com/en-in/products/cache/), and GCP offers [Google Cloud Memorystore](https://cloud.google.com/memorystore).
 3. Containerized Deployment:
 Deploy Redis using containerization platforms like Docker. This pulls the Redis container image from a registry, configure it, and launches [Redis containers](https://redis.io/download/#redis-downloads).
 
