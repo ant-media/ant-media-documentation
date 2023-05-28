@@ -50,16 +50,16 @@ Additionally, in the consequent updates, we will explore screen sharing on iOS a
 ![](@site/static/img/ios-SDK/view-size.png)
 
 - Connect the UIView to the ViewController using the following steps:
-    1. Open two editors: one for Main.storyboard and another for ViewController.swift.
-    2. Right-click on the UIView in Main.storyboard, drag it to the next editor, and release the right-click. Name your Outlet.
+1. Open two editors: one for Main.storyboard and another for ViewController.swift.
+2. Right-click on the UIView in Main.storyboard, drag it to the next editor, and release the right-click. Name your Outlet.
 ![](@site/static/img/ios-SDK/view-controller.png)
 
 - Then it should look like below.
 ![](@site/static/img/ios-SDK/view-final.png)
 
 - Add Privacy descriptions to Info.plist:
-    1. Right-click on Info.plist and select "Add Row."
-    2. Add descriptions for Camera Usage and Microphone Usage.
+1. Right-click on Info.plist and select "Add Row."
+2. Add descriptions for Camera Usage and Microphone Usage.
 ![](@site/static/img/ios-SDK/privacy.png)
 
 - Finally, Info.plist looks like below
