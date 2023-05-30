@@ -197,16 +197,24 @@ webRTCAdaptor.play(streamId, token);
 To turn off the camera, call the ```turnOffLocalCamera``` method.
 
 ```js
-webRTCAdaptor.turnOffLocalCamera();
+webRTCAdaptor.turnOffLocalCamera(streamId);
 ```
 
-This method takes no parameters.
+```turnOffLocalCamera``` gets one parameter.
+
+*   ```streamId``` (mandatory): Stream id of the stream.
 
 If your camera is turned off, call ```turnOnLocalCamera``` to turn it on.
 
 ```js
-webRTCAdaptor.turnOffLocalCamera();
+webRTCAdaptor.turnOnLocalCamera(streamId);
 ```
+
+
+```turnOnLocalCamera``` gets one parameter.
+
+*   ```streamId``` (mandatory): Stream id of the stream.
+
 
 ## Muting and unmuting the microphone
 
