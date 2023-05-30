@@ -29,10 +29,7 @@ First of all, there is a new callback with ```browser_screen_share_supported```.
 var webRTCAdaptor = new WebRTCAdaptor({
 	websocket_url : websocketURL,
 	mediaConstraints : mediaConstraints,
-	peerconnection_config : pc_config,
-	sdp_constraints : sdpConstraints,
 	localVideoId : "localVideo",
-	debug:true,
 	callback : function(info, obj) {
 		if (info == "initialized") {
 			console.log("initialized");
@@ -139,10 +136,10 @@ webRTCAdaptor.switchDesktopCaptureWithCamera(streamId);
 
 ## Switching back to the camera
 
-To switch back to the camera, just call ```webRTCAdaptor.switchVideoCapture(streamId)```.
+To switch back to the camera, just call ```webRTCAdaptor.switchVideoCameraCapture(streamId, deviceId)```.
 
 ```js
-webRTCAdaptor.switchVideoCapture(streamId);
+webRTCAdaptor.switchVideoCameraCapture(streamId, deviceId);
 ```
 
 ## Share desktop audio with Chrome's screen share with audio option
