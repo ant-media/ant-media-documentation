@@ -17,6 +17,13 @@ This document describes how to install both the Community Edition and the Enterp
 
 ## Download Ant Media Server (AMS)
 
+You can do this in two ways.
+
+* You can automatically install either the Community or Enterprise version by using the new installation script
+* The old method involves uploading the files to the server manually.
+
+
+
 Download and save the latest AMS Community Edition or Enterprise Edition package.
 
 *   Community Edition can be downloaded from Github [Releases](https://github.com/ant-media/Ant-Media-Server/releases) page.
