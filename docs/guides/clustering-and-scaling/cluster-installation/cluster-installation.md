@@ -7,7 +7,9 @@ sidebar_position: 2
 
 # Cluster installation
 
-Ant Media Server can run in cluster mode. This way, a number of AMS nodes can work together to increase the number of viewers and publishers. In other words, you can publish a live stream to one node of AMS in the cluster and you can watch the stream in another node in the cluster.
+Ant Media Server can run in cluster mode. This way, a number of AMS nodes can work together to increase the number of viewers and broadcasters. 
+
+In other words, you can publish a live stream to one node of AMS in the cluster and you can watch the stream in another node in the cluster.
 
 ![](@site/static/img/origin_edge.png)
 
@@ -40,6 +42,13 @@ Connect your instance and download the following script.
 ```shell
 wget https://raw.githubusercontent.com/ant-media/Scripts/master/install_mongodb.sh && chmod +x install_mongodb.sh
 ```
+
+Then run it and the latest version of MongoDB will be installed. If you run it without parameters, authentication will not be enabled.
+
+```shell
+./install_mongodb.sh
+```
+If you run it with the --auto-create parameter, then authentication will be enabled.
 
 Then run it and the latest version of MongoDB will be installed. If you run it without parameters, authentication will not be enabled.
 
