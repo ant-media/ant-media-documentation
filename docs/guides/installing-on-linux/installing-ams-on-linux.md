@@ -15,7 +15,38 @@ This document describes how to install both the Community Edition and the Enterp
 
 **Note:** When manually installing AMS, this procedure can be used for both on-premises and cloud instances.
 
-## Download Ant Media Server (AMS)
+## Download and Install Ant Media Server
+
+You can install Ant Media Server Enterprise or Community Edition on your server using the following two methods.
+
+* Automatic Download and Install Ant Media Server (AMS)
+* Manually Download Ant Media Server (AMS)
+
+### Automatic Download and Install Ant Media Server (AMS)
+
+You can easily perform these actions with just a single command using the latest version installation script.
+
+#### Download the installation script
+```
+wget -O install_ant-media-server.sh https://raw.githubusercontent.com/ant-media/Scripts/master/install_ant-media-server.sh && sudo chmod 755 install_ant-media-server.sh
+```
+#### Install the Enterprise Edition
+
+Add your license key as a parameter, which you received via email, to the installation file using the -l parameter, and then execute it. If you have a valid license key, the installation process will begin.
+
+```
+./install_ant-media-server.sh -l 'your-license-key'
+```
+
+#### Install the Community Editon
+
+You can simply run the script without any parameters to automatically download and install the latest version of the Community Edition.
+
+```
+./install_ant-media-server.sh
+```
+
+### Manually Download Ant Media Server (AMS)
 
 Download and save the latest AMS Community Edition or Enterprise Edition package.
 
@@ -43,19 +74,19 @@ After you've downloaded or copied the file to the AMS instance, open a terminal 
 cd path/to/where/ant-media-server....zip
 ```
 
-## Download the installation script
+#### Download the installation script
 
 Download the ```install_ant-media-server.sh``` shell script.
 
     sudo wget https://raw.githubusercontent.com/ant-media/Scripts/master/install_ant-media-server.sh && sudo chmod 755 install_ant-media-server.sh
 
-## Run the installation script
+#### Run the installation script
 
     sudo ./install_ant-media-server.sh -i <ANT_MEDIA_SERVER_ZIP_FILE>
 
 For more command line options, type ```sudo ./install_ant-media-server.sh -h```
 
-## Check if the service is running
+#### Check if the service is running
 
 You can check the service by using service command.
 
