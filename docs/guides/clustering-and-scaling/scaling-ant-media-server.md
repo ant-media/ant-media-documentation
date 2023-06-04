@@ -10,7 +10,7 @@ sidebar_position: 1
 Cluster installation
 --------------------
 
-AMS can run in cluster mode. This way, a number of AMS nodes can work together to increase the number of viewers and publishers. In other words, you can publish a live stream to one node of AMS in the cluster and you can watch the stream in another ...
+Ant Media Server can run in cluster mode. This way, a number of AMS nodes can work together to increase the number of viewers and publishers. In other words, you can publish a live stream to one node of AMS in the cluster and you can watch the stream in another ...
 
 [Read more](/guides/clustering-and-scaling/cluster-installation/)
 
@@ -38,7 +38,7 @@ Scaling with Alibaba
 
 In this document, we’re going to explain how to setup a Scalable Ant Media Server Cluster in Alibaba. Here below is the diagram about how Ant Media Server is architecturized within Alibaba. Lets start with brief definitions MongoDB Databas...
 
-[Read more](/guides/clustering-and-scaling/scaling-with-alibaba/)
+[Read more](/guides/clustering-and-scaling/alibaba/scaling-with-alibaba/)
 
 
 
@@ -56,7 +56,7 @@ Installing with Nginx load balancer
 
 What is Nginx ? Nginx started out as an open source web server designed for maximum performance and stability. Today, however, it also serves as a reverse proxy, HTTP load balancer, and email proxy for IMAP, POP3, and SMTP. Prerequisites One ser...
 
-[Read more](/guides/clustering-and-scaling/load-balancing/nginx-load-balancer/)
+[Read more](/guides/clustering-and-scaling/cluster-installation/load-balancing/nginx-load-balancer/)
 
 
 
@@ -65,7 +65,7 @@ Load Balancer with HAProxy SSL Termination
 
 Load Balancer is the sister of cluster so If you make Ant Media Server instances run in Cluster Mode. Then a load balancer will be required to balance the load. In this documentation, you will learn how to install HAProxy Load Balancer with SSL term...
 
-[Read more](/guides/clustering-and-scaling/load-balancing/load-balancer-with-haproxy-ssl-termination/)
+[Read more](/guides/clustering-and-scaling/cluster-installation/load-balancing/load-balancer-with-haproxy-ssl-termination/)
 
 
 
@@ -101,4 +101,4 @@ Installing Ant Media Server on AWS EKS
 
 In this post, we are going to guide you on how to run Ant Media Server on AWS EKS step by step. 1. After you are logged in to AWS, search the EKS keyword, find the Elastic Kubernetes Service, and click the Add Cluster >` Create button. 2....
 
-[Read more](/guides/clustering-and-scaling/aws/installing-ams-on-aws-eks/)
+[Read more](/guides/clustering-and-scaling/kubernetes/installing-ams-on-aws-eks/)

@@ -1,10 +1,8 @@
 ---
-title: Scaling with Mongodb Atlas
+title: Mongodb Atlas
 description: Using MongoDB Atlas with AMS
 keywords: [Using MongoDB Atlas with AMS, MongoDB Atlas, Ant Media Server Documentation, Ant Media Server Tutorials]
 ---
-
-# Using MongoDB Atlas with AMS
 
 MongoDB Atlas is a multi-cloud database service. It simplifies deploying and managing the databases while offering the versatility to build resilient and performant global applications on the cloud providers of your choice like AWS, Azure, etc.
 
