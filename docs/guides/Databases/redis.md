@@ -1,5 +1,5 @@
 ---
-title: Scaling with Redis Database
+title: Redis
 description: Using Redis Database with AMS
 keywords: [Using Redis with AMS, Redis Database, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 10
