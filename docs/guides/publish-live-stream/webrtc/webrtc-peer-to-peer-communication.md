@@ -133,11 +133,11 @@ JavaScript SDK provides several auxiliary methods to provide enough flexibility 
 
 ```turnOffLocalCamera```: Turn off the local camera in WebRTC peer to peer communication.
 
-    webRTCAdaptor.turnOffLocalCamera();
+    webRTCAdaptor.turnOffLocalCamera(streamId);
 
 ```turnOnLocalCamera```: Turn on the local camera in WebRTC peer to peer communication.
 
-    webRTCAdaptor.turnOnLocalCamera();
+    webRTCAdaptor.turnOnLocalCamera(streamId);
 
 ```muteLocalMic```: Mutes the local microphone in WebRTC peer to peer communication.
 
