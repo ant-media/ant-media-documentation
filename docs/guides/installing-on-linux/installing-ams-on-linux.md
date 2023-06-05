@@ -77,13 +77,13 @@ cd path/to/where/ant-media-server....zip
 #### Download the installation script
 
 Download the ```install_ant-media-server.sh``` shell script.
-
+```
     sudo wget https://raw.githubusercontent.com/ant-media/Scripts/master/install_ant-media-server.sh && sudo chmod 755 install_ant-media-server.sh
-
+```
 #### Run the installation script
-
+```
     sudo ./install_ant-media-server.sh -i <ANT_MEDIA_SERVER_ZIP_FILE>
-
+```
 For more command line options, type ```sudo ./install_ant-media-server.sh -h```
 
 #### Check if the service is running
