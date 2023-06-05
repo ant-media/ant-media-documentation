@@ -216,10 +216,3 @@ You can login to web panel via the https://your-domain-name/. After these steps,
 -   For playing please visit the https://your-domain-name:5443/WebRTCAppEE/ and click “Start Playing” button. The default stream will be played
     
 -   As you figure out, we connect default https port(443) for publishing and 5443 port for playing. Because we configure load balancer to forward default port(443) to origin group and 5443 to edge group.
-    
-
-Markdown Shortcut
-
-1238 words
-
-Published 28 Mar 2022
