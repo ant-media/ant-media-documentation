@@ -35,7 +35,7 @@ wget -O install_ant-media-server.sh https://raw.githubusercontent.com/ant-media/
 Add your license key as a parameter, which you received via email, to the installation file using the -l parameter, and then execute it. If you have a valid license key, the installation process will begin.
 
 ```
-./install_ant-media-server.sh -l 'your-license-key'
+sudo ./install_ant-media-server.sh -l 'your-license-key'
 ```
 
 #### Install the Community Editon
@@ -43,7 +43,7 @@ Add your license key as a parameter, which you received via email, to the instal
 You can simply run the script without any parameters to automatically download and install the latest version of the Community Edition.
 
 ```
-./install_ant-media-server.sh
+sudo ./install_ant-media-server.sh
 ```
 
 ### Manually Download Ant Media Server (AMS)
