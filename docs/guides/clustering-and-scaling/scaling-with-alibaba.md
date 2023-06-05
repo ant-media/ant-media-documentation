@@ -89,8 +89,8 @@ ssh -i {YOUR_KEY_FILE} root@{INSTANCE_PUBLIC_IP}
 -   After you get connected, run the following commands in order to install MongoDB to your instance
 
 ```
-wget -qO - https://www.mongodb.org/static/pgp/server-4.2.asc | sudo apt-key add -
-echo "deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu `lsb_release -cs`/mongodb-org/4.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.2.list
+curl -fsSL https://pgp.mongodb.com/server-6.0.asc | sudo gpg -o /usr/share/keyrings/mongodb-server-6.0.gpg --dearmor
+echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-6.0.gpg ] https://repo.mongodb.org/apt/ubuntu `lsb_release -cs`/mongodb-org/6.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list
 sudo apt-get update
 sudo apt-get install -y mongodb-org
 ```
@@ -216,10 +216,3 @@ You can login to web panel via the https://your-domain-name/. After these steps,
 -   For playing please visit the https://your-domain-name:5443/WebRTCAppEE/ and click “Start Playing” button. The default stream will be played
     
 -   As you figure out, we connect default https port(443) for publishing and 5443 port for playing. Because we configure load balancer to forward default port(443) to origin group and 5443 to edge group.
-    
-
-Markdown Shortcut
-
-1238 words
-
-Published 28 Mar 2022
