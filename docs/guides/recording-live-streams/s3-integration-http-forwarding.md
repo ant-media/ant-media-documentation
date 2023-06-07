@@ -161,6 +161,40 @@ Usage Example:
       
     If it's configured properly, your incoming MP4 requests such as  
     https://{SERVER\_DOMAIN}:5443/{APPLICATION\_NAME}/streams/vod.mp4 will be forwarded to https://{YOUR\_DOMAIN}/streams/vod.mp4
+    
+### HLS HTTP Endpoint
+
+HLS HTTP Endpoint is implemented to push the HLS content(m3u8 and ts files) to any HTTP endpoint such as CDN or your own HTTP endpoint. You can enable it with following steps:
+
+1. Open your applications configuration file with your favorite editor. If your app is WebRTCAppEE, then it will be (/usr/local/antmedia/webapps/WebRTCAppEE/WEB-INF/red5-web.properties)
+
+2. Add the following property to the file.
+
+```bash
+settings.hlsHttpEndpoint=https://example.com/hls-stream/
+```
+Please change the HTTP URL with your own. 
+
+3. Save the file and restart the server with the following command in your terminal
+
+sudo service antmedia restart
+After that just push a stream to Ant Media Server with stream123, AMS will push the files to the following endpoints with PUT method
+
+```bash
+https://example.com/hls-stream/stream123.m3u8
+https://example.com/hls-stream/stream123_360p800kbps0001.ts
+https://example.com/hls-stream/stream123_360p800kbps0002.ts
+https://example.com/hls-stream/stream123_360p800kbps0003.ts
+https://example.com/hls-stream/stream123.m3u8
+...
+```
+
+When you use S3 integration your record will be uploaded as soon as the livestream finished. If you wanted to upload your HLS content(m3u8 and ts files) periodically to the S3-compatible systems(AWS, OVH, Digital Ocean etc.) you can use HLS Upload servlet. To be able to use HLS Upload servlet, you can follow HLS HTTP Endpoint instructions with following property:
+
+```bash
+settings.hlsHttpEndpoint=https://{SERVER\_DOMAIN}:5443/{APPLICATION\_NAME}/hls-upload
+```
+
 
 ### How to play AWS S3 VOD files with Embedded Web Player?
 
