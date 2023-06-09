@@ -20,7 +20,7 @@ Creating Users roles in Ant Media Server
 
 Just need to navigate ```Settings``` text on the left menu. After that click ```Users``` section and click ```New User``` button. Just fill the blanks according to your use case.
 
-![multi-tenancy-create-user](https://antmedia.io/wp-content/uploads/2022/02/multi-tenancy-create-user.png)
+![](@site/static/img/get-started/user-management/user-management.png)
 
 After login with your ```new User```, you will see likely as below:
 
