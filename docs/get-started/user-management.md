@@ -29,8 +29,11 @@ After login with your ```new User```, you will see likely as below:
 How to use Multi-Tenancy with REST API?
 ---------------------------------------
 
-Please take a look at the answer here to learn  
-[how to access web panel REST methods programmatically](https://stackoverflow.com/questions/64444673/ant-media-dashboard-settings-through-rest-api/64458222#64458222)
+Using below Rest API methods, you can manage user's access on the Ant Media Server.
+
+**Note**: ```scope``` parameter can be ```system``` or specific application name such as ```LiveApp```. If you use ```LiveApp``` user scope is will only ```LiveApp```. ```system``` can reach everywhere in application scopes.
+
+```userType``` parameter can be ```ADMIN```, ```USER``` or ```READ-ONLY```.
 
 ## Create User
 
@@ -44,7 +47,7 @@ Web panel has the following REST method to create users for applications
 
 It means that you can call the following method to create a user with curl.
 
-    curl -X POST -H "Content-Type: application/json" -d '{"email": "test", "password": "testtest", "scope": "system", "userType": "ADMIN"}'  "https://{YOUR_SERVER_ADDRESS}:5443/rest/v2/users"
+    curl -X POST -H "Content-Type: application/json" -d '{"firstName": "Ant", "lastName": "Media", "email": "abc@antmedia.io", "password": "testtest", "scope": "system", "userType": "ADMIN"}'  "https://{YOUR_SERVER_ADDRESS}:5443/rest/v2/users"
     
 
 ## Edit User
@@ -59,12 +62,7 @@ Web panel has the following REST method to edit user for applications
 
 It means that you can call the following method to edit a user with curl.
 
-    curl -X PUT -H "Content-Type: application/json" -d '{"email": "test", "password": "testtest", "scope": "system", "userType": "USER"}'  "https://{YOUR_SERVER_ADDRESS}:5443/rest/v2/users"
-    
-
-**Note**: ```scope``` parameter can be ```system``` or specific application name such as ```LiveApp```. If you use ```LiveApp``` user scope is will only ```LiveApp```. ```system``` can reach everywhere in application scopes.
-
-```userType``` parameter can be ```ADMIN```, ```USER``` or ```READ-ONLY```.
+    curl -X PUT -H "Content-Type: application/json" -d '{"firstName": "Ant", "lastName": "Media", "email": "test", "password": "testtest", "scope": "system", "userType": "USER"}'  "https://{YOUR_SERVER_ADDRESS}:5443/rest/v2/users"
 
 ## Remove User
 
