@@ -220,74 +220,6 @@ wss://SERVER_NAME:5443/WebRTCAppEE/websocket
 }
 ```
 
-## Peer to Peer WebRTC Stream
-
-1. Peers connects to Ant Media Server through WebSocket.
-```
-wss://SERVER_NAME:5443/WebRTCAppEE/websocket
-```
-    
-2. Client sends join JSON command to the server with stream name parameter. If only want to play, mode can be set to play, if user wants to publish and play at the same time, both can be set. Only ```command``` and ```streamId``` is mandatory. Mode and multiPeer is only for embedded SDK and should not be used unless you are using embedded SDK. As default, ```mode``` is set to ```both``` and multiPeer is ```false```.
-```json
-{
-  command : "join",
-  streamId : "stream1",
-  multiPeer: boolean,
-  mode: "play or both"
-}
-```    
-
-If there is only one peer in the stream1, server waits for the other peer to join the room.    
-
-3. When second peer joins the stream, server sends start JSON command to the first peer
-```json 
-{
-  command : "start",
-  streamId : "stream1",
-}
-```    
-
-4. First peer create offer sdp and send to the server with takeConfiguration command,
-```json 
-{
-  command : "takeConfiguration",
-  streamId : "stream1",
-  type : "offer",  
-  sdp : "${SDP_PARAMETER}"
-}
-```   
-Server relays the offer sdp to the second peer
-
-5. Second peer creates answer sdp and sends to the server with takeConfiguration command
-```json     
-{
-  command : "takeConfiguration",
-  streamId : "stream1",
-  type : "answer",  
-  sdp : "${SDP_PARAMETER}"
-}
-```
-Server relays the answer sdp to the first peer
-
-6. Each peers get ice candidates several times and sends to each other with takeCandidate command through server
-```json 
-{
-  command : "takeCandidate",
-  streamId : "stream1",
-  label : "${CANDIDATE.SDP_MLINE_INDEX}",
-  id : "${CANDIDATE.SDP_MID}",
-  candidate : "${CANDIDATE.CANDIDATE}"
-}
-```       
-    
-7. Clients sends leave JSON command to leave the room
-```json     
-{
-  command : "leave",
-  streamId: "stream1"
-}
-```    
-
 ## Conference WebRTC Stream
 
 1. Peers connects to Ant Media Server through WebSocket.   
@@ -402,6 +334,107 @@ wss://SERVER_NAME:5443/WebRTCAppEE/websocket
 When a new track, stream, or subTrack is dynamically added to the room during runtime, the `onTrack(event, streamId)` function is triggered. This function notifies the application that a new track is available, allowing the application to handle and play the newly added track as needed.
 
 - When a new `streamId` is added to or removed from the room, the server and client initiate a renegotiation process. During this process, the server sends a new Session Description Protocol (SDP) to the client, suggesting a change in the configuration. This change prompts the addition or removal of a new track to or from the room in real-time.
+
+## Peer to Peer WebRTC Stream
+
+1. Peers connects to Ant Media Server through WebSocket.
+```
+wss://SERVER_NAME:5443/WebRTCAppEE/websocket
+```
+    
+2. Client sends join JSON command to the server with `streamId` parameter. If only want to `play`, `mode` can be set to `play`, if user wants to publish and play at the same time, `both` can be set. As default, `mode` is set to `both`. Only `command` and `streamId` are mandatory.
+
+```json
+{
+  command : "join",
+  streamId : "stream1",
+  mode: "play or both"
+}
+```
+
+3. Server notifies with `joined`.
+
+```json
+{
+  command : "notification",
+  definition : "joined"
+  streamId : "stream1",
+}
+```
+
+4. If there is only one peer in the stream1, server waits for the other peer to join the room.    
+
+5. When second peer joins the stream, server sends `start` JSON command to the first peer.
+
+```json 
+{
+  command : "start",
+  streamId : "stream1",
+}
+```
+
+6. First peer create offer sdp and send to the server with `takeConfiguration` command.
+
+```json 
+{
+  command : "takeConfiguration",
+  streamId : "stream1",
+  type : "offer",  
+  sdp : "${SDP_PARAMETER}"
+}
+```   
+- Server relays the offer sdp to the second peer
+
+7. Second peer creates answer sdp and sends to the server with `takeConfiguration` command.
+
+```json     
+{
+  command : "takeConfiguration",
+  streamId : "stream1",
+  type : "answer",  
+  sdp : "${SDP_PARAMETER}"
+}
+```
+- Server relays the answer sdp to the first peer
+
+8. Each peers get ice candidates several times and sends to each other with takeCandidate command through server.
+
+```json 
+{
+  command : "takeCandidate",
+  streamId : "stream1",
+  label : "${CANDIDATE.SDP_MLINE_INDEX}",
+  id : "${CANDIDATE.SDP_MID}",
+  candidate : "${CANDIDATE.CANDIDATE}"
+}
+```
+
+9. Clients sends leave JSON command to leave the room.
+
+```json     
+{
+  command : "leave",
+  streamId: "stream1"
+}
+```
+
+10. Server notifies with `leaved`
+
+```json
+{
+  command : "notification",
+  definition : "leaved",
+}
+```
+
+11. When second peer stops the stream or stream is ended, server sends `stop` JSON command to the first peer.
+
+```json
+{
+  command : "stop",
+  streamId : "stream1",
+}
+```
 
 ## WebSocket Error Callbacks
 
