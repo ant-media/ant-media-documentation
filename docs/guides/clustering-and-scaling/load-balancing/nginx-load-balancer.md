@@ -19,7 +19,63 @@ Nginx started out as an open source web server designed for maximum performance 
 
 >` This document compatible all Debian based os (Debian, Ubuntu, etc.)
 
+You can do this setup in two ways.
+
+1. Using installation script
+2. Step-by-step installation
+
+# 1. Using installing script
+
 ### **Installation Steps**
+
+With this script, you can easily set up and configure an Nginx Load Balancer with just a single command by providing the Edge/Origin IP addresses.
+
+You can the followings with this script.
+
+- Install Nginx
+- Set up SSL with Let's Encrypt
+- Configure Nginx for Ant Media Server
+
+```
+wget https://raw.githubusercontent.com/ant-media/Scripts/master/nginx/install_and_configure_nginx.sh && chmod +x install_and_configure_nginx.sh
+```
+Run the script without parameters to see usage.
+```
+./install_and_configure_nginx.sh
+```
+
+```
+Options:
+  -o origin_server_ips       Set origin server IP array (e.g., -o "10.0.1.1,10.0.1.2,10.0.1.3")
+  -e edge_server_ips         Set edge server IP array (e.g., -e "10.0.0.1,10.0.0.2,10.0.0.3")
+  -d domain_name             Set domain name (e.g., -d example.com)
+  -m email_address           Set email address for Let's Encrypt notifications (optional)
+  -s                         Enable SSL certificate installation. If domain name and email_address is defined, it becomes enabled
+  -c                         Create Nginx configuration only, without installing Nginx or SSL
+
+Usage Examples:
+
+1. Create Nginx configuration only:
+   install_and_configure_nginx.sh -o "10.0.1.1,10.0.1.2,10.0.1.3" -e "10.0.0.1,10.0.0.2,10.0.0.3" -d example.com -c
+
+2. Create Nginx configuration only with making SSL enabled in the Nginx configuration:
+   install_and_configure_nginx.sh -o "10.0.1.1,10.0.1.2,10.0.1.3" -e "10.0.0.1,10.0.0.2,10.0.0.3" -d example.com -c -s
+
+3. Install Nginx and generate Nginx configuration without installing SSL and without making SSL enabled in the Nginx configuration:
+   install_and_configure_nginx.sh -o "10.0.1.1,10.0.1.2,10.0.1.3" -e "10.0.0.1,10.0.0.2,10.0.0.3" -d example.com
+
+4. Install Nginx, generate Nginx configuration, and install SSL certificate:
+   install_and_configure_nginx.sh -o "10.0.1.1,10.0.1.2,10.0.1.3" -e "10.0.0.1,10.0.0.2,10.0.0.3" -d example.com -m user@example.com
+```
+**Example:**
+
+When you run the script as shown below, it will perform the following tasks: Nginx installation, SSL installation with Let's Encrypt, and configuration of Origin/Edge.
+
+```
+./install_and_configure_nginx.sh -o "192.168.1.201" -e "192.168.1.202,192.168.1.203" -d example.com
+```
+
+# 2. Step-by-Step Installation:
 
 1.  **[Install Nginx](#nginx-installation)**
 2.  **[Install LetsEncrypt](#encrypt-for-nginx)**
@@ -276,3 +332,6 @@ Enable and restart nginx service
     systemctl enable nginx
 
     systemctl restart nginx
+
+
+
