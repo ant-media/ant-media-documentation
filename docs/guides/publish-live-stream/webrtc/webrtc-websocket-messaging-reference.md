@@ -220,6 +220,121 @@ wss://SERVER_NAME:5443/WebRTCAppEE/websocket
 }
 ```
 
+## Conference WebRTC Stream
+
+1. Peers connects to Ant Media Server through WebSocket.   
+```
+wss://SERVER_NAME:5443/WebRTCAppEE/websocket
+```
+
+2. Client sends `joinRoom` JSON command to the server with room name parameter.
+
+```json
+{
+  command : "joinRoom",
+  room : "room1",
+  streamId : "stream_id_you_want_to_use",
+  mode : "multitrack"
+}
+```
+- `roomName` is the `roomId` and it acts as `mainTrack`
+- `streamId` represents the desired `streamId` that the client wishes to use to publish his stream to the room and it is an optional field. If it is not sent, server returns with a random `streamId` in the next message.
+- `mode` should be `multitrack`
+
+3. Server notifies the client with available streams in the room
+
+```json
+{
+  command : "notification",
+  definition : "joinedTheRoom",
+  room : "room1",
+  streamId : "unique_stream_id_returned_by_the_server"
+  streams: [ stream_id_1, stream_id_2, ...]
+}
+```
+- `streamId` returned by the server is the stream id client uses to publish stream to the room.
+- `streams` is the json array which client can play via WebRTC. Client can play each stream by play method above. This `streams` array can be empty if there is no stream in the room.
+
+4. Client publish the stream with `publish` command as we discussed in publish section above and these will be same.
+
+```json
+{
+  command : "publish",
+  streamId : "streamId",
+  streamName : "streamName",
+  mainTrack : "room1",
+  metaData : "metaData",
+  subscriberCode : "subscriberCode",
+  subscriberId : "subscriberId",
+  video : "true",
+  audio : "true",
+}
+```
+- `mainTrack` and `roomId` are being used interchangeably for multitrack conference. In near future, we'll change these to broadcasts and subTracks for better understanding and clarity.
+
+5. Client sends the `play` command to the server with `streamId` as the `roomId`
+
+```json
+{
+  command : "play",
+  room : "room1",
+  streamId : "room1",
+  token : "token",
+  subscriberCode : "subscriberCode",
+  subscriberId : "subscriberId",
+  trackList : [enabledtracksarray],
+  viewerInfo : "viwerInfo",
+}
+```
+- We only play the `roomId` as this `mainTrack` has all the `subTracks` in the room and therefore it is not required to play each `streamId` separately.
+    
+6. Web app should pull the server periodically for the room info as follows
+
+```json
+{
+  command : "getRoomInfo",
+  room : "room1",
+  streamId: "unique_stream_id_returned_by_the_server",
+}
+```
+
+7. Server returns the active streams in the room as follows. Application should synchronize the players in their side.
+
+```json
+{
+  command: "roomInformation",
+  room: "room1",
+  streams: [
+    "stream1_in_the_room",
+    "stream2_in_the_room",
+    ...
+  ]
+}
+```
+
+8. When a client wants to leave from the room they send `leaveFromRoom` command to the server.
+
+```json
+{
+  command : "leaveFromRoom",
+  room: "room1",
+}
+```
+
+9. Server responds back with `leavedFromRoom` message.
+
+```json
+{
+  command : "notification",
+  definition : "leavedFromRoom",
+}
+```
+
+- The JavaScript SDK/SDKs handle the background processing of multitrack streaming for conferences on their own. If you are implementing your own code using WebSocket references, it is likely that you will need to listen for `onTrackEvents` within the `initPeerConnections` function.
+When a new track, stream, or subTrack is dynamically added to the room during runtime, the `onTrack(event, streamId)` function is triggered. This function notifies the application that a new track is available, allowing the application to handle and play the newly added track as needed.
+
+- When a new `streamId` is added to or removed from the room, the server and client initiate a renegotiation process. During this process, the server sends a new Session Description Protocol (SDP) to the client, suggesting a change in the configuration. This change prompts the addition or removal of a new track to or from the room in real-time.
+
 ## Peer to Peer WebRTC Stream
 
 1. Peers connects to Ant Media Server through WebSocket.
@@ -227,27 +342,39 @@ wss://SERVER_NAME:5443/WebRTCAppEE/websocket
 wss://SERVER_NAME:5443/WebRTCAppEE/websocket
 ```
     
-2. Client sends join JSON command to the server with stream name parameter. If only want to play, mode can be set to play, if user wants to publish and play at the same time, both can be set. Only ```command``` and ```streamId``` is mandatory. Mode and multiPeer is only for embedded SDK and should not be used unless you are using embedded SDK. As default, ```mode``` is set to ```both``` and multiPeer is ```false```.
+2. Client sends join JSON command to the server with `streamId` parameter. If only want to `play`, `mode` can be set to `play`, if user wants to publish and play at the same time, `both` can be set. As default, `mode` is set to `both`. Only `command` and `streamId` are mandatory.
+
 ```json
 {
   command : "join",
   streamId : "stream1",
-  multiPeer: boolean,
   mode: "play or both"
 }
-```    
+```
 
-If there is only one peer in the stream1, server waits for the other peer to join the room.    
+3. Server notifies with `joined`.
 
-3. When second peer joins the stream, server sends start JSON command to the first peer
+```json
+{
+  command : "notification",
+  definition : "joined"
+  streamId : "stream1",
+}
+```
+
+4. If there is only one peer in the stream1, server waits for the other peer to join the room.    
+
+5. When second peer joins the stream, server sends `start` JSON command to the first peer.
+
 ```json 
 {
   command : "start",
   streamId : "stream1",
 }
-```    
+```
 
-4. First peer create offer sdp and send to the server with takeConfiguration command,
+6. First peer create offer sdp and send to the server with `takeConfiguration` command.
+
 ```json 
 {
   command : "takeConfiguration",
@@ -256,9 +383,10 @@ If there is only one peer in the stream1, server waits for the other peer to joi
   sdp : "${SDP_PARAMETER}"
 }
 ```   
-Server relays the offer sdp to the second peer
+- Server relays the offer sdp to the second peer
 
-5. Second peer creates answer sdp and sends to the server with takeConfiguration command
+7. Second peer creates answer sdp and sends to the server with `takeConfiguration` command.
+
 ```json     
 {
   command : "takeConfiguration",
@@ -267,9 +395,10 @@ Server relays the offer sdp to the second peer
   sdp : "${SDP_PARAMETER}"
 }
 ```
-Server relays the answer sdp to the first peer
+- Server relays the answer sdp to the first peer
 
-6. Each peers get ice candidates several times and sends to each other with takeCandidate command through server
+8. Each peers get ice candidates several times and sends to each other with takeCandidate command through server.
+
 ```json 
 {
   command : "takeCandidate",
@@ -278,75 +407,34 @@ Server relays the answer sdp to the first peer
   id : "${CANDIDATE.SDP_MID}",
   candidate : "${CANDIDATE.CANDIDATE}"
 }
-```       
-    
-7. Clients sends leave JSON command to leave the room
+```
+
+9. Clients sends leave JSON command to leave the room.
+
 ```json     
 {
   command : "leave",
   streamId: "stream1"
 }
-```    
-
-## Conference WebRTC Stream
-
-Peers connects to Ant Media Server through WebSocket.   
-```
-wss://SERVER_NAME:5443/WebRTCAppEE/websocket
 ```
 
-Client sends join JSON command to the server with room name parameter. `streamId` field is optional in case it should be specified in advance. If it is not sent, server returns with a random `streamId` in the second message.
-
-```json
-{
-  command : "joinRoom",
-  room : "room_id_for_your_conference",
-  streamId : "stream_id_you_want_to_use",
-}
-```
-
-Server notifies the client with available streams in the room
+10. Server notifies with `leaved`
 
 ```json
 {
   command : "notification",
-  definition : "joinedTheRoom",
-  streamId : "unique_stream_id_returned_by_the_server"
-  streams: [ stream_id_1, stream_id_2, ...]
+  definition : "leaved",
 }
 ```
 
-`streamId` returned by the server is the stream id client uses to publish stream to the room. `streams` is the json array which client can play via WebRTC. Client can play each stream by play method above. This streams array can be empty if there is no stream in the room.
-    
-Web app should pull the server periodically for the room info as follows:
+11. When second peer stops the stream or stream is ended, server sends `stop` JSON command to the first peer.
+
 ```json
 {
-  command : "getRoomInfo",
-  room : "room_id_for_your_conference",
-  streamId: "unique_stream_id_returned_by_the_server",
+  command : "stop",
+  streamId : "stream1",
 }
 ```
-
-Server returns the active streams in the room as follows. Application should synchronize the players in their side.
-```json
-{
-  command:"roomInformation",
-  room: "room_id_for_your_conference",
-  streams: [
-    "stream1_in_the_room",
-    "stream2_in_the_room",
-    ...
-  ]
-}
-```    
-
-Any user can leave the room by sending below message
-```json
-{
-  command : "leaveFromRoom",
-  room: "roomName"
-}
-```    
 
 ## WebSocket Error Callbacks
 
@@ -360,6 +448,7 @@ Any user can leave the room by sending below message
 ```  
  
 - ```not_allowed_unregistered_streams```: The `not_allowed_unregistered_streams` error message is returned to the user when they try to send a stream with an unregistered `streamId`, and server is configured not to accept undefined streams.
+For conference, if it is not set then the room is created automatically and is removed once it finishes.
 ```json
 {
   command : "error",
@@ -538,7 +627,15 @@ Using a [TURN-server](/docs/guides/advanced-usage/turn-and-stun-installation/cot
   command : "error",
   definition : "viewerLimitReached",
 }
-```    
+```
+
+- ```no_room_specified```: if roomId is not specified for a conference, server returns with "no_room_speficified" error message.
+```json
+{
+  command : "error",
+  definition : "no_room_specified",
+}
+```
 
 ## Miscellaneous WebSocket Methods
 
@@ -663,7 +760,7 @@ trackList: "tracks",
 }
 ```
 
-- ```enableTrack```: Publisher can enable or disable the tracks in the broadcast.
+- ```enableTrack```: Player can enable or disable the tracks in the broadcast.
 ```json    
 {
 command : "enableTrack",
