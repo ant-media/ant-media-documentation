@@ -36,6 +36,8 @@ You can the followings with this script.
 - Set up SSL with Let's Encrypt
 - Configure Nginx for Ant Media Server
 
+> This script is compatible with Ubuntu 20.04.
+
 ```
 wget https://raw.githubusercontent.com/ant-media/Scripts/master/nginx/install_and_configure_nginx.sh && chmod +x install_and_configure_nginx.sh
 ```
