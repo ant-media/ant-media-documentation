@@ -206,7 +206,7 @@ Common Name (e.g. server FQDN or YOUR name) []:domain.com
 Email Address []: contact@antmedia.io
 ```
 
-### 4. Enable SSH
+### 4. Enable SSL
 
 The certificate and private key will be created at the specified location. Run the ```enable_ssl.sh``` script as below.
 
