@@ -48,7 +48,9 @@ Web panel has the following REST method to create users for applications
 
 It means that you can call the following method to create a user with curl.
 
-``` curl -X POST -H "Content-Type: application/json" -d '{"firstName": "Ant", "lastName": "Media", "email": "abc@antmedia.io", "password": "testtest", "scope": "system", "userType": "ADMIN"}'  "https://{YOUR_SERVER_ADDRESS}:5443/rest/v2/users" ```
+```
+curl -X POST -H "Content-Type: application/json" -d '{"firstName": "Ant", "lastName": "Media", "email": "abc@antmedia.io", "password": "testtest", "scope": "system", "userType": "ADMIN"}'  "https://{YOUR_SERVER_ADDRESS}:5443/rest/v2/users"
+```
     
 
 ## Edit User
