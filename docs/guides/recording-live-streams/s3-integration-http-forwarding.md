@@ -142,59 +142,53 @@ HTTP forwarding is implemented to forward incoming HTTP requests to any other pl
 
 Let us tell how HTTP Forwarding works step by step
 
-*   Open the file {AMS-DIR} / webapps / {APPLICATION} / WEB-INF / red5-web.properties with your text editor (vim, nano)
-*   Add comma separated file extensions like this settings.httpforwarding.extension=mp4,png to the file.
-*   Add the base URL with settings.httpforwarding.baseURL=https://{YOUR\_DOMAIN} for forwarding.
+- Open the file {AMS-DIR} / webapps / {APPLICATION} / WEB-INF / red5-web.properties with your text editor (vim, nano)
+- Add comma separated file extensions like this `settings.httpforwarding.extension=mp4,png` to the file.
+- Add the base URL with `settings.httpforwarding.baseURL=https://{YOUR_DOMAIN}` for forwarding.
 
 Usage Example:
 
-*   If you are using AWS S3 bucket, {YOUR\_DOMAIN} will be like:  
-    {s3BucketName}.s3.{awsLocation}.amazonaws.com  
-      
+- If you are using AWS S3 bucket, {YOUR_DOMAIN} will be like:  
+    `{s3BucketName}.s3.{awsLocation}.amazonaws.com`.
     
-*   If you are using Digital Ocean Spaces, {YOUR\_DOMAIN} will be like:  
-    {BucketName}.{BucketLocation}.digitaloceanspaces.com
+- If you are using Digital Ocean Spaces, {YOUR_DOMAIN} will be like:  
+    `{BucketName}.{BucketLocation}.digitaloceanspaces.com`
 
-**Note:** Don't add any leading, trailing white spaces.
+> **Note:** Don't add any leading, trailing white spaces.
 
-*   Save the file and restart the Ant Media Server with sudo service antmedia restart.  
-      
-    If it's configured properly, your incoming MP4 requests such as  
-    https://{SERVER\_DOMAIN}:5443/{APPLICATION\_NAME}/streams/vod.mp4 will be forwarded to https://{YOUR\_DOMAIN}/streams/vod.mp4
+- Save the file and restart the Ant Media Server with ```sudo service antmedia restart```. If it's configured properly, your incoming MP4 requests such as  
+    `https://{SERVER_DOMAIN}:5443/{APPLICATION_NAME}/streams/vod.mp4` will be forwarded to `https://{YOUR_DOMAIN}/streams/vod.mp4`.
     
 ### HLS HTTP Endpoint
 
 HLS HTTP Endpoint is implemented to push the HLS content(m3u8 and ts files) to any HTTP endpoint such as CDN or your own HTTP endpoint. You can enable it with following steps:
 
-1. Open your applications configuration file with your favorite editor. If your app is WebRTCAppEE, then it will be (/usr/local/antmedia/webapps/WebRTCAppEE/WEB-INF/red5-web.properties)
+1. Open your applications configuration file with your favorite editor. If your app is WebRTCAppEE, then it will be `/usr/local/antmedia/webapps/WebRTCAppEE/WEB-INF/red5-web.properties`.
 
-2. Add the following property to the file.
-
-```bash
-settings.hlsHttpEndpoint=https://example.com/hls-stream/
-```
-Please change the HTTP URL with your own. 
+2. Add the following property to the file: `settings.hlsHttpEndpoint=https://example.com/hls-stream/`. Kindly make sure to update the HTTP URL with your own. 
 
 3. Save the file and restart the server with the following command in your terminal
 
+```bash
 sudo service antmedia restart
+```
+
 After that just push a stream to Ant Media Server with stream123, AMS will push the files to the following endpoints with PUT method
 
-```bash
+```
 https://example.com/hls-stream/stream123.m3u8
 https://example.com/hls-stream/stream123_360p800kbps0001.ts
 https://example.com/hls-stream/stream123_360p800kbps0002.ts
 https://example.com/hls-stream/stream123_360p800kbps0003.ts
 https://example.com/hls-stream/stream123.m3u8
-...
+. . .
 ```
 
 When you use S3 integration your record will be uploaded as soon as the livestream finished. If you wanted to upload your HLS content(m3u8 and ts files) periodically to the S3-compatible systems(AWS, OVH, Digital Ocean etc.) you can use HLS Upload servlet. To be able to use HLS Upload servlet, first you should enter S3 credentials to management console. Then, you can follow HLS HTTP Endpoint instructions with following property:
 
-```bash
-settings.hlsHttpEndpoint=https://{SERVER\_DOMAIN}:5443/{APPLICATION\_NAME}/hls-upload
 ```
-
+settings.hlsHttpEndpoint=https://{SERVER_DOMAIN}:5443/{APPLICATION_NAME}/hls-upload
+```
 
 ### How to play AWS S3 VOD files with Embedded Web Player?
 
@@ -202,9 +196,10 @@ If you would like to embedd the VODs stored in AWS S3 bucket, you need to config
 
 CORS parameters of AWS S3 bucket should be modified so that the requests that are coming from another origins to play the VODs can be processed.
 
-Go to your AWS ->` Services ->` S3 ->` Buckets ->` "Your Bucket" ->` Permissions ->` And at the bottom of the page there is Cross-origin resource sharing (CORS). The CORS configuration, written in JSON, defines a way for client web applications that are loaded in one domain to interact with resources in a different domain."  
+Go to your ``` AWS -> Services -> S3 -> Buckets -> "Your Bucket" -> Permissions``` And at the bottom of the page there is Cross-origin resource sharing (CORS). The CORS configuration, written in JSON, defines a way for client web applications that are loaded in one domain to interact with resources in a different domain."  
 Click Edit->` and paste the code provided below:
 
+```json
     [
         {
             "AllowedHeaders": [
@@ -223,6 +218,6 @@ Click Edit->` and paste the code provided below:
             "ExposeHeaders": []
         }
     ]
-    
+```
 
-"\*" on the origin field as is it accepts requests from all origins, it can be used for quick-testing. However, it can be changed for allowing permissions for exact origins, such as "http://www.your-domain.com" since you only want to accept requests that are coming from your end.
+"\*" on the origin field as is it accepts requests from all origins, it can be used for quick-testing. However, it can be changed for allowing permissions for exact origins, such as ```"http://www.your-domain.com"``` since you only want to accept requests that are coming from your end.
