@@ -138,9 +138,13 @@ https://domain-name:5443/LiveApp/player.html
 ## Sample Tools and Applications
 There are many samples that come with the default applications in your Ant Media Server. Using the LiveApp as an example, they can be accessed by navigating to the following URL `http(s)://ant-media-server:port/LiveApp/samples.html`. 
 
+Read more about the sample applications such as conferencing solution, applying virtual backgrounds and using DeepAR while live streaming [here](http://localhost:3000/get-started/sample-tools-and-applications/).
+
+Below is an example of DeepAR.
+
 ![](@site/static/img/quick-start/deepar-sample.png)
 
-Read more about the sample applications such as conferencing solution, applying virtual backgrounds and using DeepAR while live streaming [here](http://localhost:3000/get-started/sample-tools-and-applications/).
+
 
 ## Getting Help
 
