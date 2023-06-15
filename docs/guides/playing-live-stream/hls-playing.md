@@ -9,7 +9,7 @@ sidebar_position: 2
 
 HLS Playing is available in both the Community and Enterprise Editions. Before playing a stream, make sure that stream is broadcasting on the server.
 
-> Quick Link: [Learn How to Publish Live Streams](https://antmedia.io/docs/category/publish-live-stream/)
+> Quick Link: [Learn How to Publish Live Streams](/docs/category/publish-live-stream/)
 
 ## 1. Navigate to the video player  
 
