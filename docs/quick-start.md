@@ -32,7 +32,7 @@ This quick start guide shows you how to set up Ant Media Server (AMS) in just a 
 
 Download the installation script and the Ant Media Server version you want to install to your server. Then run the installation. 
 
-Ensure the correct [ports](http://localhost:3000/guides/installing-on-linux/installing-ams-on-linux/#server-ports) are open.
+Ensure the correct [ports](/guides/installing-on-linux/installing-ams-on-linux/#server-ports) are open.
 
 **Download the installation script**
 
@@ -138,7 +138,7 @@ https://domain-name:5443/LiveApp/player.html
 ## Sample Tools and Applications
 There are many samples that come with the default applications in your Ant Media Server. Using the LiveApp as an example, they can be accessed by navigating to the following URL `http(s)://ant-media-server:port/LiveApp/samples.html`. 
 
-Read more about the sample applications such as conferencing solution, applying virtual backgrounds and using DeepAR while live streaming [here](http://localhost:3000/get-started/sample-tools-and-applications/).
+Read more about the sample applications such as conferencing solution, applying virtual backgrounds and using DeepAR while live streaming [here](/get-started/sample-tools-and-applications/).
 
 Below is an example of DeepAR.
 
@@ -151,4 +151,4 @@ Below is an example of DeepAR.
 
 This quick start lets your try WebRTC ultra-low latency live streaming in Ant Media Server. 
 
-For full installation instructions visit [Installing AMS on Linux](http://localhost:3000/guides/installing-on-linux/installing-ams-on-linux/) and if you have any problems, don't be hesitate to [discuss](https://github.com/orgs/ant-media/discussions).
+For full installation instructions visit [Installing AMS on Linux](/guides/installing-on-linux/installing-ams-on-linux/) and if you have any problems, don't be hesitate to [discuss](https://github.com/orgs/ant-media/discussions).
