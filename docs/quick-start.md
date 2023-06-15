@@ -106,7 +106,7 @@ By now you should have Ant Media Server up and running.
 Access the web panel by navigating to the URL below and create the first account. 
 
 ```js
-https://domain-name:5443
+https://ant-media-server:5443
 ```
 
 
