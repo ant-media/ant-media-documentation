@@ -23,18 +23,18 @@ ffmpeg -re -i {INPUT} -vcodec libx264 -profile:v baseline -g 60 -acodec aac -f m
 
 Once the command is executed, the stream will be available in the "WebRTCAppEE" application with the `streamId` "stream1".
 
-If you encounter a "**Protocol not found**" error, it means FFmpeg needs to be compiled with the [**\--enable-libsrt**](https://srtlab.github.io/srt-cookbook/apps/ffmpeg/) to support the SRT protocol.
+> If you encounter a "**Protocol not found**" error, it means FFmpeg needs to be compiled with the [**--enable-libsrt**](https://srtlab.github.io/srt-cookbook/apps/ffmpeg/) to support the SRT protocol.
 
-**srt://ant.media.server.address:4200?streamid\=WebRTCAppEE/stream1: Protocol not found**
+> **srt://ant.media.server.address:4200?streamid\=WebRTCAppEE/stream1: Protocol not found**
 
-You can verify if FFmpeg has SRT protocol support by running the following command:
+In that case, you can verify if FFmpeg has SRT protocol support or not, just by running the following command:
 ```js
 ffmpeg -protocols
 ```
 
 ## Publishing SRT stream with OBS
 
-If you don’t have command-line experience and prefer a graphical interface, you can use OBS (Open Broadcaster Software) to push an SRT stream to Ant Media Server. If you are not familiar with OBS, you can take a look [at this blog post](https://antmedia.io/how-to-use-obs-with-ant-media-server/). Just enter the SRT URL to the stream window as shown in the image below.
+If you don’t have command-line experience and prefer a graphical interface, you can use OBS (Open Broadcaster Software) to push an SRT stream to Ant Media Server. If you are unfamiliar with OBS, you can look at this blog post [How to use OBS with Ant Media Server](https://antmedia.io/how-to-use-obs-with-ant-media-server/). Just enter the SRT URL to the stream window as shown in the image below.
 
 ![](@site/static/img/Screen-Shot-2022-04-20-at-14.48.30-1024x811.png)
 
@@ -63,4 +63,4 @@ server.srt_port={WRITE_YOUR_PORT_NUMBER}
 
 - After this, restart the server and it will use the newly configured port number for SRT ingest.
 
-Note: SRT support is available for both x86_64 and ARM architectures starting from Ant Media Server version 2.6.0. For versions below 2.6.0 (till v2.5.3), SRT support is available for x86_64 architecture only.
+> Note: SRT support is available for both x86_64 and ARM architectures starting from Ant Media Server version 2.6.0. For versions below 2.6.0 (till v2.5.3), SRT support is available for x86_64 architecture only.
