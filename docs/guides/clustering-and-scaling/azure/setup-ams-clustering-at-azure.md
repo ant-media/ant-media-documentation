@@ -85,15 +85,16 @@ Enter the following values and click "**Next: Advanced**"
 ![](@site/static/img/mongodb-7.png)
 
 Add the following lines to the "**Custom data**" area and click the "**Review + Create**" button to create a MongoDB instance.
-
-    #!/bin/bash
-    curl -fsSL https://pgp.mongodb.com/server-6.0.asc | sudo gpg -o /usr/share/keyrings/mongodb-server-6.0.gpg --dearmor
-    echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-6.0.gpg ] https://repo.mongodb.org/apt/ubuntu `lsb_release -cs`/mongodb-org/6.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list
-    sudo apt-get update
-    sudo apt-get install -y mongodb-org
-    sed -i 's/bindIp:.*/bindIp: 0.0.0.0/g' /etc/mongod.conf
-    systemctl restart mongod
-
+```shell
+#!/bin/bash
+wget https://raw.githubusercontent.com/ant-media/Scripts/master/install_mongodb.sh && chmod +x install_mongodb.sh
+./install_mongodb.sh
+sudo apt-get update
+sudo apt-get install -y mongodb-org
+sed -i 's/bindIp:.*/bindIp: 0.0.0.0/g' /etc/mongod.conf
+systemctl enable mongod
+systemctl restart mongod
+```
 ![](@site/static/img/mongodb-8.png)
 
 The process is completed by clicking on the "**Create**" button.

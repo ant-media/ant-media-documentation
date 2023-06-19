@@ -86,13 +86,15 @@ ssh -i {YOUR_KEY_FILE} root@{INSTANCE_PUBLIC_IP}
 
 ### Install MongoDB to Your Instance
 
--   After you get connected, run the following commands in order to install MongoDB to your instance
+Connect your instance and download the following script.
 
+```shell
+wget https://raw.githubusercontent.com/ant-media/Scripts/master/install_mongodb.sh && chmod +x install_mongodb.sh
 ```
-curl -fsSL https://pgp.mongodb.com/server-6.0.asc | sudo gpg -o /usr/share/keyrings/mongodb-server-6.0.gpg --dearmor
-echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-6.0.gpg ] https://repo.mongodb.org/apt/ubuntu `lsb_release -cs`/mongodb-org/6.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list
-sudo apt-get update
-sudo apt-get install -y mongodb-org
+Run the following commands in order to install MongoDB to your instance.
+
+```shell
+./install_mongodb.sh
 ```
 
 Open /etc/mongod.conf file with an editor like nano and change bind_ip value to 0.0.0.0 to let MongoDB accept connections in all interfaces and save it.
