@@ -39,8 +39,8 @@ The procedure below shows how to start an instance in AWS EC2 service as well. I
 ![](@site/static/img/152640816-06bcfe6e-35ed-4efe-9fda-bacb60826a82(1).png)
 
 * Choose Instance Type like m4.xlarge or m5.xlarge series. There are two points here.
-  * First one is you may optionally choose a bigger instance according to your streaming load.
-  * Second one don’t use any m5a instances because they have ARM architecture.
+* First one is you may optionally choose a bigger instance according to your streaming load.
+* Second one don’t use any m5a instances because they have ARM architecture.
 
 Then click “Review and Launch”.
 
@@ -69,36 +69,39 @@ Then click “Review and Launch”.
 
 * Right now, you should connect to your instance. To Connect your instance, open a terminal and run a command something like below. Please change {YOUR\_KEY\_FILE} and {INSTANCE\_PUBLIC\_IP} with your own credentials. For our case, they are “ant.pem” and “3.108.40.66”.
 
-  ssh -i {YOUR_KEY_FILE} ubuntu@{INSTANCE_PUBLIC_IP}
+```ssh -i {YOUR_KEY_FILE} ubuntu@{INSTANCE_PUBLIC_IP}```
 
 ### Install MongoDB to Your Instance 
 
-Connect your instance and download the following script.
+- Connect your instance and download the following script.
 
 ```shell
 wget https://raw.githubusercontent.com/ant-media/Scripts/master/install_mongodb.sh && chmod +x install_mongodb.sh
 ```
-Run the following commands in order to install MongoDB to your instance.
+- Run the following commands in order to install MongoDB to your instance.
 
 ```shell
 ./install_mongodb.sh
 ```
 
-* Open /etc/mongod.conf file with an editor like nano and change bind\_ip value to 0.0.0.0 to let MongoDB accept connections in all interfaces and save it.
+- Open `/etc/mongod.conf` file with an editor like nano and change `bind_ip` value to `0.0.0.0` to let MongoDB accept connections in all interfaces and save it.
 
-```sudo nano /etc/mongod.conf```
+```shell
+sudo nano /etc/mongod.conf
+```
 
 ![](@site/static/img/mongodb.png)
 
 Press “Ctrl + X” to save the file.
 
 Restart mongod and enable service.
-
+```shell
 sudo systemctl restart mongod
 sudo systemctl enable mongod.service
+```
 MongoDB installation is complete, just save your MongoDB instance’s local address somewhere. We will use it in later.
 
-### **Step 2: Install Scalable Origin Group**
+### Step 2: Install Scalable Origin Group
 
 * Click “Auto Scaling >` Launch Configurations” and Click “Create Launch Configuration”.
 
@@ -115,8 +118,8 @@ MongoDB installation is complete, just save your MongoDB instance’s local addr
 
 * In the coming window as shown in the image below, We need to give name and set User data.
 
-  * Then Click “Advanced Details” title. You will see the “User data” text area. Right now, copy the text below, change the “`{MongoIP}`” field with the MongoDB IP Address in the script and paste it to the “User data”.
-  * After that Click “Skip to review”
+* Then Click “Advanced Details” title. You will see the “User data” text area. Right now, copy the text below, change the “`{MongoIP}`” field with the MongoDB IP Address in the script and paste it to the “User data”.
+* After that Click “Skip to review”
 
   ```
   #!/bin/bash
@@ -130,11 +133,11 @@ The form should be something like below.
 
 * Now you have to create new security group for Auto scaling group in which below ports need to be whitelisted as shown in image.
 
-Important Note:
+**Important Note:**
 
-**UDP: 50000-60000 (WebRTC. In v2.4.3 and higher, the default range is 50000-60000. Prior to 2.4.3, the default value was 5000-65000. Note that, you can** [**change the port range**](https://stackoverflow.com/questions/62127593/how-to-limit-the-webrtc-udp-port-range-in-ant-media-server) **in all releases).**
+> UDP: 50000-60000 (WebRTC. In v2.4.3 and higher, the default range is 50000-60000. Prior to 2.4.3, the default value was 5000-65000. _Note that, you can [change the port range](https://stackoverflow.com/questions/62127593/how-to-limit-the-webrtc-udp-port-range-in-ant-media-server) in all releases)_.
 
-**TCP: 5000 (This port needs to open only in cluster mode for internal network communication).**
+> TCP: 5000 (This port needs to open only in cluster mode for internal network communication).
 
 ![](@site/static/img/Screenshot(44).png)
 
@@ -161,13 +164,13 @@ Important Note:
 
 * Lastly, Review screen will come and click the “Create Auto Scaling group”.
 
-### **Step 3: Install Scalable Edge Group**
+### Step 3: Install Scalable Edge Group
 
 Installing scalable edge group almost same as scalable origin group. Please go to Step 2 again and follow same steps one more time. Just don’t forget to change naming (for instance give group name as Edge Group) and configure scaling policy and instance type according to your needs. If you have any question or problem with this, please let us know through [support@antmedia.io](mailto:support@antmedia.io).
 
-### **Step 4: Install Load Balancer**
+### Step 4: Install Load Balancer
 
-* Click the “Load Balancing >` Load Balancers” on EC2 Service and Click the “Create” button under Application Load Balancer.
+* Click the `Load Balancing > Load Balancers` on EC2 Service and Click the “Create” button under Application Load Balancer.
 
 ![](@site/static/img/152646071-b22ea083-c9d9-43ae-a98c-424f8a566a51.png)
 
@@ -193,7 +196,7 @@ Installing scalable edge group almost same as scalable origin group. Please go t
 
 * For the next versions, you need to configure as follows. After adding these rules, you can reach edge/origin using a single url for example [https://yourdomain.com/WebRTCAppEE/index.html?target=origin](https://yourdomain.com/WebRTCAppEE/index.html?target=origin) to the origin cluster and [https://yourdomain.com/WebRTCAppEE/index.html?target=edge](https://yourdomain.com/WebRTCAppEE/index.html?target=edge) to the edge. You will be able to reach. In other words, we are eliminating the 5443, 443 port separation.
 
-Click ```Load Balancer >` Your LoadBalancer >` HTTPS: 443 >` View/Edit Rules``` and add 2 rules as below.
+Click `Load Balancer > Your LoadBalancer > HTTPS: 443 > View/Edit Rules` and add 2 rules as below.
 
 ![](@site/static/img/aws-rules.png)
 
@@ -203,7 +206,7 @@ Right now Everything is ok. Just let me give a brief information about the diffe
 
 > Quick Link: [How to configure RTMP Load Balancer in AWS ?](/v1/docs/how-to-configure-rtmp-load-balancer-in-aws)
 
-### **Logging in Web Panel**
+### Logging in Web Panel
 
 You can login to web panel via the [https://your-domain-name/](https://your-domain-name/) and login with “JamesBond” and the first instances instance-id in your origin group. If you don’t know the instance-id, you need to change your password.
 
@@ -216,20 +219,24 @@ or any MD5 encrypter page like: [https://www.md5online.org/md5-encrypt.html](htt
 
 Please ssh to your MongoDB instance and write the below commands via terminal
 
+```shell
 $ mongo
+```
 
-> `use serverdb` db.getCollection('User').find()
-> ` db.User.updateOne({"_id": "5e978ef3c9e77c0001228040"}, {$set:{password: "md5Password"}})
->  It gives you an output like this
+>  `use serverdb` db.getCollection('User').find()
+
+>  db.User.updateOne({"_id": "5e978ef3c9e77c0001228040"}, {$set:{password: "md5Password"}})
+
+- It gives you an output like this.
 
 ```{ "_id" : ObjectId("5e978ef3c9e77c0001228040"), "className" : "io.antmedia.rest.model.User", "email" : "JamesBond", "password" : "e4e6ca42342f95978a17c6257593c1e1", "userType" : "ADMIN" }```
 
-### Enable IP Filtering
+#### Enable IP Filtering
 
-Please visit [How to enable IP filter behind a load balancer?](/v1/docs/how-to-enable-ip-filter-for-ant-media-servers-behind-load-balancer-in-aws)
+Please visit: [How to enable IP filter behind a load balancer for Ant Media Server?](/v1/docs/how-to-enable-ip-filter-for-ant-media-servers-behind-load-balancer-in-aws)
 
-### Test Flight
+#### Test Flight
 
-For publishing please visit the ```https://your-domain-name/WebRTCAppEE/``` and click “Start Publishing” button. The default stream id is “stream1” For playing please visit the ```https://your-domain-name:5443/WebRTCAppEE/player.html``` and click “Start Playing” button. The default stream will be played.
+For publishing please visit the `https://your-domain-name/WebRTCAppEE/` and click the `Start Publishing` button. The default stream id is `stream1` For playing please visit the `https://your-domain-name:5443/WebRTCAppEE/player.html` and click the `Start Playing` button. The default stream will be played.
 
 As you figure out, we connect default https port(443) for publishing and 5443 port for playing. Because we configure load balancer to forward default port(443) to origin group and 5443 to edge group.
