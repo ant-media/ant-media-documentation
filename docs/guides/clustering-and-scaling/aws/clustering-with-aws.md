@@ -103,7 +103,7 @@ MongoDB installation is complete, just save your MongoDB instance’s local addr
 
 ### Step 2: Install Scalable Origin Group
 
-* Click “Auto Scaling >` Launch Configurations” and Click “Create Launch Configuration”.
+* Click `Auto Scaling > Launch Configurations` and Click `Create Launch Configuration`.
 
 ![](@site/static/img/152642513-780c642f-a689-4923-a160-dc88ae7a1afb.png)
 
@@ -121,7 +121,7 @@ MongoDB installation is complete, just save your MongoDB instance’s local addr
 * Then Click “Advanced Details” title. You will see the “User data” text area. Right now, copy the text below, change the “`{MongoIP}`” field with the MongoDB IP Address in the script and paste it to the “User data”.
 * After that Click “Skip to review”
 
-  ```
+  ```shell
   #!/bin/bash
   cd /usr/local/antmedia
   ./change_server_mode.sh cluster {MongoIP}
@@ -186,7 +186,7 @@ Installing scalable edge group almost same as scalable origin group. Please go t
 
 ![](@site/static/img/152647166-ae859419-7bc9-49ab-871f-392fc5fc7cf1.png)
 
-* After creating Target Groups, again go to EC2 >` Target Groups >` Edit attributes and change the Load Balancing algorithm for Edge and Origin as below.
+* After creating Target Groups, again go to `EC2 > Target Groups > Edit attributes` and change the Load Balancing algorithm for Edge and Origin as below.
 
 ![](@site/static/img/152652226-86f30378-977e-4b53-8192-21f9c27d8b50.png)
 
@@ -210,26 +210,27 @@ Right now Everything is ok. Just let me give a brief information about the diffe
 
 You can login to web panel via the [https://your-domain-name/](https://your-domain-name/) and login with “JamesBond” and the first instances instance-id in your origin group. If you don’t know the instance-id, you need to change your password.
 
-We are storing passwords with MD5 encryption in the latest version. You can encrypt your password basically as follows.
+In the latest version, we store passwords with MD5 encryption. You can encrypt your password using the following methods:
 
-On the terminal program
+Via Terminal:
 
-echo -n 'new-password' | md5sum
-or any MD5 encrypter page like: [https://www.md5online.org/md5-encrypt.html](https://www.md5online.org/md5-encrypt.html)
+```echo -n 'new-password' | md5sum```
 
-Please ssh to your MongoDB instance and write the below commands via terminal
+Alternatively, you can use an online MD5 encrypter page, such as [https://www.md5online.org/md5-encrypt.html](https://www.md5online.org/md5-encrypt.html)
+
+SSH into your MongoDB instance and execute the following commands in the terminal:
 
 ```shell
 $ mongo
+use serverdb
+db.getCollection('User').find()
+db.User.updateOne({"_id": "[Replace with user ID]"}, {$set:{password: "[Replace with encrypted password]"}})
 ```
 
->  `use serverdb` db.getCollection('User').find()
-
->  db.User.updateOne({"_id": "5e978ef3c9e77c0001228040"}, {$set:{password: "md5Password"}})
-
-- It gives you an output like this.
-
-```{ "_id" : ObjectId("5e978ef3c9e77c0001228040"), "className" : "io.antmedia.rest.model.User", "email" : "JamesBond", "password" : "e4e6ca42342f95978a17c6257593c1e1", "userType" : "ADMIN" }```
+The command will provide an output similar to the following:
+```
+{ "_id" : ObjectId("5e978ef3c9e77c0001228040"), "className" : "io.antmedia.rest.model.User", "email" : "JamesBond", "password" : "e4e6ca42342f95978a17c6257593c1e1", "userType" : "ADMIN" }
+```
 
 #### Enable IP Filtering
 
