@@ -96,6 +96,35 @@ Ant Media Server will hook to your website using a POST request with "applicatio
     *   **action**: "encoderNotOpenedError"
     *   **streamName**: stream name of the broadcast. It can be null.
     *   **category**:  stream category of the broadcast. It can be null.
+*   **encoderNotOpenedError:** Ant Media server calls this hook when the encoder can't be opened. It sends **POST (application/x-www-form-urlencoded)**request to URL with following variables
+    *   **id**:  stream id of the broadcast
+    *   **action**: "encoderNotOpenedError"
+    *   **streamName**: stream name of the broadcast. It can be null.
+    *   **category**:  stream category of the broadcast. It can be null.
+* **playStart:** Ant Media server calls this hook when a viewer starts playing a stream. It sends a **POST (application/x-www-form-urlencoded)** request to the URL with the following variables:
+    * **id**: stream id of the broadcast
+    * **action**: "playStart"
+    * **streamName**: stream name of the broadcast. It can be null.
+    * **category**: stream category of the broadcast. It can be null.
+    * **viewerId**: viewerId of the viewer who started playing the stream. It can be null.
+    * **viewerType**: viewer type of the viewer (hls, dash, webrtc, rtmp) who started playing the stream. It can be null.
+    * **token**: play token of the viewer who started playing the stream. It can be null.
+    * **metaData**: metadata of the broadcast. It can be null.
+* **playStop:** Ant Media server calls this hook when a viewer stops playing a stream. It sends a **POST (application/x-www-form-urlencoded)** request to the URL with the following variables:
+    * **id**: stream id of the broadcast
+    * **action**: "playStop"
+    * **streamName**: stream name of the broadcast. It can be null.
+    * **category**: stream category of the broadcast. It can be null.
+    * **viewerId**: viewerId of the viewer who stopped playing the stream. It can be null.
+    * **viewerType**: viewer type of the viewer (hls, dash, webrtc, rtmp) who stopped playing the stream. It can be null.
+    * **token**: play token of the viewer who stopped playing the stream. It can be null.
+    * **metaData**: metadata of the broadcast. It can be null.
+* **recordStart:** Ant Media server calls this hook when recording starts for a stream. It sends a **POST (application/x-www-form-urlencoded)** request to the URL with the following variables:
+    * **id**: stream id of the broadcast
+    * **action**: "recordStart"
+    * **streamName**: stream name of the broadcast. It can be null.
+    * **category**: stream category of the broadcast. It can be null.
+    * **metaData**: metadata of the broadcast. It can be null.
 
 That's all. As a result, you can now determine the type of the request by using the _action_ parameter within the POST request.
 
