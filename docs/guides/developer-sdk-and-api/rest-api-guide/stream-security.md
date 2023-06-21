@@ -311,6 +311,73 @@ Expire Date format is Unix Timestamp. Check also ->` [https://www.epochconverter
     }
 
 **This feature is available in Ant Media Server 2.3.3+ versions.**
+### JWT Blacklist
+JWT blacklist enables you to efficiently control the viewership of your streaming content on the go, regardless of the protocols used (WebRTC, HLS, and Dash). This feature empowers you to block or unblock viewers while they are actively watching the stream by adding their JWT tokens to the blacklist using REST API, rendering them invalid. By leveraging this capability, you have full authority to manage your streaming audience effortlessly, determining who can access and watch your streams at any given moment. It's important to note that JWT blacklist is not only useful for blocking viewers during playback, but it can also be utilized to block publishers from streaming by adding their tokens to the blacklist.
+#### Enable JWT Blacklist on AppSettings
+JWTs are not typically intended for storage in a database. Therefore, the blacklist feature, which enhances control over JWTs, is initially disabled by default. So we need to enable it first.
+
+Open 
+```
+{ant-media-server-directory}/webapps/{app-name}/WEB-INF/red5-web.properties.xml 
+```
+file and edit 
+```
+settings.jwtBlacklistEnabled=true
+```
+save the changes and exit the file.
+#### Add JWT to Blacklist using REST API
+Add viewers or publishers JWT to the blacklist with a ```POST``` request to this REST API endpoint:
+```
+{appName}/rest/v2/broadcasts/jwt-black-list
+```
+Pass your jwt as body of the ```POST``` request.
+```
+{"jwt":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdHJlYW1JZCI6Inl1bnVzc3RyZWFtIiwidHlwZSI6InBsYXkiLCJleHAiOjk5NTE2MjM5MDIyfQ.VNClRg5qOnpq49Kpia5FlAHAw18Tp_RyDu-CF5iK20M"
+}
+```
+Example curl command to add JWT to blacklist:
+```
+curl --location 'http://localhost:5080/WebRTCAppEE/rest/v2/broadcasts/jwt-black-list' \ --header 'Content-Type: application/json' \ --data'{ "jwt":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdHJlYW1JZCI6Inl1bnVzc3RyZWFtIiwidHlwZSI6InBsYXkiLCJleHAiOjk5NTE2MjM5MDIyfQ.VNClRg5qOnpq49Kpia5FlAHAw18Tp_RyDu-CF5iK20M" }'
+```
+Upon successful completion of this request, the JWT token will be rendered invalid immediately, even if it has not yet expired. Consequently, the playback of any viewer utilizing this token as their play token on HLS or Dash will cease within a few seconds because server wont return next stream chunk.
+
+To halt the playback of a viewer who is watching the stream using WebRTC after adding their JWT token to the blacklist, an additional ```POST``` request to ```/webrtc-viewers/stop``` is necessary. This request ensures the cessation of the user's playback.
+Add JWT as ```playToken``` query parameter to ```/webrtc-viewers/stop```
+
+Example curl command:
+```
+curl --location --request POST 'http://127.0.0.1:5080/WebRTCAppEE/rest/v2/broadcasts/webrtc-viewers/stop?playToken=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdHJlYW1JZCI6Inl1bnVzc3RyZWFtIiwidHlwZSI6InBsYXkiLCJleHAiOjk5NTE2MjM5MDIyfQ.VNClRg5qOnpq49Kpia5FlAHAw18Tp_RyDu-CF5iK20M%22'
+```
+Once this request receives a successful response, the playback of the WebRTC viewer will come to an immediate halt. As their JWT has been blacklisted through the previous HTTP request, even refreshing the page will not allow them to resume their WebRTC playback.
+#### Remove JWT from Blacklist using REST API
+You have the option to remove a JWT token from the blacklist, effectively restoring its validity. This allows viewers to resume their playback and publishers to continue with their streaming activities as before.
+To remove JWT from blacklist send ```DELETE``` request to ```jwt-black-list``` REST API endpoint and pass your JWT on requests body.
+Example curl command:
+```
+curl --location --request DELETE 'http://localhost:5080/WebRTCAppEE/rest/v2/broadcasts/jwt-black-list' \ --header 'Content-Type: application/json' \ --data '{ "jwt":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdHJlYW1JZCI6InRlc3RzdHJlYW0iLCJ0eXBlIjoicGxheSIsImV4cCI6OTUxNjIzOTAyMn0.SRNG_wmH2Y1kkQHwL8Qy63DPeWsPgn5QnLVKzkYAzaE" }'
+```
+#### Clear JWT from Blacklist using REST API
+You can clear the JWT blacklist with a single REST API request and make all JWTs on blacklist valid again.
+Send a ```DELETE``` request to ```jwt-black-list-clear``` REST API endpoint.
+Example curl command:
+```
+curl --location --request DELETE 'http://localhost:5080/WebRTCAppEE/rest/v2/broadcasts/jwt-black-list-clear'
+```
+#### Remove all Expired JWT from Blacklist using REST API
+Occasionally you may want to remove all expired jwts from blacklist to free up disk space since they are not valid any more.
+
+To do that you can send a ```DELETE``` request to ```jwt-black-list-delete-expired``` REST API endpoint.
+Example curl command:
+```
+curl --location --request DELETE 'http://localhost:5080/WebRTCAppEE/rest/v2/broadcasts/jwt-black-list-delete-expired'
+```
+#### Get all JWTs from Blacklist using REST API
+You can retrieve a list of all blacklisted JWTs. To do that send a ```GET``` request to  ```jwt-black-list```
+
+Example curl command:
+```
+curl --location 'http://localhost:5080/WebRTCAppEE/rest/v2/broadcasts/jwt-black-list'
+```
 
 ### 7\. Time based One Time Password
 
