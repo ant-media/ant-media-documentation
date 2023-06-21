@@ -19,8 +19,16 @@ So we use TURN server for this solution.
 
 Ant Media Server does not require TURN server even if there is Symmetric NAT. However, it's required if UDP ports are blocked for any reason or Ant Media Server is used as signaling server in P2P communication.
 
-### Install the TURN server
+## Install the TURN server
 
+By running the script, you can quickly install and configure the TURN server.
+
+```
+https://raw.githubusercontent.com/ant-media/Scripts/master/install_turn-server.sh && chmod +x install_turn-server.sh
+sudo ./install_turn-server.sh
+```
+
+### Manual Installation
 ```console
 apt-get update && apt-get install coturn
 ```
