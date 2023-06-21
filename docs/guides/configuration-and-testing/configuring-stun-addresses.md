@@ -79,6 +79,62 @@ Replace this function with:
     return config
     }
 
+### Configure a custom TURN server in the JavaScript SDK.
+
+    var pc_config =
+    {
+        'iceServers': [
+            {
+                'urls': 'stun:stun1.l.google.com:19302'
+            },
+            {
+                'urls': 'TURN_IP:3478',
+                'username': 'username',
+                'credential': 'passsword'
+            }]
+    }
+
+    var webRTCAdaptor = new WebRTCAdaptor({
+        peerconnection_config: pc_config,
+        // other options
+    })
+
+### Configure a custom TURN server in the Embeded Player.
+
+    sudo nano /usr/local/antmedia/{APP_NAME}/js/videojs-webrtc-plugin.js
+
+Edit the peerconnection_config variable By adding your TURN Server Configuration
+
+    this.peerconnection_config = {
+        'iceServers': [{
+            'urls': 'stun:stun1.l.google.com:19302'
+        },
+        {
+            'urls': 'turn:TURN_IP:3478',
+            'username': 'username',
+            'credential': 'password'
+        }],
+
+        sdpSemantics: 'unified-plan'
+    };
+
+### Configure a custom TURN server in the Flutter SDK.
+
+    List<Map<String, String>> iceServers = [
+    {'url': 'stun:stun.l.google.com:19302'},
+    {
+    'urls': 'turn:TURN_IP:3478',
+    'username': 'username',
+    'credential': 'password'
+    }
+    ];
+
+    AntMediaFlutter.connect(
+        //other options, 
+        widget.iceServers
+    );
+
+
 ### Configuring for Ant Media 2.4.4 and later versions
 
 Ant Media Server v2.4.4 and later versions support adding a TURN server for the serve side. In order to do that, follow the instructions below.
