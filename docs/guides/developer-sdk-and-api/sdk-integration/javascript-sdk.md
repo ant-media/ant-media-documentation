@@ -128,6 +128,6 @@ Above example taken from the [StreamApp repository](https://github.com/ant-media
 
 
 ### Tutorial for Creating Publish and Play Page using JS SDK
-[play page creation using JS SDK](https://github.com/ant-media/ant-media-documentation/blob/master/docs/guides/advanced-usage/webrtc-play-page-creation-tutorial.md) <br>
+[play page creation using JS SDK](https://github.com/ant-media/ant-media-documentation/blob/master/docs/guides/advanced-usage/webrtc-play-page-creation-tutorial.md)
 [publish page creation using JS SDK](https://github.com/ant-media/ant-media-documentation/blob/master/docs/guides/advanced-usage/webrtc-publish-page-creation-tutorial.md)
 
