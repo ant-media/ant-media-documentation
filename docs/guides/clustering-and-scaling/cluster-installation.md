@@ -41,11 +41,12 @@ Connect your instance and download the following script.
 wget https://raw.githubusercontent.com/ant-media/Scripts/master/install_mongodb.sh && chmod +x install_mongodb.sh
 ```
 
-Then run it and the latest version of MongoDB will be installed.
+Then run it and the latest version of MongoDB will be installed. If you run it without parameters, authentication will not be enabled.
 
 ```shell
 ./install_mongodb.sh
 ```
+If you run it with `--auto-create` parameter it will be enabled authentication.
 
 After MongoDB 4.4, if the amount of open files ulimit is below 64000, you may encounter a startup error. For this, add the following lines under `/etc/security/limits.conf`
 
@@ -62,7 +63,9 @@ mongodb hard    nofile         65535
 
 Set ```bind_ip``` value as ```0.0.0.0``` in ```/etc/mongod.conf``` file to let MongoDB accept connections from other nodes.
 
-0.0.0.0 means ```listen on every available network interface```. If you don't have a firewall, you will accept all connection from everywhere to your MongoDB server. We recommend adding security credentials to your MongoDB instance with following commands.
+0.0.0.0 means ```listen on every available network interface```. If you don't have a firewall, you will accept all connections from everywhere to your MongoDB server. We recommend adding security credentials to your MongoDB instance with the following commands.
+
+If you want to enable authentication, you can still automate it using the `mongodb_install.sh ----auto-create` script. It will generate a random username and password or, you can follow the steps below:
 
 First see if Mongodb has started:
 
