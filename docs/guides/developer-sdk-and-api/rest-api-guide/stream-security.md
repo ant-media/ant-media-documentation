@@ -1,6 +1,6 @@
 ---
 title: Stream security 
-description: This guide explains stream security options in Ant Media Server, how you can Enable or Disable or Accept Undefined Streams.
+description: This guide explains stream security options in Ant Media Server, and how you can Enable Disable, or Accept Undefined Streams.
 keywords: [Enable or Disable Undefined Streams, Accept Undefined Streams, One Time Token Control, Stream security, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 2
 ---
@@ -11,27 +11,28 @@ This guide explains stream security options in Ant Media Server. Briefly, Stream
 
 ### **1\. Enable/Disable Accepting Undefined Streams**
 
-This setting shortly is checking if live stream is registered in Ant Media Server.
+This setting shortly is checking if the live stream is registered in Ant Media Server.
 
 For example: If Ant Media Server accepts undefined streams, it accepts any incoming streams. If accepting undefined Streams is disabled, only streams with their stream id in the database are being accepted by Ant Media Server.
 
-You can find in more detail in [here](/guides/configuration-and-testing/ams-application-configuration)
+You can find in more detail [here](/guides/configuration-and-testing/ams-application-configuration)
 
-After modifying the configuration, please add the streamId, stream name in "broadcast" collections of your App.
+After modifying the configuration, please add the streamId, and stream name in "broadcast" collections of your App.
 
-![](@site/static/img/image-1645191373332.png)
+![undefined-streams](https://github.com/ant-media/ant-media-documentation/assets/86982446/f456c3e9-dbae-42af-8a6f-34ee0aa177e8)
+
 
 ### 2\. One Time Token Control
 
 One Time Token Control feature usage is in Dashboard / Application(LiveApp or etc.) / Publish/Play with One-time Tokens section.
 
-![](@site/static/img/image-1645191401746.png)
+![onetime-token](https://github.com/ant-media/ant-media-documentation/assets/86982446/2f118822-f997-4326-a5cc-f367e548bcd8)
 
 By enabling this option, one-time tokens are required for publishing and playing. Publish/Play requests without tokens will not be streamed.
 
 If One-Time Token control is enabled, then all publish and play requests should be sent with a token parameter.
 
-After version 2.2 one time token security option in the Dashboard will be divided into two parts. There will be seperate options for enabling/disabling one time tokens for publishing and for playing. This will allow for example using one time tokens for only players and hash-based tokens (or no security) for publishers or vice-versa.
+After version 2.2 one time token security option in the Dashboard will be divided into two parts. There will be separate options for enabling/disabling one time tokens for publishing and for playing. This will allow for example using one time tokens for only players and hash-based tokens (or no security) for publishers or vice-versa.
 
 **Create a Token in Publish&Play Scenario**
 
@@ -53,7 +54,7 @@ Expire Date format is Unix Timestamp. Check also ->` [https://www.epochconverter
     
     srt://IP_Address:4200?Application_Name/streamid,token=tokenId
 
-Here is OBS settings for the One Time Token.
+Here are the OBS settings for the One Time Token.
 
 ![](@site/static/img/ant-media-server-one-time-token.png)
 
@@ -65,9 +66,7 @@ Here is OBS settings for the One Time Token.
 
 **WebRTC usage:**
 
-**\-Playing usage:** Again the token parameter should be inserted to play WebSocket message. Also please have a look at the principles described in the [WebRTC playing wiki page](/guides/publish-live-stream/webrtc-websocket-messaging-reference#playing-webrtc-stream).
-
-TODO: Please tell or give link how to get token from Ant Media Server -->`
+**\-Playing usage:** Again the token parameter should be inserted to play WebSocket message. Also please have a look at the principles described in the [WebRTC playing page](https://antmedia.io/docs/guides/publish-live-stream/webrtc/webrtc-websocket-messaging-reference/#playing-webrtc-stream).
 
     Secure WebSocket: wss://SERVER_NAME:5443/WebRTCAppEE/websocket
     WebSocket without Secure: ws://SERVER_NAME:5080/WebRTCAppEE/websocket
@@ -78,7 +77,7 @@ TODO: Please tell or give link how to get token from Ant Media Server -->`
     token : "tokenId",
     }
 
-**\-Publishing usage:** Again the token parameter should be inserted to WebSocket message. Also please have a look at the principles described in the [WebRTC publishing wiki page](/guides/publish-live-stream/webrtc-websocket-messaging-reference#publishing-webrtc-stream).
+**\-Publishing usage:** Again the token parameter should be inserted to WebSocket message. Also please have a look at the principles described in the [WebRTC publishing page](https://antmedia.io/docs/guides/publish-live-stream/webrtc/webrtc-websocket-messaging-reference/#publishing-webrtc-stream).
 
     Secure WebSocket: wss://SERVER_NAME:5443/WebRTCAppEE/websocket
     WebSocket without Secure: ws://SERVER_NAME:5080/WebRTCAppEE/websocket
@@ -144,7 +143,7 @@ If you want to customize by yourself CORS Filters in Root, you can access in ```
     	`<url-pattern>`/*`</url-pattern>`
     `</filter-mapping>`
 
->` Quick Learn: [Tomcat CORS Filter](https://tomcat.apache.org/tomcat-8.0-doc/api/index.html?org/apache/catalina/filters/CorsFilter.html)
+> Quick Learn: [Tomcat CORS Filter](https://tomcat.apache.org/tomcat-8.0-doc/api/index.html?org/apache/catalina/filters/CorsFilter.html)
 
 ### 4\. Hash-Based Token
 
@@ -156,7 +155,7 @@ Firstly, settings should be enabled from the settings file of the application in
 
 Set true ```settings.hashControlPublishEnabled``` to enable secret based hash control for publishing operations, and ```settings.hashControlPlayEnabled``` for playing operations.
 
->` Also, do not forget to define a secret key for generating a hash value.
+> Also, do not forget to define a secret key for generating a hash value.
 
 #### Publishing Scenario
 
@@ -218,7 +217,7 @@ You need to generate a hash value using the formula sha256(STREAM\_ID + ROLE + S
     token : "hash",
     }
 
->` Please have a look at the principles described in the [WebRTC WebSocket wiki page](/guides/publish-live-stream/webrtc-websocket-messaging-reference).
+> Please have a look at the principles described in the [WebRTC WebSocket page](https://antmedia.io/docs/guides/publish-live-stream/webrtc/webrtc-websocket-messaging-reference/).
 
 #### Evaluation of the Hash
 
@@ -230,7 +229,7 @@ Once the hash is successfully validated by Ant Media Server, the client is grant
 
 ### 5\. Publisher IP Filter
 
->` Publisher IP Filter feature is available for later versions of the 1.9.0+ version.
+> Publisher IP Filter feature is available for later versions of the 1.9.0+ version.
 
 Publisher IP filter feature allows you to specify the IP addresses allowed for publishing. You can define multiple allowed IPs in CIDR format as comma (,) separated.
 
@@ -294,7 +293,7 @@ Expire Date format is Unix Timestamp. Check also ->` [https://www.epochconverter
 
 #### WebRTC Publish/Play Usage
 
-*   Play: Again the JWT token parameter should be inserted to play WebSocket message. Also please have a look at the principles described in the [WebRTC playing wiki page](/guides/publish-live-stream/webrtc-websocket-messaging-reference#playing-webrtc-stream).
+*   Play: Again the JWT token parameter should be inserted to play WebSocket message. Also please have a look at the principles described in the [WebRTC playing page](https://antmedia.io/docs/guides/publish-live-stream/webrtc/webrtc-websocket-messaging-reference/#playing-webrtc-stream).
 
     {
     command : "play",
@@ -302,7 +301,7 @@ Expire Date format is Unix Timestamp. Check also ->` [https://www.epochconverter
     token : "tokenId",
     }
 
-*   Publish: Again the JWT token parameter should be inserted to publish WebSocket message. Also please have a look at the principles described in the [WebRTC publishing wiki page](/guides/publish-live-stream/webrtc-websocket-messaging-reference#publishing-webrtc-stream).
+*   Publish: Again the JWT token parameter should be inserted to publish WebSocket message. Also please have a look at the principles described in the [WebRTC publishing page](https://antmedia.io/docs/guides/publish-live-stream/webrtc/webrtc-websocket-messaging-reference/#publishing-webrtc-stream).
 
     {
     command : "publish",
