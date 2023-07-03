@@ -123,11 +123,9 @@ const webRTCAdaptor = new WebRTCAdaptor({
 webRTCAdaptor.publish(streamId, token, subscriberId, subscriberCode, streamName);
 ```
 
-
 Above example taken from the [StreamApp repository](https://github.com/ant-media/StreamApp/blob/fb37558823769f3145be7a777343502ffd6793e4/src/main/webapp/samples/publish_webrtc.html#L509).
 
-
 ### Tutorial for Creating Publish and Play Page using JS SDK
-[play page creation using JS SDK](https://antmedia.io/docs/guides/advanced-usage/webrtc-play-page-creation-tutorial/)
-[publish page creation using JS SDK](https://antmedia.io/docs/guides/advanced-usage/webrtc-publish-page-creation-tutorial/)
+- [play page creation using JS SDK](/guides/advanced-usage/webrtc-play-page-creation-tutorial/)
+- [publish page creation using JS SDK](/guides/advanced-usage/webrtc-publish-page-creation-tutorial/)
 
