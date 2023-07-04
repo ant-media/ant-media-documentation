@@ -35,13 +35,16 @@ To run AMS in a cluster please follow these steps.
 
 You can install MongoDB to an instance or even you can make cluster installation for MongoDB. In this documentation, we explain how to install MongoDB to an Ubuntu Linux machine. As the commands are specific to Ubuntu, you can use corresponding Linux commands to deploy to a yum based Linux distribution as well.
 
-Connect your instance and run the following commands. Make sure you download the latest MongoDB edition by modifying the version number below.
+Connect your instance and download the following script.
 
 ```shell
-wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | sudo apt-key add -
-echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/5.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-5.0.list
-sudo apt-get update
-sudo apt-get install -y mongodb-org
+wget https://raw.githubusercontent.com/ant-media/Scripts/master/install_mongodb.sh && chmod +x install_mongodb.sh
+```
+
+Then run it and the latest version of MongoDB will be installed.
+
+```shell
+./install_mongodb.sh
 ```
 
 After MongoDB 4.4, if the amount of open files ulimit is below 64000, you may encounter a startup error. For this, add the following lines under `/etc/security/limits.conf`

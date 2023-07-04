@@ -86,13 +86,15 @@ ssh -i {YOUR_KEY_FILE} root@{INSTANCE_PUBLIC_IP}
 
 ### Install MongoDB to Your Instance
 
--   After you get connected, run the following commands in order to install MongoDB to your instance
+Connect your instance and download the following script.
 
+```shell
+wget https://raw.githubusercontent.com/ant-media/Scripts/master/install_mongodb.sh && chmod +x install_mongodb.sh
 ```
-wget -qO - https://www.mongodb.org/static/pgp/server-4.2.asc | sudo apt-key add -
-echo "deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu `lsb_release -cs`/mongodb-org/4.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.2.list
-sudo apt-get update
-sudo apt-get install -y mongodb-org
+Run the following commands in order to install MongoDB to your instance.
+
+```shell
+./install_mongodb.sh
 ```
 
 Open /etc/mongod.conf file with an editor like nano and change bind_ip value to 0.0.0.0 to let MongoDB accept connections in all interfaces and save it.
@@ -216,10 +218,3 @@ You can login to web panel via the https://your-domain-name/. After these steps,
 -   For playing please visit the https://your-domain-name:5443/WebRTCAppEE/ and click “Start Playing” button. The default stream will be played
     
 -   As you figure out, we connect default https port(443) for publishing and 5443 port for playing. Because we configure load balancer to forward default port(443) to origin group and 5443 to edge group.
-    
-
-Markdown Shortcut
-
-1238 words
-
-Published 28 Mar 2022
