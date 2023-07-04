@@ -3,7 +3,6 @@ title: Scaling Ant Media Server Cluster in Alibaba
 description: Scalable Ant Media Server Cluster in Alibaba
 keywords: [Scalable Ant Media Server Cluster in Alibaba, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 8
-label: "Alibaba"
 ---
 
 In this document, we’re going to explain how to setup a Scalable Ant Media Server Cluster in Alibaba.
