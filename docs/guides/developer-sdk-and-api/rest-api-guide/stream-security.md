@@ -1,6 +1,6 @@
 ---
 title: Stream security 
-description: This guide explains stream security options in Ant Media Server, how you can Enable or Disable or Accept Undefined Streams.
+description: This guide explains stream security options in Ant Media Server, and how you can Enable Disable, or Accept Undefined Streams.
 keywords: [Enable or Disable Undefined Streams, Accept Undefined Streams, One Time Token Control, Stream security, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 2
 ---
@@ -9,29 +9,30 @@ sidebar_position: 2
 
 This guide explains stream security options in Ant Media Server. Briefly, Stream Security options are;
 
-### **1. Enable/Disable Accepting Undefined Streams**
+### **1\. Enable/Disable Accepting Undefined Streams**
 
-This setting shortly is checking if live stream is registered in Ant Media Server.
+This setting shortly is checking if the live stream is registered in Ant Media Server.
 
 For example: If Ant Media Server accepts undefined streams, it accepts any incoming streams. If accepting undefined Streams is disabled, only streams with their stream id in the database are being accepted by Ant Media Server.
 
-You can find in more detail in [here](/guides/configuration-and-testing/ams-application-configuration)
+You can find in more detail [here](/guides/configuration-and-testing/ams-application-configuration)
 
-After modifying the configuration, please add the streamId, stream name in "broadcast" collections of your App.
+After modifying the configuration, please add the streamId, and stream name in "broadcast" collections of your App.
 
-![](@site/static/img/image-1645191373332.png)
+![undefined-streams](https://github.com/ant-media/ant-media-documentation/assets/86982446/f456c3e9-dbae-42af-8a6f-34ee0aa177e8)
 
-### 2. One Time Token Control
+
+### 2\. One Time Token Control
 
 One Time Token Control feature usage is in Dashboard / Application(LiveApp or etc.) / Publish/Play with One-time Tokens section.
 
-![](@site/static/img/image-1645191401746.png)
+![onetime-token](https://github.com/ant-media/ant-media-documentation/assets/86982446/2f118822-f997-4326-a5cc-f367e548bcd8)
 
 By enabling this option, one-time tokens are required for publishing and playing. Publish/Play requests without tokens will not be streamed.
 
 If One-Time Token control is enabled, then all publish and play requests should be sent with a token parameter.
 
-After version 2.2 one time token security option in the Dashboard will be divided into two parts. There will be seperate options for enabling/disabling one time tokens for publishing and for playing. This will allow for example using one time tokens for only players and hash-based tokens (or no security) for publishers or vice-versa.
+After version 2.2 one time token security option in the Dashboard will be divided into two parts. There will be separate options for enabling/disabling one time tokens for publishing and for playing. This will allow for example using one time tokens for only players and hash-based tokens (or no security) for publishers or vice-versa.
 
 **Create a Token in Publish&Play Scenario**
 
@@ -48,10 +49,11 @@ The sample token creation service URL in Play Scenario:
 Expire Date format is Unix Timestamp. Check also ->` [https://www.epochconverter.com/](https://www.epochconverter.com/)
 
 **RTMP & SRT URL usage:**
-```
-rtmp://IP_Address/Application_Name/StreamId?token=tokenId
-srt://IP_Address:4200?Application_Name/streamid,token=tokenId
-```
+
+    rtmp://IP_Address/Application_Name/StreamId?token=tokenId
+    
+    srt://IP_Address:4200?Application_Name/streamid,token=tokenId
+
 Here are the OBS settings for the One Time Token.
 
 ![](@site/static/img/ant-media-server-one-time-token.png)
@@ -64,9 +66,7 @@ Here are the OBS settings for the One Time Token.
 
 **WebRTC usage:**
 
-**\-Playing usage:** Again the token parameter should be inserted to play WebSocket message. Also please have a look at the principles described in the [WebRTC playing documentation page](/guides/publish-live-stream/webrtc-websocket-messaging-reference#playing-webrtc-stream).
-
-TODO: Please tell or give link how to get token from Ant Media Server -->`
+**\-Playing usage:** Again the token parameter should be inserted to play WebSocket message. Also please have a look at the principles described in the [WebRTC playing page](https://antmedia.io/docs/guides/publish-live-stream/webrtc/webrtc-websocket-messaging-reference/#playing-webrtc-stream).
 
     Secure WebSocket: wss://SERVER_NAME:5443/WebRTCAppEE/websocket
     WebSocket without Secure: ws://SERVER_NAME:5080/WebRTCAppEE/websocket
@@ -77,7 +77,7 @@ TODO: Please tell or give link how to get token from Ant Media Server -->`
     token : "tokenId",
     }
 
-**\-Publishing usage:** Again the token parameter should be inserted to WebSocket message. Also please have a look at the principles described in the [WebRTC publishing documentation page](/guides/publish-live-stream/webrtc-websocket-messaging-reference#publishing-webrtc-stream).
+**\-Publishing usage:** Again the token parameter should be inserted to WebSocket message. Also please have a look at the principles described in the [WebRTC publishing page](https://antmedia.io/docs/guides/publish-live-stream/webrtc/webrtc-websocket-messaging-reference/#publishing-webrtc-stream).
 
     Secure WebSocket: wss://SERVER_NAME:5443/WebRTCAppEE/websocket
     WebSocket without Secure: ws://SERVER_NAME:5080/WebRTCAppEE/websocket
@@ -88,11 +88,11 @@ TODO: Please tell or give link how to get token from Ant Media Server -->`
     token : "tokenId",
     }
 
-### 3. CORS Filter
+### 3\. CORS Filter
 
 CORS(Cross-Origin Resource Sharing) Filter is enabled and accepts requests from everywhere by default.
 
-If you want to customize by yourself CORS Filters in Application, you can access in ```{ant-media-server-directory}/webapp/{Application}/WEB-INF/web.xml```.
+If you want to customize by yourself CORS Filters in Application, you can access in ```SERVER_FOLDER``` / ```webapps``` / ```{Application}``` / ```WEB-INF``` / web.xml
 
     `<filter>`
           `<filter-name>`CorsFilter`</filter-name>`
@@ -124,7 +124,7 @@ If you want to customize by yourself CORS Filters in Application, you can access
          `<url-pattern>`/*`</url-pattern>`
     `</filter-mapping>`
 
-If you want to customize by yourself CORS Filters in Root, you can access in ```{ant-media-server-directory}/webapp/{Application}/WEB-INF/web.xml```.
+If you want to customize by yourself CORS Filters in Root, you can access in ```SERVER_FOLDER``` / ```webapps``` / ```root``` / ```WEB-INF``` / web.xml
 
     `<filter>`
     	`<filter-name>`CorsFilter`</filter-name>`
@@ -143,11 +143,11 @@ If you want to customize by yourself CORS Filters in Root, you can access in ```
     	`<url-pattern>`/*`</url-pattern>`
     `</filter-mapping>`
 
->` Quick Learn: [Tomcat CORS Filter](https://tomcat.apache.org/tomcat-8.0-doc/api/index.html?org/apache/catalina/filters/CorsFilter.html)
+> Quick Learn: [Tomcat CORS Filter](https://tomcat.apache.org/tomcat-8.0-doc/api/index.html?org/apache/catalina/filters/CorsFilter.html)
 
-### 4. Hash-Based Token
+### 4\. Hash-Based Token
 
-Firstly, settings should be enabled from the settings file of the application in ```{ant-media-server-directory}/webapp/{Application}/WEB-INF/red5-web.properties```
+Firstly, settings should be enabled from the settings file of the application in ```SERVER_FOLDER``` / ```webapp``` / ```{Application}``` / ```WEB-INF``` / ```red5-web.properties```
 
     settings.hashControlPublishEnabled=true
     settings.hashControlPlayEnabled=true
@@ -155,7 +155,7 @@ Firstly, settings should be enabled from the settings file of the application in
 
 Set true ```settings.hashControlPublishEnabled``` to enable secret based hash control for publishing operations, and ```settings.hashControlPlayEnabled``` for playing operations.
 
->` Also, do not forget to define a secret key for generating a hash value.
+> Also, do not forget to define a secret key for generating a hash value.
 
 #### Publishing Scenario
 
@@ -176,22 +176,23 @@ Let's say ```STREAM_ID: stream1```, ```ROLE: publish```, ```SECRET: this_is_secr
 Go to [JavaScript SHA-256](https://geraintluff.github.io/sha256/) for online demo
 
 **RTMP Publishing:** You need to add a hash parameter to RTMP URL before publishing. Sample URL:
-```
+
     rtmp://IP_Address/Application_Name/StreamId?token=hash
+    
     srt://IP_Address:4200?Application_Name/streamid,token=hash
-```
+
 Here is OBS settings for the Hash-Based Token
 
 ![](@site/static/img/ant-media-server-one-time-token(1).png)
 
 **WebRTC Publishing:** Hash parameter should be inserted to publish WebSocket messages.
-```json
+
     {
     command : "publish",
     streamId : "stream1",
     token : "hash",
     }
-```
+
 #### Playing Scenario
 
 **Step 1. Generate a Hash**
@@ -204,19 +205,19 @@ You need to generate a hash value using the formula sha256(STREAM\_ID + ROLE + S
 
 **Step 2. Request with Hash**
 
-**Live Stream/VoD Playing:** Same as publishing, the hash parameter is added to the URL.
+**Live Stream/VoD Playing:** Same as publishing, the hash parameter is added to the URL. Sample URL:
 
-Sample URL: ```http://[IP_Address]/`<Application_Name>`/streams/`<Stream_Id_or_Source_Name>`?token=hash```
+    http://[IP_Address]/`<Application_Name>`/streams/`<Stream_Id_or_Source_Name>`?token=hash
 
 **WebRTC Playing:** Again the hash parameter should be inserted to play WebSocket message.
-```json
+
     {
     command : "play",
     streamId : "stream1",
     token : "hash",
     }
-```
-> Please have a look at the principles described in the [WebRTC WebSocket documentation page](/guides/publish-live-stream/webrtc-websocket-messaging-reference).
+
+> Please have a look at the principles described in the [WebRTC WebSocket page](https://antmedia.io/docs/guides/publish-live-stream/webrtc/webrtc-websocket-messaging-reference/).
 
 #### Evaluation of the Hash
 
@@ -226,7 +227,7 @@ Then compare this generated hash value with the client's hash value during authe
 
 Once the hash is successfully validated by Ant Media Server, the client is granted either to publish or play according to application setting and user request.
 
-### 5. Publisher IP Filter
+### 5\. Publisher IP Filter
 
 > Publisher IP Filter feature is available for later versions of the 1.9.0+ version.
 
@@ -234,11 +235,11 @@ Publisher IP filter feature allows you to specify the IP addresses allowed for p
 
 To enable publisher IP filtering you must set ```settings.allowedPublisherCIDR``` in ```AMS_DIR/webapps/`<App_Name>`/WEB_INF/red5.properties``` file with the allowed IP addresses.
 
-- Example: ```settings.allowedPublisherCIDR=10.20.30.40/24,127.0.0.1/32``` It allows IPs 10.20.30.\[0-255\] and 127.0.0.1.
+Example: ```settings.allowedPublisherCIDR=10.20.30.40/24,127.0.0.1/32``` allows IPs 10.20.30.\[0-255\] and 127.0.0.1.
 
 You can [read more](https://whatismyipaddress.com/cidr/) about CIDR notation.
 
-### 6. JWT Stream Security Filter
+### 6\. JWT Stream Security Filter
 
 JWT Stream Security feature is enabled/disabled in ```Dashboard/LiveApp( or any other)/ Settings/Publish/Play with JWT Filter```. Just take a look at the image for the related part. You can use JWT Stream Security Filter for Stream Publishing and Playing. Publish/Play requests without JWT tokens will not be streamed if you enable the JWT Stream Security Filter as shown below by also adding Secret Key on web panel.
 
@@ -246,7 +247,7 @@ JWT Stream Security feature is enabled/disabled in ```Dashboard/LiveApp( or any 
 
 After version 2.3.3 JWT Stream Security filter option in the Dashboard will be divided into two parts. There will be separate options for enabling/disabling JWT Stream Security for publishing and for playing. This will allow for example using JWT Stream Security for only players and other security (or no security) for publishers or vice-versa.
 
-#### Generate JWT Token
+### Generate JWT Token
 
 Let's assume that our secret key is ```zautXStXM9iW3aD3FuyPH0TdK4GHPmHq``` so that we just need to create a JWT token. Luckily, there are plenty of [libraries available for JWT](https://jwt.io/#libraries-io) for your development. For our case, we will just use [Debugger at JWT](https://jwt.io/#debugger-io).
 
@@ -272,153 +273,77 @@ You can also generate Publish/Play JWT Token with REST API. The Server creates J
 
 Expire Date format is Unix Timestamp. Check also ->` [https://www.epochconverter.com/](https://www.epochconverter.com/)
 
-#### How to use JWT Token
+### How to use JWT Token
 
-- **RTMP URL usage**
-``` 
-rtmp://IP_Address/Application_Name/StreamId?token=tokenId
-srt://IP_Address:4200?Application_Name/streamid,token=tokenId
-```
+#### RTMP URL usage
 
-Here is OBS setting for the JWT Token:
+    rtmp://IP_Address/Application_Name/StreamId?token=tokenId
+    
+    srt://IP_Address:4200?Application_Name/streamid,token=tokenId
+
+ Here is OBS setting for the JWT Token:
+
 ![](@site/static/img/ant-media-server-one-time-token.png)
 
-- **HLS, VoD and Embedded Player Usage**
-```
+#### HLS/ VoD & Embedded Player Usage
+
     http://[IP_Address]/`<Application_Name>`/streams/streamID.mp4?token=tokenId
     http://[IP_Address]/`<Application_Name>`/streams/streamID.m3u8?token=tokenId
     http://[IP_Address]/`<Application_Name>`/play.html?name=streamID&playOrder=hls&token=tokenId
-```
+
 #### WebRTC Publish/Play Usage
 
-*   Play: Again the JWT token parameter should be inserted to play WebSocket message. Also please have a look at the principles described in the [WebRTC playing wiki page](/guides/publish-live-stream/webrtc-websocket-messaging-reference#playing-webrtc-stream).
-```json
+*   Play: Again the JWT token parameter should be inserted to play WebSocket message. Also please have a look at the principles described in the [WebRTC playing page](https://antmedia.io/docs/guides/publish-live-stream/webrtc/webrtc-websocket-messaging-reference/#playing-webrtc-stream).
+
     {
     command : "play",
     streamId : "stream1",
     token : "tokenId",
     }
-```
-*   Publish: Again the JWT token parameter should be inserted to publish WebSocket message. Also please have a look at the principles described in the [WebRTC publishing wiki page](/guides/publish-live-stream/webrtc-websocket-messaging-reference#publishing-webrtc-stream).
-```json
+
+*   Publish: Again the JWT token parameter should be inserted to publish WebSocket message. Also please have a look at the principles described in the [WebRTC publishing page](https://antmedia.io/docs/guides/publish-live-stream/webrtc/webrtc-websocket-messaging-reference/#publishing-webrtc-stream).
+
     {
     command : "publish",
     streamId : "stream1",
     token : "tokenId",
     }
-```
->This feature is available in Ant Media Server 2.3.3+ versions.
 
-### JWT Blacklist
-JWT blacklist enables you to efficiently control the viewership of your streaming content on the go, regardless of the protocols used (WebRTC, HLS, and Dash). This feature empowers you to block or unblock viewers while they are actively watching the stream by adding their JWT tokens to the blacklist using REST API, rendering them invalid. By leveraging this capability, you have full authority to manage your streaming audience effortlessly, determining who can access and watch your streams at any given moment. It's important to note that JWT blacklist is not only useful for blocking viewers during playback, but it can also be utilized to block publishers from streaming by adding their tokens to the blacklist.
+**This feature is available in Ant Media Server 2.3.3+ versions.**
 
-#### Enable JWT Blacklist on AppSettings
-JWTs are not typically intended for storage in a database. Therefore, the blacklist feature, which enhances control over JWTs, is initially disabled by default. So we need to enable it first.
-
-Open `red5-web.properties.xml` file. The path is as mentioned below:
-```
-{ant-media-server-directory}/webapps/{app-name}/WEB-INF/red5-web.properties.xml 
-```
-and simply edit this property. 
-```
-settings.jwtBlacklistEnabled=true
-```
-save the changes and exit the file.
-
-#### Add JWT to Blacklist using REST API
-Add viewers or publishers JWT to the blacklist with a ```POST``` request to this REST API endpoint:
-```
-{appName}/rest/v2/broadcasts/jwt-black-list
-```
-Pass your jwt as body of the `POST` request.
-```
-{"jwt":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdHJlYW1JZCI6Inl1bnVzc3RyZWFtIiwidHlwZSI6InBsYXkiLCJleHAiOjk5NTE2MjM5MDIyfQ.VNClRg5qOnpq49Kpia5FlAHAw18Tp_RyDu-CF5iK20M"}
-```
-- Example curl command to add JWT to blacklist:
-```bash
-curl --location 'http://localhost:5080/WebRTCAppEE/rest/v2/broadcasts/jwt-black-list' \ --header 'Content-Type: application/json' \ --data'{ "jwt":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdHJlYW1JZCI6Inl1bnVzc3RyZWFtIiwidHlwZSI6InBsYXkiLCJleHAiOjk5NTE2MjM5MDIyfQ.VNClRg5qOnpq49Kpia5FlAHAw18Tp_RyDu-CF5iK20M" }'
-```
-Upon successful completion of this request, the JWT token will be rendered invalid immediately, even if it has not yet expired. Consequently, the playback of any viewer utilizing this token as their play token on HLS or Dash will cease within a few seconds because the server won't return the next stream chunk.
-
-To halt the playback of a viewer who is watching the stream using WebRTC after adding their JWT token to the blacklist, an additional `POST` request to `/webrtc-viewers/stop` is necessary. This request ensures the cessation of the user's playback.
-
-Add JWT as `playToken` query parameter to `/webrtc-viewers/stop`
-
-- Example curl command:
-```bash
-curl --location --request POST 'http://127.0.0.1:5080/WebRTCAppEE/rest/v2/broadcasts/webrtc-viewers/stop?playToken=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdHJlYW1JZCI6Inl1bnVzc3RyZWFtIiwidHlwZSI6InBsYXkiLCJleHAiOjk5NTE2MjM5MDIyfQ.VNClRg5qOnpq49Kpia5FlAHAw18Tp_RyDu-CF5iK20M%22'
-```
-Once this request receives a successful response, the playback of the WebRTC viewer will come to an immediate halt. As their JWT has been blacklisted through the previous HTTP request, even refreshing the page will not allow them to resume their WebRTC playback.
-
-#### Remove JWT from Blacklist using REST API
-You have the option to remove a JWT token from the blacklist, effectively restoring its validity. This allows viewers to resume their playback and publishers to continue with their streaming activities as before.
-
-To remove JWT from the blacklist send a `DELETE` request to `jwt-black-list` REST API endpoint and pass your JWT on the requests body.
-
-- Example curl command:
-```bash
-curl --location --request DELETE 'http://localhost:5080/WebRTCAppEE/rest/v2/broadcasts/jwt-black-list' \ --header 'Content-Type: application/json' \ --data '{ "jwt":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdHJlYW1JZCI6InRlc3RzdHJlYW0iLCJ0eXBlIjoicGxheSIsImV4cCI6OTUxNjIzOTAyMn0.SRNG_wmH2Y1kkQHwL8Qy63DPeWsPgn5QnLVKzkYAzaE" }'
-```
-
-#### Clear JWT from Blacklist using REST API
-You can clear the JWT blacklist with a single REST API request and make all JWTs on the blacklist valid again.
-
-Send a `DELETE` request to `jwt-black-list-clear` REST API endpoint.
-
-- Example curl command:
-```bash
-curl --location --request DELETE 'http://localhost:5080/WebRTCAppEE/rest/v2/broadcasts/jwt-black-list-clear'
-```
-#### Remove all Expired JWT from Blacklist using REST API
-Occasionally you may want to remove all expired JWTs from the blacklist to free up disk space since they are not valid anymore.
-
-To do that, you can send a `DELETE` request to `jwt-black-list-delete-expired` REST API endpoint.
-
-- Example curl command:
-```bash
-curl --location --request DELETE 'http://localhost:5080/WebRTCAppEE/rest/v2/broadcasts/jwt-black-list-delete-expired'
-```
-#### Get all JWTs from Blacklist using REST API
-You can retrieve a list of all blacklisted JWTs. To do that send a `GET` request to  `jwt-black-list`
-
-- Example curl command:
-```bash
-curl --location 'http://localhost:5080/WebRTCAppEE/rest/v2/broadcasts/jwt-black-list'
-```
-
-### 7. Time-based One Time Password
+### 7\. Time based One Time Password
 
 The Time-based One-time Password algorithm (TOTP) is an extension of the HMAC-based One-time Password algorithm (HOTP) that generates a one-time password (OTP) by instead taking uniqueness from the current time.
 
 We define a publisher or player as a subscriber. If time based token enabled, a subscriber should be created for the stream to able to publish or play. Each subscriber has an ID and a code. When a subscriber requests to publish or play a stream, he should provide his ID and time based token generated for his code. Otherwise server doesn't accept the publish or play request.
 
-## Enabling and Setting
+Enabling and Setting
+--------------------
 
 You can enable TOTP using Management Panel or in configuration file as ```settings.timeTokenSubscriberOnly=true``` You can also set TOTP period in seconds in configuration file as ```settings.timeTokenPeriod=60```
 
 ![](@site/static/img/image-1671624507845.png)
+-----------------------------------------------------------------------------------------------------------------
 
+Subscriber Operations
+---------------------
 
-### Subscriber Operations
+After enabling TOP in the server the following operations should be performed to publish or play by using TOTP.
 
-After enabling TOP in the server, the following operations should be performed to publish or play by using TOTP.
-
-> Admin creates a new subscriber (publisher or player) by using this rest method. You should assign a base 32 secret to each subscriber at the creation. A secret should be in length of multiple of 8 characters.
+*   Admin creates a new subscriber (publisher or player) by using this rest method. You should assign a base 32 secret to each subscriber at the creation. A secret should be in length of multiple of 8 characters .
 
 _Curl example for publisher type subscriber creation._
 
-```bash
-curl -X POST -H "Accept: Application/json" -H "Content-Type: application/json" http://localhost:5080/WebRTCAppEE/rest/v2/broadcasts/stream1/subscribers -d '{"subscriberId":"publisherA", "b32Secret":"mysecret", "type":"publish"}'
-```
+    curl -X POST -H "Accept: Application/json" -H "Content-Type: application/json" http://localhost:5080/WebRTCAppEE/rest/v2/broadcasts/stream1/subscribers -d '{"subscriberId":"publisherA", "b32Secret":"mysecret", "type":"publish"}'
     
+
 _Curl example for player type subscriber creation._
 
-```bash
-curl -X POST -H "Accept: Application/json" -H "Content-Type: application/json" http://localhost:5080/WebRTCAppEE/rest/v2/broadcasts/stream1/subscribers -d '{"subscriberId":"playerB", "b32Secret":"mysecret", "type":"play"}'
-```    
+    curl -X POST -H "Accept: Application/json" -H "Content-Type: application/json" http://localhost:5080/WebRTCAppEE/rest/v2/broadcasts/stream1/subscribers -d '{"subscriberId":"playerB", "b32Secret":"mysecret", "type":"play"}'
+    
 
-- Subscriber (Publisher or Player) needs to have a TOTP token to publish or play the stream. This token should be created using the subscriber secret key. [Here](https://totp.danhersam.com/) is an example page that creates TOTP.
-- Subscriber (Publisher or Player) can request publish or play using the created TOTP.
+*   Subscriber (Publisher or Player) needs to have a TOTP token to publish or play the stream. This token should be created using subscriber secret key. [Here](https://totp.danhersam.com/) is an example page that creates TOTP.
+*   Subscriber (Publisher or Player) can request publish or play using the created TOTP.
 
 _Example of a publish request:_
 
@@ -431,12 +356,11 @@ _Example of a play request:_
 
 ![](https://github.com/ant-media/Ant-Media-Server/wiki/images/totp_messages.png)
 
-You can find create, delete, and list REST Methods references from [REST API Reference](https://antmedia.io/rest)
+You can find create, delete, list REST Methods references from [REST API Reference](https://antmedia.io/rest)
 
-## Subscriber Statistics
+Subscriber Statistics
+---------------------
 
-You can also get statistics like connection events, and average bitrate for each subscriber with the following REST method.
+You can also get the some statistics like connection events, average bitrate for each subscriber with the following REST method.
 
-```bash
-curl -i -H "Accept: Application/json" -X GET "http://localhost:5080/WebRTCAppEE/rest/v2/broadcasts/stream1/subscriber-stats/list/0/5"
-```
+    curl -i -H "Accept: Application/json" -X GET "http://localhost:5080/WebRTCAppEE/rest/v2/broadcasts/stream1/subscriber-stats/list/0/5"
