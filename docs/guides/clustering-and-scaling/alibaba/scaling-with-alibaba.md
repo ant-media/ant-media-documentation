@@ -95,6 +95,26 @@ Run the following commands in order to install MongoDB to your instance.
 
 ```shell
 ./install_mongodb.sh
+<<<<<<< HEAD
+=======
+```
+
+Open /etc/mongod.conf file with an editor like nano and change bind_ip value to 0.0.0.0 to let MongoDB accept connections in all interfaces and save it.
+
+```
+sudo nano /etc/mongod.conf
+```
+
+![image.png](@site/static/img/image(20).png)
+
+Press Ctrl + X to save the file.
+
+Restart mongod and enable service.
+
+```
+sudo systemctl restart mongod
+sudo systemctl enable mongod.service
+>>>>>>> f744e17 (fix: resolving conflicts)
 ```
 > If you want to enable authentication in MongoDB, you can simply provide the `--auto-create` parameter to the `install_mongodb.sh` script. It will automatically create a username and password for you.
 

@@ -39,6 +39,15 @@ Connect your instance and download the following script.
 
 ```shell
 wget https://raw.githubusercontent.com/ant-media/Scripts/master/install_mongodb.sh && chmod +x install_mongodb.sh
+<<<<<<< HEAD
+=======
+```
+
+Then run it and the latest version of MongoDB will be installed.
+
+```shell
+./install_mongodb.sh
+>>>>>>> f744e17 (fix: resolving conflicts)
 ```
 
 Then run it and the latest version of MongoDB will be installed. If you run it without parameters, authentication will not be enabled.
