@@ -18,7 +18,15 @@ wget https://raw.githubusercontent.com/ant-media/Scripts/master/docker/Dockerfil
 
 ### 2\. Build Docker Image
 
-Download and save Ant Media Server ZIP file in the same directory with Dockerfile. Then run the docker build command from command line
+You can perform the build process by entering your license key or having the zip file.
+
+1. Enter a license key as an argument as follows, then will start the build process.
+
+```shell
+docker build --network=host -t antmediaserver --build-arg LicenseKey=<Your_License_Key> .
+``` 
+
+2. Download and save Ant Media Server ZIP file in the same directory with Dockerfile. Then run the docker build command from command line
 
 ```shell
 docker build --network=host -t antmediaserver --build-arg AntMediaServer=<Replace_With_Ant_Media_Server_Zip_File> .
