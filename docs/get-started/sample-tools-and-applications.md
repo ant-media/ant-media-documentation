@@ -29,7 +29,7 @@ For installation, please check out [quick start installation guide](/).
 
 
 
-![](@site/static/img/138691164-04d3f2c7-f37a-4acd-a590-2af05477e256.png)
+![](@site/static/img/getting-started/sample-tools-apps/publishing.png)
 
 #### WebRTC video publishing without SSL installed
 
@@ -48,7 +48,7 @@ https://domain-name.com:5443/LiveApp/player.html
 
 File is located at `/usr/local/antmedia/webapps/LiveApp/player.html`
 
-![](@site/static/img/138707768-2fd87a70-9ccd-4c66-9c96-fa33ef5fe781.png)
+![](@site/static/img/getting-started/sample-tools-apps/playing.png)
 
 ## 3. WebRTC audio publishing
 
