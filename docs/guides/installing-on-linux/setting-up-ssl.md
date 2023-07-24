@@ -148,3 +148,21 @@ https://example.com:5443
 ```
 
 Note that if port 80 is used by another process or it's forwarded to another port, `enable_ssl.sh` command will not be successful. Please disable the process or delete the port forwarding temporarily before running the `enable_ssl.sh` script above.
+
+## Enabling SSL from the Web Panel
+In previous versions, configuring SSL involved intricate steps, such as accessing the server through SSH and executing the `enable_ssl.sh` script from the installation directory `usr/local/antmedia`.
+However, with the release of Ant Media Server version 2.6.2, we have streamlined the SSL enablement process, allowing users to seamlessly secure their media server directly from the AMS Web Panel. This empowers users to enable SSL with utmost ease and convenience.
+
+- After [installaling the Ant Media Server](https://antmedia.io/docs/guides/installing-on-linux/installing-ams-on-linux/), login to the web panel and navigate to SETTINGS > SSL.
+![](@site/static/img/ssl-webpanel/ssl-settings.png)
+
+- Click on Type filed and you can choose among various options to enable SSL like [using your own domain](https://antmedia.io/docs/guides/installing-on-linux/setting-up-ssl/#option-2-create-lets-encrypt-certificate-with-http-01-challenge), [free subdomain of antmedia.cloud](https://antmedia.io/docs/guides/installing-on-linux/setting-up-ssl/#option-1-gets-a-free-subdomain-and-install-ssl-with-lets-encrypt), or to [import your own certificate](https://antmedia.io/docs/guides/installing-on-linux/setting-up-ssl/#option-3-import-your-custom-certificate) and then click Activate to enable the SSL and restart your server.
+![](@site/static/img/ssl-webpanel/ssl-options.png)
+
+- This will start to enable SSL for your Ant Media Server.
+![](@site/static/img/ssl-webpanel/enabling-ssl.png)
+
+- The Ant Media Server instance will restart and the server can now be access securely with SSL enabled.
+![](@site/static/img/ssl-webpanel/ssl-status.png)
+
+
