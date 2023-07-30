@@ -14,7 +14,7 @@ With multitrack streams, you can play different groups of streams with a single 
 ### Terminologies related to multitrack
 
 **Main track:** Stream Id of a group is referred as main track.  
-**Sub track:** The streams in a group with different stream Ids are referred as sub tracks.
+**Sub track:** The streams in a group with different stream Ids are referred as subtracks.
 
 To combine the broadcasts into a single broadcast (main track), publish the streams as shown below.
 
@@ -69,8 +69,12 @@ You can also join the the room in ```playOnly``` mode using following URL.
 
 The play request for the room Id is only called once in a Multitrack conference.
 
-### Add Sub Track to the Main Track via Rest API
+### Add and Delete subtracks via Rest API
 
-You can also use the [subtrack Rest API](https://antmedia.io/rest/#/BroadcastRestService/addSubTrack) to add the various sub tracks to the main track. Here's the CURL sample:
+You can use the [add SubTrack Rest API](https://antmedia.io/rest/#/BroadcastRestService/addSubTrack) to add the various subtracks to the main track. Here's the CURL sample:
 
-    curl -X 'POST' 'https://AMS-domain:5443/WebRTCAppEE/rest/v2/broadcasts/mainTrack/subtrack?id=stream1' -H 'accept: application/json'
+    curl -X 'POST' 'https://AMS-domain:5443/WebRTCAppEE/rest/v2/broadcasts/mainTrackId/subtrack?id=stream1' -H 'accept: application/json'
+
+You can use the [delete SubTrack Rest API](https://antmedia.io/rest/#/BroadcastRestService/removeSubTrack) to delete the various subtracks from the main track. Here's the CURL sample:
+
+    curl -X 'DELETE' 'https://AMS-domain:5443/WebRTCAppEE/rest/v2/broadcasts/mainTrackId/subtrack?id=stream1' -H 'accept: application/json'
