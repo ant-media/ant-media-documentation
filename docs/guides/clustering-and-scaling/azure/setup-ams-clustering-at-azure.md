@@ -89,11 +89,6 @@ Add the following lines to the "**Custom data**" area and click the "**Review + 
 #!/bin/bash
 wget https://raw.githubusercontent.com/ant-media/Scripts/master/install_mongodb.sh && chmod +x install_mongodb.sh
 ./install_mongodb.sh
-sudo apt-get update
-sudo apt-get install -y mongodb-org
-sed -i 's/bindIp:.*/bindIp: 0.0.0.0/g' /etc/mongod.conf
-systemctl enable mongod
-systemctl restart mongod
 ```
 ![](@site/static/img/mongodb-8.png)
 
