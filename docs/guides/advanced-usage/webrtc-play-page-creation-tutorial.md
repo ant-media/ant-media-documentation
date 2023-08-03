@@ -27,6 +27,9 @@ JS SDK consists of several js files and dependencies. Please download these js f
 *   [websocket\_adaptor.js](https://raw.githubusercontent.com/ant-media/StreamApp/master/src/main/webapp/js/websocket_adaptor.js)
 *   [soundmeter.js](https://raw.githubusercontent.com/ant-media/StreamApp/master/src/main/webapp/js/soundmeter.js)
 *   [peer\_stats.js](https://raw.githubusercontent.com/ant-media/StreamApp/master/src/main/webapp/js/peer_stats.js)
+*   [loglevel.min.js](https://raw.githubusercontent.com/ant-media/StreamApp/master/src/main/webapp/js/external/loglevel.min.js)
+
+**Note:** `Create the folder named external under your project and copy loglevel.min.js into that folder.`
 
 Step 2. Write the UI content of the play page
 ---------------------------------------------
