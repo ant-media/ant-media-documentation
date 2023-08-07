@@ -64,7 +64,6 @@ mongodb hard    nofile         65535
 We set 0.0.0.0 in the mongodb.conf. It means ```listen on every available network interface```. If you don't have a firewall, you will accept all connections from everywhere to your MongoDB server. We recommend adding security credentials to your MongoDB instance with the following commands.
 
 If you want to enable authentication, you can still automate it using the `mongodb_install.sh ----auto-create` script. It will generate a random username and password
-```
 
 ## Install the origin and edge groups
 
