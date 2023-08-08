@@ -9,7 +9,7 @@ sidebar_position: 6
 
 WebRTC multitrack lets us stream multiple audio/video tracks through a single WebRTC connection. In order to use Multitrack feature, the SDP semantic should be set as **Unified Plan** which is also set by default in AMS v2.4.3 and above.
 
-With multitrack streams, you can play different groups of streams with a single broadcast ID. Then, you can start playing those groups of streams with one play request and most importantly through a single WebRTC connection and this decreases resource usage as well.
+With multitrack streams, you can play different groups of streams with a single broadcast ID. Then, you can start playing those groups of streams with one play request and, most importantly through a single WebRTC connection and this decreases resource usage as well.
 
 ### Terminologies related to multitrack
 
@@ -63,11 +63,19 @@ The ```mainTrack``` (group ID) will be the same as the room Id. For example, in 
 
 `https://AMS-domain:5443/WebRTCAppEE/multitrack-conference.html`
 
-You can also join the the room in ```playOnly``` mode using following URL.
+You can also join the room in ```playOnly``` mode using the following URL.
 
 `https://AMS-domain:5443/WebRTCAppEE/multitrack-conference.html?playOnly=true`
 
 The play request for the room Id is only called once in a Multitrack conference.
+
+By default, there is no limit on audio and video tracks, so each participant can play other participants videos, which increases CPU load on the server side. In order to optimize the performance, you can limit the audio and video tracks by adding below settings to the **/usr/local/antmedia/webapps/App-Name/WEB-INF/red5-web.properties** file.
+
+`settings.maxAudioTrackCount=-1`
+
+`settings.maxVideoTrackCount=-1`
+
+Please change the values as per your requirements and restart the server after making changes. In version 2.6.2 and above, all settings can be changed from dashboard itself. Please check [here](https://github.com/orgs/ant-media/discussions/5161#discussioncomment-6401677).
 
 ### Add and Delete subtracks via Rest API
 
