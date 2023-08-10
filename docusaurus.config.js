@@ -184,7 +184,7 @@ const config = {
       announcementBar: {
         id: 'webinar',
         content:
-          '<div style="font-size:16px;"><strong>Join us in the upcoming webinar on August 17</strong>: <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/events/howtocreatebroadcastextensionan7095365463357947905/">How to Create a Broadcast Extension and Publish iOS Screen with WebRTC</a></div>',
+          '<div style="font-size:16px;"><strong>Join us in the upcoming webinar on August 17 with Anush B M</strong>: <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/events/howtocreatebroadcastextensionan7095365463357947905/">How to Create a Broadcast Extension and Publish iOS Screen with WebRTC</a></div>',
         backgroundColor: '#fff5bd',
         textColor: '#091E42',
         isCloseable: true,
