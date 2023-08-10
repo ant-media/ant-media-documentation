@@ -63,7 +63,35 @@ const config = {
 
   plugins: [[ require.resolve('docusaurus-lunr-search'), {
     languages: ['en']
-  }]],
+  }],
+  [
+    '@docusaurus/plugin-client-redirects',
+    {
+      redirects: [
+        {
+          to: '/guides/clustering-and-scaling/alibaba/scaling-with-alibaba/',
+          from: '/guides/clustering-and-scaling/scaling-with-alibaba/',
+        },
+        {
+          to: '/guides/clustering-and-scaling/supported-databases/scaling-with-redis/',
+          from: '/guides/clustering-and-scaling/scaling-with-redis/',
+        },
+        {
+          to: '/guides/clustering-and-scaling/supported-databases/scaling-with-mongodb-atlas/',
+          from: '/guides/clustering-and-scaling/scaling-with-mongodb-atlas/',
+        },
+        {
+          to: '/guides/clustering-and-scaling/manual-configuration/cluster-installation/',
+          from: '/guides/clustering-and-scaling/cluster-installation/',
+        },
+        {
+          to: '/guides/clustering-and-scaling/manual-configuration/multi-level-cluster/',
+          from: '/guides/clustering-and-scaling/multi-level-cluster/',
+        },
+      ],
+    },
+  ], 
+  ],
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
