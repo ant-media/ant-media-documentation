@@ -12,7 +12,7 @@ Cluster installation
 
 AMS can run in cluster mode. This way, a number of AMS nodes can work together to increase the number of viewers and publishers. In other words, you can publish a live stream to one node of AMS in the cluster and you can watch the stream in another ...
 
-[Read more](/guides/clustering-and-scaling/cluster-installation/)
+[Read more](/guides/clustering-and-scaling/manual-configuration/cluster-installation/)
 
 
 Configuring RTMP LB in AWS
@@ -38,7 +38,7 @@ Scaling with Alibaba
 
 In this document, we’re going to explain how to setup a Scalable Ant Media Server Cluster in Alibaba. Here below is the diagram about how Ant Media Server is architecturized within Alibaba. Lets start with brief definitions MongoDB Databas...
 
-[Read more](/guides/clustering-and-scaling/scaling-with-alibaba/)
+[Read more](/guides/clustering-and-scaling/alibaba/scaling-with-alibaba/)
 
 
 
@@ -83,7 +83,7 @@ Multi Level Cluster
 
 What is Multi-Level Cluster? A cluster which has different regions is called Multi-Level Cluster where each region has its own origin for a stream. Ant Media Server can be scaled in different physical locations. You can set the node group parameter...
 
-[Read more](/guides/clustering-and-scaling/multi-level-cluster/)
+[Read more](/guides/clustering-and-scaling/manual-configuration/multi-level-cluster/)
 
 
 
@@ -101,4 +101,4 @@ Installing Ant Media Server on AWS EKS
 
 In this post, we are going to guide you on how to run Ant Media Server on AWS EKS step by step. 1. After you are logged in to AWS, search the EKS keyword, find the Elastic Kubernetes Service, and click the Add Cluster >` Create button. 2....
 
-[Read more](/guides/clustering-and-scaling/aws/installing-ams-on-aws-eks/)
+[Read more](/guides/clustering-and-scaling/kubernetes/installing-ams-on-aws-eks/)

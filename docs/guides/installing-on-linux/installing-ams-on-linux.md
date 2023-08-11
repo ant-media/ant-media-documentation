@@ -134,7 +134,7 @@ Please visit for more information [Docker and Docker Compose](/guides/clustering
 
 ## Cluster installation
 
-Cluster installation is an advanced topic and it has its own page. Please visit [Clustering & Scaling](/guides/clustering-and-scaling/cluster-installation/).
+Cluster installation is an advanced topic and it has its own page. Please visit [Clustering & Scaling](/guides/clustering-and-scaling/manual-configuration/cluster-installation/).
 
 ## Server ports
 

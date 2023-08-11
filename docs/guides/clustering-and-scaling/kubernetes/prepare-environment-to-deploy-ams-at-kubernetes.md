@@ -64,7 +64,7 @@ You can create your own Kubernetes Cluster [on your servers.](https://antmedia.
 
 You can have a Kubernetes Cluster on the cloud services. You will find blog posts about how to create such a Kubernetes cluster below.
 
-* [AWS EKS](/guides/clustering-and-scaling/aws/installing-ams-on-aws-eks/)
+* [AWS EKS](/guides/clustering-and-scaling/kubernetes/installing-ams-on-aws-eks/)
 * [Digital Ocean](https://antmedia.io/how-to-create-kubernetes-cluster-on-digital-ocean/) 
 * [OVH](https://antmedia.io/auto-scaling-streaming-server-with-kubernetes/)
 
