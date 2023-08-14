@@ -88,6 +88,10 @@ const config = {
           to: '/guides/clustering-and-scaling/manual-configuration/multi-level-cluster/',
           from: '/guides/clustering-and-scaling/multi-level-cluster/',
         },
+        {
+          from: '/guides/clustering-and-scaling/aws/installing-ams-on-aws-eks/',
+          to: '/guides/clustering-and-scaling/kubernetes/installing-ams-on-aws-eks/'
+        }
       ],
     },
   ], 
