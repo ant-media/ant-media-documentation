@@ -37,6 +37,7 @@ To begin, it is first needed to create a project and include the necessary depen
 ![](@site/static/img/ios-screen-share/ios-be14.png)
 
 - Open the `SampleHandler.swift` file under the BroadcastScreen Extension and add the code from the link below https://gist.github.com/mekya/163a90523f7e7796cf97a0b966f2d61b
+
 Make sure to set your server URL and a `streamId`
 ![](@site/static/img/ios-screen-share/ios-be15.png)
 
@@ -45,17 +46,21 @@ The `Add editor to the right` option is the last button on the 2nd row, as shown
 ![](@site/static/img/ios-screen-share/ios-be16.png)
 
 - Navigate to the `Main.storyboard` on the left menu. Open the Library by selecting View > Show Library from the menu, and then enter UIView in the search box, as shown in the image below.
+
 Drag the View from the Library and drop it onto the `Main.storyboard`. Afterwards, adjust the size of the UIView to match the image below.
+
 *Optional*: Customize the color and theme as needed.
 ![](@site/static/img/ios-screen-share/ios-be17.png)
 
 - If you have a split your screen, you should now have the `ViewController.swift` file loaded on one screen and the `main.storyboard` loaded on the other screen.
 
 - Right-click on the UIView element in the `Main.storyboard`, then drag it over to the `ViewController.swift` file and release the right-click.
+
 This will trigger a popup as shown, allowing you to name your Outlet.
 ![](@site/static/img/ios-screen-share/ios-be18.png)
 
 - You should already have the `ViewController` file open in your Xcode project, so now follow these steps to add the `RPSystemBroadcastPickerView` to the view.
+
 Copy and paste the following code in the ViewController:
 ```
 import UIKit
