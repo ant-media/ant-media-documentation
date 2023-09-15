@@ -59,7 +59,10 @@ If you would like to use the old structure, check the [following post](https://g
 HLS streaming is a more cost-effective and secure method than VOD streaming. You can record your HLS streams. You just need to change your application's HLS settings as below:
 
 *   Open your apps ```red5-web.properties``` and change the below mentioned settings. The file is located under `/usr/local/antmedia/webapps/App-Name/WEB-INF` folder.
+
     
+If you want your m3u8 file to have the list of all the TS files
+
 ```js 
 settings.hlsPlayListType=event
 ```
