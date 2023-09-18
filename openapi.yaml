@@ -1,0 +1,6096 @@
+---
+swagger: '2.0'
+info:
+  version: 2.6.4
+  title: Ant Media Server REST API Reference
+host: test.antmedia.io:5443/Sandbox/rest/
+tags:
+- name: BroadcastRestService
+- name: ManagementRestService
+- name: Rest Service
+- name: VoD Rest Service
+paths:
+  "/cluster/deleteNode/{id}":
+    get:
+      operationId: deleteNode
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/cluster/node-count":
+    get:
+      operationId: getNodeCount
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/SimpleStat"
+  "/cluster/nodes/{offset}/{size}":
+    get:
+      operationId: getNodeList
+      produces:
+      - application/json
+      parameters:
+      - name: offset
+        in: path
+        required: true
+        type: integer
+        format: int32
+      - name: size
+        in: path
+        required: true
+        type: integer
+        format: int32
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/ClusterNode"
+  "/v2/admin-status":
+    get:
+      tags:
+      - ManagementRestService
+      summary: Returns whether current user is admin or not. If user is admin, it
+        can call POST/PUT/DELETE methods
+      description: ''
+      operationId: isAdmin
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/applications":
+    get:
+      tags:
+      - ManagementRestService
+      summary: Gets the applications in the server. Returns the name of the applications
+        in JSON format.
+      description: ''
+      operationId: getApplications
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/applications-info":
+    get:
+      tags:
+      - ManagementRestService
+      summary: Gets application info. Application info includes live stream count,
+        vod count and application name.
+      description: ''
+      operationId: getApplicationInfo
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/applications/live-streams/{appname}":
+    get:
+      tags:
+      - ManagementRestService
+      summary: Returns live streams in the specified application. Retrieves broadcast
+        names and the consumer size.
+      description: ''
+      operationId: getAppLiveStreams
+      produces:
+      - application/json
+      parameters:
+      - name: appname
+        in: path
+        description: Application name
+        required: true
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/applications/settings/{appname}":
+    get:
+      tags:
+      - ManagementRestService
+      summary: Returns the specified application settings
+      description: ''
+      operationId: getSettings
+      produces:
+      - application/json
+      parameters:
+      - name: appname
+        in: path
+        description: Application name
+        required: true
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+    post:
+      tags:
+      - ManagementRestService
+      summary: Changes the application settings with the given settings. Null fields
+        will be set to default values.
+      description: ''
+      operationId: changeSettings
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: appname
+        in: path
+        description: Application name
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: New application settings, null fields will be set to default
+          values
+        required: true
+        schema:
+          "$ref": "#/definitions/AppSettings"
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/applications/{appName}":
+    post:
+      tags:
+      - ManagementRestService
+      summary: Creates a new application with given name. It just creates default
+        app
+      description: ''
+      operationId: createApplication
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: appName
+        in: path
+        description: Name for the new application
+        required: true
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+    put:
+      tags:
+      - ManagementRestService
+      summary: Creates a new application with given name. It supports uploading custom
+        WAR files
+      description: ''
+      operationId: createApplication
+      consumes:
+      - multipart/form-data
+      produces:
+      - application/json
+      parameters:
+      - name: appName
+        in: path
+        description: Name for the new application
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: file
+        required: true
+        schema:
+          "$ref": "#/definitions/InputStream"
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+    delete:
+      tags:
+      - ManagementRestService
+      summary: Deletes application with the given name.
+      description: ''
+      operationId: deleteApplication
+      produces:
+      - application/json
+      parameters:
+      - name: appName
+        in: path
+        description: Name of the application to delete
+        required: true
+        type: string
+      - name: deleteDB
+        in: query
+        required: false
+        type: boolean
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/applications/{appname}/reset":
+    post:
+      tags:
+      - ManagementRestService
+      summary: Resets the viewer counts and broadcasts statuses in the db. This can
+        be used after server crashes to recover db. It's not intended to use to ignore
+        the crash.
+      description: ''
+      operationId: resetBroadcast
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: appname
+        in: path
+        description: Application name
+        required: true
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/authentication-status":
+    get:
+      tags:
+      - ManagementRestService
+      summary: Returns true if user is authenticated to call rest api operations.
+      description: ''
+      operationId: isAuthenticatedRest
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/broadcasts/active-live-stream-count":
+    get:
+      tags:
+      - BroadcastRestService
+      summary: Return the active live streams
+      description: ''
+      operationId: getAppLiveStatistics
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/SimpleStat"
+  "/v2/broadcasts/bulk":
+    delete:
+      tags:
+      - BroadcastRestService
+      summary: Delete multiple broadcasts from data store and stop if they are broadcasting
+      description: ''
+      operationId: deleteBroadcasts
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        description: " Id of the broadcast"
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: If it's deleted, success is true. If it's not deleted, success
+            if false.
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/broadcasts/conference-rooms":
+    post:
+      tags:
+      - BroadcastRestService
+      summary: Creates a conference room with the parameters. The room name is key
+        so if this is called with the same room name then new room is overwritten
+        to old one
+      description: ''
+      operationId: createConferenceRoomV2
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        description: Conference Room object with start and end date
+        required: true
+        schema:
+          "$ref": "#/definitions/ConferenceRoom"
+      responses:
+        '200':
+          description: Returns the created conference room
+          schema:
+            "$ref": "#/definitions/ConferenceRoom"
+        '400':
+          description: If operation is no completed for any reason
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/broadcasts/conference-rooms/list/{offset}/{size}":
+    get:
+      tags:
+      - BroadcastRestService
+      summary: Gets the conference room list from database
+      description: ''
+      operationId: getConferenceRoomList
+      produces:
+      - application/json
+      parameters:
+      - name: offset
+        in: path
+        description: This is the offset of the list, it is useful for pagination.
+          If you want to use sort mechanism, we recommend using Mongo DB.
+        required: true
+        type: integer
+        format: int32
+      - name: size
+        in: path
+        description: Number of items that will be fetched. If there is not enough
+          item in the datastore, returned list size may less then this value
+        required: true
+        type: integer
+        format: int32
+      - name: sort_by
+        in: query
+        description: field to sort
+        required: false
+        type: string
+      - name: order_by
+        in: query
+        description: asc for Ascending, desc Descending order
+        required: false
+        type: string
+      - name: search
+        in: query
+        description: Search parameter, returns specific items that contains search
+          string
+        required: false
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/ConferenceRoom"
+  "/v2/broadcasts/conference-rooms/{roomId}":
+    get:
+      tags:
+      - BroadcastRestService
+      summary: Get conference room object
+      description: ''
+      operationId: getConferenceRoom
+      produces:
+      - application/json
+      parameters:
+      - name: roomId
+        in: path
+        description: id of the room
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Return the ConferenceRoom object
+        '404':
+          description: ConferenceRoom object not found
+  "/v2/broadcasts/conference-rooms/{room_id}":
+    put:
+      tags:
+      - BroadcastRestService
+      summary: Edits previously saved conference room
+      description: ''
+      operationId: editConferenceRoom
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: room_id
+        in: path
+        description: Room id
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: Conference Room object with start and end date
+        required: true
+        schema:
+          "$ref": "#/definitions/ConferenceRoom"
+      responses:
+        '200':
+          description: Returns the updated Conference room
+          schema:
+            "$ref": "#/definitions/ConferenceRoom"
+        '400':
+          description: If operation is no completed for any reason
+          schema:
+            "$ref": "#/definitions/Result"
+    delete:
+      tags:
+      - BroadcastRestService
+      summary: Deletes a conference room. The room id is key so if this is called
+        with the same room id then new room is overwritten to old one
+      description: ''
+      operationId: deleteConferenceRoomV2
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: room_id
+        in: path
+        description: the id of the conference room
+        required: true
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/broadcasts/conference-rooms/{room_id}/add":
+    put:
+      tags:
+      - BroadcastRestService
+      summary: Adds the specified stream with streamId to the room.  Use PUT conference-rooms/{room_id}/{streamId}
+      description: ''
+      operationId: addStreamToTheRoomDeprecated
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: room_id
+        in: path
+        description: Room id
+        required: true
+        type: string
+      - name: streamId
+        in: query
+        description: Stream id to add to the conference room
+        required: true
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+      deprecated: true
+  "/v2/broadcasts/conference-rooms/{room_id}/delete":
+    put:
+      tags:
+      - BroadcastRestService
+      summary: Deletes the specified stream correlated with streamId in the room.
+        Use DELETE /conference-rooms/{room_id}/{streamId}
+      description: ''
+      operationId: deleteStreamFromTheRoomDeprecated
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: room_id
+        in: path
+        description: Room id
+        required: true
+        type: string
+      - name: streamId
+        in: query
+        description: Stream id to delete from the conference room
+        required: true
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+      deprecated: true
+  "/v2/broadcasts/conference-rooms/{room_id}/room-info":
+    get:
+      tags:
+      - BroadcastRestService
+      summary: Returns the streams Ids in the room.
+      description: ''
+      operationId: getRoomInfo
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: room_id
+        in: path
+        description: Room id
+        required: true
+        type: string
+      - name: streamId
+        in: query
+        description: If Stream Id is entered, that stream id will be isolated from
+          the result
+        required: false
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              type: string
+  "/v2/broadcasts/conference-rooms/{room_id}/{streamId}":
+    put:
+      tags:
+      - BroadcastRestService
+      summary: 'Adds the specified stream with streamId to the room. '
+      description: ''
+      operationId: addStreamToTheRoom
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: room_id
+        in: path
+        description: Room id
+        required: true
+        type: string
+      - name: streamId
+        in: path
+        description: Stream id to add to the conference room
+        required: true
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+    delete:
+      tags:
+      - BroadcastRestService
+      summary: 'Deletes the specified stream correlated with streamId in the room.
+        Use '
+      description: ''
+      operationId: deleteStreamFromTheRoom
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: room_id
+        in: path
+        description: Room id
+        required: true
+        type: string
+      - name: streamId
+        in: path
+        description: Stream id to delete from the conference room
+        required: true
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/broadcasts/count":
+    get:
+      tags:
+      - BroadcastRestService
+      summary: Get the total number of broadcasts
+      description: ''
+      operationId: getTotalBroadcastNumberV2
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/SimpleStat"
+  "/v2/broadcasts/count/{search}":
+    get:
+      tags:
+      - BroadcastRestService
+      summary: 'Get the number of broadcasts depending on the searched items '
+      description: ''
+      operationId: getTotalBroadcastNumberV2
+      produces:
+      - application/json
+      parameters:
+      - name: search
+        in: path
+        description: 'Search parameter to get the number of items including it '
+        required: true
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/SimpleStat"
+  "/v2/broadcasts/create":
+    post:
+      tags:
+      - BroadcastRestService
+      summary: Creates a Broadcast, IP Camera or Stream Source and returns the full
+        broadcast object with rtmp address and other information. The different between
+        Broadcast and IP Camera or Stream Source is that Broadcast is ingested by
+        Ant Media ServerIP Camera or Stream Source is pulled by Ant Media Server
+      description: ''
+      operationId: createBroadcast
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        description: Broadcast object. Set the required fields, it may be null as
+          well.
+        required: false
+        schema:
+          "$ref": "#/definitions/Broadcast"
+      - name: autoStart
+        in: query
+        description: Only effective if stream is IP Camera or Stream Source. If it's
+          true, it starts automatically pulling stream. Its value is false by default
+        required: false
+        type: boolean
+        default: false
+      responses:
+        '200':
+          description: Returns the created stream
+          schema:
+            "$ref": "#/definitions/Broadcast"
+        '400':
+          description: If stream id is already used in the data store, it returns
+            error
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/broadcasts/filter-list/{offset}/{size}/{type}":
+    get:
+      tags:
+      - BroadcastRestService
+      summary: Returns filtered broadcast list according to type. It's useful for
+        getting IP Camera and Stream Sources from the whole list. If you want to use
+        sort mechanism, we recommend using Mongo DB.
+      description: ''
+      operationId: filterBroadcastListV2
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: offset
+        in: path
+        description: starting point of the list
+        required: true
+        type: integer
+        format: int32
+      - name: size
+        in: path
+        description: size of the return list (max:50 )
+        required: true
+        type: integer
+        format: int32
+      - name: type
+        in: path
+        description: type of the stream. Possible values are "liveStream", "ipCamera",
+          "streamSource", "VoD"
+        required: true
+        type: string
+      - name: sort_by
+        in: query
+        description: field to sort
+        required: false
+        type: string
+      - name: order_by
+        in: query
+        description: asc for Ascending, desc Descending order
+        required: false
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/Broadcast"
+      deprecated: true
+  "/v2/broadcasts/import-to-stalker":
+    post:
+      tags:
+      - BroadcastRestService
+      summary: Import Live Streams to Stalker Portal
+      description: ''
+      operationId: importLiveStreams2StalkerV2
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/broadcasts/list/{offset}/{size}":
+    get:
+      tags:
+      - BroadcastRestService
+      summary: Gets the broadcast list from database. It returns max 50 items at a
+        time
+      description: ''
+      operationId: getBroadcastList
+      produces:
+      - application/json
+      parameters:
+      - name: offset
+        in: path
+        description: This is the offset of the list, it is useful for pagination.
+          If you want to use sort mechanism, we recommend using Mongo DB.
+        required: true
+        type: integer
+        format: int32
+      - name: size
+        in: path
+        description: Number of items that will be fetched. If there is not enough
+          item in the datastore, returned list size may less then this value
+        required: true
+        type: integer
+        format: int32
+      - name: type_by
+        in: query
+        description: Type of the stream. Possible values are "liveStream", "ipCamera",
+          "streamSource", "VoD"
+        required: false
+        type: string
+      - name: sort_by
+        in: query
+        description: Field to sort. Possible values are "name", "date", "status"
+        required: false
+        type: string
+      - name: order_by
+        in: query
+        description: '"asc" for Ascending, "desc" Descending order'
+        required: false
+        type: string
+      - name: search
+        in: query
+        description: Search parameter, returns specific items that contains search
+          string
+        required: false
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/Broadcast"
+  "/v2/broadcasts/onvif-devices":
+    get:
+      tags:
+      - BroadcastRestService
+      summary: Get Discovered ONVIF IP Cameras, this service perform a discovery inside
+        of internal network and get automatically  ONVIF enabled camera information
+      description: Notes here
+      operationId: searchOnvifDevicesV2
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/broadcasts/total-broadcast-statistics":
+    get:
+      tags:
+      - BroadcastRestService
+      summary: Get the total broadcast live statistics total HLS watcher count, total
+        WebRTC watcher count
+      description: ''
+      operationId: getBroadcastTotalStatistics
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/BroadcastStatistics"
+  "/v2/broadcasts/validate-token":
+    post:
+      tags:
+      - BroadcastRestService
+      summary: Perform validation of token for requested stream. If validated, success
+        field is true, not validated success field false
+      description: ''
+      operationId: validateTokenV2
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        description: Token to be validated
+        required: true
+        schema:
+          "$ref": "#/definitions/Token"
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/broadcasts/webrtc-receive-low-level-stats":
+    get:
+      tags:
+      - BroadcastRestService
+      summary: Get WebRTC Low Level receive stats in general
+      description: ''
+      operationId: getWebRTCLowLevelReceiveStats
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/WebRTCSendStats"
+  "/v2/broadcasts/webrtc-send-low-level-stats":
+    get:
+      tags:
+      - BroadcastRestService
+      summary: Get WebRTC Low Level Send stats in general
+      description: ''
+      operationId: getWebRTCLowLevelSendStats
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/WebRTCSendStats"
+  "/v2/broadcasts/webrtc-viewers/list/{offset}/{size}":
+    get:
+      tags:
+      - BroadcastRestService
+      operationId: getWebRTCViewerList
+      produces:
+      - application/json
+      parameters:
+      - name: offset
+        in: path
+        description: This is the offset of the list, it is useful for pagination.
+          If you want to use sort mechanism, we recommend using Mongo DB.
+        required: true
+        type: integer
+        format: int32
+      - name: size
+        in: path
+        description: Number of items that will be fetched. If there is not enough
+          item in the datastore, returned list size may less then this value
+        required: true
+        type: integer
+        format: int32
+      - name: sort_by
+        in: query
+        description: field to sort
+        required: false
+        type: string
+      - name: order_by
+        in: query
+        description: asc for Ascending, desc Descending order
+        required: false
+        type: string
+      - name: search
+        in: query
+        description: Search parameter, returns specific items that contains search
+          string
+        required: false
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/WebRTCViewerInfo"
+  "/v2/broadcasts/webrtc-viewers/{webrtc-viewer-id}/stop":
+    post:
+      tags:
+      - BroadcastRestService
+      summary: Stop player with a specified id
+      description: ''
+      operationId: stopPlaying
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: webrtc-viewer-id
+        in: path
+        description: the id of the webrtc viewer.
+        required: true
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/broadcasts/{id}":
+    get:
+      tags:
+      - BroadcastRestService
+      summary: Get broadcast object
+      description: ''
+      operationId: getBroadcast
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: id of the broadcast
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Return the broadcast object
+        '404':
+          description: Broadcast object not found
+    put:
+      tags:
+      - BroadcastRestService
+      summary: 'Updates the Broadcast objects fields if it''s not null. The updated
+        fields are as follows: name, description, userName, password, IP address,
+        streamUrl of the broadcast. It also updates the social endpoints'
+      description: ''
+      operationId: updateBroadcast
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: Broadcast id
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: Broadcast object with the updates
+        required: false
+        schema:
+          "$ref": "#/definitions/Broadcast"
+      responses:
+        '200':
+          description: If it's updated, success field is true. If it's not updated,
+            success  field if false.
+          schema:
+            "$ref": "#/definitions/Result"
+    delete:
+      tags:
+      - BroadcastRestService
+      summary: Delete broadcast from data store and stop if it's broadcasting
+      description: ''
+      operationId: deleteBroadcast
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: " Id of the broadcast"
+        required: true
+        type: string
+      responses:
+        '200':
+          description: If it's deleted, success is true. If it's not deleted, success
+            if false.
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/broadcasts/{id}/broadcast-statistics":
+    get:
+      tags:
+      - BroadcastRestService
+      summary: Get the broadcast live statistics total RTMP watcher count, total HLS
+        watcher count, total WebRTC watcher count
+      description: ''
+      operationId: getBroadcastStatistics
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: the id of the stream
+        required: true
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/BroadcastStatistics"
+  "/v2/broadcasts/{id}/data":
+    post:
+      tags:
+      - BroadcastRestService
+      summary: Send stream participants a message through Data Channel in a WebRTC
+        stream
+      description: ''
+      operationId: sendMessage
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        description: Message through Data Channel which will be sent to all WebRTC
+          stream participants
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: Broadcast id
+        required: true
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/broadcasts/{id}/detections/count":
+    get:
+      tags:
+      - BroadcastRestService
+      summary: Get total number of detected objects
+      description: ''
+      operationId: getObjectDetectedTotal
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: id of the stream
+        required: true
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: integer
+            format: int64
+  "/v2/broadcasts/{id}/detections/{offset}/{size}":
+    get:
+      tags:
+      - BroadcastRestService
+      summary: Get detected objects from the stream based on offset and size
+      description: ''
+      operationId: getDetectionListV2
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: the id of the stream
+        required: true
+        type: string
+      - name: offset
+        in: path
+        description: starting point of the list
+        required: true
+        type: integer
+        format: int32
+      - name: size
+        in: path
+        description: total size of the return list
+        required: true
+        type: integer
+        format: int32
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/TensorFlowObject"
+  "/v2/broadcasts/{id}/endpoint":
+    post:
+      tags:
+      - BroadcastRestService
+      operationId: addEndpointV2
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: Broadcast id
+        required: true
+        type: string
+      - name: rtmpUrl
+        in: query
+        description: RTMP url of the endpoint that stream will be republished. If
+          required, please encode the URL
+        required: true
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+      deprecated: true
+    delete:
+      tags:
+      - BroadcastRestService
+      operationId: removeEndpoint
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: Broadcast id
+        required: true
+        type: string
+      - name: rtmpUrl
+        in: query
+        description: RTMP url of the endpoint that will be stopped.
+        required: true
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+      deprecated: true
+  "/v2/broadcasts/{id}/ip-camera/device-profiles":
+    get:
+      tags:
+      - BroadcastRestService
+      summary: Get The Profile List for an ONVIF IP Cameras
+      description: Notes here
+      operationId: getOnvifDeviceProfiles
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: The id of the IP Camera
+        required: true
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/broadcasts/{id}/ip-camera/move":
+    post:
+      tags:
+      - BroadcastRestService
+      summary: 'Move IP Camera. It support continuous, relative and absolute move.
+        By default it''s relative move.Movement parameters should be given according
+        to movement type. Generally here are the values For Absolute move, value X
+        and value Y is between -1.0f and 1.0f. Zooom value is between 0.0f and 1.0fFor
+        Relative move, value X, value Y and Zoom Value is between -1.0f and 1.0fFor
+        Continous move,value X, value Y and Zoom Value is between -1.0f and 1.0f '
+      description: ''
+      operationId: moveIPCamera
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: The id of the IP Camera
+        required: true
+        type: string
+      - name: valueX
+        in: query
+        description: 'Movement in X direction. If not specified, it''s assumed to
+          be zero. Valid ranges between -1.0f and 1.0f for all movements '
+        required: false
+        type: number
+        format: float
+      - name: valueY
+        in: query
+        description: 'Movement in Y direction. If not specified, it''s assumed to
+          be zero. Valid ranges between -1.0f and 1.0f for all movements '
+        required: false
+        type: number
+        format: float
+      - name: valueZ
+        in: query
+        description: 'Movement in Zoom. If not specified, it''s assumed to be zero.
+          Valid ranges for relative and continous move is between -1.0f and 1.0f.
+          For absolute move between 0.0f and 1.0f '
+        required: false
+        type: number
+        format: float
+      - name: movement
+        in: query
+        description: Movement type. It can be absolute, relative or continuous. If
+          not specified, it's relative
+        required: false
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/broadcasts/{id}/ip-camera/stop-move":
+    post:
+      tags:
+      - BroadcastRestService
+      summary: Stop move for IP Camera.
+      description: ''
+      operationId: stopMove
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: the id of the IP Camera
+        required: true
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/broadcasts/{id}/jwt-token":
+    get:
+      tags:
+      - BroadcastRestService
+      summary: Generates JWT token for specified stream. It's not required to let
+        the server generate JWT. Generally JWT tokens should be generated on the client
+        side.
+      description: ''
+      operationId: getJwtTokenV2
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: The id of the stream
+        required: true
+        type: string
+      - name: expireDate
+        in: query
+        description: The expire time of the token. It's in unix timestamp seconds.
+        required: true
+        type: integer
+        format: int64
+      - name: type
+        in: query
+        description: 'Type of the JWT token. It may be play or publish '
+        required: true
+        type: string
+      - name: roomId
+        in: query
+        description: 'Room Id that token belongs to. It''s not mandatory '
+        required: false
+        type: string
+      responses:
+        '200':
+          description: Returns token
+          schema:
+            "$ref": "#/definitions/Token"
+        '400':
+          description: When there is an error in creating token
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/broadcasts/{id}/recording/{recording-status}":
+    put:
+      tags:
+      - BroadcastRestService
+      summary: Set stream specific recording setting, this setting overrides general
+        Mp4 and WebM Muxing Setting
+      description: ''
+      operationId: enableRecording
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: the id of the stream
+        required: true
+        type: string
+      - name: recording-status
+        in: path
+        description: Change recording status. If true, starts recording. If false
+          stop recording
+        required: true
+        type: boolean
+      - name: recordType
+        in: query
+        description: 'Record type: ''mp4'' or ''webm''. It''s optional parameter.'
+        required: false
+        type: string
+      - name: resolutionHeight
+        in: query
+        description: 'Resolution height of the broadcast that is wanted to record. '
+        required: false
+        type: integer
+        format: int32
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/broadcasts/{id}/rtmp-endpoint":
+    post:
+      tags:
+      - BroadcastRestService
+      summary: Adds a third party rtmp end point to the stream. It supports adding
+        after broadcast is started. Resolution can be specified to send a specific
+        adaptive resolution. If an url is already added to a stream, trying to add
+        the same rtmp url will return false.
+      description: ''
+      operationId: addEndpointV3
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: Broadcast id
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: RTMP url of the endpoint that stream will be republished. If
+          required, please encode the URL
+        required: true
+        schema:
+          "$ref": "#/definitions/Endpoint"
+      - name: resolutionHeight
+        in: query
+        description: 'Resolution height of the broadcast that is wanted to send to
+          the RTMP endpoint. '
+        required: false
+        type: integer
+        format: int32
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+    delete:
+      tags:
+      - BroadcastRestService
+      summary: Remove third pary rtmp end point from the stream. For the stream that
+        is broadcasting, it will stop immediately
+      description: ''
+      operationId: removeEndpointV2
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: Broadcast id
+        required: true
+        type: string
+      - name: endpointServiceId
+        in: query
+        description: RTMP url of the endpoint that will be stopped.
+        required: true
+        type: string
+      - name: resolutionHeight
+        in: query
+        description: Resolution specifier if endpoint has been added with resolution.
+          Only applicable if user added RTMP endpoint with a resolution speficier.
+          Otherwise won't work and won't remove the endpoint.
+        required: true
+        type: integer
+        format: int32
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/broadcasts/{id}/rtmp-to-webrtc-stats":
+    get:
+      tags:
+      - BroadcastRestService
+      summary: Get RTMP to WebRTC path stats in general
+      description: ''
+      operationId: getRTMPToWebRTCStats
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: the id of the stream
+        required: true
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/RTMPToWebRTCStats"
+  "/v2/broadcasts/{id}/start":
+    post:
+      tags:
+      - BroadcastRestService
+      summary: 'Start streaming sources(IP Cameras, Stream Sources, PlayLists) '
+      description: ''
+      operationId: startStreamSourceV2
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: the id of the stream. The broadcast type should be IP Camera
+          or Stream Source otherwise it does not work
+        required: true
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/broadcasts/{id}/stop":
+    post:
+      tags:
+      - BroadcastRestService
+      summary: Stop streaming for the active stream. It both stops ingested(RTMP,
+        WebRTC) or pulled stream sources (IP Cameras and Stream Sources)
+      description: ''
+      operationId: stopStreamingV2
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: the id of the broadcast.
+        required: true
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/broadcasts/{id}/stream-info":
+    get:
+      tags:
+      - BroadcastRestService
+      summary: Returns the stream info(width, height, bitrates and video codec) of
+        the stream
+      description: ''
+      operationId: getStreamInfo
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/BasicStreamInfo"
+  "/v2/broadcasts/{id}/subscriber-stats/list/{offset}/{size}":
+    get:
+      tags:
+      - BroadcastRestService
+      summary: Get the all subscriber statistics of the requested stream
+      description: ''
+      operationId: listSubscriberStatsV2
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: the id of the stream
+        required: true
+        type: string
+      - name: offset
+        in: path
+        description: the starting point of the list
+        required: true
+        type: integer
+        format: int32
+      - name: size
+        in: path
+        description: size of the return list (max:50 )
+        required: true
+        type: integer
+        format: int32
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/SubscriberStats"
+  "/v2/broadcasts/{id}/subscribers":
+    post:
+      tags:
+      - BroadcastRestService
+      summary: 'Add Subscriber to the requested stream '
+      description: ''
+      operationId: addSubscriber
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: the id of the stream
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: Subscriber to be added to this stream
+        required: true
+        schema:
+          "$ref": "#/definitions/Subscriber"
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+    delete:
+      tags:
+      - BroadcastRestService
+      summary: " Removes all subscriber related with the requested stream"
+      description: ''
+      operationId: revokeSubscribers
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: the id of the stream
+        required: true
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/broadcasts/{id}/subscribers/list/{offset}/{size}":
+    get:
+      tags:
+      - BroadcastRestService
+      summary: Get the all subscribers of the requested stream
+      description: ''
+      operationId: listSubscriberV2
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: the id of the stream
+        required: true
+        type: string
+      - name: offset
+        in: path
+        description: the starting point of the list
+        required: true
+        type: integer
+        format: int32
+      - name: size
+        in: path
+        description: size of the return list (max:50 )
+        required: true
+        type: integer
+        format: int32
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/Subscriber"
+  "/v2/broadcasts/{id}/subscribers/{sid}":
+    delete:
+      tags:
+      - BroadcastRestService
+      summary: Delete specific subscriber from data store for selected stream
+      description: ''
+      operationId: deleteSubscriber
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: the id of the stream
+        required: true
+        type: string
+      - name: sid
+        in: path
+        description: the id of the subscriber
+        required: true
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/broadcasts/{id}/subtrack":
+    post:
+      tags:
+      - BroadcastRestService
+      summary: Add a subtrack to a main track (broadcast).
+      description: ''
+      operationId: addSubTrack
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: Broadcast id(main track)
+        required: true
+        type: string
+      - name: id
+        in: query
+        description: Subtrack Stream Id
+        required: true
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+    delete:
+      tags:
+      - BroadcastRestService
+      summary: Delete a subtrack from a main track (broadcast).
+      description: ''
+      operationId: removeSubTrack
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: Broadcast id(main track)
+        required: true
+        type: string
+      - name: id
+        in: query
+        description: Subtrack Stream Id
+        required: true
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/broadcasts/{id}/token":
+    get:
+      tags:
+      - BroadcastRestService
+      summary: Generates random one-time token for specified stream
+      description: ''
+      operationId: getTokenV2
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: The id of the stream
+        required: true
+        type: string
+      - name: expireDate
+        in: query
+        description: The expire time of the token. It's in unix timestamp seconds
+        required: true
+        type: integer
+        format: int64
+      - name: type
+        in: query
+        description: 'Type of the token. It may be play or publish '
+        required: true
+        type: string
+      - name: roomId
+        in: query
+        description: 'Room Id that token belongs to. It''s not mandatory '
+        required: false
+        type: string
+      responses:
+        '200':
+          description: Returns token
+          schema:
+            "$ref": "#/definitions/Token"
+        '400':
+          description: When there is an error in creating token
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/broadcasts/{id}/tokens":
+    delete:
+      tags:
+      - BroadcastRestService
+      summary: " Removes all tokens related with requested stream"
+      description: ''
+      operationId: revokeTokensV2
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: the id of the stream
+        required: true
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/broadcasts/{id}/tokens/list/{offset}/{size}":
+    get:
+      tags:
+      - BroadcastRestService
+      summary: Get the all tokens of requested stream
+      description: ''
+      operationId: listTokensV2
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: the id of the stream
+        required: true
+        type: string
+      - name: offset
+        in: path
+        description: the starting point of the list
+        required: true
+        type: integer
+        format: int32
+      - name: size
+        in: path
+        description: size of the return list (max:50 )
+        required: true
+        type: integer
+        format: int32
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/Token"
+  "/v2/broadcasts/{streamId}/ip-camera-error":
+    get:
+      tags:
+      - BroadcastRestService
+      summary: Get IP Camera Error after connection failure. If returns true, it means
+        there is an error. If returns false, there is no error
+      description: Notes here
+      operationId: getCameraErrorV2
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: streamId
+        in: path
+        description: StreamId of the IP Camera Streaming.
+        required: true
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/broadcasts/{stream_id}/webrtc-client-stats/{offset}/{size}":
+    get:
+      tags:
+      - BroadcastRestService
+      summary: 'Get WebRTC Client Statistics such as : Audio bitrate, Video bitrate,
+        Target bitrate, Video Sent Period etc.'
+      description: ''
+      operationId: getWebRTCClientStatsListV2
+      produces:
+      - application/json
+      parameters:
+      - name: offset
+        in: path
+        description: offset of the list
+        required: true
+        type: integer
+        format: int32
+      - name: size
+        in: path
+        description: Number of items that will be fetched
+        required: true
+        type: integer
+        format: int32
+      - name: stream_id
+        in: path
+        description: the id of the stream
+        required: true
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/WebRTCClientStats"
+  "/v2/cluster-mode-status":
+    get:
+      tags:
+      - ManagementRestService
+      summary: Returns the server mode. If it is in the cluster mode, result will
+        be true.
+      description: ''
+      operationId: isInClusterMode
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/cluster/node-count":
+    get:
+      operationId: getNodeCount
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/SimpleStat"
+  "/v2/cluster/node/{id}":
+    delete:
+      operationId: deleteNode
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/cluster/nodes/{offset}/{size}":
+    get:
+      operationId: getNodeList
+      produces:
+      - application/json
+      parameters:
+      - name: offset
+        in: path
+        required: true
+        type: integer
+        format: int32
+      - name: size
+        in: path
+        required: true
+        type: integer
+        format: int32
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/ClusterNode"
+  "/v2/cpu-status":
+    get:
+      tags:
+      - ManagementRestService
+      summary: Returns system cpu load, process cpu load and process cpu time.
+      description: ''
+      operationId: getCPUInfo
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/enterprise-edition":
+    get:
+      tags:
+      - ManagementRestService
+      summary: Returns true if the server is enterprise edition.
+      description: ''
+      operationId: isEnterpriseEdition
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/file-system-status":
+    get:
+      tags:
+      - ManagementRestService
+      summary: Gets system file status. Returns usable space, total space, available
+        space and in use space.
+      description: ''
+      operationId: getFileSystemInfo
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/first-login-status":
+    get:
+      tags:
+      - ManagementRestService
+      summary: Checks first login status. If server being logged in first time, it
+        returns true, otherwise false.
+      description: ''
+      operationId: isFirstLogin
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/gpu-status":
+    get:
+      tags:
+      - ManagementRestService
+      summary: Gets GPU information. Returns whether you have GPU or not. If yes,
+        information of the gpu and the number of total gpus.
+      description: ''
+      operationId: getGPUInfo
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/heap-dump":
+    get:
+      tags:
+      - ManagementRestService
+      summary: Returns heap dump.
+      description: ''
+      operationId: getHeapDump
+      produces:
+      - application/octet-stream
+      responses:
+        '200':
+          description: Returns the heap dump
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/jvm-memory-status":
+    get:
+      tags:
+      - ManagementRestService
+      summary: Returns JVM memory informations. Max, total, free, in-use and available
+        processors are returned.
+      description: ''
+      operationId: getJVMMemoryInfo
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/last-licence-status":
+    get:
+      tags:
+      - ManagementRestService
+      summary: Returns the last checked license status. Includes license ID, owner,
+        start date, end date, type and license count.
+      description: ''
+      operationId: getLicenceStatus
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/licence-status":
+    get:
+      tags:
+      - ManagementRestService
+      summary: Returns license status. Includes license ID, status, owner, start date,
+        end date, type and license count.
+      description: ''
+      operationId: getLicenceStatus
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: key
+        in: query
+        description: License key
+        required: true
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/live-clients-size":
+    get:
+      tags:
+      - ManagementRestService
+      summary: Returns total number of live streams and total number of connections.
+      description: ''
+      operationId: getLiveClientsSize
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/liveness":
+    get:
+      tags:
+      - ManagementRestService
+      summary: Returns the hostname to check liveness with HTTP type healthcheck.
+      description: ''
+      operationId: liveness
+      produces:
+      - application/json
+      responses:
+        default:
+          description: successful operation
+  "/v2/log-file/{offsetSize}/{charSize}":
+    get:
+      tags:
+      - ManagementRestService
+      summary: Gets log file. Char size of the log, offset or log type can be specified.
+      description: ''
+      operationId: getLogFile
+      produces:
+      - application/json
+      parameters:
+      - name: charSize
+        in: path
+        description: Char size of the log
+        required: true
+        type: integer
+        format: int32
+      - name: logType
+        in: query
+        description: Log type. ERROR can be used to get only error logs
+        required: true
+        type: string
+      - name: offsetSize
+        in: path
+        description: Offset of the retrieved log
+        required: true
+        type: integer
+        format: int64
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/server-settings":
+    get:
+      tags:
+      - ManagementRestService
+      summary: Returns the server settings. From log level to measurement period of
+        cpu, license key of the server host address,ssl configuration and many more
+        settings are returned at once.
+      description: ''
+      operationId: getServerSettings
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+    post:
+      tags:
+      - ManagementRestService
+      summary: Changes server settings. Sets Server Name, license key, market build
+        status and node group.
+      description: ''
+      operationId: changeServerSettings
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        description: Server settings
+        required: true
+        schema:
+          "$ref": "#/definitions/ServerSettings"
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/server-time":
+    get:
+      tags:
+      - ManagementRestService
+      summary: Gets server time. Returns server uptime and start time in milliseconds
+        in JSON.
+      description: ''
+      operationId: getServerTime
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/shutdown-proper-status":
+    get:
+      tags:
+      - ManagementRestService
+      summary: Checks whether application or applications have shutdown properly or
+        not.
+      description: ''
+      operationId: isShutdownProperly
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: appNames
+        in: query
+        description: Application name
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Returns the shutdown status of entered applications.
+          schema:
+            "$ref": "#/definitions/Result"
+        '400':
+          description: Either entered in wrong format or typed incorrectly application
+            names
+  "/v2/shutdown-properly":
+    get:
+      tags:
+      - ManagementRestService
+      summary: Set application or applications shutdown property to true
+      description: ''
+      operationId: setShutdownStatus
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: appNames
+        in: query
+        description: Application name
+        required: true
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/ssl-settings":
+    post:
+      tags:
+      - ManagementRestService
+      summary: Changes ssl settings. Sets ssl configuration type. After this method
+        is called, server will be restarted.
+      description: ''
+      operationId: configureSsl
+      consumes:
+      - multipart/form-data
+      produces:
+      - application/json
+      parameters:
+      - name: domain
+        in: query
+        description: SSL settings
+        required: true
+        type: string
+      - name: type
+        in: query
+        required: false
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/support/request":
+    post:
+      operationId: sendSupportRequest
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/system-memory-status":
+    get:
+      tags:
+      - ManagementRestService
+      summary: 'Gets system memory status. Returns Virtual, total physical, available
+        physical, currently in use, total swap space, available swap space and in
+        use swap space. '
+      description: ''
+      operationId: getSystemMemoryInfo
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/system-resources":
+    get:
+      tags:
+      - ManagementRestService
+      summary: Gets system resource information. Returns number of total live streams,
+        cpu usage, system information, jvm information, file system information, license
+        status, gpu status etc. Basically returns most of the information in one package.
+      description: ''
+      operationId: getSystemResourcesInfo
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/system-status":
+    get:
+      tags:
+      - ManagementRestService
+      summary: Returns system information which includes many information such as
+        JVM memory, OS information, Available File Space, Physical memory informations
+        in detail.
+      description: ''
+      operationId: getSystemInfo
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/thread-dump":
+    get:
+      tags:
+      - ManagementRestService
+      summary: Gets thread dump in json format. Includes very detailed information
+        such as thread name, thread id, blocked time of thread, thread state and many
+        more information are returned.
+      description: ''
+      operationId: getThreadDumpJSON
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/threads":
+    get:
+      tags:
+      - ManagementRestService
+      summary: Returns processor's thread information. Includes number of dead locked
+        threads, thread count, and thread peek count.
+      description: ''
+      operationId: getThreadsInfo
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/user-list":
+    get:
+      tags:
+      - ManagementRestService
+      summary: Returns user list in the server management panel
+      description: ''
+      operationId: getUserList
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              type: object
+  "/v2/users":
+    post:
+      tags:
+      - ManagementRestService
+      summary: Creates a new user. If user object is null or if user is not authenticated,
+        new user won't be created.
+      description: ''
+      operationId: addUser
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        description: User object. If it is null, new user won't be created.
+        required: true
+        schema:
+          "$ref": "#/definitions/User"
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+    put:
+      tags:
+      - ManagementRestService
+      summary: 'Edit the user in the server management panel''s user list. It can
+        change password or user type(admin, read only) '
+      description: ''
+      operationId: editUser
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        description: User to be edited. It finds the user with username.
+        required: true
+        schema:
+          "$ref": "#/definitions/User"
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              type: object
+  "/v2/users/authenticate":
+    post:
+      tags:
+      - ManagementRestService
+      summary: Authenticates user with given username and password. Requires user
+        object to authenticate.
+      description: ''
+      operationId: authenticateUser
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        description: User object to authenticate
+        required: true
+        schema:
+          "$ref": "#/definitions/User"
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/users/initial":
+    post:
+      tags:
+      - ManagementRestService
+      summary: Creates initial user. This is a one time scenario when initial user
+        creation required and shouldn't be used otherwise. User object is required
+        and can't be null
+      description: ''
+      operationId: addInitialUser
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        description: User object. If it is null, new user won't be created.
+        required: true
+        schema:
+          "$ref": "#/definitions/User"
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/users/password":
+    post:
+      tags:
+      - ManagementRestService
+      summary: Changes the given user's password.
+      description: ''
+      operationId: changeUserPassword
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        description: User object to change the password
+        required: true
+        schema:
+          "$ref": "#/definitions/User"
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/users/{usermail}/blocked":
+    get:
+      tags:
+      - ManagementRestService
+      summary: Returns if user is blocked. User is blocked for a specific time if
+        there are login attempts
+      description: ''
+      operationId: getBlockedStatus
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: usermail
+        in: path
+        description: User name or e-mail of the user to check it status
+        required: true
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/users/{username}":
+    delete:
+      tags:
+      - ManagementRestService
+      summary: Delete the user from the server management panel's user list
+      description: ''
+      operationId: deleteUser
+      consumes:
+      - application/x-www-form-urlencoded
+      produces:
+      - application/json
+      parameters:
+      - name: username
+        in: path
+        description: User name or e-mail of the user to be deleted
+        required: true
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              type: object
+  "/v2/version":
+    get:
+      tags:
+      - ManagementRestService
+      summary: Returns the version of Ant Media Server.
+      description: ''
+      operationId: getVersion
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/vods/bulk":
+    delete:
+      tags:
+      - VoD Rest Service
+      summary: Delete bulk VoD Files based on Vod Id
+      description: ''
+      operationId: deleteVoDs
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        description: the ids of the VoD file
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/vods/count":
+    get:
+      tags:
+      - VoD Rest Service
+      summary: Get the total number of VoDs
+      description: ''
+      operationId: getTotalVodNumber
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: integer
+            format: int64
+  "/v2/vods/count/{search}":
+    get:
+      tags:
+      - VoD Rest Service
+      summary: Get the partial number of VoDs depending on the searched items
+      description: ''
+      operationId: getTotalVodNumber
+      produces:
+      - application/json
+      parameters:
+      - name: search
+        in: path
+        description: 'Search parameter to get the number of items including it '
+        required: true
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: integer
+            format: int64
+  "/v2/vods/create":
+    post:
+      tags:
+      - VoD Rest Service
+      summary: Upload external VoD file to Ant Media Server
+      description: ''
+      operationId: uploadVoDFile
+      consumes:
+      - multipart/form-data
+      produces:
+      - application/json
+      parameters:
+      - name: name
+        in: query
+        description: the name of the VoD File
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: file
+        required: true
+        schema:
+          "$ref": "#/definitions/InputStream"
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/vods/directory":
+    post:
+      tags:
+      - VoD Rest Service
+      summary: Import VoD files from a directory and make it streamable.
+      description: ''
+      operationId: importVoDs
+      produces:
+      - application/json
+      parameters:
+      - name: directory
+        in: query
+        description: the full path of the directory that VoD files will be imported
+          to datastore and linked to the streams
+        required: false
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+    delete:
+      tags:
+      - VoD Rest Service
+      summary: Unlinks VoD path from streams directory and delete the database record.
+        It does not delete the files. It only unlinks folder and delete database records
+      description: ''
+      operationId: unlinksVoD
+      produces:
+      - application/json
+      parameters:
+      - name: directory
+        in: query
+        description: 'the full path of the directory that imported VoD files will
+          be deleted from database. '
+        required: false
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/vods/import-to-stalker":
+    post:
+      tags:
+      - VoD Rest Service
+      summary: Import VoDs to Stalker Portal
+      description: ''
+      operationId: importVoDsToStalker
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+  "/v2/vods/list/{offset}/{size}":
+    get:
+      tags:
+      - VoD Rest Service
+      summary: " Get the VoD list from database. It returns 50 items at max. You can
+        use offset value to get result page by page "
+      description: ''
+      operationId: getVodList
+      produces:
+      - application/json
+      parameters:
+      - name: offset
+        in: path
+        description: Offset of the list
+        required: true
+        type: integer
+        format: int32
+      - name: size
+        in: path
+        description: Number of items that will be fetched
+        required: true
+        type: integer
+        format: int32
+      - name: sort_by
+        in: query
+        description: Field to sort. Possible values are "name", "date"
+        required: false
+        type: string
+      - name: order_by
+        in: query
+        description: '"asc" for Ascending, "desc" Descening order'
+        required: false
+        type: string
+      - name: streamId
+        in: query
+        description: Id of the stream to filter the results by stream id
+        required: false
+        type: string
+      - name: search
+        in: query
+        description: Search string
+        required: false
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/VoD"
+  "/v2/vods/synch-user-vod-list":
+    post:
+      tags:
+      - VoD Rest Service
+      summary: Deprecated. Use import VoDs. Synchronize VoD Folder and add them to
+        VoD database if any file exist and create symbolic links to that folder
+      description: Notes here
+      operationId: synchUserVodList
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+      deprecated: true
+  "/v2/vods/{id}":
+    get:
+      tags:
+      - VoD Rest Service
+      summary: VoD file from database
+      description: ''
+      operationId: getVoD
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: id of the VoD
+        required: true
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/VoD"
+    delete:
+      tags:
+      - VoD Rest Service
+      summary: Delete specific VoD File
+      description: ''
+      operationId: deleteVoD
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: the id of the VoD file
+        required: true
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Result"
+definitions:
+  AVCodecParameters:
+    type: object
+    properties:
+      'null':
+        type: boolean
+      pointer:
+        "$ref": "#/definitions/Pointer"
+  AVFormatContext:
+    type: object
+    properties:
+      'null':
+        type: boolean
+      pointer:
+        "$ref": "#/definitions/Pointer"
+  AVPacket:
+    type: object
+    properties:
+      'null':
+        type: boolean
+      pointer:
+        "$ref": "#/definitions/Pointer"
+  AVRational:
+    type: object
+    properties:
+      'null':
+        type: boolean
+      pointer:
+        "$ref": "#/definitions/Pointer"
+  AbstractConsoleDataStore:
+    type: object
+    properties:
+      invalidLoginCountMap:
+        type: object
+        additionalProperties:
+          type: integer
+          format: int32
+      isBlockedMap:
+        type: object
+        additionalProperties:
+          type: boolean
+      available:
+        type: boolean
+      userList:
+        type: array
+        items:
+          "$ref": "#/definitions/User"
+      numberOfUserRecords:
+        type: integer
+        format: int32
+  AdminApplication:
+    type: object
+    properties:
+      scope:
+        "$ref": "#/definitions/IScope"
+      plugins:
+        type: array
+        items:
+          "$ref": "#/definitions/PluginDescriptor"
+      listeners:
+        type: array
+        uniqueItems: true
+        items:
+          "$ref": "#/definitions/IApplication"
+      dataStoreFactory:
+        "$ref": "#/definitions/ConsoleDataStoreFactory"
+      rootScope:
+        "$ref": "#/definitions/IScope"
+      clusterNotifier:
+        "$ref": "#/definitions/IClusterNotifier"
+      httpClient:
+        "$ref": "#/definitions/CloseableHttpClient"
+      applications:
+        type: array
+        items:
+          type: string
+      applicationInfo:
+        type: array
+        items:
+          "$ref": "#/definitions/ApplicationInfo"
+      totalConnectionSize:
+        type: integer
+        format: int32
+      totalLiveStreamSize:
+        type: integer
+        format: int32
+      streamPublishSecurity:
+        type: array
+        uniqueItems: true
+        items:
+          "$ref": "#/definitions/IStreamPublishSecurity"
+      streamPlaybackSecurity:
+        type: array
+        uniqueItems: true
+        items:
+          "$ref": "#/definitions/IStreamPlaybackSecurity"
+      scheduledJobNames:
+        type: array
+        items:
+          type: string
+      clientTTL:
+        type: integer
+        format: int64
+      ghostConnsCleanupPeriod:
+        type: integer
+        format: int32
+      name:
+        type: string
+      parent:
+        "$ref": "#/definitions/IScope"
+      context:
+        "$ref": "#/definitions/IContext"
+      path:
+        type: string
+      attributes:
+        type: object
+        additionalProperties:
+          type: object
+      depth:
+        type: integer
+        format: int32
+      attributeNames:
+        type: array
+        uniqueItems: true
+        items:
+          type: string
+      clients:
+        type: array
+        uniqueItems: true
+        items:
+          "$ref": "#/definitions/IClient"
+      connections:
+        type: array
+        items:
+          type: array
+          uniqueItems: true
+          items:
+            "$ref": "#/definitions/IConnection"
+      childScopeNames:
+        type: array
+        uniqueItems: true
+        items:
+          type: string
+  Annotation:
+    type: object
+  AntMediaApplicationAdapter:
+    type: object
+    properties:
+      scope:
+        "$ref": "#/definitions/IScope"
+      plugins:
+        type: array
+        items:
+          "$ref": "#/definitions/PluginDescriptor"
+      listeners:
+        type: array
+        uniqueItems: true
+        items:
+          "$ref": "#/definitions/IApplication"
+      serverSettings:
+        "$ref": "#/definitions/ServerSettings"
+      streamPublishSecurityList:
+        type: array
+        items:
+          "$ref": "#/definitions/IStreamPublishSecurity"
+      streamFetcherManager:
+        "$ref": "#/definitions/StreamFetcherManager"
+      muxAdaptors:
+        type: array
+        items:
+          "$ref": "#/definitions/MuxAdaptor"
+      dataStore:
+        "$ref": "#/definitions/DataStore"
+      dataStoreFactory:
+        "$ref": "#/definitions/DataStoreFactory"
+      streamAcceptFilter:
+        "$ref": "#/definitions/StreamAcceptFilter"
+      appSettings:
+        "$ref": "#/definitions/AppSettings"
+      vertx:
+        "$ref": "#/definitions/Vertx"
+      numberOfEncoderNotOpenedErrors:
+        type: integer
+        format: int32
+      shutdownProperly:
+        type: boolean
+      webRTCVideoReceiveStats:
+        "$ref": "#/definitions/WebRTCVideoReceiveStats"
+      webRTCAudioReceiveStats:
+        "$ref": "#/definitions/WebRTCAudioReceiveStats"
+      webRTCVideoSendStats:
+        "$ref": "#/definitions/WebRTCVideoSendStats"
+      webRTCAudioSendStats:
+        "$ref": "#/definitions/WebRTCAudioSendStats"
+      serverShuttingDown:
+        type: boolean
+      storageClient:
+        "$ref": "#/definitions/StorageClient"
+      subtrackPoller:
+        "$ref": "#/definitions/ISubtrackPoller"
+      httpClient:
+        "$ref": "#/definitions/CloseableHttpClient"
+      dataChannelMessagingSupported:
+        type: boolean
+      dataChannelEnabled:
+        type: boolean
+      numberOfEncodersBlocked:
+        type: integer
+        format: int32
+      numberOfPublishTimeoutError:
+        type: integer
+        format: int32
+      webRTCClientsMap:
+        type: object
+        additionalProperties:
+          type: array
+          items:
+            "$ref": "#/definitions/IWebRTCClient"
+      streamPublishSecurity:
+        type: array
+        uniqueItems: true
+        items:
+          "$ref": "#/definitions/IStreamPublishSecurity"
+      streamPlaybackSecurity:
+        type: array
+        uniqueItems: true
+        items:
+          "$ref": "#/definitions/IStreamPlaybackSecurity"
+      scheduledJobNames:
+        type: array
+        items:
+          type: string
+      clientTTL:
+        type: integer
+        format: int64
+      ghostConnsCleanupPeriod:
+        type: integer
+        format: int32
+      name:
+        type: string
+      parent:
+        "$ref": "#/definitions/IScope"
+      context:
+        "$ref": "#/definitions/IContext"
+      path:
+        type: string
+      attributes:
+        type: object
+        additionalProperties:
+          type: object
+      depth:
+        type: integer
+        format: int32
+      attributeNames:
+        type: array
+        uniqueItems: true
+        items:
+          type: string
+      clients:
+        type: array
+        uniqueItems: true
+        items:
+          "$ref": "#/definitions/IClient"
+      connections:
+        type: array
+        items:
+          type: array
+          uniqueItems: true
+          items:
+            "$ref": "#/definitions/IConnection"
+      childScopeNames:
+        type: array
+        uniqueItems: true
+        items:
+          type: string
+  AppSettings:
+    type: object
+    properties:
+      remoteAllowedCIDR:
+        type: string
+      mp4MuxingEnabled:
+        type: boolean
+      webMMuxingEnabled:
+        type: boolean
+      addDateTimeToMp4FileName:
+        type: boolean
+      fileNameFormat:
+        type: string
+      hlsMuxingEnabled:
+        type: boolean
+      encoderSettingsString:
+        type: string
+      signalingEnabled:
+        type: boolean
+      signalingAddress:
+        type: string
+      hlsListSize:
+        type: string
+      hlsTime:
+        type: string
+      uploadExtensionsToS3:
+        type: integer
+        format: int32
+      s3StorageClass:
+        type: string
+      endpointHealthCheckPeriodMs:
+        type: integer
+        format: int32
+      endpointRepublishLimit:
+        type: integer
+        format: int32
+      dashSegDuration:
+        type: string
+      dashFragmentDuration:
+        type: string
+      targetLatency:
+        type: string
+      dashWindowSize:
+        type: string
+      dashExtraWindowSize:
+        type: string
+      islLDashEnabled:
+        type: boolean
+      islLHLSEnabled:
+        type: boolean
+      hlsEnabledViaDash:
+        type: boolean
+      useTimelineDashMuxing:
+        type: boolean
+      webRTCEnabled:
+        type: boolean
+      useOriginalWebRTCEnabled:
+        type: boolean
+      deleteHLSFilesOnEnded:
+        type: boolean
+      deleteDASHFilesOnEnded:
+        type: boolean
+      tokenHashSecret:
+        type: string
+      hashControlPublishEnabled:
+        type: boolean
+      hashControlPlayEnabled:
+        type: boolean
+      listenerHookURL:
+        type: string
+      acceptOnlyStreamsInDataStore:
+        type: boolean
+      acceptOnlyRoomsInDataStore:
+        type: boolean
+      publishTokenControlEnabled:
+        type: boolean
+      playTokenControlEnabled:
+        type: boolean
+      timeTokenSubscriberOnly:
+        type: boolean
+      enableTimeTokenForPlay:
+        type: boolean
+      enableTimeTokenForPublish:
+        type: boolean
+      timeTokenPeriod:
+        type: integer
+        format: int32
+      hlsPlayListType:
+        type: string
+      vodFolder:
+        type: string
+      previewOverwrite:
+        type: boolean
+      stalkerDBServer:
+        type: string
+      stalkerDBUsername:
+        type: string
+      stalkerDBPassword:
+        type: string
+      objectDetectionEnabled:
+        type: boolean
+      createPreviewPeriod:
+        type: integer
+        format: int32
+      restartStreamFetcherPeriod:
+        type: integer
+        format: int32
+      startStreamFetcherAutomatically:
+        type: boolean
+      streamFetcherBufferTime:
+        type: integer
+        format: int32
+      hlsflags:
+        type: string
+      mySqlClientPath:
+        type: string
+      muxerFinishScript:
+        type: string
+      webRTCFrameRate:
+        type: integer
+        format: int32
+      webRTCPortRangeMin:
+        type: integer
+        format: int32
+      webRTCPortRangeMax:
+        type: integer
+        format: int32
+      stunServerURI:
+        type: string
+      turnServerUsername:
+        type: string
+      turnServerCredential:
+        type: string
+      webRTCTcpCandidatesEnabled:
+        type: boolean
+      webRTCSdpSemantics:
+        type: string
+      portAllocatorFlags:
+        type: integer
+        format: int32
+      encoderName:
+        type: string
+      encoderPreset:
+        type: string
+      encoderProfile:
+        type: string
+      encoderLevel:
+        type: string
+      encoderRc:
+        type: string
+      encoderSpecific:
+        type: string
+      encoderThreadCount:
+        type: integer
+        format: int32
+      encoderThreadType:
+        type: integer
+        format: int32
+      vp8EncoderSpeed:
+        type: integer
+        format: int32
+      vp8EncoderDeadline:
+        type: string
+      vp8EncoderThreadCount:
+        type: integer
+        format: int32
+      previewHeight:
+        type: integer
+        format: int32
+      generatePreview:
+        type: boolean
+      writeStatsToDatastore:
+        type: boolean
+      encoderSelectionPreference:
+        type: string
+      allowedPublisherCIDR:
+        type: string
+      excessiveBandwidthValue:
+        type: integer
+        format: int32
+      excessiveBandwidthCallThreshold:
+        type: integer
+        format: int32
+      excessiveBandwithTryCountBeforeSwitchback:
+        type: integer
+        format: int32
+      excessiveBandwidthAlgorithmEnabled:
+        type: boolean
+      packetLossDiffThresholdForSwitchback:
+        type: integer
+        format: int32
+      rttMeasurementDiffThresholdForSwitchback:
+        type: integer
+        format: int32
+      replaceCandidateAddrWithServerAddr:
+        type: boolean
+      appName:
+        type: string
+      encodingTimeout:
+        type: integer
+        format: int32
+      webRTCClientStartTimeoutMs:
+        type: integer
+        format: int32
+      defaultDecodersEnabled:
+        type: boolean
+      updateTime:
+        type: integer
+        format: int64
+      httpForwardingExtension:
+        type: string
+      httpForwardingBaseURL:
+        type: string
+      maxAnalyzeDurationMS:
+        type: integer
+        format: int32
+      disableIPv6Candidates:
+        type: boolean
+      rtspPullTransportType:
+        type: string
+      rtspTimeoutDurationMs:
+        type: integer
+        format: int32
+      maxFpsAccept:
+        type: integer
+        format: int32
+      maxResolutionAccept:
+        type: integer
+        format: int32
+      h264Enabled:
+        type: boolean
+      vp8Enabled:
+        type: boolean
+      h265Enabled:
+        type: boolean
+      dataChannelEnabled:
+        type: boolean
+      dataChannelPlayerDistribution:
+        type: string
+      rtmpIngestBufferTimeMs:
+        type: integer
+        format: int64
+      dataChannelWebHookURL:
+        type: string
+      h265EncoderPreset:
+        type: string
+      h265EncoderProfile:
+        type: string
+      h265EncoderRc:
+        type: string
+      h265EncoderSpecific:
+        type: string
+      h265EncoderLevel:
+        type: string
+      heightRtmpForwarding:
+        type: integer
+        format: int32
+      audioBitrateSFU:
+        type: integer
+        format: int32
+      dashMuxingEnabled:
+        type: boolean
+      aacEncodingEnabled:
+        type: boolean
+      gopSize:
+        type: integer
+        format: int32
+      constantRateFactor:
+        type: string
+      webRTCViewerLimit:
+        type: integer
+        format: int32
+      toBeDeleted:
+        type: boolean
+      pullWarFile:
+        type: boolean
+      warFileOriginServerAddress:
+        type: string
+      jwtSecretKey:
+        type: string
+      jwtControlEnabled:
+        type: boolean
+      ipFilterEnabled:
+        type: boolean
+      ingestingStreamLimit:
+        type: integer
+        format: int32
+      webRTCKeyframeTime:
+        type: integer
+        format: int32
+      jwtStreamSecretKey:
+        type: string
+      publishJwtControlEnabled:
+        type: boolean
+      playJwtControlEnabled:
+        type: boolean
+      dashHttpStreaming:
+        type: boolean
+      s3StreamsFolderPath:
+        type: string
+      s3PreviewsFolderPath:
+        type: string
+      dashHttpEndpoint:
+        type: string
+      hlsHttpEndpoint:
+        type: string
+      forceDecoding:
+        type: boolean
+      addOriginalMuxerIntoHLSPlaylist:
+        type: boolean
+      s3RecordingEnabled:
+        type: boolean
+      s3AccessKey:
+        type: string
+      s3SecretKey:
+        type: string
+      s3BucketName:
+        type: string
+      s3RegionName:
+        type: string
+      s3Endpoint:
+        type: string
+      s3CacheControl:
+        type: string
+      s3Permission:
+        type: string
+      hlsEncryptionKeyInfoFile:
+        type: string
+      jwksURL:
+        type: string
+      forceAspectRatioInTranscoding:
+        type: boolean
+      webhookAuthenticateURL:
+        type: string
+      maxAudioTrackCount:
+        type: integer
+        format: int32
+      maxVideoTrackCount:
+        type: integer
+        format: int32
+      vodUploadFinishScript:
+        type: string
+      contentSecurityPolicyHeaderValue:
+        type: string
+      rtmpPlaybackEnabled:
+        type: boolean
+      originEdgeIdleTimeout:
+        type: integer
+        format: int32
+      addDateTimeToHlsFileName:
+        type: boolean
+      playWebRTCStreamOnceForEachSession:
+        type: boolean
+      statsBasedABREnabled:
+        type: boolean
+      abrDownScalePacketLostRatio:
+        type: number
+        format: float
+      abrUpScalePacketLostRatio:
+        type: number
+        format: float
+      abrUpScaleRTTMs:
+        type: integer
+        format: int32
+      abrUpScaleJitterMs:
+        type: integer
+        format: int32
+      clusterCommunicationKey:
+        type: string
+      encoderSettings:
+        type: array
+        items:
+          "$ref": "#/definitions/EncoderSettings"
+  ApplicationContext:
+    type: object
+    properties:
+      displayName:
+        type: string
+      parent:
+        "$ref": "#/definitions/ApplicationContext"
+      id:
+        type: string
+      applicationName:
+        type: string
+      startupDate:
+        type: integer
+        format: int64
+      autowireCapableBeanFactory:
+        "$ref": "#/definitions/AutowireCapableBeanFactory"
+      environment:
+        "$ref": "#/definitions/Environment"
+      beanDefinitionCount:
+        type: integer
+        format: int32
+      beanDefinitionNames:
+        type: array
+        items:
+          type: string
+      parentBeanFactory:
+        "$ref": "#/definitions/BeanFactory"
+      classLoader:
+        "$ref": "#/definitions/ClassLoader"
+  ApplicationInfo:
+    type: object
+    properties:
+      name:
+        type: string
+      liveStreamCount:
+        type: integer
+        format: int32
+      vodCount:
+        type: integer
+        format: int32
+      storage:
+        type: integer
+        format: int64
+  AtomicBoolean:
+    type: object
+    properties:
+      opaque:
+        type: boolean
+      acquire:
+        type: boolean
+      plain:
+        type: boolean
+  AutowireCapableBeanFactory:
+    type: object
+  BasicStreamInfo:
+    type: object
+    properties:
+      videoHeight:
+        type: integer
+        format: int32
+      videoWidth:
+        type: integer
+        format: int32
+      videoBitrate:
+        type: integer
+        format: int32
+      audioBitrate:
+        type: integer
+        format: int32
+      videoCodec:
+        type: string
+        enum:
+        - NOVIDEO
+        - VP8
+        - H264
+        - PNG
+        - H265
+  BeanFactory:
+    type: object
+  Broadcast:
+    type: object
+    properties:
+      streamId:
+        type: string
+        description: the id of the stream
+      status:
+        type: string
+        description: the status of the stream
+        enum:
+        - finished
+        - broadcasting
+        - created
+      playListStatus:
+        type: string
+        description: The status of the playlist. It's usable if type is playlist
+        enum:
+        - finished
+        - broadcasting
+        - created
+      type:
+        type: string
+        description: the type of the stream
+        enum:
+        - liveStream
+        - ipCamera
+        - streamSource
+        - VoD
+        - playlist
+      publishType:
+        type: string
+        description: the publish type of the stream
+        enum:
+        - WebRTC
+        - RTMP
+        - Pull
+      name:
+        type: string
+        description: the name of the stream
+      description:
+        type: string
+        description: the description of the stream
+      publish:
+        type: boolean
+        description: it is a video filter for the service, this value is controlled
+          by the user, default value is true in the db
+      date:
+        type: integer
+        format: int64
+        description: the date when record is created in milliseconds
+      plannedStartDate:
+        type: integer
+        format: int64
+        description: the planned start date
+      plannedEndDate:
+        type: integer
+        format: int64
+        description: the planned end date
+      duration:
+        type: integer
+        format: int64
+        description: the duration of the stream in milliseconds
+      endPointList:
+        type: array
+        description: 'the list of endpoints such as Facebook, Twitter or custom RTMP
+          endpoints  '
+        items:
+          "$ref": "#/definitions/Endpoint"
+      playListItemList:
+        type: array
+        description: the list broadcasts of Playlist Items. This list has values when
+          the broadcast type is playlist
+        items:
+          "$ref": "#/definitions/PlayListItem"
+      publicStream:
+        type: boolean
+        description: the identifier of whether stream is public or not
+      is360:
+        type: boolean
+        description: the identifier of whether stream is 360 or not
+      listenerHookURL:
+        type: string
+        description: the url that will be notified when stream is published, ended
+          and muxing finished
+      category:
+        type: string
+        description: the category of the stream
+      ipAddr:
+        type: string
+        description: the IP Address of the IP Camera or publisher
+      username:
+        type: string
+        description: the user name of the IP Camera
+      password:
+        type: string
+        description: the password of the IP Camera
+      quality:
+        type: string
+        description: the quality of the incoming stream during publishing
+      speed:
+        type: number
+        format: double
+        description: the speed of the incoming stream, for better quality and performance
+          it should be around 1.00
+      streamUrl:
+        type: string
+        description: the stream URL for fetching stream, especially should be defined
+          for IP Cameras or Cloud streams
+      originAdress:
+        type: string
+        description: the origin address server broadcasting
+      mp4Enabled:
+        type: integer
+        format: int32
+        description: MP4 muxing whether enabled or not for the stream, 1 means enabled,
+          -1 means disabled, 0 means no settings for the stream
+      webMEnabled:
+        type: integer
+        format: int32
+        description: WebM muxing whether enabled or not for the stream, 1 means enabled,
+          -1 means disabled, 0 means no settings for the stream
+      expireDurationMS:
+        type: integer
+        format: int32
+        description: the expire time in milliseconds For instance if this value is
+          10000 then broadcast should be started in 10 seconds after it is created.If
+          expire duration is 0, then stream will never expire
+      rtmpURL:
+        type: string
+        description: the RTMP URL where to publish live stream to
+      zombi:
+        type: boolean
+        description: is true, if a broadcast that is not added to data store through
+          rest service or management console It is false by default
+      pendingPacketSize:
+        type: integer
+        format: int32
+        description: 'the number of audio and video packets that is being pending
+          to be encoded in the queue '
+      hlsViewerCount:
+        type: integer
+        format: int32
+        description: the number of HLS viewers of the stream
+      dashViewerCount:
+        type: integer
+        format: int32
+        description: the number of DASH viewers of the stream
+      webRTCViewerCount:
+        type: integer
+        format: int32
+        description: the number of WebRTC viewers of the stream
+      rtmpViewerCount:
+        type: integer
+        format: int32
+        description: the number of RTMP viewers of the stream
+      startTime:
+        type: integer
+        format: int64
+        description: the publishing start time of the stream
+      receivedBytes:
+        type: integer
+        format: int64
+        description: the received bytes until now
+      bitrate:
+        type: integer
+        format: int64
+        description: the received bytes / duration
+      userAgent:
+        type: string
+        description: User - Agent
+      latitude:
+        type: string
+        description: latitude of the broadcasting location
+      longitude:
+        type: string
+        description: longitude of the broadcasting location
+      altitude:
+        type: string
+        description: altitude of the broadcasting location
+      mainTrackStreamId:
+        type: string
+        description: If this broadcast is a track of a WebRTC stream. This variable
+          is Id of that stream.
+      subTrackStreamIds:
+        type: array
+        description: If this broadcast is main track. This variable hold sub track
+          ids.
+        items:
+          type: string
+      absoluteStartTimeMs:
+        type: integer
+        format: int64
+        description: Absolute start time in milliseconds - unix timestamp. It's used
+          for measuring the absolute latency
+      webRTCViewerLimit:
+        type: integer
+        format: int32
+        description: Number of the allowed maximum WebRTC viewers for the broadcast
+      hlsViewerLimit:
+        type: integer
+        format: int32
+        description: Number of the allowed maximum HLS viewers for the broadcast
+      dashViewerLimit:
+        type: integer
+        format: int32
+        description: Number of the allowed maximum DASH viewers for the broadcast
+      subFolder:
+        type: string
+        description: Name of the subfolder that will contain stream files
+      currentPlayIndex:
+        type: integer
+        format: int32
+        description: Current playing index for playlist types
+      metaData:
+        type: string
+        description: Meta data filed for the custom usage
+      playlistLoopEnabled:
+        type: boolean
+        description: the identifier of playlist loop status
+      updateTime:
+        type: integer
+        format: int64
+    description: The basic broadcast class
+  BroadcastStatistics:
+    type: object
+    properties:
+      totalRTMPWatchersCount:
+        type: integer
+        format: int32
+        description: the total RTMP viewers of the stream
+      totalHLSWatchersCount:
+        type: integer
+        format: int32
+        description: the total HLS viewers of the stream
+      totalWebRTCWatchersCount:
+        type: integer
+        format: int32
+        description: the total WebRTC viewers of the stream
+      totalDASHWatchersCount:
+        type: integer
+        format: int32
+        description: the total DASH viewers of the stream
+    description: The statistics class of the broadcasts
+  ClassLoader:
+    type: object
+    properties:
+      parent:
+        "$ref": "#/definitions/ClassLoader"
+      name:
+        type: string
+      unnamedModule:
+        "$ref": "#/definitions/Module"
+      registeredAsParallelCapable:
+        type: boolean
+      definedPackages:
+        type: array
+        items:
+          "$ref": "#/definitions/Package"
+  ClientBroadcastStream:
+    type: object
+    properties:
+      state:
+        type: string
+        enum:
+        - INIT
+        - UNINIT
+        - OPEN
+        - CLOSED
+        - STARTED
+        - STOPPED
+        - PLAYING
+        - PAUSED
+        - RESUMED
+        - END
+        - SEEK
+      name:
+        type: string
+      codecInfo:
+        "$ref": "#/definitions/IStreamCodecInfo"
+      metaData:
+        "$ref": "#/definitions/Notify"
+      scope:
+        "$ref": "#/definitions/IScope"
+      creationTime:
+        type: integer
+        format: int64
+      absoluteStartTimeMs:
+        type: integer
+        format: int64
+      streamId:
+        "$ref": "#/definitions/Number"
+      broadcastStreamPublishName:
+        type: string
+      clientBufferDuration:
+        type: integer
+        format: int32
+      automaticRecording:
+        type: boolean
+      bytesReceived:
+        type: integer
+        format: int64
+      publishedName:
+        type: string
+      parameters:
+        type: object
+        additionalProperties:
+          type: string
+      provider:
+        "$ref": "#/definitions/IProvider"
+      statistics:
+        "$ref": "#/definitions/IClientBroadcastStreamStatistics"
+      recording:
+        type: boolean
+      saveFilename:
+        type: string
+      activeSubscribers:
+        type: integer
+        format: int32
+      currentTimestamp:
+        type: integer
+        format: int32
+      maxSubscribers:
+        type: integer
+        format: int32
+      totalSubscribers:
+        type: integer
+        format: int32
+      streamListeners:
+        type: array
+        items:
+          "$ref": "#/definitions/IStreamListener"
+      connection:
+        "$ref": "#/definitions/IStreamCapableConnection"
+  ClientConnectionManager:
+    type: object
+    properties:
+      schemeRegistry:
+        "$ref": "#/definitions/SchemeRegistry"
+  CloseableHttpClient:
+    type: object
+    properties:
+      connectionManager:
+        "$ref": "#/definitions/ClientConnectionManager"
+      params:
+        "$ref": "#/definitions/HttpParams"
+  ClusterNode:
+    type: object
+    properties:
+      id:
+        type: string
+      ip:
+        type: string
+      lastUpdateTime:
+        type: integer
+        format: int64
+      memory:
+        type: string
+      cpu:
+        type: string
+      status:
+        type: string
+  ConferenceRoom:
+    type: object
+    properties:
+      roomId:
+        type: string
+        description: The id of the Conference Room
+      startDate:
+        type: integer
+        format: int64
+        description: The start date of the Conference Room. It's unix timestamp in
+          seconds.
+      endDate:
+        type: integer
+        format: int64
+        description: The end date of the Conference Room. It's unix timestamp in seconds
+      roomStreamList:
+        type: array
+        description: The list of streams in the Conference Room
+        items:
+          type: string
+      mode:
+        type: string
+        description: 'Conference Room Mode: legacy | mcu | multi-track'
+      originAdress:
+        type: string
+        description: the origin address of the node hosting the room
+    description: The Conference Room class
+  ConnectionEvent:
+    type: object
+    properties:
+      timestamp:
+        type: integer
+        format: int64
+        description: the unix timestamp of the event in milliseconds
+      eventType:
+        type: string
+        description: The type of the event. It can have connected or disconnected
+          values
+      instanceIP:
+        type: string
+        description: IP address of the instance that this event happened
+      type:
+        type: string
+        description: Connection type. It can be publish or play
+    description: Connection Event for the subscriber
+  ConsoleDataStoreFactory:
+    type: object
+    properties:
+      dataStore:
+        "$ref": "#/definitions/AbstractConsoleDataStore"
+      appName:
+        type: string
+      dbName:
+        type: string
+      dbType:
+        type: string
+      dbHost:
+        type: string
+      dbUser:
+        type: string
+      dbPassword:
+        type: string
+  Context:
+    type: object
+    properties:
+      eventLoopContext:
+        type: boolean
+      workerContext:
+        type: boolean
+      instanceCount:
+        type: integer
+        format: int32
+  DataStore:
+    type: object
+    properties:
+      writeStatsToDatastore:
+        type: boolean
+      available:
+        type: boolean
+      totalBroadcastNumber:
+        type: integer
+        format: int64
+      activeBroadcastCount:
+        type: integer
+        format: int64
+      broadcastCount:
+        type: integer
+        format: int64
+      totalVodNumber:
+        type: integer
+        format: int64
+      externalStreamsList:
+        type: array
+        items:
+          "$ref": "#/definitions/Broadcast"
+      totalWebRTCViewersCount:
+        type: integer
+        format: int32
+  DataStoreFactory:
+    type: object
+    properties:
+      dataStore:
+        "$ref": "#/definitions/DataStore"
+      dbName:
+        type: string
+      dbType:
+        type: string
+      dbHost:
+        type: string
+      dbUser:
+        type: string
+      writeStatsToDatastore:
+        type: boolean
+  EncoderSettings:
+    type: object
+    properties:
+      height:
+        type: integer
+        format: int32
+      videoBitrate:
+        type: integer
+        format: int32
+      audioBitrate:
+        type: integer
+        format: int32
+      forceEncode:
+        type: boolean
+  Endpoint:
+    type: object
+    properties:
+      status:
+        type: string
+        description: Status of the RTMP muxer, possible values are started, finished,
+          failed, broadcasting, {@link IAntMediaStreamHandler#BROADCAST_STATUS_*}
+      type:
+        type: string
+        description: the service name like facebook, periscope, youtube or generic
+      rtmpUrl:
+        type: string
+        description: the RTMP URL of the endpoint
+      endpointServiceId:
+        type: string
+        description: the endpoint service id, this field holds the id of the endpoint
+    description: The endpoint class, such as Facebook, Twitter or custom RTMP endpoints
+  Enumeration:
+    type: object
+  EnumerationServlet:
+    type: object
+  EnumerationString:
+    type: object
+  Environment:
+    type: object
+    properties:
+      activeProfiles:
+        type: array
+        items:
+          type: string
+      defaultProfiles:
+        type: array
+        items:
+          type: string
+  Exception:
+    type: object
+    properties:
+      cause:
+        "$ref": "#/definitions/Throwable"
+      stackTrace:
+        type: array
+        items:
+          "$ref": "#/definitions/StackTraceElement"
+      message:
+        type: string
+      suppressed:
+        type: array
+        items:
+          "$ref": "#/definitions/Throwable"
+      localizedMessage:
+        type: string
+  FileConsumer:
+    type: object
+    properties:
+      schedulerThreadSize:
+        type: integer
+        format: int32
+      file:
+        type: file
+      queueThreshold:
+        type: integer
+        format: int32
+      delayWrite:
+        type: boolean
+  FilterRegistration:
+    type: object
+    properties:
+      servletNameMappings:
+        type: array
+        items:
+          type: string
+      urlPatternMappings:
+        type: array
+        items:
+          type: string
+      name:
+        type: string
+      className:
+        type: string
+      initParameters:
+        type: object
+        additionalProperties:
+          type: string
+  FrameData:
+    type: object
+    properties:
+      frame:
+        "$ref": "#/definitions/IoBuffer"
+  Header:
+    type: object
+    properties:
+      channelId:
+        type: integer
+        format: int32
+      timerBase:
+        type: integer
+        format: int32
+      timerDelta:
+        type: integer
+        format: int32
+      size:
+        type: integer
+        format: int32
+      dataType:
+        type: string
+        format: byte
+      streamId:
+        "$ref": "#/definitions/Number"
+      extendedTimestamp:
+        type: integer
+        format: int32
+      empty:
+        type: boolean
+      timer:
+        type: integer
+        format: int32
+  HttpParams:
+    type: object
+  IAntMediaStreamHandler:
+    type: object
+    properties:
+      serverShuttingDown:
+        type: boolean
+  IApplication:
+    type: object
+  IAudioStreamCodec:
+    type: object
+    properties:
+      name:
+        type: string
+      decoderConfiguration:
+        "$ref": "#/definitions/IoBuffer"
+  IClient:
+    type: object
+    properties:
+      creationTime:
+        type: integer
+        format: int64
+      id:
+        type: string
+      scopes:
+        type: array
+        items:
+          "$ref": "#/definitions/IScope"
+      connections:
+        type: array
+        uniqueItems: true
+        items:
+          "$ref": "#/definitions/IConnection"
+      bandwidthChecked:
+        type: boolean
+      attributes:
+        type: object
+        additionalProperties:
+          type: object
+      attributeNames:
+        type: array
+        uniqueItems: true
+        items:
+          type: string
+  IClientBroadcastStreamStatistics:
+    type: object
+    properties:
+      publishedName:
+        type: string
+      saveFilename:
+        type: string
+      activeSubscribers:
+        type: integer
+        format: int32
+      bytesReceived:
+        type: integer
+        format: int64
+      maxSubscribers:
+        type: integer
+        format: int32
+      totalSubscribers:
+        type: integer
+        format: int32
+      currentTimestamp:
+        type: integer
+        format: int32
+      creationTime:
+        type: integer
+        format: int64
+  IClientRegistry:
+    type: object
+  IClientStream:
+    type: object
+    properties:
+      connection:
+        "$ref": "#/definitions/IStreamCapableConnection"
+      streamId:
+        "$ref": "#/definitions/Number"
+      broadcastStreamPublishName:
+        type: string
+      clientBufferDuration:
+        type: integer
+        format: int32
+      creationTime:
+        type: integer
+        format: int64
+      name:
+        type: string
+      scope:
+        "$ref": "#/definitions/IScope"
+      codecInfo:
+        "$ref": "#/definitions/IStreamCodecInfo"
+  IClusterNotifier:
+    type: object
+    properties:
+      clusterStore:
+        "$ref": "#/definitions/IClusterStore"
+  IClusterStore:
+    type: object
+    properties:
+      allSettings:
+        type: array
+        items:
+          "$ref": "#/definitions/AppSettings"
+      nodeCount:
+        type: integer
+        format: int64
+  IConnection:
+    type: object
+    properties:
+      type:
+        type: string
+      path:
+        type: string
+      protocol:
+        type: string
+      host:
+        type: string
+      encoding:
+        type: string
+        enum:
+        - AMF0
+        - AMF3
+        - WEBSOCKET
+        - SOCKETIO
+        - RTP
+        - SRTP
+        - RAW
+      scope:
+        "$ref": "#/definitions/IScope"
+      client:
+        "$ref": "#/definitions/IClient"
+      connected:
+        type: boolean
+      streamId:
+        "$ref": "#/definitions/Number"
+      remoteAddress:
+        type: string
+      readBytes:
+        type: integer
+        format: int64
+      writtenBytes:
+        type: integer
+        format: int64
+      connectParams:
+        type: object
+        additionalProperties:
+          type: object
+      readMessages:
+        type: integer
+        format: int64
+      writtenMessages:
+        type: integer
+        format: int64
+      droppedMessages:
+        type: integer
+        format: int64
+      pendingMessages:
+        type: integer
+        format: int64
+      clientBytesRead:
+        type: integer
+        format: int64
+      lastPingTime:
+        type: integer
+        format: int32
+      basicScopes:
+        "$ref": "#/definitions/IteratorIBasicScope"
+      remoteAddresses:
+        type: array
+        items:
+          type: string
+      remotePort:
+        type: integer
+        format: int32
+      sessionId:
+        type: string
+      attributes:
+        type: object
+        additionalProperties:
+          type: object
+      attributeNames:
+        type: array
+        uniqueItems: true
+        items:
+          type: string
+  IContext:
+    type: object
+    properties:
+      applicationContext:
+        "$ref": "#/definitions/ApplicationContext"
+      clientRegistry:
+        "$ref": "#/definitions/IClientRegistry"
+      serviceInvoker:
+        "$ref": "#/definitions/IServiceInvoker"
+      persistanceStore:
+        "$ref": "#/definitions/IPersistenceStore"
+      globalScope:
+        "$ref": "#/definitions/IGlobalScope"
+      mappingStrategy:
+        "$ref": "#/definitions/IMappingStrategy"
+      classLoader:
+        "$ref": "#/definitions/ClassLoader"
+  IEventListener:
+    type: object
+  IGlobalScope:
+    type: object
+    properties:
+      server:
+        "$ref": "#/definitions/IServer"
+      handler:
+        "$ref": "#/definitions/IScopeHandler"
+      context:
+        "$ref": "#/definitions/IContext"
+      attributes:
+        type: object
+        additionalProperties:
+          type: object
+      attributeNames:
+        type: array
+        uniqueItems: true
+        items:
+          type: string
+      scopeNames:
+        type: array
+        uniqueItems: true
+        items:
+          type: string
+      clients:
+        type: array
+        uniqueItems: true
+        items:
+          "$ref": "#/definitions/IClient"
+      connections:
+        type: array
+        items:
+          type: array
+          uniqueItems: true
+          items:
+            "$ref": "#/definitions/IConnection"
+      clientConnections:
+        type: array
+        uniqueItems: true
+        items:
+          "$ref": "#/definitions/IConnection"
+      contextPath:
+        type: string
+      statistics:
+        "$ref": "#/definitions/IScopeStatistics"
+      valid:
+        type: boolean
+      name:
+        type: string
+      parent:
+        "$ref": "#/definitions/IScope"
+      type:
+        type: string
+        enum:
+        - UNDEFINED
+        - GLOBAL
+        - APPLICATION
+        - ROOM
+        - BROADCAST
+        - SHARED_OBJECT
+      path:
+        type: string
+      depth:
+        type: integer
+        format: int32
+      store:
+        "$ref": "#/definitions/IPersistenceStore"
+      eventListeners:
+        type: array
+        uniqueItems: true
+        items:
+          "$ref": "#/definitions/IEventListener"
+      classLoader:
+        "$ref": "#/definitions/ClassLoader"
+      serviceHandlerNames:
+        type: array
+        uniqueItems: true
+        items:
+          type: string
+  ILicenceService:
+    type: object
+    properties:
+      lastLicenseStatus:
+        "$ref": "#/definitions/Licence"
+      licenceSuspended:
+        type: boolean
+  IMappingStrategy:
+    type: object
+  IPersistable:
+    type: object
+    properties:
+      lastModified:
+        type: integer
+        format: int64
+      name:
+        type: string
+      type:
+        type: string
+      path:
+        type: string
+      store:
+        "$ref": "#/definitions/IPersistenceStore"
+      persistent:
+        type: boolean
+  IPersistenceStore:
+    type: object
+    properties:
+      objectNames:
+        type: array
+        uniqueItems: true
+        items:
+          type: string
+      objects:
+        type: array
+        items:
+          "$ref": "#/definitions/IPersistable"
+  IProvider:
+    type: object
+  IScope:
+    type: object
+    properties:
+      handler:
+        "$ref": "#/definitions/IScopeHandler"
+      context:
+        "$ref": "#/definitions/IContext"
+      attributes:
+        type: object
+        additionalProperties:
+          type: object
+      attributeNames:
+        type: array
+        uniqueItems: true
+        items:
+          type: string
+      scopeNames:
+        type: array
+        uniqueItems: true
+        items:
+          type: string
+      clients:
+        type: array
+        uniqueItems: true
+        items:
+          "$ref": "#/definitions/IClient"
+      connections:
+        type: array
+        items:
+          type: array
+          uniqueItems: true
+          items:
+            "$ref": "#/definitions/IConnection"
+      clientConnections:
+        type: array
+        uniqueItems: true
+        items:
+          "$ref": "#/definitions/IConnection"
+      contextPath:
+        type: string
+      statistics:
+        "$ref": "#/definitions/IScopeStatistics"
+      valid:
+        type: boolean
+      name:
+        type: string
+      parent:
+        "$ref": "#/definitions/IScope"
+      type:
+        type: string
+        enum:
+        - UNDEFINED
+        - GLOBAL
+        - APPLICATION
+        - ROOM
+        - BROADCAST
+        - SHARED_OBJECT
+      path:
+        type: string
+      depth:
+        type: integer
+        format: int32
+      store:
+        "$ref": "#/definitions/IPersistenceStore"
+      eventListeners:
+        type: array
+        uniqueItems: true
+        items:
+          "$ref": "#/definitions/IEventListener"
+      classLoader:
+        "$ref": "#/definitions/ClassLoader"
+      serviceHandlerNames:
+        type: array
+        uniqueItems: true
+        items:
+          type: string
+  IScopeHandler:
+    type: object
+  IScopeStatistics:
+    type: object
+    properties:
+      name:
+        type: string
+      path:
+        type: string
+      depth:
+        type: integer
+        format: int32
+      totalConnections:
+        type: integer
+        format: int32
+      maxConnections:
+        type: integer
+        format: int32
+      activeConnections:
+        type: integer
+        format: int32
+      totalClients:
+        type: integer
+        format: int32
+      maxClients:
+        type: integer
+        format: int32
+      activeClients:
+        type: integer
+        format: int32
+      totalSubscopes:
+        type: integer
+        format: int32
+      maxSubscopes:
+        type: integer
+        format: int32
+      activeSubscopes:
+        type: integer
+        format: int32
+      creationTime:
+        type: integer
+        format: int64
+  IServer:
+    type: object
+    properties:
+      mappingTable:
+        type: object
+        additionalProperties:
+          type: string
+      globalNames:
+        "$ref": "#/definitions/IteratorString"
+      globalScopes:
+        "$ref": "#/definitions/IteratorIGlobalScope"
+  IServiceCall:
+    type: object
+    properties:
+      exception:
+        "$ref": "#/definitions/Exception"
+      writeTime:
+        type: integer
+        format: int64
+      success:
+        type: boolean
+      status:
+        type: string
+        format: byte
+      arguments:
+        type: array
+        items:
+          type: object
+      serviceName:
+        type: string
+      serviceMethodName:
+        type: string
+      readTime:
+        type: integer
+        format: int64
+  IServiceInvoker:
+    type: object
+  IStatsCollector:
+    type: object
+    properties:
+      cpuLoad:
+        type: integer
+        format: int32
+      cpuLimit:
+        type: integer
+        format: int32
+      freeRam:
+        type: integer
+        format: int32
+      minFreeRamSize:
+        type: integer
+        format: int32
+  IStreamCapableConnection:
+    type: object
+    properties:
+      streamsMap:
+        type: object
+        additionalProperties:
+          "$ref": "#/definitions/IClientStream"
+      type:
+        type: string
+      path:
+        type: string
+      protocol:
+        type: string
+      host:
+        type: string
+      encoding:
+        type: string
+        enum:
+        - AMF0
+        - AMF3
+        - WEBSOCKET
+        - SOCKETIO
+        - RTP
+        - SRTP
+        - RAW
+      scope:
+        "$ref": "#/definitions/IScope"
+      client:
+        "$ref": "#/definitions/IClient"
+      connected:
+        type: boolean
+      streamId:
+        "$ref": "#/definitions/Number"
+      remoteAddress:
+        type: string
+      readBytes:
+        type: integer
+        format: int64
+      writtenBytes:
+        type: integer
+        format: int64
+      connectParams:
+        type: object
+        additionalProperties:
+          type: object
+      readMessages:
+        type: integer
+        format: int64
+      writtenMessages:
+        type: integer
+        format: int64
+      droppedMessages:
+        type: integer
+        format: int64
+      pendingMessages:
+        type: integer
+        format: int64
+      clientBytesRead:
+        type: integer
+        format: int64
+      lastPingTime:
+        type: integer
+        format: int32
+      basicScopes:
+        "$ref": "#/definitions/IteratorIBasicScope"
+      remoteAddresses:
+        type: array
+        items:
+          type: string
+      remotePort:
+        type: integer
+        format: int32
+      sessionId:
+        type: string
+      attributes:
+        type: object
+        additionalProperties:
+          type: object
+      attributeNames:
+        type: array
+        uniqueItems: true
+        items:
+          type: string
+  IStreamCodecInfo:
+    type: object
+    properties:
+      videoCodec:
+        "$ref": "#/definitions/IVideoStreamCodec"
+      audioCodec:
+        "$ref": "#/definitions/IAudioStreamCodec"
+      audioCodecName:
+        type: string
+      videoCodecName:
+        type: string
+  IStreamFetcherListener:
+    type: object
+  IStreamListener:
+    type: object
+  IStreamPacket:
+    type: object
+    properties:
+      timestamp:
+        type: integer
+        format: int32
+      data:
+        "$ref": "#/definitions/IoBuffer"
+      dataType:
+        type: string
+        format: byte
+  IStreamPlaybackSecurity:
+    type: object
+  IStreamPublishSecurity:
+    type: object
+  ISubtrackPoller:
+    type: object
+  IVideoStreamCodec:
+    type: object
+    properties:
+      name:
+        type: string
+      decoderConfiguration:
+        "$ref": "#/definitions/IoBuffer"
+      keyframe:
+        "$ref": "#/definitions/IoBuffer"
+      keyframes:
+        type: array
+        items:
+          "$ref": "#/definitions/FrameData"
+      numInterframes:
+        type: integer
+        format: int32
+  IWebRTCAdaptor:
+    type: object
+    properties:
+      numberOfTotalViewers:
+        type: integer
+        format: int32
+      numberOfLiveStreams:
+        type: integer
+        format: int32
+      streams:
+        type: array
+        uniqueItems: true
+        items:
+          type: string
+  IWebRTCClient:
+    type: object
+    properties:
+      streamId:
+        type: string
+      targetBitrate:
+        type: integer
+        format: int32
+      timeToStartStreaming:
+        type: integer
+        format: int64
+      timeToStop:
+        type: integer
+        format: int64
+      videoFrameSentPeriod:
+        type: number
+        format: float
+      audioFrameSentPeriod:
+        type: number
+        format: float
+      sendVideoPacketCallCount:
+        type: integer
+        format: int64
+      sendAudioPacketCallCount:
+        type: integer
+        format: int64
+      videoStats:
+        "$ref": "#/definitions/WebRTCVideoSendStats"
+      audioStats:
+        "$ref": "#/definitions/WebRTCAudioSendStats"
+      excessiveBandwidthCount:
+        type: integer
+        format: int32
+      rttMeasurement:
+        type: integer
+        format: int32
+      packetLoss:
+        type: integer
+        format: int32
+      tryCountBeforeSwitchBack:
+        type: integer
+        format: int32
+      cachedPacketLoss:
+        type: integer
+        format: int32
+      cachedRttMeasurement:
+        type: integer
+        format: int32
+      forceStreamHeight:
+        type: integer
+        format: int32
+      clientInfo:
+        type: string
+  InputStream:
+    type: object
+  IoBuffer:
+    type: object
+    properties:
+      object:
+        type: object
+      short:
+        type: integer
+        format: int32
+      char:
+        type: string
+      int:
+        type: integer
+        format: int32
+      long:
+        type: integer
+        format: int64
+      float:
+        type: number
+        format: float
+      double:
+        type: number
+        format: double
+      direct:
+        type: boolean
+      readOnly:
+        type: boolean
+      unsigned:
+        type: integer
+        format: int32
+      derived:
+        type: boolean
+      autoExpand:
+        type: boolean
+      autoShrink:
+        type: boolean
+      unsignedShort:
+        type: integer
+        format: int32
+      unsignedInt:
+        type: integer
+        format: int64
+      mediumInt:
+        type: integer
+        format: int32
+      unsignedMediumInt:
+        type: integer
+        format: int32
+      hexDump:
+        type: string
+  Iterator:
+    type: object
+  IteratorIBasicScope:
+    type: object
+  IteratorIGlobalScope:
+    type: object
+  IteratorString:
+    type: object
+  JspConfigDescriptor:
+    type: object
+    properties:
+      taglibs:
+        type: array
+        items:
+          "$ref": "#/definitions/TaglibDescriptor"
+      jspPropertyGroups:
+        type: array
+        items:
+          "$ref": "#/definitions/JspPropertyGroupDescriptor"
+  JspPropertyGroupDescriptor:
+    type: object
+    properties:
+      buffer:
+        type: string
+      urlPatterns:
+        type: array
+        items:
+          type: string
+      elIgnored:
+        type: string
+      pageEncoding:
+        type: string
+      scriptingInvalid:
+        type: string
+      isXml:
+        type: string
+      includePreludes:
+        type: array
+        items:
+          type: string
+      includeCodas:
+        type: array
+        items:
+          type: string
+      deferredSyntaxAllowedAsLiteral:
+        type: string
+      trimDirectiveWhitespaces:
+        type: string
+      defaultContentType:
+        type: string
+      errorOnUndeclaredNamespace:
+        type: string
+  Level:
+    type: object
+    properties:
+      levelInt:
+        type: integer
+        format: int32
+      levelStr:
+        type: string
+  Licence:
+    type: object
+    properties:
+      licenceId:
+        type: string
+      startDate:
+        type: string
+      endDate:
+        type: string
+      type:
+        type: string
+      licenceCount:
+        type: string
+      owner:
+        type: string
+      status:
+        type: string
+      hourUsed:
+        type: string
+  Module:
+    type: object
+    properties:
+      layer:
+        "$ref": "#/definitions/ModuleLayer"
+      name:
+        type: string
+      descriptor:
+        "$ref": "#/definitions/ModuleDescriptor"
+      classLoader:
+        "$ref": "#/definitions/ClassLoader"
+      annotations:
+        type: array
+        items:
+          "$ref": "#/definitions/Annotation"
+      declaredAnnotations:
+        type: array
+        items:
+          "$ref": "#/definitions/Annotation"
+      named:
+        type: boolean
+      packages:
+        type: array
+        uniqueItems: true
+        items:
+          type: string
+  ModuleDescriptor:
+    type: object
+    properties:
+      open:
+        type: boolean
+      automatic:
+        type: boolean
+  ModuleLayer:
+    type: object
+  MuxAdaptor:
+    type: object
+    properties:
+      muxerList:
+        type: array
+        items:
+          "$ref": "#/definitions/Muxer"
+      deleteDASHFilesOnExit:
+        type: boolean
+      videoStreamIndex:
+        type: integer
+        format: int32
+      audioStreamIndex:
+        type: integer
+        format: int32
+      previewOverwrite:
+        type: boolean
+      enableVideo:
+        type: boolean
+      enableAudio:
+        type: boolean
+      bufferQueue:
+        type: array
+        items:
+          "$ref": "#/definitions/IStreamPacket"
+      stopRequestExist:
+        type: boolean
+      broadcastStream:
+        "$ref": "#/definitions/ClientBroadcastStream"
+      objectDetectionEnabled:
+        type: boolean
+      isHealthCheckStartedMap:
+        type: object
+        additionalProperties:
+          type: boolean
+      webRTCEnabled:
+        type: boolean
+      storageClient:
+        "$ref": "#/definitions/StorageClient"
+      dataStore:
+        "$ref": "#/definitions/DataStore"
+      streamId:
+        type: string
+      startTime:
+        type: integer
+        format: int64
+      encoderSettingsList:
+        type: array
+        items:
+          "$ref": "#/definitions/EncoderSettings"
+      previewCreatePeriod:
+        type: integer
+        format: int32
+      broadcast:
+        "$ref": "#/definitions/Broadcast"
+      appSettings:
+        "$ref": "#/definitions/AppSettings"
+      previewHeight:
+        type: integer
+        format: int32
+      lastFrameTimestamp:
+        type: integer
+        format: int32
+      bufferTimeMs:
+        type: integer
+        format: int64
+      packetTimeList:
+        type: array
+        items:
+          "$ref": "#/definitions/PacketTime"
+      vertx:
+        "$ref": "#/definitions/Vertx"
+      buffering:
+        type: boolean
+      avc:
+        type: boolean
+      dataChannelWebHookURL:
+        type: string
+      dashMuxer:
+        "$ref": "#/definitions/Muxer"
+      videoCodecParameters:
+        "$ref": "#/definitions/AVCodecParameters"
+      audioCodecParameters:
+        "$ref": "#/definitions/AVCodecParameters"
+      endpointStatusUpdateMap:
+        type: object
+        additionalProperties:
+          type: string
+      videoTimeBase:
+        "$ref": "#/definitions/AVRational"
+      audioTimeBase:
+        "$ref": "#/definitions/AVRational"
+      fileName:
+        type: string
+      recording:
+        type: boolean
+      streamSource:
+        type: boolean
+      streamHandler:
+        "$ref": "#/definitions/IAntMediaStreamHandler"
+      absoluteTimeMs:
+        type: integer
+        format: int64
+      inputQueueSize:
+        type: integer
+        format: int32
+      appending:
+        type: boolean
+      fileConsumer:
+        "$ref": "#/definitions/FileConsumer"
+  Muxer:
+    type: object
+    properties:
+      currentVoDTimeStamp:
+        type: integer
+        format: int64
+      format:
+        type: string
+      outputFormatContext:
+        "$ref": "#/definitions/AVFormatContext"
+      file:
+        type: file
+      isRunning:
+        "$ref": "#/definitions/AtomicBoolean"
+      registeredStreamIndexList:
+        type: array
+        items:
+          type: integer
+          format: int32
+      inputTimeBaseMap:
+        type: object
+        additionalProperties:
+          "$ref": "#/definitions/AVRational"
+      videoWidth:
+        type: integer
+        format: int32
+      videoHeight:
+        type: integer
+        format: int32
+      tmpPacket:
+        "$ref": "#/definitions/AVPacket"
+      resolution:
+        type: integer
+        format: int32
+      fileName:
+        type: string
+      addDateTimeToSourceName:
+        type: boolean
+      outputURL:
+        type: string
+      bitStreamFilter:
+        type: string
+  Notify:
+    type: object
+    properties:
+      type:
+        type: string
+        enum:
+        - SYSTEM
+        - STATUS
+        - SERVICE_CALL
+        - SHARED_OBJECT
+        - STREAM_ACTION
+        - STREAM_CONTROL
+        - STREAM_DATA
+        - CLIENT
+        - CLIENT_INVOKE
+        - CLIENT_NOTIFY
+        - SERVER
+      sourceType:
+        type: string
+        format: byte
+      object:
+        type: object
+      source:
+        "$ref": "#/definitions/IEventListener"
+      timestamp:
+        type: integer
+        format: int32
+      header:
+        "$ref": "#/definitions/Header"
+      call:
+        "$ref": "#/definitions/IServiceCall"
+      data:
+        "$ref": "#/definitions/IoBuffer"
+      dataType:
+        type: string
+        format: byte
+      transactionId:
+        type: integer
+        format: int32
+      connectionParams:
+        type: object
+        additionalProperties:
+          type: object
+      action:
+        type: string
+  Number:
+    type: object
+  Package:
+    type: object
+    properties:
+      name:
+        type: string
+      specificationTitle:
+        type: string
+      specificationVersion:
+        type: string
+      specificationVendor:
+        type: string
+      implementationTitle:
+        type: string
+      implementationVersion:
+        type: string
+      implementationVendor:
+        type: string
+      annotations:
+        type: array
+        items:
+          "$ref": "#/definitions/Annotation"
+      declaredAnnotations:
+        type: array
+        items:
+          "$ref": "#/definitions/Annotation"
+      sealed:
+        type: boolean
+  PacketTime:
+    type: object
+    properties:
+      packetTimeMs:
+        type: integer
+        format: int64
+      systemTimeMs:
+        type: integer
+        format: int64
+  PlayListItem:
+    type: object
+    properties:
+      streamUrl:
+        type: string
+      type:
+        type: string
+  PluginDescriptor:
+    type: object
+    properties:
+      pluginName:
+        type: string
+      pluginType:
+        type: string
+      method:
+        type: string
+      methodReturnType:
+        type: string
+      properties:
+        type: object
+        additionalProperties:
+          type: object
+  Pointer:
+    type: object
+    properties:
+      'null':
+        type: boolean
+      pointer:
+        "$ref": "#/definitions/Pointer"
+  RTMPToWebRTCStats:
+    type: object
+    properties:
+      streamId:
+        type: string
+      encoderCount:
+        type: integer
+        format: int32
+      totalVideoIngestTime:
+        type: integer
+        format: int64
+      totalIngestedVideoPacketCount:
+        type: integer
+        format: int64
+      totalVideoDecodeTime:
+        type: integer
+        format: int64
+      totalDecodedVideoFrameCount:
+        type: integer
+        format: int64
+      totalVideoEncodeQueueTime:
+        type: integer
+        format: int64
+      totalVideoEncodeTime:
+        type: integer
+        format: int64
+      totalEncodedVideoPacketCount:
+        type: integer
+        format: int64
+      totalVideoDeliveryTime:
+        type: integer
+        format: int64
+      totalDeliveredVideoPacketCount:
+        type: integer
+        format: int64
+      absoluteTotalIngestTime:
+        type: integer
+        format: int64
+      absoluteTimeMs:
+        type: integer
+        format: int64
+      absouteTotalLatencyUntilRTPPacketizingTimeMs:
+        type: integer
+        format: int64
+      frameId:
+        type: integer
+        format: int64
+      captureTimeMs:
+        type: integer
+        format: int64
+  Result:
+    type: object
+    properties:
+      success:
+        type: boolean
+        description: the result of the operation
+      message:
+        type: string
+        description: the message of the operation result
+      dataId:
+        type: string
+        description: the id of the record if operation is about adding a record
+      errorId:
+        type: integer
+        format: int32
+        description: the id of errror of the operation result
+    description: The basic result class
+  SchemeRegistry:
+    type: object
+    properties:
+      schemeNames:
+        type: array
+        items:
+          type: string
+  ServerSettings:
+    type: object
+    properties:
+      allowedDashboardCIDR:
+        type: string
+      hostAddress:
+        type: string
+      serverName:
+        type: string
+      licenceKey:
+        type: string
+      buildForMarket:
+        type: boolean
+      marketplace:
+        type: string
+      logLevel:
+        type: string
+      nativeLogLevel:
+        type: string
+      heartbeatEnabled:
+        type: boolean
+      useGlobalIp:
+        type: boolean
+      proxyAddress:
+        type: string
+      nodeGroup:
+        type: string
+      cpuMeasurementPeriodMs:
+        type: integer
+        format: int32
+      cpuMeasurementWindowSize:
+        type: integer
+        format: int32
+      defaultHttpPort:
+        type: integer
+        format: int32
+      jwtServerControlEnabled:
+        type: boolean
+      jwtServerSecretKey:
+        type: string
+      jwksURL:
+        type: string
+      originServerPort:
+        type: integer
+        format: int32
+      srtPort:
+        type: integer
+        format: int32
+      sslEnabled:
+        type: boolean
+      rtmpPort:
+        type: integer
+        format: int32
+      serverStatusWebHookURL:
+        type: string
+      hostAddressFromEnvironment:
+        type: string
+      webRTCLogLevel:
+        type: string
+        enum:
+        - LS_VERBOSE
+        - LS_INFO
+        - LS_WARNING
+        - LS_ERROR
+        - LS_NONE
+  ServletContext:
+    type: object
+    properties:
+      majorVersion:
+        type: integer
+        format: int32
+      minorVersion:
+        type: integer
+        format: int32
+      classLoader:
+        "$ref": "#/definitions/ClassLoader"
+      attributeNames:
+        "$ref": "#/definitions/EnumerationString"
+      effectiveMajorVersion:
+        type: integer
+        format: int32
+      effectiveMinorVersion:
+        type: integer
+        format: int32
+      servlets:
+        "$ref": "#/definitions/EnumerationServlet"
+      servletNames:
+        "$ref": "#/definitions/EnumerationString"
+      serverInfo:
+        type: string
+      initParameterNames:
+        "$ref": "#/definitions/EnumerationString"
+      servletContextName:
+        type: string
+      servletRegistrations:
+        type: object
+        additionalProperties:
+          "$ref": "#/definitions/ServletRegistration"
+      filterRegistrations:
+        type: object
+        additionalProperties:
+          "$ref": "#/definitions/FilterRegistration"
+      sessionCookieConfig:
+        "$ref": "#/definitions/SessionCookieConfig"
+      defaultSessionTrackingModes:
+        type: array
+        uniqueItems: true
+        items:
+          type: string
+          enum:
+          - COOKIE
+          - URL
+          - SSL
+      effectiveSessionTrackingModes:
+        type: array
+        uniqueItems: true
+        items:
+          type: string
+          enum:
+          - COOKIE
+          - URL
+          - SSL
+      jspConfigDescriptor:
+        "$ref": "#/definitions/JspConfigDescriptor"
+      virtualServerName:
+        type: string
+      contextPath:
+        type: string
+  ServletRegistration:
+    type: object
+    properties:
+      mappings:
+        type: array
+        items:
+          type: string
+      runAsRole:
+        type: string
+      name:
+        type: string
+      className:
+        type: string
+      initParameters:
+        type: object
+        additionalProperties:
+          type: string
+  SessionCookieConfig:
+    type: object
+    properties:
+      comment:
+        type: string
+      name:
+        type: string
+      path:
+        type: string
+      secure:
+        type: boolean
+      domain:
+        type: string
+      httpOnly:
+        type: boolean
+      maxAge:
+        type: integer
+        format: int32
+  SimpleStat:
+    type: object
+    properties:
+      number:
+        type: integer
+        format: int64
+        description: the stat value
+    description: Simple generic statistics class to return single values
+  StackTraceElement:
+    type: object
+    properties:
+      classLoaderName:
+        type: string
+      moduleName:
+        type: string
+      moduleVersion:
+        type: string
+      methodName:
+        type: string
+      fileName:
+        type: string
+      lineNumber:
+        type: integer
+        format: int32
+      className:
+        type: string
+      nativeMethod:
+        type: boolean
+  StorageClient:
+    type: object
+    properties:
+      endpoint:
+        type: string
+      accessKey:
+        type: string
+      secretKey:
+        type: string
+      region:
+        type: string
+      storageName:
+        type: string
+      permission:
+        type: string
+      cacheControl:
+        type: string
+      enabled:
+        type: boolean
+      storageClass:
+        type: string
+  StreamAcceptFilter:
+    type: object
+    properties:
+      appSettings:
+        "$ref": "#/definitions/AppSettings"
+      maxFps:
+        type: integer
+        format: int32
+      maxResolution:
+        type: integer
+        format: int32
+      maxBitrate:
+        type: integer
+        format: int32
+  StreamFetcher:
+    type: object
+    properties:
+      thread:
+        "$ref": "#/definitions/WorkerThread"
+      exceptionInThread:
+        type: boolean
+      threadActive:
+        type: boolean
+      cameraError:
+        "$ref": "#/definitions/Result"
+      scope:
+        "$ref": "#/definitions/IScope"
+      muxAdaptor:
+        "$ref": "#/definitions/MuxAdaptor"
+      restartStream:
+        type: boolean
+      stopRequestReceived:
+        type: boolean
+      bufferTime:
+        type: integer
+        format: int32
+      dataStore:
+        "$ref": "#/definitions/DataStore"
+      streamFetcherListener:
+        "$ref": "#/definitions/IStreamFetcherListener"
+      streamUrl:
+        type: string
+      streamId:
+        type: string
+      instance:
+        "$ref": "#/definitions/AntMediaApplicationAdapter"
+      stopped:
+        type: boolean
+      streamAlive:
+        type: boolean
+      avpacket:
+        "$ref": "#/definitions/AVPacket"
+  StreamFetcherManager:
+    type: object
+    properties:
+      streamCheckerCount:
+        type: integer
+        format: int32
+      streamFetcherList:
+        type: array
+        items:
+          "$ref": "#/definitions/StreamFetcher"
+      datastore:
+        "$ref": "#/definitions/DataStore"
+      restartStreamAutomatically:
+        type: boolean
+      streamCheckerInterval:
+        type: integer
+        format: int32
+  Subscriber:
+    type: object
+    properties:
+      subscriberId:
+        type: string
+        description: the subscriber id of the subscriber
+      type:
+        type: string
+        description: " type of subscriber (play or publish)"
+      connected:
+        type: boolean
+        description: is subscriber connected
+      currentConcurrentConnections:
+        type: integer
+        format: int32
+        description: " count of subscriber usage"
+      concurrentConnectionsLimit:
+        type: integer
+        format: int32
+        description: " count of subscriber usage"
+    description: The time based token subscriber class
+  SubscriberStats:
+    type: object
+    properties:
+      subscriberId:
+        type: string
+        description: the subscriber id of the subscriber
+      streamId:
+        type: string
+        description: the stream id of the token
+      connectionEvents:
+        type: array
+        description: list of connection events
+        items:
+          "$ref": "#/definitions/ConnectionEvent"
+      avgVideoBitrate:
+        type: integer
+        format: int64
+        description: average video bitrate for a subscriber
+      avgAudioBitrate:
+        type: integer
+        format: int64
+        description: average audio bitrate for a subscriber
+    description: Statistics for each subsciber to the stream
+  TaglibDescriptor:
+    type: object
+    properties:
+      taglibURI:
+        type: string
+      taglibLocation:
+        type: string
+  TensorFlowObject:
+    type: object
+    properties:
+      objectName:
+        type: string
+        description: the name of the detected object
+      probability:
+        type: number
+        format: float
+        description: the probablity of the detected object
+      detectionTime:
+        type: integer
+        format: int64
+        description: the time of the detected object
+      imageId:
+        type: string
+        description: the id of the detected image
+      minX:
+        type: number
+        format: double
+        description: the x coordinate of upper-left corner of detected object frame
+      minY:
+        type: number
+        format: double
+        description: the y coordinate of upper-left corner of detected object frame
+      maxX:
+        type: number
+        format: double
+        description: the x coordinate of lower-right corner of detected object frame
+      maxY:
+        type: number
+        format: double
+        description: the y coordinate of lower-right corner of detected object frame
+    description: The TensorFlow detected object class
+  ThreadGroup:
+    type: object
+    properties:
+      parent:
+        "$ref": "#/definitions/ThreadGroup"
+      name:
+        type: string
+      maxPriority:
+        type: integer
+        format: int32
+      destroyed:
+        type: boolean
+      daemon:
+        type: boolean
+  Throwable:
+    type: object
+    properties:
+      cause:
+        "$ref": "#/definitions/Throwable"
+      stackTrace:
+        type: array
+        items:
+          "$ref": "#/definitions/StackTraceElement"
+      message:
+        type: string
+      suppressed:
+        type: array
+        items:
+          "$ref": "#/definitions/Throwable"
+      localizedMessage:
+        type: string
+  Token:
+    type: object
+    properties:
+      tokenId:
+        type: string
+        description: the token id of the token
+      streamId:
+        type: string
+        description: the stream id of the token
+      expireDate:
+        type: integer
+        format: int64
+        description: the expire date of the token
+      type:
+        type: string
+        description: the type of the token
+      roomId:
+        type: string
+        description: the id of the conference room which requested streams belongs
+          to
+    description: The one-time token class
+  UncaughtExceptionHandler:
+    type: object
+  User:
+    type: object
+    properties:
+      email:
+        type: string
+        description: the email of the user
+      userType:
+        type: string
+        description: the type of the user
+        enum:
+        - ADMIN
+        - READ-ONLY
+        - USER
+      scope:
+        type: string
+        description: Scope can be 'system' or name of the application. Scope of the
+          user. If it's scope is system, it can access the stuff in system-level.
+          If it's scope is an application, it can access the stuff in application-levelIt
+          makes more sense with UserType
+      fullName:
+        type: string
+        description: the name of the user
+      firstName:
+        type: string
+        description: Fist name of the user
+      lastName:
+        type: string
+        description: last name of the user
+      picture:
+        type: string
+        description: the URL of the user picture
+    description: The basic user class
+  Version:
+    type: object
+    properties:
+      versionName:
+        type: string
+        description: Version of the software
+      versionType:
+        type: string
+        description: Version type of the software (Community or Enterprise)
+      buildNumber:
+        type: string
+        description: Build number(timestamp) of the software.
+    description: The version class
+  Vertx:
+    type: object
+    properties:
+      orCreateContext:
+        "$ref": "#/definitions/Context"
+      clustered:
+        type: boolean
+      nativeTransportEnabled:
+        type: boolean
+      metricsEnabled:
+        type: boolean
+  VoD:
+    type: object
+    properties:
+      streamName:
+        type: string
+        description: the object id of the VoD
+      vodName:
+        type: string
+        description: the name of the VoD
+      streamId:
+        type: string
+        description: the stream id of the VoD
+      creationDate:
+        type: integer
+        format: int64
+        description: the creation of the VoD
+      startTime:
+        type: integer
+        format: int64
+        description: the time when the VoD is being started to get recorded in milliseconds(UTC-
+          Unix epoch)
+      duration:
+        type: integer
+        format: int64
+        description: the duration of the VoD
+      fileSize:
+        type: integer
+        format: int64
+        description: the size of the VoD file in bytes
+      filePath:
+        type: string
+        description: the path of the VoD
+      vodId:
+        type: string
+        description: the id of the VoD
+      type:
+        type: string
+        description: the type of the VoD, such as userVod, streamVod, uploadedVod
+      previewFilePath:
+        type: string
+        description: the type of the VoD, such as userVod, streamVod, uploadedVod
+    description: The recorded video-on-demand object class
+  WebApplicationContext:
+    type: object
+    properties:
+      servletContext:
+        "$ref": "#/definitions/ServletContext"
+      displayName:
+        type: string
+      parent:
+        "$ref": "#/definitions/ApplicationContext"
+      id:
+        type: string
+      applicationName:
+        type: string
+      startupDate:
+        type: integer
+        format: int64
+      autowireCapableBeanFactory:
+        "$ref": "#/definitions/AutowireCapableBeanFactory"
+      environment:
+        "$ref": "#/definitions/Environment"
+      beanDefinitionCount:
+        type: integer
+        format: int32
+      beanDefinitionNames:
+        type: array
+        items:
+          type: string
+      parentBeanFactory:
+        "$ref": "#/definitions/BeanFactory"
+      classLoader:
+        "$ref": "#/definitions/ClassLoader"
+  WebRTCAudioReceiveStats:
+    type: object
+    properties:
+      audioPacketsReceived:
+        type: integer
+        format: int64
+      audioBytesReceived:
+        type: integer
+      audioPacketsLost:
+        type: integer
+        format: int32
+      audioJitter:
+        type: number
+        format: double
+      audioFractionLost:
+        type: number
+        format: double
+      audioPacketsReceivedPerSecond:
+        type: integer
+        format: int64
+      audioBytesReceivedPerSecond:
+        type: integer
+  WebRTCAudioSendStats:
+    type: object
+    properties:
+      audioPacketsSent:
+        type: integer
+        format: int64
+      audioBytesSent:
+        type: integer
+      audioPacketsPerSecond:
+        type: integer
+        format: int64
+      audioBytesSentPerSecond:
+        type: integer
+      timeMs:
+        type: integer
+        format: int64
+  WebRTCClientStats:
+    type: object
+    properties:
+      measuredBitrate:
+        type: integer
+        format: int32
+        description: the measured bitrate of the WebRTC Client
+      sendBitrate:
+        type: integer
+        format: int32
+        description: the sent bitrate of the WebRTC Client
+      videoFrameSendPeriod:
+        type: number
+        format: double
+        description: the video frame sent period of the WebRTC Client
+      audioFrameSendPeriod:
+        type: number
+        format: double
+        description: the audio frame send period of the WebRTC Client
+      clientId:
+        type: integer
+        format: int32
+        description: WebRTC Client Id which is basically hash of the object
+      videoPacketCount:
+        type: integer
+        format: int64
+        description: Number of video packets sent
+      audioPacketCount:
+        type: integer
+        format: int64
+        description: Number of audio packets sent
+      videoSentStats:
+        description: Video sent low level stats
+        "$ref": "#/definitions/WebRTCVideoSendStats"
+      audioSentStats:
+        description: Audio sent low level stats
+        "$ref": "#/definitions/WebRTCAudioSendStats"
+      clientInfo:
+        type: string
+        description: Free text information for the client
+      clientIp:
+        type: string
+        description: WebRTC Client's ip address
+    description: The WebRTC Client Statistics class
+  WebRTCSendStats:
+    type: object
+    properties:
+      audioSendStats:
+        description: Audio send stats
+        "$ref": "#/definitions/WebRTCAudioSendStats"
+      videoSendStats:
+        description: Video send stats
+        "$ref": "#/definitions/WebRTCVideoSendStats"
+    description: Aggregation of WebRTC Low Level Send Stats
+  WebRTCVideoReceiveStats:
+    type: object
+    properties:
+      videoFirCount:
+        type: integer
+        format: int64
+      videoPliCount:
+        type: integer
+        format: int64
+      videoNackCount:
+        type: integer
+        format: int64
+      videoPacketsReceived:
+        type: integer
+        format: int64
+      videoPacketsLost:
+        type: integer
+        format: int32
+      videoFractionLost:
+        type: number
+        format: double
+      videoFrameReceived:
+        type: integer
+        format: int64
+      videoBytesReceived:
+        type: integer
+      videoPacketsReceivedPerSecond:
+        type: integer
+        format: int64
+      videoBytesReceivedPerSecond:
+        type: integer
+      videoFrameReceivedPerSecond:
+        type: integer
+        format: int64
+  WebRTCVideoSendStats:
+    type: object
+    properties:
+      videoFirCount:
+        type: integer
+        format: int64
+      videoPliCount:
+        type: integer
+        format: int64
+      videoNackCount:
+        type: integer
+        format: int64
+      videoPacketsSent:
+        type: integer
+        format: int64
+      videoFramesEncoded:
+        type: integer
+        format: int64
+      videoBytesSent:
+        type: integer
+      videoPacketsSentPerSecond:
+        type: integer
+        format: int64
+      videoBytesSentPerSecond:
+        type: integer
+      videoFramesEncodedPerSecond:
+        type: integer
+        format: int64
+      timeMs:
+        type: integer
+        format: int64
+  WebRTCViewerInfo:
+    type: object
+    properties:
+      viewerId:
+        type: string
+        description: the id of the viewer
+      streamId:
+        type: string
+        description: stream id that viewer views
+      edgeAddress:
+        type: string
+        description: IP address of the edge to which viewer is connected
+    description: Stores the info for a WebRTC viewer
+  WorkerThread:
+    type: object
+    properties:
+      name:
+        type: string
+      priority:
+        type: integer
+        format: int32
+      daemon:
+        type: boolean
+      contextClassLoader:
+        "$ref": "#/definitions/ClassLoader"
+      uncaughtExceptionHandler:
+        "$ref": "#/definitions/UncaughtExceptionHandler"
+      bufferedDurationMs:
+        type: integer
+        format: int64
+      interrupted:
+        type: boolean
+      threadGroup:
+        "$ref": "#/definitions/ThreadGroup"
+      stackTrace:
+        type: array
+        items:
+          "$ref": "#/definitions/StackTraceElement"
+      alive:
+        type: boolean
+      id:
+        type: integer
+        format: int64
+      state:
+        type: string
+        enum:
+        - NEW
+        - RUNNABLE
+        - BLOCKED
+        - WAITING
+        - TIMED_WAITING
+        - TERMINATED
+externalDocs:
+  description: External Docs
+  url: https://antmedia.io
