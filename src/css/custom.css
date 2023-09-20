@@ -6,7 +6,7 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #a10310;
+  --ifm-color-primary: #e53535;
   --ifm-color-primary-dark: #85030d;
   --ifm-color-primary-darker: #66030b;
   --ifm-color-primary-darkest: #71030d;
@@ -17,6 +17,7 @@
   --ifm-code-border-radius: 2px;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
+
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
@@ -61,7 +62,7 @@ p img{
 }
 
 nav{
-  font-size: 16px;
+  font-size: 14px;
 }
 
 code{
@@ -71,4 +72,35 @@ code{
 
 .codeBlockContainer_node_modules-\@docusaurus-theme-classic-lib-theme-CodeBlock-Container-styles-module{
   box-shadow: 0 0 0 0 !important;
+}
+
+.breadcrumbs__item--active .breadcrumbs__link{
+  background:none;
+}
+
+a.card{
+  box-shadow:none !important;
+  padding: 15px !important;
+}
+
+a.card:hover{
+  border:1px solid var(--ifm-color-emphasis-200);
+  background: var(--ifm-color-emphasis-100);
+}
+
+.docs-free-trial {
+  background-color:  var(--ifm-color-primary);
+  border-radius: 6px;
+  margin: 0 0.5rem;
+  padding: 0.25rem 0.75rem!important;
+  transition-property: all;
+  color:white;
+  padding: 8px !important;
+  text-decoration:none;
+}
+
+.docs-free-trial:hover{
+  color: white;
+  background-color:  rgb(209, 61, 61);
+  text-decoration:none;
 }

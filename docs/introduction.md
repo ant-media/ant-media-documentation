@@ -53,7 +53,7 @@ Live auctions should be streamed with ultra sub-second latency in order to get b
 
 Ant Media Server resolves interactivity and scalability issues by providing ultra-low latency streaming via WebRTC. [Read more](https://github.com/ant-media/Ant-Media-Server/#-video-game-streaming)
 
-### Community & Enterprise Edition comparison
+## Community & Enterprise Edition Comparison
 
 Ant Media Server has two versions ([releases](https://github.com/ant-media/Ant-Media-Server/#-releases)). The Community Edition [download on Github](https://github.com/ant-media/Ant-Media-Server) and the Enterprise Edition. 
 
@@ -106,7 +106,7 @@ The Enterprise Edition cluster license has similar features to the standard Ente
 
 If you're planning to have a large deployment for your Enterprise Cluster, please contact Sales at [contact@antmedia.io](mailto:contact@antmedia.io) to discuss discount options.
 
-### Free Enterprise Edition license for educational and tech communities
+### Educational and Tech Communities
 
 Ant Media provides **free Enterprise Edition licenses** for students, academics, and communities. To take advantage of this opportunity, just send an email from your institution or community e-mail address to [contact@antmedia.io](mailto:contact@antmedia.io)
 
@@ -120,13 +120,15 @@ Ant Media Server runs on **Linux (Ubuntu and CentOS)**. It supports bith x64 as 
 
 ## Extensions
 
-#### Object recognition with TensorFlow
+### Object recognition with TensorFlow
 
 Ant Media Server can use a trained deep learning model to recognize objects in live streams. This is a CPU-intensive process so if you enable this feature, the server's CPU consumption will increase.
 
 Meanwhile, users can use any deep models to execute live streams on the fly.
 
-## Ant Media Community discussion
+View more plugins including a sample plugin to help you get started building your own extensions over at [Github](https://github.com/ant-media/Plugins)
+
+## Ant Media Community Discussion
 
 There is a user community available. You can ask or answer questions by joining the community at [GitHub Discussions](https://github.com/orgs/ant-media/discussions)
 

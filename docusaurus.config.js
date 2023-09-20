@@ -31,7 +31,7 @@ const config = {
 
   presets: [
     [
-      'classic',
+      '@docusaurus/preset-classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
@@ -102,7 +102,7 @@ const config = {
     ({
       metadata: [{name: 'keywords', content: 'Ant Media Documentation, Ant Media Server, Ant Media, Ultra Low Latency Streaming, WebRTC streaming, HLS Streaming'}],
       navbar: {
-        title: 'Documentation',
+        title: '',
         logo: {
           href: '/',
           alt: 'Ant Media Server Documentation',
@@ -117,26 +117,51 @@ const config = {
             position: 'left'
           },
           {
-            label: 'SDK references',
+            label: 'SDK References',
             href: '/sdk-reference/',
             position: 'left'
           },
           {
-            label: 'Blog',
-            href: 'https://antmedia.io/blog/',
-            position: 'left'
+            label: 'Resources',
+            type: 'dropdown',
+            position: 'left',
+            items: [
+              {
+                label: 'API References',
+                href: 'https://antmedia.io/rest/',
+              },
+              {
+                label: 'Github Discussions',
+                href: 'https://github.com/orgs/ant-media/discussions',
+              },
+              {
+                label: 'Videos',
+                href: 'https://www.youtube.com/@AntMediaServer'
+              },
+              {
+                label: 'Sample Plugins',
+                href: 'https://github.com/ant-media/Plugins',
+              },
+              {
+                label: 'Marketplace',
+                href: 'https://antmedia.io/marketplace'
+              },
+              {
+                label: 'Blog',
+                href: 'https://antmedia.io/blog/',
+              },
+            ]
           },
-          {
+          /*{
             label: 'Ant Media',
             href: 'https://antmedia.io/',
             position: 'right'
-          },
-          /*{to: '/blog', label: 'Blog', position: 'left'},
-          {
-            href: 'https://github.com/facebook/docusaurus',
-            label: 'GitHub',
-            position: 'right',
           },*/
+          {
+            type: 'html',
+            position: 'right',
+            value: '<a target="_blank" href="https://antmedia.io/monthly/?aero-add-to-checkout=47606" class="docs-free-trial">Start a Free Trial</a>',
+          },
         ],
       },
       colorMode: {
@@ -216,7 +241,7 @@ const config = {
       announcementBar: {
         id: 'AWS Streaming Service Wizard',
         content:
-          '<div style="font-size:16px;"><strong><a href="https://antmedia.io/cloud/" target="_blank" rel="noopener noreferrer">AWS Streaming Service Wizard</a></strong>: <a target="_blank" rel="noopener noreferrer" href="https://antmedia.io/create-your-own-streaming-service-on-aws-in-5-minutes/">Create Your Own Scalable Streaming Service on AWS in 5 minutes and Scale as you Need</a></div>',
+          '<div style="font-size:16px;"><div style="padding:10px;"><strong><a href="https://antmedia.io/cloud/" target="_blank" rel="noopener noreferrer">AWS Streaming Service Wizard</a></strong>: <a target="_blank" rel="noopener noreferrer" href="https://antmedia.io/create-your-own-streaming-service-on-aws-in-5-minutes/">Create Your Own Scalable Streaming Service on AWS in 5 minutes and Scale as you Need</a></div></div>',
         backgroundColor: '#fff5bd',
         textColor: '#091E42',
         isCloseable: false,
