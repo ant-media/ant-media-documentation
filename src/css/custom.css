@@ -3,9 +3,14 @@
  * bundles Infima by default. Infima is a CSS framework designed to
  * work well for content-centric websites.
  */
-
+body{
+  font-family: Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+}
 /* You can override the default Infima variables here. */
 :root {
+  --ifm-background-color: #ffffff;
+  --ifm-button-color-primary: #e53535;
+  --ifm-button-color-dark: #d32f2f;
   --ifm-color-primary: #e53535;
   --ifm-color-primary-dark: #85030d;
   --ifm-color-primary-darker: #66030b;
@@ -15,7 +20,10 @@
   --ifm-color-primary-lightest: #3cad6e;
   --ifm-code-font-size: 90%;
   --ifm-code-border-radius: 2px;
+  --ifm-color-gray-900: #1c1e21;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --announcement-bar-background-color: #fbf2c9;
+  --announcement-bar-text-color: #201f1f;
 }
 
 
@@ -28,12 +36,14 @@
   --ifm-color-primary-light: #29d5b0;
   --ifm-color-primary-lighter: #32d8b4;
   --ifm-color-primary-lightest: #4fddbf;
+  --ifm-menu-color-active: #e53535;
+  --ifm-background-color: #000000;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
 article{
   font-size: 17px;
-  line-height: 1.7em;
+  line-height: 1.6em;
   font-family: "__akkurat_bd6215","__akkurat_Fallback_bd6215","Helvetica Neue",Helvetica,sans-serif;
 }
 
@@ -62,7 +72,7 @@ p img{
 }
 
 nav{
-  font-size: 14px;
+  /*font-size: 14px;*/
 }
 
 code{
@@ -89,8 +99,10 @@ a.card:hover{
 }
 
 .docs-free-trial {
-  background-color:  var(--ifm-color-primary);
+  background:  var(--ifm-button-color-primary);
   border-radius: 6px;
+  font-weight: 600;
+  line-height: 100%;
   margin: 0 0.5rem;
   padding: 0.25rem 0.75rem!important;
   transition-property: all;
@@ -101,6 +113,18 @@ a.card:hover{
 
 .docs-free-trial:hover{
   color: white;
-  background-color:  rgb(209, 61, 61);
+  background: var(--ifm-button-color-dark);
   text-decoration:none;
+}
+
+.announcement-bar{
+  background: var(--announcement-bar-background-color);
+  font-size: 16px;
+  box-shadow: var(--ifm-navbar-shadow);
+  color: var(--announcement-bar-text-color);
+}
+
+.announcement-bar a{
+  color: var(--announcement-bar-text-color);
+  text-decoration: none !important;
 }

@@ -111,14 +111,14 @@ const config = {
         },
         items: [
           {
-            type: 'doc',
-            docId: 'introduction',
+            //type: 'doc',
+            href: '/category/guides/',
             label: 'Guides',
             position: 'left'
           },
           {
-            label: 'SDK References',
-            href: '/sdk-reference/',
+            label: 'SDKs',
+            href: '/category/sdk-integration/',
             position: 'left'
           },
           {
@@ -131,11 +131,7 @@ const config = {
                 href: 'https://antmedia.io/rest/',
               },
               {
-                label: 'Github Discussions',
-                href: 'https://github.com/orgs/ant-media/discussions',
-              },
-              {
-                label: 'Videos',
+                label: 'Video Tutorials',
                 href: 'https://www.youtube.com/@AntMediaServer'
               },
               {
@@ -145,6 +141,25 @@ const config = {
               {
                 label: 'Marketplace',
                 href: 'https://antmedia.io/marketplace'
+              },
+              {
+                label: 'AWS Streaming Wizard',
+                href: 'https://antmedia.io/aws-streaming-service-wizard/',
+              },
+            ]
+          },
+          {
+            label: 'Community',
+            type: 'dropdown',
+            position: 'left',
+            items: [
+              {
+                label: 'Github Discussions',
+                href: 'https://github.com/orgs/ant-media/discussions',
+              },
+              {
+                label: 'Slack Channel',
+                href: 'https://antmedia.slack.com/archives/C4H0BJVR8',
               },
               {
                 label: 'Blog',
@@ -160,7 +175,7 @@ const config = {
           {
             type: 'html',
             position: 'right',
-            value: '<a target="_blank" href="https://antmedia.io/monthly/?aero-add-to-checkout=47606" class="docs-free-trial">Start a Free Trial</a>',
+            value: '<a target="_blank" href="https://antmedia.io/monthly/?aero-add-to-checkout=47606" class="docs-free-trial">Free Trial</a>',
           },
         ],
       },
@@ -215,7 +230,7 @@ const config = {
             ],
           },
           {
-            title: 'Resources',
+            title: 'Company',
             items: [
               {
                 label: 'My Account',
@@ -239,11 +254,11 @@ const config = {
         darkTheme: darkCodeTheme,
       },
       announcementBar: {
-        id: 'AWS Streaming Service Wizard',
+        id: 'announcement-bar',
         content:
-          '<div style="font-size:16px;"><div style="padding:10px;"><strong><a href="https://antmedia.io/cloud/" target="_blank" rel="noopener noreferrer">AWS Streaming Service Wizard</a></strong>: <a target="_blank" rel="noopener noreferrer" href="https://antmedia.io/create-your-own-streaming-service-on-aws-in-5-minutes/">Create Your Own Scalable Streaming Service on AWS in 5 minutes and Scale as you Need</a></div></div>',
-        backgroundColor: '#fff5bd',
-        textColor: '#091E42',
+          '<div class="announcement-bar"><strong><a href="https://antmedia.io/cloud/" target="_blank" rel="noopener noreferrer">AWS Streaming Service Wizard</a></strong>: <a target="_blank" rel="noopener noreferrer" href="https://antmedia.io/create-your-own-streaming-service-on-aws-in-5-minutes/">Create Your Own Scalable Streaming Service on AWS in 5 minutes and Scale as you Need</a></div>',
+        //backgroundColor: '',
+        //textColor: '',
         isCloseable: false,
       },
     }),
