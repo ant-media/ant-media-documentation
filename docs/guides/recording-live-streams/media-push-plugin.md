@@ -17,31 +17,40 @@ You can record the broadcast if needed. But you need to start the recording manu
 ### Install Google Chrome 108
 
 1. Remove your existing Google Chrome installation
+
   ```
   sudo apt-get purge google-chrome-stable
   ```
+
 2. Media Push Plugin uses Google Chrome 108 to broadcast the web page. So you need to install Google Chrome 108 to your server. You can install it on Ubuntu with the following commands.
+
   ```
   wget --no-verbose -O /tmp/chrome.deb http://trusty-packages.scrutinizer-ci.com/google/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_108.0.5359.71-1_amd64.deb
   ```
+
   ```
   sudo apt install -y /tmp/chrome.deb
   ```
+
   ```
   rm /tmp/chrome.deb
   ```
+
 3. Disable Google Chrome auto update
   ```
   sudo apt-mark hold google-chrome-stable
   ```
+
 4. Download the pre-built `media-push-plugin.jar` file
   ```
   wget https://github.com/ant-media/Plugins/raw/master/MediaPushPlugin/build/media-push-plugin.jar
   ```
+
 5. Copy the `webpage-recording-plugin.jar` file to `plugins` directory under `/usr/local/antmedia`
   ```
   sudo cp webpage-recording-plugin.jar /usr/local/antmedia/plugins
   ```
+
 6. Restart the service
   ```
   sudo service antmedia restart
@@ -50,10 +59,13 @@ You can record the broadcast if needed. But you need to start the recording manu
 ### Optional: How to add Media Push Page 
 
 1. Download the media_push.html file
+
   ```
   wget https://github.com/ant-media/Plugins/raw/master/MediaPushPlugin/build/media_push.html
   ```
-2. Copy the media_push.html file into directory under /usr/local/antmedia/webapps/<your-webapp-name>/
+
+2. Copy the media_push.html file into directory under '/usr/local/antmedia/webapps/{your-webapp-name}/'
+
   ```
   sudo cp media_push.html /usr/local/antmedia/webapps/<your-webapp-name>/media_push.html
   ```
@@ -72,6 +84,7 @@ Call the REST Method below to let Ant Media Server broadcast the web page. You s
 * Stop the broadcast
 
 Call the REST Method below to let Ant Media Server with the stream id you specified in the start method.
+
    ```
    curl -i -X POST -H "Accept: Application/json" "http://localhost:5080/WebRTCAppEE/rest/v1/media-push/stop/{streamId}"
    ```
@@ -79,6 +92,7 @@ Call the REST Method below to let Ant Media Server with the stream id you specif
 * Send javascript command to a webpage with given stream id
 
 Call the REST Method below to let Ant Media Server with the stream id you specified in the start method. You should pass the javascript command in the body.
+
    ```
    curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "http://localhost:5080/WebRTCAppEE/rest/v1/media-push/send-command?streamId={streamId}"  -d '{"jsCommand": "{javascript_command_which_is_executed}"}'
    ```
