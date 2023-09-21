@@ -1,8 +1,8 @@
 ---
-title: Management Panel REST API Services 
+title: Web Panel REST API 
 description: This document helps you to access Management Panel REST API Services with JWT Tokens.
 keywords: [JWT Tokens, REST API, Management Panel REST API Services, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 5
+sidebar_position: 4
 ---
 
 # Management Panel REST API Services
