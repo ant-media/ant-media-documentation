@@ -72,13 +72,13 @@ Navigate to ```https://ant-media-server:5443``` and create the first user accoun
 
 ### Publishing a Live Stream
 
-Publish a WebRTC live stream from the sample page ```https://domain-name:5443/LiveApp```.
+You can quickly publish a WebRTC live stream from a sample page that's available at ```https://domain-name:5443/LiveApp```.
 
 ![](@site/static/img/quick-start/publish-stream.png)
 
 ### Playing a Live Stream
 
-Playback the WebRTC live stream from the sample page ```https://domain-name:5443/LiveApp/player.html```.
+Then playback the WebRTC live stream from another sample page available at ```https://domain-name:5443/LiveApp/player.html```.
 
 
 ![](@site/static/img/quick-start/play-stream.png)
@@ -101,7 +101,4 @@ Below is an example of DeepAR.
 
 ## Getting Help
 
-
-This quick start lets your try WebRTC ultra-low latency live streaming in Ant Media Server. 
-
-For full installation instructions visit [Installing AMS on Linux](/guides/installing-on-linux/installing-ams-on-linux/) and if you have any problems, don't be hesitate to [discuss](https://github.com/orgs/ant-media/discussions).
+If you need any help, feel free to head over to [Github discussions](https://github.com/orgs/ant-media/discussions) or follow our more detailed guide, [Installing Ant Media Server on Linux](/guides/installing-on-linux/installing-ams-on-linux/). 
