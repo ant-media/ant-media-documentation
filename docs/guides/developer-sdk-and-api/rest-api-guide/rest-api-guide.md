@@ -25,11 +25,11 @@ While executing web panel commands through the REST API, it is not necessary to 
 
 ### Broadcast Service
 ```shell
-http(s)ant-media-server:port/{application}/rest/v2
+http(s)ant-media-server:port/{application}/rest/v2/broadcasts
 ```
 ### VoD Service
 ```shell
-http(s)ant-media-server:port/{application}/rest/v2
+http(s)ant-media-server:port/{application}/rest/v2/vods
 ```
 
 ### Management Service
