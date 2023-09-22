@@ -38,7 +38,7 @@ http(s)ant-media-server:port/rest/v2
 ```
 ### Cluster Service
 ```shell
-http(s)ant-media-server:port/rest/cluster
+http(s)ant-media-server:port/rest/v2/cluster
 ```
 
 ## API Security
