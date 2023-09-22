@@ -5,7 +5,7 @@ keywords: [Download Ant Media Server, Setup Ant Media Server, Deploy Ant Media S
 sidebar_position: 1
 ---
 
-# Quickstart
+# Quick Start
 
 ## Step 1: Download script
 
