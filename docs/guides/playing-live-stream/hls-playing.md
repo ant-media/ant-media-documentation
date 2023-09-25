@@ -1,13 +1,13 @@
 ---
 title: HLS Playing
-description: This documentation guide will help you to achive HLS Playing and Save HLS Records to your servers.
+description: This documentation guide will help you to achieve HLS Playing and Save HLS Records to your servers.
 keywords: [HLS Playing, HLS Playing with Ant Media Server, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 2
 ---
 
 # HLS Playing
 
-HLS Playing is available in both the Community and Enterprise Editions. Before playing a stream, make sure that stream is broadcasting on the server.
+HLS Playing is available in both the Community and Enterprise Editions. Before playing a stream, make sure that the stream is broadcasting on the server.
 
 > Quick Link: [Learn How to Publish Live Streams](/docs/category/publish-live-stream/)
 
@@ -56,23 +56,11 @@ If you would like to use the old structure, check the [following post](https://g
 
 ## Save HLS Records
 
-HLS streaming is a more cost-effective and secure method of streaming than video on-demand assets. Furthermore, you can also record the HLS stream:
+HLS streaming is a more cost-effective and secure method of streaming than video-on-demand assets. Furthermore, you can also record your live streams with HLS:
 
-*  Simply change your application's HLS settings by going into Application Setting -> Advance  and configure the setting below:
+* To enable HLS recording for your live streams and store all the HLS files (.ts and .m3u8), just log in to your AMS Web Panel, Navigate to the Application Setting -> Advanced, and configure the setting below:
 
-1. Click on the Application for which you want to change the settings.
-
-![image](https://github.com/ant-media/ant-media-documentation/assets/47350008/5de57f91-0057-456c-9bad-00dd4abd9dc1)
-
-3. Click on Settings.Swtich Basic To Advance.
-
-![image](https://github.com/ant-media/ant-media-documentation/assets/47350008/1ab06ac5-f8b1-4420-a7fe-7c4f4e5be937)
-
-5. Now you can Edit the Advance settings acordingly.
-
-![image](https://github.com/ant-media/ant-media-documentation/assets/47350008/447bf65c-8677-4168-bab6-5b562617b22d)
-
-If you want your m3u8 file to have the list of all the TS files
+![Screenshot 2023-09-25 153916](https://github.com/ant-media/ant-media-documentation/assets/86982446/10ca309d-c40f-4e74-b006-3dbc23e0dea8)
 
 ```js 
 settings.hlsPlayListType=event
@@ -84,17 +72,19 @@ To store HLS files permanently after the stream is ended.
 settings.deleteHLSFilesOnEnded=false
 ```
     
-To prevent overwriting of old HLS files in case same stream Id is published again, use the below property.
+To prevent overwriting of old HLS files in case the same streamId is used again, use the below property.
 
 ```js 
 settings.hlsflags=+append_list
 ```
 
-Restart the server on the command line.
-    
-```shell
-sudo service antmedia restart
+If uploading the files to S3, you can enable the date and time for the HLS files to prevent them from getting overwritten.
+
+```js
+settings.addDateTimeToHlsFileName=true
 ```
+
+After making the changes, you can scroll down and save the settings.
     
 Now, your HLS streams will record.
     
