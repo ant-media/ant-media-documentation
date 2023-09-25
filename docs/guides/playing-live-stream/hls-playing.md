@@ -1,13 +1,13 @@
 ---
 title: HLS Playing
-description: This documentation guide will help you to achive HLS Playing and Save HLS Records to your servers.
+description: This documentation guide will help you to achieve HLS Playing and Save HLS Records to your servers.
 keywords: [HLS Playing, HLS Playing with Ant Media Server, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 2
 ---
 
 # HLS Playing
 
-HLS Playing is available in both the Community and Enterprise Editions. Before playing a stream, make sure that stream is broadcasting on the server.
+HLS Playing is available in both the Community and Enterprise Editions. Before playing a stream, make sure that the stream is broadcasting on the server.
 
 > Quick Link: [Learn How to Publish Live Streams](/docs/category/publish-live-stream/)
 
@@ -56,10 +56,12 @@ If you would like to use the old structure, check the [following post](https://g
 
 ## Save HLS Records
 
-HLS streaming is a more cost-effective and secure method than VOD streaming. You can record your HLS streams. You just need to change your application's HLS settings as below:
+HLS streaming is a more cost-effective and secure method of streaming than video-on-demand assets. Furthermore, you can also record your live streams with HLS:
 
-*   Open your apps ```red5-web.properties``` and change the below mentioned settings. The file is located under `/usr/local/antmedia/webapps/App-Name/WEB-INF` folder.
-    
+* To enable HLS recording for your live streams and store all the HLS files (.ts and .m3u8), just log in to your AMS Web Panel, Navigate to the Application Setting -> Advanced, and configure the setting below:
+
+![Screenshot 2023-09-25 153916](https://github.com/ant-media/ant-media-documentation/assets/86982446/10ca309d-c40f-4e74-b006-3dbc23e0dea8)
+
 ```js 
 settings.hlsPlayListType=event
 ```
@@ -70,19 +72,21 @@ To store HLS files permanently after the stream is ended.
 settings.deleteHLSFilesOnEnded=false
 ```
     
-To prevent overwriting of old HLS files in case same stream Id is published again, use the below property.
+To prevent overwriting of old HLS files in case the same streamId is used again, use the below property.
 
 ```js 
 settings.hlsflags=+append_list
 ```
 
-Restart the server on the command line.
-    
-```shell
-sudo service antmedia restart
+If uploading the files to S3, you can enable the date and time for the HLS files to prevent them from getting overwritten.
+
+```js
+settings.addDateTimeToHlsFileName=true
 ```
+
+After making the changes, you can scroll down and save the settings.
     
-Now, your HLS streams will record.
+Now, your streams will be recorded as HLS.
     
 
 > Quick Link: [App Configurations](https://antmedia.io/docs/guides/configuration-and-testing/ams-application-configuration/)
