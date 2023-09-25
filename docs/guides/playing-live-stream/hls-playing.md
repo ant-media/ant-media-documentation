@@ -58,7 +58,7 @@ If you would like to use the old structure, check the [following post](https://g
 
 HLS streaming is a more cost-effective and secure method of streaming than video on-demand assets. Furthermore, you can also record the HLS stream:
 
-*  Simply change your application's HLS settings in the file The `/usr/local/antmedia/webapps/App-Name/WEB-INF/red5-web.properties` and configure the setting below:
+*  Simply change your application's HLS settings by going into Application Setting -> Advance  and configure the setting below:
 
     
 If you want your m3u8 file to have the list of all the TS files
