@@ -86,7 +86,7 @@ settings.addDateTimeToHlsFileName=true
 
 After making the changes, you can scroll down and save the settings.
     
-Now, your HLS streams will record.
+Now, your streams will be recorded as HLS.
     
 
 > Quick Link: [App Configurations](https://antmedia.io/docs/guides/configuration-and-testing/ams-application-configuration/)
