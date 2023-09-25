@@ -60,7 +60,18 @@ HLS streaming is a more cost-effective and secure method of streaming than video
 
 *  Simply change your application's HLS settings by going into Application Setting -> Advance  and configure the setting below:
 
-    
+1. Click on the Application for which you want to change the settings.
+
+![image](https://github.com/ant-media/ant-media-documentation/assets/47350008/5de57f91-0057-456c-9bad-00dd4abd9dc1)
+
+3. Click on Settings.Swtich Basic To Advance.
+
+![image](https://github.com/ant-media/ant-media-documentation/assets/47350008/1ab06ac5-f8b1-4420-a7fe-7c4f4e5be937)
+
+5. Now you can Edit the Advance settings acordingly.
+
+![image](https://github.com/ant-media/ant-media-documentation/assets/47350008/447bf65c-8677-4168-bab6-5b562617b22d)
+
 If you want your m3u8 file to have the list of all the TS files
 
 ```js 
