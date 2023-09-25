@@ -5,15 +5,13 @@ keywords: [Ant Media Server WebRTC Samples, Ant Media Server Demo, Ant Media Ser
 sidebar_position: 1
 ---
 
-Ant Media Server comes with some sample applications to demonstrate different use-cases for ease of use. You can review and also execute these samples to see Ant Media Server in action.
+Ant Media Server provides a range of sample applications to showcase its ability across different use-cases. Explore and interact with these samples to see Ant Media Server in action.
 
-Default applications in Enterprise Edition are `LiveApp` and `WebRTCAppEE` and in Community Edition are `LiveApp` and `WebRTCApp`. Note that those are just app names and naming scheme doesn't denote or mean anything, hence both sample app names have exactly the same features.
+The default applications in Enterprise Edition are `LiveApp` and `WebRTCAppEE` and in Community Edition are `LiveApp` and `WebRTCApp`. Note that those are just application names and naming scheme doesn't denote or mean anything, hence both sample applications have exactly the same features.
 
 ## 1. WebRTC video publishing
 
-Ant Media Server can ingest WebRTC video of users from web browsers. 
-
-After installing the server and SSL, you can publish video using webRTC from this file 
+Ant Media Server can ingest WebRTC video from web browsers. After installing the software and an SSL certificate, you can publish video using webRTC from this file: 
 
 ```
 /usr/local/antmedia/webapps/LiveApp/index.html
@@ -31,15 +29,17 @@ For installation, please check out [quick start installation guide](/).
 
 ![](@site/static/img/getting-started/sample-tools-apps/publishing.png)
 
-#### WebRTC video publishing without SSL installed
+### Publishing WebRTC video without an SSL installed
 
-If you are running the server on the localhost, there won't be a problem. However, for security reasons web browsers does not allow reaching out to media devices without the SSL. In order to bypass that in the Chrome for development, you can add your server's IP to the following Chrome property and it will not ask for SSL.
+If you are running the server on the localhost, there won't be a problem. However, for security reasons web browsers do not allow reaching out to media devices without an SSL certificate. 
+
+for development purposes, in order to bypass that in Chrome web browser, you can add your server's IP address to the following Chrome property and it will not ask for SSL.
 
 `chrome://flags/#unsafely-treat-insecure-origin-as-secure`
 
 ## 2. WebRTC video playing
 
-You can play the streams published to the server with WebRTC video player. WebRTC video playback is available in **Enterprise Edition**.
+You can play the live streams published to the server with a WebRTC video player. WebRTC video playback is available in **Enterprise Edition**.
 
 You can navigate to the following URL to playback your webRTC stream. 
 ```
@@ -52,21 +52,19 @@ File is located at `/usr/local/antmedia/webapps/LiveApp/player.html`
 
 ## 3. WebRTC audio publishing
 
-WebRTC Audio publishing is available in **Enterprise Edition**
+WebRTC Audio publishing is available in **Enterprise Edition** using the following sample page:
 
 ```
 https://domain-name.com:5443/LiveApp/audio_publish.html
 ```
 
-File is located at `/usr/local/antmedia/webapps/LiveApp/audio_publish.html`
+The file is located at `/usr/local/antmedia/webapps/LiveApp/audio_publish.html`
 
 ![](@site/static/img/138696358-9d967d80-343b-4717-a587-1e934e63d5e3.png )
 
 ## 4. WebRTC audio playing
 
-WebRTC Audio playing is available in **Enterprise Edition**
-
- File is located at `/usr/local/antmedia/webapps/LiveApp/audio_player.html`
+WebRTC Audio playing is available in **Enterprise Edition** using the file is located at `/usr/local/antmedia/webapps/LiveApp/audio_player.html`
 
 ![](@site/static/img/138696730-9acb0de6-0c8d-42c4-9303-fd7f8a388aaf.png )
 
