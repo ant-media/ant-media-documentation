@@ -47,6 +47,10 @@ helm install antmedia antmedia/antmedia --set origin=origin.antmedia.cloud --set
 --namespace antmedia --create-namespace
 ```
 
-7. In Azure AKS, we need to use an Application Gateway for which you can select "Networking > Enable ingress controller" from your cluster, and then create the Application Gateway.
+7. In Azure AKS, we need to use an Application Gateway for which you can select **Networking > Enable ingress controller** from your cluster, and then create the Application Gateway.
 
 ![](@site/static/img/azure-aks-7.png)
+
+8. If everything works well, you will see the public IP address/domain name in the `kubectl get ingress -n antmedia` command’s output. After you make your DNS registration, you will be able to access over the domain you have determined.
+
+Run kubectl get services command to get the RTMP address. You can send broadcasts over 1935 to the domain name that appears as EXTERNAL-IP.
