@@ -61,6 +61,17 @@ helm install antmedia antmedia/antmedia --set origin=origin.antmedia.cloud --set
 
 ![](@site/static/img/azure-aks/azure-aks-7.png)
 
+Then run the following command to enable Application Gateway Ingress.
+
+```
+kubectl annotate ingress -n antmedia kubernetes.io/ingress.class=azure/application-gateway --overwrite --all
+
+```
+
 8. If everything works well, you will see the public IP address/domain name in the `kubectl get ingress -n antmedia` command’s output. After you make your DNS registration, you will be able to access over the domain you have determined.
 
+![](@site/static/img/azure-aks/azure-aks-8-1.png)
+
 Run kubectl get services command to get the RTMP address. You can send broadcasts over 1935 to the domain name that appears as EXTERNAL-IP.
+
+![](@site/static/img/azure-aks/azure-aks-8-2.png)
