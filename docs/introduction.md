@@ -11,7 +11,7 @@ sidebar_position: 1
 
 Ant Media server provides a ready-to-use, highly scalable, real-time video streaming solution. It supports both Ultra-Low Latency (WebRTC) and Low Latency (CMAF & HLS) live streaming.
 
-Ant Media Server (AMS) can be deployed easily and quickly on-premise or on public cloud networks such as AWS, Azure, Google Cloud, Digital Ocean, OVH, Linode, and Alibaba Cloud.
+Ant Media Server (AMS) can be deployed easily and quickly on-premise or on public cloud networks such as AWS, Azure, Google Cloud, Digital Ocean, OVH and Linode.
 
 There are two versions of Ant Media Server: Community Edition and Enterprise Edition. You can find a comparison table below.
 
@@ -76,7 +76,6 @@ The Enterprise Edition supports ultra low latency live streaming and needs a val
 |            SRT ingest support            | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
 |         iOS & Android WebRTC SDK         | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
 |          VP8 and H.265 Support          | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
-|          iOS & Android RTMP SDK          | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
 |              JavaScript SDK              | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
 |     RTMP, RTSP, MP4 and HLS Support     | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
 |          WebRTC to RTMP Adapter          | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
@@ -116,7 +115,9 @@ Ant Media provides **free Enterprise Edition licenses** for students, academics
 
 ## Supported Environments
 
-Ant Media Server runs on **Linux (Ubuntu and CentOS)**. It supports bith x64 as well as ARM architecture, and deployment scripts are provided for Ubuntu (starting from 18.04 to 20.04 and 22.04) and CentOS 8. In addition, Ant Media Server can be successfully deployed on MacOS, SuSE, Debian, WSL and Red Hat Enterprise Linux distributions as well.
+Ant Media Server runs on **Linux (Ubuntu and CentOS)**. It supports both x64 as well as ARM architecture, and deployment scripts are provided for Ubuntu (starting from 18.04 to 20.04 and 22.04), CentOS 8 and 9, Rocky Linux (8 and 9) and Alma Linux (8 and 9). 
+
+In addition, Ant Media Server can be successfully deployed on MacOS, SuSE, Debian, WSL and Red Hat Enterprise Linux distributions as well.
 
 ## Extensions
 
