@@ -43,7 +43,7 @@ az aks get-credentials --resource-group your-resource-group --name your-cluster-
 ```
 
 
-6. After successfully accessing the cluster, let's add and update the Ant Media Helm repository as follows.s
+6. After successfully accessing the cluster, let's add and update the Ant Media Helm repository as follows.
 
 ```
 helm repo add antmedia https://ant-media.github.io/helm
