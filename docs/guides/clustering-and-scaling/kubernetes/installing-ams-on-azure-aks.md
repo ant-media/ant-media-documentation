@@ -28,12 +28,22 @@ In this document, you will see step-by-step instructions on how to run Ant Media
 
 ![](@site/static/img/azure-aks/azure-aks-4.png)
 
-5. Once the installation is complete, you will be presented with a screen like the one below. Click the "Connect to cluster" button to access the necessary commands to connect to the cluster from your local computer, and execute them.
+5. When the installation is complete, you will see a screen like the one below. And then Click on the **Connect to cluster** button.
 
 ![](@site/static/img/azure-aks/azure-aks-5-1.png)
+
+Run the following commands to connect to the cluster from your local computer.
+
 ![](@site/static/img/azure-aks/azure-aks-5-2.png)
 
-6. After successfully accessing the cluster, complete the installation using the Helm repository provided by Ant Media as shown below.
+```
+az account set --subscription your-subscription
+az aks get-credentials --resource-group your-resource-group --name your-cluster-name
+
+```
+
+
+6. After successfully accessing the cluster, let's add and update the Ant Media Helm repository as follows.s
 
 ```
 helm repo add antmedia https://ant-media.github.io/helm
