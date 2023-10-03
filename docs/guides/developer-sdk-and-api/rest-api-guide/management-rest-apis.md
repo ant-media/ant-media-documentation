@@ -19,7 +19,7 @@ In earlier versions of Ant Media Server, using the JWT API Filter required editi
 
 In more recent versions, it's possible to simultaneously use the JWT Filter and Username and Password methods.
 
-## Accessing Management Panel REST API with JWT Tokens
+## JWT Token Authentication
 
 First, open the ```conf/red5.properties``` file and find and replace the following lines:
 
@@ -43,16 +43,15 @@ sudo service antmedia restart
 
 REST API for the web panel is listed [Management REST Service](https://antmedia.io/rest/#/ManagementRestService). Web Panel REST methods are binded below `https://SERVER\_FQDN:PORT/rest/`
 
-### Example
 
-#### * Generate JWT Token
+### Generate JWT Token
 Let's assume that we've entered this key (`cizvvh7f6ys0w3x0s1gzg6c2qzpk0gb9`) as `server.jwtServerSecretKey`
 
 First, generate the JWT Token at [JWT Debugger](https://jwt.io/#debugger-io). We've entered the Secret key and removed the data field because we don't send payload as shown below. This way, JWT token that we can use is ```eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.e30.tA6sZwz_MvD9Nocf3Xv_DXhJaeTNgfsHPlg3RHEoZRk```
 
 ![](@site/static/img/JWT_debugger_sample_for_web_panel_ant_media_server.png)
 
-#### * Make curl Request
+### Make curl Request
 Let's use the JWT Token in `ProxyAuthorization` header as follows
 
 ```
@@ -62,21 +61,27 @@ Then Ant Media Server responds with system resources information such as CPU Loa
 
 
 
-## Accessing Management Panel REST API with Authenticating the User
+## Username and Password Authentication
 
 Now, we need to authenticate the username and password.
 
 In order to authenticate the user, we need to pass the login username and password to the [AuthenticateUser](https://antmedia.io/rest/#/ManagementRestService/authenticateUser) API call.
 
+### Convert Password to MD5 Hash
+
 Since the password is encrypted with [MD5 encryption](https://www.md5online.org/md5-encrypt.html), let's get the MD5 encrypted password[](https://www.md5online.org/md5-encrypt.html)[](https://www.md5online.org/md5-encrypt.html) by entering your original password.
 
 Now that we have the MD5 encrypted password, let's make the AuthenticateUser REST API call. You can use postman to make these REST API calls.
+
+### Payload
 
 The payload in the body can be entered like:
 
 ```
 { "email": "your-username", "password": "05a671c66aefea124cc08b76ea6d30bb" }
 ```
+
+### Make curl Request
 
 Now that the User is authenticated, we can make the REST API calls for accessing Dashboard REST Services.
 
