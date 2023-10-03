@@ -7,11 +7,17 @@ sidebar_position: 4
 
 # Management Panel REST API Services
 
-Some REST commands which are not application specific, such as creating and deleting an app, creating a new user, etc, require an authentication filter by logging in to the management panel. This creates a few limitations for people who don't want to use the web panel every time and want access to all of the REST commands.
+Some REST commands which are not application specific, such as creating and deleting an app, creating a new user, etc, require an authentication filter by logging in to the management panel. 
 
-Earlier ,there are two separate methods to access the Dashboard REST services, via **JWT Tokens** and also via **User Authentication**.
+This creates a few limitations for people who don't want to use the web panel every time and want access to all of the REST commands.
 
-In JWT API Filter, it was needed to edit web.xml file under conf directory first and then make the Dashboard API calls. No with the new versions, we have updated the method and hence JWT Filter along with Username and Password can be used simultaneously.
+<InfoBox>
+There are two authentication methods you can use to access the web panel using the REST API. Using a <strong>JWT Token</strong> or <strong>Username and password</strong>.
+</InfoBox>
+
+In earlier versions of Ant Media Server, using the JWT API Filter required editing the web.xml file under conf directory before making API requests to the web panel. 
+
+In more recent versions, it's possible to simultaneously use the JWT Filter and Username and Password methods.
 
 ## Accessing Management Panel REST API with JWT Tokens
 
