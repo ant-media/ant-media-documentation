@@ -3,6 +3,6 @@
   "position": 2,
   "link": {
     "type": "generated-index",
-    "description": "RTMP Publishing with Ant Media Server. For RTMPS publishing, check out [here](https://github.com/orgs/ant-media/discussions/4907)."
+    "description": "RTMP Publishing with Ant Media Server. For RTMPS publishing, check out <a href=\"https://github.com/orgs/ant-media/discussions/4907\">here</a>."
   }
 }
