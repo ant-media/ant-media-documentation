@@ -16,6 +16,7 @@
   --ifm-code-font-size: 90%;
   --ifm-code-border-radius: 2px;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --docusaurus-announcement-bar-height: 40px !important;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -71,4 +72,17 @@ code{
 
 .codeBlockContainer_node_modules-\@docusaurus-theme-classic-lib-theme-CodeBlock-Container-styles-module{
   box-shadow: 0 0 0 0 !important;
+}
+
+.announcement-bar-inner{
+  font-size: 16px;
+  font-weight:bold;
+}
+
+.announcement-bar-inner a{
+  text-decoration: none !important;
+}
+
+.announcement-bar-inner a:hover{
+  text-decoration: underline !important;
 }
