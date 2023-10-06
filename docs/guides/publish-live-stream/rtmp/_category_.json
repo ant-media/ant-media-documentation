@@ -1,8 +1,9 @@
 {
-  "label": "RTMP",
+  "label": "RTMP/S",
   "position": 2,
   "link": {
     "type": "generated-index",
     "description": "RTMP Publishing with Ant Media Server."
+    "description": "Note: For RTMPS publishing, please check out [here](https://github.com/orgs/ant-media/discussions/4907)"
   }
 }
