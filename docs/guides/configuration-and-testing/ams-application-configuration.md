@@ -18,7 +18,9 @@ The management panel allows changing all the application settings however, the f
 Login to the Ant Media Server dashboard and click on the application you want to configure from the left hand menu. Then click on the settings tab.
 
 There are two options here: *Basic* and *Advanced*
+
 Basic settings has some of the most used application settings and the other application settings are under Advanced settings option.
+
 Starting from Ant Media Server version 2.6.2, all the application settings for both Standalone mode and Cluster mode of Ant Media Server can be chnaged from the management panel itself.
 
 ![](@site/static/img/configuration-and-testing/application-settings.png)
@@ -61,7 +63,7 @@ To confirm the function of the setting, additional information is provided in th
 
 ### 3 Update the confguration file
 
-To add an additional setting to the configuration file, open the application settings, go to Advanced Settings on the management panel or to ```red5-web.properties``` file located at ```<AMS_DIR>/webapps/<AppName>/WEB-INF/red5-web.properties```.
+To add an additional setting to the configuration file, open the application settings, navigate to Advanced Settings on the management panel or go to ```red5-web.properties``` file located at ```<AMS_DIR>/webapps/<AppName>/WEB-INF/red5-web.properties```.
 
 Following the example of ```aacEncodingEnabled``` setting, the below can be appended to the file:
 

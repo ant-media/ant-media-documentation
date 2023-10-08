@@ -189,8 +189,10 @@ https://example.com/hls-stream/stream123.m3u8
 ### Uploading HLS files to the S3 bucket in real-time
 
 When you use S3 integration your record will be uploaded as soon as the livestream finished.
+
 If you want to upload your HLS content(m3u8 and ts files) in real-time to the S3-compatible systems(AWS, OVH, Digital Ocean etc.) you can use `HLS Upload` servlet.
-To be able to use HLS Upload servlet, first you should enter S3 credentials to management console. Then, you can follow HLS HTTP Endpoint instructions with following property:
+
+To be able to use HLS Upload servlet, first you should enter S3 credentials to management console. Then, you can use HLS HTTP Endpoint instructions with following property:
 - Open the management panel of your AMS and go the Application settings and switch to Advanced settings.
 - Locate the setting hlsHttpEndpoint and set it to
 
