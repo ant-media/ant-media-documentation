@@ -142,9 +142,9 @@ HTTP forwarding is implemented to forward incoming HTTP requests to any other pl
 
 Let us tell how HTTP Forwarding works step by step
 
-- Open the file {AMS-DIR} / webapps / {APPLICATION} / WEB-INF / red5-web.properties with your text editor (vim, nano)
+- Open the management panel of your AMS and go the Application settings and switch to Advanced settings
 - Add comma separated file extensions like this `settings.httpforwarding.extension=mp4,png` to the file.
-- Add the base URL with `settings.httpforwarding.baseURL=https://{YOUR_DOMAIN}` for forwarding.
+- Add the base URL with `httpforwarding.baseURL=https://{YOUR_DOMAIN}` for forwarding.
 
 Usage Example:
 
@@ -156,22 +156,24 @@ Usage Example:
 
 > **Note:** Don't add any leading, trailing white spaces.
 
-- Save the file and restart the Ant Media Server with ```sudo service antmedia restart```. If it's configured properly, your incoming MP4 requests such as  
-    `https://{SERVER_DOMAIN}:5443/{APPLICATION_NAME}/streams/vod.mp4` will be forwarded to `https://{YOUR_DOMAIN}/streams/vod.mp4`.
+- Save the file. If it's configured properly, your incoming MP4 requests such as  
+`https://{SERVER_DOMAIN}:5443/{APPLICATION_NAME}/streams/vod.mp4` will be forwarded to `https://{YOUR_DOMAIN}/streams/vod.mp4`.
     
 ### HLS HTTP Endpoint
 
 HLS HTTP Endpoint is implemented to push the HLS content(m3u8 and ts files) to any HTTP endpoint such as CDN or your own HTTP endpoint. You can enable it with following steps:
 
-1. Open your applications configuration file with your favorite editor. If your app is WebRTCAppEE, then it will be `/usr/local/antmedia/webapps/WebRTCAppEE/WEB-INF/red5-web.properties`.
+1. Open the management panel of your AMS and go the Application settings and switch to Advanced settings.
 
-2. Add the following property to the file: `settings.hlsHttpEndpoint=https://example.com/hls-stream/`. Kindly make sure to update the HTTP URL with your own. 
+2. Add the following property to the file:
 
-3. Save the file and restart the server with the following command in your terminal
-
-```bash
-sudo service antmedia restart
 ```
+hlsHttpEndpoint=https://example.com/hls-stream/
+```
+
+Kindly make sure to update the HTTP URL with your own. 
+
+3. Save the file to apply the settings.
 
 After that just push a stream to Ant Media Server with stream123, AMS will push the files to the following endpoints with PUT method
 
@@ -184,10 +186,24 @@ https://example.com/hls-stream/stream123.m3u8
 . . .
 ```
 
-When you use S3 integration your record will be uploaded as soon as the livestream finished. If you wanted to upload your HLS content(m3u8 and ts files) periodically to the S3-compatible systems(AWS, OVH, Digital Ocean etc.) you can use HLS Upload servlet. To be able to use HLS Upload servlet, first you should enter S3 credentials to management console. Then, you can follow HLS HTTP Endpoint instructions with following property:
+### Uploading HLS files to the S3 bucket in real-time
+
+When you use S3 integration your record will be uploaded as soon as the livestream finished.
+If you want to upload your HLS content(m3u8 and ts files) in real-time to the S3-compatible systems(AWS, OVH, Digital Ocean etc.) you can use `HLS Upload` servlet.
+To be able to use HLS Upload servlet, first you should enter S3 credentials to management console. Then, you can follow HLS HTTP Endpoint instructions with following property:
+- Open the management panel of your AMS and go the Application settings and switch to Advanced settings.
+- Locate the setting hlsHttpEndpoint and set it to
 
 ```
-settings.hlsHttpEndpoint=https://{SERVER_DOMAIN}:5443/{APPLICATION_NAME}/hls-upload
+hlsHttpEndpoint=http://localhost:5080/LiveApp/hls-upload
+```
+
+Here, LiveApp is the application name and you can replace it with your preferred application.
+
+- It can also be set as:
+
+```
+hlsHttpEndpoint=https://{SERVER_DOMAIN}:5443/{APPLICATION_NAME}/hls-upload
 ```
 
 ### How to play AWS S3 VOD files with Embedded Web Player?
