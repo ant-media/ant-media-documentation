@@ -2,7 +2,7 @@
 title: How to publish with Wirecast 
 description: How to publish with Wirecast
 keywords: [Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 # How to publish with Wirecast
