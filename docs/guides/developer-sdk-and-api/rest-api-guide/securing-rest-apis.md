@@ -13,7 +13,7 @@ This guide explains how to control REST API security on Ant Media Server. You co
 
 If you want only some IP addresses to be able to access REST APIs, you should add IP’s or IP Ranges in `Dashboard > {Application} > Settings > IP Filtering Settings` panel.
 
-![](@site/static/img/image-1645195915640.png)
+![](@site/static/img/rest-api/rest-api-ip-filter.png)
 
 **If 127.0.0.1 is deleted, requests on the server (localhost) are disabled. Devices in the same network can access but other devices that are not, cannot access the REST API when 127.0.0.1 is on the list.**
 
