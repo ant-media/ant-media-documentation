@@ -72,3 +72,9 @@ code{
 .codeBlockContainer_node_modules-\@docusaurus-theme-classic-lib-theme-CodeBlock-Container-styles-module{
   box-shadow: 0 0 0 0 !important;
 }
+
+
+.announcementBar_node_modules-\@docusaurus-theme-classic-lib-theme-AnnouncementBar-styles-module{
+  min-height: 40px !important;
+  padding: 5px !important;
+}
