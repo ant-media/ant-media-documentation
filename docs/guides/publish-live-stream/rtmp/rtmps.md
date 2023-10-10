@@ -14,7 +14,8 @@ Please follow the below steps to publish the RTMPS stream to Ant Media Server:
 2.  Open TCP port 8443 for RTMPS on the firewall where AMS is hosted.
     
 3.  Edit  `red5-core.xml`  file located under the `/usr/local/antmedia/conf` directory and uncomment the RTMPS beans as mentioned in the below links.
-    [https://github.com/ant-media/Ant-Media-Server/blob/master/src/main/server/conf/red5-core.xml#L139](https://github.com/ant-media/Ant-Media-Server/blob/master/src/main/server/conf/red5-core.xml#L139)  
+    
+  [https://github.com/ant-media/Ant-Media-Server/blob/master/src/main/server/conf/red5-core.xml#L139](https://github.com/ant-media/Ant-Media-Server/blob/master/src/main/server/conf/red5-core.xml#L139)  
     [https://github.com/ant-media/Ant-Media-Server/blob/master/src/main/server/conf/red5-core.xml#L178](https://github.com/ant-media/Ant-Media-Server/blob/master/src/main/server/conf/red5-core.xml#L178)
     
 4.  Save the file and restart the server with  `sudo service antmedia restart`
