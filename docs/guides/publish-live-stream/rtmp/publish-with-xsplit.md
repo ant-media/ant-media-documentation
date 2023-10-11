@@ -2,7 +2,7 @@
 title: How to publish with XSplit 
 description: How to publish with XSplit
 keywords: [Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 3
+sidebar_position: 4
 ---
 
 # How to publish with XSplit
