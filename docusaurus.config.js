@@ -216,7 +216,9 @@ const config = {
       announcementBar: {
         id: 'AWS Streaming Service Wizard',
         content:
-          '<div style="font-size:16px;"><strong><a href="https://antmedia.io/cloud/" target="_blank" rel="noopener noreferrer">AWS Streaming Service Wizard</a></strong>: <a target="_blank" rel="noopener noreferrer" href="https://antmedia.io/create-your-own-streaming-service-on-aws-in-5-minutes/">Enter the Number of Publishers & Viewers to Get Your Own Auto Scalable Streaming Service on AWS in 5 minutes</a></div>',
+          `<div style="font-size:16px;">
+          Join our live demonstration on <a style="font-weight:bold" target="_blank" href="https://www.linkedin.com/events/howtocreateastreamingserviceats7114853191346716672/comments/">"How to Get Your Own Auto Scalable Streaming Service on AWS in 5 minutes?"</a> on October 12th
+          </div>`,
         backgroundColor: '#fff5bd',
         textColor: '#091E42',
         isCloseable: false,
