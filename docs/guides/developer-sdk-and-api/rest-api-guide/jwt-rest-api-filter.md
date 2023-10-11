@@ -35,7 +35,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0b2tlbiIsImlhdCI6MTUxNjIzOTAyMn0
 
 It is also possible to generate a JWT token with an expiration time. For this, you can use the `exp` option in JWT. The token's expiration time is a Unix timestamp, and the token will become invalid once it expires.
 
-![](@site/static/img/generate-jwt-expire-time.png)
+![](@site/static/img/rest-api/generate-jwt-expire-time.png)
 
 ## Step 5: Use JWT Token for Accessing REST Filter API
 
