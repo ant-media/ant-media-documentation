@@ -47,8 +47,8 @@ Save the file and restart the server.
 
 Now only the IPs that are in the CIDR block can access the Web panel.
 
-**Here is the IP Filter Demo:**
+**Here is a demo of how to configure the IP filter**
 
-![](@site/static/img/ip-filter(1).gif)
+![](@site/static/img/rest-api/rest-api-ip-filtering-demo.gif)
 
 For more details, you can check this link [IP Filter Gif](https://raw.githubusercontent.com/wiki/ant-media/Ant-Media-Server/images/ip-filter.gif)
