@@ -1,8 +1,8 @@
 ---
-title: JWT REST API filter 
+title: API Security (JWT) 
 description: This document contains guide for JWT REST API filter, JWT tokens and JWT token with expiration time.
 keywords: [JWT REST API filter, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 4
+sidebar_position: 2
 ---
 
 # JWT REST API Filter Guide
@@ -35,7 +35,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0b2tlbiIsImlhdCI6MTUxNjIzOTAyMn0
 
 It is also possible to generate a JWT token with an expiration time. For this, you can use the `exp` option in JWT. The token's expiration time is a Unix timestamp, and the token will become invalid once it expires.
 
-![](@site/static/img/generate-jwt-expire-time.png)
+![](@site/static/img/rest-api/generate-jwt-expire-time.png)
 
 ## Step 5: Use JWT Token for Accessing REST Filter API
 

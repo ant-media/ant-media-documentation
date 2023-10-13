@@ -2,7 +2,7 @@
 title: REST API examples 
 description: REST API examples
 keywords: [REST API examples, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 3
+sidebar_position: 5
 ---
 
 # REST API examples
