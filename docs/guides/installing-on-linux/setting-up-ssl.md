@@ -31,7 +31,7 @@ However, with the release of Ant Media Server version 2.6.2, we have streamlined
 
 Apart from the web panel, SSL for the Ant Media Server can also be installed using the terminal and there are a number of ways to do it as per your specific use case and requirements.
 
-## Get a free subdomain and install SSL with Let's Encrypt
+### Get a free subdomain and install SSL with Let's Encrypt
 
 If you do not have a domain name and want to install an SSL certificate, you can use this feature. With this feature, **enterprise users** will have a free domain name with the extension **ams-[id].antmedia.cloud**, and the Let's Encrypt certificate will be automatically installed. This feature is available in versions after 2.5.2
 
@@ -46,7 +46,7 @@ cd /usr/local/antmedia
 sudo ./enable_ssl.sh
 ```
 
-## Create Let's Encrypt certificate with HTTP-01 challenge
+### Create Let's Encrypt certificate with HTTP-01 challenge
 
 The script in this document installs **Let's Encrypt** SSL certificate.
 
@@ -68,7 +68,7 @@ cd /usr/local/antmedia
 sudo ./enable_ssl.sh -d example.com
 ```
 
-## Import your custom certificate
+### Import your custom certificate
 
 `enable_ssl.sh` script supports external fullchain.pem, chain.pem and privkey.pem files in the following format.
 
@@ -83,7 +83,7 @@ sudo ./enable_ssl.sh -f yourdomain.crt -p yourdomain.key -c yourdomainchain.crt 
 sudo ./enable_ssl.sh -f yourdomain.pem -p yourdomain.key -c yourdomainchain.pem -d yourdomain.com
 ```
 
-## Create Let's Encrypt certificate with DNS-01 challenge
+### Create Let's Encrypt certificate with DNS-01 challenge
 
 In this method, there will be no HTTP requests back to your server. This method is useful to create an SSL certificate in restricted environments such AWS Wavelength. This feature is available in versions after 2.4.0.2.
 
@@ -114,7 +114,7 @@ After you create the TXT record, press Enter to continue.
 
 The process should be completed successfully if you set everything correctly.
 
-## Create Let's Encrypt certificate with DNS-01 challenge and Route 53
+### Create Let's Encrypt certificate with DNS-01 challenge and Route 53
 
 Let's Encrypt have some plugins to simplify the authorization. Route 53 plugin creates TXT records and deletes them after authorization is done. It's useful while creating instances in AWS Wavelength Zones, as the HTTP-01 challenge does not work in the AWS Wavelength zone due to its nature.
 
