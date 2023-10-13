@@ -225,7 +225,9 @@ const config = {
         id: 'AWS Streaming Service Wizard',
         content:
           `<div style="font-size:16px;">
-          Join our live demonstration on <a style="font-weight:bold" target="_blank" href="https://www.linkedin.com/events/howtocreateastreamingserviceats7114853191346716672/comments/">"How to Get Your Own Auto Scalable Streaming Service on AWS in 5 minutes?"</a> on October 12th
+          <a target="_blank" href="https://antmedia.io/create-your-own-streaming-service-on-aws-in-5-minutes/">
+            <strong>How to Get Your Own Auto Scalable Streaming Service on AWS in 5 minutes?</strong>
+          </a>
           </div>`,
         backgroundColor: '#fff5bd',
         textColor: '#091E42',
