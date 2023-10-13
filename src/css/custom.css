@@ -43,6 +43,11 @@ article{
 
 .infobox-title{
   font-weight:bold;
+  font-size: 18px;
+}
+
+.infobox-title svg{
+  width: 20px;
 }
 
 .infoBox {

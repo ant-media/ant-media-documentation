@@ -16,7 +16,15 @@ The REST API is organized into the following services:
 * [***Management Rest Service:***](https://antmedia.io/rest/#/ManagementRestService) Non application specific commands such as user management and creating apps
 * [***Cluster Service:***](https://antmedia.io/rest/#/default) Cluster management service
 
-To get started using the REST API you must have an instance of Ant Media Server running. Refer to our quickstart guide on [installing Ant Media Server](/quick-start) first if needed. [The full REST API reference live here](https://antmedia.io/rest)
+:::tip
+
+The full [API reference guide is here](https://antmedia.io/rest). Refer to this [GitHub discussion](https://github.com/orgs/ant-media/discussions/5664) to find out **how to import the API REST methods into Postman**.
+
+:::
+
+
+
+To get started using the REST API you must have an instance of Ant Media Server running. Refer to our quickstart guide on [installing Ant Media Server](/quick-start) first if needed.
 
 ## API Services
 The required base URL for API access varies depending on the specific service. For example, the broadcast service and VOD service APIs are associated with the rest path of a specific Ant Media Server application.

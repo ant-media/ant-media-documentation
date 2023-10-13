@@ -11,9 +11,11 @@ Some REST commands which are not application specific, such as creating and dele
 
 This creates a few limitations for people who don't want to use the web panel every time and want access to all of the REST commands.
 
-<InfoBox>
-There are two authentication methods you can use to access the web panel using the REST API. Using a <strong>JWT Token</strong> or <strong>Username and password</strong>.
-</InfoBox>
+:::info
+
+There are two authentication methods you can use to access the web panel using the REST API. Using a **JWT Token** or **Username and password**.
+
+:::
 
 In earlier versions of Ant Media Server, using the JWT API Filter required editing the web.xml file under conf directory before making API requests to the web panel. 
 
