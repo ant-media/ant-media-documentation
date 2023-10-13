@@ -7,27 +7,27 @@ sidebar_position: 3
 
 # S3 Integration and HTTP Forwarding
 
-In this document, we are going to see how we can record streams to S3-compatible systems(AWS, OVH, Digital Ocean etc.) and Configure HTTP forwarding.
+In this document, we are going to see how we can record streams to S3-compatible systems(AWS, OVH, Digital Ocean, etc.) and Configure HTTP forwarding.
 
 Using S3 services is more cost-effective than storing files on your own server. It’s also easy to manage. Furthermore, S3 services have a lot of API capabilities. For example, you can add CORS policies, rules, and triggers to your system.
 
-By following this documentation, you could store MP4, WebM, HLS files and preview to your cloud storage automatically.
+By following this documentation, you can store MP4, WebM, and HLS files and preview them to your cloud storage automatically.
 
 ### Record streams to AWS S3
 
-In order to programmatically access to S3, you should have an access token and secret keys. You can create a programmatic user to have an access token and secret key from AWS IAM(Identity and Access Management) console.
+In order to programmatically access S3, you should have an access token and secret keys. You can create a programmatic user to have an access token and secret key from the AWS IAM(Identity and Access Management) console.
 
 ![image.png](@site/static/img/image-284429.png)
 
 ![image.png](@site/static/img/image-284529.png)
 
-Just Add User by checking Programmatic Access box and then in the next section click Attach existing policies directly and add AmazonS3FullAccess access permission to this user. Copy access token and secret key for this user.
+Just Add User by checking the Programmatic Access box and then in the next section click Attach existing policies directly and add AmazonS3FullAccess access permission to this user. Copy the access token and secret key for this user.
 
 ![image.png](@site/static/img/image-284629.png)
 
 ![image.png](@site/static/img/image-284729.png)
 
-Right now, you should have access token, secret key, bucket name in your hand.
+Right now, you should have the access token, secret key, and bucket name in your hand.
 
 ![image.png](@site/static/img/image-284829.png)
 
@@ -41,7 +41,7 @@ You also need to know the region of your bucket. If you do not have any bucket, 
 
 Here you see the sample S3 credentials. You need to set to yours:
 
-Then, log in the http://your\_ams\_server:5080, enable the Record Live Streams as MP4 and Enable S3 Recording, enter the S3 credentials you have created and save the settings.
+Then, log in the http://your\_ams\_server:5080, enable the Record Live Streams as MP4 and Enable S3 Recording, enter the S3 credentials you have created, and save the settings.
 
 ![image.png](@site/static/img/image-285229.png)
 
@@ -51,19 +51,19 @@ Your MP4 files and Preview files will be uploaded to your S3 Storage automatical
 
 OVH is a cost-effective cloud provider and it is preferred by many people. If you installed Ant Media Server on an OVH cloud instance, you may want to upload your stream recordings to S3 storage. You could do that with a few steps. Let start!
 
-Firstly, you need to generate Secret Key and Access Key with your OpenStack username/password. You can learn more about it in OVH's docs.
+Firstly, you need to generate a Secret Key and Access Key with your OpenStack username/password. You can learn more about it in OVH's docs.
 
 After generating Secret Key and Access, you just need to create an Object Storage as an image.
 
 ![image.png](@site/static/img/image-285329.png)
 
-You will see the Dashboard below after clicking the Create the Container.
+You will see the Dashboard below after clicking Create the Container.
 
 ![image.png](@site/static/img/image-285429.png)
 
 Here you see the sample S3 credentials. You need to set to yours:
 
-Then, log in the http://your\_ams\_server:5080, enable the Record Live Streams as MP4 and Enable S3 Recording, enter the S3 credentials you have created and save the settings.
+Then, log in the http://your\_ams\_server:5080, enable the Record Live Streams as MP4 and Enable S3 Recording, enter the S3 credentials you have created, and save the settings.
 
 ![image.png](@site/static/img/image-285529.png)
 
@@ -81,7 +81,7 @@ After creating Spaces you need to create API keys for Access and Secret keys. Ju
 
 ![image.png](@site/static/img/image-285729.png)
 
-Just type the Name parameter and click the create button.
+Just type the Name parameter and click the Create button.
 
 ![image.png](@site/static/img/image-285829.png)
 
@@ -89,7 +89,7 @@ After generating Access keys and Secret keys, there is only one step left.
 
 ![image.png](@site/static/img/image-285929.png)
 
-Then, log in the http://your\_ams\_server:5080, enable the Record Live Streams as MP4 and Enable S3 Recording, enter the S3 credentials you have created and save the settings.
+Then, log in the http://your\_ams\_server:5080, enable the Record Live Streams as MP4 and Enable S3 Recording, enter the S3 credentials you have created, and save the settings.
 
 ![image.png](@site/static/img/image-286029.png)
 
@@ -107,7 +107,7 @@ After generating Access keys and Secret keys, you need to create a bucket. Just 
 
 ![image.png](@site/static/img/image-286229.png)
 
-Then, log in the http://your\_ams\_server:5080, enable the Record Live Streams as MP4 and Enable S3 Recording, enter the S3 credentials you have created and save the settings.  
+Then, log in the http://your\_ams\_server:5080, enable the Record Live Streams as MP4 and Enable S3 Recording, enter the S3 credentials you have created, and save the settings.  
 ![](@site/static/img/image-1648581984499.png )
 
 Your MP4 files and Preview files will be uploaded to your Wasabi storage automatically.
@@ -124,7 +124,7 @@ After creating the Bucket, go to the bucket and create a folder named streams.
 
 ![](@site/static/img/image-1665067824644.png )
 
-After creating the streams folder, go to settings and interoperability tab. On the User account HMAC section and choose the default project for interoperability access.  
+After creating the streams folder, go to the settings and interoperability tab. On the User account HMAC section choose the default project for interoperability access.  
 ![](@site/static/img/image-1665067873135.png)
 
 After choosing the default project, create an access key for the user account.  
@@ -138,13 +138,13 @@ Your MP4 files and Preview files will be uploaded to your Google Cloud Storage B
 
 ### HTTP Forwarding
 
-HTTP forwarding is implemented to forward incoming HTTP requests to any other place. It's generally used for forwarding incoming request to a storage like S3.
+HTTP forwarding is implemented to forward incoming HTTP requests to any other place. It's generally used for forwarding incoming requests to a storage like S3.
 
-Let us tell how HTTP Forwarding works step by step
+Let us tell you how HTTP Forwarding works step by step
 
-- Open the file {AMS-DIR} / webapps / {APPLICATION} / WEB-INF / red5-web.properties with your text editor (vim, nano)
-- Add comma separated file extensions like this `settings.httpforwarding.extension=mp4,png` to the file.
-- Add the base URL with `settings.httpforwarding.baseURL=https://{YOUR_DOMAIN}` for forwarding.
+- Open the management panel of your AMS, go to the Application settings, and switch to Advanced settings
+- Add comma-separated file extensions like this `settings.httpforwarding.extension=mp4,png` to the file.
+- Add the base URL with `httpforwarding.baseURL=https://{YOUR_DOMAIN}` for forwarding.
 
 Usage Example:
 
@@ -154,26 +154,28 @@ Usage Example:
 - If you are using Digital Ocean Spaces, {YOUR_DOMAIN} will be like:  
     `{BucketName}.{BucketLocation}.digitaloceanspaces.com`
 
-> **Note:** Don't add any leading, trailing white spaces.
+> **Note:** Don't add any leading, or trailing white spaces.
 
-- Save the file and restart the Ant Media Server with ```sudo service antmedia restart```. If it's configured properly, your incoming MP4 requests such as  
-    `https://{SERVER_DOMAIN}:5443/{APPLICATION_NAME}/streams/vod.mp4` will be forwarded to `https://{YOUR_DOMAIN}/streams/vod.mp4`.
+- Save the file. If it's configured properly, your incoming MP4 requests such as  
+`https://{SERVER_DOMAIN}:5443/{APPLICATION_NAME}/streams/vod.mp4` will be forwarded to `https://{YOUR_DOMAIN}/streams/vod.mp4`.
     
 ### HLS HTTP Endpoint
 
-HLS HTTP Endpoint is implemented to push the HLS content(m3u8 and ts files) to any HTTP endpoint such as CDN or your own HTTP endpoint. You can enable it with following steps:
+HLS HTTP Endpoint is implemented to push the HLS content(m3u8 and ts files) to any HTTP endpoint such as CDN or your own HTTP endpoint. You can enable it with the following steps:
 
-1. Open your applications configuration file with your favorite editor. If your app is WebRTCAppEE, then it will be `/usr/local/antmedia/webapps/WebRTCAppEE/WEB-INF/red5-web.properties`.
+1. Open the management panel of your AMS, Go to the Application settings, and switch to Advanced settings.
 
-2. Add the following property to the file: `settings.hlsHttpEndpoint=https://example.com/hls-stream/`. Kindly make sure to update the HTTP URL with your own. 
+2. Add the following property to the file:
 
-3. Save the file and restart the server with the following command in your terminal
-
-```bash
-sudo service antmedia restart
+```
+hlsHttpEndpoint=https://example.com/hls-stream/
 ```
 
-After that just push a stream to Ant Media Server with stream123, AMS will push the files to the following endpoints with PUT method
+Kindly make sure to update the HTTP URL with your own. 
+
+3. Save the file to apply the settings.
+
+After that just push a stream to Ant Media Server with stream123, AMS will push the files to the following endpoints with the PUT method
 
 ```
 https://example.com/hls-stream/stream123.m3u8
@@ -184,19 +186,35 @@ https://example.com/hls-stream/stream123.m3u8
 . . .
 ```
 
-When you use S3 integration your record will be uploaded as soon as the livestream finished. If you wanted to upload your HLS content(m3u8 and ts files) periodically to the S3-compatible systems(AWS, OVH, Digital Ocean etc.) you can use HLS Upload servlet. To be able to use HLS Upload servlet, first you should enter S3 credentials to management console. Then, you can follow HLS HTTP Endpoint instructions with following property:
+### Uploading HLS files to the S3 bucket in real-time
+
+When you use S3 integration your record will be uploaded as soon as the livestream finished.
+
+If you want to upload your HLS content(m3u8 and ts files) in real-time to the S3-compatible systems(AWS, OVH, Digital Ocean, etc.) you can use the `HLS Upload` servlet.
+
+To be able to use the HLS Upload servlet first, you should enter S3 credentials into the management console. Then, you can use HLS HTTP Endpoint instructions with the following property:
+- Open the management panel of your AMS, Go to the Application settings, and switch to Advanced settings.
+- Locate the setting hlsHttpEndpoint and set it to:
 
 ```
-settings.hlsHttpEndpoint=https://{SERVER_DOMAIN}:5443/{APPLICATION_NAME}/hls-upload
+hlsHttpEndpoint=http://localhost:5080/LiveApp/hls-upload
+```
+
+Here, LiveApp is the application name and you can replace it with your preferred application.
+
+- It can also be set as:
+
+```
+hlsHttpEndpoint=https://{SERVER_DOMAIN}:5443/{APPLICATION_NAME}/hls-upload
 ```
 
 ### How to play AWS S3 VOD files with Embedded Web Player?
 
-If you would like to embedd the VODs stored in AWS S3 bucket, you need to configure CORS parameters on AWS S3 Bucket Permissions
+If you would like to embed the VODs stored in AWS S3 bucket, you need to configure CORS parameters on AWS S3 Bucket Permissions
 
-CORS parameters of AWS S3 bucket should be modified so that the requests that are coming from another origins to play the VODs can be processed.
+CORS parameters of the AWS S3 bucket should be modified so that the requests that are coming from another origin to play the VODs can be processed.
 
-Go to your ``` AWS -> Services -> S3 -> Buckets -> "Your Bucket" -> Permissions``` And at the bottom of the page there is Cross-origin resource sharing (CORS). The CORS configuration, written in JSON, defines a way for client web applications that are loaded in one domain to interact with resources in a different domain."  
+Go to your ``` AWS -> Services -> S3 -> Buckets -> "Your Bucket" -> Permissions``` And at the bottom of the page, there is Cross-origin resource sharing (CORS). The CORS configuration, written in JSON, defines a way for client web applications that are loaded in one domain to interact with resources in a different domain."  
 Click Edit->` and paste the code provided below:
 
 ```json
@@ -220,4 +238,4 @@ Click Edit->` and paste the code provided below:
     ]
 ```
 
-"\*" on the origin field as is it accepts requests from all origins, it can be used for quick-testing. However, it can be changed for allowing permissions for exact origins, such as ```"http://www.your-domain.com"``` since you only want to accept requests that are coming from your end.
+"\*" on the origin field as it accepts requests from all origins, it can be used for quick testing. However, it can be changed to allow permissions for exact origins, such as ```"http://www.your-domain.com"``` since you only want to accept requests that are coming from your end.
