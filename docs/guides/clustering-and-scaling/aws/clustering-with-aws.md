@@ -89,20 +89,31 @@ MongoDB installation is complete, just save your MongoDB instance’s local addr
 
 ### Step 2: Install Scalable Origin Group
 
-* Click `Auto Scaling > Launch Configurations` and Click `Create Launch Configuration`.
+* Click `EC2 > Launch Templates` and Click `Create Launch Template`.
 
-![](@site/static/img/152642513-780c642f-a689-4923-a160-dc88ae7a1afb.png)
+![](@site/static/img/aws-launch-templates-1.png)
 
-* You can see the name field just under the Create Launch Configuration header. Give a name something like “OriginGroup”.
-* In Launch configuration you need to search AMI of Ant media server using image Id as per your AWS region. You can see the image Ids [here](https://ami.antmedia.io/). For example, we are using ap-south-1 image Id in our cluster as shown in below image.
+* Give a name something like “Origin-Group”.
+* Enter version number.
+* Then click Browse more AMIs under Application and OS Images
 
-![](@site/static/img/image-1645168998733.png)
+![](@site/static/img/aws-launch-templates-2.png)
 
-* Choose instance type, in our sample we choose c5.xlarge. You can choose any instance type according to your project and after proceed to next step.
+* Click on the AWS Marketplace AMIs menu, type "Ant Media Server Enterprise" into the search bar, and search. Then select the product "Ant Media Server Enterprise - Ultra-Low Latency WebRTC Live Streaming."
 
-![](@site/static/img/152643648-16a80676-25c5-4fe5-9517-0f46624a4b36.png)
+![](@site/static/img/aws-launch-templates-3.png)
 
-* In the coming window as shown in the image below, We need to give name and set User data.
+* Choose instance type and Key pair, in our sample we choose c5.xlarge. You can choose any instance type according to your project and after proceed to next step.
+
+![](@site/static/img/aws-launch-templates-4.png)
+
+* In Network Settings, The Security Group will be created automatically.
+
+**Important Note:**
+
+> UDP: 50000-60000 (WebRTC. In v2.4.3 and higher, the default range is 50000-60000. Prior to 2.4.3, the default value was 5000-65000. 
+
+> TCP: 5000 (This port needs to open only in cluster mode for internal network communication).
 
 * Then Click “Advanced Details” title. You will see the “User data” text area. Right now, copy the text below, change the “`{MongoIP}`” field with the MongoDB IP Address in the script and paste it to the “User data”.
 * After that Click “Skip to review”
@@ -115,26 +126,16 @@ MongoDB installation is complete, just save your MongoDB instance’s local addr
 
 The form should be something like below.
 
-![](@site/static/img/152643848-f5a0cfb9-5682-40fb-957d-3649e8315f11.png)
+![](@site/static/img/aws-launch-templates-5.png)
 
-* Now you have to create new security group for Auto scaling group in which below ports need to be whitelisted as shown in image.
-
-**Important Note:**
-
-> UDP: 50000-60000 (WebRTC. In v2.4.3 and higher, the default range is 50000-60000. Prior to 2.4.3, the default value was 5000-65000. _Note that, you can [change the port range](https://stackoverflow.com/questions/62127593/how-to-limit-the-webrtc-udp-port-range-in-ant-media-server) in all releases)_.
-
-> TCP: 5000 (This port needs to open only in cluster mode for internal network communication).
-
-![](@site/static/img/Screenshot(44).png)
-
-* Click “Create Launch Configuration”.
-* After launch configuration is created successfully, go to Auto Scaling Groups in EC2 section and create Auto Scaling Group.
+* Click “Create Launch Template”.
+* After the launch template is created successfully, go to Auto Scaling Groups in EC2 section and create Auto Scaling Group.
 
 ![](@site/static/img/152644118-b5f72bfe-8c4a-4ef3-b2b0-aafcf67a577d.png)
 
-* Give a name to scaling group. We give “AMS-Origin-Group” as a name and then Switch to launch configuration as by default it is selected to Launch template. Select your launch configuration group that you have created earlier for origin group as shown in below image.
+* Give a name to scaling group. We give “AMS-Origin-Group” as a name and then Select your launch template group that you have created earlier for origin group as shown in below image.
 
-![](@site/static/img/152644315-f2c607a7-a1ec-4b33-82bf-ba1ff05e2d18.png)
+![](@site/static/img/aws-asg-1.png)
 
 * Choose “ap-south-1a” subnet. We choose only one subnet to let all instances appear in the same subnet for having better connectivity.
 
