@@ -22,6 +22,13 @@ Let’s have a look at how to pull a stream from an IP camera.
 *   Fill in the **camera name**, **camera** **username**, and **camera password**. You should add the ONVIF URL of the IP camera. Generally, it is in the following format: ```IP-ADDRESS-OF-IPCAMERA:8080```. If you don't know the ONVIF URL, you can use “**Auto Discover**” feature. If the IP camera and the server are in the same subnet, Ant Media server can discover them automatically.
     ![](@site/static/img/publish-live-stream/IP-Camera-and-External-Sources/IP-Camera-Add.png)
 
+:::info
+
+If you want to use a domain name instead of an IP address, make sure to prepend with the `http(s)` e.g.
+`https://dynamic.dns.net:50080`
+
+:::
+
 ## Watching IP cameras
 
 If IP cameras are accessible and properly configured, Ant Media Server adds their streams as a live stream and begins to pull streams from them. The management panel displays its current status. To watch the stream, click the **Play button**.
