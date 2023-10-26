@@ -27,7 +27,7 @@ jobs:
     - name: connect and upload
       run: |
         scp -r docs.tar ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}":"
-        ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "tar -zxvf docs.tar && rm -rf docs.tar"
+        ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "pwd && tar -zxvf docs.tar && rm -rf docs.tar"
     - name: cleanup
       run: rm -rf ~/.ssh
 
