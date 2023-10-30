@@ -105,8 +105,9 @@ const config = {
   ], 
   [
     'docusaurus-pushfeedback',{
-        project: '6g2wg16lfz',
-        "button-position": 'center-right'
+        project: '7i7jw6ovwx',
+        "button-position": 'bottom-right',
+        "button-style": "dark"
     }
   ]
   ],
