@@ -235,7 +235,7 @@ const config = {
           <a target="_blank" href="https://antmedia.io/create-your-own-streaming-service-on-aws-in-5-minutes/">
             <strong>How to Get Your Own Auto Scalable Streaming Service on AWS in 5 minutes?</strong>
           </a>
-          </div><feedback-button project="6g2wg16lfz"></feedback-button>`,
+          </div>`,
         backgroundColor: '#fff5bd',
         textColor: '#091E42',
         isCloseable: false,
