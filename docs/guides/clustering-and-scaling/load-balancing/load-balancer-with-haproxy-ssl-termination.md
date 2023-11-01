@@ -118,36 +118,57 @@ Add following lines for RTMP Load balancing. Please change ```{WRITE_YOUR_FIRST
 
 Add following lines to add HTTP Load Balancing
 
-    frontend http_lb
+    frontend http_lb_origin
       bind *:80
+      mode http
+      reqadd X-Forwarded-Proto:\ http
+      origin_backend_http
+      
+    frontend http_lb_edge
       bind *:5080
       mode http
       reqadd X-Forwarded-Proto:\ http
-      default_backend backend_http
+      edge_backend_http
+ 
 
 #### HTTPS Load Balancing
 
 Add following lines to add HTTPS Load Balancing. Please change ```{DOMAIN_NAME}``` with your full qualified domain name.
 
-    frontend frontend_https
-      bind *:443 ssl crt  /etc/haproxy/certs/{DOMAIN_NAME}.pem
-      bind *:5443 ssl crt /etc/haproxy/certs/{DOMAIN_NAME}.pem
-      reqadd X-Forwarded-Proto:\ https
-      default_backend backend_http
+  frontend frontend_origin_https
+    bind *:443 ssl crt  /etc/haproxy/certs/{DOMAIN_NAME}.pem
+    reqadd X-Forwarded-Proto:\ https
+    origin_backend_http
+
+  frontend frontend_edge_https
+    bind *:5443 ssl crt /etc/haproxy/certs/{DOMAIN_NAME}.pem
+    reqadd X-Forwarded-Proto:\ https
+    edge_backend_http
 
 #### HTTP Backend Servers
 
 Specify the backend servers for HTTP Load Balancing. Please change ```{WRITE_YOUR_FIRST_AMS_SERVER_IP_ADDRESS}``` and ```{WRITE_YOUR_SECOND_AMS_SERVER_IP_ADDRESS}``` with your Ant Media Server addresses.
 
-    backend backend_http
-      leastconn
-      # below line forwards http requests to https, if you do not have SSL termination, remove it
-      redirect scheme https if ! { ssl_fc }  
-      # below line provides session stickiness
-      cookie JSESSIONID prefix nocache  
-      server ams1 {WRITE_YOUR_FIRST_AMS_SERVER_IP_ADDRESS}:5080 check cookie ams1  #if you do not use session stickiness, remove cookie ams1
-      server ams2 {WRITE_YOUR_SECOND_AMS_SERVER_IP_ADDRESS}:5080 check cookie ams2  #if you do not use session stickiness, remove cookie ams2
-      # you can add more instances 
+  backend origin_backend_http
+    leastconn
+    # below line forwards http requests to https, if you do not have SSL termination, remove it
+    redirect scheme https if ! { ssl_fc }
+    # below line provides session stickiness
+    cookie JSESSIONID prefix nocache
+    server origin1 {WRITE_YOUR_FIRST_AMS_SERVER_IP_ADDRESS}:5080 check cookie origin1  #if you do not use session stickiness, remove cookie ams1
+    server origin2 {WRITE_YOUR_SECOND_AMS_SERVER_IP_ADDRESS}:5080 check cookie origin2  #if you do not use session stickiness, remove cookie ams2
+    # you can add more instances
+
+
+  backend edge_backend_http
+    leastconn
+    # below line forwards http requests to https, if you do not have SSL termination, remove it
+    redirect scheme https if ! { ssl_fc }
+    # below line provides session stickiness
+    cookie JSESSIONID prefix nocache
+    server edge1 {WRITE_YOUR_FIRST_AMS_SERVER_IP_ADDRESS}:5080 check cookie edge1  #if you do not use session stickiness, remove cookie ams1
+    server edge2 {WRITE_YOUR_SECOND_AMS_SERVER_IP_ADDRESS}:5080 check cookie edge2  #if you do not use session stickiness, remove cookie ams2
+    # you can add more instances
 
 #### RTMPS Load Balancing
 
