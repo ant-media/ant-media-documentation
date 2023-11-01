@@ -110,11 +110,11 @@ const config = {
     ({
       metadata: [{name: 'keywords', content: 'Ant Media Documentation, Ant Media Server, Ant Media, Ultra Low Latency Streaming, WebRTC streaming, HLS Streaming'}],
       navbar: {
-        title: 'Documentation',
+        title: 'Ant Media  ',
         logo: {
           href: '/',
           alt: 'Ant Media Server Documentation',
-          src: 'img/Ant-Media-Logo-dark.png',
+          src: 'img/antmedia-logo-light.png',
           srcDark: 'img/Ant-Media-Logo-light.png',
         },
         items: [
@@ -122,17 +122,17 @@ const config = {
             type: 'doc',
             docId: 'introduction',
             label: 'Guides',
-            position: 'left'
+            position: 'right'
           },
           {
             label: 'SDK references',
             href: '/sdk-reference/',
-            position: 'left'
+            position: 'right'
           },
           {
             label: 'Blog',
             href: 'https://antmedia.io/blog/',
-            position: 'left'
+            position: 'right'
           },
           {
             label: 'Ant Media',
@@ -224,12 +224,12 @@ const config = {
       announcementBar: {
         id: 'AWS Streaming Service Wizard',
         content:
-          `<div style="font-size:16px;">
+          `<div>
           <a target="_blank" href="https://antmedia.io/create-your-own-streaming-service-on-aws-in-5-minutes/">
             <strong>How to Get Your Own Auto Scalable Streaming Service on AWS in 5 minutes?</strong>
           </a>
           </div>`,
-        backgroundColor: '#fff5bd',
+        backgroundColor: '#20232a',
         textColor: '#091E42',
         isCloseable: false,
       },
