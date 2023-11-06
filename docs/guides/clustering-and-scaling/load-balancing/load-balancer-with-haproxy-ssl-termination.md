@@ -210,7 +210,7 @@ sudo -E bash -c 'cat /etc/letsencrypt/live/$DOMAIN/fullchain.pem /etc/letsencryp
 
 If you're using a third party certificate, you can even generate the pem file as follows.
 
-Append KEY and CRT to ssl.pem. Replace $DOMAIN with your own FQDN
+Append KEY and CRT to ssl.pem. Replace `$DOMAIN` with your own FQDN
 
 ```shell
 cat ssl.key ssl.crt >`>` /etc/haproxy/certs/$DOMAIN.pem 
