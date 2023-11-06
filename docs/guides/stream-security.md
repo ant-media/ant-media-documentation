@@ -9,7 +9,7 @@ sidebar_position: 4
 
 This guide explains stream security options in Ant Media Server. Briefly, Stream Security options are;
 
-### **1\. Enable/Disable Accepting Undefined Streams**
+## Accepting Undefined Streams
 
 This setting shortly is checking if the live stream is registered in Ant Media Server.
 
@@ -22,7 +22,7 @@ After modifying the configuration, please add the streamId, and stream name in "
 ![undefined-streams](https://github.com/ant-media/ant-media-documentation/assets/86982446/f456c3e9-dbae-42af-8a6f-34ee0aa177e8)
 
 
-### 2\. One Time Token Control
+## One Time Token Control
 
 One Time Token Control feature usage is in Dashboard / Application(LiveApp or etc.) / Publish/Play with One-time Tokens section.
 
@@ -88,76 +88,84 @@ Here are the OBS settings for the One Time Token.
     token : "tokenId",
     }
 
-### 3\. CORS Filter
+## CORS Filter
 
 CORS(Cross-Origin Resource Sharing) Filter is enabled and accepts requests from everywhere by default.
 
 If you want to customize by yourself CORS Filters in Application, you can access in ```SERVER_FOLDER``` / ```webapps``` / ```{Application}``` / ```WEB-INF``` / web.xml
 
-    `<filter>`
-          `<filter-name>`CorsFilter`</filter-name>`
-          `<filter-class>`io.antmedia.filter.CorsHeaderFilter`</filter-class>`
-          `<init-param>`
-             `<param-name>`cors.allowed.origins`</param-name>`
-             `<param-value>`*`</param-value>`
-           `</init-param>`
-           `<init-param>`
-                `<param-name>`cors.allowed.methods`</param-name>`
-                `<param-value>`GET,POST,HEAD,OPTIONS,PUT,DELETE`</param-value>`
-           `</init-param>`
-    
-            `<!-- cors.allowed.origins ->` * and credentials are not supported at the same time.
-            If you set to cors.allowed.origins to specific domains and support credentials open the below lines
-            `<init-param>`
-                `<param-name>`cors.support.credentials`</param-name>`
-                `<param-value>`true`</param-value>`
-            `</init-param>`
-             -->`
-            `<init-param>`
-                `<param-name>`cors.allowed.headers`</param-name>`
-                `<param-value>`Accept, Origin, X-Requested-With, Access-Control-Request-Headers, Content-Type, Access-Control-Request-Method, Authorization`</param-value>`
-             `</init-param>`
-             `<async-supported>`true`</async-supported>`
-    `</filter>`
-    `<filter-mapping>`
-         `<filter-name>`CorsFilter`</filter-name>`
-         `<url-pattern>`/*`</url-pattern>`
-    `</filter-mapping>`
+```xml
+<filter>
+      <filter-name>CorsFilter</filter-name>
+      <filter-class>io.antmedia.filter.CorsHeaderFilter</filter-class>
+      <init-param>
+          <param-name>cors.allowed.origins</param-name>
+          <param-value>*</param-value>
+        </init-param>
+        <init-param>
+            <param-name>cors.allowed.methods</param-name>
+            <param-value>GET,POST,HEAD,OPTIONS,PUT,DELETE</param-value>
+        </init-param>
+
+        <!-- cors.allowed.origins -> * and credentials are not supported at the same time.
+        If you set to cors.allowed.origins to specific domains and support credentials open the below lines
+        <init-param>
+            <param-name>cors.support.credentials</param-name>
+            <param-value>true</param-value>
+        </init-param>
+          -->
+        <init-param>
+            <param-name>cors.allowed.headers</param-name>
+            <param-value>Accept, Origin, X-Requested-With, Access-Control-Request-Headers, Content-Type, Access-Control-Request-Method, Authorization</param-value>
+          </init-param>
+          <async-supported>true</async-supported>
+</filter>
+<filter-mapping>
+      <filter-name>CorsFilter</filter-name>
+      <url-pattern>/*</url-pattern>
+</filter-mapping>
+```
 
 If you want to customize by yourself CORS Filters in Root, you can access in ```SERVER_FOLDER``` / ```webapps``` / ```root``` / ```WEB-INF``` / web.xml
 
-    `<filter>`
-    	`<filter-name>`CorsFilter`</filter-name>`
-    	`<filter-class>`io.antmedia.filter.CorsHeaderFilter`</filter-class>`
-    	`<init-param>`
-    	  `<param-name>`cors.allowed.origins`</param-name>`
-    	  `<param-value>`*`</param-value>`
-    	`</init-param>`
-    	`<init-param>`
-    	  `<param-name>`cors.allowed.methods`</param-name>`
-    	  `<param-value>`GET,POST,HEAD,OPTIONS,PUT,DELETE`</param-value>`
-    	`</init-param>`
-    `</filter>`
-    `<filter-mapping>`
-    	`<filter-name>`CorsFilter`</filter-name>`
-    	`<url-pattern>`/*`</url-pattern>`
-    `</filter-mapping>`
+```xml
+<filter>
+  <filter-name>CorsFilter</filter-name>
+  <filter-class>io.antmedia.filter.CorsHeaderFilter</filter-class>
+  <init-param>
+    <param-name>cors.allowed.origins</param-name>
+    <param-value>*</param-value>
+  </init-param>
+  <init-param>
+    <param-name>cors.allowed.methods</param-name>
+    <param-value>GET,POST,HEAD,OPTIONS,PUT,DELETE</param-value>
+  </init-param>
+</filter>
+<filter-mapping>
+  <filter-name>CorsFilter</filter-name>
+  <url-pattern>/*</url-pattern>
+</filter-mapping>
+```
 
 > Quick Learn: [Tomcat CORS Filter](https://tomcat.apache.org/tomcat-8.0-doc/api/index.html?org/apache/catalina/filters/CorsFilter.html)
 
-### 4\. Hash-Based Token
+## Hash-Based Token
 
 Firstly, settings should be enabled from the settings file of the application in ```SERVER_FOLDER``` / ```webapp``` / ```{Application}``` / ```WEB-INF``` / ```red5-web.properties```
 
-    settings.hashControlPublishEnabled=true
-    settings.hashControlPlayEnabled=true
-    tokenHashSecret=PLEASE_WRITE_YOUR_SECRET_KEY
+```javascript
+settings.hashControlPublishEnabled=true
+settings.hashControlPlayEnabled=true
+tokenHashSecret=PLEASE_WRITE_YOUR_SECRET_KEY
+```
 
 Set true ```settings.hashControlPublishEnabled``` to enable secret based hash control for publishing operations, and ```settings.hashControlPlayEnabled``` for playing operations.
 
-> Also, do not forget to define a secret key for generating a hash value.
+:::warning
+Do not forget to define a secret key for generating a hash value.
+:::
 
-#### Publishing Scenario
+## Publishing Scenario
 
 **Step 1. Generate a Hash**
 
@@ -193,7 +201,7 @@ Here is OBS settings for the Hash-Based Token
     token : "hash",
     }
 
-#### Playing Scenario
+## Playing Scenario
 
 **Step 1. Generate a Hash**
 
@@ -219,7 +227,7 @@ You need to generate a hash value using the formula sha256(STREAM\_ID + ROLE + S
 
 > Please have a look at the principles described in the [WebRTC WebSocket page](https://antmedia.io/docs/guides/publish-live-stream/webrtc/webrtc-websocket-messaging-reference/).
 
-#### Evaluation of the Hash
+## Evaluation of the Hash
 
 If related settings are enabled, Ant Media Server first generates hash values based on the formula sha256(STREAM\_ID + ROLE + SECRET) using streamId, role parameters and secret string which is defined in the settings file.
 
@@ -227,7 +235,7 @@ Then compare this generated hash value with the client's hash value during authe
 
 Once the hash is successfully validated by Ant Media Server, the client is granted either to publish or play according to application setting and user request.
 
-### 5\. Publisher IP Filter
+## Publisher IP Filter
 
 > Publisher IP Filter feature is available for later versions of the 1.9.0+ version.
 
@@ -239,7 +247,7 @@ Example: ```settings.allowedPublisherCIDR=10.20.30.40/24,127.0.0.1/32``` allows 
 
 You can [read more](https://whatismyipaddress.com/cidr/) about CIDR notation.
 
-### 6\. JWT Stream Security Filter
+## JWT Stream Security Filter
 
 JWT Stream Security feature is enabled/disabled in ```Dashboard/LiveApp( or any other)/ Settings/Publish/Play with JWT Filter```. Just take a look at the image for the related part. You can use JWT Stream Security Filter for Stream Publishing and Playing. Publish/Play requests without JWT tokens will not be streamed if you enable the JWT Stream Security Filter as shown below by also adding Secret Key on web panel.
 
