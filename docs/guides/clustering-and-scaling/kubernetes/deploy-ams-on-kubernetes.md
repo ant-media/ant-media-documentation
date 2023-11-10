@@ -340,13 +340,13 @@ Run the following commands with hostNetwork
 
 ```shell
 kubectl create -f https://raw.githubusercontent.com/ant-media/Scripts/master/kubernetes/ams-k8s-mongodb.yaml
-kubectl create -f [https://raw.githubusercontent.com/ant-media/Scripts/master/kubernetes/ams-k8s-deployment-edge.yaml](https://raw.githubusercontent.com/ant-media/Scripts/master/kubernetes/ams-k8s-deployment-edge.yaml)  
-kubectl create -f [https://raw.githubusercontent.com/ant-media/Scripts/master/kubernetes/ams-k8s-deployment-origin.yaml](https://raw.githubusercontent.com/ant-media/Scripts/master/kubernetes/ams-k8s-deployment-edge.yaml)
+kubectl create -f https://raw.githubusercontent.com/ant-media/Scripts/master/kubernetes/ams-k8s-deployment-edge.yaml  
+kubectl create -f https://raw.githubusercontent.com/ant-media/Scripts/master/kubernetes/ams-k8s-deployment-origin.yaml
 kubectl create -f https://raw.githubusercontent.com/ant-media/Scripts/master/kubernetes/ams-k8s-hpa-origin.yaml  
 kubectl create -f https://raw.githubusercontent.com/ant-media/Scripts/master/kubernetes/ams-k8s-hpa-edge.yaml
-kubectl create -f [https://raw.githubusercontent.com/ant-media/Scripts/master/kubernetes/ams-k8s-ingress-origin.yaml](https://raw.githubusercontent.com/ant-media/Scripts/master/kubernetes/ams-k8s-ingress-origin.yaml)  
+kubectl create -f https://raw.githubusercontent.com/ant-media/Scripts/master/kubernetes/ams-k8s-ingress-origin.yaml
 kubectl create -f https://raw.githubusercontent.com/ant-media/Scripts/master/kubernetes/ams-k8s-ingress-edge.yaml
-kubectl create -f [https://raw.githubusercontent.com/ant-media/Scripts/master/kubernetes/ams-k8s-rtmp.yaml](https://raw.githubusercontent.com/ant-media/Scripts/master/kubernetes/ams-k8s-rtmp.yaml)
+kubectl create -f https://raw.githubusercontent.com/ant-media/Scripts/master/kubernetes/ams-k8s-rtmp.yaml
 ```
 
 ## Deploy without HostNetwork
@@ -354,14 +354,14 @@ kubectl create -f [https://raw.githubusercontent.com/ant-media/Scripts/master/ku
 Run the following commands without hostNetwork
 
 ```shell
-kubectl create -f [https://raw.githubusercontent.com/ant-media/Scripts/babf478b99c7e6b15edbd5aa220fde5ba4cd3adb/kubernetes/ams-with-turn-server/ams-k8s-mongodb.yaml](https://raw.githubusercontent.com/ant-media/Scripts/babf478b99c7e6b15edbd5aa220fde5ba4cd3adb/kubernetes/ams-with-turn-server/ams-k8s-mongodb.yaml)
-kubectl create -f [https://raw.githubusercontent.com/ant-media/Scripts/babf478b99c7e6b15edbd5aa220fde5ba4cd3adb/kubernetes/ams-with-turn-server/ams-k8s-coturn.yaml](https://raw.githubusercontent.com/ant-media/Scripts/babf478b99c7e6b15edbd5aa220fde5ba4cd3adb/kubernetes/ams-with-turn-server/ams-k8s-coturn.yaml)
-kubectl create -f [https://raw.githubusercontent.com/ant-media/Scripts/babf478b99c7e6b15edbd5aa220fde5ba4cd3adb/kubernetes/ams-with-turn-server/ams-k8s-deployment-edge.yaml](https://raw.githubusercontent.com/ant-media/Scripts/babf478b99c7e6b15edbd5aa220fde5ba4cd3adb/kubernetes/ams-with-turn-server/ams-k8s-deployment-edge.yaml)  
-kubectl create -f [https://raw.githubusercontent.com/ant-media/Scripts/babf478b99c7e6b15edbd5aa220fde5ba4cd3adb/kubernetes/ams-with-turn-server/ams-k8s-deployment-origin.yaml](https://raw.githubusercontent.com/ant-media/Scripts/babf478b99c7e6b15edbd5aa220fde5ba4cd3adb/kubernetes/ams-with-turn-server/ams-k8s-deployment-origin.yaml)
-[https://raw.githubusercontent.com/ant-media/Scripts/babf478b99c7e6b15edbd5aa220fde5ba4cd3adb/kubernetes/ams-with-turn-server/ams-k8s-hpa-origin.yaml](https://raw.githubusercontent.com/ant-media/Scripts/babf478b99c7e6b15edbd5aa220fde5ba4cd3adb/kubernetes/ams-with-turn-server/ams-k8s-hpa-origin.yaml)  
-[kubectl create -f https://raw.githubusercontent.com/ant-media/Scripts/babf478b99c7e6b15edbd5aa220fde5ba4cd3adb/kubernetes/ams-with-turn-server/ams-k8s-hpa-edge.yaml](https://raw.githubusercontent.com/ant-media/Scripts/babf478b99c7e6b15edbd5aa220fde5ba4cd3adb/kubernetes/ams-with-turn-server/ams-k8s-hpa-edge.yaml)
-kubectl create -f [https://raw.githubusercontent.com/ant-media/Scripts/babf478b99c7e6b15edbd5aa220fde5ba4cd3adb/kubernetes/ams-with-turn-server/ams-k8s-ingress-edge.yaml](https://raw.githubusercontent.com/ant-media/Scripts/babf478b99c7e6b15edbd5aa220fde5ba4cd3adb/kubernetes/ams-with-turn-server/ams-k8s-ingress-edge.yaml)   
-kubectl create -f [https://raw.githubusercontent.com/ant-media/Scripts/babf478b99c7e6b15edbd5aa220fde5ba4cd3adb/kubernetes/ams-with-turn-server/ams-k8s-ingress-origin.yaml](https://raw.githubusercontent.com/ant-media/Scripts/babf478b99c7e6b15edbd5aa220fde5ba4cd3adb/kubernetes/ams-with-turn-server/ams-k8s-ingress-origin.yaml)
+kubectl create -f https://raw.githubusercontent.com/ant-media/Scripts/babf478b99c7e6b15edbd5aa220fde5ba4cd3adb/kubernetes/ams-with-turn-server/ams-k8s-mongodb.yaml
+kubectl create -f https://raw.githubusercontent.com/ant-media/Scripts/babf478b99c7e6b15edbd5aa220fde5ba4cd3adb/kubernetes/ams-with-turn-server/ams-k8s-coturn.yaml
+kubectl create -f https://raw.githubusercontent.com/ant-media/Scripts/babf478b99c7e6b15edbd5aa220fde5ba4cd3adb/kubernetes/ams-with-turn-server/ams-k8s-deployment-edge.yaml
+kubectl create -f https://raw.githubusercontent.com/ant-media/Scripts/babf478b99c7e6b15edbd5aa220fde5ba4cd3adb/kubernetes/ams-with-turn-server/ams-k8s-deployment-origin.yaml
+kubectl create -f https://raw.githubusercontent.com/ant-media/Scripts/babf478b99c7e6b15edbd5aa220fde5ba4cd3adb/kubernetes/ams-with-turn-server/ams-k8s-hpa-origin.yaml
+kubectl create -f https://raw.githubusercontent.com/ant-media/Scripts/babf478b99c7e6b15edbd5aa220fde5ba4cd3adb/kubernetes/ams-with-turn-server/ams-k8s-hpa-edge.yaml
+kubectl create -f https://raw.githubusercontent.com/ant-media/Scripts/babf478b99c7e6b15edbd5aa220fde5ba4cd3adb/kubernetes/ams-with-turn-server/ams-k8s-ingress-edge.yaml
+kubectl create -f https://raw.githubusercontent.com/ant-media/Scripts/babf478b99c7e6b15edbd5aa220fde5ba4cd3adb/kubernetes/ams-with-turn-server/ams-k8s-ingress-origin.yaml
 kubectl create -f https://raw.githubusercontent.com/ant-media/Scripts/master/kubernetes/ams-k8s-rtmp.yaml
 ```
 ## Install an SSL Certificate
