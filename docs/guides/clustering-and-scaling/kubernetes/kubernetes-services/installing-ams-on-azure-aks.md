@@ -1,5 +1,5 @@
 ---
-title: Installing Ant Media Server on Azure AKS 
+title: Azure Kubernetes Service 
 description: Installing Ant Media Server on Azure AKS 
 keywords: [Installing Ant Media Server on AWS EKS, AWS EKS, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 8

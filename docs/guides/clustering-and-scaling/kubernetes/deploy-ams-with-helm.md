@@ -1,5 +1,5 @@
 ---
-title: Deploy Ant Media Server with Helm 
+title: Helm Deployment 
 description: Deploy Ant Media Server with Helm Charts
 keywords: [Deploy Ant Media Server with Helm Charts, Helm Charts, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 5
@@ -23,14 +23,14 @@ Helm supports installations on Ubuntu and other distros. Before installing Helm 
 
 Install the helm tool by running the commands below.
 
-```
+```shell
 curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null 
 sudo apt-get install apt-transport-https --yes 
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list 
 sudo apt-get update 
 sudo apt-get install helm
 ```
-### Install the Ant Media Server Helm Chart
+### Install the Helm Chart
 
 Ant Media Server Helm chart installs the following
 
@@ -41,14 +41,14 @@ Ant Media Server Helm chart installs the following
 
 Add the AMS repository to Helm then install it as follows.
 
-```
+```shell
 helm repo add antmedia https://ant-media.github.io/helm
 helm repo update
 helm install antmedia antmedia/antmedia --set origin={origin}.{example.com} --set edge={edge}.{example.com} --namespace antmedia --create-namespace
 ```
 After the installation is finished, 1 MongoDB pod, 1 Ant Media Origin pod, 1 Ant Media Edge pod, and Nginx Ingress will be installed (Go to the bottom of the page for available parameters.) and the output of **kubectl get pods -n antmedia** will be as follows.
 
-```
+```shell
 NAME READY STATUS RESTARTS AGE ant-media-server-edge-7d8fd58f94-dwqbs 1/1 Running 0 2m15s ant-media-server-origin-57d974f4f7-655rf 1/1 Running 0 2m15s antmedia-ingress-nginx-controller-6b49f64bfc-zbblx 1/1 Running 0 2m15s mongo-69888cbbb9-d2zrc 1/1 Running 0          2m15s
 ```
 If the installation went as expected, run **kubectl get ingress -n antmedia** command to get your Ingress IP address and then update your DNS according to the ingress IP address and hostnames.
@@ -57,18 +57,18 @@ If the installation went as expected, run **kubectl get ingress -n antmedia** 
 
 **Example Output**
 
-```
+```shell
 NAME                      CLASS    HOSTS                   ADDRESS        PORTS     AGE
 ant-media-server-origin   <none>   origin.antmedia.cloud   x.x.x.x        80, 443   9m45s
 ant-media-server-edge     <none>   edge.antmedia.cloud     x.x.x.x        80, 443   9m55s
 ```
 You can do a DNS query as follows.
-```
+```shell
 dig origin.antmedia.cloud +noall +answer
 dig edge.antmedia.cloud +noall +answer
 ```
 Example output:
-```
+```shell
 root@murat:~# dig edge.antmedia.cloud +noall +answer
 edge.antmedia.cloud.	300	IN	A	x.x.x.x
 ```
@@ -77,19 +77,19 @@ If the result of this output is your Ingress IP address, your DNS has been updat
 ### Install SSL
 
 By default, a self-signed certificate comes in the Ant Media Server Kubernetes structure that you install with Helm. If you want, you can replace it with your own certificate as below or follow the steps below for Let's Encrypt.
-```
+```shell
 kubectl create -n antmedia secret tls ${CERT_NAME} --key ${KEY_FILE} --cert ${CERT_FILE} 
 Use Let's Encrypt
 ```
 If you want, you can do this with the script we have prepared below or a step-by-step installation.
-```
+```shell
 wget https://raw.githubusercontent.com/ant-media/helm/add_helm_repo/ams-k8s-ssl.sh
 bash ams-k8s-ssl.sh
 ```
 Then wait for the certificate to be created.
 
 If everything went well, the output of the **kubectl get -n antmedia** certificate command will show the value **True** as follows.
-```
+```shell
 NAME                   READY   SECRET                 AGE
 antmedia-cert-origin   True    antmedia-cert-origin   21m
 antmedia-cert-edge     True    antmedia-cert-edge     24m
@@ -125,7 +125,6 @@ You can customize the Ant Media Cluster installation using the following paramet
 
 
 ## Example Usage
-```
+```shell
 helm install antmedia antmedia/antmedia --set origin=origin.antmedia.io --set edge=edge.antmedia.io --set autoscalingEdge.targetCPUUtilizationPercentage=20 --set autoscalingEdge.minReplicas=2 --namespace antmedia --create-namespace
-
 ```

@@ -1,5 +1,5 @@
 ---
-title: How to Install Ant Media Server on Digital Ocean with just One Click
+title: K8s by Digital Ocean
 description: Install Ant Media Server on Digital Ocean with just One Click
 keywords: [How to Install Ant Media Server on Digital Ocean with just One Click, One Click Application, Digital Ocean, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 7
