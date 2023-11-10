@@ -90,7 +90,7 @@ const config = {
         },
         {
           from: '/guides/clustering-and-scaling/aws/installing-ams-on-aws-eks/',
-          to: '/guides/clustering-and-scaling/kubernetes/installing-ams-on-aws-eks/'
+          to: '/guides/clustering-and-scaling/kubernetes/kubernetes-services/installing-ams-on-aws-eks/'
         },
         {
           from: '/guides/developer-sdk-and-api/rest-api-guide/enabling-ip-filtering-behind-load-balancer-in-aws/',
