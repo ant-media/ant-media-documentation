@@ -99,6 +99,18 @@ const config = {
         {
           from: '/guides/developer-sdk-and-api/rest-api-guide/stream-security/',
           to: '/guides/stream-security/'
+        },
+        {
+          from: '/guides/clustering-and-scaling/aws/Configuring-RTMP-LB-in-AWS/',
+          to: '/guides/clustering-and-scaling/aws/configuring-rtmp-lb-in-aws/'
+        },
+        {
+          from: '/guides/clustering-and-scaling/aws/Scaling-at-AWS-ECS-Fargate/',
+          to: '/guides/clustering-and-scaling/aws/scaling-at-aws-ecs-fargate/'
+        },
+        {
+          from: '/guides/playing-live-stream/HLS-Playing/',
+          to: '/guides/playing-live-stream/hls-playing/'
         }
       ],
     },
