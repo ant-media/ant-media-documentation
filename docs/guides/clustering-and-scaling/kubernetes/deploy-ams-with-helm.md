@@ -13,13 +13,18 @@ Ant Media Server can be easily deployed to a Kubernetes cluster via Helm with ju
 
 Helm supports installations on Ubuntu and other distros. Before installing Helm on any operating system, it is necessary to set up a Kubernetes cluster. If Helm is not installed on your computer, you can follow the steps below for Ubuntu 20.04 and also refer to the [Helm installation documentation](https://helm.sh/docs/intro/install/) for other distributions.
 
-### Prerequisites
+**Video Tutorial**
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/FKX86Ng8Z7Y?si=c_UwLJfNxIHtgooL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+
+## Prerequisites
 
 - Kubernetes >= 1.23 (Your cluster must be ready and accessible)
 - Helm v3
 - cert-manager
 
-### Install Helm
+## Install Helm
 
 Install the helm tool by running the following commands.
 
@@ -30,7 +35,7 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.
 sudo apt-get update 
 sudo apt-get install helm
 ```
-### Install the Helm Chart
+## Install the Helm Chart
 
 A Helm chart is a package that contains all the necessary resources to deploy an application to a Kubernetes cluster. This includes YAML configuration files for deployments, services, secrets, and config maps that define the desired state of your application. In this case, Ant Media Server.
 
@@ -84,7 +89,7 @@ edge.antmedia.cloud.	300	IN	A	x.x.x.x
 ```
 If the result of this output is the expected Ingress IP address, then the DNS has been updated successfully and Ant Media Server can be accessed via HTTPS (self-signed) or HTTP.
 
-### Install SSL
+## Install SSL
 
 By default, a self-signed certificate comes in the Ant Media Server Kubernetes structure that is installed with Helm. If required, this can be replace with a custom certificate as shown below or follow the steps in further down to install via Let's Encrypt.
 
@@ -115,7 +120,7 @@ https://{origin}.{example}.{com}
 https://{edge}.{example}.{com}
 ```
 
-### Parameters
+## Parameters
 
 You can customize the Ant Media Cluster installation using the following parameters.
 
