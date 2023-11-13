@@ -69,17 +69,17 @@ Here are the explanations for the common parameters and the changes parameters.
   
 **The following parameters are common parameters independent of deployment type.**  
 
-*   **imagePullPolicy:** IfNotPresent means that if the image is available in local environment. It'll not be pulled from the private or public registry.
-*   **image:** ant-media-server-enterprise-k8s:test specifies the name of the image. You should pay attention here as it should be the same name with the image you built in previous step.
-*   **args:**\["-g", "true", "-s", "true", "-r", "true", "-m", "cluster", "-h", "127.0.0.1"\] specifies the parameters for running the Ant Media Server pods. Let us tell their meanings and why we need them.
-    *   "**\-g**", "true": It means that Ant Media Server uses the public IP address of the host for internal cluster communication. Default value is false.
-    *   "**\-s**", "true": It makes Ant Media Server uses its public IP address as the server name.
-    *   "**\-r**", "true": It makes Ant Media Server replaces the local IP address in the ICE candidates with the server name. It's false by default.
-    *   "**\-m**", "cluster": It specifies the server mode. It can be cluster or standalone. Its default value is standalone. If you're running Ant Media Server in Kubernetes, it's most likely you're running the Ant Media Server in cluster mode. This means you need to specify your MongoDB host, username, and password as parameter.
-    *   "**\-h**", "127.0.0.1": It specifies the MongoDB host address. It's necessary to use if you're running in cluster mode. In this example, it's 127.0.0.1 because in the CI pipeline, local MongoDB is installed. You should change it with your own MongoDB address or replica set.
-    *   "**\-u**", "username": It specifies the username to connect to MongoDB. If you don't have credentials, you don't need to specify.
-    *   "**\-p**", "password": It specifies the password to connect to MongoDB. If you don't have credentials, you don't need to specify.
-    *   "-l", "license number": It makes Ant Media Server uses the license key.
+*   **imagePullPolicy:** `IfNotPresent` means that if the image is available in local environment it will not pull from the private or public registry.
+*   **image:** `ant-media-server-enterprise-k8s:test` specifies the name of the image. You should pay attention here as it should be the same name as the image you built in previous step.
+*   **args:** `["-g", "true", "-s", "true", "-r", "true", "-m", "cluster", "-h", "127.0.0.1"]` specifies the parameters for running the Ant Media Server pods. Below we'll explain what they are used for.
+    *   **`"-g", "true"`**: It means that Ant Media Server uses the public IP address of the host for internal cluster communication. Default value is false.
+    *   **`"-s", "true"`**: It makes Ant Media Server uses its public IP address as the server name.
+    *   **`"-r", "true"`**: It makes Ant Media Server replaces the local IP address in the ICE candidates with the server name. It's false by default.
+    *   **` "-m", "cluster"`**: It specifies the server mode. It can be cluster or standalone. Its default value is standalone. If you're running Ant Media Server in Kubernetes, it's most likely you're running the Ant Media Server in cluster mode. This means you need to specify your MongoDB host, username, and password as parameter.
+    *    **`"-h", "127.0.0.1"`**: It specifies the MongoDB host address. It's necessary to use if you're running in cluster mode. In this example, it's 127.0.0.1 because in the CI pipeline, local MongoDB is installed. You should change it with your own MongoDB address or replica set.
+    *    **`"-u", "username"`**: It specifies the username to connect to MongoDB. If you don't have credentials, you don't need to specify.
+    *    **`"-p", "password"`**: It specifies the password to connect to MongoDB. If you don't have credentials, you don't need to specify.
+    *    **`"-l", "license number"`**: It makes Ant Media Server uses the license key.
 
 ### Deployment Specific Parameters
 
@@ -97,31 +97,29 @@ While publishing a stream, you should use the URL of the load balancer of origin
 
 Similarly, you should use the URL of the load balancer of edges in playing. ```EDGE_LOAD_BALANCER_URL/WebRTCAppEE/player.html```
 
-Kubernetes lets you scale the pods automatically to optimize resource usage and make the backend ready according to the load in your service. Horizontal Pod Autoscaler which is a built-in component can scale your pods automatically.
-
-Firstly, we need to have a Metrics Server to collect the metrics of the pods. To provide metrics via the Metrics API, a metric server monitoring must be deployed on the cluster. Horizontal Pod Autoscaler uses this API to collect metrics.
-
 ## Horizontal Pod Autoscaling
 
 Kubernetes lets you scale the pods automatically to optimize resource usage and make the backend ready according to the load in your service. Horizontal Pod Autoscaler which is a built-in component can scale your pods automatically.
 
-Firstly, we need to have a Metrics Server to collect the metrics of the pods. To provide metric via the Metrics API, a metric server monitoring must be deployed on the cluster. Horizontal Pod Autoscaler uses this API to collect metrics.
+Firstly, we need to have a Metrics Server to collect the metrics of the pods. To provide metric via the Metrics API, metric server monitoring must be deployed on the cluster. Horizontal Pod Autoscaler uses this API to collect metrics.
 
 ### Install Metric Server
 
-Metric Server is usually deployed by the cloud providers. If you are using a custom Kubernetes or the Metric Server is not deployed by your cloud provider you should deploy it manually as explained below. Firstly, Check if metrics-server is installed using the command below.
+Metric Server is usually deployed by the cloud provider. If you are using a custom Kubernetes cluster or the Metric Server is not deployed by your cloud provider you should deploy it manually as explained below. 
+
+To check if a metrics-server is installed,  use the following command.
 
 ```shell
 kubectl get pods --all-namespaces | grep -i "metric"
 ```
 
-You are going to see an output exactly like the below.
+If the metric server exists, then you should see an output exactly like the below.
 
 ```shell
 kube-system   metrics-server-5bb577dbd8-7f58c           1/1     Running   7          23h
 ```
 
-If there is not output as above proceed to install the metric server manually. 
+If there is no output as above, proceed to install the metric server manually. 
 
 #### Step 1: Download the components.yaml file on the master
 
@@ -131,7 +129,7 @@ wget https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/
 
 #### Step 2: Modify the components.yaml file
 
-Add the following line to line 132 of the file: --kubelet-insecure-tls. The lines are going to seem exactly as below.
+Add the following to line 132 of the file: `--kubelet-insecure-tls`.
 
 ```yml
 spec:
@@ -151,7 +149,7 @@ spec:
 kubectl apply -f components.yaml
 ```
 
-#### Step 4: Verifiy Successful Deployment
+#### Step 4: Verify Successful Deployment
 
 Check whether everything is working properly by running the following command:
 
@@ -167,7 +165,16 @@ v1beta1.metrics.k8s.io                 kube-system/metrics-server   True        
 
 ### Configure Autoscaling
 
-First, make a small change in our yaml file in Ant Media Server by running```kubectl edit deployment ant-media-server-origin and kubectl edit deployment ant-media-server-edge``` . Edit and save the following lines under the container according to yourself. Before proceeding let us tell you about Millicores. Millicores is a metric which is used to measure CPU usage. It is a CPU core divided into 1000 units (milli = 1000). 1000 = 1 core. So the below configuration uses 4 cores.
+Make a small changes in the yaml files for edge and origin configurations in Ant Media Server:
+
+```shell
+kubectl edit deployment ant-media-server-origin 
+kubectl edit deployment ant-media-server-edge
+```
+
+It's necessary to configure the required CPU cores for our edge and origin by editing the following lines. The value is measured in Millicores.
+
+Millicores is a metric which is used to measure CPU usage. It is a CPU core divided into 1000 units (milli = 1000). 1000 = 1 core. So the below configuration defines 4 cores (4000 milliocores).
 
 ```yml
 resources:
@@ -175,7 +182,7 @@ resources:
   cpu: 4000m
 ```
   
-After adding the file content should be like as follows:
+After adding the content, the file should be as follows:
 
 ```yml
 kind: Service
@@ -236,7 +243,7 @@ kubectl describe deployment/ant-media-server-origin
 kubectl describe deployment/ant-media-server-edge
 ```
 
-Now that the deployment is running, we're going to create a Horizontal Pod Autoscaler for it:  
+Now that the deployment is running, we're going to create a Horizontal Pod Autoscaler:  
   
 ```shell
 kubectl autoscale deployment ant-media-server-origin --cpu-percent=60 --min=1 --max=10
@@ -246,16 +253,18 @@ kubectl autoscale deployment ant-media-server-edge --cpu-percent=60 --min=1 --ma
 alternatively,  you can use the following YAML file:  
   
 ```shell
+#origin
 kubectl create -f https://raw.githubusercontent.com/ant-media/Scripts/master/kubernetes/ams-k8s-hpa-origin.yaml
+#edge
 kubectl create -f https://raw.githubusercontent.com/ant-media/Scripts/master/kubernetes/ams-k8s-hpa-edge.yaml
 ```
 
-In the above configuration, we set the CPU average as 60% and we set the pods as min 1 and maximum 10. A new pod will be created every time the CPU average passes 60%.
+In the above configuration, the CPU resource usage is set to 60%, a minimum pod of 1 and a maximum pod of 10. It means, that whenever the CPU average resource usage exceeds 60%, a new pod will be created to a maximum of 10 pods. 
 
 You can monitor the situation in the following output.  
   
 ```shell
-root@k8s-master:~# kubectl get hpa
+root@k8s-master:~$ kubectl get hpa
 NAME               REFERENCE                     TARGETS   MINPODS   MAXPODS   REPLICAS   AGE
 ant-media-server   Deployment/ant-media-server   3%/60%   1         10         1          20h
 ```
@@ -263,7 +272,7 @@ ant-media-server   Deployment/ant-media-server   3%/60%   1         10         1
 When the cpu average value decreases below 60%, then the pods are going to be terminated.  
   
 ```shell
-root@k8s-master:~# kubectl get hpa
+root@k8s-master:~$ kubectl get hpa
 NAME               REFERENCE                     TARGETS   MINPODS   MAXPODS   REPLICAS   AGE
 ant-media-server   Deployment/ant-media-server   52%/60%   1         10         4          20h
 ```
@@ -271,7 +280,7 @@ ant-media-server   Deployment/ant-media-server   52%/60%   1         10         
 Check the number of pods running using the following command.  
   
 ```shell
-root@k8s-master:~# kubectl get pods
+root@k8s-master:~$ kubectl get pods
 NAME                                READY   STATUS    RESTARTS   AGE
 ant-media-server-7b9c6844b9-4dtwj   1/1     Running   0          42m
 ant-media-server-7b9c6844b9-7b8hp   1/1     Running   0          19h
@@ -281,13 +290,13 @@ mongodb-9b99f5c-x8j5x               1/1     Running   0          20h
 ```
 ### Useful Commands
 
-The following command gives information about AutoScale:  
+The following command provides information about AutoScale configuration:  
   
 ```shell
 kubectl get hpa
 ```
   
-Check the load of pods running using the command below:  
+Check the load of pods running the following command:  
   
 ```shell
 kubectl top nodes
@@ -296,7 +305,7 @@ kubectl top nodes
 This command prints out the following:
 
 ```shell
-root@k8s-master:~# kubectl top node
+root@k8s-master:~$ kubectl top node
 NAME         CPU(cores)   CPU%   MEMORY(bytes)   MEMORY%   
 k8s-node     111m         5%     717Mi           38%       
 k8s-node-2   114m         5%     1265Mi          68%       
@@ -306,7 +315,11 @@ n8s-master   236m         11%    1091Mi          58%
 ```
 ## Kubernetes Ingress
 
-We are going to use Nginx as Ingress and install it via Helm.
+We are going to use Nginx as an Ingress Controller and install it via Helm. An Ingress Controller is a component in the Kubernetes cluster that configures an HTTP load balancer according to Ingress resources that have been created.
+
+Helm is a tool that automates the creation, packaging, configuration, and deployment of Kubernetes applications by combining configuration files into a single reusable package. 
+
+There is already a Nginx Ingress Controller package ready to use, so we can fetch and deploy it via Helm to make life easier.
 
 Run the following commands to install helm and Nginx as Ingress.  
   
