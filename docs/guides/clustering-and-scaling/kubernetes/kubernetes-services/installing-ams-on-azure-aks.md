@@ -9,26 +9,36 @@ sidebar_position: 8
 
 In this document, you will see step-by-step instructions on how to run Ant Media Server Enterprise version on Azure Kubernetes Service (AKS).
 
->> You need to have the Azure CLI software installed on your computer.
+:::info
+You need to have the Azure CLI software installed on your computer.
+:::
 
-**1.** After logging in to the Azure Portal, open the Kubernetes service and click on the **Create > Create a Kubernetes cluster** button.
+## Step 1: Create a Kubernetes Cluster
+
+After logging in to the Azure Portal, open the Kubernetes service and click on the **Create > Create a Kubernetes cluster** button.
 
 ![](@site/static/img/azure-aks/azure-aks-1.png)
 
-**2.** After creating the Resource Group and configuring settings such as Region and Kubernetes cluster name, navigate to the **Next: Node pools** tab.
+After creating the Resource Group and configuring settings such as Region and Kubernetes cluster name, navigate to the **Next: Node pools** tab.
 
 ![](@site/static/img/azure-aks/azure-aks-2.png)
 
-**3.** In the **Node pools** tab, enter the node pool (default agent pool) and make the desired changes according to your preferences. However, it is essential to ensure that **Enable public IP per node** is selected here.
+## Step 2: Configure Node Pools
+
+In the **Node pools** tab, enter the node pool (default agent pool) and make the desired changes according to your preferences. However, it is essential to ensure that **Enable public IP per node** is selected here.
 
 ![](@site/static/img/azure-aks/azure-aks-3-1.png)
 ![](@site/static/img/azure-aks/azure-aks-3-2.png)
 
-**4.** Navigate to the **Review + create** tab and click **Create** to complete the setup (other settings are optional).
+## Step 3: Review and Create Cluster
+
+Navigate to the **Review + create** tab and click **Create** to complete the setup (other settings are optional).
 
 ![](@site/static/img/azure-aks/azure-aks-4.png)
 
-**5.** When the installation is complete, you will see a screen like the one below. And then Click on the **Connect to cluster** button.
+## Step 4: Connect to Cluster
+
+When the installation is complete, you will see a screen like the one below. And then Click on the **Connect to cluster** button.
 
 ![](@site/static/img/azure-aks/azure-aks-5-1.png)
 
@@ -41,37 +51,42 @@ az account set --subscription your-subscription
 az aks get-credentials --resource-group your-resource-group --name your-cluster-name
 
 ```
+## Step 5: Install Ant Media Server via Helm
 
-
-**6.** After successfully accessing the cluster, let's add and update the Ant Media Helm repository as follows.
+After successfully accessing the cluster, let's add and update the Ant Media Helm repository as follows.
 
 ```
 helm repo add antmedia https://ant-media.github.io/helm
 helm repo update
 ```
 
-And start the installation as follows (Don't forget to change your licenseKey and origin and edge values).
+And start the installation as follows
+
+:::warning
+Don't forget to change your licenseKey, origin and edge values.
+:::
 
 ```
 helm install antmedia antmedia/antmedia --set origin=origin.antmedia.cloud --set edge=edge.antmedia.cloud  --set licenseKey="your-key" --set UseGlobalIP=false 
 --namespace antmedia --create-namespace
 ```
 
-**7.** In Azure AKS, we need to use an Application Gateway for which you can select **Networking > Enable ingress controller** from your cluster, and then create the Application Gateway.
+## Step 6: Configure Ingress Controller
+
+In Azure AKS, we need to use an Application Gateway for which you can select **Networking > Enable ingress controller** from your cluster, and then create the Application Gateway.
 
 ![](@site/static/img/azure-aks/azure-aks-7.png)
 
 Then run the following command to enable Application Gateway Ingress.
 
-```
+```shell
 kubectl annotate ingress -n antmedia kubernetes.io/ingress.class=azure/application-gateway --overwrite --all
-
 ```
 
-**8.** If everything works well, you will see the public IP address/domain name in the `kubectl get ingress -n antmedia` command’s output. After you make your DNS registration, you will be able to access over the domain you have determined.
+If the installation and configuration was successful, the public IP address/domain name will be output when running the command `kubectl get ingress -n antmedia`. After making the DNS registration, you will be able to access Ant Media Server using the hostname thats been configured.
 
 ![](@site/static/img/azure-aks/azure-aks-8-1.png)
 
-Run kubectl get services command to get the RTMP address. You can send broadcasts over 1935 to the domain name that appears as EXTERNAL-IP.
+Execute the `kubectl get svc -n antmedia` command to fetch the RTMP address from the `EXTERNAL-IP` column to start live streaming using RTMP on port 1935.
 
 ![](@site/static/img/azure-aks/azure-aks-8-2.png)
