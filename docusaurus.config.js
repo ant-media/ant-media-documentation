@@ -111,6 +111,10 @@ const config = {
         {
           from: '/guides/playing-live-stream/HLS-Playing/',
           to: '/guides/playing-live-stream/hls-playing/'
+        },
+        {
+          from: '/guides/playing-live-stream/vod-streaming-via-webrtc-hls/',
+          to: '/guides/publish-live-stream/playlist/'
         }
       ],
     },
