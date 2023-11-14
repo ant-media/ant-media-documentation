@@ -13,7 +13,7 @@ Ant Media Server can be easily deployed to a Kubernetes cluster via Helm with ju
 
 Helm supports installations on Ubuntu and other distros. Before installing Helm on any operating system, it is necessary to set up a Kubernetes cluster. If Helm is not installed on your computer, you can follow the steps below for Ubuntu 20.04 and also refer to the [Helm installation documentation](https://helm.sh/docs/intro/install/) for other distributions.
 
-**Video Tutorial**
+## Visual Walkthrough: Video Guide
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/FKX86Ng8Z7Y?si=c_UwLJfNxIHtgooL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
