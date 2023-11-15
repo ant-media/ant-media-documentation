@@ -29,7 +29,7 @@ We assume that your Ant Media Server accepts all streams (e.g there is no securi
 *   In the Stream key, you can write any stream id because we assume that all stream Ids are allowed.
 
 :::warning
-The RTMP URL should not contain any port number. The RTMP protocol will automatically listen on port 1935 that should be open on your server.
+The RTMP URL should not contain any port number. The RTMP protocol will automatically listen on port 1935 which should be open on your server.
 
  - **Wrong**: rtmp://am.streamomedia.com:5443/WebRTCAppEE/
  - **Correct**:   rtmp://am.streamomedia.com/WebRTCAppEE/
