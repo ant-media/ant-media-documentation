@@ -10,7 +10,7 @@ sidebar_position: 8
 In this document, you will see step-by-step instructions on how to run Ant Media Server Enterprise version on Azure Kubernetes Service (AKS).
 
 :::info
-You need to have the Azure CLI software installed on your computer.
+You need to have the [Azure CLI software](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli) and the [Kubernetes command line tool](https://kubernetes.io/docs/tasks/tools/)installed on your computer.
 :::
 
 ## Step 1: Create a Kubernetes Cluster

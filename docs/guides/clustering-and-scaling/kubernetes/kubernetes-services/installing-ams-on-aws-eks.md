@@ -7,6 +7,10 @@ sidebar_position: 6
 
 # Installing Ant Media Server on Amazon Elastic Kubernetes Service (EKS)
 
+:::info
+You need to have the [AWS CLI software](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)  and the [Kubernetes command line tool](https://kubernetes.io/docs/tasks/tools/) installed on your computer.
+:::
+
 ## Step 1: Navigate to EKS Service
 
 After logging into AWS, search for the **EKS** service and find the **Elastic Kubernetes Service,** then click the **Add Cluster > Create** button.

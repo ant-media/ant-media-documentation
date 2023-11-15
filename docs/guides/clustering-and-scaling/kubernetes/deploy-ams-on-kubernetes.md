@@ -7,87 +7,12 @@ sidebar_position: 2
 
 # Deploy Ant Media Server on Kubernetes 
 
-## Sample Deployment File
+This guide explains how to manually deploy an auto-scaling Kubernetes environment. 
 
-Ant Media Server has such a deployment file structure. This file has a few differences according to the deployment type. Here we will introduce the general file structure.
+:::info
+You will need to have the [Kubernetes command line tool](https://kubernetes.io/docs/tasks/tools/) and [Helm](https://helm.sh/docs/intro/install/) that package manager for Kubernetes installed on your computer.
+:::
 
-```yaml
-kind: Service
-apiVersion: v1
-metadata:
-  name: ant-media-server
-spec:
-  selector:
-    app: ant-media
-  ports:
-    - name: http
-      protocol: TCP
-      port: 5080 
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: ant-media-server
-spec:
-  selector:
-    matchLabels:
-      app: ant-media
-  replicas: 1
-  template:
-    metadata:
-      labels:
-        app: ant-media
-    spec:
-      affinity:
-        podAntiAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchExpressions:
-              - key: app
-                operator: In
-                values:
-                - ant-media
-            topologyKey: "kubernetes.io/hostname"
-      hostNetwork: true
-      dnsPolicy: ClusterFirstWithHostNet
-      containers:
-      - name: ant-media-server
-        imagePullPolicy: IfNotPresent # change this value accordingly. It can be Never, Always or IfNotPresent
-        image: ant-media-server-enterprise-k8s:test #change this value according to your image.
-# By default, mongodb deployment is used. If you're using mongodb somewhere else, specify it  with server url(-h) below. 
-# You may also need to add -u and -p parameters for
-# specifying mongodb username and passwords respectively         
-        args: ["-g", "true", "-s", "true", "-r", "true", "-m", "cluster", "-h", "mongo"]
-        resources:
-          requests:
-              cpu: 4000m
-```
-Here are the explanations for the common parameters and the changes parameters.
-
-### Common Parameters
-
-  
-**The following parameters are common parameters independent of deployment type.**  
-
-*   **imagePullPolicy:** `IfNotPresent` means that if the image is available in local environment it will not pull from the private or public registry.
-*   **image:** `ant-media-server-enterprise-k8s:test` specifies the name of the image. You should pay attention here as it should be the same name as the image you built in previous step.
-*   **args:** `["-g", "true", "-s", "true", "-r", "true", "-m", "cluster", "-h", "127.0.0.1"]` specifies the parameters for running the Ant Media Server pods. Below we'll explain what they are used for.
-    *   **`"-g", "true"`**: It means that Ant Media Server uses the public IP address of the host for internal cluster communication. Default value is false.
-    *   **`"-s", "true"`**: It makes Ant Media Server uses its public IP address as the server name.
-    *   **`"-r", "true"`**: It makes Ant Media Server replaces the local IP address in the ICE candidates with the server name. It's false by default.
-    *   **` "-m", "cluster"`**: It specifies the server mode. It can be cluster or standalone. Its default value is standalone. If you're running Ant Media Server in Kubernetes, it's most likely you're running the Ant Media Server in cluster mode. This means you need to specify your MongoDB host, username, and password as parameter.
-    *    **`"-h", "127.0.0.1"`**: It specifies the MongoDB host address. It's necessary to use if you're running in cluster mode. In this example, it's 127.0.0.1 because in the CI pipeline, local MongoDB is installed. You should change it with your own MongoDB address or replica set.
-    *    **`"-u", "username"`**: It specifies the username to connect to MongoDB. If you don't have credentials, you don't need to specify.
-    *    **`"-p", "password"`**: It specifies the password to connect to MongoDB. If you don't have credentials, you don't need to specify.
-    *    **`"-l", "license number"`**: It makes Ant Media Server uses the license key.
-
-### Deployment Specific Parameters
-
-**The following parameters are different according to the deployment type.**
-
-*   **hostNetwork:** true line above means that Ant Media Server uses the host network. It is required as there is a wide range of UDP and TCP ports are being used for WebRTC streaming. This also means that you can only use one pod of Ant Media Server in a host instance. Don't worry about where and how to deploy as K8s handles that. We're just letting you know this to determine total number of nodes in your cluster.
-*   **affinity: TODO**
-*   **labels:** for origin edge distinction TODO
 
 ## Origin & Edge configurations
 
@@ -166,6 +91,10 @@ v1beta1.metrics.k8s.io                 kube-system/metrics-server   True        
 ### Configure Autoscaling
 
 Make a small changes in the yaml files for edge and origin configurations in Ant Media Server:
+
+:::tip
+A [sample deployment file](#sample-deployment-file) is at the end of this guide with detailed explanation of the parametres
+:::
 
 ```shell
 kubectl edit deployment ant-media-server-origin 
@@ -250,11 +179,12 @@ kubectl autoscale deployment ant-media-server-origin --cpu-percent=60 --min=1 --
 kubectl autoscale deployment ant-media-server-edge --cpu-percent=60 --min=1 --max=10
 ```
 
-alternatively,  you can use the following YAML file:  
+alternatively,  you can use the following deployment files:  
   
 ```shell
 #origin
 kubectl create -f https://raw.githubusercontent.com/ant-media/Scripts/master/kubernetes/ams-k8s-hpa-origin.yaml
+
 #edge
 kubectl create -f https://raw.githubusercontent.com/ant-media/Scripts/master/kubernetes/ams-k8s-hpa-edge.yaml
 ```
@@ -574,3 +504,85 @@ ant-media-server-edge   `<none>`   edge.antmedia.cloud   xxx.xxx.xxx.xxx   80, 4
 Check whether the certificate has been created by running the `kubectl get cert` command and if you see it as `True`, your certificate will be uploaded to your cluster in a few minutes. 
 
 Now you can reach it as https://edge.domain.com and https://origin.domain.com
+
+## Sample Deployment File
+
+Ant Media Server has such a deployment file structure. This file has a few differences according to the deployment type. Here we will introduce the general file structure.
+
+```yaml
+kind: Service
+apiVersion: v1
+metadata:
+  name: ant-media-server
+spec:
+  selector:
+    app: ant-media
+  ports:
+    - name: http
+      protocol: TCP
+      port: 5080 
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ant-media-server
+spec:
+  selector:
+    matchLabels:
+      app: ant-media
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: ant-media
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - ant-media
+            topologyKey: "kubernetes.io/hostname"
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
+      containers:
+      - name: ant-media-server
+        imagePullPolicy: IfNotPresent # change this value accordingly. It can be Never, Always or IfNotPresent
+        image: ant-media-server-enterprise-k8s:test #change this value according to your image.
+# By default, mongodb deployment is used. If you're using mongodb somewhere else, specify it  with server url(-h) below. 
+# You may also need to add -u and -p parameters for
+# specifying mongodb username and passwords respectively         
+        args: ["-g", "true", "-s", "true", "-r", "true", "-m", "cluster", "-h", "mongo"]
+        resources:
+          requests:
+              cpu: 4000m
+```
+Here are the explanations for the common parameters and the changes parameters.
+
+### Common Parameters
+
+  
+**The following parameters are common parameters independent of deployment type.**  
+
+*   **imagePullPolicy:** `IfNotPresent` means that if the image is available in local environment it will not pull from the private or public registry.
+*   **image:** `ant-media-server-enterprise-k8s:test` specifies the name of the image. You should pay attention here as it should be the same name as the image you built in previous step.
+*   **args:** `["-g", "true", "-s", "true", "-r", "true", "-m", "cluster", "-h", "127.0.0.1"]` specifies the parameters for running the Ant Media Server pods. Below we'll explain what they are used for.
+    *   **`"-g", "true"`**: It means that Ant Media Server uses the public IP address of the host for internal cluster communication. Default value is false.
+    *   **`"-s", "true"`**: It makes Ant Media Server uses its public IP address as the server name.
+    *   **`"-r", "true"`**: It makes Ant Media Server replaces the local IP address in the ICE candidates with the server name. It's false by default.
+    *   **` "-m", "cluster"`**: It specifies the server mode. It can be cluster or standalone. Its default value is standalone. If you're running Ant Media Server in Kubernetes, it's most likely you're running the Ant Media Server in cluster mode. This means you need to specify your MongoDB host, username, and password as parameter.
+    *    **`"-h", "127.0.0.1"`**: It specifies the MongoDB host address. It's necessary to use if you're running in cluster mode. In this example, it's 127.0.0.1 because in the CI pipeline, local MongoDB is installed. You should change it with your own MongoDB address or replica set.
+    *    **`"-u", "username"`**: It specifies the username to connect to MongoDB. If you don't have credentials, you don't need to specify.
+    *    **`"-p", "password"`**: It specifies the password to connect to MongoDB. If you don't have credentials, you don't need to specify.
+    *    **`"-l", "license number"`**: It makes Ant Media Server uses the license key.
+
+### Deployment Specific Parameters
+
+**The following parameters are different according to the deployment type.**
+
+*   **hostNetwork:** true line above means that Ant Media Server uses the host network. It is required as there is a wide range of UDP and TCP ports are being used for WebRTC streaming. This also means that you can only use one pod of Ant Media Server in a host instance. Don't worry about where and how to deploy as K8s handles that. We're just letting you know this to determine total number of nodes in your cluster.
+*   **affinity: TODO**
+*   **labels:** for origin edge distinction TODO

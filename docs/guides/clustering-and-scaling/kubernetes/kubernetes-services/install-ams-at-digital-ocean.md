@@ -9,6 +9,10 @@ sidebar_position: 7
 
 In this article, I'm going to explain how to install Ant Media Server K8s on DigitalOcean with just one click.
 
+:::info
+You need to have the [Kubernetes command line tool](https://kubernetes.io/docs/tasks/tools/) installed on your computer.
+:::
+
 ## Step 1: Install Ant Media Server App
 
 Login to Digital Ocean, click on the Marketplace tab.
