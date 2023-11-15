@@ -28,6 +28,13 @@ We assume that your Ant Media Server accepts all streams (e.g there is no securi
 *   In the URL box, type your RTMP URL without stream id. It's like ```rtmp://IP-or-server-domain-name/LiveApp```
 *   In the Stream key, you can write any stream id because we assume that all stream Ids are allowed.
 
+:::warning
+The RTMP URL should not contain any port number. The RTMP protocol will automatically listen on port 1935 that should be open on your server.
+
+ - **Wrong**: rtmp://am.streamomedia.com:5443/WebRTCAppEE/
+ - **Correct**:   rtmp://am.streamomedia.com/WebRTCAppEE/
+:::
+
 ![](@site/static/img/obs-rtmp-image/OBS-Stream.png)
 
 **Note:** When you use tokens you need to generate a publish token and use it in this format inside the stream key : ```streamdid?token=tokenid```
