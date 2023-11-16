@@ -364,3 +364,146 @@ Subscriber Statistics
 You can also get the some statistics like connection events, average bitrate for each subscriber with the following REST method.
 
     curl -i -H "Accept: Application/json" -X GET "http://localhost:5080/WebRTCAppEE/rest/v2/broadcasts/stream1/subscriber-stats/list/0/5"
+
+Subscriber Block
+---------------------
+The subscriber block feature allows blocking a specific user from engaging in playback, publishing, or both at any given moment. This implies that even if the user is actively publishing or playing the stream, their ability to publish or play will cease until the block is removed or expires. Block is valid for all publish and play types. Subscriber block feature can be used in version 2.7.0 and later.
+
+**Block Play**
+
+To utilize subscriber block for play, first enable TOTP(Time-based One-Time Password) for play through web panel application settings.
+
+![](@site/static/img/subscriber_block_enable_play_totp.png)
+
+Instead of using the UI for activation, you can alternatively set the parameters 
+    
+    timeTokenSubscriberOnly=true
+    timeTokenSecretForPlay="O24FW6"
+    
+
+in the advanced section of the app settings.
+
+By default, the TOTP generated for playback remains valid for 60 seconds after its generation. Consequently, users intending to utilize this token must send a play request to AMS within this 60-second timeframe.
+You can change default TOTP time by adding
+    
+    timeTokenPeriod=60
+to app settings.
+When this setting is enabled, users without TOTP won't be able to watch the streams.
+
+Now, you can send a **GET** request to generate TOTP for the subscriber:
+
+```plaintext
+http://localhost:5080/WebRTCAppEE/rest/v2/broadcasts/{streamId}/subscribers/{subscriberId}/totp?type=play
+```
+Add `"type":"play"` as a query parameter to the GET request.
+![](@site/static/img/subscriber_block_play_totp_postman.png)
+Example curl:
+
+```bash
+curl --location 'http://localhost:5080/LiveApp/rest/v2/broadcasts/teststream/subscribers/lastpeony/totp?type=play'
+```
+Retrieve the token from the dataId field of the returned object.
+
+As an illustration, suppose you are associating your users with `userIds` in your application. When users initiate playback on your application, you can transmit their `userId` as the `subscriberId` and issue a TOTP generation request to AMS (Ant Media Server). Once you receive the token, pass it to the Ant Media Server SDK to commence the user's playback.
+
+Users must pass TOTP as `subscriberCode` to Ant Media Server from the SDK when sending a play request.
+
+Example:
+```plaintext
+http://localhost:5080/LiveApp/play.html?id=teststream&subscriberId=lastpeony&subscriberCode=956364
+```
+Upon a user successfully initiating a play request with TOTP, they become authenticated and gain access to watch the stream. It's important to note that they won't be able to play the stream if they refresh the page and their TOTP has expired. However, if the TOTP is still valid and they refresh, they will be reauthenticated and able to resume playing the stream.
+
+Now you can utilize the subscriber block feature to prevent this user from playing for the desired duration.
+To block a subscriber play, send a **PUT** request to:
+
+```plaintext
+http://localhost:5080/LiveApp/rest/v2/broadcasts/{streamId}/subscribers/block/{blockDurationInSeconds}/{blockType}
+```
+The blockType can be `play`, `publish`, or `publish_play`.
+
+For example, to block subscriber "lastpeony" from playing for 120 seconds, use this request:
+```plaintext
+http://localhost:5080/LiveApp/rest/v2/broadcasts/teststream/subscribers/lastpeony/block/120/play
+```
+
+![](@site/static/img/subscriber_block_block_play_postman.png)
+
+Example curl:
+
+```bash
+curl --location --request PUT 'http://localhost:5080/LiveApp/rest/v2/broadcasts/teststream/subscribers/lastpeony/block/120/play'
+```
+Note that the player's playback immediately stops upon a successful request.
+
+After 120 seconds, the user will regain access to play the stream. To manually remove the block, set the block duration to 0:
+```bash
+curl --location --request PUT 'http://localhost:5080/LiveApp/rest/v2/broadcasts/teststream/subscribers/lastpeony/block/0/play'
+```
+Please be aware that playback resumes immediately after this request returns successfully.
+
+**Block Publish**
+
+For the publish block, the steps are similar to play block. Initially, enable TOTP for publishing through the web panel and generate a secret for it.
+
+![](@site/static/img/subscriber_block_enable_publish_totp.png)
+
+For publishing, similar to the play scenario, you have the option to set up TOTP without using the UI. You can achieve this by adding the following parameters in the advanced section of the app settings: 
+
+```plaintext
+timeTokenSubscriberOnly=true
+timeTokenSecretForPublish="4ULgui"
+```
+
+Remember to save the application settings after making these changes.
+
+Next, to generate a TOTP for the subscriber, send a GET request:
+```plaintext
+http://localhost:5080/WebRTCAppEE/rest/v2/broadcasts/{streamId}/subscribers/{subscriberId}/totp?type=publish
+```
+Include "type":"publish" as a query parameter in the GET request.
+
+![](@site/static/img/subscriber_block_publish_totp_postman.png)
+
+Example curl:
+
+```bash
+curl --location 'http://localhost:5080/LiveApp/rest/v2/broadcasts/teststream/subscribers/lastpeony/totp?type=publish'
+```
+After obtaining the TOTP token, use it as secretCode in your publish requests to Ant Media Server SDKs or in RTMP publish requests.
+
+For instance, when using the JavaScript SDK, the publish command should be called as shown below:
+```
+webRTCAdaptor.publish(streamId, tokenId, subscriberId, subscriberCode);
+```
+Example:
+```
+webRTCAdaptor.publish("teststream", null, "lastpeony", "451222");
+// (The 2nd parameter, which is null here, represents the token(for example a JWT), not subscriber code)
+```
+Likewise, for RTMP publishing, ensure the inclusion of the parameters streamId, subscriberId, and subscriberCode. Your OBS configuration should resemble this setup:
+![](@site/static/img/subscriber_block_obs_publish.png)
+
+Example ffmpeg command to publish with RTMP:
+
+```bash
+ffmpeg -re -i input_source -c:v libx264 -c:a aac -f flv "rtmp://172.17.52.70/LiveApp/teststream?subscriberId=lastpeony&subscriberCode=451222"
+```
+As you're now utilizing TOTP for publishing, you can block this subscriber from publishing using a block request. To prevent the user from publishing for 120 seconds, send a subscriber block PUT request to:
+```
+http://localhost:5080/LiveApp/rest/v2/broadcasts/teststream/subscribers/lastpeony/block/120/publish
+```
+![](@site/static/img/subscriber_block_block_publish_postman.png)
+
+Example curl:
+
+```bash
+curl --location --request PUT 'http://localhost:5080/LiveApp/rest/v2/broadcasts/teststream/subscribers/lastpeony/block/120/publish'
+```
+Upon a successful return of this request, the subscriber's publishing will immediately stop, and they will be blocked for 120 seconds.
+
+To remove the block, set the block duration to 0 seconds:
+```bash
+curl --location --request PUT 'http://localhost:5080/LiveApp/rest/v2/broadcasts/teststream/subscribers/lastpeony/block/0/publish'
+```
+Remember, if you previously blocked subscribers from publishing and then unblocked them, they might encounter an "unauthorized_access" error if their TOTP has expired. In such cases, generating a new TOTP becomes necessary for them to publish again.
