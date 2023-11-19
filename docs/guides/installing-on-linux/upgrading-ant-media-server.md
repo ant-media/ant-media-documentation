@@ -50,4 +50,3 @@ sudo cp -p -R /usr/local/antmedia-backup_folder/ /usr/local/antmedia
 sudo chown -R antmedia:antmedia /usr/local/antmedia/
 sudo systemctl start antmedia
 ```
-<FeedBack />
