@@ -3,6 +3,7 @@ import React from 'react';
 import MDXComponents from '@theme-original/MDXComponents';
 import VideoPlayer from '@site/src/components/VideoPlayer';
 import InfoBox from '@site/src/components/InfoBox';
+import FeedBack from '@site/src/components/FeedBack';
 
 export default {
   // Re-use the default mapping
@@ -10,5 +11,6 @@ export default {
   // Map the "highlight" tag to our <Highlight /> component!
   // `Highlight` will receive all props that were passed to `highlight` in MDX
   VideoPlayer: VideoPlayer,
-  InfoBox: InfoBox
+  InfoBox: InfoBox, 
+  FeedBack: FeedBack,
 };

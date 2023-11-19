@@ -118,14 +118,14 @@ const config = {
         }
       ],
     },
-  ], 
+  ], /*
   [
     'docusaurus-pushfeedback',{
         project: '7i7jw6ovwx',
         "button-position": 'bottom-right',
         "button-style": "dark"
     }
-  ]
+  ]*/
   ],
 
   themeConfig:
