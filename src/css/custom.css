@@ -16,6 +16,7 @@
   --ifm-code-font-size: 90%;
   --ifm-code-border-radius: 2px;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --docusaurus-announcement-bar-height: auto;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -80,6 +81,15 @@ code{
 
 
 .announcementBar_node_modules-\@docusaurus-theme-classic-lib-theme-AnnouncementBar-styles-module{
-  min-height: 40px !important;
-  padding: 5px !important;
+  height: auto !important;
+  padding: 0px !important;
+}
+
+.announcementBarContent_node_modules-\@docusaurus-theme-classic-lib-theme-AnnouncementBar-styles-module {
+  padding: 0 !important;
+}
+
+
+@media screen and (min-width: 0px) and (max-width: 1220px) {
+  #black-friday-banner { display: none; }   /* hide it elsewhere */
 }
