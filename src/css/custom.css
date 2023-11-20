@@ -91,3 +91,7 @@ code{
 @media screen and (min-width: 0px) and (max-width: 1220px) {
   #black-friday-banner { display: none; }   /* hide it elsewhere */
 }
+
+#black-friday-banner{
+  margin-top: -5px;
+}
