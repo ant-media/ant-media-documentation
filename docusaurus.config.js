@@ -252,7 +252,7 @@ const config = {
         darkTheme: darkCodeTheme,
       },
       announcementBar: {
-        id: 'AWS Streaming Service Wizard',
+        id: 'announcement-bar',
         content:
           `
           <iframe id="black-friday-banner" src="/html/bf.html" width="100%" height="90px"></iframe>
