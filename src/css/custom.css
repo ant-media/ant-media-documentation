@@ -5,6 +5,12 @@
  */
 
 /* You can override the default Infima variables here. */
+@media (min-width: 997px) {
+  :root {
+    --docusaurus-announcement-bar-height: auto !important;
+  }
+}
+
 :root {
   --ifm-color-primary: #a10310;
   --ifm-color-primary-dark: #85030d;
@@ -16,7 +22,10 @@
   --ifm-code-font-size: 90%;
   --ifm-code-border-radius: 2px;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --docusaurus-announcement-bar-height: auto !important;
 }
+
+
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
@@ -79,7 +88,10 @@ code{
 }
 
 
-.announcementBar_node_modules-\@docusaurus-theme-classic-lib-theme-AnnouncementBar-styles-module{
-  min-height: 40px !important;
-  padding: 5px !important;
+@media screen and (min-width: 0px) and (max-width: 1220px) {
+  #black-friday-banner { display: none; }   /* hide it elsewhere */
+}
+
+#black-friday-banner{
+  margin-top: -5px;
 }
