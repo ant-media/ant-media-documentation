@@ -24,9 +24,7 @@ Edit ```process_config``` parameter in ```/etc/datadog-agent/datadog.yaml```
 
     process_config:
         enabled: 'true'
-    
 
-Check this link for more details: https://docs.datadoghq.com/infrastructure/process/?tab=linuxwindows
 
 **Enable network performance monitoring:**  
 Create ```system-probe.yaml``` file with example settings.
@@ -38,9 +36,6 @@ Add network config parameter in ```/etc/datadog-agent/system-probe.yaml```
 
     network_config: 
         enabled: true
-    
-
-Check this link for more details: https://docs.datadoghq.com/network\_monitoring/performance/setup/?tab=agentlinux
 
 ![Screenshot from 2022-02-26 01-17-44](https://user-images.githubusercontent.com/9084130/155810678-ffffc331-c44a-4892-a6f5-4c1f6bf0e48b.png)
 
