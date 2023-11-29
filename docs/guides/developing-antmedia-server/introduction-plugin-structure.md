@@ -1,5 +1,5 @@
 ---
-title: Introduction to plug-in structure 
+title: Plugin Structure 
 description: Ant Media plug-in architecture allows developers to customize and extend AMS to extend video feed while keeping the core server source codes untouched.
 keywords: [Ant Media Server plug-in structure, Ant Media plug-in architecture, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 10
