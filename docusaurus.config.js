@@ -140,11 +140,11 @@ const config = {
     ({
       metadata: [{name: 'keywords', content: 'Ant Media Documentation, Ant Media Server, Ant Media, Ultra Low Latency Streaming, WebRTC streaming, HLS Streaming'}],
       navbar: {
-        title: 'Documentation',
+        title: '',
         logo: {
           href: '/',
           alt: 'Ant Media Server Documentation',
-          src: 'img/Ant-Media-Logo-dark.png',
+          src: 'img/Ant-Media-Logo-light.png',
           srcDark: 'img/Ant-Media-Logo-light.png',
         },
         items: [
@@ -152,17 +152,17 @@ const config = {
             type: 'doc',
             docId: 'introduction',
             label: 'Guides',
-            position: 'left'
+            position: 'right'
           },
           {
             label: 'SDK references',
             href: '/sdk-reference/',
-            position: 'left'
+            position: 'right'
           },
           {
             label: 'Blog',
             href: 'https://antmedia.io/blog/',
-            position: 'left'
+            position: 'right'
           },
           {
             label: 'Ant Media',
