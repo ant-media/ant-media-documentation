@@ -8,6 +8,7 @@
 @media (min-width: 997px) {
   :root {
     --docusaurus-announcement-bar-height: auto !important;
+    --doc-sidebar-width: 310px !important;
   }
 }
 
@@ -31,6 +32,7 @@
   --navbar-font-color: #bcbfc9;
   --menu-link: #1b1b1d;
   --menu-link-hover: #070707;
+  --doc-sidebar-width: 330px;
 }
 
 
@@ -113,16 +115,16 @@ code{
 
 .main-wrapper {
   font-weight: 300;
-  max-width: 1400px;
-  width: 100%;
   margin: 0 auto;
+  max-width: 1650px;
+  width:100%;
 }
 
 .navbar__inner{
-  width: 100%;
-  max-width: 1365px;
-  margin: 0 auto;
   color: var( --navbar-font-color);
+  max-width: 1610px;
+  width:100%;
+  margin: 0 auto;
 }
 
 .navbar{
@@ -172,4 +174,5 @@ html, article{
 .navbar__toggle{
   color: white;
 }
+
 
