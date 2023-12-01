@@ -100,19 +100,6 @@ code{
   box-shadow: 0 0 0 0 !important;
 }
 
-
-@media screen and (min-width: 0px) and (max-width: 1220px) {
-  #black-friday-banner { display: none; }   /* hide it elsewhere */
-  .navbar-sidebar__brand{
-    background: var(--navbar-background-color);
-    color: var( --navbar-font-color);
-  }
-}
-
-#black-friday-banner{
-  margin-top: -5px;
-}
-
 .main-wrapper {
   font-weight: 300;
   margin: 0 auto;
@@ -174,5 +161,3 @@ html, article{
 .navbar__toggle{
   color: white;
 }
-
-
