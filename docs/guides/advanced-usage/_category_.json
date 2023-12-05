@@ -1,6 +1,6 @@
 {
   "label": "Advanced Usage",
-  "position": 10,
+  "position": 7,
   "link": {
     "type": "generated-index",
     "description": "Boost the capablities of Ant Media Server with these tweaks as you required. Either you need to configure encryption or leverage nvidia graphics."

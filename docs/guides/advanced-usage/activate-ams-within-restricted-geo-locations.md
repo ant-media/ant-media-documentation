@@ -1,5 +1,5 @@
 ---
-title: Activate Ant Media Server from within restricted geo locations
+title: Activating License in Restricted Areas
 description: Activate Ant Media Server from within restricted geo locations
 keywords: [Activate AMS within self-hosted proxy server, restricted geo locations, proxy server, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 12
