@@ -328,7 +328,16 @@ ant-media-server   `<none>`   test.antmedia.io   146.59.2.42   80, 443   94m
 
 ### Let's Encrypt Configuration
 
-For this, install Helm and Cert-Manager by following the steps below.
+You have two alternatives: You can use the bash script or you can follow the following steps.
+
+## Alternative 1: Use the bash script
+
+```
+wget https://raw.githubusercontent.com/ant-media/helm/add_helm_repo/ams-k8s-ssl.sh
+bash ams-k8s-ssl.sh
+```
+
+## Alternative 2: Go step by step.
 
 #### Step 1
 
