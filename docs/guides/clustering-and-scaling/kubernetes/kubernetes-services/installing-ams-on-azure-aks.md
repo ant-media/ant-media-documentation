@@ -78,7 +78,7 @@ You have two alternatives: you can opt for either Azure Application Gateway or N
 By default, Ant Media Server deploys a self-signed certificate. If You should prefer to utilize a signed certificate, kindly refer to [this link](https://antmedia.io/docs/guides/clustering-and-scaling/kubernetes/deploy-ams-on-kubernetes/#install-an-ssl-certificate) for detailed instructions.
 
 
-1. Nginx Ingress Controller: For the Nginx Ingress Controller, you will only need to run the following command, You will then be able to access your cluster.
+1. Nginx Ingress Controller: For the Nginx Ingress Controller, you will only need to run the following command.
 
 ```
 kubectl annotate service antmedia-ingress-nginx-controller service.beta.kubernetes.io/azure-load-balancer-health-probe-request-path=/healthz -n antmedia
