@@ -495,7 +495,7 @@ Now you can utilize the subscriber block feature to prevent this user from playi
 To block a subscriber play, send a **PUT** request to:
 
 ```plaintext
-http://localhost:5080/LiveApp/rest/v2/broadcasts/{streamId}/subscribers/block/{blockDurationInSeconds}/{blockType}
+http://localhost:5080/LiveApp/rest/v2/broadcasts/{streamId}/subscribers/{subscriberId}/block/{blockDurationInSeconds}/{blockType}
 ```
 The blockType can be `play`, `publish`, or `publish_play`.
 
