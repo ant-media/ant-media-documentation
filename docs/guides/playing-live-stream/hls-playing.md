@@ -13,18 +13,14 @@ HLS Playing is available in both the Community and Enterprise Editions. Before p
 
 ## 1. Navigate to the video player  
 
-Under the application, you can use play.html. Please go to ```https://AMS-domain-name:5443/WebRTCAppEE/play.html```. If you have Ant Media Server installed on your computer, you may also go to ```http://localhost:5080/WebRTCAppEE/play.html```.
+You can use the embedded player `play.html` to play the streams with HLS.
+Please go to ```https://AMS-domain-name:5443/WebRTCAppEE/play.html```.
+If you have Ant Media Server installed on your computer, you may also go to ```http://localhost:5080/WebRTCAppEE/play.html```.
 
-To play an HLS stream, provide ```streamId``` as the name and ```hls``` as the playOrder parameters in the URL shown below. 
+To play a HLS stream, provide ```streamId``` as the id and ```hls``` as the playOrder parameters in the URL shown below.
     
-```https://AMS-domain-name:5443/WebRTCAppEE/play.html?name=test&playOrder=hls```
-    
-![](@site/static/img/playing-live-streams/hls-playing/hls-player.png)
-    
-
-## 2. Playback starts automatically
-
-The HLS stream will start to play automatically when it becomes live.
+```https://AMS-domain-name:5443/WebRTCAppEE/play.html?id=test&playOrder=hls```
+The HLS playback will start automatically when the stream is live.
     
 ![](@site/static/img/playing-live-streams/hls-playing/hls-started.png)
 
@@ -53,6 +49,25 @@ Assume HLS muxing is enabled and a stream is published to Ant Media Server.
 In prior versions, the HLS filename was ```streamId_480p.m3u8```, but now it is ```stream1_480p1000kbps.m3u8```, as we enabled the same resolution with multiple bitrates.
 
 If you would like to use the old structure, check the [following post](https://github.com/orgs/ant-media/discussions/4984).
+
+## Interactive Streaming with ID3 Tags in HLS
+Using `ID3` tags in HLS you can insert any kind of timed metadata, such as overlaying some text or images in specific moments to show comments, emojis, ads, markers, etc. where `ID3` is a data stream.
+The feature to use `ID3` tags was introduced in Ant Media Server version 2.7.0
+
+### Enabling ID3 Tags
+In order to use the `ID3` tags feature, it is first needed to enable the feature.
+It can be enabled from the `Advanced` settings by making `"id3TagEnabled": true` located under the application settings on the Ant Media Server Web Panel.
+
+![](@site/static/img/playing-live-streams/hls-playing/enabling-id3.png)
+
+### Adding ID3 Text
+To insert an ID3 tag into any stream, just call the [REST method](https://antmedia.io/rest/#/BroadcastRestService/addID3Data) with your metadata and use that metadata in your player.
+Below is a sample cURL command
+```
+curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "https://{AMS-URL}:5443/{APP_NAME}/rest/v2/broadcasts/{STREAM_ID}/id3" -d '{TEXT}' 
+```
+Checkout this [video tutorial](https://www.youtube.com/watch?v=Fq-a_tEXY4E&t=763s) where we discussed and demonstrated about ID3 tags.
+
 
 ## Save HLS Records
 
