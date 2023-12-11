@@ -5,7 +5,9 @@ keywords: [Setting up SSL for Ant Media Server, Lets Encrypt, Let's Encrypt Cert
 sidebar_position: 2
 ---
 
-# Setting up SSL for Ant Media Server
+# How to Enable SSL
+
+## Setting up SSL for Ant Media Server
 
 Setting up SSL is a mandatory task when requesting access to the microphone and camera. Also, you need to enable HTTPS and WSS (WebSocket Secure) for Chrome to run WebRTC and WebSocket applications. In addition, developers want to serve their content with a secure connection as well.
 There are several options to get the SSL certificate. Please choose the one appropriate for you.
