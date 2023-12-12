@@ -74,6 +74,8 @@ curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json
 ```
 Checkout this [video tutorial](https://www.youtube.com/watch?v=Fq-a_tEXY4E&t=763s) where we discussed and demonstrated about ID3 tags.
 
+**Note:** Currently ID3 Tags does not work with Ant Media Server default player (play.html) so you can use this **[Codepen sample]**(https://codepen.io/Burak-Kekec/pen/PoXYMyG) for the testing.
+
 
 ## Save HLS Records
 
