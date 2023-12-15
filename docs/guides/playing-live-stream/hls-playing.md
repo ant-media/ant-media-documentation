@@ -35,6 +35,21 @@ Autoplay is enabled by default in a player but it may not be activated for some 
 
 Congrats. You're playing with HLS.
 
+## Sub Folder Playing
+If you've set up your broadcast object to store stream files within a specific sub folder, using the configuration:
+```
+subFolder:"exampleSubFolder"
+```
+Your stream files will be automatically saved to:
+```
+antmedia/webapps/{appName}/streams/exampleSubFolder/
+```
+In such cases, when configuring embedded player to stream these files, ensure to pass **exampleSubFolder/{streamId}** as the ID parameter. For instance, if your stream ID is teststream, the embedded player URL should look like this:
+```
+https://AMS-domain-name:5443/WebRTCAppEE/play.html?id=exampleSubFolder/teststream&playOrder=hls
+```
+This will enable seamless playback of your streams using the embedded player.
+
 ## More Details About HLS
 
 Make sure HLS muxing is enabled in your application. You may confirm this by clicking the ```Create HLS Streaming``` checkbox in the app's settings on the web management panel.
