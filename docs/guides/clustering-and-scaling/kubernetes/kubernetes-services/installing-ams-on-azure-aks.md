@@ -73,7 +73,19 @@ helm install antmedia antmedia/antmedia --set origin=origin.antmedia.cloud --set
 
 ## Step 6: Configure Ingress Controller
 
-In Azure AKS, we need to use an Application Gateway for which you can select **Networking > Enable ingress controller** from your cluster, and then create the Application Gateway.
+You have two alternatives: you can opt for either Azure Application Gateway or Nginx Ingress Controller.
+
+By default, Ant Media Server deploys a self-signed certificate. If You should prefer to utilize a signed certificate, kindly refer to [this link](https://antmedia.io/docs/guides/clustering-and-scaling/kubernetes/deploy-ams-on-kubernetes/#install-an-ssl-certificate) for detailed instructions.
+
+
+1. Nginx Ingress Controller: For the Nginx Ingress Controller, you will only need to run the following command.
+
+```
+kubectl annotate service antmedia-ingress-nginx-controller service.beta.kubernetes.io/azure-load-balancer-health-probe-request-path=/healthz -n antmedia
+```
+
+
+2. Azure Application Gateway: Need to use an Application Gateway for which you can select **Networking > Enable ingress controller** from your cluster, and then create the Application Gateway.
 
 ![](@site/static/img/azure-aks/azure-aks-7.png)
 
@@ -82,6 +94,9 @@ Then run the following command to enable Application Gateway Ingress.
 ```shell
 kubectl annotate ingress -n antmedia kubernetes.io/ingress.class=azure/application-gateway --overwrite --all
 ```
+
+
+## Step 7
 
 If the installation and configuration was successful, the public IP address/domain name will be output when running the command `kubectl get ingress -n antmedia`. After making the DNS registration, you will be able to access Ant Media Server using the hostname thats been configured.
 
