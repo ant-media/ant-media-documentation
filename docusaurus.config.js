@@ -254,7 +254,8 @@ const config = {
       announcementBar: {
         id: 'announcement-bar',
         content:
-          `<div style="font-size:16px;">
+          `<iframe id="black-friday-banner" src="https://antmedia.io/docs/html/bf.html" width="100%" height="90px"></iframe>
+          <div style="font-size:16px;">
           <a target="_blank" href="https://antmedia.io/create-your-own-streaming-service-on-aws-in-5-minutes/">
             <strong>How to Get Your Own Auto Scalable Streaming Service on AWS in 5 minutes?</strong>
           </a>
