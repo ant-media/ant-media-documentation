@@ -8,7 +8,7 @@ sidebar_position: 4
 
 In this step, we will start coding. We will create our layout for the UI part, create an Activity and set the manifest file. Then we will be able to run our application.
 
- - **Lets first handle UI part.**
+ - **Create the UI part.**
 
 We will create an xml file in `res/layout` folder. For this application, a simple UI with only a `SurfaceViewRenderer` is enough. `SurfaceViewRenderer` is a `View` that is provided by the WebRTC Android SDK. We will use it to render our camera locally in our app.
 
@@ -27,7 +27,7 @@ You can create the UI by Android Studio UI Designer or you can just copy the fol
 </RelativeLayout>
 ```
 
-- **Lets create our Activity Now.**
+ - **Create the sample Activity Now.**
  
 We will create a Java class that extends `Activity` class. Let's name it `WebRTCStreamingActivity`. In `onCreate` method, we will build an `IWebRTCClient`  
 object by configuring it and calling its `publish` method. That is all. Here is the necessary code for our activity.
@@ -56,7 +56,7 @@ public class WebRTCStreamingActivity extends Activity {
 }
 ```
 
-- **Lets edit manifest file lastly.**
+ - **Edit Android manifest file.**
  
 We will edit two things in the `AndroidManifest.xml` file.
 
@@ -105,18 +105,18 @@ We will edit two things in the `AndroidManifest.xml` file.
 </manifest>
 ```
 
-Congratulations, our WebRTC Android Publish Application is ready now. The project structure should be as shown in the following image, where the files we created and edited are pointed with arrows.
+Congratulations! Our WebRTC Android Publish Application is ready now. The project structure should be as shown in the following image, where the files we created and edited are pointed with arrows.
 
 ![](@site/static/img/sdk-integration/android-sdk/webrtc-android-streaming-application-structure.png)
 
-We can run it on Android Emulator or a real Android device after connecting to the computer. Click Run button on Android Studio and wait for installation.
+We can run it on an Android emulator or a real Android device after connecting to the computer. Click the Run button on Android Studio and wait for installation.
 
-In the firts run, our application asks you to grants accesses. Accept them and it will start streaming. On Android emulator it will be like this:
+In the first run, our application asks you to grant access. Accept them, and it will start streaming. On the Android emulator, it will be like this:
 
 ![](@site/static/img/sdk-integration/android-sdk/webrtc-android-publish-application.png)
 
 Congratulations! You are now publishing your live stream.
 
-To play the stream we created from our WebRTC Android Publish Application, visit [Ant Media’s Test WebRTC Player](https://antmedia.io/webrtc-samples/webrtc-player), write the `stream1` to the box and Click Start Playing button.
+To play the stream we created from our WebRTC Android Publish Application, visit [Ant Media’s Test WebRTC Player](https://antmedia.io/webrtc-samples/webrtc-player), write the `stream1` to the box, and click the Start Playing button.
 
 ![](@site/static/img/sdk-integration/android-sdk/webrtc-android-publish-application-test-1.png)
