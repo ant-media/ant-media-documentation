@@ -14,29 +14,47 @@ We will create an xml file in `res/layout` folder. For this application, a simpl
 
 You can create the UI by Android Studio UI Designer or you can just copy the following lines into your xml file, say `webrtc_streaming.xml`.
 
-    <?xml version="1.0" encoding="utf-8"?> <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent">
-     <org.webrtc.SurfaceViewRenderer  android:id="@+id/full_screen_renderer"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent" />   </RelativeLayout> 
+```
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <org.webrtc.SurfaceViewRenderer
+        android:id="@+id/full_screen_renderer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</RelativeLayout>
+```
 
 - **Lets create our Activity Now.**
  
 We will create a Java class that extends `Activity` class. Let's name it `WebRTCStreamingActivity`. In `onCreate` method, we will build an `IWebRTCClient`  
 object by configuring it and calling its `publish` method. That is all. Here is the necessary code for our activity.
 
-    package io.antmedia.mywebrtcstreamingapp;   import android.app.Activity; import android.os.Bundle; import io.antmedia.webrtcandroidframework.api.IWebRTCClient;   public class WebRTCStreamingActivity extends Activity {
-        @Override
-      protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-      setContentView(R.layout.webrtc_streaming);    IWebRTCClient webRTCClient = IWebRTCClient.builder()
-                    .setActivity(this)
-                    .setLocalVideoRenderer(findViewById(R.id.full_screen_renderer))
-                    .setServerUrl("wss://test.antmedia.io:5443/WebRTCAppEE/websocket")
-                    .build();    webRTCClient.publish("stream1");
-      }
+```
+package io.antmedia.mywebrtcstreamingapp;
+
+import android.app.Activity;
+import android.os.Bundle;
+import io.antmedia.webrtcandroidframework.api.IWebRTCClient;
+
+public class WebRTCStreamingActivity extends Activity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.webrtc_streaming);
+
+        IWebRTCClient webRTCClient = IWebRTCClient.builder()
+                .setActivity(this)
+                .setLocalVideoRenderer(findViewById(R.id.full_screen_renderer))
+                .setServerUrl("wss://test.antmedia.io:5443/WebRTCAppEE/websocket")
+                .build();
+
+        webRTCClient.publish("stream1");
     }
+}
+```
 
 - **Lets edit manifest file lastly.**
  
