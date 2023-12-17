@@ -11,7 +11,7 @@ At this point, we should add the dependency on the WebRTC Android SDK module to 
     maven {
       url "https://oss.sonatype.org/content/repositories/snapshots/" }
 
-After adding the repository we will add the following lines into dependencies session in app `build.gradle` file.
+After adding the repository, we will add the following lines to the dependencies session in the app `build.gradle` file.
 
     implementation "io.antmedia:webrtc-android-framework:2.8.0-SNAPSHOT"
 
