@@ -2,7 +2,7 @@
 title: Play WebRTC stream in Android
 description: Playing WebRTC Live stream Using Android SDK 
 keywords: [Android SDK User Guide, Android SDK Publish, Publish Stream from your Android device, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 4
+sidebar_position: 5
 ---
 
 ## Step 4: Play WebRTC Live Stream in Android
