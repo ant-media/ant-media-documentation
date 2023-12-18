@@ -94,7 +94,22 @@ Then run the following command to enable Application Gateway Ingress.
 ```shell
 kubectl annotate ingress -n antmedia kubernetes.io/ingress.class=azure/application-gateway --overwrite --all
 ```
+If you are using Application Gateway as Ingress, you should make changes to the deployment files as follows.
+```
+kubectl edit deployment ant-media-server-origin -n antmedia
+```
+Add the following lines under `image:`
 
+```
+        lifecycle:
+          postStart:
+            exec:
+              command:
+              - /bin/sh
+              - -c
+              - sed -i '/org.apache.catalina.valves.RemoteIpValve/d' /usr/local/antmedia/conf/jee-container.xml
+```
+These changes must be made on both Origin and Edge deployment side.
 
 ## Step 7
 
