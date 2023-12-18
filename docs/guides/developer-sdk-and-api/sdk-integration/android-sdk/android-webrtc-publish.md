@@ -10,7 +10,9 @@ In this step, we will start coding. We will create our layout for the UI part, c
 
  - **Create the UI part.**
 
-We will create an xml file in `res/layout` folder. For this application, a simple UI with only a `SurfaceViewRenderer` is enough. `SurfaceViewRenderer` is a `View` that is provided by the WebRTC Android SDK. We will use it to render our camera locally in our app.
+First we need to create a `layout` folder under `res` directory and then we will create a xml file. For this application, a simple UI with only a `SurfaceViewRenderer` is enough. `SurfaceViewRenderer` is a `View` that is provided by the WebRTC Android SDK. We will use it to render our camera locally in our app.
+
+![](@site/static/img/sdk-integration/android-sdk/layout.png)
 
 You can create the UI by Android Studio UI Designer or you can just copy the following lines into your xml file, say `webrtc_streaming.xml`.
 
@@ -90,7 +92,7 @@ We will edit two things in the `AndroidManifest.xml` file.
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Demo" >
+        android:theme="@style/Theme.MyWebRTCStreamingApp" >
 
         <activity android:name=".WebRTCStreamingActivity"
             android:exported="true"
