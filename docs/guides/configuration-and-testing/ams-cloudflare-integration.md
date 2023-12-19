@@ -2,7 +2,7 @@
 title: AMS Cloudflare Integration
 description: Ant Media Server Cloudflare Integration
 keywords: [Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 4
+sidebar_position: 7
 ---
 
 You can seamlessly broadcast and play WebRTC, HLS, and DASH using Ant Media Server in conjunction with CloudFlare. Let's walk through the step-by-step process of achieving this:
