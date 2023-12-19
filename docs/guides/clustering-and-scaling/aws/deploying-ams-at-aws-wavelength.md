@@ -19,8 +19,8 @@ Second, there is no Elastic Load Balancer in Wavelength Zones for the Auto-scala
 
 You can use Ant Media Server v2.4.1 and later for AWS Wavelength Deployments.
 
-*   [Install SSL](/docs/guides/installing-on-linux/setting-up-ssl)
-*   [Configure STUN Server](/docs/guides/configuration-and-testing/configuring-stun-addresses/)
-*   [Standalone Server Deployment with Cloudformation](/docs/guides/clustering-and-scaling/aws/aws-wavelength-standalone-deployment/)
-*   [Auto-Scalable Cluster Deployment with Cloudformation](/docs/guides/clustering-and-scaling/aws/aws-wavelength-cluster-deployment/)
+*   [Install SSL](/guides/installing-on-linux/setting-up-ssl)
+*   [Configure STUN Server](/guides/configuration-and-testing/configuring-stun-addresses/)
+*   [Standalone Server Deployment with Cloudformation](/guides/clustering-and-scaling/aws/aws-wavelength-standalone-deployment/)
+*   [Auto-Scalable Cluster Deployment with Cloudformation](/guides/clustering-and-scaling/aws/aws-wavelength-cluster-deployment/)
 
