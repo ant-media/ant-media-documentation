@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+</head>
+<body>
+
+    <style>
+        header.header {
+            position: relative;
+        }
+
+        .flex_c_spb {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .flex_c_spb img {
+            max-width: 290px;
+        }
+
+        .bf_line div#cd {
+            margin: 0;
+        }
+
+        .bf_line div#cd .num div {
+            font-size: 24px;
+            min-width: unset;
+            width: 54px;
+            color: white;
+            background: #ffffff6e;
+            text-align: center;
+            margin: 0 3px;
+            font-weight: 500;
+            border-radius: 3px;
+        }
+
+        .bf_line div#cd .num p {
+            font-size: 11px  !important;
+            letter-spacing: 1px !important;
+            text-align: center !important;
+            color: #fff !important;
+            margin: 4px 0 0 !important;
+            font-weight: 500 !important;
+        }
+
+        .bf_line {
+            background: url(https://mirror.antmedia.io/wp-content/uploads/2023/12/cr24_bg.jpg);
+            background-size: cover;
+            color: #fff;
+            padding: 14px 0 14px;
+        }
+
+        .flex_c_spb.mob_part {
+            width: calc(100% - 200px);
+        }
+
+        .flex_c_spb.mob_part:before {
+            content: '';
+            background: url(https://mirror.antmedia.io/wp-content/uploads/2023/12/cr24_star.png);
+            width: 71px;
+            height: 67px;
+            background-size: cover;
+            margin-right: 10px;
+            position: absolute;
+            left: -60px;
+        }
+
+        .bf_line a.button {
+            background: #fff !important;
+            color: #DF0517 !important;
+            z-index: 1;
+        }
+
+        .col-md-12 > .flex_c_spb:after {
+            content: '';
+            background: url(https://mirror.antmedia.io/wp-content/uploads/2023/12/cr24_stick.png);
+            width: 71px;
+            height: 67px;
+            background-size: cover;
+            margin-right: 10px;
+            position: absolute;
+            right: -40px;
+            z-index: 0;
+            top: -17px;
+        }
+
+        .bf_desc p {
+            color: white !important;
+            font-size: 14px !important;
+            line-height: 18px !important;
+            font-weight: 600 !important;
+            letter-spacing: .5px !important;
+            text-transform: uppercase !important;
+            margin: 0 !important;
+        }
+
+        .bf_desc {
+            display: flex;
+            align-items: center;
+            max-width: 275px;
+        }
+
+        .bf_desc strong {
+            font-size: 28px;
+            line-height: 36px;
+            font-weight: 600;
+            margin: 0 12px 0 0;
+            padding: 3px 13px;
+            background: #fff;
+            border-radius: 25px;
+            color: #DF0517;
+        }
+
+        .sep {
+            width: 2px;
+            background: #fff;
+            height: 48px;
+            margin: 0 40px;
+        }
+
+        .bf_pop_up {
+            position: fixed;
+            background: #00000082;
+            width: 100vw !important;
+            height: 100vh !important;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .bf_pop_up_wrap {
+            background: #fff;
+            max-width: 300px;
+            padding: 24px;
+            border-radius: 3px;
+            text-align: center;
+            position: relative;
+        }
+
+        .bf_pop_up_wrap img {
+            max-width: 150px;
+            display: block;
+            margin: auto;
+        }
+
+        .bf_pop_up_wrap h2 {
+            font-size: 18px;
+            font-weight: bold;
+            line-height: 26px;
+            margin: 24px 0 4px;
+        }
+
+        .bf_pop_up_wrap p {
+            font-size: 13px;
+            line-height: 18px;
+            margin: 4px 0 24px;
+        }
+
+        .bf_pop_up_wrap a {
+            display: block;
+        }
+
+        .bf_pop_up_wrap button {
+            background: transparent !important;
+            padding: 0 !important;
+            margin: 0;
+            position: absolute;
+            right: 10px;
+            top: 10px;
+        }
+
+        .bf_pop_up_wrap button img {
+            width: 20px;
+            height: 20px;
+        }
+
+        div#cd {
+            display: flex;
+            max-width: 448px;
+            justify-content: space-between;
+            margin: 45px auto;
+            color: #fff;
+        }
+
+        @media screen and (max-width: 1200px) and (min-width: 767px) {
+            .bf_line .col-md-12 {
+                padding: 0;
+            }
+        }
+
+        @media screen and (max-width: 1200px) {
+            .bf_line #cd {
+                display: none;
+            }
+
+            .sep:last-child {
+                display: none;
+            }
+
+            .flex_c_spb.mob_part {
+                margin-left: 0;
+            }
+
+            .flex_c_spb.mob_part:before {
+                display: none;
+            }
+
+            .col-md-12 > .flex_c_spb:after {
+                right: 100px;
+                width: 38px;
+                top: -10px;
+                height: 46px;
+            }
+        }
+
+        @media screen and (max-width: 991px) {
+            .sep {
+                display: none;
+            }
+
+            .flex_c_spb.mob_part {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .flex_c_spb img {
+                max-width: 200px;
+            }
+
+            .bf_desc strong {
+                font-size: 22px;
+                line-height: 22px;
+                margin-right: 8px;
+            }
+
+            .bf_desc p {
+                font-size: 10px !important;
+                line-height: 12px !important;
+                max-width: 135px !important;
+            }
+
+            .bf_desc {
+                margin-top: 8px;
+            }
+
+            .bf_line a.button {
+                padding: 10px 20px !important;
+            }
+
+            .flex_c_spb.mob_part {
+                width: auto;
+            }
+        }
+
+        div#cd .num {
+            border-radius: unset;
+            background: transparent !important;
+            padding: 0 !important;
+            /* font-size: 40px; */
+            font-style: normal;
+            line-height: normal;
+        }
+    </style>
+
+<div class="bf_line">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="flex_c_spb">
+                    <div class="flex_c_spb mob_part">
+                        <img src="https://mirror.antmedia.io/wp-content/uploads/2023/12/cr24_logo.svg" class="lazyloaded" data-ll-status="loaded" alt="Ant Media Server - Real-time Streaming Engine"><noscript><img src="https://mirror.antmedia.io/wp-content/uploads/2023/12/cr24_logo.svg"></noscript>
+                        <div class="sep"></div>
+                        <div class="bf_desc">
+                            <strong>-15%</strong>
+                            <p>on Annual and Perpetual licenses</p>
+                        </div>
+                        <div class="sep"></div>
+                    </div>
+                    <a class="button" href="https://antmedia.io/#selfhosted" title="Ant Media Server">Buy Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    // Set the date we're counting down to
+    var countDownDate = new Date("Jan 8, 2024 18:00:00 GMT+0300").getTime();
+
+    var x = setInterval(function () {
+        var now = new Date().getTime();
+        var distance = countDownDate - now;
+
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("h_num1").innerHTML = days;
+        document.getElementById("h_num2").innerHTML = hours;
+        document.getElementById("h_num3").innerHTML = minutes;
+        document.getElementById("h_num4").innerHTML = seconds;
+
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("h_hum1").innerHTML = 0;
+            document.getElementById("h_num2").innerHTML = 0;
+            document.getElementById("h_num3").innerHTML = 0;
+            document.getElementById("h_num4").innerHTML = 0;
+        }
+    }, 1000);
+</script>
+<!-- Hackathon end -->
+</body>
+</html>
