@@ -12,7 +12,7 @@ Ant Media plug-in architecture allows developers to customize the video feed whi
 In the most basic explanation, a plug-in is added into the regular flow of AMS in ways that we will examine.  
 Here is what a plugin data flow looks like;
 
-![](@site/static/img/Screenshotfrom2022-04-04 16-19-31.png)
+![](@site/static/img/developer-guides/plugin-data-flow.png)
 
 You can either get the decoded video frames( IFrameListener interface )or encoded video packets ( IPacketListener interface ) from Ant Media Server, then you can do whatever customization you require to do with them.
 
