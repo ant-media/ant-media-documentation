@@ -2,7 +2,7 @@
 title: Stream security 
 description: This guide explains stream security options in Ant Media Server, and how you can Enable Disable, or Accept Undefined Streams.
 keywords: [Enable or Disable Undefined Streams, Accept Undefined Streams, One Time Token Control, Stream security, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 4
+sidebar_position: 14
 ---
 
 # Stream security
