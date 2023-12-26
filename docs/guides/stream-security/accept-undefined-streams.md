@@ -5,8 +5,6 @@ keywords: [Enable or Disable Undefined Streams, Accept Undefined Streams, One Ti
 sidebar_position: 1
 ---
 
-## Accept Undefined Streams
-
 This application setting is checking if the live stream is registered on Ant Media Server.
 
 ![undefined-streams](https://github.com/ant-media/ant-media-documentation/assets/86982446/f456c3e9-dbae-42af-8a6f-34ee0aa177e8)
