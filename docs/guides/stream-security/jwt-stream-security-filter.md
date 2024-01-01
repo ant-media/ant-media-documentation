@@ -85,11 +85,6 @@ ws://{ant-media-server}:5080/WebRTCAppEE/websocket
 }
 ```
 
-
-For example, here are the OBS settings for the One Time Token.
-
-![](@site/static/img/ant-media-server-one-time-token.png)
-
 ### VoD, HLS, CMAF (DASH) and WebRTC Playback URL usage with token
 
 **VOD:**
