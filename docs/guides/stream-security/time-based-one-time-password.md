@@ -19,7 +19,7 @@ To create a token, a secret key is required, which you can generate by clicking 
 > By default, the secret key is 6 bytes long when you click Generate, but in order to pre-register the subscriber, the secret key should be 8 bytes long, as shown in the screenshot above.
 
 
-### Subscriber Operations
+## Subscriber Operations
 
 After enabling TOTP on the server, the following operations should be performed to register a subscriber if required.
 
@@ -62,7 +62,7 @@ curl -X 'DELETE' 'https://IP-address-or-domain:5080/Application_Name/rest/v2/bro
 curl -X 'GET' 'https://test.antmedia.io:5443/Sandbox/rest/v2/broadcasts/test/subscribers/list/0/10' -H 'accept: application/json'
 ```
 
-### TOTP Token Creation
+## TOTP Token Creation
 
 TOTP token can be created using [this Rest API](https://antmedia.io/rest/#/BroadcastRestService/getTOTP).
 
@@ -76,7 +76,7 @@ Now, all application settings can be changed from the AMS web panel itself. Plea
 
 As mentioned in Subscribers Operations, you can also generate the TOTP token directly without pre-registering the subscriber.
 
- - The sample TOTP token creation API in the Publish Scenario:
+### The sample TOTP token creation API in the Publish Scenario:
 
 ```bash
 curl -X 'GET' 'http://IP-adddress-or-domain:5080/Application_Name/rest/v2/broadcasts/streamId/subscribers/SubscriberId/totp?type=publish'-H 'accept: application/json'
@@ -84,8 +84,7 @@ curl -X 'GET' 'http://IP-adddress-or-domain:5080/Application_Name/rest/v2/broadc
 
 ![](@site/static/img/stream-security/subscriber_block_publish_totp_postman.png)
 
-
- - The sample TOTP token creation API in the Player Scenario:
+### The sample TOTP token creation API in the Player Scenario:
 
 ```bash
 curl -X 'GET' 'http://IP-adddress-or-domain:5080/Application_Name/rest/v2/broadcasts/streamId/subscribers/SubscriberId/totp?type=play'-H 'accept: application/json'
