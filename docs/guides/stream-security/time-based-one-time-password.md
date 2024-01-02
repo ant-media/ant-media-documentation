@@ -15,9 +15,10 @@ You can enable TOTP for publishing and playing from the application's settings v
 
 To create a token, a secret key is required, which you can generate by clicking the `Generate` option in the dashboard, as shown in the above screenshot.
 
-> [!NOTE] 
-> By default, the secret key is 6 bytes long when you click Generate, but in order to pre-register the subscriber, the secret key should be 8 bytes long, as shown in the screenshot above.
+:::info
 
+By default, the secret key is 6 bytes long when you click Generate, but in order to pre-register the subscriber, the secret key should be 8 bytes long, as shown in the screenshot above.
+:::
 
 ## Subscriber Operations
 
