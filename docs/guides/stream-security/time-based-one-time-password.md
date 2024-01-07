@@ -177,3 +177,126 @@ curl -X 'PUT' 'http://IP-address-or-domain:5080/Application_Name/rest/v2/broadca
 Please be aware that playback resumes immediately after this request returns successfully.
 
 It's important to note that they won't be able to play the stream if they refresh the page and their TOTP has expired. However, if the TOTP is still valid and they refresh, they will be reauthenticated and able to resume playing the stream.
+
+### Block Publish and Play simultaneously
+
+Both publishing and playback can also be blocked at the same time if the `subsciberId` is the same for both publisher and player.
+
+To block both at the same time, type should be `publish_play`
+
+Here is the Rest API sample.
+
+```bash
+curl -X 'PUT' 'http://IP-address-or-domain:5080/Application_Name/rest/v2/broadcasts/streamId/subscribers/subscriberId/block/120/publish_play' -H 'accept: application/json'
+```
+
+## TOTP Usage with streaming protocols
+
+In this section, we will look at how to use the TOTP token with various streaming protocols for publishing and playback.
+
+### RTMP, SRT and WebRTC Publish URL usage
+
+**RTMP:**
+```
+rtmp://IP-address-or-domain/Application_Name/StreamId?subscriberId=your-subscriber&subscriberCode=totp-token
+```
+
+**SRT:** 
+```
+srt://IP-address-or-domain:4200?streamid=Application_Name/your-streamId,subscriberId=your-subscriber,subscriberCode=totp-token
+```
+
+**WebRTC:**
+```
+https://domain:5443/Application_Name?id=streamId&subscriberId=your-subscriber&subscriberCode=totp-token
+```
+
+Above is the URL if you are using the [webrtc sample page](https://antmedia.io/docs/guides/publish-live-stream/webrtc/) for publishing.
+
+If you are using the WebSocket URL to connect with the server, then token parameter should be inserted to WebSocket message. Also please have a look at the principles described in the [WebRTC publishing page](https://antmedia.io/docs/guides/publish-live-stream/webrtc/webrtc-websocket-messaging-reference/#publishing-webrtc-stream).
+
+```shell
+# Secure WebSocket: 
+wss://{ant-media-server}:5443/WebRTCAppEE/websocket
+
+# Non Secure WebSocket: 
+ws://{ant-media-server}:5080/WebRTCAppEE/websocket
+```
+
+```json
+{
+  command : "publish",
+  streamId : "stream1",
+  streamName : "streamName",
+  token : "token",
+  subscriberCode :  "subscriberCode",  
+  subscriberId :  "subscriberId",
+}
+```
+
+### VoD, HLS, CMAF (DASH) and WebRTC Playback URL usage
+
+**VOD:**
+
+If using the embedded (play.html) player URL:
+```
+http(s)://IP-address-or-domain:port/Application_Name/play.html?id=streams/stream_Id.mp4&playOrder=vod&subscriberId=your-subscriber&subscriberCode=totp-token
+```
+If you directly want to use an MP4 URL, then it will be as follows:
+```
+http(s)://IP-address-or-domain:port/Application_Name/streams/stream_Id.mp4?subscriberId=your-subscriber&subscriberCode=totp-token
+```
+**HLS:**
+
+If using the embedded (play.html) player URL:
+```
+http(s)://IP-address-or-domain:port/Application_Name/play.html?id=stream_Id&playOrder=hls&subscriberId=your-subscriber&subscriberCode=totp-token
+```
+
+If you directly want to use the m3u8 URL, then it will be as follows:
+
+```
+http(s)://IP-address-or-domain:port/Application_Name/streams/stream_Id.m3u8?subscriberId=your-subscriber&subscriberCode=totp-token
+```
+
+**CMAF (DASH):**
+
+If using the embedded (play.html) player URL:
+```
+http(s)://IP-address-or-domain:port/Application_Name/play.html?id=stream_Id&playOrder=dash&subscriberId=your-subscriber&subscriberCode=totp-token
+```
+
+If you directly want to use the mpd dash URL, then it will be as follows:
+
+```
+http(s)://IP-address-or-domain:port/Application_Name/streams/streamId/streamId.mpd?subscriberId=your-subscriber&subscriberCode=totp-token
+```
+
+**WebRTC:**
+
+If using the embedded (play.html) player URL:
+
+```
+http(s)://IP-address-or-domain:port/Application_Name/play.html?id=streamId&subscriberId=your-subscriber&subscriberCode=totp-token
+```
+
+If you are using the WebSocket URL to connect with the server, then token parameter should be inserted to WebSocket message. Also please have a look at the principles described in the [WebRTC playing page](https://antmedia.io/docs/guides/publish-live-stream/webrtc/webrtc-websocket-messaging-reference/#playing-webrtc-stream).
+
+```shell
+# Secure WebSocket: 
+wss://{ant-media-server}:5443/WebRTCAppEE/websocket
+
+# Non Secure WebSocket: 
+ws://{ant-media-server}:5080/WebRTCAppEE/websocket
+```
+
+```json
+{
+  command : "play",
+  streamId : "stream1",
+  streamName : "streamName",
+  token : "token",
+  subscriberCode :  "subscriberCode",  
+  subscriberId :  "subscriberId",
+}
+```
