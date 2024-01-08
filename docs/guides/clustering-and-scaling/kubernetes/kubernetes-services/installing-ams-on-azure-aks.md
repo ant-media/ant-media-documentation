@@ -10,7 +10,7 @@ sidebar_position: 8
 In this document, you will see step-by-step instructions on how to run Ant Media Server Enterprise version on Azure Kubernetes Service (AKS).
 
 :::info
-You need to have the [Azure CLI software](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli) and the [Kubernetes command line tool](https://kubernetes.io/docs/tasks/tools/)installed on your computer.
+You need to have the [Azure CLI software](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli) and the [Kubernetes command line tool](https://kubernetes.io/docs/tasks/tools/) installed on your computer.
 :::
 
 ## Step 1: Create a Kubernetes Cluster
@@ -42,15 +42,42 @@ When the installation is complete, you will see a screen like the one below. And
 
 ![](@site/static/img/azure-aks/azure-aks-5-1.png)
 
-Run the following commands to connect to the cluster from your local computer.
+There are a number of ways to connect to the cluster like using the `Cloud Shell`, `Azure CLI`, or `Run command`. So, let's discuss a couple of them.
 
-![](@site/static/img/azure-aks/azure-aks-5-2.png)
+### Using `Cloud Shell`
+
+Open `Cloud Shell` and Run the following commands to connect to the cluster directly from the web.
+
+![](@site/static/img/azure-aks/using-cloud-shell.png)
 
 ```
 az account set --subscription your-subscription
 az aks get-credentials --resource-group your-resource-group --name your-cluster-name
+```
+
+### Using 'Azure CLI`
+
+To use `Azire CLI` on your local or remote computer, please make sure the prerequisites `Azure CLI` and `Kubectl` are installed on your computer.
+
+![](@site/static/img/azure-aks/using-azure-cli.png)
+
+Run the following commands to connect to the cluster from your computer.
+```
+az login
+```
+:::info
+Afer you run the above command, you will see a prompt message like "To sign in, use a web browser to open the page https://microsoft.com/devicelogin and enter the code XXXXXXXXX to authenticate.
+:::
+
+- Follow the instructions, authenticate the code, and `Azire CLI` will open in the terminal.
+
+![](@site/static/img/azure-aks/azure-cli-success.png)
 
 ```
+az account set --subscription your-subscription
+az aks get-credentials --resource-group your-resource-group --name your-cluster-name
+```
+
 ## Step 5: Install Ant Media Server via Helm
 
 After successfully accessing the cluster, let's add and update the Ant Media Helm repository as follows.
@@ -120,3 +147,20 @@ If the installation and configuration was successful, the public IP address/doma
 Execute the `kubectl get svc -n antmedia` command to fetch the RTMP address from the `EXTERNAL-IP` column to start live streaming using RTMP on port 1935.
 
 ![](@site/static/img/azure-aks/azure-aks-8-2.png)
+
+## Step 8: Enable SSL
+We will discuss how to enable SSL for both cases, using `Nginx Ingress Controller` or using `Azure Application Gateway`
+
+### Nginx Ingress Controller
+After creating the DSN records for both Origin and Edge.
+- Get the `ams-k8s-ssl.sh` script and run it.
+```
+wget https://raw.githubusercontent.com/ant-media/helm/add_helm_repo/ams-k8s-ssl.sh
+bash ams-k8s-ssl.sh
+```
+
+### Azure Application Gateway
+Enabling SSL for Azure Application gateway is complicated as compared to Nginx Ingress.
+
+If you want to use Azure Application gateway, please follow this guide to [Enable SSL for Azure Application Gateway](https://antmedia.io/ssl-for-azure-app-gateway-for-scaling-azure-ant-media/)
+
