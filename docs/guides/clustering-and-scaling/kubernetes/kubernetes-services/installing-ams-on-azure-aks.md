@@ -42,11 +42,11 @@ When the installation is complete, you will see a screen like the one below. And
 
 ![](@site/static/img/azure-aks/azure-aks-5-1.png)
 
-There are a number of ways to connect to the cluster like using the `Cloud Shell`, `Azure CLI`, or `Run command`. So, let's discuss a couple of them.
+There are a number of ways to connect to the cluster like using the Cloud Shell, Azure CLI, or Run command. So, let's discuss a couple of them.
 
-### Using `Cloud Shell`
+### Using Cloud Shell
 
-Open `Cloud Shell` and Run the following commands to connect to the cluster directly from the web.
+Open Cloud Shell and run the below commands to connect to the cluster directly from the web.
 
 ![](@site/static/img/azure-aks/using-cloud-shell.png)
 
@@ -55,13 +55,13 @@ az account set --subscription your-subscription
 az aks get-credentials --resource-group your-resource-group --name your-cluster-name
 ```
 
-### Using 'Azure CLI`
+### Using Azure CLI
 
-To use `Azire CLI` on your local or remote computer, please make sure the prerequisites `Azure CLI` and `Kubectl` are installed on your computer.
+To use Azure CLI on your computer, please make sure the prerequisites Azure CLI and `Kubectl` are installed on your computer.
 
 ![](@site/static/img/azure-aks/using-azure-cli.png)
 
-Run the following commands to connect to the cluster from your computer.
+Run the below commands to connect to the cluster from your computer.
 ```
 az login
 ```
@@ -69,7 +69,7 @@ az login
 Afer you run the above command, you will see a prompt message like "To sign in, use a web browser to open the page https://microsoft.com/devicelogin and enter the code XXXXXXXXX to authenticate.
 :::
 
-- Follow the instructions, authenticate the code, and `Azire CLI` will open in the terminal.
+- Follow the instructions, authenticate the code, and `Azure CLI` will open in the terminal.
 
 ![](@site/static/img/azure-aks/azure-cli-success.png)
 
@@ -149,11 +149,11 @@ Execute the `kubectl get svc -n antmedia` command to fetch the RTMP address from
 ![](@site/static/img/azure-aks/azure-aks-8-2.png)
 
 ## Step 8: Enable SSL
-We will discuss how to enable SSL for both cases, using `Nginx Ingress Controller` or using `Azure Application Gateway`
+We will discuss how to enable SSL for both cases, using Nginx Ingress Controller or using Azure Application Gateway.
 
 ### Nginx Ingress Controller
 After creating the DSN records for both Origin and Edge.
-- Get the `ams-k8s-ssl.sh` script and run it.
+- Get the `ams-k8s-ssl.sh` script and run it to enable SSL.
 ```
 wget https://raw.githubusercontent.com/ant-media/helm/add_helm_repo/ams-k8s-ssl.sh
 bash ams-k8s-ssl.sh
