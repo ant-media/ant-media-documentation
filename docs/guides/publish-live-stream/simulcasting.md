@@ -37,6 +37,12 @@ So, you can start broadcasting now!
 
 ## How to Publish Live Stream on Youtube
 
+:::info
+
+YouTube does not accept streams without audio, thus your stream needs to include audio.
+
+:::
+
 You can publish live streams on your YouTube account. Just click the **Create** button and select **Go Live.**
 
 ![](@site/static/img/image-1645118331005.png)
