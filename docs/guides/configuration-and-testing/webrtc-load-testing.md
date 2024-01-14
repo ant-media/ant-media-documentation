@@ -19,10 +19,10 @@ In this option, we have only one Ant Media Server instance as SUT.
     +-------------------+                  +----------------------+
     |                   |   streaming      |                      |
     |                   |   playing        |                      |
-    |                   | `<-------------->` |                      |
+    |                   | `<-------------->` |                    |
     |    Test Server    |                  |   Ant Media Server   |
     |                   |                  |                      |
-    |                   | `<-------------->` |                      |
+    |                   | `<-------------->` |                    |
     |                   |    rest          |                      |
     +-------------------+                  +----------------------+
 
@@ -36,14 +36,14 @@ Here we have a cluster structure as SUT which contains one origin and N edge ser
                                            |                    |
                                            |                    |
                                            |  Ant Media Server  |
-                                +--------->`+                    |
+                                +--------->`+                   |
                                 |          |     (Origin)       |
     +-----------+               |          |                    |
     |           |    streaming  |          |                    |
     |           +---------------+          +--------------------+
     |           |
     |Test Server| playing +------------------------------------------------+
-    |           +`<--------+                                                |
+    |           +`<--------+                                               |
     |           |         |             Load Balancer                      |
     |           +---------+                                                |
     +-----------+   rest  +--+------------+---------------------+----------+
