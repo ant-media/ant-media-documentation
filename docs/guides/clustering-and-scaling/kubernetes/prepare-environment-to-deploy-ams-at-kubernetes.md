@@ -35,7 +35,7 @@ We first need to create a docker image to run our pods in Kubernetes.
     -O Dockerfile_Process
     
 *   Download or copy AMS Enterprise Edition ZIP file into the same directory that you download Dockerfile above.
-*   Create the docker image. Before running the command below, please pay attention that you should replace {CHANGE\_YOUR\_ANT\_MEDIA\_SERVER\_ZIP\_FILE} in the command below with your exact Ant Media Server ZIP file name.
+*   Create the docker image. Before running the command below, please pay attention that you should replace {CHANGE_YOUR_ANT_MEDIA_SERVER_ZIP_FILE} in the command below with your exact Ant Media Server ZIP file name.
 
 ```shell
 sudo docker build --network=host --file=Dockerfile_Process -t ant-media-server-enterprise-k8s:test --build-arg AntMediaServer={CHANGE_YOUR_ANT_MEDIA_SERVER_ZIP_FILE} .

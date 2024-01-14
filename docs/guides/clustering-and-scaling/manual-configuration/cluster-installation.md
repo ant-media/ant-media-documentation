@@ -97,9 +97,9 @@ For **MongoDB Atlas** connections, you can give the direct ```mongodb+srv``` URL
 ```shell
 sudo ./change_server_mode.sh cluster mongodb+srv://<username>:<password>@<url>/<name>?<params>
 ```
-
+```
     http://<ANT_MEDIA_SERVER_NODE_IP>:5080/#/cluster
-
+```
 #### Basics of clustering
 
 You can monitor all nodes in the cluster by visiting the web page below in any node.

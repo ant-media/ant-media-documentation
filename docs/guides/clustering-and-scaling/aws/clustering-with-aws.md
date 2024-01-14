@@ -67,7 +67,7 @@ Then click “Review and Launch”.
 
 ![](@site/static/img/152640825-06b86d38-f024-4ca9-b545-78d38ad87abe.png)
 
-* Right now, you should connect to your instance. To Connect your instance, open a terminal and run a command something like below. Please change {YOUR\_KEY\_FILE} and {INSTANCE\_PUBLIC\_IP} with your own credentials. For our case, they are “ant.pem” and “3.108.40.66”.
+* Right now, you should connect to your instance. To Connect your instance, open a terminal and run a command something like below. Please change {YOUR_KEY_FILE} and {INSTANCE_PUBLIC_IP} with your own credentials. For our case, they are `ant.pem` and `3.108.40.66`.
 
 ```ssh -i {YOUR_KEY_FILE} ubuntu@{INSTANCE_PUBLIC_IP}```
 
