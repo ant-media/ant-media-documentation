@@ -76,7 +76,7 @@ You need to have VPC and security groups for creating MongoDB instance. If you a
     
 -   Login your Instance according to Instance public IP address with a created SSH key.
     
--   Right now, you should connect to your instance. To Connect your instance, open a terminal and run a command something like. Please change {YOUR_KEY_FILE} and {INSTANCE_PUBLIC_IP} with your own credentials.
+-   Right now, you should connect to your instance. To Connect your instance, open a terminal and run a command something like. Please change `{YOUR_KEY_FILE}` and `{INSTANCE_PUBLIC_IP}` with your own credentials.
     
 
 ```
@@ -124,7 +124,7 @@ You need to have a Launch template for creating Instances. If you already have t
 -   Select VPC Network and click Next Advanced Configurations  
     ![image.png](@site/static/img/image(27).png)
     
--   Add SSH key pair, Instance name and User Data details as follows. Right now, copy the text below, change the "{MongoIP}" field with the MongoDB IP Address in the script and paste it to the "User data".
+-   Add SSH key pair, Instance name and User Data details as follows. Right now, copy the text below, change the `{MongoIP}` field with the MongoDB IP Address in the script and paste it to the "User data".
     
 
 ```

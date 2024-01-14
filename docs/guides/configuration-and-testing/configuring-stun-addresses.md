@@ -100,9 +100,9 @@ Replace this function with:
     })
 ```
 ### Configure a custom TURN server in the Embeded Player.
-
+```
     sudo nano /usr/local/antmedia/{APP_NAME}/js/videojs-webrtc-plugin.js
-
+```
 Edit the peerconnection_config variable By adding your TURN Server Configuration
 ```
     this.peerconnection_config = {
@@ -139,7 +139,7 @@ Edit the peerconnection_config variable By adding your TURN Server Configuration
 
 Ant Media Server v2.4.4 and later versions support adding a TURN server for the serve side. In order to do that, follow the instructions below.
 
-Edit your application's configuration file (**/usr/local/antmedia/webapps/{YOUR_APP_FOLDER}/WEB-INF/red5-web.properties**) with your favorite text editor, and add the following properties to this file:
+Edit your application's configuration file (`**/usr/local/antmedia/webapps/{YOUR_APP_FOLDER}/WEB-INF/red5-web.properties**`) with your favorite text editor, and add the following properties to this file:
 ```
     settings.webrtc.stunServerURI=turn:WRITE_YOUR_TURN_SERVER_URL
     settings.webrtc.turnServerUsername=WRITE_YOUR_TURN_SERVER_USERNAME

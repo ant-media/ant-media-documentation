@@ -1,34 +1,38 @@
 // @ts-check
-// Note: type annotations allow type checking and IDEs autocompletion
+// `@type` JSDoc annotations allow editor autocompletion and type checking
+// (when paired with `@ts-check`).
+// There are various equivalent ways to declare your Docusaurus config.
+// See: https://docusaurus.io/docs/api/docusaurus-config
 
 import {themes as prismThemes} from 'prism-react-renderer';
-
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Ant Media Documentation',
   tagline: 'Ant Media Documentation',
-  url: 'https://antmedia.io',
-  baseUrl: '/docs/',
-  trailingSlash: true,
-  onBrokenLinks: 'warn', // replace with 'throw' to stop building if broken links
-  onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
+
+  // Set the production url of your site here
+  url: 'https://antmedia.io',
+  // Set the /<baseUrl>/ pathname under which your site is served
+  // For GitHub pages deployment, it is often '/<projectName>/'
+  baseUrl: '/docs',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'ant-media', // Usually your GitHub org/user name.
   projectName: 'documentation', // Usually your repo name.
-  deploymentBranch: 'master', // The branch that GitHub pages deploys from.
 
-  // Even if you don't use internalization, you can use this field to set useful
-  // metadata like html lang. For example, if your site is Chinese, you may want
-  // to replace "en" with "zh-Hans".
+  onBrokenLinks: 'throw',
+  onBrokenMarkdownLinks: 'warn',
+
+  // Even if you don't use internationalization, you can use this field to set
+  // useful metadata like html lang. For example, if your site is Chinese, you
+  // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
   },
-
   scripts: [
     {
       src: 'js/script.js',
@@ -38,7 +42,7 @@ const config = {
 
   presets: [
     [
-      '@docusaurus/preset-classic',
+      'classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
@@ -67,74 +71,20 @@ const config = {
       }),
     ],
   ],
-
-  plugins: [[ require.resolve('docusaurus-lunr-search'), {
-    languages: ['en']
-  }],
-  [
-    '@docusaurus/plugin-client-redirects',
-    {
-      redirects: [
-        {
-          to: '/guides/clustering-and-scaling/alibaba/scaling-with-alibaba/',
-          from: '/guides/clustering-and-scaling/scaling-with-alibaba/',
-        },
-        {
-          to: '/guides/clustering-and-scaling/supported-databases/scaling-with-redis/',
-          from: '/guides/clustering-and-scaling/scaling-with-redis/',
-        },
-        {
-          to: '/guides/clustering-and-scaling/supported-databases/scaling-with-mongodb-atlas/',
-          from: '/guides/clustering-and-scaling/scaling-with-mongodb-atlas/',
-        },
-        {
-          to: '/guides/clustering-and-scaling/manual-configuration/cluster-installation/',
-          from: '/guides/clustering-and-scaling/cluster-installation/',
-        },
-        {
-          to: '/guides/clustering-and-scaling/manual-configuration/multi-level-cluster/',
-          from: '/guides/clustering-and-scaling/multi-level-cluster/',
-        },
-        {
-          from: '/guides/clustering-and-scaling/aws/installing-ams-on-aws-eks/',
-          to: '/guides/clustering-and-scaling/kubernetes/kubernetes-services/installing-ams-on-aws-eks/'
-        },
-        {
-          from: '/guides/developer-sdk-and-api/rest-api-guide/enabling-ip-filtering-behind-load-balancer-in-aws/',
-          to: '/guides/clustering-and-scaling/aws/enabling-ip-filtering-behind-load-balancer-in-aws/'
-        },
-        {
-          from: '/guides/developer-sdk-and-api/rest-api-guide/stream-security/',
-          to: '/guides/stream-security/'
-        },
-        {
-          from: '/guides/clustering-and-scaling/aws/Configuring-RTMP-LB-in-AWS/',
-          to: '/guides/clustering-and-scaling/aws/configuring-rtmp-lb-in-aws/'
-        },
-        {
-          from: '/guides/clustering-and-scaling/aws/Scaling-at-AWS-ECS-Fargate/',
-          to: '/guides/clustering-and-scaling/aws/scaling-at-aws-ecs-fargate/'
-        },
+  plugins: [
+   ['docusaurus-lunr-search', {
+     languages: ['en']
+   }],
+   ['@docusaurus/plugin-client-redirects', {
+     redirects: [ 
         {
           from: '/guides/playing-live-stream/HLS-Playing/',
           to: '/guides/playing-live-stream/hls-playing/'
         },
-        {
-          from: '/guides/playing-live-stream/vod-streaming-via-webrtc-hls/',
-          to: '/guides/publish-live-stream/playlist/'
-        }
-      ],
-    },
-  ], /*
-  [
-    'docusaurus-pushfeedback',{
-        project: '7i7jw6ovwx',
-        "button-position": 'bottom-right',
-        "button-style": "dark"
-    }
-  ]*/
-  ],
 
+     ],
+   }]
+  ],
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
@@ -247,24 +197,12 @@ const config = {
         ],
         copyright: `Copyright © ${new Date().getFullYear()} Ant Media`,
       },
+
       prism: {
-	theme: prismThemes.github,
-	darkTheme: prismThemes.dracula,
-      },
-      announcementBar: {
-        id: 'announcement-bar',
-        content:
-          `<iframe id="hackathon-banner" src="https://antmedia.io/docs/html/christmasBanner.html" width="100%" height="77px"></iframe>
-          <div style="font-size:16px;"></br>
-          <a target="_blank" href="https://antmedia.io/create-your-own-streaming-service-on-aws-in-5-minutes/">
-            <strong>How to Get Your Own Auto Scalable Streaming Service on AWS in 5 minutes?</strong>
-          </a>
-          </div>`,
-        backgroundColor: '#fff5bd',
-        textColor: '#091E42',
-        isCloseable: false,
+        theme: prismThemes.github,
+        darkTheme: prismThemes.dracula,
       },
     }),
 };
 
-module.exports = config;
+export default config;

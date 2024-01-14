@@ -73,9 +73,8 @@ We set 0.0.0.0 in the mongodb.conf. It means ```listen on every available networ
 You can easily switch AMS from ```standalone``` mode to ```cluster``` mode or vice versa. Let's switch AMS from standalone mode to cluster mode.
 
 In order to configure AMS run in cluster mode, you just need to run the below command.
-<InfoBox>
-If you have set up a username and password for MongoDB, then you need to pass the credentials in the command:
-</InfoBox>
+
+**If you have set up a username and password for MongoDB, then you need to pass the credentials in the command:**
 
 Note: If you set username and password authentication on MongoDB, you should run ```change_server_mode.sh``` as follows:
 

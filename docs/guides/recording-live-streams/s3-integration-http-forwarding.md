@@ -148,10 +148,10 @@ Let us tell you how HTTP Forwarding works step by step
 
 Usage Example:
 
-- If you are using AWS S3 bucket, {YOUR_DOMAIN} will be like:  
+- If you are using AWS S3 bucket, `{YOUR_DOMAIN}` will be like:  
     `{s3BucketName}.s3.{awsLocation}.amazonaws.com`.
     
-- If you are using Digital Ocean Spaces, {YOUR_DOMAIN} will be like:  
+- If you are using Digital Ocean Spaces, \{YOUR_DOMAIN\} will be like:  
     `{BucketName}.{BucketLocation}.digitaloceanspaces.com`
 
 > **Note:** Don't add any leading, or trailing white spaces.

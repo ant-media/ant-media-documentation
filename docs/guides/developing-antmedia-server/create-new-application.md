@@ -80,23 +80,24 @@ Restart Ant Media Service
 #### Create Application
 
 Web panel has the following REST method to create application.
-
+```
     @POST
     @Path("/applications/{appName}")
     @Produces(MediaType.APPLICATION_JSON)
-
+```
 It means that you can call the following method to create an application with curl. Please take a look at the answer here to learn [how to access web panel REST methods programmatically](https://stackoverflow.com/questions/64444673/ant-media-dashboard-settings-through-rest-api/64458222#64458222)
-
+```
     curl -X POST -H "Content-Type: application/json" "https://{YOUR_SERVER_ADDRESS}:5443/rest/v2/applications/myapp"
-
+```
 ### Delete Application
 
 Web panel has the following REST Method to delete the application.
-
+```
     @DELETE
     @Path("/applications/{appName}")
     @Produces(MediaType.APPLICATION_JSON)
-
+```
 Call the following method to delete an application(apptest) with curl.
-
+```
     curl -X DELETE -H "https://{YOUR_SERVER_ADDRESS}:5443/rest/v2/applications/myapp"
+```
