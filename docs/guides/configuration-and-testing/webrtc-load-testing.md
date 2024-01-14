@@ -19,10 +19,10 @@ In this option, we have only one Ant Media Server instance as SUT.
     +-------------------+                  +----------------------+
     |                   |   streaming      |                      |
     |                   |   playing        |                      |
-    |                   | `<-------------->` |                    |
+    |                   | <--------------> |                      |
     |    Test Server    |                  |   Ant Media Server   |
     |                   |                  |                      |
-    |                   | `<-------------->` |                    |
+    |                   | <--------------> |                      |
     |                   |    rest          |                      |
     +-------------------+                  +----------------------+
 
