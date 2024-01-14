@@ -16,34 +16,35 @@ Preparation of SUT
 
 In this option, we have only one Ant Media Server instance as SUT.
 
+```
     +-------------------+                  +----------------------+
     |                   |   streaming      |                      |
     |                   |   playing        |                      |
-    |                   | `<-------------->` |                      |
+    |                   | <--------------> |                      |
     |    Test Server    |                  |   Ant Media Server   |
     |                   |                  |                      |
-    |                   | `<-------------->` |                      |
+    |                   | <--------------> |                      |
     |                   |    rest          |                      |
     +-------------------+                  +----------------------+
-
+```
 To setup the Ant Media Server, please check [here](https://github.com/ant-media/Ant-Media-Server/wiki/Installation).
 
 ### Cluster setup
 
 Here we have a cluster structure as SUT which contains one origin and N edge servers.
-
+```
                                            +--------------------+
                                            |                    |
                                            |                    |
                                            |  Ant Media Server  |
-                                +--------->`+                    |
+                                +--------->+                    |
                                 |          |     (Origin)       |
     +-----------+               |          |                    |
     |           |    streaming  |          |                    |
     |           +---------------+          +--------------------+
     |           |
     |Test Server| playing +------------------------------------------------+
-    |           +`<--------+                                                |
+    |           +<--------+                                                |
     |           |         |             Load Balancer                      |
     |           +---------+                                                |
     +-----------+   rest  +--+------------+---------------------+----------+
@@ -62,7 +63,7 @@ Here we have a cluster structure as SUT which contains one origin and N edge ser
                |                |  |                |     |                |
                +----------------+  +----------------+     +----------------+
     
-
+```
 To deploy an Ant Media Server cluster, please see [here](https://github.com/ant-media/Ant-Media-Server/wiki/Scaling-and-Load-Balancing).
 
 Ant Media WebRTC test tool
