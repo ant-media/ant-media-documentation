@@ -1,7 +1,7 @@
 import React from 'react';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
-import { styles } from 'prism-react-renderer/themes/github';
+import { styles } from 'prism-react-renderer';
 
 export default function SdkReferences() {
   return (
