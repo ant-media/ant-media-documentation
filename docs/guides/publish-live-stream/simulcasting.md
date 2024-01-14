@@ -7,7 +7,7 @@ sidebar_position: 7
 
 This guide will show you how to use Ant Media Server to live stream to social media and other third-party RTMP end points.
 
-[![Watch the video]](https://www.youtube.com/watch?v=NVhYthQk_js)
+<VideoPlayer youtube="true" video="https://www.youtube.com/embed/NVhYthQk_js" />
 
 ## How to Publish Live Stream on Facebook
 

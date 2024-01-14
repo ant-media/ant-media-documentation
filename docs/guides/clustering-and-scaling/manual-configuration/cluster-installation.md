@@ -74,7 +74,9 @@ You can easily switch AMS from ```standalone``` mode to ```cluster``` mode or vi
 
 In order to configure AMS run in cluster mode, you just need to run the below command.
 
-**If you have set up a username and password for MongoDB, then you need to pass the credentials in the command:**
+<InfoBox>
+If you have set up a username and password for MongoDB, then you need to pass the credentials in the command:
+</InfoBox>
 
 Note: If you set username and password authentication on MongoDB, you should run ```change_server_mode.sh``` as follows:
 
