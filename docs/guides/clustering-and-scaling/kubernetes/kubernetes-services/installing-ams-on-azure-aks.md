@@ -163,4 +163,3 @@ bash ams-k8s-ssl.sh
 Enabling SSL for Azure Application gateway is complicated as compared to Nginx Ingress.
 
 If you want to use Azure Application gateway, please follow this guide to [Enable SSL for Azure Application Gateway](https://antmedia.io/ssl-for-azure-app-gateway-for-scaling-azure-ant-media/)
-
