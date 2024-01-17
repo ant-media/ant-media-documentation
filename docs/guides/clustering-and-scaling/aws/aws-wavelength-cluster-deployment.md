@@ -112,8 +112,8 @@ You can create a certificate by following the steps below, and don't forget to g
     certbot --agree-tos --register-unsafely-without-email --manual --preferred-challenges dns --manual-public-ip-logging-ok --force-renewal certonly -d yourdomain.com
 
 After your certificate is created, you can edit the nginx.conf file like the one below.
-
+```
     ssl_certificate /etc/letsencrypt/live/{YOUR_DOMAIN}/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/{YOUR_DOMAIN}/privkey.pem;
-
+```
 Then restart the service using the systemctl restart nginx command.

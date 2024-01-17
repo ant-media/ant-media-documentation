@@ -64,7 +64,7 @@ You can record the broadcast if needed. But you need to start the recording manu
   wget https://github.com/ant-media/Plugins/raw/master/MediaPushPlugin/build/media_push.html
   ```
 
-2. Copy the media_push.html file into directory under '/usr/local/antmedia/webapps/{your-webapp-name}/'
+2. Copy the media_push.html file into directory under `/usr/local/antmedia/webapps/{your-webapp-name}/`
 
   ```
   sudo cp media_push.html /usr/local/antmedia/webapps/<your-webapp-name>/media_push.html

@@ -28,7 +28,7 @@ Ant Media Server provides creating streams through rest service. Therefore, If y
 As a result,  you can set _listenerHookURL_ for creating a stream at Ant Media Server.
 
 Here is a sample JSON for using _createBroadcast_ method with [Postman](https://www.getpostman.com/)
-
+```
     {
     	"variables": [],
     	"info": {
@@ -60,7 +60,7 @@ Here is a sample JSON for using _createBroadcast_ method with [Postman](https://
     		}
     	]
     }
-
+```
 ### Webhooks List
 
 Ant Media Server will hook to your website using a POST request with "application/x-www-form-urlencoded" as the body. Some example responses are:

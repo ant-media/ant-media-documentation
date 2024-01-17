@@ -90,7 +90,7 @@ Please consider there will be two different _"Cluster"_ word usage in this docum
 
   ![](@site/static/img/ecs-cluster/ecs-fargate-ams-container-def.png)
 
-  - /usr/local/antmedia/start.sh,-m,cluster,-h, {Mongo Container IP} into Entry point
+  - `/usr/local/antmedia/start.sh,-m,cluster,-h, {Mongo Container IP}` into Entry point
   then click *Add*
   ![](@site/static/img/ecs-cluster/ecs-fargate-ams-entry-point.png)
 

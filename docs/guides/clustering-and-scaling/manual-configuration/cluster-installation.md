@@ -73,6 +73,7 @@ We set 0.0.0.0 in the mongodb.conf. It means ```listen on every available networ
 You can easily switch AMS from ```standalone``` mode to ```cluster``` mode or vice versa. Let's switch AMS from standalone mode to cluster mode.
 
 In order to configure AMS run in cluster mode, you just need to run the below command.
+
 <InfoBox>
 If you have set up a username and password for MongoDB, then you need to pass the credentials in the command:
 </InfoBox>
@@ -97,9 +98,9 @@ For **MongoDB Atlas** connections, you can give the direct ```mongodb+srv``` URL
 ```shell
 sudo ./change_server_mode.sh cluster mongodb+srv://<username>:<password>@<url>/<name>?<params>
 ```
-
+```
     http://<ANT_MEDIA_SERVER_NODE_IP>:5080/#/cluster
-
+```
 #### Basics of clustering
 
 You can monitor all nodes in the cluster by visiting the web page below in any node.

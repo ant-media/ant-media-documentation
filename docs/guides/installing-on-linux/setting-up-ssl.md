@@ -160,7 +160,7 @@ Let's Encrypt have some plugins to simplify the authorization. Route 53 plugin c
 sudo ./enable_ssl.sh -d {DOMAIN_NAME}  -v route53
 ```
 
--   If everything is set up properly, you can access the server via **http://{DOMAIN_NAME}:5443**
+-   If everything is set up properly, you can access the server via `**http://{DOMAIN_NAME}:5443**`
 
 If you disabled a service that binds to port 80 such as Apache Web Server, enable it again.
 
