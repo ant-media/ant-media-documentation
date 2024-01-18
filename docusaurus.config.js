@@ -269,7 +269,7 @@ const config = {
       // Public API key: it is safe to commit it
         apiKey: 'YOUR_SEARCH_API_KEY',
 
-        indexName: 'YOUR_INDEX_NAME',
+        indexName: 'antmedia',
 
       // Optional: see doc section below
         contextualSearch: true,
