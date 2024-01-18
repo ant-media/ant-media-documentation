@@ -68,9 +68,8 @@ const config = {
     ],
   ],
 
-  plugins: [[ require.resolve('docusaurus-lunr-search'), {
-    languages: ['en']
-  }],
+  plugins: [
+
   [
     '@docusaurus/plugin-client-redirects',
     {
