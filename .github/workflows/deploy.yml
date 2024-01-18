@@ -11,7 +11,11 @@ jobs:
     
     steps:
     - uses: actions/checkout@v3
-    - run: sed -i "s^baseUrl:.*^baseUrl:'/docs',^" docusaurus.config.js
+    - run: |
+        sed -i "s^baseUrl:.*^baseUrl:'/docs',^" docusaurus.config.js
+        sed -i "s^appId.*^appId: '${{ ALGOLIA_APP_ID }}',^" docusaurus.config.js
+        sed -i "s^apiKey.*^apiKey: '${{ $ALGOLIA_API_KEY }}',^" docusaurus.config.js
+        
     - uses: actions/setup-node@v3
       with:
         node-version: '18.x'
