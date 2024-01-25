@@ -52,7 +52,7 @@ Rest API can also be used to start and stop a playlist. Check out the APIs for [
 ## How can I use Playlist API?
 
 Here is the sample create Playlist CURL command:
-
+```
     curl -X POST -H "Content-Type: application/json" "https://AMS-domain:port/Application-Name/rest/v2/broadcasts/create" -d 
     '{  
     "name": "your-streamName",
@@ -64,7 +64,7 @@ Here is the sample create Playlist CURL command:
                  "type":  "VoD"
         }
     ]}'
-    
+```    
 You can use the [update Broadcast](https://antmedia.io/rest/#/BroadcastRestService/updateBroadcast) Rest API to update the playlist on the fly.
 
 ## How to play Linear Live Streaming?

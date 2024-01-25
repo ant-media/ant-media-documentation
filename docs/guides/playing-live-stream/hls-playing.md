@@ -44,7 +44,7 @@ Your stream files will be automatically saved to:
 ```
 antmedia/webapps/{appName}/streams/exampleSubFolder/
 ```
-In such cases, when configuring embedded player to stream these files, ensure to pass **exampleSubFolder/{streamId}** as the ID parameter. For instance, if your stream ID is teststream, the embedded player URL should look like this:
+In such cases, when configuring embedded player to stream these files, ensure to pass `**exampleSubFolder/{streamId}**` as the ID parameter. For instance, if your stream ID is teststream, the embedded player URL should look like this:
 ```
 https://AMS-domain-name:5443/WebRTCAppEE/play.html?id=exampleSubFolder/teststream&playOrder=hls
 ```

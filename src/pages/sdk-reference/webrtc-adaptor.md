@@ -1,26 +1,35 @@
-## Classes
+# Classes
 
 <dl>
-<dt><a href="#WebRTCAdaptor">WebRTCAdaptor</a></dt>
-<dd><p>WebRTCAdaptor Class is interface to the JS SDK of Ant Media Server (AMS). This class manages the signalling,
-keeps the states of peers.</p>
-<p>This class is used for peer-to-peer signalling,
-publisher and player signalling and conference.</p>
-<p>Also it is responsible for some room management in conference case.</p>
-<p>There are different use cases in AMS. This class is used for all of them.</p>
-<p>WebRTC Publish
-WebRTC Play
-WebRTC Data Channel Connection
-WebRTC Conference
-WebRTC Multitrack Play
-WebRTC Multitrack Conference
-WebRTC peer-to-peer session</p>
-</dd>
-<dt><a href="#ReceivingMessage">ReceivingMessage</a></dt>
-<dd><p>This structure is used to handle large size data channel messages (like image)
-which should be splitted into chunks while sending and receiving.</p>
-</dd>
+  <dt><a href="#WebRTCAdaptor">WebRTCAdaptor</a></dt>
+  <dd>
+    <p>
+      WebRTCAdaptor Class is an interface to the JS SDK of Ant Media Server (AMS). This class manages the signaling,
+      keeps the states of peers.
+    </p>
+    <p>This class is used for peer-to-peer signaling,
+      publisher and player signaling, and conference.</p>
+    <p>Also, it is responsible for some room management in conference cases.</p>
+    <p>There are different use cases in AMS. This class is used for all of them.</p>
+    <p>
+      WebRTC Publish
+      WebRTC Play
+      WebRTC Data Channel Connection
+      WebRTC Conference
+      WebRTC Multitrack Play
+      WebRTC Multitrack Conference
+      WebRTC peer-to-peer session
+    </p>
+  </dd>
+  <dt><a href="#ReceivingMessage">ReceivingMessage</a></dt>
+  <dd>
+    <p>
+      This structure is used to handle large size data channel messages (like images)
+      which should be split into chunks while sending and receiving.
+    </p>
+  </dd>
 </dl>
+
 
 <a name="WebRTCAdaptor"></a>
 

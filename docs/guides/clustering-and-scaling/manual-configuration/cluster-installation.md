@@ -46,7 +46,12 @@ Then run it and the latest version of MongoDB will be installed. If you run it w
 ```shell
 ./install_mongodb.sh
 ```
-If you run it with the --auto-create parameter, then authentication will be enabled.
+
+If you run it with the **--auto-create** parameter, then authentication will be enabled. It will generate a random username and password for your MongoDB server.
+
+```shell
+./install_mongodb.sh --auto-create
+```
 
 After MongoDB 4.4, if the amount of open files ulimit is below 64000, you may encounter a startup error. For this, add the following lines under `/etc/security/limits.conf`
 
@@ -63,13 +68,12 @@ mongodb hard    nofile         65535
 
 We set 0.0.0.0 in the mongodb.conf. It means ```listen on every available network interface```. If you don't have a firewall, you will accept all connections from everywhere to your MongoDB server. We recommend adding security credentials to your MongoDB instance with the following commands.
 
-If you want to enable authentication, you can still automate it using the `mongodb_install.sh ----auto-create` script. It will generate a random username and password
-
 ## Install the origin and edge groups
 
 You can easily switch AMS from ```standalone``` mode to ```cluster``` mode or vice versa. Let's switch AMS from standalone mode to cluster mode.
 
 In order to configure AMS run in cluster mode, you just need to run the below command.
+
 <InfoBox>
 If you have set up a username and password for MongoDB, then you need to pass the credentials in the command:
 </InfoBox>
@@ -94,9 +98,9 @@ For **MongoDB Atlas** connections, you can give the direct ```mongodb+srv``` URL
 ```shell
 sudo ./change_server_mode.sh cluster mongodb+srv://<username>:<password>@<url>/<name>?<params>
 ```
-
+```
     http://<ANT_MEDIA_SERVER_NODE_IP>:5080/#/cluster
-
+```
 #### Basics of clustering
 
 You can monitor all nodes in the cluster by visiting the web page below in any node.

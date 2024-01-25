@@ -51,15 +51,15 @@ Let’s assume that you're already running Ant Media Server v2.4+ on your server
 ActionScript
 
 2.  Add AES Encryption URI Path to the file above. Prepare the key info file as described above. You can even use URL for specifying the key info location.
-
+```
     settings.hlsEncryptionKeyInfoFile={FULL_PATH_OF_DIRECTORY}/hls_aes.keyinfo
-
+```
 ActionScript
 
 For example:
-
+```
     settings.hlsEncryptionKeyInfoFile={FULL_PATH_OF_DIRECTORY}/hls_aes.keyinfo
-
+```
 ActionScript
 
 3.  Restart the Ant Media Server.
@@ -69,7 +69,7 @@ ActionScript
 ActionScript
 
 4.  Publish any stream and check ```<AMS-FOLDER>/webapps/WebRTCAppEE/streams/streamId.m3u8``` file. You should see ```EXT-X-KEY``` parameters like below:
-
+```
     #EXTM3U
     #EXT-X-VERSION:3
     #EXT-X-TARGETDURATION:2
@@ -84,3 +84,4 @@ ActionScript
     #EXTINF:1,970000,
     streamId_0p0019.ts
     #EXTINF:2,090000,
+```

@@ -191,14 +191,14 @@ If you want to monitor Ant Media Server, you need to set the IP address of your 
     ```/opt/kafka/bin/kafka-console-consumer.sh --bootstrap-server 192.168.1.230:9092 --topic ams-instance-stats --from-beginning```
     
     Output should be something like below:
-    
+```    
         {"instanceId":"a06e5437-40ee-49c1-8e38-273544964335","cpuUsage":
         {"processCPUTime":596700000,"systemCPULoad":0,"processCPULoad":1},"jvmMemoryUsage": 
         {"maxMemory":260046848,"totalMemory":142606336,"freeMemory":21698648,"inUseMemory":120907688},"systemInfo": 
         {"osName":"Linux","osArch":"amd64","javaVersion":"1.8","processorCount":1},"systemMemoryInfo":
         ...
     
-
+```
 #### Some Useful Apache Kafka commands
 
 *   List all topics
@@ -223,34 +223,34 @@ Install Elasticsearch and Logstash
 ### Install Elasticseach
 
 **1.** Import GPG key and Repo
-
+```
     wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
     sudo apt-get install apt-transport-https
     echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list
-
+```
 **2.** Update package lists and install elastic search
-
+```
     sudo apt-get update && sudo apt-get install elasticsearch
-
+```
 **3.** Enable and start elasticsearch service
-
+```
     sudo systemctl enable elasticsearch.service
     sudo systemctl start elasticsearch.service
-
+```
 #### Install Logstash
 
 Logstash is a server‑side data processing pipeline that ingests data from multiple sources simultaneously, transforms it and then sends it to a “stash” like Elasticsearch
 
 **1.** Update your package lists, then install ```logstash``` with the following command
-
+```
     sudo apt-get update && sudo apt-get install logstash
-
+```
 **2.** Enable logstash service
-
+```
     sudo systemctl enable logstash.service
-
+```
 **3.** Configure logstash. Create **/etc/logstash/conf.d/logstash.conf** file and add below content. Please don't forget to replace ```kafka_server_ip``` and make sure ```elasticsearch_ip``` is correct.
-
+```
     #kafka
     input {
       kafka {
@@ -273,11 +273,11 @@ Logstash is a server‑side data processing pipeline that ingests data from mult
       }
       stdout { codec =>` rubydebug }
     }
-
+```
 **4.** Save and close the file, then restart ```logstash``` service
-
+```
     sudo systemctl restart logstash
-
+```
 #### Test Elasticsearch and Logstash Configuration
 
 You can test that Elasticsearch and Logstash are working correctly with the command below.
@@ -350,11 +350,11 @@ You can define an alert in Grafana and it can notify when specific events happen
         https://api.telegram.org/bot{USE_YOUR_ACCESS_TOKEN}/getUpdates
     
 *   You will get the lines like below.
-    
+```    
         {"ok":true,"result":[{"update_id":222389875,
         "channel_post":{"message_id":2,"chat": 
         {"id":-1001181377238,"title":"test","type":"channel"},"date":1587016720,"text":"test"}}]}
-    
+```    
 *   Save the id number: ```-1001181377238``` because we'll need it in next step
 
 #### Configure Grafana Notification
@@ -388,11 +388,11 @@ We prefer to use SSL termination.
 Run the following commands to install Nginx and certbot
 
 ```sudo apt install curl ca-certificates lsb-release -y```
-
+```
     echo "deb http://nginx.org/packages/`lsb_release -d | awk '{print $2}' | tr '[:upper:]' '[:lower:]'` `lsb_release -cs` nginx" \
 
         | sudo tee /etc/apt/sources.list.d/nginx.list
-
+```
 Now import an official Nginx signing key
 
 ```curl -fsSL https://nginx.org/keys/nginx_signing.key | sudo apt-key add -```
@@ -419,7 +419,7 @@ Backup default Nginx configuration
 Create a new file called ```grafana.conf``` and edit and save the following lines according to you.
 
 ```vim /etc/nginx/conf.d/grafana.conf```
-
+```
     server {
     	listen 443 ssl;
             server_name yourdomain.com;
@@ -442,7 +442,7 @@ Create a new file called ```grafana.conf``` and edit and save the following line
                 }
     }
     
-
+```
 You can reach Grafana as follows.
 
 ```https://yourdomain.com/```
@@ -474,14 +474,14 @@ Edit the following file then change pipeline.workes according to your CPU cores.
 **3.** Ensure that the consumer\_threads parameter matches the number of partitions that are specified in the Apache Kafka configuration. If you specify fewer partitions than consumer threads, some threads remain idle while they wait for an available partition.
 
 ```/etc/logstash/conf.d/logstash.conf```
-
+```
     input {
       kafka {
         bootstrap_servers =>` "kafka_ip:9092"
         client_id =>` "logstash"
         group_id =>` "logstash"
         consumer_threads =>` 4
-
+```
 You can find out how many partitions Kafka has by following the command below. And you can equate the number of consumer\_threads to the number of partitions.
 
 ```./kafka-topics.sh --describe --zookeeper 127.0.0.1:2181 --topic ams-instance-stats```
@@ -491,7 +491,7 @@ If you want to increase the partition number in Kafka, you can use the following
 ```./kafka-topics.sh --zookeeper 127.0.0.1:2181 --alter --topic ams-instance-stats --partitions 4```
 
 **4.** Comment the setting for syslog logging ```stdout { codec =>` rubydebug }``` from /etc/logstash/conf.d/logstash.conf file.
-
+```
     input {
       kafka {
         bootstrap_servers =>` "kafka_ip:9092"
@@ -513,7 +513,7 @@ If you want to increase the partition number in Kafka, you can use the following
       }
     #  stdout { codec =>` rubydebug }
     }
-
+```
 Finally, restart logstash and kafka service.
 
 ```systemctl restart logstash && systemctl restart kafka```

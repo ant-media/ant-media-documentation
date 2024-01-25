@@ -222,7 +222,7 @@ Before moving forward with using WebRTC Flutter SDK, we highly recommend using t
     ant_media_flutter: ^*.*.*   # latest version
 
 **Initialise** **imports and request permission from Flutter-SDK**
-
+```
     import 'package:ant_media_flutter/ant_media_flutter.dart';
 
     AntMediaFlutter.requestPermissions();
@@ -230,7 +230,7 @@ Before moving forward with using WebRTC Flutter SDK, we highly recommend using t
     if (Platform.isAndroid) {
         AntMediaFlutter.startForegroundService();
       }
-
+```
 **Set stream Id and server URL**
 
 The method below is used to publish a stream.
@@ -244,7 +244,7 @@ The method below is used to publish a stream.
 #### **How to use the SDK.**
 
 There is a common function used in ant\_media\_flutter.dart to achieve the functionalities of the Publish, Play,  Peer, Conference and DataChannel module. In this function we can pass  streamId,  server address ,  roomId ,  type of calling and all the callback functions which are described below  as parameters.  The method below is used as the common function.
-
+```
     static void connect (
     String ip, 
     String streamId, 
@@ -275,7 +275,7 @@ There is a common function used in ant\_media\_flutter.dart to achieve the funct
            forDataChannel )  
           ..connect(type);
     }
-
+```
 Here are the small description of all parameters
 
 1\. **Ip** :- ip is the WebRTC server address which we want to use in our SDK, the format of this server is as follows. 

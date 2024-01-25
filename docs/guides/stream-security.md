@@ -318,13 +318,13 @@ Here is OBS settings for the Hash-Based Token
 ![](@site/static/img/ant-media-server-one-time-token(1).png)
 
 **WebRTC Publishing:** Hash parameter should be inserted to publish WebSocket messages.
-
+```
     {
     command : "publish",
     streamId : "stream1",
     token : "hash",
     }
-
+```
 ### Playing Scenario
 
 **Step 1. Generate a Hash**
@@ -338,17 +338,17 @@ You need to generate a hash value using the formula sha256(STREAM\_ID + ROLE + S
 **Step 2. Request with Hash**
 
 **Live Stream/VoD Playing:** Same as publishing, the hash parameter is added to the URL. Sample URL:
-
+```
     http://[IP_Address]/`<Application_Name>`/streams/`<Stream_Id_or_Source_Name>`?token=hash
-
+```
 **WebRTC Playing:** Again the hash parameter should be inserted to play WebSocket message.
-
+```
     {
     command : "play",
     streamId : "stream1",
     token : "hash",
     }
-
+```
 > Please have a look at the principles described in the [WebRTC WebSocket page](https://antmedia.io/docs/guides/publish-live-stream/webrtc/webrtc-websocket-messaging-reference/).
 
 ### Evaluation of the Hash
