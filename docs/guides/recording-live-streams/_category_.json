@@ -1,6 +1,6 @@
 {
     "label": "Recording live streams",
-    "position": 3,
+    "position": 4,
     "link": {
       "type": "generated-index",
       "description": "Enable recording live streams with Ant Media Server"

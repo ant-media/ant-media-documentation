@@ -2,13 +2,12 @@
 title: Stream security 
 description: This guide explains stream security options in Ant Media Server, and how you can Enable Disable, or Accept Undefined Streams.
 keywords: [Enable or Disable Undefined Streams, Accept Undefined Streams, One Time Token Control, Stream security, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 4
+sidebar_position: 14
 ---
 
 # Stream security
 
 This guide explains stream security options in Ant Media Server. 
-
 
 ## One Time Token Control
 
@@ -301,7 +300,7 @@ You need to generate a hash value using the formula ```sha256(STREAM_ID+ROLE+SEC
 
 **Step 2. Request with Hash**
 
-The system controls hash validity during publishing or playing. **Keep in mind that there is NO '+' in calculating the hash in this formula** ```**sha256(STREAM_ID+ROLE+SECRET)**``` Here is an example for that.
+The system controls hash validity during publishing or playing. **Keep in mind that there is NO '+' in calculating the hash in this formula** ```**sha256(STREAM_ID+ROLE+SECRET)**``` Here is an example for that.
 
 Let's say ```STREAM_ID: stream1```, ```ROLE: publish```, ```SECRET: this_is_secret``` Your hash is the result of this calculation: ```sha256(stream1publishthis_is_secret)```
 
@@ -318,13 +317,13 @@ Here is OBS settings for the Hash-Based Token
 ![](@site/static/img/ant-media-server-one-time-token(1).png)
 
 **WebRTC Publishing:** Hash parameter should be inserted to publish WebSocket messages.
-```
+
     {
     command : "publish",
     streamId : "stream1",
     token : "hash",
     }
-```
+
 ### Playing Scenario
 
 **Step 1. Generate a Hash**
@@ -338,17 +337,17 @@ You need to generate a hash value using the formula sha256(STREAM\_ID + ROLE + S
 **Step 2. Request with Hash**
 
 **Live Stream/VoD Playing:** Same as publishing, the hash parameter is added to the URL. Sample URL:
-```
+
     http://[IP_Address]/`<Application_Name>`/streams/`<Stream_Id_or_Source_Name>`?token=hash
-```
+
 **WebRTC Playing:** Again the hash parameter should be inserted to play WebSocket message.
-```
+
     {
     command : "play",
     streamId : "stream1",
     token : "hash",
     }
-```
+
 > Please have a look at the principles described in the [WebRTC WebSocket page](https://antmedia.io/docs/guides/publish-live-stream/webrtc/webrtc-websocket-messaging-reference/).
 
 ### Evaluation of the Hash
