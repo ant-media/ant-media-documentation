@@ -9,7 +9,6 @@ sidebar_position: 14
 
 This guide explains stream security options in Ant Media Server. 
 
-
 ## One Time Token Control
 
 One Time Token Control feature usage is in Dashboard / Application(LiveApp or etc.) / Publish/Play with One-time Tokens section.
