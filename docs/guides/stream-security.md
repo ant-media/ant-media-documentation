@@ -318,13 +318,13 @@ Here is OBS settings for the Hash-Based Token
 ![](@site/static/img/ant-media-server-one-time-token(1).png)
 
 **WebRTC Publishing:** Hash parameter should be inserted to publish WebSocket messages.
-
+```
     {
     command : "publish",
     streamId : "stream1",
     token : "hash",
     }
-
+```
 ### Playing Scenario
 
 **Step 1. Generate a Hash**
