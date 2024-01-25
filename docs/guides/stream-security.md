@@ -342,13 +342,13 @@ You need to generate a hash value using the formula sha256(STREAM\_ID + ROLE + S
     http://[IP_Address]/`<Application_Name>`/streams/`<Stream_Id_or_Source_Name>`?token=hash
 
 **WebRTC Playing:** Again the hash parameter should be inserted to play WebSocket message.
-
+```
     {
     command : "play",
     streamId : "stream1",
     token : "hash",
     }
-
+```
 > Please have a look at the principles described in the [WebRTC WebSocket page](https://antmedia.io/docs/guides/publish-live-stream/webrtc/webrtc-websocket-messaging-reference/).
 
 ### Evaluation of the Hash
@@ -453,10 +453,10 @@ To utilize subscriber block for play, first enable TOTP(Time-based One-Time Pass
 ![](@site/static/img/stream-security/subscriber_block_enable_play_totp.png)
 
 Instead of using the UI for activation, you can alternatively set the parameters 
-    
+ ```   
     timeTokenSubscriberOnly=true
     timeTokenSecretForPlay="O24FW6"
-    
+   ``` 
 
 in the advanced section of the app settings.
 
