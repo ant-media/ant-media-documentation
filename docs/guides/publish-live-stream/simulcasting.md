@@ -56,7 +56,9 @@ Congratulations! The stream is live on Facebook.
 
 :::info
 
-YouTube does not accept streams without audio, thus your stream needs to include audio.
+- YouTube does not accept streams without audio, thus your stream needs to include audio.
+
+- In addition, [this link](https://support.google.com/youtube/answer/1722171?hl=en#zippy=) provides suggested upload encoding settings for YouTube streaming.
 
 :::
 
