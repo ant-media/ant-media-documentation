@@ -40,9 +40,11 @@ rtmps://live-api-s.facebook.com:443/rtmp/FB-7359771564075190-0-AbwqSZYF2WgvXCVc
 
 ### Add the RTMPs endpoint to the stream
 
-1. Go to the Live streams section of your application on the Ant Media Server web panel and click on the hamburger icon located at the extreme right of your screen.
+1. Go to the Live Stream section of your application on the Ant Media Server then to New Live Streams and create the stream as per your need.
 
-2. Click on **Edit RTMP Endpoint**.
+2. Go to the stream you want to restream and click on the hamburger icon located at the extreme right of the screen.
+
+3. Click on **Edit RTMP Endpoint**.
 
 ![](@site/static/img/publish-live-stream/simulcasting/edit-endpoint.png)
 
@@ -85,9 +87,11 @@ rtmp://a.rtmp.youtube.com/live2/dq1j-waph-e322-waxd-dxzd
 ```
 ### Add the RTMP endpoint to the stream
 
-1. Go to the Live streams section of your application on the Ant Media Server web panel and click on the hamburger icon located at the extreme right of your screen.
+1. Go to the Live Stream section of your application on the Ant Media Server then to New Live Streams and create the stream as per your need.
 
-2. Click on **Edit RTMP Endpoint**.
+2. Go to the stream you want to restream and click on the hamburger icon located at the extreme right of the screen.
+
+3. Click on **Edit RTMP Endpoint**.
 
 ![](@site/static/img/publish-live-stream/simulcasting/edit-endpoint.png)
 
@@ -103,7 +107,7 @@ Congratulations! The stream is live on YouTube.
 
 1. Login to your [Twitch](https://www.twitch.tv/) account.
 
-2. Navigate to profile icon on the top right and go to **Creator Dashboard**
+2. Navigate to the profile icon on the top right and go to **Creator Dashboard**
 
 ![](@site/static/img/publish-live-stream/simulcasting/twitch-account.png)
 
@@ -125,9 +129,11 @@ rtmp://del01.contribute.live-video.net/app/live_1019144780_gAWcIi9n8WTjQY5WvxHCa
 
 ### Add the RTMP endpoint to the stream
 
-1. Go to the Live streams section of your application on the Ant Media Server web panel and click on the hamburger icon located at the extreme right of your screen.
+1. Go to the Live Stream section of your application on the Ant Media Server then to New Live Streams and create the stream as per your need.
 
-2. Click on **Edit RTMP Endpoint**.
+2. Go to the stream you want to restream and click on the hamburger icon located at the extreme right of the screen.
+
+3. Click on **Edit RTMP Endpoint**.
 
 ![](@site/static/img/publish-live-stream/simulcasting/edit-endpoint.png)
 
