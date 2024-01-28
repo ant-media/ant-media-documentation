@@ -104,10 +104,6 @@ const config = {
           to: '/guides/clustering-and-scaling/aws/enabling-ip-filtering-behind-load-balancer-in-aws/'
         },
         {
-          from: '/guides/developer-sdk-and-api/rest-api-guide/stream-security/',
-          to: '/guides/stream-security/'
-        },
-        {
           from: '/guides/clustering-and-scaling/aws/Configuring-RTMP-LB-in-AWS/',
           to: '/guides/clustering-and-scaling/aws/configuring-rtmp-lb-in-aws/'
         },
