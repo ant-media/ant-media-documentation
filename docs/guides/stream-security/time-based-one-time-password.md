@@ -189,7 +189,7 @@ Here is the Rest API sample.
 curl -X 'PUT' 'http://IP-address-or-domain:5080/Application_Name/rest/v2/broadcasts/streamId/subscribers/subscriberId/block/120/publish_play' -H 'accept: application/json'
 ```
 
-## TOTP Usage with streaming protocols
+## TOTP usage with streaming protocols
 
 In this section, we will look at how to use the TOTP token with various streaming protocols for publishing and playback.
 
