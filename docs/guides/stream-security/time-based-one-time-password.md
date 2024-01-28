@@ -70,7 +70,7 @@ By default, the TOTP generated for playback remains valid for 60 seconds after i
 
 If required, you can change the default TOTP time by changing the below property in the application settings.
 
-      "timeTokenPeriod": 60
+```"timeTokenPeriod": 60```
 
 Now, all application settings can be changed from the AMS web panel itself. Please check [here](https://antmedia.io/docs/guides/configuration-and-testing/ams-application-configuration/#management-panel-settings) for more information.
 
