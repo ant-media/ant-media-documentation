@@ -55,7 +55,7 @@ Expire Date format is in Unix Timestamp. You can get the timestamp [here](https:
 
 ## JWT Token usage with streaming protocols
 
-In this section, we will look at how to use the TOTP token with various streaming protocols for publishing and playback.
+In this section, we will look at how to use the JWT token with various streaming protocols for publishing and playback.
 
 ### RTMP, SRT and WebRTC Publish URL usage
 
@@ -88,7 +88,6 @@ ws://{ant-media-server}:5080/WebRTCAppEE/websocket
   token : "token",
 }
 ```
-
 
 For example, here are the OBS settings for the One Time Token.
 
