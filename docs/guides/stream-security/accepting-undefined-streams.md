@@ -15,6 +15,6 @@ You can find more details about AMS application properties [here](https://antmed
 
 If this setting is disabled, then first register stream on the server by creating a live stream in the application with stream Id and stream name.
 
-![](@site/static/img/stream-security/accept-undefined-streams/create-broadcast.png)
+![](@site/static/img/stream-security/create-broadcast.png)
 
 Now only the live stream with created streamId will be published on the server and rest other unregistered streams will be rejected.
