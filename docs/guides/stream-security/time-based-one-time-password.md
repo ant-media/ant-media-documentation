@@ -76,7 +76,7 @@ Now, all application settings can be changed from the AMS web panel itself. Plea
 
 As mentioned in Subscribers Operations, you can also generate the TOTP token directly without pre-registering the subscriber.
 
-### The sample TOTP token creation API in the Publish Scenario:
+### The sample TOTP token creation API in the Publish Scenario
 
 ```bash
 curl -X 'GET' 'http://IP-adddress-or-domain:5080/Application_Name/rest/v2/broadcasts/streamId/subscribers/SubscriberId/totp?type=publish'-H 'accept: application/json'
@@ -84,7 +84,7 @@ curl -X 'GET' 'http://IP-adddress-or-domain:5080/Application_Name/rest/v2/broadc
 
 ![](@site/static/img/stream-security/subscriber_block_publish_totp_postman.png)
 
-### The sample TOTP token creation API in the Player Scenario:
+### The sample TOTP token creation API in the Player Scenario
 
 ```bash
 curl -X 'GET' 'http://IP-adddress-or-domain:5080/Application_Name/rest/v2/broadcasts/streamId/subscribers/SubscriberId/totp?type=play'-H 'accept: application/json'
