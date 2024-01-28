@@ -11,7 +11,7 @@ You can enable One Time Token for publishing and playing from the application's 
 
 Sending a token parameter with every publish request and play request is required if one-time token control is enabled. There will be an unauthorized access error if there is no token.
 
-### Generate One Time Token
+## Generate One Time Token
 
 The token can be generated with [one-time token](https://antmedia.io/rest/#/BroadcastRestService/getTokenV2) Rest API, gets ```streamId```, ```expireDate``` and ```type``` as query parameters. The service returns tokenId and other parameters as a response. 
 
@@ -30,6 +30,10 @@ curl -X 'GET' 'https://IP-address-or-domain:5443/Application_Name/rest/v2/broadc
 ```
 
 Expire Date format is in Unix Timestamp. You can get the timestamp [here](https://www.epochconverter.com/).
+
+## One Time Token usage with streaming protocols
+
+In this section, we will look at how to use the One Time token with various streaming protocols for publishing and playback.
 
 ### RTMP, SRT and WebRTC Publish URL usage
 
