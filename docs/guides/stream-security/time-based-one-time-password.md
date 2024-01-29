@@ -16,7 +16,6 @@ You can enable TOTP for publishing and playing from the application's settings v
 To create a token, a secret key is required, which you can generate by clicking the `Generate` option in the dashboard, as shown in the above screenshot.
 
 :::info
-
 By default, the secret key is 6 bytes long when you click Generate, but in order to pre-register the subscriber, the secret key should be 8 bytes long, as shown in the screenshot above.
 :::
 
@@ -71,13 +70,13 @@ By default, the TOTP generated for playback remains valid for 60 seconds after i
 
 If required, you can change the default TOTP time by changing the below property in the application settings.
 
-      "timeTokenPeriod": 60
+```"timeTokenPeriod": 60```
 
 Now, all application settings can be changed from the AMS web panel itself. Please check [here](https://antmedia.io/docs/guides/configuration-and-testing/ams-application-configuration/#management-panel-settings) for more information.
 
 As mentioned in Subscribers Operations, you can also generate the TOTP token directly without pre-registering the subscriber.
 
-### The sample TOTP token creation API in the Publish Scenario:
+### The sample TOTP token creation API in the Publish Scenario
 
 ```bash
 curl -X 'GET' 'http://IP-adddress-or-domain:5080/Application_Name/rest/v2/broadcasts/streamId/subscribers/SubscriberId/totp?type=publish'-H 'accept: application/json'
@@ -85,7 +84,7 @@ curl -X 'GET' 'http://IP-adddress-or-domain:5080/Application_Name/rest/v2/broadc
 
 ![](@site/static/img/stream-security/subscriber_block_publish_totp_postman.png)
 
-### The sample TOTP token creation API in the Player Scenario:
+### The sample TOTP token creation API in the Player Scenario
 
 ```bash
 curl -X 'GET' 'http://IP-adddress-or-domain:5080/Application_Name/rest/v2/broadcasts/streamId/subscribers/SubscriberId/totp?type=play'-H 'accept: application/json'
@@ -190,7 +189,7 @@ Here is the Rest API sample.
 curl -X 'PUT' 'http://IP-address-or-domain:5080/Application_Name/rest/v2/broadcasts/streamId/subscribers/subscriberId/block/120/publish_play' -H 'accept: application/json'
 ```
 
-## TOTP Usage with streaming protocols
+## TOTP usage with streaming protocols
 
 In this section, we will look at how to use the TOTP token with various streaming protocols for publishing and playback.
 

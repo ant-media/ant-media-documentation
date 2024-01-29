@@ -9,7 +9,7 @@ This application setting is checking if the live stream is registered on Ant Med
 
 ![undefined-streams](https://github.com/ant-media/ant-media-documentation/assets/86982446/f456c3e9-dbae-42af-8a6f-34ee0aa177e8)
 
-For example, if Ant Media Server accepts undefined streams, it will accept any incoming streams. If `Accept Undefined Streams` option is disabled in application settings, then only streams with their stream id in the database are being accepted by Ant Media Server.
+For example, if Ant Media Server accepts undefined streams, it will accept any incoming streams. If the `Accept Undefined Streams` option is disabled in application settings, then only streams with their streamId in the database are being accepted by Ant Media Server.
 
 You can find more details about AMS application properties [here](https://antmedia.io/docs/guides/configuration-and-testing/ams-application-configuration/)
 

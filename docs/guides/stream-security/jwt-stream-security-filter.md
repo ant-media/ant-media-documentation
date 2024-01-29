@@ -11,7 +11,7 @@ You can enable JWT Stream Security Filter for publishing and playing from the ap
 
 Sending a token parameter with every publish request and play request is required if the JWT token is enabled. There will be an unauthorized access error if there is no token.
 
-### Generate JWT Token
+## Generate JWT Token
 
 JWT Token can be generated in two ways. One way to generate is using the [JWT debugger](https://jwt.io/#debugger-io) and other way is to generate the token using the [JWT token Rest API](https://antmedia.io/rest/#/BroadcastRestService/getJwtTokenV2).
 
@@ -25,7 +25,7 @@ and other parameters as a response.
    
  - To generate the JWT token, a `Secret key` is also necessary. Once you enable the JWT token for publish or play in application settings, you need to generate the secret key as shown in the above screenshot.
 
-#### Generate JWT Token with Debugger
+### Generate JWT Token with Debugger
 
 Let's assume that our secret key is ```zautXStXM9iW3aD3FuyPH0TdK4GHPmHq``` so now we need to create a JWT token. Luckily, there are plenty of [libraries available for JWT](https://jwt.io/#libraries-io) for your development. For our case, we will just use [Debugger at JWT](https://jwt.io/#debugger-io).
 
@@ -37,7 +37,7 @@ After passing all the required details, our token will be generated.
 
 As shown above, the expiration time of the token is March 8, 2021, 02:14:08 GMT+3. It means that you can use the generated token until the expiration time. The unit of expiration time is [unix timestamp](https://www.unixtimestamp.com/). When it expires, the JWT token becomes invalid.
 
-#### Generate JWT Token with REST API
+### Generate JWT Token with REST API
 
  - The sample JWT token creation API in the Publish Scenario:
 
@@ -53,7 +53,11 @@ curl -X 'GET' 'https://IP-address-or-domain:5443/Application_Name/rest/v2/broadc
 
 Expire Date format is in Unix Timestamp. You can get the timestamp [here](https://www.epochconverter.com/).
 
-### RTMP, SRT and WebRTC Publish URL usage with token
+## JWT Token usage with streaming protocols
+
+In this section, we will look at how to use the JWT token with various streaming protocols for publishing and playback.
+
+### RTMP, SRT and WebRTC Publish URL usage
 
 **RTMP:**
 `rtmp://IP-address-or-domain/Application_Name/StreamId?token=tokenId`
@@ -85,7 +89,7 @@ ws://{ant-media-server}:5080/WebRTCAppEE/websocket
 }
 ```
 
-### VoD, HLS, CMAF (DASH) and WebRTC Playback URL usage with token
+### VoD, HLS, CMAF (DASH) and WebRTC Playback URL usage
 
 **VOD:**
 

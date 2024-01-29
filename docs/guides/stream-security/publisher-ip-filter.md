@@ -5,11 +5,11 @@ keywords: [Enable or Disable Undefined Streams, Accept Undefined Streams, One Ti
 sidebar_position: 6
 ---
 
-Publisher IP filter feature allows you to specify the IP addresses allowed for publishing. You can define multiple allowed IPs in CIDR format as comma (,) separated.
-
 :::info
 Publisher IP Filter feature currently works only for the RTMP publishing.
 :::
+
+Publisher IP filter feature allows you to specify the IP addresses allowed for publishing. You can define multiple allowed IPs in CIDR format as comma (,) separated.
 
 You can make changes in Publisher IP Filter from the application's advance settings via the AMS web panel.
 

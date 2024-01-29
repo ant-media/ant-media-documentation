@@ -33,6 +33,7 @@ But if the hash is not valid then below error will be generated.
 
 ![](@site/static/img/stream-security/hash-invalid.png)  
 
+
 ## Generate Hash-based Token
 
  In order to generate the Hash token, go to [JavaScript SHA-256](https://geraintluff.github.io/sha256/).
@@ -45,14 +46,14 @@ ROLE: It is either "play or "publish"
 SECRET: This is tokenHashSecret (defined in the application settings above)
 ```
 
-### The sample Hash token creation in the Publish Scenario:
+### The sample Hash token creation in the Publish Scenario
 
 Let's say ```STREAM_ID: stream1```, ```ROLE: publish```, ```SECRET: testtest``` Your hash is the result of this calculation: ```sha256(stream1publishtesttest)```
 
 
 ![](@site/static/img/stream-security/hash-publish.png)  
 
-### The sample Hash token creation in the Play Scenario:
+### The sample Hash token creation in the Play Scenario
 
 Let's say ```STREAM_ID: stream1```, ```ROLE: play```, ```SECRET: testtest``` Your hash is the result of this calculation: ```sha256(stream1publishtesttest)```
 
@@ -61,6 +62,8 @@ Let's say ```STREAM_ID: stream1```, ```ROLE: play```, ```SECRET: testtest``` You
 
 
 ## Hash-based token Usage with streaming protocols
+
+In this section, we will look at how to use the Hash-based token with various streaming protocols for publishing and playback.
 
 ### RTMP, SRT and WebRTC Publish URL usage
 
