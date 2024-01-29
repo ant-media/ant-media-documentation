@@ -48,7 +48,7 @@ rtmps://live-api-s.facebook.com:443/rtmp/FB-7359771564075190-0-AbwqSZYF2WgvXCVc
 
 ![](@site/static/img/publish-live-stream/simulcasting/edit-endpoint.png)
 
-3. Add the Facebook RTMPs endpoint and click **Add RTMP endpoint**
+4. Add the Facebook RTMPs endpoint and click **Add RTMP endpoint**
 
 ![](@site/static/img/publish-live-stream/simulcasting/add-endpoint.png)
 
@@ -95,7 +95,7 @@ rtmp://a.rtmp.youtube.com/live2/dq1j-waph-e322-waxd-dxzd
 
 ![](@site/static/img/publish-live-stream/simulcasting/edit-endpoint.png)
 
-3. Add the YouTube's RTMP endpoint and click **Add RTMP endpoint**
+4. Add the YouTube's RTMP endpoint and click **Add RTMP endpoint**
 
 ![](@site/static/img/publish-live-stream/simulcasting/add-youtube-endpoint.png)
 
@@ -137,7 +137,7 @@ rtmp://del01.contribute.live-video.net/app/live_1019144780_gAWcIi9n8WTjQY5WvxHCa
 
 ![](@site/static/img/publish-live-stream/simulcasting/edit-endpoint.png)
 
-3. Add your Twitch RTMPs endpoint and click **Add RTMP endpoint**
+4. Add your Twitch RTMPs endpoint and click **Add RTMP endpoint**
 
 ![](@site/static/img/publish-live-stream/simulcasting/twitch-endpoint.png)
 
