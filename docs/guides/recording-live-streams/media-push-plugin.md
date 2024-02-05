@@ -2,6 +2,9 @@
 
 Media Push Plugin can stream everything on the given web page with video and audio in realtime.
 
+# How Media Push Works
+Media Push opens up a Headless chrome on the server side , a user can send a REST request with a URL of the page that is desired to be recorded , when the request is received on the server side a new chrome tab is opened with the URL , as soon as the page gets loaded the screen is recorded using Media Stream APIs and re-streamed back to Ant Media Server , from where you can record the stream or play back the stream using WebRTC HLS or Dash.
+
 ## Features
 
 ### 1. Broadcast the whole web page
@@ -80,6 +83,8 @@ Call the REST Method below to let Ant Media Server with the stream id you specif
    ```
    curl -i -X POST -H "Accept: Application/json" "https://<ant-media-server-domain>/<your-webapp-name>/rest/v1/media-push/stop/{composite-layout-publisher-id}"
    ```
+
+https://github.com/ant-media/ant-media-documentation/assets/47350008/ddb033c6-22a0-4a1b-9cbb-945b71eb1867
 
 * Update the Composite Layout UI
 
