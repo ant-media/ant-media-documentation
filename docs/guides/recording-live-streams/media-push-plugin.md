@@ -65,9 +65,9 @@ Call the REST Method below to let Ant Media Server with the stream id you specif
   ```
   wget https://github.com/ant-media/Plugins/raw/master/MediaPushPlugin/build/composite_layout.html
   ```
-2. Copy the composite_layout.html file into directory under /usr/local/antmedia/webapps/<your-webapp-name>/
+2. Copy the composite_layout.html file into directory under /usr/local/antmedia/webapps/your-webapp-name/
   ```
-  sudo cp media_push.html /usr/local/antmedia/webapps/<your-webapp-name>/composite_layout.html
+  cp composite_layout.html /usr/local/antmedia/webapps/<your-webapp-name>/
   ```
 
 ### How to use Composite Layout
