@@ -50,6 +50,8 @@ Call the REST Method below to let Ant Media Server with the stream id you specif
    curl -i -X POST -H "Accept: Application/json" "https://<ant-media-server-domain>/<your-webapp-name>/rest/v1/media-push/stop/{streamId}"
    ```
 
+https://github.co m/ant-media/ant-media-documentation/assets/47350008/ddb033c6-22a0-4a1b-9cbb-945b71eb1867
+
 * Send javascript command to a webpage with given stream id
 
 Call the REST Method below to let Ant Media Server with the stream id you specified in the start method. You should pass the javascript command in the body.
@@ -84,7 +86,6 @@ Call the REST Method below to let Ant Media Server with the stream id you specif
    curl -i -X POST -H "Accept: Application/json" "https://<ant-media-server-domain>/<your-webapp-name>/rest/v1/media-push/stop/{composite-layout-publisher-id}"
    ```
 
-https://github.com/ant-media/ant-media-documentation/assets/47350008/ddb033c6-22a0-4a1b-9cbb-945b71eb1867
 
 * Update the Composite Layout UI
 
