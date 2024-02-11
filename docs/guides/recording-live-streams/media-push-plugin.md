@@ -105,7 +105,7 @@ Call the REST Method below to update the layout on the fly.
 - Clone the repository
 
   ```
-  git clone https://github.com/ant-media/Plugins
+  git clone https://github.com/ant-media/Plugins.git
   ```
 
 - Go to the Media Push Plugin directory
