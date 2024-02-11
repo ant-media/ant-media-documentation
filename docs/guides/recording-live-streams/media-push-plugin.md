@@ -59,7 +59,11 @@ Call the REST Method below to let Ant Media Server with the stream id you specif
    curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "https://<ant-media-server-domain>/<your-webapp-name>/rest/v1/media-push/send-command?streamId={streamId}"  -d '{"jsCommand": "{javascript_command_which_is_executed}"}'
    ```
 
-### Optional: How to add Composite Layout 
+### Optional: Composite Layout
+
+The composite layout is a HTML , you can think of it as a canvas where you can place multiple video streams, text, and images together. Using simple commands, you can adjust what's displayed on this canvas in real-time. Media push can record this HTML page and then , it becomes a live stream on Ant Media, offering lots of possibilities like adding text, images, and arranging videos however you like. It's a handy tool for creating dynamic and customized visuals without any complicated technical frameworks.
+
+## How to add Composite Layout 
 
 1. Download the composite_layout.html file
   ```
@@ -74,7 +78,7 @@ Call the REST Method below to let Ant Media Server with the stream id you specif
 
 * Start the Composite Layout
 
-Call the REST Method below to let Ant Media Server with the stream id you specified in the start method. You should pass the url, width and height in the body.
+Call the REST Method below to let Ant Media Server with the stream id you specified in the start method. You should pass the url, width and height in the body. 
    ```
    curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "https://<ant-media-server-domain>/<your-webapp-name>/rest/v1/media-push/start"  -d '{"url": "https://<ant-media-server-domain>/<your-webapp-name>/composite_layout.html?roomId=<room-name>&publisherId=<composite-layout-publisher-id>", "width": 1280, "height": 720}'
    ```
