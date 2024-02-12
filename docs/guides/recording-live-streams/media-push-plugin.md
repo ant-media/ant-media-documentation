@@ -58,6 +58,7 @@ Call the REST Method below to let Ant Media Server with the stream id you specif
    ```
    curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "https://<ant-media-server-domain>/<your-webapp-name>/rest/v1/media-push/send-command?streamId={streamId}"  -d '{"jsCommand": "{javascript_command_which_is_executed}"}'
    ```
+In the below example we are  ` document.write(\" hello how are you this is the text which is displayed on the browser  \") ` which will overwrite the content of the browser window with the message.
    ```
    curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "http://localhost:5080/LiveApp/rest/v1/media-push/send-command?streamId=stream111"  -d '{"jsCommand": "document.write(\" hello how are you this is the text which is displayed on the browser  \")"}'
    ```
