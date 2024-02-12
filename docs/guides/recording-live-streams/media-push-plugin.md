@@ -61,7 +61,7 @@ Call the REST Method below to let Ant Media Server with the stream id you specif
 
 ## Optional: Composite Layout
 
-The composite layout is a HTML , you can think of it as a canvas where you can place multiple video streams, text, and images together. Using simple commands, you can adjust what's displayed on this canvas in real-time. Media push can record this HTML page and then , it becomes a live stream on Ant Media, offering lots of possibilities like adding text, images, and arranging videos however you like. It's a handy tool for creating dynamic and customized visuals without any complicated technical frameworks.
+The composite layout is a HTML page, you can think of it as a canvas where you can place multiple video streams, text, and images together. Using simple commands, you can adjust what's displayed on this canvas in real-time. Media push can record this HTML page and then , it becomes a live stream on Ant Media, offering lots of possibilities like adding text, images, and arranging videos however you like. It's a handy tool for creating dynamic and customized visuals without any complicated technical frameworks.
 
 ### How to add Composite Layout 
 
