@@ -63,46 +63,6 @@ In the below example we are  ` document.write(\" hello how are you this is the t
    curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "http://localhost:5080/LiveApp/rest/v1/media-push/send-command?streamId=stream111"  -d '{"jsCommand": "document.write(\" hello how are you this is the text which is displayed on the browser  \")"}'
    ```
 
-## Optional: Composite Layout
-
-The composite layout is a HTML page, you can think of it as a canvas where you can place multiple video streams, text, and images together. Using simple commands, you can adjust what's displayed on this canvas in real-time. Media push can record this HTML page and then , it becomes a live stream on Ant Media, offering lots of possibilities like adding text, images, and arranging videos however you like. It's a handy tool for creating dynamic and customized visuals without any complicated technical frameworks.
-
-### How to add Composite Layout 
-
-1. Download the composite_layout.html file
-  ```
-  wget https://github.com/ant-media/Plugins/raw/master/MediaPushPlugin/build/composite_layout.html
-  ```
-2. Copy the composite_layout.html file into directory under /usr/local/antmedia/webapps/your-webapp-name/
-  ```
-  cp composite_layout.html /usr/local/antmedia/webapps/<your-webapp-name>/
-  ```
-
-### How to use Composite Layout
-
-* Start the Composite Layout
-
-Call the REST Method below to let Ant Media Server with the stream id you specified in the start method. You should pass the url, width and height in the body. 
-   ```
-   curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "https://<ant-media-server-domain>/<your-webapp-name>/rest/v1/media-push/start"  -d '{"url": "https://<ant-media-server-domain>/<your-webapp-name>/composite_layout.html?roomId=<room-name>&publisherId=<composite-layout-publisher-id>", "width": 1280, "height": 720}'
-   ```
-
-* Stop the Composite Layout
-
-Call the REST Method below to let Ant Media Server with the stream id you specified in the stop method.
-   ```
-   curl -i -X POST -H "Accept: Application/json" "https://<ant-media-server-domain>/<your-webapp-name>/rest/v1/media-push/stop/{composite-layout-publisher-id}"
-   ```
-
-
-* Update the Composite Layout UI
-
-Call the REST Method below to update the layout on the fly.
-   ```
-   curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "https://<ant-media-server-domain>/<your-webapp-name>/rest/v2/broadcasts/<composite-layout-publisher-id>/data"  -d '{"streamId":"streamId1","layoutOptions": {"canvas": {"width": 640,"height": 640},"layout": [{"streamId": "<room-participant-id>","region": {"xPos": 20,"yPos": 0,"zIndex": 1,"width": 200,"height": 200},"fillMode": "fill","placeholderImageUrl": "https://cdn-icons-png.flaticon.com/512/149/149071.png"}]}}' 
-   ```
-
-   
 ## How to Build from Source Code
 
 
