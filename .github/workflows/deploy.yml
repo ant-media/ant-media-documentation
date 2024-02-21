@@ -64,7 +64,7 @@ jobs:
 
     - name: Connect and upload
       run: |
-        scp -r docs.tar ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}":"
+        scp -o StrictHostKeyChecking=no -r docs.tar ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}":"
         ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "find /home/antmedia.io/public_html/docs/ -type f -not -name "*.tar" -not -path "/home/antmedia.io/public_html/docs/.ssh/*" -exec rm {} \; && tar -zxvf docs.tar && rm -rf docs.tar"
 
 
