@@ -55,7 +55,7 @@ jobs:
       run: npm run build
 
     - name: Package build artifacts
-      run: tar -zcvf docs.tar ./build
+      run: cd build && tar -zcvf ../doc.tar *
 
     - name: Install SSH keys
       run: |
