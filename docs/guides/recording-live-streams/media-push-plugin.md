@@ -58,11 +58,10 @@ Call the REST Method below to let Ant Media Server with the stream id you specif
    curl -i -X POST -H "Accept: Application/json" "https://<ant-media-server-domain>/<your-webapp-name>/rest/v1/media-push/stop/{streamId}"
    ```
 
-<video controls>  
-<source src="https://github-production-user-asset-6210df.s3.amazonaws.com/47350008/302210643-ddb033c6-22a0-4a1b-9cbb-945b71eb1867.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20240221%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240221T191341Z&X-Amz-Expires=300&X-Amz-Signature=fd47798063b0211641129443601fb90c29100ae371afd80cde3d8417c4332756&X-Amz-SignedHeaders=host&actor_id=82374739&key_id=0&repo_id=609822619" type="video/mp4"> 
-</video>
+https://github.com/ant-media/ant-media-documentation/assets/82374739/5be3aaa3-15fa-441f-8744-606f2c93bd98
 
 * Send javascript command to a webpage with given stream id
+
 
 Call the REST Method below to let Ant Media Server with the stream id you specified in the start method. You should pass the javascript command in the body.
    ```
