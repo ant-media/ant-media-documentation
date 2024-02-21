@@ -71,6 +71,6 @@ jobs:
         ls -alh 
         find / -iname "docs.tar"
         scp -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -r docs.tar ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}":"
-     #   ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "find /home/antmedia.io/public_html/docs/ -type f -not -name "*.tar" -not -path "/home/antmedia.io/public_html/docs/.ssh/*" -exec rm {} \; && tar -zxvf docs.tar && rm -rf docs.tar"
+        ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "find /home/antmedia.io/public_html/docs/ -type f -not -name "*.tar" -not -path "/home/antmedia.io/public_html/docs/.ssh/*" -exec rm {} \; && tar -zxvf docs.tar && rm -rf docs.tar"
 
 
