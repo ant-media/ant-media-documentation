@@ -10,20 +10,24 @@ on:
   workflow_dispatch:
   
 jobs:
-  run_pull:
-    name: Update Docs
+  run_docker:
+    name: Run Docker service
     runs-on: self-hosted
-    
-    container:
-      image: ubuntu:22.04
-
     steps:
     - name : Start docker service
       run: |
          sudo usermod -aG docker $USER
          newgrp docker
          sudo systemctl restart docker
-         
+  
+  run_build:
+    name: Update Docs
+    runs-on: self-hosted
+    
+    container:
+      image: ubuntu:22.04
+
+    steps:    
     - name: Checkout repository
       uses: actions/checkout@v3
 
