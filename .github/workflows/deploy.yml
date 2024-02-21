@@ -10,17 +10,7 @@ on:
 #      - '**/.github/**'
   workflow_dispatch:
   
-jobs:
-  run_docker:
-    name: Run Docker service
-    runs-on: self-hosted
-    steps:
-    - name : Start docker service
-      run: |
-         sudo usermod -aG docker $USER
-         newgrp docker
-         sudo systemctl restart docker
-  
+jobs:  
   run_build:
     name: Update Docs
     runs-on: self-hosted
@@ -36,25 +26,6 @@ jobs:
       run: |
         apt update 
         apt install -y openssh-client -y
-    - name: Make changes
-      run: |
-        sed -i "s^baseUrl:.*^baseUrl:'/docs',^" docusaurus.config.js
-        sed -i "s^appId.*^appId: '${{ secrets.ALGOLIA_APP_ID }}',^" docusaurus.config.js
-        sed -i "s^apiKey.*^apiKey: '${{ secrets.ALGOLIA_API_KEY }}',^" docusaurus.config.js
-
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18.x'
-
-    - name: Install dependencies
-      run: npm install
-
-    - name: Build
-      run: npm run build
-
-    - name: Package build artifacts
-      run: tar -zcvf docs.tar ./build
 
     - name: Install SSH keys
       run: |
@@ -62,12 +33,11 @@ jobs:
         install -m 600 -D /dev/null ~/.ssh/id_rsa
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
         ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
-        ls -alh ~/.ssh/
-
+        cat ~/.ssh/id_rsa
 
     - name: Connect and upload
       run: |
-        scp -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -r docs.tar ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}":"
-        ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "find /home/antmedia.io/public_html/docs/ -type f -not -name "*.tar" -not -path "/home/antmedia.io/public_html/docs/.ssh/*" -exec rm {} \; && tar -zxvf docs.tar && rm -rf docs.tar"
+        touch test.txt
+        scp -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -r test.txt ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}":"
 
 
