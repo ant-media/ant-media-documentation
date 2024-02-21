@@ -3,11 +3,10 @@ name: Update Docs
 on:
   push:
     branches:
-      - '*'
-#      - master
+      - master
     paths-ignore:
       - '**/README.md'
-#      - '**/.github/**'
+      - '**/.github/**'
   workflow_dispatch:
   
 jobs:
