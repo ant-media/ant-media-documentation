@@ -3,11 +3,10 @@ name: Update Docs
 on:
   push:
     branches:
-      - '*'
-#      - master
+      - master
     paths-ignore:
       - '**/README.md'
-#      - '**/.github/**'
+      - '**/.github/**'
   workflow_dispatch:
   
 jobs:
@@ -24,6 +23,7 @@ jobs:
   run_build:
     name: Update Docs
     runs-on: self-hosted
+    needs: run_docker
     
     container:
       image: ubuntu:22.04
@@ -54,7 +54,7 @@ jobs:
       run: npm run build
 
     - name: Package build artifacts
-      run: tar -zcvf docs.tar ./build
+      run: cd build && tar -zcvf ../docs.tar *
 
     - name: Install SSH keys
       run: |
