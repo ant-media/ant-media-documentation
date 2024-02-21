@@ -24,6 +24,7 @@ jobs:
   run_build:
     name: Update Docs
     runs-on: self-hosted
+    needs: run_docker
     
     container:
       image: ubuntu:22.04
