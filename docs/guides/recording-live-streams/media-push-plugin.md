@@ -1,44 +1,52 @@
-# Media Push Plugin
+---
+title: Media Push Plugin
+description: This guide explains how to stream and record any specific web page using the media push plugin
+keywords: [Media Push Plugin, Ant Media Server Documentation, Ant Media Server Tutorials]
+sidebar_position: 1
+---
 
-Media push is a Plugin that is build on top of Ant Media That can load any web URL and Stream it in real time.
+Media Push is a plugin that is built on top of Ant Media and can load any web URL and stream it in real time.
 
 # How Media Push Works
-Media Push opens up a Headless chrome on the server side , a user can send a REST request with a URL of the page that is desired to be recorded , when the request is received on the server side a new chrome tab is opened with the URL , as soon as the page gets loaded the screen is recorded using Media Stream APIs and re-streamed back to Ant Media Server , from where you can record the stream or play back the stream using WebRTC HLS or Dash.
+Media Push opens up a Headless Chrome on the server side. A user can send a REST request with the URL of the page that is desired to be recorded. When the request is received on the server side, a new Chrome tab is opened with the URL. As soon as the page gets loaded, the screen is recorded using Media Stream APIs and re-streamed back to Ant Media Server, from where you can record the stream or play back the stream using WebRTC HLS or Dash.
 
 ## Features
 
 ### 1. Broadcast the whole web page
 
-You can broadcast the whole web page with video and audio in realtime.
+You can broadcast the whole web page with video and audio in real time.
 
 ### 2. Record the broadcast if needed
 
-You can record the broadcast if needed. But you need to start the recording manually with REST Api or on Ant Media Server Dashboard.
+You can record the broadcast if needed. But you need to start the recording manually with the REST API or on the Ant Media Server Dashboard.
 
 ## How to Install 
 
-1. Connect your Ant Media Server Instance via terminal
-
-2. Get the installation script 
+ - Connect your Ant Media Server Instance via terminal
+ 
+ - Get the installation script 
   ```
   wget -O install_media-push-plugin.sh https://raw.githubusercontent.com/ant-media/Plugins/master/MediaPushPlugin/src/main/script/install_media-push-plugin.sh && chmod 755 install_media-push-plugin.sh
   ```
-3. Run the installation script
+ 
+ - Run the installation script
   ```
   sudo ./install_media-push-plugin.sh
   ```
-3. Restart the service
+  
+ - Restart the service
+
   ```
   sudo service antmedia restart
   ```
 
 ## How to Use
 
-Media Push Plugin have REST API to control the plugin. 
+Media Push Plugin has a REST API to control the plugin. 
 
 * Start the broadcast
 
-Call the REST Method below to let Ant Media Server broadcast the web page. You should pass the url of the web page and can pass streamId as query parameter you wanted to use as a parameter.
+Call the REST Method below to let Ant Media Server broadcast the web page. You should pass the url of the web page and you can pass streamId as the query parameter you want to use as a parameter.
    ```
    curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "https://<ant-media-server-domain>/<your-webapp-name>/rest/v1/media-push/start" -d '{"url": "http://example.com", "width": 1280, "height": 720}'
    ```
@@ -50,7 +58,7 @@ Call the REST Method below to let Ant Media Server with the stream id you specif
    curl -i -X POST -H "Accept: Application/json" "https://<ant-media-server-domain>/<your-webapp-name>/rest/v1/media-push/stop/{streamId}"
    ```
 
-https://github.com/ant-media/ant-media-documentation/assets/47350008/ddb033c6-22a0-4a1b-9cbb-945b71eb1867
+![Alt text](https://github.com/ant-media/ant-media-documentation/assets/47350008/ddb033c6-22a0-4a1b-9cbb-945b71eb1867)
 
 * Send javascript command to a webpage with given stream id
 
