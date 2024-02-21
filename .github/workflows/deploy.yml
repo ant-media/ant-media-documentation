@@ -58,13 +58,16 @@ jobs:
 
     - name: Install SSH keys
       run: |
+        ls -alh
         install -m 600 -D /dev/null ~/.ssh/id_rsa
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
         ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
+        ls -alh ~/.ssh/
+
 
     - name: Connect and upload
       run: |
-        scp -o StrictHostKeyChecking=no -r docs.tar ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}":"
+        scp -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -r docs.tar ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}":"
         ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "find /home/antmedia.io/public_html/docs/ -type f -not -name "*.tar" -not -path "/home/antmedia.io/public_html/docs/.ssh/*" -exec rm {} \; && tar -zxvf docs.tar && rm -rf docs.tar"
 
 
