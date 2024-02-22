@@ -44,14 +44,14 @@ You can record the broadcast if needed. But you need to start the recording manu
 
 Media Push Plugin has a REST API to control the plugin. 
 
-* Start the broadcast
+Start the broadcast
 
 Call the REST Method below to let Ant Media Server broadcast the web page. You should pass the url of the web page and you can pass streamId as the query parameter you want to use as a parameter.
    ```
    curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "https://<ant-media-server-domain>/<your-webapp-name>/rest/v1/media-push/start" -d '{"url": "http://example.com", "width": 1280, "height": 720}'
    ```
 
-* Stop the broadcast
+Stop the broadcast
 
 Call the REST Method below to let Ant Media Server with the stream id you specified in the start method.
    ```
@@ -60,7 +60,7 @@ Call the REST Method below to let Ant Media Server with the stream id you specif
 
 https://github.com/ant-media/ant-media-documentation/assets/82374739/5be3aaa3-15fa-441f-8744-606f2c93bd98
 
-* Send javascript command to a webpage with given stream id
+Send javascript command to a webpage with given stream id
 
 
 Call the REST Method below to let Ant Media Server with the stream id you specified in the start method. You should pass the javascript command in the body.
@@ -78,7 +78,7 @@ The composite layout is a HTML page, you can think of it as a canvas where you c
 ## How Composite Layout works
 Composite layout is an HTML page which gets loaded on the Server side with Media Push Plugin , we can specify a room name as a URL parameter to the Composite Layout page , then it joins the room and waits for the instruction.
 
-On Composite layout page there will be a blank canvas on which you can display the streams , for displaying stream from the room onto canvas you can the send the REST API request and the stream will be displayed on the canvas. 
+Composite layout page contains canvas on which streams can be added by default there is nothing displayed on the canvas , for displaying stream from the room onto canvas Call REST API by specifying Id of the room particpant.
 
 ### How to add Composite Layout
 1. Download the composite_layout.html file
@@ -91,21 +91,20 @@ On Composite layout page there will be a blank canvas on which you can display t
   ```
 
 ### How to use Composite Layout
-* Start the Composite Layout
-Call the REST Method below to let Ant Media Server with the stream id you specified in the start method. You should pass the url, width and height in the body.
+Start the Composite Layout
+Call the REST Method below to let Ant Media Server with the stream id you specified in the start method. You should pass Room Name , url, width and height in the body.
    ```
    curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "https://<ant-media-server-domain>/<your-webapp-name>/rest/v1/media-push/start"  -d '{"url": "https://<ant-media-server-domain>/<your-webapp-name>/composite_layout.html?roomId=<room-name>&publisherId=<composite-layout-publisher-id>", "width": 1280, "height": 720}'
    ```
-   When above REST API is called Media Push will load the Composite layout page and join the Specified room. 
+When above REST API is called Media Push will load the Composite layout page and join the Specified room. 
 
-* Update the Composite Layout UI
-Call the REST Method below to update the layout on the fly.
+Update the Composite Layout UI
+for updating the layout and adding streams on the canvas call the below REST API by specifying the stream id of the participat in the room. 
    ```
    curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "https://<ant-media-server-domain>/<your-webapp-name>/rest/v2/broadcasts/<composite-layout-publisher-id>/data"  -d '{"streamId":"<composite-layout-publisher-id>","layoutOptions": {"canvas": {"width": 640,"height": 640},"layout": [{"streamId": "<room-participant-id>","region": {"xPos": 20,"yPos": 0,"zIndex": 1,"width": 200,"height": 200},"fillMode": "fill","placeholderImageUrl": "https://cdn-icons-png.flaticon.com/512/149/149071.png"}]}}'
    ```
-   You can display the stream on to the canvas by calling above REST API
    
-* Stop the Composite Layout
+Stop the Composite Layout
 Call the REST Method below to let Ant Media Server with the stream id you specified in the stop method.
    ```
    curl -i -X POST -H "Accept: Application/json" "https://<ant-media-server-domain>/<your-webapp-name>/rest/v1/media-push/stop/{composite-layout-publisher-id}"
