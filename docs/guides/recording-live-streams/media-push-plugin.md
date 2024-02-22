@@ -78,7 +78,7 @@ The composite layout is a HTML page, you can think of it as a canvas where you c
 ## How Composite Layout works
 Composite layout is an HTML page which gets loaded on the Server side with Media Push Plugin , we can specify a room name as a URL parameter to the Composite Layout page , then it joins the room and waits for the instruction.
 
-On Composite layout page there will be a blank canvas on which you can dispay the streams , for displying stream from the room onto canvas you can the send the REST API request and the stream will be displayed on the canvas. 
+On Composite layout page there will be a blank canvas on which you can display the streams , for displaying stream from the room onto canvas you can the send the REST API request and the stream will be displayed on the canvas. 
 
 ### How to add Composite Layout
 1. Download the composite_layout.html file
