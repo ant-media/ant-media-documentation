@@ -91,20 +91,19 @@ Composite layout page contains canvas on which streams can be added by default t
   ```
 
 ### How to use Composite Layout
-Start the Composite Layout
-Call the REST Method below to let Ant Media Server with the stream id you specified in the start method. You should pass Room Name , url, width and height in the body.
+- Start the Composite Layout
+Call the below REST API to Start Composite layout.This will load the Compsite layout page on server side and join the specified room. 
    ```
    curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "https://<ant-media-server-domain>/<your-webapp-name>/rest/v1/media-push/start"  -d '{"url": "https://<ant-media-server-domain>/<your-webapp-name>/composite_layout.html?roomId=<room-name>&publisherId=<composite-layout-publisher-id>", "width": 1280, "height": 720}'
    ```
-When above REST API is called Media Push will load the Composite layout page and join the Specified room. 
 
-Update the Composite Layout UI
+- Update the Composite Layout UI
 for updating the layout and adding streams on the canvas call the below REST API by specifying the stream id of the participat in the room. 
    ```
    curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "https://<ant-media-server-domain>/<your-webapp-name>/rest/v2/broadcasts/<composite-layout-publisher-id>/data"  -d '{"streamId":"<composite-layout-publisher-id>","layoutOptions": {"canvas": {"width": 640,"height": 640},"layout": [{"streamId": "<room-participant-id>","region": {"xPos": 20,"yPos": 0,"zIndex": 1,"width": 200,"height": 200},"fillMode": "fill","placeholderImageUrl": "https://cdn-icons-png.flaticon.com/512/149/149071.png"}]}}'
    ```
    
-Stop the Composite Layout
+- Stop the Composite Layout
 Call the REST Method below to let Ant Media Server with the stream id you specified in the stop method.
    ```
    curl -i -X POST -H "Accept: Application/json" "https://<ant-media-server-domain>/<your-webapp-name>/rest/v1/media-push/stop/{composite-layout-publisher-id}"
