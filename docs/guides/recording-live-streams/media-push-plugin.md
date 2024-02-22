@@ -73,10 +73,10 @@ In the below example we are  ` document.write(\" hello how are you this is the t
    ```
 
 ## Optional: Composite Layout
-The composite layout is a HTML page, you can think of it as a canvas where you can place multiple video streams, text, and images together. Using simple commands, you can adjust what's displayed on this canvas in real-time. Media push can record this HTML page and then , it becomes a live stream on Ant Media, offering lots of possibilities like adding text, images, and arranging videos however you like. It's a handy tool for creating dynamic and customized visuals without any complicated technical frameworks.
+The composite layout is a HTML page, which has a canvas where you can place multiple video streams, text, and images together. Using simple commands, you can adjust what's displayed on this canvas in real-time. Media push can record this HTML page and then , it becomes a live stream on Ant Media, offering lots of possibilities like adding text, images, and arranging videos however you like. It's a handy tool for creating dynamic and customized visuals without any complicated technical frameworks.
 
 ## How Composite Layout works
-Composite layout is an HTML page which gets loaded on the Server side with Media Push Plugin , we can specify a room name as a URL parameter to the Composite Layout page , then it joins the room and waits for the instruction.
+Composite layout is an HTML page which gets loaded on the Server side with Media Push Plugin , we can specify a room name as a URL parameter to the Composite Layout page , then it joins the room and waits for the instructions.
 
 Composite layout page contains canvas on which streams can be added by default there is nothing displayed on the canvas , for displaying stream from the room onto canvas Call REST API by specifying Id of the room particpant.
 
@@ -92,7 +92,7 @@ Composite layout page contains canvas on which streams can be added by default t
 
 ### How to use Composite Layout
 - Start the Composite Layout
-Call the below REST API to Start Composite layout.This will load the Compsite layout page on server side and join the specified room. 
+Media Push will load the composite layout page , the page will then join the specified room.the captured stream will be availble on the server.
    ```
    curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "https://<ant-media-server-domain>/<your-webapp-name>/rest/v1/media-push/start"  -d '{"url": "https://<ant-media-server-domain>/<your-webapp-name>/composite_layout.html?roomId=<room-name>&publisherId=<composite-layout-publisher-id>", "width": 1280, "height": 720}'
    ```
