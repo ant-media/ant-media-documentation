@@ -8,7 +8,7 @@ sidebar_position: 1
 Media Push is a plugin that is built on top of Ant Media and can load any web URL and stream it in real time.
 
 # How Media Push Works
-Media Push opens up a Headless Chrome on the server side. A user can send a REST request with the URL of the page that is desired to be recorded. When the request is received on the server side, a new Chrome tab is opened with the URL. As soon as the page gets loaded, the screen is recorded using Media Stream APIs and re-streamed back to Ant Media Server, from where you can record the stream or play back the stream using WebRTC HLS or Dash.
+Media Push opens up Headless Chrome on the server side. A user can send a REST request with the URL of the page that is desired to be recorded. When the request is received on the server side, a new Chrome tab is opened with the URL. As soon as the page gets loaded, the screen is recorded using Media Stream APIs and re-streamed back to Ant Media Server, from where you can record the stream or play back the stream using WebRTC HLS or Dash.
 
 ## Features
 
@@ -42,35 +42,93 @@ You can record the broadcast if needed. But you need to start the recording manu
 
 ## How to Use
 
-Media Push Plugin has a REST API to control the plugin. 
+The Media Push Plugin has a REST API to control the plugin. 
 
-* Start the broadcast
+ - Start the broadcast
 
-Call the REST Method below to let Ant Media Server broadcast the web page. You should pass the url of the web page and you can pass streamId as the query parameter you want to use as a parameter.
+Call the REST method below to let Ant Media Server broadcast the web page. You should pass the url of the web page and you can pass streamId as the query parameter you want to use as a parameter.
    ```
    curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "https://<ant-media-server-domain>/<your-webapp-name>/rest/v1/media-push/start" -d '{"url": "http://example.com", "width": 1280, "height": 720}'
    ```
 
-* Stop the broadcast
+ - Stop the broadcast
 
-Call the REST Method below to let Ant Media Server with the stream id you specified in the start method.
+Call the REST method below to let Ant Media Server use the stream id you specified in the start method.
    ```
    curl -i -X POST -H "Accept: Application/json" "https://<ant-media-server-domain>/<your-webapp-name>/rest/v1/media-push/stop/{streamId}"
    ```
 
 https://github.com/ant-media/ant-media-documentation/assets/82374739/5be3aaa3-15fa-441f-8744-606f2c93bd98
 
-* Send javascript command to a webpage with given stream id
+ - Send javascript command to a webpage with given stream id
 
-
-Call the REST Method below to let Ant Media Server with the stream id you specified in the start method. You should pass the javascript command in the body.
+Call the REST method below to let Ant Media Server use the streamId you specified in the start method. You should pass the javascript command in the body.
    ```
    curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "https://<ant-media-server-domain>/<your-webapp-name>/rest/v1/media-push/send-command?streamId={streamId}"  -d '{"jsCommand": "{javascript_command_which_is_executed}"}'
    ```
-In the below example we are  ` document.write(\" hello how are you this is the text which is displayed on the browser  \") ` which will overwrite the content of the browser window with the message.
+In the below example, we are using  ` document.write(\" hello how are you this is the text which is displayed on the browser  \") ` which will overwrite the content of the browser window with the message.
    ```
    curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "http://localhost:5080/LiveApp/rest/v1/media-push/send-command?streamId=stream111"  -d '{"jsCommand": "document.write(\" hello how are you this is the text which is displayed on the browser  \")"}'
    ```
+
+## Composite Layout
+The composite layout is an HTML page that has a canvas where you can place multiple video streams, text, and images together. Using simple commands, you can adjust what's displayed on this canvas in real-time. Media Push can record this HTML page, and then it becomes a live stream on Ant Media, offering lots of possibilities like adding text, images, and arranging videos however you like. It's a handy tool for creating dynamic and customized visuals without any complicated technical frameworks.
+
+## How Composite Layout works
+A composite layout is an HTML page that gets loaded on the server side with the Media Push Plugin. We can specify a `Conference room` name that you join as a URL parameter to the Composite Layout page, then it joins the room and waits for the instructions.
+
+The composite layout page contains a canvas on which streams can be added; by default, nothing is displayed on the canvas. To display a stream from the room onto the canvas, call the REST API by specifying the ID of the room participant.
+
+### How to add Composite Layout
+
+ - Download the composite_layout.html file
+
+  ```
+  wget https://github.com/ant-media/Plugins/raw/master/MediaPushPlugin/build/composite_layout.html
+  ```
+  
+
+ - Copy the composite_layout.html file into the application folder
+
+  ```
+  cp composite_layout.html /usr/local/antmedia/webapps/<your-webapp-name>/
+  ```
+
+### How to use Composite Layout
+
+- Start the Composite Layout
+
+Media Push will load the composite layout page; the page will then join the specified room. The captured stream will be available on the server.
+
+**composite-layout-publisher-id:** It can be any random Id like `test`
+
+   ```
+   curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "https://<ant-media-server-domain>/<your-webapp-name>/rest/v1/media-push/start"  -d '{"url": "https://<ant-media-server-domain>/<your-webapp-name>/composite_layout.html?roomId=<room-name>&publisherId=<composite-layout-publisher-id>", "width": 1280, "height": 720}'
+   ```
+
+The response will be as follows:
+
+```
+{"success":true,"message":"","dataId":"vuBnhjWijlol1708630086991","errorId":0}
+```
+
+The `dataId` will be required to stop the Composite Layout stream.
+
+- Update the Composite Layout UI
+
+For updating the layout and adding streams to the canvas, call the below REST API by specifying the stream id of the participant in the room. 
+   ```
+   curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "https://<ant-media-server-domain>/<your-webapp-name>/rest/v2/broadcasts/<composite-layout-publisher-id>/data"  -d '{"streamId":"<composite-layout-publisher-id>","layoutOptions": {"canvas": {"width": 640,"height": 640},"layout": [{"streamId": "<room-participant-id>","region": {"xPos": 20,"yPos": 0,"zIndex": 1,"width": 200,"height": 200},"fillMode": "fill","placeholderImageUrl": "https://cdn-icons-png.flaticon.com/512/149/149071.png"}]}}'
+   ```
+   
+- Stop the Composite Layout
+
+Call the REST method below to let Ant Media Server use the streamId you specified in the stop method.
+
+   ```
+   curl -i -X POST -H "Accept: Application/json" "https://<ant-media-server-domain>/<your-webapp-name>/rest/v1/media-push/stop/{composite-layout-reponse-dataId}"
+   ```
+
 
 ## How to Build from Source Code
 
@@ -107,8 +165,8 @@ In the below example we are  ` document.write(\" hello how are you this is the t
   ```
 
 ### How to Customize
-You can modify the code and build the plugin by yourself to make it work with your own needs. For example, you can play the video or login to the web page with your own credentials before starting the broadcast.
-Go to the MediaPushPlugin and modify the customModification method as you wish. Then build the plugin with the following command.
+You can modify the code and build the plugin yourself to make it work according to your own needs. For example, you can play the video or login to the web page with your own credentials before starting the broadcast.
+Go to the MediaPushPlugin and modify the customModification method as you wish. Then build the plugin with the following command:.
 
   ```
   chmode +x redeploy.sh
