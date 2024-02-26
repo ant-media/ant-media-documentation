@@ -52,7 +52,7 @@ If you're using ```mongodb``` as the database, your password will be stored in t
 *   Make MD5 Hash of the password using this commmand ```echo -n "YOUR_PASSWORD_HERE" | md5sum | awk '{print $1}'```
 *   You can update the password with a command something like below. Change the parameters below according to the your case. ```db.User.updateOne( { email:"test@antmedia.io" }, { $set: { "password" : "MD5_HASH_OF_PASSWORD" }})```
 *   Alternatively, you can delete the user with a command something like below. Change the parameters below according to the your case. ```db.User.deleteOne( { "email": "test@antmedia.io" } )```
-*   Below version below 2.3.2 do password will be plain text insted of MD5Hash
+*   Below version 2.3.2 password will be plain text insted of MD5Hash
 
 ## What is HLS?
 
