@@ -49,7 +49,7 @@ If you're using ```mongodb``` as the database, your password will be stored in t
 *   Connect to your ```mongodb``` server with ```mongo``` client.
 *   Type ```use serverdb;```
 *   Type ```db.User.find()``` and it shows you the output like below. ```{ "_id" : ObjectId("5ea486690f09e71c2462385a"), "className" : "io.antmedia.rest.model.User", "email" : "test@antmedia.io", "password" : "1234567", "userType" : "ADMIN" }```
-*   Make MD5 Hash of the password using this commmand ```echo -n "YOUR_PASSWORD_HERE" | md5sum | awk '{print $1}'```
+*   Make MD5 Hash of your password using this commmand ```echo -n "YOUR_PASSWORD_HERE" | md5sum | awk '{print $1}'```
 *   You can update the password with a command something like below. Change the parameters below according to the your case. ```db.User.updateOne( { email:"test@antmedia.io" }, { $set: { "password" : "MD5_HASH_OF_PASSWORD" }})```
 *   Alternatively, you can delete the user with a command something like below. Change the parameters below according to the your case. ```db.User.deleteOne( { "email": "test@antmedia.io" } )```
 *   Below version 2.3.2 password will be plain text insted of MD5Hash
