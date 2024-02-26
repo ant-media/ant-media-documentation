@@ -83,7 +83,7 @@ sudo wget https://raw.githubusercontent.com/ant-media/Scripts/master/install_ant
 ```
 #### Update the installation script
 
-If you have an existing installation script and we recommend updating it to the latest version, you can use the -u option with the script. This will update your current installation script to the newest version available.
+If you have an existing installation script and we recommend updating it to the latest version, you can use the `-u` option with the script. This will update your current installation script to the newest version available.
 
 ```shell
 sudo ./install_ant-media-server.sh -u
