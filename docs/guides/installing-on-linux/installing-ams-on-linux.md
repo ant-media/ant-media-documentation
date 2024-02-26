@@ -87,7 +87,7 @@ If you have an existing installation script and we recommend updating it to the 
 
 ```shell
 sudo ./install_ant-media-server.sh -u
-
+```
 #### Run the installation script
 
 ```shell
