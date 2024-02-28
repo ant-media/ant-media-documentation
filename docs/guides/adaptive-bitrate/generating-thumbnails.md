@@ -12,6 +12,10 @@ In order to activate preview generation, you just need to add at least one adapt
 
 ![](@site/static/img/preview_1.png)
 
+ Go to ```Application > Your App > Settings  > click on basic > switch to Advance``` search for  generatePreview and set it to true -> save the settings
+
+Generated preview images will be available in this URL template:
+
 Generated preview images will be available in this URL template:
 
 ```
