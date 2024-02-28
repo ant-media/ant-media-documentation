@@ -122,7 +122,99 @@ const config = {
         {
           from: '/guides/stream-security/',
           to: '/category/stream-security/'
-        }
+        },
+	{
+          from: '/guides/developer-sdk-and-api/sdk-integration/',
+          to: '/category/sdk-integration/'
+        },
+	{
+          from: '/guides/playing-live-stream/webrtc-playing/',
+          to: '/guides/playing-live-stream/webrtc-playback/'
+        },
+	{
+          from: '/guides/publish-live-stream/Simulcasting/',
+          to: '/guides/publish-live-stream/simulcasting/'
+        },
+	{
+          from: '/guides/advanced-usage/stream-security/',
+          to: '/category/stream-security/'
+        },
+	{
+          from: '/guides/advanced-usage/monitoring/monitoring-ams-with-datadog/',
+          to: '/guides/monitoring/monitoring-ams-with-datadog/'
+        },
+	{
+          from: '/v1/docs/rest-api-guide/',
+          to: '/category/rest-api-guide/'
+        },
+	{
+          from: '/guides/clustering-and-scaling/kubernetes/install-ssl-on-kubernetes-using-lets-encrypt/',
+          to: '/category/kubernetes/'
+        },
+	{
+          from: '/guides/advanced-usage/monitoring/monitoring-ams-with-grafana/',
+          to: '/guides/monitoring/monitoring-ams-with-grafana/'
+        },
+	{
+          from: '/guides/publish-live-stream/webrtc-peer-to-peer-communication/',
+          to: '/guides/publish-live-stream/webrtc/webrtc-peer-to-peer-communication/'
+        },
+	{
+          from: '/v1/docs/amazon-aws-s3-integration/',
+          to: '/guides/recording-live-streams/s3-integration-http-forwarding/'
+        },
+	{
+          from: '/guides/developer-sdk-and-api/rest-api-guide/stream-security/',
+          to: '/category/stream-security/'
+        },
+	{
+          from: '/guides/developer-sdk-and-api/sdk-integration/android-sdk/',
+          to: '/category/android-sdk/'
+        },
+	{
+          from: '/guides/clustering-and-scaling/kubernetes/installing-ams-on-aws-eks/',
+          to: '/guides/clustering-and-scaling/kubernetes/kubernetes-services/installing-ams-on-aws-eks/'
+        },
+	{
+          from: '/guides/playing-live-stream/webrtc-conference-call/',
+          to: '/guides/publish-live-stream/webrtc/webrtc-conference-call/'
+        },
+	{
+          from: '/guides/configuration-and-testing/load-testing/',
+          to: '/guides/configuration-and-testing/webrtc-load-testing/'
+        },
+	{
+          from: '/v1/docs/ssl-setup/',
+          to: '/guides/installing-on-linux/setting-up-ssl/'
+        },
+	{
+          from: '/v1/docs/integrating-with-s3/',
+          to: '/guides/recording-live-streams/s3-integration-http-forwarding/'
+        },
+	{
+          from: '/v1/docs/clustering/',
+          to: '/category/clustering-and-scaling/'
+        },
+	{
+          from: '/v1/docs/getting-started-with-ant-media-server/',
+          to: '/category/get-started/'
+        },
+	{
+          from: '/v1/docs/clustering-and-scaling-ant-media-server/',
+          to: '/category/clustering-and-scaling/'
+        },
+	{
+          from: '/v1/docs/how-to-enable-ip-filter-for-ant-media-servers-behind-load-balancer-in-aws/',
+          to: '/guides/clustering-and-scaling/aws/enabling-ip-filtering-behind-load-balancer-in-aws/'
+        },
+	{
+          from: '/v1/docs/how-to-configure-rtmp-load-balancer-in-aws/',
+          to: '/guides/clustering-and-scaling/aws/configuring-rtmp-lb-in-aws/'
+        },
+        {
+          from: '/docs/guides/developer-sdk-and-api/rest-api-guide/rest-api-guide/',
+          to: '/category/rest-api-guide/'
+        },
       ],
     },
   ], /*
