@@ -77,12 +77,64 @@ By default, there is no limit on audio and video tracks, so each participant can
 
 Please change the values as per your requirements and restart the server after making changes. In version 2.6.2 and above, all settings can be changed from dashboard itself. Please check [here](https://github.com/orgs/ant-media/discussions/5161#discussioncomment-6401677).
 
-### Add and Delete subtracks via Rest API
+### Media Pull
+The Media Pull feature empowers users to add any external stream present on AMS into an ongoing conference room. With this capability, users can dynamically add or remove streams during a conference using the REST API.
+For instance, you can add an IP Camera pull stream to your conference and then remove it as desired. Media pull functionality is versatile and applicable to any type of live broadcast on AMS.
 
-You can use the [add SubTrack Rest API](https://antmedia.io/rest/#/BroadcastRestService/addSubTrack) to add the various subtracks to the main track. Here's the CURL sample:
+To test media pull feature first create a conference room and join it as a participant.
 
-    curl -X 'POST' 'https://AMS-domain:5443/WebRTCAppEE/rest/v2/broadcasts/mainTrackId/subtrack?id=stream1' -H 'accept: application/json'
+Go to
+`https://AMS-domain:5443/WebRTCAppEE/conference.html`
 
-You can use the [delete SubTrack Rest API](https://antmedia.io/rest/#/BroadcastRestService/removeSubTrack) to delete the various subtracks from the main track. Here's the CURL sample:
+Type a room name and note it because we will use it while adding/removing external streams. Click join room button. 
+![mediapull-join-room.png](@site/static/img/mediapull-join-room.png)
 
-    curl -X 'DELETE' 'https://AMS-domain:5443/WebRTCAppEE/rest/v2/broadcasts/mainTrackId/subtrack?id=stream1' -H 'accept: application/json'
+After joining a room 2 broadcasts will be created on server.
+1. Room Broadcast(main track)
+2. Participant Broadcast(subtrack of room broadcast)
+
+Observe that both broadcasts are created on web panel.
+
+![mediapull-broadcasts.png](@site/static/img/mediapull-broadcasts.png)
+
+Now go to 
+`https://AMS-domain:5443/WebRTCAppEE`
+
+and publish an external stream to ant media server.
+![mediapull-external-stream.png](@site/static/img/mediapull-external-stream.png)
+Observe external_stream is broadcasting on ant media server.
+
+![mediapull-external-stream-broadcasting.png](@site/static/img/mediapull-external-stream-broadcasting.png)
+
+Now that our external stream is live on the Ant Media Server, it's time to add it into our conference room through the REST API.
+
+It's important to note that each participant in a conference room corresponds to a subtrack in the room broadcast object. Therefore, we will add our external stream to the subtrack list of our room broadcast object, so that the external stream becomes visible in the conference room.
+
+To add our external stream to our conference room, we will use 
+
+[add SubTrack Rest API](https://antmedia.io/rest/#/BroadcastRestService/addSubTrack)
+
+Send a POST request with the stream ID of conference room broadcast(room1) and stream ID of the external broadcast(external_stream) you would like to add to the conference room.
+
+
+![mediapull-add-external-stream-postman.png](@site/static/img/mediapull-add-external-stream-postman.png)
+
+Example curl:
+
+    curl -X 'POST' 'https://AMS-domain:5443/WebRTCAppEE/rest/v2/broadcasts/room1/subtrack?id=external_stream' -H 'accept: application/json'
+
+As soon as you receive success, you should observe that external stream is added to the conference room.
+
+![mediapull-external-stream-added.png](@site/static/img/mediapull-external-stream-added.png)
+
+To remove the external stream from the conference room, send a DELETE request to the same route.
+
+[remove SubTrack Rest API](https://antmedia.io/rest/#/BroadcastRestService/removeSubTrack)
+
+![mediapull-remove-external-stream-postman.png](@site/static/img/mediapull-remove-external-stream-postman.png)
+
+Example curl:
+
+    curl -X 'DELETE' 'https://AMS-domain:5443/WebRTCAppEE/rest/v2/broadcasts/room1/subtrack?id=external_stream' -H 'accept: application/json'
+
+As soon as you receive success, you should observe that external stream is removed from the conference room.
