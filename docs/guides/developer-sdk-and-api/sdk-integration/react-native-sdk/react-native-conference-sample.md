@@ -1,6 +1,6 @@
 ---
-title: WebRTC stream in React Native
-description: Publishing WebRTC Live stream Using iOS SDK 
+title: WebRTC Conference in React Native
+description: WebRTC Conference Using React Native SDK 
 keywords: [React Native SDK User Guide, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 8
 ---
