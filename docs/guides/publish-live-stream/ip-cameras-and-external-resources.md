@@ -51,7 +51,9 @@ In order to re-stream from an external source, follow those steps:
 
 ![](@site/static/img/publish-live-stream/IP-Camera-and-External-Sources/Stream-Source.png)
 
-External sources do not start automatically after a server restart in v2.5.3 and later. The solution is available [here](https://github.com/orgs/ant-media/discussions/5011).
+In AMS v2.5.3 and later, the stream auto fetcher is disabled by default so streams do not start itself after server restart. Change the following flag to true in the Advance application settings so that stream start fetching automatically.
+
+`"startStreamFetcherAutomatically": true,`
 
 ## Add Stream Source and IP Camera using Rest API
 
@@ -85,7 +87,7 @@ Auto-stopping the stream with no viewer is valid for all play types (WebRTC, HLS
 
 To use the Dynamic Stream Pulling feature:
 
-1- Go to the Ant Media web panel and create a broadcast with the type Stream Source or IP Camera. 
+ - Go to the Ant Media web panel and create a broadcast with the type Stream Source or IP Camera. 
 
 To enable the feature for the stream, check the ```Auto Start/Stop Streaming``` checkbox as shown below.
 
@@ -102,7 +104,8 @@ To do that, send a  ```PUT ``` request using
 curl --location --request PUT 'http(s)://AMS_DOMAIN:Port/AppName/rest/v2/broadcasts/streamId' --header 'Content-Type: application/json' --data '{"autoStartStopEnabled":true}'
 ```
 
-2- Open a new tab and start watching the live stream using the below URL.
+ - Open a new tab and start watching the live stream using the below
+   URL.
 
 ```
 https://AMS_DOMAIN:Port/AppName/play.html?id=streamId&playOrder=webrtc
@@ -110,7 +113,9 @@ https://AMS_DOMAIN:Port/AppName/play.html?id=streamId&playOrder=webrtc
 
 Now the server will start fetching stream.
 
-3- Close the watcher tab. Since there are no viewers anymore, Ant Media Server will stop pulling the stream within a few seconds, and the broadcast status will change to ```Offline```.
+ - Close the watcher tab. Since there are no viewers anymore, Ant Media
+   Server will stop pulling the stream within a few seconds, and the
+   broadcast status will change to ```Offline```.
 
 ## Recording IP camera streams
 
