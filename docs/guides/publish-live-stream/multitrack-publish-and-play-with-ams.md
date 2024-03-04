@@ -30,7 +30,7 @@ To combine the broadcasts into a single broadcast (main track), publish the stre
 
 Let's publish a stream to the sample WebRTCAppEE application with **streamId=video** and group ID (mainTrack) as **main**.
 
-`rtmp:/AMS-domain:1935/AppName/video?mainTrack=main`
+`rtmp:/AMS-domain:1935/WebRTCAppEE/video?mainTrack=main`
 
 Now, as needed, publish streams with different audio subtracks.
 
@@ -121,9 +121,9 @@ Send a POST request with the streamId of the conference room broadcast `(room1)`
 
 ![mediapull-add-external-stream-postman.png](@site/static/img/mediapull-add-external-stream-postman.png)
 
-Example curl:
+**Here is the Curl Sample:**
 
-    curl -X 'POST' 'http(s)://AMS-domain:port/AppName/rest/v2/broadcasts/RoomName/subtrack?id=external-streamId' -H 'accept: application/json'
+```curl -X 'POST' 'http(s)://AMS-domain:port/AppName/rest/v2/broadcasts/RoomName/subtrack?id=external-streamId' -H 'accept: application/json'```
 
 As soon as you receive success, you should observe that an external stream is added to the conference room.
 
@@ -133,8 +133,8 @@ To remove the external stream from the conference room, send a DELETE request to
 
 ![mediapull-remove-external-stream-postman.png](@site/static/img/mediapull-remove-external-stream-postman.png)
 
-Example curl:
+**Here is the Curl Sample:**
 
-    curl -X 'DELETE' 'http(s)://AMS-domain:port/AppName/rest/v2/broadcasts/RoomName/subtrack?id=external-streamId' -H 'accept: application/json'
+```curl -X 'DELETE' 'http(s)://AMS-domain:port/AppName/rest/v2/broadcasts/RoomName/subtrack?id=external-streamId' -H 'accept: application/json'```
 
 As soon as you receive success, you should observe that the external stream is removed from the conference room.
