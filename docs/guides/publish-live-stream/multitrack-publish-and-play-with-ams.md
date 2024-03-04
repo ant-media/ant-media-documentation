@@ -123,7 +123,9 @@ Send a POST request with the streamId of the conference room broadcast `(room1)`
 
 **Here is the Curl Sample:**
 
-```curl -X 'POST' 'http(s)://AMS-domain:port/AppName/rest/v2/broadcasts/RoomName/subtrack?id=external-streamId' -H 'accept: application/json'```
+```bash
+curl -X 'POST' 'http(s)://AMS-domain:port/AppName/rest/v2/broadcasts/RoomName/subtrack?id=external-streamId' -H 'accept: application/json'
+```
 
 As soon as you receive success, you should observe that an external stream is added to the conference room.
 
@@ -135,6 +137,8 @@ To remove the external stream from the conference room, send a DELETE request to
 
 **Here is the Curl Sample:**
 
-```curl -X 'DELETE' 'http(s)://AMS-domain:port/AppName/rest/v2/broadcasts/RoomName/subtrack?id=external-streamId' -H 'accept: application/json'```
+```bash
+curl -X 'DELETE' 'http(s)://AMS-domain:port/AppName/rest/v2/broadcasts/RoomName/subtrack?id=external-streamId' -H 'accept: application/json'
+```
 
 As soon as you receive success, you should observe that the external stream is removed from the conference room.
