@@ -5,8 +5,6 @@ keywords: [React Native SDK User Guide, Ant Media Server Documentation, Ant Medi
 sidebar_position: 3
 ---
 
-## Pre-Requisite for React Native development
-
 ### Software requirements
 
 *   Android Studio (IDE)
