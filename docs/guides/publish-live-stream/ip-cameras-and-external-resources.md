@@ -98,6 +98,7 @@ Alternatively, you can also activate Auto Start/Stop Streaming for an existing b
 
 To do that, send a  ```PUT ``` request using
 [Update Broadcast Rest API](https://antmedia.io/rest/#/BroadcastRestService/updateBroadcast).
+
 **Here is the Curl Sample:**
 
 ```bash
