@@ -2,7 +2,7 @@
 title: React Native SDK Usage
 description: React Native SDK Usage 
 keywords: [React Native SDK User Guide, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 Before moving forward with using WebRTC React Native SDK, we highly recommend using the sample project to get started with your application. It's good to know the dependencies and how it works in general.
