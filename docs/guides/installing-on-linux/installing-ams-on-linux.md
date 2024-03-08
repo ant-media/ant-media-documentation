@@ -81,6 +81,13 @@ Download the ```install_ant-media-server.sh``` shell script.
 ```shell
 sudo wget https://raw.githubusercontent.com/ant-media/Scripts/master/install_ant-media-server.sh && sudo chmod 755 install_ant-media-server.sh
 ```
+#### Update the installation script
+
+If you have an existing installation script and we recommend updating it to the latest version, you can use the `-u` option with the script. This will update your current installation script to the newest version available.
+
+```shell
+sudo ./install_ant-media-server.sh -u
+```
 #### Run the installation script
 
 ```shell
