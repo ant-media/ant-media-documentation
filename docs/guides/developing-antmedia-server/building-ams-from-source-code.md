@@ -27,16 +27,16 @@ A couple of common repos should be cloned and built with Maven.
     *   Install Node
         
         ```bash
-        $ wget https://nodejs.org/download/release/v14.8.0/node-v14.8.0-linux-x64.tar.gz
-        $ tar -zxf node-v14.8.0-linux-x64.tar.gz
-        $ export PATH=$PATH:`pwd`/node-v14.8.0-linux-x64/bin
-        $ npm install -g @angular/cli@10.0.5 
+        $ wget https://nodejs.org/dist/v20.11.1/node-v20.11.1-linux-x64.tar.xz
+        $ tar -xJf node-v20.11.1-linux-x64.tar.xz
+        $ echo 'export PATH=$PATH:'`pwd`'/node-v20.11.1-linux-x64/bin' >> ~/.bashrc
+        $ npm install -g @angular/cli
         ```
         
     *   Build
         ```bash
-        $ git clone --depth=1 https://github.com/ant-media/ManagementConsole_AngularApp.git;
-        $ cd ManagementConsole_AngularApp
+        $ git clone https://github.com/ant-media/Ant-Media-Management-Console.git
+        $ cd Ant-Media-Management-Console
         $ npm install
         $ ng build --prod
         $ cp -a ./dist/. ../Ant-Media-Server/src/main/server/webapps/root/
@@ -76,16 +76,16 @@ A couple of common repos should be cloned and built with Maven.
 *   Build the Web Panel
     *   Install Node
         ```bash
-        $ wget https://nodejs.org/download/release/v14.8.0/node-v14.8.0-linux-x64.tar.gz
-        $ tar -zxf node-v14.8.0-linux-x64.tar.gz
-        $ export PATH=$PATH:`pwd`/node-v14.8.0-linux-x64/bin
-        $ npm install -g @angular/cli@10.0.5 
+        $ wget https://nodejs.org/dist/v20.11.1/node-v20.11.1-linux-x64.tar.xz
+        $ tar -xJf node-v20.11.1-linux-x64.tar.xz
+        $ echo 'export PATH=$PATH:'`pwd`'/node-v20.11.1-linux-x64/bin' >> ~/.bashrc
+        $ npm install -g @angular/cli 
         ```
         
     *   Build
         ```bash
-        $ git clone --depth=1 https://github.com/ant-media/ManagementConsole_AngularApp.git;
-        $ cd ManagementConsole_AngularApp
+        $ git clone https://github.com/ant-media/Ant-Media-Management-Console.git
+        $ cd Ant-Media-Management-Console
         $ npm install
         $ ng build --prod
         $ cp -a ./dist/. ../Ant-Media-Server/src/main/server/webapps/root/
