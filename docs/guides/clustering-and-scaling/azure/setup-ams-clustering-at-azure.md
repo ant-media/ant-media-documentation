@@ -197,12 +197,12 @@ Select Custom and set the Cpu threshold to 60%. You can set other settings accor
 ![](@site/static/img/virtual-machine-6.png)
 
 Continue by clicking directly next to the "**Management**" and "**Health**" tabs and add the following lines to the "**Custom data**" area in the **Advanced section**.
-
+```
     #!/bin/bash
     sudo sed -i '/org.apache.catalina.valves.RemoteIpValve/d' /usr/local/antmedia/conf/jee-container.xml
     cd /usr/local/antmedia/
     ./change_server_mode.sh cluster 10.0.2.4
-
+```
 **10.0.2.4** IP address is the private IP address of the MongoDB instance I have set up before. Change according to your own MongoDB instance.
 
 ![](@site/static/img/virtual-machine-7.png)
