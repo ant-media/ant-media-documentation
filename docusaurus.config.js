@@ -218,8 +218,8 @@ const config = {
           to: '/category/rest-api-guide/'
         },
         {
-          from: '/docs/guides/clustering-and-scaling/kubernetes/kubernetes-autoscaling/',
-          to: '/docs/guides/clustering-and-scaling/kubernetes/deploy-ams-on-kubernetes/'
+          from: '/guides/clustering-and-scaling/kubernetes/kubernetes-autoscaling/',
+          to: '/guides/clustering-and-scaling/kubernetes/deploy-ams-on-kubernetes/'
         },
 
       ],
