@@ -29,12 +29,14 @@ const config = {
     locales: ['en'],
   },
 
+  /* Disable js/script.js because it gives 404 error - @mekya
   scripts: [
     {
       src: 'js/script.js',
       async: false,
     }
   ],
+  */
 
   presets: [
     [
