@@ -29,12 +29,15 @@ const config = {
     locales: ['en'],
   },
 
+  /* Remove this part because it gives 404 error - I don't find any reference to script.js - @mekya
   scripts: [
     {
       src: 'js/script.js',
       async: false,
     }
   ],
+  */
+  
 
   presets: [
     [
@@ -215,6 +218,10 @@ const config = {
           from: '/docs/guides/developer-sdk-and-api/rest-api-guide/rest-api-guide/',
           to: '/category/rest-api-guide/'
         },
+        {
+          from: '/docs/guides/clustering-and-scaling/kubernetes/kubernetes-autoscaling/',
+          to:'/docs/guides/clustering-and-scaling/kubernetes/deploy-ams-on-kubernetes/'
+        }
       ],
     },
   ], /*
