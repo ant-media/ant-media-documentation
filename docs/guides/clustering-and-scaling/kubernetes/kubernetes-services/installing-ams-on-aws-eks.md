@@ -96,9 +96,9 @@ Finally, after checking the configurations, create the Node Pool by clicking on 
 ## Step 11: Update Kubernetes Cluster
 
 Update the Kubernetes cluster `kubeconfig` settings and then list the nodes with the `kubectl get nodes` command.
-
+```
     aws eks --region your_region update-kubeconfig --name clustername
-    
+```    
 
 ![image.png](@site/static/img/image-287429.png)
 
