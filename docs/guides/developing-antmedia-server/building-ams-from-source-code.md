@@ -1,6 +1,6 @@
 ---
 title: Building AMS Source Code 
-description: Building Ant Media Server from Source Code for contribution or further development.
+description: Building an Ant Media Server from source code for contribution or further development.
 keywords: [Building AMS from Source Code, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 12
 ---
@@ -9,82 +9,91 @@ sidebar_position: 12
 
 #### Linux (Ubuntu)
 
-A couple of commons repos should be cloned and build with maven.
+A couple of common repos should be cloned and built with Maven.
 
 *   Go to a directory where you will clone repos
 *   Clone and build ant-media-server-parent
     
-        $ git clone https://github.com/ant-media/ant-media-server-parent.git
-        $ cd ant-media-server-parent/
-        $ mvn clean install -Dgpg.skip=true
-        $ cd ..
-    
+    ```bash
+    $ git clone https://github.com/ant-media/ant-media-server-parent.git
+    $ cd ant-media-server-parent/
+    $ mvn clean install -Dgpg.skip=true
+    $ cd ..
+    ```
 
 #### Building Community Edition
 
 *   Build the Web Panel
     *   Install Node
         
-            $ wget https://nodejs.org/download/release/v14.8.0/node-v14.8.0-linux-x64.tar.gz
-            $ tar -zxf node-v14.8.0-linux-x64.tar.gz
-            $ export PATH=$PATH:`pwd`/node-v14.8.0-linux-x64/bin
-            $ npm install -g @angular/cli@10.0.5 
+        ```bash
+        $ wget https://nodejs.org/dist/v20.11.1/node-v20.11.1-linux-x64.tar.xz
+        $ tar -xJf node-v20.11.1-linux-x64.tar.xz
+        $ echo 'export PATH=$PATH:'`pwd`'/node-v20.11.1-linux-x64/bin' >> ~/.bashrc
+        $ npm install -g @angular/cli
+        ```
         
     *   Build
+        ```bash
+        $ git clone https://github.com/ant-media/Ant-Media-Management-Console.git
+        $ cd Ant-Media-Management-Console
+        $ npm install
+        $ ng build --prod
+        $ cp -a ./dist/. ../Ant-Media-Server/src/main/server/webapps/root/
+         ```
+       
+   *   Clone, build and package Ant-Media-Server
+   
+       ```bash
+       $ git clone https://github.com/ant-media/Ant-Media-Server.git
+       $ cd Ant-Media-Server
+       $ mvn clean install -Dmaven.javadoc.skip=true -Dmaven.test.skip=true -Dgpg.skip=true
+       $ ./repackage_community.sh
+        ```
         
-            $ git clone --depth=1 https://github.com/ant-media/ManagementConsole_AngularApp.git;
-            $ cd ManagementConsole_AngularApp
-            $ npm install
-            $ ng build --prod
-            $ cp -a ./dist/. ../Ant-Media-Server/src/main/server/webapps/root/
-        
-*   Clone, build and package Ant-Media-Server
-    
-        $ git clone https://github.com/ant-media/Ant-Media-Server.git
-        $ cd Ant-Media-Server
-        $ mvn clean install -Dmaven.javadoc.skip=true -Dmaven.test.skip=true -Dgpg.skip=true
-        $ ./repackage_community.sh
-    
-
 ### Building Enterprise Edition
 
 *   Clone, build Ant-Media-Server
-    
-        $ git clone https://github.com/ant-media/Ant-Media-Server.git
-        $ cd Ant-Media-Server
-        $ mvn clean install -Dmaven.javadoc.skip=true -Dmaven.test.skip=true -Dgpg.skip=true
+    ```bash   
+    $ git clone https://github.com/ant-media/Ant-Media-Server.git
+    $ cd Ant-Media-Server
+    $ mvn clean install -Dmaven.javadoc.skip=true -Dmaven.test.skip=true -Dgpg.skip=true
+    ```
     
 *   Build Ant-Media-Enterprise Source code of Ant-Media-Enterprise is provided to the Enterprise users
-    
-        $ cd /where/you/download/enterprise/repo
-        $ ./redeploy.sh
-    
+
+    ```bash
+    $ cd /where/you/download/enterprise/repo
+    $ ./redeploy.sh
+    ```
 *   Build the Filter Plugin
-    
-        $ git clone https://github.com/ant-media/Plugins.git
-        $ cd Plugins/FilterPlugin
-        $ mvn install -Dmaven.test.skip=true -Dgpg.skip=true
+    ```bash
+    $ git clone https://github.com/ant-media/Plugins.git
+    $ cd Plugins/FilterPlugin
+    $ mvn install -Dmaven.test.skip=true -Dgpg.skip=true
+    ```
     
 *   Build the Web Panel
     *   Install Node
-        
-            $ wget https://nodejs.org/download/release/v14.8.0/node-v14.8.0-linux-x64.tar.gz
-            $ tar -zxf node-v14.8.0-linux-x64.tar.gz
-            $ export PATH=$PATH:`pwd`/node-v14.8.0-linux-x64/bin
-            $ npm install -g @angular/cli@10.0.5 
+        ```bash
+        $ wget https://nodejs.org/dist/v20.11.1/node-v20.11.1-linux-x64.tar.xz
+        $ tar -xJf node-v20.11.1-linux-x64.tar.xz
+        $ echo 'export PATH=$PATH:'`pwd`'/node-v20.11.1-linux-x64/bin' >> ~/.bashrc
+        $ npm install -g @angular/cli 
+        ```
         
     *   Build
-        
-            $ git clone --depth=1 https://github.com/ant-media/ManagementConsole_AngularApp.git;
-            $ cd ManagementConsole_AngularApp
-            $ npm install
-            $ ng build --prod
-            $ cp -a ./dist/. ../Ant-Media-Server/src/main/server/webapps/root/
-        
+        ```bash
+        $ git clone https://github.com/ant-media/Ant-Media-Management-Console.git
+        $ cd Ant-Media-Management-Console
+        $ npm install
+        $ ng build --prod
+        $ cp -a ./dist/. ../Ant-Media-Server/src/main/server/webapps/root/
+        ```
     *   Package Enterprise Edition
-        
-            $ cd Ant-Media-Server
-            $ ./repackage_enterprise.sh
-        
+        ```bash
+        $ cd Ant-Media-Server
+        $ ./repackage_enterprise.sh
+        ```
 
-If everything goes well, a new packaged Ant Media Server(ant-media-server-x.x.x.zip) file will be created in Ant-Media-Server/target directory
+If everything goes well, a new packaged Ant Media Server (ant-media-server-x.x.x.zip) file will be created in the Ant-Media-Server/target directory.

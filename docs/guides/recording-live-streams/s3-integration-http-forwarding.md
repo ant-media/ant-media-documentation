@@ -41,7 +41,7 @@ You also need to know the region of your bucket. If you do not have any bucket, 
 
 Here you see the sample S3 credentials. You need to set to yours:
 
-Then, log in the http://your\_ams\_server:5080, enable the Record Live Streams as MP4 and Enable S3 Recording, enter the S3 credentials you have created, and save the settings.
+Then, log in the http://your_ams_server:5080, enable the Record Live Streams as MP4 and Enable S3 Recording, enter the S3 credentials you have created, and save the settings.
 
 ![image.png](@site/static/img/image-285229.png)
 
@@ -63,7 +63,7 @@ You will see the Dashboard below after clicking Create the Container.
 
 Here you see the sample S3 credentials. You need to set to yours:
 
-Then, log in the http://your\_ams\_server:5080, enable the Record Live Streams as MP4 and Enable S3 Recording, enter the S3 credentials you have created, and save the settings.
+Then, log in the http://your_ams_server:5080, enable the Record Live Streams as MP4 and Enable S3 Recording, enter the S3 credentials you have created, and save the settings.
 
 ![image.png](@site/static/img/image-285529.png)
 
@@ -107,7 +107,7 @@ After generating Access keys and Secret keys, you need to create a bucket. Just 
 
 ![image.png](@site/static/img/image-286229.png)
 
-Then, log in the http://your\_ams\_server:5080, enable the Record Live Streams as MP4 and Enable S3 Recording, enter the S3 credentials you have created, and save the settings.  
+Then, log in the http://your_ams_server:5080, enable the Record Live Streams as MP4 and Enable S3 Recording, enter the S3 credentials you have created, and save the settings.  
 ![](@site/static/img/image-1648581984499.png )
 
 Your MP4 files and Preview files will be uploaded to your Wasabi storage automatically.
