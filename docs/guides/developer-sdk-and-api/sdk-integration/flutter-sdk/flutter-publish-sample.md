@@ -2,7 +2,7 @@
 title: Publishing WebRTC stream Sample in Flutter
 description: Publishing WebRTC Live stream Using Flutter SDK 
 keywords: [Flutter SDK User Guide, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 5
+sidebar_position: 4
 ---
 
 Select the Publish app from the target list and click the Run button. Once the app is running, enter the server IP address. For entering the IP address please follow the below steps.
