@@ -2,7 +2,7 @@
 title: Data Channel Sample for Flutter
 description: Data Channel Sample for Flutter SDK 
 keywords: [Flutter SDK User Guide, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 9
+sidebar_position: 8
 ---
 
 Select the DataChannel app from the target list and click the Run button. Once the app is running, enter the server IP address. For entering the IP address please follow the below steps.
