@@ -26,8 +26,6 @@ npm run android
 
 `https://your_domain:5443/WebRTCAppEE`
 
-![](@site/static/img/image-1654599731503.png)
-
 * Click the `Start Playing` button on the screen to play the stream that you are publishing on the server.
 
-![](@site/static/img/image-1654600749349.png)
+![](@site/static/img/image-1654599731503.png)
