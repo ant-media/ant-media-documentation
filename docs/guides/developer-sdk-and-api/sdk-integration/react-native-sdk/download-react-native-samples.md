@@ -25,10 +25,12 @@ If you want to use **npm**, then follow only npm commands, and if you want to us
 
 First, you need to open the root directory of the sample project in the terminal that you want to build.
 
-To install dependencies, run ```npm install``` if using **npm** or run ```yarn install``` if using **yarn**.
+To install dependencies, run 
 
-After dependencies are installed , you need to run the below commands in order to run the project.
+```npm install``` or  ```yarn install```
 
-Run `npm run android` if using **npm** or run ```yarn android``` if using **yarn**.
+After dependencies are installed, you need to run the below commands in order to run the project.
+
+`npm run android` or ```yarn android```
 
 After the project starts successfully, a sample app will appear on the device/emulator.
