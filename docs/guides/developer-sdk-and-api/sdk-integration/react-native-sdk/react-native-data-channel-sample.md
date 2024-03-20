@@ -22,14 +22,14 @@ npm install
 npm run android
 ```
 
-![](@site/static/img/image-1656673042845.png)
-
 * Click the `Publishing` button on the screen to create the data channel stream on the server.
 
+![](@site/static/img/image-1656673042845.png)
+
 * Once the stream is published, the user can start sending messages using the send button and also see the received messages from other users.
+
+![](@site/static/img/image-1656673300268.png)
 
 You can quickly play the stream via a sample page and send and receive the data channel messages.
 
 https://your-domain:5443/WebRTCAppEE/player.html
-
-![](@site/static/img/image-1656673300268.png)
