@@ -1,6 +1,6 @@
 ---
 title: Load Testing 
-description: Simple guide to make a load testing on your Ant Media Server.
+description: A simple guide to make a load test on your Ant Media Server.
 keywords: [Ant Media Load Testing, WebRTC test tool, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 4
 ---
@@ -90,7 +90,7 @@ unzip webrtctest-release-*.zip
 cd webrtctest/
 ```
 
-This tool can be run from the terminal with the following options:.
+This tool can be run from the terminal with the following commands:.
 
 ```bash
 #publishes output.mp4 to the server with default name myStream
@@ -100,7 +100,7 @@ This tool can be run from the terminal with the following options:.
 ./run.sh -m player -n 100 -s 10.10.175.53 -p 5080 -u false
 ```
 
-If you are doing load testing on a cluster via a load balancer, then the command should be as follows:.
+If you are doing load testing on a cluster via a load balancer, and if your origin server is running behind port 443 and your Edge server behind port 5443, then the command should be as follows:.
 
 ```bash
 ./run.sh -f test.mp4 -m publisher -s server-domain-name -n 1 -p 443 -q true -u false
