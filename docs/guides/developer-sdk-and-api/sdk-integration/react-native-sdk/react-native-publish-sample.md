@@ -24,9 +24,9 @@ npm install
 npm run android
 ```
 
-![](@site/static/img/image-1654599372613.png)
-
 * Click the `Start Publishing` button on the screen to publish the stream on the server.
+
+![](@site/static/img/image-1654599372613.png)
 
 * You can now go to the web panel of Ant Media Server (e.g., http://serverIP:5080) and watch the stream there. 
 
