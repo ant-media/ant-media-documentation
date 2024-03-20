@@ -5,9 +5,27 @@ keywords: [React Native SDK User Guide, Ant Media Server Documentation, Ant Medi
 sidebar_position: 7
 ---
 
-*   Open **/samples/peer/src/Peer.tsx** file and update **defaultStreamName** variable for stream name and update **webSocketUrl** variable with server name.![](@site/static/img/image-1654599250441.png)
-*   Go to **/samples/peer** folder and follow the [Install dependencies and run sample projects](https://portal.document360.io/guides/developer-sdk-and-api/sdk-integration/react-native-sdk#install-dependencies-and-run-sample-projects) steps to run the **Peer** sample React native app.
+* Open **/samples/peer/src/Peer.tsx** file and update **defaultStreamName** variable for streamId and the **webSocketUrl** variable with your server domain or IP address.
+
+![](@site/static/img/image-1654599250441.png)
+
+* Open **/samples/peer/android** folder and provide read, write, and execute permissions to the **gradlew** file.
+
+```shell
+chmod 750 gradlew
+```
+
+* Go to **/samples/peer** folder and run the below commands to run the **Publish** sample React native app.
+
+```shell
+npm install
+npm run android
+```
 
 ![](@site/static/img/image-1654601111460.png)
 
-*   When there is another peer connected to the same stream ID via Android, iOS or web, the P2P communication will be established and you can talk to each other. You can quickly connect to the same stream id via ```https://your_domain:5443/WebRTCAppEE/peer.html```
+* When there is another peer connected to the same streamId via Android, iOS or web, the P2P communication will be established and you can talk to each other. 
+
+You can quickly join as a peer to the same streamId via peer to peer sample page.
+
+`https://your_domain:5443/WebRTCAppEE/peer.html`
