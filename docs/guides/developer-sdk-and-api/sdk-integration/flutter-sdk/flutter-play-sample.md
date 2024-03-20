@@ -2,7 +2,7 @@
 title: Playing WebRTC stream sample in Flutter
 description: Playing WebRTC Live Stream Sample Using Flutter SDK 
 keywords: [Flutter SDK User Guide, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 6
+sidebar_position: 5
 ---
 
 Select the Play app from the target list and click the Run button. Once the app is running, enter the server IP address. For entering the IP address please follow the below steps.
