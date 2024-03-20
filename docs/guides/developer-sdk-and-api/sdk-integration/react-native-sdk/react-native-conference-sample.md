@@ -5,17 +5,17 @@ keywords: [React Native SDK User Guide, Ant Media Server Documentation, Ant Medi
 sidebar_position: 8
 ---
 
-* Open the **/samples/conference/src/conference.tsx** file and update the **defaultRoomName** variable for streamId and the **webSocketUrl** variable with your server domain or IP address.
+* Open the **/samples/Conference/src/Conference.tsx** file and update the **defaultRoomName** variable for streamId and the **webSocketUrl** variable with your server domain or IP address.
 
 ![](@site/static/img/image-1655196972089.png)
 
-* Open the **/samples/publish/android** folder and provide read, write, and execute permissions to the **gradlew** file.
+* Open the **/samples/Conference/android** folder and provide read, write, and execute permissions to the **gradlew** file.
 
 ```shell
 chmod 750 gradlew
 ```
 
-* Go to the **/samples/conference** folder and run the below commands to run the **Conference** sample React native app.
+* Go to the **/samples/Conference** folder and run the below commands to run the **Conference** sample React native app.
 
 ```shell
 npm install
