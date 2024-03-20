@@ -11,7 +11,7 @@ To build the publishing sample project, follow the below steps.
 
 ![](@site/static/img/image-1654599250441.png)
 
-* Open /**samples/publish/android** folder and provide read, write, and execute permissions to the **gradlew** file.
+* Open **/samples/publish/android** folder and provide read, write, and execute permissions to the **gradlew** file.
 
 ```shell
 chmod 750 gradlew
