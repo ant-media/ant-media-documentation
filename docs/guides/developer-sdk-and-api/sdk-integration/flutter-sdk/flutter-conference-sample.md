@@ -2,7 +2,7 @@
 title: WebRTC Conference in Flutter
 description: WebRTC Conference Using Flutter SDK 
 keywords: [Flutter SDK User Guide, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 8
+sidebar_position: 7
 ---
 
 Select the Conference app from the target list and click the Run button. Once the app is running, enter the server IP address. For entering the IP address please follow the below steps.
