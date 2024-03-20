@@ -7,9 +7,8 @@ sidebar_position: 1
 
 # Flutter SDK
 Ant Media WebRTC Flutter SDK helps you in building your Flutter application that can publish and play WebRTC broadcasts with just a few lines of code.
-It also supports joining conference room in Flutter.
+It also supports joining the conference room in Flutter.
 
-- [Flutter SDK Usage](/guides/developer-sdk-and-api/sdk-integration/flutter-sdk/flutter-sdk-usage/)
 - [Pre-Requisite for Flutter development](/guides/developer-sdk-and-api/sdk-integration/flutter-sdk/flutter-pre-requisite/)
 - [Download and install WebRTC sample projects](/guides/developer-sdk-and-api/sdk-integration/flutter-sdk/download-flutter-samples/)
 - [Publishing WebRTC live stream Sample](/guides/developer-sdk-and-api/sdk-integration/flutter-sdk/flutter-publish-sample/)
@@ -17,3 +16,4 @@ It also supports joining conference room in Flutter.
 - [P2P Communication Sample](/guides/developer-sdk-and-api/sdk-integration/flutter-sdk/flutter-p2p-sample/)
 - [Conference Sample](/guides/developer-sdk-and-api/sdk-integration/flutter-sdk/flutter-conference-sample/)
 - [Data Channel Sample](/guides/developer-sdk-and-api/sdk-integration/flutter-sdk/flutter-data-channel-sample/)
+- [Flutter SDK Usage](/guides/developer-sdk-and-api/sdk-integration/flutter-sdk/flutter-sdk-usage/)
