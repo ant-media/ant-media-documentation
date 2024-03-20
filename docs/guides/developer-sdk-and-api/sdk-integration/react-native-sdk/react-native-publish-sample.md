@@ -7,11 +7,11 @@ sidebar_position: 5
 
 To build the publishing sample project, follow the below steps.
 
-* Open **/samples/publish/src/App.tsx** file and update **defaultStreamName** variable for streamId and the **webSocketUrl** variable with your server domain or IP address.
+* Open the **/samples/publish/src/App.tsx** file and update the **defaultStreamName** variable for streamId and the **webSocketUrl** variable with your server domain or IP address.
 
 ![](@site/static/img/image-1654599250441.png)
 
-* Open **/samples/publish/android** folder and provide read, write, and execute permissions to the **gradlew** file.
+* Open the **/samples/publish/android** folder and provide read, write, and execute permissions to the **gradlew** file.
 
 ```shell
 chmod 750 gradlew
