@@ -20,13 +20,13 @@ First of all, you’re required to install the node on your system. If your mach
 
 ![](@site/static/img/image(83).png)
 
-Download the latest Node.js from here [nodejs.org/en](http://nodejs.org/en)
+Download the latest Node.js from here: [nodejs.org/en](http://nodejs.org/en).
 
 Once the setup is downloaded on your system, run the .msi downloaded file and follow the prompt instructions to install the application.
 
 Furthermore, make ascertain that the Node and NPM have been installed.
 
-Use the Below Commands-
+Use the below commands to check the version:
 
 ```shell
 node -v
@@ -37,13 +37,11 @@ npm –v
 
 ### React Native
 
-Use the command:
+Use the below command to install React Native CLI.
 
 ```shell
  npm install -g react-native-cli
-```   
-
-in the command terminal to install React Native.
+```
 
 ### Android Development Environment
 
@@ -61,9 +59,7 @@ We’ll be building a project using React Native by running the following comman
 react-native init MySampleApp
 ```
 
-in the terminal from the folder where you will be creating the application.
-
-Now, run commands below:
+Now, run below commands in the terminal from the folder where you have created the application.
 
 ```shell
 react-native start
@@ -71,10 +67,8 @@ react-native start
 
 ```shell
 react-native run-android
-``` 
+```
 
- Make sure you’ve started the emulator on your machine.
-
-This Is how the sample project will look like in the Emulator:
+Make sure you’ve started the emulator on your machine. This is what the sample project will look like in the emulator:
 
 ![](@site/static/img/image(85).png)
