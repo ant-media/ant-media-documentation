@@ -22,14 +22,12 @@ npm install
 npm run android
 ```
 
-* Before playing, make sure that there is a stream that is already publishing to the server with the same streamId in your **defaultStreamName** variable
-
-You can quickly publish a WebRTC stream to the Ant Media Server via a sample page.
+* Before playing, make sure that there is a stream that is already published to the server with the same streamId in your **defaultStreamName** variable. You can quickly publish a WebRTC stream to the Ant Media Server via a sample page.
 
 `https://your_domain:5443/WebRTCAppEE`
 
 ![](@site/static/img/image-1654599731503.png)
 
-* Now click  ```Start Playing``` button on the screen to play the stream that you are publishing on the server.
+* Click the `Start Playing` button on the screen to play the stream that you are publishing on the server.
 
 ![](@site/static/img/image-1654600749349.png)
