@@ -2,7 +2,7 @@
 title: Download and install React Native WebRTC sample projects
 description: Download and install React Native WebRTC sample projects 
 keywords: [React Native SDK User Guide, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 4
+sidebar_position: 3
 ---
 
 Ant Media WebRTC React Native samples are free to download. You can access them through this [link on Github](https://github.com/ant-media/WebRTC-React-Native-SDK).
