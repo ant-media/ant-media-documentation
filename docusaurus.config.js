@@ -122,10 +122,6 @@ const config = {
           to: '/guides/publish-live-stream/category/playlist/'
         },
         {
-          from: '/guides/publish-live-stream/playlist/',
-          to: '/guides/publish-live-stream/category/playlist/'
-        },
-        {
           from: '/guides/stream-security/',
           to: '/category/stream-security/'
         },
