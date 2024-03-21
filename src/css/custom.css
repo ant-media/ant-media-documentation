@@ -173,3 +173,11 @@ html, article{
 .navbar__toggle{
   color: white;
 }
+
+.docSidebarContainer_node_modules-\@docusaurus-theme-classic-lib-theme-DocRoot-Layout-Sidebar-styles-module {
+  border: 0px !important;
+}
+
+.table-of-contents__left-border{
+  border-left: 0px solid #e3e3e3;
+}
