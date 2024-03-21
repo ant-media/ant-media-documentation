@@ -2,7 +2,7 @@
 title: Data Channel Sample for React Native
 description: Data Channel Sample for React Native SDK 
 keywords: [React Native SDK User Guide, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 9
+sidebar_position: 8
 ---
 
 * Open the **/samples/DataChannel/src/Chat.tsx** file and update the **defaultStreamName** variable for streamId and the **webSocketUrl** variable with your server domain or IP address.
