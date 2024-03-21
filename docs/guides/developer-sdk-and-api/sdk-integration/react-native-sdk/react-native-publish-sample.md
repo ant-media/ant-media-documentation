@@ -2,7 +2,7 @@
 title: Publishing WebRTC stream Sample in React Native
 description: Publishing WebRTC Live stream Using React Native SDK 
 keywords: [React Native SDK User Guide, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 5
+sidebar_position: 4
 ---
 
 To build the publishing sample project, follow the below steps.
