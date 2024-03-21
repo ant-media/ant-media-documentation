@@ -2,7 +2,7 @@
 title: P2P Communication Sample in React Native
 description: P2P Communication Sample Using React Native SDK 
 keywords: [React Native SDK User Guide, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 7
+sidebar_position: 6
 ---
 
 * Open the **/samples/peer/src/Peer.tsx** file and update the **defaultStreamName** variable for streamId and the **webSocketUrl** variable with your server domain or IP address.
