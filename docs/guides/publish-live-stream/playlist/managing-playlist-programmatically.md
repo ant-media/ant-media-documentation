@@ -5,7 +5,7 @@ keywords: [Managing the Playlist Programmatically, Ant Media Server Documentatio
 sidebar_position: 3
 ---
 
-In the previous sections, we learnt how to create and manage the playlists via the management panel/dashboard. The playlist can also be managed efficiently programmatically with the help of the Ant Media Server REST APIs.
+In the previous sections, we learnt how to create and manage the playlists via the management panel/dashboard. The playlist can also be managed programmatically with the help of the Ant Media Server REST APIs.
 
 ## Make Ant Media Server Respond to REST API calls
 
@@ -23,7 +23,7 @@ For this demonstrartion to test the playlist programmatically, I will open the R
 
 ## Manage PlayList Programmatically
 
-**Note** This section requires basic knowledge of terminal usage and Linux.
+**Note:** This section requires basic knowledge of terminal usage and Linux.
 
 - To create the playlist we will use the same VoD URLs that we uploaded in the last section under `Get the VoD URL`
 
@@ -132,6 +132,6 @@ You can add index query parameters by just appending with question mark to the u
 http://${MY_ANT_MEDIA_SERVER}:5080/LiveApp/rest/v2/broadcasts/playlists/${MY_PLAYLIST_ID}/next?index=0
 ```
 
-- The Url above just skips to the first item in the list.
+- The URL above just skips to the first item in the list.
 
 

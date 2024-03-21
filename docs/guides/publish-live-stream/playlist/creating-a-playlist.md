@@ -79,13 +79,13 @@ Now that we have learned how to create a playlist, let's make some configuration
 
 ![image.png](@site/static/img/publish-live-stream/playlist/settings.png)
 
-- Uncheck the `Delete HLS files after the stream is finished`as these setting will preserver the HLS files after stream has ended.
+- Uncheck the `Delete HLS files after the stream is finished`as these setting will preserve the HLS files after stream has ended.
 
 ![image.png](@site/static/img/publish-live-stream/playlist/hls-settings.png)
 
-- Scroll bottom and Click `Save` button to save the changes.
+- Scroll to the bottom and Click `Save` button to save the changes.
 
-- Scroll to the top and Choose the settings mode from `Basic` to `Advanced`
+- Scroll to the top and choose the settings mode from `Basic` to `Advanced`
 
 ![image.png](@site/static/img/publish-live-stream/playlist/advanced-settings.png)
 

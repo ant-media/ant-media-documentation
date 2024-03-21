@@ -119,7 +119,11 @@ const config = {
         },
         {
           from: '/guides/playing-live-stream/vod-streaming-via-webrtc-hls/',
-          to: '/guides/publish-live-stream/playlist/'
+          to: '/guides/publish-live-stream/category/playlist/'
+        },
+        {
+          from: '/guides/publish-live-stream/playlist/',
+          to: '/guides/publish-live-stream/category/playlist/'
         },
         {
           from: '/guides/stream-security/',
