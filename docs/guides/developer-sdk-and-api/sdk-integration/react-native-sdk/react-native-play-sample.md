@@ -2,7 +2,7 @@
 title: Playing WebRTC stream sample in React Native
 description: Playing WebRTC Live Stream Sample Using React Native SDK 
 keywords: [React Native SDK User Guide, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 6
+sidebar_position: 5
 ---
 
 * Open the **/samples/play/src/Play.tsx** file and update the **defaultStreamName** variable for streamId and the **webSocketUrl** variable with the server domain or IP address.
