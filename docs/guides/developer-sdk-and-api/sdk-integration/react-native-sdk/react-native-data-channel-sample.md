@@ -5,7 +5,7 @@ keywords: [React Native SDK User Guide, Ant Media Server Documentation, Ant Medi
 sidebar_position: 9
 ---
 
-* Open the **/samples/DataChannel/src/App.tsx** file and update the **defaultStreamName** variable for streamId and the **webSocketUrl** variable with your server domain or IP address.
+* Open the **/samples/DataChannel/src/Chat.tsx** file and update the **defaultStreamName** variable for streamId and the **webSocketUrl** variable with your server domain or IP address.
 
 ![](@site/static/img/image-1654599250441.png)
 
