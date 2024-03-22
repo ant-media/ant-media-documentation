@@ -1,172 +1,174 @@
 ---
 title: Recording live streams 
-description: Recording live streams enables you for mp4 recording for every stream in application.
+description: Recording live streams enables you to record every stream in the application.
 keywords: [Recording live streams, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 1
+sidebar_position: 2
 ---
 
-# Recording live streams
+Ant Media Server supports several types of live stream recording. Recording can be enabled or disabled from the AMS web panel or via the Rest API as well.
 
-Ant Media Server supports various types of live stream recording. Recording features are controlled by the REST API for which some of the APIs are available from the web panel. There are two options for recording: you can either enable recording for all of incoming streams or enable recording for a specific stream ID. In this document, we will go through mp4 and WebM recording and REST calls to enable them.
+There are two options for recording: 
 
-Enabling recording
-------------------
+ - Enable recording by default for all of incoming streams 
+ - Enable recording for a specific streamId.
 
-## mp4 recording
+In this document, we will go through `MP4` and `WebM` recording and REST API calls to enable them.
 
-To be able to record live streams as mp4, we first need to have the right codecs which are supported by MP4 container. The most famous codec for this purpose is H.264, which is enabled as the default codec in Ant Media Server. If h.264 is disabled, mp4 recording will not be available, you can either set the h264 enabled setting from `/usr/local/antmedia/webapps/<your_app_name>/WEB-INF/red5-web.properties` and changing the below setting: 
+## Enabling recording
 
-```settings.h264Enabled=true```
+### MP4 recording
 
-Or from the dashboard, under Applications settings.
+To be able to record live streams as MP4, we first need to have the right codecs which are supported by MP4 container. The most famous codec for this purpose is H.264, which is enabled as the default codec in Ant Media Server. If H.264 is disabled, mp4 recording will not be available. 
+
+You can set the H264 codec in the application settings via web panel.
 
 ![Screenshot from 2021-12-06 17-03-19](https://user-images.githubusercontent.com/32591015/144859658-8a1887e2-3e3a-4247-948f-6c35e611684a.png)
 
-## Enabling mp4 recording for every stream in application
+You can also set below property to enable the H264 codec via SSH. Edit `/usr/local/antmedia/webapps/<your_app_name>/WEB-INF/red5-web.properties` file and change the below setting:
 
-You can enable mp4 recording from either the dashboard or settings under /usr/local/antmedia/webapps/`<your\_app\_name>`/WEB-INF/red5-web.properties file. To update from the settings file, add:
+`settings.h264Enabled=true`
 
-```settings.mp4MuxingEnabled=true```
+#### Enabling MP4 recording by default for every stream
 
-From the dashboard, click on the checkbox for **H264** and **Record live streams as mp4**;
+You can enable MP4 recording from the web panel under application settings.
 
 ![Screenshot from 2021-12-06 16-20-31](https://user-images.githubusercontent.com/32591015/144853316-ca9ef1ce-9bfd-428d-b396-3e2f935f56d0.png)
 
-## Enabling Mp4 recording for a specific stream
+Now, every stream that is published on a server will be recorded automatically in MP4 format.
 
-You can set each streams recording individually with a REST call. It allows users to start and stop recording a live stream when it is necessary and discard the rest to protect resources. The required API is: https://antmedia.io/rest/#/BroadcastRestService/enableRecording
+#### Enabling MP4 recording for a specific stream
 
-An example curl command to start recording a particular stream;
+You can set each stream's recording individually via a REST API call. It allows users to start/stop recording a live stream when it is necessary and discard the rest to protect resources. 
 
-```curl -X PUT "http://localhost:5080/LiveApp/rest/v2/broadcasts/{stream1}/recording/{true}?recordType=mp4"```
+Here is the [Record stream API](https://antmedia.io/rest/#/BroadcastRestService/enableRecording).
 
-After enabling the mp4 recording, you can publish with webRTC, RTMP or you can pull the stream source. Server will record incoming streams as Mp4 files as long as they have h.264 codec.
+Sample curl command to start MP4 recording for a particular stream;
 
-WebM
-----
+```bash
+curl -X 'PUT' 'http(s)://domain-or-IP:Port/AppName/rest/v2/broadcasts/streamId/recording/true?recordType=mp4' -H 'accept: application/json'
+```
 
-To record webm formatted files, we need to have VP8 codec enabled at the Ant Media Server application. WebM recording is supported by webRTC since VP8 is supported. However, by adding adaptive bitrate, you can record e.g RTMP ingested streams, which do not support VP8, just like WebM. You can either set the h264 enabled setting from /usr/local/antmedia/webapps/`<your\_app\_name>`/WEB-INF/red5-web.properties file as;
+Once you call the above API, server will start recording the stream. To stop the recording, you need to make the status false.
 
-```settings.vp8Enabled=true```
+```bash
+curl -X 'PUT' 'http(s)://domain-or-IP:Port/AppName/rest/v2/broadcasts/streamId/recording/false?recordType=mp4' -H 'accept: application/json'
+```
 
-Or from the dashboard, under Applications settings;
+### WebM Recording
+
+To record webm-formatted files, we need to enable the VP8 codec in the Ant Media Server application. WebRTC supports WebM recording because it also supports VP8.
+
+You can set the VP8 codec in the application settings via the web panel.
 
 ![Screenshot from 2021-12-06 17-00-45](https://user-images.githubusercontent.com/32591015/144859285-9dedac37-f0a7-4f0d-94d5-de97f393d194.png)
 
-## Enabling WebM recording for every stream in application
+You can also set the below property to enable the VP8 codec via SSH. Edit the `/usr/local/antmedia/webapps/<your_app_name>/WEB-INF/red5-web.properties` file and change the below setting:
 
-You can enable WebM recording from either the dashboard or settings under /usr/local/antmedia/webapps/`<your\_app\_name>`/WEB-INF/red5-web.properties file. To update from the settings file, add:
+`settings.vp8Enabled=true`
 
-```settings.webMMuxingEnabled=true```
+#### Enabling WebM recording by default for every stream
 
-From the dashboard, click on the checkbox for **VP8** and **Record Live Streams as WebM**;
+You can enable VP8 recording from the web panel under application settings.
 
 ![Screenshot from 2021-12-06 17-09-46](https://user-images.githubusercontent.com/32591015/144860705-981906aa-1f14-41fb-a39b-f67e2c4ecda9.png)
 
-## Enabling WebM recording for a specific stream
+Now, every stream that is published on a server will be recorded automatically in VP8 format.
 
-With the same REST call as in Mp4, you can set individual recording for each stream by adding recordType=webm at the parameters: [Rest call for set recording](https://antmedia.io/rest/#/BroadcastRestService/enableRecording)
+#### Enabling WebM recording for a specific stream
 
-Example;
+You can set each stream's recording individually via a REST API call. It allows users to start/stop recording a live stream when it is necessary and discard the rest to protect resources. 
 
-```curl -X PUT "http://localhost:5080/LiveApp/rest/v2/broadcasts/{stream1}/recording/{true}?recordType=webm"```
+Here is the [Record stream API](https://antmedia.io/rest/#/BroadcastRestService/enableRecording).
 
-After enabling WebM recording, you can record the live streams that has VP8 codec as WebM files.
+Sample curl command to start WebM recording for a particular stream;
 
-Additional entities of recording
---------------------------------
+```bash
+curl -X 'PUT' 'http(s)://domain-or-IP:Port/AppName/rest/v2/broadcasts/streamId/recording/true?recordType=webm' -H 'accept: application/json'
+```
 
-## Recording with different resolutions and bitrates
+Once you call the above API, server will start recording the stream. To stop the recording, you need to make the status false.
 
-One of the main features of Ant Media Server is adaptive bitrate, which makes a difference also when it comes to recording. If you enable any kind of recording with adaptive bitrate settings, server will record each resolution in a format like;
+```bash
+curl -X 'PUT' 'http(s)://domain-or-IP:Port/AppName/rest/v2/broadcasts/streamId/recording/false?recordType=webm' -H 'accept: application/json'
+```
 
-```stream1_240p500kbps.webm```
+## Additional entities of recording
 
-Enabling adaptive bitrate means, server is transcoding the video inside itself. This can extend the ability to record incoming streams.
+### Recording with different resolutions and bitrates
 
-## Recording a stream which has different codec
+One of the main features of Ant Media Server is [Adaptive Bitrate Streaming](https://antmedia.io/docs/guides/adaptive-bitrate/adaptive-bitrate-streaming/), which makes a difference when it comes to recording. If you enable any kind of recording with adaptive bitrate settings, server will record the stream in each resolution, like:
 
-Containers do not support every codec. Assume you are publishing with RTMP but you also want to record in WebM format. In this case, Ant Media server can transcode video and audio codec to required format with adaptive bitrate. Let's say a 240p bitrate is added and RTMP publishing is ongoing. If you enable webM recording, 240p stream will be recorded like ```stream1_240p500kbps.webm```
+`stream1_240p500kbps.mp4` or `stream1_240p500kbps.webm`
 
-Storing recordings to another directory
----------------------------------------
+Enabling adaptive bitrate means the server is transcoding the video inside itself. This can extend the ability to record incoming streams.
 
-AMS stores the recordings to streams directory by default.
+### Recording a stream which has different codec
 
-The streams directory is located under ```usr/local/antmedia/webapps/(LiveApp/WebRTCAppEE)/streams```
+Containers do not support every codec. Assume you are publishing with RTMP with H264 codec but you want to record in WebM format. But in order to record in WebM format, you need to enable the VP8 codec. In this case, Ant Media Server can transcode video and audio codecs to the required format with adaptive bitrate. 
 
-For example, if you are using the LiveApp application, streams directory will be ```usr/local/antmedia/webapps/LiveApp/streams```
+Let's say a 240p adaptive bitrate is added in application settings and RTMP publishing is ongoing. If you enable webM recording, 240p stream will be recorded, like ```stream1_240p500kbps.webm```
+
+## Storing recordings to another directory
+
+AMS stores the recordings in streams directory by default. The streams directory is located under `usr/local/antmedia/webapps/AppName/streams`.
+
+For example, if you are using the LiveApp application, streams directory will be `usr/local/antmedia/webapps/LiveApp/streams`.
 
 If you would like to store the recordings (VoDs) to another directory/location, it is recommended to create a symbolic link.
 
-For live streams, to create symbolic link:
+For live streams, create a symbolic link:
 
-    cp -p -r /usr/local/antmedia/webapps/appname/streams/ /backup/
+```bash
+sudo cp -p -r /usr/local/antmedia/webapps/appname/streams/ /backup/
     
-    rm -rf /usr/local/antmedia/webapps/appname/streams/
+sudo rm -rf /usr/local/antmedia/webapps/appname/streams/
     
-    ln -s /mnt/vod_storage/folder /usr/local/antmedia/webapps/appname/streams
-    
+sudo ln -s /mnt/vod_storage/folder/
+/usr/local/antmedia/webapps/appname/streams
+```
 
-After creating the symbolic link, you need to change the persmission of both base directory and target dirctory using below commands.
+After creating the symbolic link, you need to change the permissions of both the base directory and target directory using below commands.
 
-    sudo chown -R antmedia:antmedia /usr/local/antmedia
-    
-    sudo chown -R antmedia:antmedia /mnt/vod_storage/folder
-    
+```bash
+sudo chown -R antmedia:antmedia /usr/local/antmedia
+
+sudo chown -R antmedia:antmedia /mnt/vod_storage/folder
+```
 
 In order to link another directory containing MP4 files as VoD directory on Web Panel:
 
-1.  Login to Ant Media Server panel
-2.  Go to Applications (LiveApp/WebRTCAppEE) settings
-3.  Set VoD streaming folder (i.e., add directory where MP4 files are located).
+ - Login to Ant Media Server web panel 
+ - Go to Applications (LiveApp/WebRTCAppEE) settings 
+ - Set the VoD streaming folder (i.e., add directory where MP4 files are located).
 
 ## Uploading records to S3
 
-Please check [S3 documentation for Ant Media Server](/v1/docs/integrating-with-s3).
+Please check [S3 Intergration documentation](/v1/docs/integrating-with-s3) to record streams to the s3 bucket.
 
-To configure the HLS, record (MP4 or WebM) or output PNG format, you can use the following setting;
+To record the **HLS**, **MP4**/**WebM** or **PNG** files to the bucket, you can use the following setting;
 
-```settings.uploadExtensionsToS3```
+`"uploadExtensionsToS3": 7`
+  
+You can change this property from the Application's Advanced settings on web panel. The default value is 7 which records all HLS, MP4/WebM and PNG files.
 
-Add this setting under /usr/local/antmedia/webapps/app-name/WEB-INF/red5-web.properties file.
+This setting is a number where the digits represent whether an upload will be done or not. The least significant digit switches MP4/WebM files, the second switches HLS and the third for PNG.
 
-After making the changes just restart the server with **sudo service antmedia restart**.
-
-This setting is a number where the digits represent whether an upload will be done or. The least significant digit switches record files, the second switches HLS and the third for PNG.
-
-Example: settings.uploadExtensionsToS3=5 ( 101 in binary ) means upload mp4 and PNG but not HLS
+Example: `uploadExtensionsToS3=5` ( 101 in binary ) means upload MP4 and PNG but not HLS.
 
 Possible values are as follows:
 
-Don't upload anything:
+ - Don't upload anything: `uploadExtensionsToS3=0`
+ 
+ - Only (MP4/WebM) upload: `uploadExtensionsToS3=1`
 
-```settings.uploadExtensionsToS3=0```
+ - HLS upload only: `uploadExtensionsToS3=2`
 
-Only record file (mp4 or webm) upload:
+ - HLS and record upload: `uploadExtensionsToS3=3`
 
-```settings.uploadExtensionsToS3=1```
+ - PNG upload only: `uploadExtensionsToS3=4`
 
-HLS upload only:
+ - PNG and record upload: `uploadExtensionsToS3=5`
 
-```settings.uploadExtensionsToS3=2```
+ - PNG and HLS upload: `uploadExtensionsToS3=6`
 
-HLS + record upload:
-
-```settings.uploadExtensionsToS3=3```
-
-PNG upload only:
-
-```settings.uploadExtensionsToS3=4```
-
-PNG and record upload:
-
-```settings.uploadExtensionsToS3=5```
-
-PNG + HLS upload:
-
-```settings.uploadExtensionsToS3=6```
-
-Upload everything (default behaviour):
-
-```settings.uploadExtensionsToS3=7```
+ - Upload everything: `uploadExtensionsToS3=7`
