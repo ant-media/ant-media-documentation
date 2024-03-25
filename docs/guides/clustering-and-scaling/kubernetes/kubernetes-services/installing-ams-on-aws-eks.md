@@ -105,25 +105,30 @@ Update the Kubernetes cluster `kubeconfig` settings and then list the nodes with
 * * *
 ## Step 12: Deploy Ant Media Server
 
-Now, it’s time to deploy Ant Media Server on the Kubernetes cluster by creating the `yaml` files.
+Now, it’s time to deploy Ant Media Server on the Kubernetes cluster by applying the `yaml` files.
 
-First, you should organize your image field since you are going to change images. Here are the steps to organize your image field:
+Download all yaml files from the following link or clone the repo.
 
-```shell
-wget https://raw.githubusercontent.com/ant-media/Scripts/master/kubernetes/ams-k8s-deployment.yaml 
-kubectl create -f ams-k8s-deployment.yaml
-kubectl create -f https://raw.githubusercontent.com/ant-media/Scripts/master/kubernetes/ams-k8s-hpa.yaml
-kubectl create -f https://raw.githubusercontent.com/ant-media/Scripts/master/kubernetes/ams-k8s-rtmp.yaml 
-wget https://raw.githubusercontent.com/ant-media/Scripts/master/kubernetes/ams-k8s-ingress.yaml
+https://github.com/ant-media/Scripts/tree/master/kubernetes
+
+After downloading the files, you can customize the YAML files or deploy them directly.
+
 ```
-    
+kubectl create -f ams-k8s-mongodb.yaml
+kubectl create -f ams-k8s-deployment-origin.yaml
+kubectl create -f ams-k8s-deployment-edge.yaml
+kubectl create -f ams-k8s-hpa-origin.yaml
+kubectl create -f ams-k8s-hpa-edge.yaml
+kubectl create -f ams-k8s-rtmp.yaml
+```
 
 [Deploy the ingress.](/guides/clustering-and-scaling/kubernetes/deploy-ams-on-kubernetes/#kubernetes-ingress)
 
 Once the changes on the **ams-k8s-ingress.yaml** file are done, let’s create our ingress.
 
-```shell
-kubectl create -f ams-k8s-ingress.yaml
+```
+kubectl create -f ams-k8s-ingress-origin.yaml
+kubectl create -f ams-k8s-ingress-edge.yaml
 ```
 
 If everything works well, you will see the public IP address/domain name in the **kubectl get ingress** command’s output. After you make your DNS registration, you will be able to access over the domain you have determined.
@@ -137,3 +142,7 @@ Run **kubectl get services** command to get the RTMP address. You can send broad
 When we check the Ant Media Server dashboard, we can see that 2 nodes have joined the cluster.
 
 ![image.png](@site/static/img/image-287729.png)
+
+If you don't want to deal with any of this then I suggest you look at helm deployment.
+
+https://github.com/ant-media/helm
