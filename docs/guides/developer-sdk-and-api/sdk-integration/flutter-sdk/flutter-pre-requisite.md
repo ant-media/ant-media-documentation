@@ -12,7 +12,9 @@ sidebar_position: 2
 *   Android Studio (For Android)
 *   XCode (For iOS)
 
->` Please note, you can also run the projects through the terminal or command-line, however, for better debugging, consider using Android Studio or XCode. This document considers the use of Android Studio for building and running applications.
+:::info
+You can also run the projects through the terminal or command line; however, for better debugging, consider using Android Studio or XCode. This document considers the use of Android Studio for building and running applications.
+:::
 
 ### Flutter & Dart Installation
 
@@ -20,21 +22,25 @@ You can follow [Flutter official documentation](https://docs.flutter.dev/get-sta
 
 ### Android Studio
 
-Install the Android Studio, please follow the installation steps mentioned here [Install Android Studio](https://developer.android.com/studio/install.html). 
+Install the Android Studio, please follow the installation steps mentioned here [Install Android Studio](https://developer.android.com/studio/install.html). 
 
 Add the Dart language plugins and Flutter extensions to Android Studio. Please follow below operating system specific installation instructions.
-    1.  For macOS, use the following instructions:
-        1.  Start Android Studio
-        2.  Open plugin preferences (Preferences >` Plugins as of v3.6.3.0 or later)
-        3.  Select the Flutter plugin and click Install
-        4.  Click Yes when prompted to install the Dart plugin
-        5.  Click Restart when prompted
-    2.  For Linux or Windows, use the following instructions:
-        1.  Start Android Studio
-        2.  Open plugin preferences (File >` Settings >` Plugins)
-        3.  Select Marketplace, select the Flutter plugin and click Install
-        4.  Click Yes when prompted to install the Dart plugin
-        5.  Click Restart when prompted
+
+1. For macOS, use the following instructions:
+
+ - Start Android Studio
+ - Open plugin preferences (Preferences >` Plugins as of v3.6.3.0 or later)
+ - Select the Flutter plugin and click Install
+ - Click Yes when prompted to install the Dart plugin
+ - Click Restart when prompted
+
+2. For Linux or Windows, use the following instructions:
+
+ - Start Android Studio
+ - Open Plugins
+ - Select Marketplace, select the Flutter plugin and click Install
+ - Click Yes when prompted to install the Dart plugin
+ - Click Restart when prompted
 
 ### Verify Installation
 
