@@ -214,7 +214,7 @@ const config = {
           to: '/guides/clustering-and-scaling/aws/configuring-rtmp-lb-in-aws/'
         },
         {
-          from: '/docs/guides/developer-sdk-and-api/rest-api-guide/rest-api-guide/',
+          from: '/guides/developer-sdk-and-api/rest-api-guide/rest-api-guide/',
           to: '/category/rest-api-guide/'
         },
         {
