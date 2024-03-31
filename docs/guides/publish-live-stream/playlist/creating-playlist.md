@@ -1,6 +1,6 @@
 ---
-title: Creating playlist
-description: Creating playlist
+title: Creating a playlist
+description: Creating a playlist
 keywords: [Creating a playlist, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 2
 ---
@@ -9,11 +9,11 @@ It is very simple to create a playlist from the Ant Media Server dashboard by fo
 
 ## VoD files
 
-In order to create a playlist, we need to have a set of VoD files which will be used as the playlist items. Therefore, as the first step, we will upload some VoD files to the Ant Media Server.
+In order to create a playlist, we need to have a set of VoD files that will be used as playlist items. Therefore, as the first step, we will upload some VoD files to the Ant Media Server.
 
 ### Login to your Ant Media Server Dashboard
 
-- Login to your Ant Media Server Web Panel/dashboard. The url is like this `https://YOUR_ANT_MEDIA_SERVER:5443/`
+Login to your Ant Media Server Web Panel/dashboard. The url is like this: `https://YOUR_ANT_MEDIA_SERVER:5443/`
 
 ![image.png](@site/static/img/publish-live-stream/playlist/webpanel.png)
 
@@ -27,23 +27,28 @@ In order to create a playlist, we need to have a set of VoD files which will be 
 ### Uploading the VoD files
 
 Now we can upload the VoD files that we want to stream with the playlist.
+
 - Click on `Upload VoD` tab and then click on `Choose File` to select the files you want to upload. For this demonstration, I will upload three VoD files.
 
 ![image.png](@site/static/img/publish-live-stream/playlist/vod-upload.png)
 
-- **Note**: Furthermore, uploading mp4 files to your Ant Media Server is optional. Ant Media Server can retrieve mp4 files from any location. You simply need to ensure that the file URL is accessible to AMS.
+:::info
+Furthermore, uploading MP4 files to your Ant Media Server is optional. Ant Media Server can retrieve MP4 files from any location. You simply need to ensure that the file URL is accessible to AMS.
+:::
 
 ## Creating the Playlist
 
 Now that we have the VoD files ready, we will create the playlist with these VoD files as the playlist items.
 
 ### Get the VoD URL
-- The sample path of a VoD file is like `https://ams-server:5443/LiveApp/streams/vod_id
-- In order to get the VOD URL, click on the hamburger icon which is located at the right side of the screen and then click `Copy VoD URL`
+
+- The sample path of a VoD file is like `http(s)://ams-server-urlPort/LiveApp/streams/vod_id.mp4`
+- In order to get the VOD URL, click on the hamburger icon, which is located at the right side of the screen and then click `Copy VoD URL`
 
 ![image.png](@site/static/img/publish-live-stream/playlist/vod-url.png)
 
 - Now we have the VoDs accessible through the below links
+
 ```
 http://13.201.79.224:5080/LiveApp/streams/111716684850426702820750.mp4
 http://13.201.79.224:5080/LiveApp/streams/618712696735204930650663.mp4
@@ -52,12 +57,12 @@ http://13.201.79.224:5080/LiveApp/streams/716674157649310868227159.mp4
 
 ### Let's create the Playlist
 
-- Go to `Live Streams` section, and click on `New Live Streams` and then select `Playlist` from the drop-down menu.
+- Go to `Live Streams` section, and click on `New Live Stream` and then select `Playlist` from the drop-down menu.
 
 ![image.png](@site/static/img/publish-live-stream/playlist/playlist.png)
 
 - Name your playlist, click on `Add Playlist Item`, add all the playlist items and then click `Create`.
-- The `stream Id` field is not mandatory.
+- The `stream Id` field is not mandatory but you can put your own streamId.
 
 ![image.png](@site/static/img/publish-live-stream/playlist/playlist-items.png)
 
@@ -71,15 +76,15 @@ http://13.201.79.224:5080/LiveApp/streams/716674157649310868227159.mp4
 
 ![image.png](@site/static/img/publish-live-stream/playlist/playlist-running.png)
 
-## Optamizing Playlist for Better Playback Experience
+## Optimizing Playlist for Better Playback Experience
 
-Now that we have learned how to create a playlist, let's make some configurations to optamize the playlist for a better playback experiecne.
+Now that we have learned how to create a playlist, let's make some configurations to optimize the playlist for a better playback experience.
 
 - Go to the `Settings` section of the application and scroll down.
 
 ![image.png](@site/static/img/publish-live-stream/playlist/settings.png)
 
-- Uncheck the `Delete HLS files after the stream is finished`as these setting will preserve the HLS files after stream has ended.
+- Uncheck the `Delete HLS files after the stream is finished` as this setting will preserve the HLS files after the stream has ended.
 
 ![image.png](@site/static/img/publish-live-stream/playlist/hls-settings.png)
 
