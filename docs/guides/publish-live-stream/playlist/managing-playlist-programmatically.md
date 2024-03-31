@@ -5,17 +5,19 @@ keywords: [Managing the Playlist Programmatically, Ant Media Server Documentatio
 sidebar_position: 3
 ---
 
-In the previous sections, we learnt how to create and manage the playlists via the management panel/dashboard. The playlist can also be managed programmatically with the help of the Ant Media Server REST APIs.
+In the previous sections, we learned how to create and manage playlists via the management panel/dashboard. The playlist can also be managed programmatically with the help of the Ant Media Server REST APIs.
 
 ## Make Ant Media Server Respond to REST API calls
 
-By default only localhost can make REST calls to the Ant Media Server and for any other IPs to be able to make the API call, we need to enable that IP on the application settings under `REST API Security`.
+By default, only localhost can make REST calls to the Ant Media Server and for any other IPs to be able to make the API call, we need to enable that IP in the application settings under `REST API Security`.
 
-For this demonstrartion to test the playlist programmatically, I will open the REST API for everyone.
+For this demonstration to test the playlist programmatically, I will open the REST API for everyone.
 
-**Pay attention** that I have opened Ant Media Server to respond all REST methods for testing purposes. It's not something recommended for production environments. So, you should only open the REST calls to specific IPs by [securing the REST APIs](https://antmedia.io/docs/guides/developer-sdk-and-api/rest-api-guide/securing-rest-apis/).
+:::important 
+I have opened Ant Media Server to respond to all REST methods for testing purposes. It's not something recommended for production environments. So, you should only open the REST calls to specific IPs by [securing the REST APIs](https://antmedia.io/docs/guides/developer-sdk-and-api/rest-api-guide/securing-rest-apis/).
+:::
 
-- Find `REST API Security` section under settings and add 0.0.0.0/0 to the text area within the `Enable IP Filter for RESTful API`.
+- Find `REST API Security` section under settings and add `0.0.0.0/0` to the text area within the `Enable IP Filter for RESTful API`.
 
 - Save the settings.
 
@@ -23,9 +25,11 @@ For this demonstrartion to test the playlist programmatically, I will open the R
 
 ## Manage PlayList Programmatically
 
-**Note:** This section requires basic knowledge of terminal usage and Linux.
+:::info
+This section requires basic knowledge of terminal usage and Linux.
+:::
 
-- To create the playlist we will use the same VoD URLs that we uploaded in the last section under `Get the VoD URL`
+- To create the playlist, we will use the same VoD URLs that we uploaded in the last section under `Get the VoD URL`
 
 ```
 http://13.201.79.224:5080/LiveApp/streams/111716684850426702820750.mp4
@@ -37,7 +41,7 @@ http://13.201.79.224:5080/LiveApp/streams/716674157649310868227159.mp4
 
 - Open a shell terminal in your Linux or Mac.
 
-- Define your own values for variables below. `ITEM1`, `ITEM2` and `ITEM3` are VoD URL that we copied. You can copy and paste one line at a time.
+- Define your own values for variables below according to your server domain/IP or playlist streamId. `ITEM1`, `ITEM2` and `ITEM3` are VoD URL that we copied. You can copy and paste one line at a time.
 
 ```
 export MY_ANT_MEDIA_SERVER=localhost
@@ -52,9 +56,9 @@ export ITEM3=http://13.201.79.224:5080/LiveApp/streams/716674157649310868227159.
 
 Create a Playlist with the items above. Just Copy and Paste the below command.
 
-```
+```bash
 curl -X 'POST' \
-  "http://${MY_ANT_MEDIA_SERVER}:5080/LiveApp/rest/v2/broadcasts/create" \
+"http://${MY_ANT_MEDIA_SERVER}:5080/LiveApp/rest/v2/broadcasts/create" \
   -H 'Content-Type: application/json' \
   -d '{ 
           "streamId": "'"${MY_PLAYLIST_ID}"'", 
@@ -76,19 +80,18 @@ curl -X 'POST' \
         }'
 ```
 
-- Ant Media Server responds with generated broadcast JSON object. If you don't give `streamId` in the request above, then Ant Media Server will generate a random `streamId`.
+- Ant Media Server responds with a generated broadcast JSON object. If you don't give `streamId` in the request above, then Ant Media Server will generate a random `streamId`.
 
 ![image.png](@site/static/img/publish-live-stream/playlist/playlist-creation.png)
 
-- Check that the playlist is also visible on the web panel as shown below.
+- Check that the playlist is also visible on the web panel, as shown below.
 
 ![image.png](@site/static/img/publish-live-stream/playlist/playlist-panel.png)
 
 ### Starting the Playlist
 
-```
-curl -X 'POST' \
-  "http://${MY_ANT_MEDIA_SERVER}:5080/LiveApp/rest/v2/broadcasts/${MY_PLAYLIST_ID}/start" 
+```bash
+curl -X 'POST' "http://${MY_ANT_MEDIA_SERVER}:5080/LiveApp/rest/v2/broadcasts/${MY_PLAYLIST_ID}/start" 
 ```
 
 ![image.png](@site/static/img/publish-live-stream/playlist/playlist-start.png)
@@ -101,7 +104,7 @@ curl -X 'POST' \
 
 - Open a new tab in your browser and visit `http://{MY_ANT_MEDIA_SERVER}:5080/LiveApp/play.html?id={MY_PLAYLIST_ID}&playOrder=hls`
 
-- Pay pay attention that we use HLS for playback because it provides better experience in playlists and there is no need to have ultra low latency by playing with WebRTC as it is a VoD streaming.
+- Pay attention to the fact that we use HLS for playback because it provides better experience in playlists and there is no need to have ultra-low latency when playing with WebRTC as it is VoD streaming.
 
 ![image.png](@site/static/img/publish-live-stream/playlist/playing-playlist.png)
 
@@ -109,29 +112,24 @@ curl -X 'POST' \
 
 To skip item in playback, you can make the below REST call.
 
+```bash
+curl -X 'POST' "http://${MY_ANT_MEDIA_SERVER}:5080/LiveApp/rest/v2/broadcasts/playlists/${MY_PLAYLIST_ID}/next" 
 ```
-  curl -X 'POST' \
-  "http://${MY_ANT_MEDIA_SERVER}:5080/LiveApp/rest/v2/broadcasts/playlists/${MY_PLAYLIST_ID}/next" 
+
+If you give index query parameter when skipping an item in the PlayList, it will skip to that item directly in the playlist.
+
+You can add index query parameters by just appending a question mark to the URL as follows:
+
+```bash
+curl -X 'POST' "http://${MY_ANT_MEDIA_SERVER}:5080/LiveApp/rest/v2/broadcasts/playlists/${MY_PLAYLIST_ID}/next" ?index=0
 ```
 
 - Check that the player has skipped the item. It may take about 10-15 seconds to see that the effect because HLS playback has this latency.
 
 ### Stop the Playlist
 
-```
-curl -X 'POST' \
-  "http://${MY_ANT_MEDIA_SERVER}:5080/LiveApp/rest/v2/broadcasts/${MY_PLAYLIST_ID}/stop"
-```
-
-### Bonus
-**Note** If you give index query parameter when skipping the item in the PlayList, it will skip to that item directly in the playlist.
-
-You can add index query parameters by just appending with question mark to the url as follows.
-
-```
-http://${MY_ANT_MEDIA_SERVER}:5080/LiveApp/rest/v2/broadcasts/playlists/${MY_PLAYLIST_ID}/next?index=0
+```bash
+curl -X 'POST' "http://${MY_ANT_MEDIA_SERVER}:5080/LiveApp/rest/v2/broadcasts/${MY_PLAYLIST_ID}/stop"
 ```
 
-- The URL above just skips to the first item in the list.
-
-
+Stay tuned for more new features to enhance the Playlist experience with Ant Media Server.
