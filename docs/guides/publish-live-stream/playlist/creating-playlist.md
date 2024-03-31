@@ -1,6 +1,6 @@
 ---
-title: Creating a playlist
-description: Creating a playlist
+title: Creating playlist
+description: Creating playlist
 keywords: [Creating a playlist, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 2
 ---
