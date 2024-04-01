@@ -26,7 +26,7 @@ I have opened Ant Media Server to respond to all REST methods for testing purpos
 ## Manage PlayList Programmatically
 
 :::info
-This section requires basic knowledge of terminal usage and Linux.
+This section requires basic knowledge of terminal usage and Linux. You can also use some API clients, like Postman, etc., to call Rest APIs.
 :::
 
 - To create the playlist, we will use the same VoD URLs that we uploaded in the last section under `Get the VoD URL`
