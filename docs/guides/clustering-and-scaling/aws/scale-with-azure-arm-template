@@ -17,11 +17,11 @@ Let's now dive into setting up the ARM template and proceed step by step.
 
 **3.** Search "Deploy a custom template" from the search bar, then click the **Build your own template in the editor** button to upload the template that you download here and then upload the template by using **Load file**
 
-![](@site/static/img/ams-cluster-in-azure-with-arm-2.png)
+![](@site/static/img/azure/ams-cluster-in-azure-with-arm-2.png)
 
 **4.** After uploading the ARM template you will see a screen like the one below. Fill in the required parameters.
 
-![](@site/static/img/ams-cluster-in-azure-with-arm-3.png)
+![](@site/static/img/azure/ams-cluster-in-azure-with-arm-3.png)
 
 **Resource Group**: Resource group where the cluster will be installed
 **Region**: Region where the cluster will be established.
@@ -51,10 +51,10 @@ Enter the content of the resulting file with the .base64 extension into **Cert D
 
 **6.** When the deployment process is complete, you will see a screen like the one below. You can then go to the Application Gateway service and connect to your cluster via the Public IP it has or you can update your DNS based on the certificate hostname
 
-![](@site/static/img/ams-cluster-in-azure-with-arm-4.png)
+![](@site/static/img/azure/ams-cluster-in-azure-with-arm-4.png)
 
 **7.** The common name of my certificate was azure.antmedia.cloud, I entered the IP address of the Application Gateway from DNS as an A record and I was able to access it as follows.
 
-![](@site/static/img/ams-cluster-in-azure-with-arm-5.png)
-![](@site/static/img/ams-cluster-in-azure-with-arm-5-1.png)
+![](@site/static/img/azure/ams-cluster-in-azure-with-arm-5.png)
+![](@site/static/img/azure/ams-cluster-in-azure-with-arm-5-1.png)
 
