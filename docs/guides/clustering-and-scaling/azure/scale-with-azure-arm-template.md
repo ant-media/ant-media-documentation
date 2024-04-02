@@ -15,7 +15,7 @@ Let's now dive into setting up the ARM template and proceed step by step.
 
 ![](@site/static/img/azure/ams-cluster-in-azure-with-arm-1.png)
 
-**3.** Search "Deploy a custom template" from the search bar, then click the **Build your own template in the editor** button to upload the template that you download here and then upload the template by using **Load file**
+**3.** Search "Deploy a custom template" from the search bar, then click the **Build your own template in the editor** button to upload the template that you download [here](https://raw.githubusercontent.com/ant-media/Scripts/master/azure-arm-template/antmedia-azure-autoscale.yaml) and then upload the template by using **Load file**
 
 ![](@site/static/img/azure/ams-cluster-in-azure-with-arm-2.png)
 
@@ -47,7 +47,7 @@ Let's now dive into setting up the ARM template and proceed step by step.
 
 **5.** Certification processes (Cert Data and Cert Password)
 
-If you do not have a certificate, you can check this link to create one.
+If you do not have a certificate, you can check this [link](https://antmedia.io/enable-ssl-on-ant-media-server/) to create one.
 
 - Convert the existing or newly created certificate to pfx format as shown below(Enter the password you entered here in the Cert Password field.).
 ```
