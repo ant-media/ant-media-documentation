@@ -24,15 +24,25 @@ Let's now dive into setting up the ARM template and proceed step by step.
 ![](@site/static/img/azure/ams-cluster-in-azure-with-arm-3.png)
 
 **Resource Group**: Resource group where the cluster will be installed
+
 **Region**: Region where the cluster will be established.
+
 **Origin Instance Capacity**: How many instances will be created in the Origin cluster
+
 **Origin Instance Type**: Origin cluster's instance type
+
 **Edge Instance Capacity**: How many instances will be created in the edge cluster
+
 **Edge Instance Type**: Edge cluster instance type
+
 **CPU Policy Target Value**: Average CPU utilization of the Auto Scaling group. When the server reaches %60 CPU utilization average, new servers will be added
+
 **MongoDB Instance Type**: MongoDB's instance type
+
 **Cert Data**: The base64 version of your certificate in pfx format.
+
 **Cert Password**: Password for your certificate
+
 **Authentication Type**: Whether the connection method to all instances will be Password or SSH key. If you choose Password, you must fill in the Password field
 
 **5.** Certification processes (Cert Data and Cert Password)
