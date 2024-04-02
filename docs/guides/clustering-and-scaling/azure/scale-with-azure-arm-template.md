@@ -66,5 +66,6 @@ Enter the content of the resulting file with the .base64 extension into **Cert D
 **7.** The common name of my certificate was azure.antmedia.cloud, I entered the IP address of the Application Gateway from DNS as an A record and I was able to access it as follows.
 
 ![](@site/static/img/azure/ams-cluster-in-azure-with-arm-5-1.png)
-![](@site/static/img/azure/ams-cluster-in-azure-with-arm-5-2.png)
+
+If you have any questions, please just drop your query at https://github.com/orgs/ant-media/discussions
 
