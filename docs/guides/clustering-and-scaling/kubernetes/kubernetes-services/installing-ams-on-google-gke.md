@@ -93,7 +93,7 @@ helm install antmedia antmedia/antmedia \
 
 If everything works well, you will see the public IP address/domain name in the kubectl get ingress command’s output. After you make your DNS registration, you will be able to access over the domain you have determined.
 
-![image.png](@site/static/img/gcp-gke/antmedia-gke-7)
+![image.png](@site/static/img/gcp-gke/antmedia-gke-7.png)
 
 
 * * *
