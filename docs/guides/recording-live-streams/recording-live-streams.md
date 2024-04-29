@@ -18,7 +18,7 @@ In this document, we will go through `MP4` and `WebM` recording and REST API cal
 
 ### MP4 recording
 
-To be able to record live streams as MP4, we first need to have the right codecs which are supported by MP4 container. The most famous codec for this purpose is H.264, which is enabled as the default codec in Ant Media Server. If H.264 is disabled, mp4 recording will not be available. 
+To record live streams as MP4, we must first have the appropriate codecs that are compatible with the MP4 container. The most famous codec for this purpose is H.264, which is enabled as the default codec in Ant Media Server. If H.264 is disabled, mp4 recording will not be available. 
 
 You can set the H264 codec in the application settings via the web panel.
 
@@ -40,7 +40,7 @@ Now, every stream that is published on a server will be recorded automatically i
 
 You can set each stream's recording individually via a REST API call. It allows users to start/stop recording a live stream when it is necessary and discard the rest to protect resources. 
 
-Here is the [Record stream API](https://antmedia.io/rest/#/BroadcastRestService/enableRecording).
+Here is the [Record stream API](https://antmedia.io/rest/#/default/enableRecording).
 
 Sample curl command to start MP4 recording for a particular stream;
 
@@ -78,7 +78,7 @@ Now, every stream that is published on a server will be recorded automatically i
 
 You can set each stream's recording individually via a REST API call. It allows users to start/stop recording a live stream when it is necessary and discard the rest to protect resources. 
 
-Here is the [Record stream API](https://antmedia.io/rest/#/BroadcastRestService/enableRecording).
+Here is the [Record stream API](https://antmedia.io/rest/#/default/enableRecording).
 
 Sample curl command to start WebM recording for a particular stream;
 
@@ -100,6 +100,8 @@ You can also add the date time to recorded files by enabling the `Add Date-Time 
 
 ![](@site/static/img/recording-live-streams/recording-live-streams/date-and-time.png)
 
+Once the recording is completed, the record file name will be like `streamId9666-2024-04-02_13-18-35.844.mp4` with a date and time.
+
 ### Recording with different resolutions and bitrates
 
 One of the main features of Ant Media Server is [Adaptive Bitrate Streaming](https://antmedia.io/docs/guides/adaptive-bitrate/adaptive-bitrate-streaming/), which makes a difference when it comes to recording. If you enable any kind of recording with adaptive bitrate settings, server will record the stream in each resolution, like:
@@ -114,13 +116,13 @@ Containers do not support every codec. Assume you are publishing with RTMP with 
 
 Let's say a 240p adaptive bitrate is added in application settings and RTMP publishing is ongoing. If you enable webM recording, 240p stream will be recorded, like ```stream1_240p500kbps.webm```
 
-## Storing recordings to another directory
+## Store recordings to another directory
 
-AMS stores the recordings in streams directory by default. The streams directory is located under `usr/local/antmedia/webapps/AppName/streams`.
+AMS stores the recordings in the streams directory by default. The streams directory is located under `usr/local/antmedia/webapps/AppName/streams`.
 
 For example, if you are using the LiveApp application, the streams directory will be `usr/local/antmedia/webapps/LiveApp/streams`.
 
-If you would like to store the recordings (VoDs) to another directory/location, it is recommended to create a symbolic link.
+If you would like to store the recordings (VoDs) in another directory/location, it is recommended to create a symbolic link.
 
 For live streams, create a symbolic link:
 
@@ -140,11 +142,21 @@ sudo chown -R antmedia:antmedia /usr/local/antmedia
 sudo chown -R antmedia:antmedia /mnt/vod_storage/folder
 ```
 
-In order to link another directory containing MP4 files as VoD directory on Web Panel:
+## Import recordings from another directory
 
- - Login to Ant Media Server web panel 
- - Go to Applications (LiveApp/WebRTCAppEE) settings 
- - Set the VoD streaming folder (i.e., add directory where MP4 files are located).
+In order to link another directory containing MP4 files as VoD directory on Web Panel, checkout [this API](https://antmedia.io/rest/#/default/importVoDs).
+
+Sample curl command to import/link the VODs from another directory on the server.
+
+```bash
+curl -X 'POST' 'https://IP:Port/AppName/rest/v2/vods/directory?directory=/home/recordings' -H 'accept: application/json' 
+```
+
+To remove/unlink the imported directory, check [this API](https://antmedia.io/rest/#/default/unlinksVoD).
+
+```bash
+curl -X 'DELETE' 'https://test.antmedia.io:5443/Sandbox/rest/v2/vods/directory?directory=/home/recordings' -H 'accept: application/json'
+```
 
 ## Uploading records to S3
 
@@ -154,7 +166,7 @@ To record the **HLS**, **MP4**/**WebM** or **PNG** files to the bucket, you can 
 
 `"uploadExtensionsToS3": 7`
   
-You can change this property from the Application's Advanced settings on web panel. The default value is 7 which records all HLS, MP4/WebM and PNG files.
+You can change this property in the Application's Advanced settings on web panel. The default value is 7, which records all HLS, MP4/WebM and PNG files.
 
 This setting is a number where the digits represent whether an upload will be done or not. The least significant digit switches MP4/WebM files, the second switches HLS and the third for PNG.
 
