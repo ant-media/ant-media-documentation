@@ -1,4 +1,3 @@
-  
 ---
 title: Media Push Plugin
 description: This guide explains how to stream and record any specific web page using the media push plugin
