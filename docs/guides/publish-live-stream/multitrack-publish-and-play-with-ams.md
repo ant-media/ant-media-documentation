@@ -115,7 +115,7 @@ Now that our external stream is live on the Ant Media Server, it's time to add i
 
 It's important to note that each participant in a conference room corresponds to a subtrack in the room broadcast object. Therefore, we will add our external stream to the subtrack list of our room broadcast object, so that the external stream becomes visible in the conference room.
 
-To add our external stream to our conference room, we will use [add SubTrack Rest API](https://antmedia.io/rest/#/BroadcastRestService/addSubTrack).
+To add our external stream to our conference room, we will use [add SubTrack Rest API](https://antmedia.io/rest/#/default/addSubTrack).
 
 Send a POST request with the streamId of the conference room broadcast `(room1)` and streamId of the external broadcast `(external_stream)` you would like to add to the conference room.
 
@@ -131,7 +131,7 @@ As soon as you receive success, you should observe that an external stream is ad
 
 ![mediapull-external-stream-added.png](@site/static/img/mediapull-external-stream-added.png)
 
-To remove the external stream from the conference room, we will use [remove SubTrack Rest API](https://antmedia.io/rest/#/BroadcastRestService/removeSubTrack).
+To remove the external stream from the conference room, we will use [remove SubTrack Rest API](https://antmedia.io/rest/#/default/removeSubTrack).
 
 ![mediapull-remove-external-stream-postman.png](@site/static/img/mediapull-remove-external-stream-postman.png)
 
