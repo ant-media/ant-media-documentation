@@ -1,6 +1,6 @@
 ---
 title: HLS Playing
-description: This documentation guide will help you achieve HLS Playing and Save HLS Records to your servers.
+description: This documentation guide will help you achieve HLS playing and save HLS records to your servers.
 keywords: [HLS Playing, HLS Playing with Ant Media Server, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 2
 ---
@@ -39,7 +39,7 @@ The HLS playback will start automatically when the stream is live.
 
 To learn more about the embedded player, check [the document](https://antmedia.io/docs/guides/playing-live-stream/embedded-web-player/).
 
-Autoplay is enabled by default in a player but it may not be activated for some policies in Chrome and Firefox. So you may need to click the player button to get it started. Look at the following links:
+Autoplay is enabled by default in a player, but it may be disabled for certain policies in Chrome and Firefox. So you might need to click the player button to get it started. Check out the following links:
 
 [Chrome policy](https://developers.google.com/web/updates/2017/09/autoplay-policy-changes)
 
@@ -50,7 +50,7 @@ Autoplay is enabled by default in a player but it may not be activated for some 
 
 When creating or updating a stream on Ant Media Server via the Rest API, you have the option to specify a subfolder for the broadcast. This allows HLS files to be generated within that designated folder.
 
-This functionality ensures that when HLS files are being generated on the server side, they will be placed in the specified subfolder path within the `/usr/local/antmedia/webapps/{appName}/streams` directory. For instance, if you create a stream with the streamId `teststream` and a subfolder `mySubFolder` in WebRTCAppEE application, then your HLS files `(.m3u8 and .ts)` will be generated under:
+This functionality ensures that when HLS files are being generated on the server side, they will be placed in the specified subfolder path within the `/usr/local/antmedia/webapps/{appName}/streams` directory. For instance, if you create a stream with the streamId `teststream` and a subfolder `mySubFolder` in the WebRTCAppEE application, then your HLS files `(.m3u8 and.ts)` will be generated under:
 
 ```/usr/local/antmedia/webapps/WebRTCAppEE/streams/mySubFolder``` directory.
 
@@ -82,7 +82,7 @@ curl -X 'POST' 'https://domain:5443/WebRTCAppEE/rest/v2/broadcasts/create' \
 }'
 ```
 
-Remember, if you try to HLS play a stream which has a subFolder defined, you need to pass ```subFolderName/streamId``` as id to the embedded player.
+Remember, if you try to HLS play a stream which has a subFolder defined, you need to pass ```subFolderName/streamId``` as an ID to the embedded player.
 
 So if you created a stream with  ```"streamId":"teststream"``` and ```"subFolder":"mySubFolder"``` you should play it with:
 
@@ -115,10 +115,6 @@ In prior versions, the HLS filename was streamId_480p.m3u8, but now it is stream
 
 If you would like to use the old structure, check the following
 [post](https://github.com/orgs/ant-media/discussions/4984).
-
-> Quick Link: [App Configurations](https://antmedia.io/docs/guides/configuration-and-testing/ams-application-configuration/)
-
-> Quick Link: [FFmpeg Configurations](https://ffmpeg.org/ffmpeg-formats.html#toc-Options-6)
 
 ## Interactive HLS Streaming with ID3 Timed Metadata
 
@@ -158,7 +154,7 @@ Currently, ID3 Tags does not work with Ant Media Server default player (play.htm
 
 HLS streaming is a more cost-effective and secure method of streaming than video-on-demand assets. Furthermore, you can also record your live streams with HLS.
 
-To enable HLS recording for your live streams and store all the HLS files (.ts and .m3u8), just log in to your AMS Web Panel,
+To enable HLS recording for your live streams and store all the HLS files (.ts and .m3u8), just log in to your AMS Web Panel.
 
 Navigate to Application Setting -> Advanced, and configure the setting below:
 
@@ -187,10 +183,10 @@ However, by setting it to ```append_list``` the first generated .ts file will be
 "hlsflags":"+append_list",
 ```
 
-If you don't want the ts files to be appended to the previous recording, you may also enable date and timestamp for HLS files by adding the following property:.
+If you don't want the TS files to be appended to the previous recording, you may also enable date and timestamp for HLS files by adding the following property:.
 
 ```js
- "addDateTimeToHlsFileName":false,
+ "addDateTimeToHlsFileName":true,
 ```
 
 ![](@site/static/img/hls_datetime.png)
@@ -199,7 +195,7 @@ After making the changes, you can scroll down and save the settings. Now, your s
 
 Additionally, it's also possible to push HLS files directly to a remote endpoint without generating them on the local server in real-time, or alternatively, upload them via standard procedure to an S3 bucket once the stream has finished.
 
-To upload HLS in real time, check this guide:
+To upload HLS in real time, check out this guide:
 > Quick Link: [Uploading HLS Files](https://antmedia.io/docs/guides/recording-live-streams/s3-integration-http-forwarding/#uploading-hls-files-to-the-s3-bucket-in-real-time)
 
 ## HLS Play For a Given Time Interval
