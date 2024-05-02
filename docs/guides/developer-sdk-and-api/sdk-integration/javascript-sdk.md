@@ -2,7 +2,7 @@
 title: JavaScript SDK
 description: Ant Media Server provides a WebSocket interface in publishing and playing WebRTC streams. In this document, you will learn the basics of WebRTC JavaScript SDK and JavaScript Error Callbacks.
 keywords: [JavaScript SDK, WebRTC JavaScript SDK, JavaScript Error Callbacks, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 6
+sidebar_position: 3
 ---
 
 Ant Media Server provides a WebSocket interface in publishing and playing WebRTC streams. In this document, you will learn the basics of WebRTC JavaScript SDK and JavaScript Error Callbacks.
