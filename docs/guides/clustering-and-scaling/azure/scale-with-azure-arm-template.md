@@ -5,9 +5,11 @@ keywords: [Scale AMS with Azure ARM Template, Ant Media Server Documentation, An
 sidebar_position: 3
 ---
 
+# Scale AMS with Azure ARM (Azure Resource Manager) Template
+
 Azure Resource Manager (ARM) is a service provided by Microsoft as part of its Azure cloud computing platform that allows for centralized resource management. Azure Resource Manager allows you to easily automate and orchestrate the deployment of Ant Media Server clusters using a single file.
 
-# Scale AMS with Azure ARM (Azure Resource Manager) Template
+## Creating Azure Resource Group
 
 Let's now dive into setting up the ARM template and proceed step by step.
 
@@ -67,7 +69,7 @@ openssl base64 -in azure.antmedia.cloud.pfx -out azure.antmedia.cloud.base64
 ```
 
 :::info
-Replace the azure.antmedia.cloud domain with your domain.
+Replace the azure.antmedia.cloud domain with your own domain.
 :::
 
  - Enter the content of the resulting file with the .base64 extension
