@@ -1,11 +1,11 @@
 ---
-title: Scale AMS with Azure ARM Template 
+title: Scale AMS with Azure ARM Template
 description: Scale AMS with Azure ARM Template
 keywords: [Scale AMS with Azure ARM Template, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 3
 ---
 
-# Scale AMS with Azure ARM (Azure Resource Manager) Template
+# Scale AMS with Azure ARM (Azure Resource Manager)
 
 Azure Resource Manager (ARM) is a service provided by Microsoft as part of its Azure cloud computing platform that allows for centralized resource management. Azure Resource Manager allows you to easily automate and orchestrate the deployment of Ant Media Server clusters using a single file.
 
@@ -76,7 +76,7 @@ Replace the azure.antmedia.cloud domain with your own domain.
    into **Cert Data** field.
    
  - After filling in all fields, click **Review + Create** button to
-   start the deployment process. Wait for Deployment Completion of the AMS cluster to complete. This process usually takes a few minutes but may vary depending on the size and configuration of the cluster.
+   start the deployment process. Wait for the deployment completion of the AMS cluster to complete. This process usually takes a few minutes but may vary depending on the size and configuration of the cluster.
 
 ## Connecting to the Cluster
 
@@ -94,7 +94,7 @@ Now that the cluster is created and ready, let’s connect to it.
 
 ![Screenshot 2024 04 02 011350](https://antmedia.io/wp-content/uploads/2024/04/Screenshot-2024-04-02-011350-1024x552.png)
 
- - The common name of the certificate was azure.antmedia.cloud, after I entered the IP address of the Application Gateway from DNS as an A record, I was able to access the Ant Media Server cluster with the domain directly.
+ - The common name of the certificate was `azure.antmedia.cloud`, after I entered the IP address of the Application Gateway from DNS as an A record, I was able to access the Ant Media Server cluster with the domain directly.
 
 ![](@site/static/img/azure/ams-cluster-in-azure-with-arm-5-1.png)
 
