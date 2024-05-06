@@ -149,7 +149,9 @@ Let us tell you how HTTP Forwarding works step by step
       "httpForwardingBaseURL": "https://{YOUR_DOMAIN}",
 
 :::info
+
 Don't add any leading, or trailing white spaces.
+
 :::
 
 - If you are using an AWS S3 bucket, the URL will be like this:
