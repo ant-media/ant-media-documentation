@@ -7,7 +7,7 @@ sidebar_position: 9
 
 # Installing Ant Media Server on Google Kubernetes Engine (GKE)
 
-In this post, I will guide you through the straightforward process of installing Ant Media Server on Google Kubernetes Engine (GKE). We'll explore the deployment method using Helm for seamless setup.
+In this post, we will guide you through the straightforward process of installing Ant Media Server on Google Kubernetes Engine (GKE). We'll explore the deployment method using Helm for seamless setup.
 
 :::info
 Before diving in, you need to have the [Google Cloud CLI ](https://cloud.google.com/sdk/docs/install), [Kubernetes command line tool](https://kubernetes.io/docs/tasks/tools/) and [Helm](https://helm.sh/docs/helm/helm_install/) installed on your computer.
@@ -81,9 +81,11 @@ helm repo update
     --create-namespace
    ```
 
-If everything works well, you will see the public IP address/domain name in the `kubectl get ingress` command’s output. After that, you need to do the DNS registration to map the Ingress IP address to the Origin and Edge domains.
+If everything works well, you will see the public IP address/domain name in the `kubectl get ingress` command’s output. 
 
-Once the DNS is mapped, you can confirm it via the below commands. You need to replace your domain.
+![image.png](@site/static/img/gcp-gke/antmedia-gke-7.png)
+
+After that, you need to do the DNS registration to map the Ingress IP address to the Origin and Edge domains. Once the DNS is mapped, you can confirm it via the below commands. You need to replace your domain.
 
 ```bash
 dig origin.antmedia.cloud +noall +answer
@@ -100,7 +102,5 @@ There are multiple ways to setup the SSL certificate. If you do not have your ow
 ## Step 9: Access AMS Cluster
 
 Once all steps are done, you will be able to access your AMS cluster on the registered domains.
-
-![image.png](@site/static/img/gcp-gke/antmedia-gke-7.png)
 
 Congratulations! You've successfully deployed Ant Media Server on GKE. Let's get ready to publish and play!
