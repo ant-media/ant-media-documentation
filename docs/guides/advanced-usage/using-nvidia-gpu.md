@@ -120,5 +120,6 @@ In case, when the system has multiple GPUs, set this property to false so that t
 "hwScalingEnabled": false,
 ```
 
-![](@site/static/img/adavanced-usage/using-nvidia-gpu/ams-multi-gpu.png)
+Please see the screenshot below for multi-GPU usage with Ant Media Server. In this example, 8 streams were published to the server using 4 ABRs, and as you can see, both GPUs were utilized.
 
+![](@site/static/img/adavanced-usage/using-nvidia-gpu/ams-multi-gpu.png)
