@@ -42,6 +42,20 @@ If the publish type token is enabled, the SRT publishing URL will be in the foll
 ```
 srt://ant.media.server.address:4200?streamid=Application-Name/streamId,token=tokenId
 ```
+
+### Publishing SRT stream with OBS Without streamId
+
+```js
+Starting from version 2.8.0 and above, Ant Media Server supports SRT publish without streamId
+```
+
+![](@site/static/img/publish-live-stream/srt/srt-obs.png)
+
+- In such case, the system IP address is used as the streamId and it is published to the LiveApp application by default.
+
+![](@site/static/img/publish-live-stream/srt/srt-stream.png)
+
+
 ## Play SRT with Ant Media Server
 
 Once the SRT stream has been published, it can be viewed using WebRTC, HLS, or CMAF (Dash). Please see the document [here](https://antmedia.io/docs/category/playing-live-streams/) for more information.
