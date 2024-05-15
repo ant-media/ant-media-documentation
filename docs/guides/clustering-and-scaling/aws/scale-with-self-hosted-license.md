@@ -63,7 +63,7 @@ After the template is downloaded, we have to edit it and put our image ID (an AM
 
 In the template, edit the **ImageId** in the Origin and Edge Launch template part as below and put your AMI ID that we generated in Step 1.
 
-:::imp
+:::info
 In Origin configuration, you may use the GPU image as well so for that, you need to create the AMS image on the GPU-based instance and then you have to put the ImageId in place of **!Ref AntMediaGPUAmi**
 
 The GPU Image will be used when you set the GPU option to true during the deployment; otherwise, a normal image will be used, like we created and used in this document.
