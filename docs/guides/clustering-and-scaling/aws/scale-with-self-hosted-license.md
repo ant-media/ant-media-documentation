@@ -51,7 +51,7 @@ To check the image, go to the Images section of EC2 and select AMIs. Under that 
 
 You need to note down the AMI ID of your Ant Media Server image.
 
-![](@site/static/img/clustering-and-scaling/aws-cloudformation/ams-id.png)
+![](@site/static/img/clustering-and-scaling/aws-cloudformation/ami-id.png)
 
 ## Step 2: Download and Edit the CloudFormation Template
 
