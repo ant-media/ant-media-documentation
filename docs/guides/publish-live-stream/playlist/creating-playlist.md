@@ -39,15 +39,19 @@ Furthermore, uploading MP4 files to your Ant Media Server is optional. Ant Media
 :::
 
 #### Using REST API
-You can upload MP4 files to Ant Media Server using the REST API with the following command:
-```
+
+You can upload MP4 files to Ant Media Server using the REST API with the following API call:
+
+```bash
 curl -X POST -F "file=@<YOUR-FILE-PATH>;type=video/*" https://AMS_URL:5443/APP-NAME/rest/v2/vods/create?name=YOUR-FILE-NAME.mp4
 ```
 
-Example curl:
-```
+Here is the Curl sample:
+
+```bash
 curl -X POST -F "file=@test.mp4;type=video/*" http://localhost:5080/WebRTCAppEE/rest/v2/vods/create?name=test.mp4
 ```
+
 The uploaded file will be located in `antmedia/webapps/APP-NAME/streams` directory. MP4 file name will be changed to a random VOD ID, which you can find in the VOD section of the web panel application page.
 
 You can use below rest API call to get VOD file list from database:
