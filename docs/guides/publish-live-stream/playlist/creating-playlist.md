@@ -46,7 +46,7 @@ You can upload MP4 files to Ant Media Server using the REST API with the followi
 curl -X POST -F "file=@<YOUR-FILE-PATH>;type=video/*" https://AMS_URL:5443/APP-NAME/rest/v2/vods/create?name=YOUR-FILE-NAME.mp4
 ```
 
-Here is the Curl sample:
+Here is the curl sample:
 
 ```bash
 curl -X POST -F "file=@test.mp4;type=video/*" http://localhost:5080/WebRTCAppEE/rest/v2/vods/create?name=test.mp4
@@ -54,13 +54,13 @@ curl -X POST -F "file=@test.mp4;type=video/*" http://localhost:5080/WebRTCAppEE/
 
 The uploaded file will be located in `antmedia/webapps/APP-NAME/streams` directory. MP4 file name will be changed to a random VOD ID, which you can find in the VOD section of the web panel application page.
 
-You can use below rest API call to get VOD file list from database:
+You can use the [Get VOD list](https://antmedia.io/rest/#/default/getVodList) rest API call to get the VOD file list from the database.
 
-https://antmedia.io/rest/#/default/getVodList 
+You can access the uploaded VOD file through the below URL format:
 
-You can access the uploaded VOD file through
-
-http://AMS-URL:5443/WebRTCAppEE/streams/VOD-ID.mp4
+```
+http(s)://domain_or_IP:Port/AppName/streams/VOD-ID.mp4
+```
 
 Example:
 
