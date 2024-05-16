@@ -26,6 +26,8 @@ Login to your Ant Media Server Web Panel/dashboard. The url is like this: `https
 
 ### Uploading the VoD files
 
+#### Using Web Panel
+
 Now we can upload the VoD files that we want to stream with the playlist.
 
 - Click on `Upload VoD` tab and then click on `Choose File` to select the files you want to upload. For this demonstration, I will upload three VoD files.
@@ -35,6 +37,31 @@ Now we can upload the VoD files that we want to stream with the playlist.
 :::info
 Furthermore, uploading MP4 files to your Ant Media Server is optional. Ant Media Server can retrieve MP4 files from any location. You simply need to ensure that the file URL is accessible to AMS.
 :::
+
+#### Using REST API
+You can upload MP4 files to Ant Media Server using the REST API with the following command:
+```
+curl -X POST -F "file=@<YOUR-FILE-PATH>;type=video/*" https://AMS_URL:5443/APP-NAME/rest/v2/vods/create?name=YOUR-FILE-NAME.mp4
+```
+
+Example curl:
+```
+curl -X POST -F "file=@test.mp4;type=video/*" http://localhost:5080/WebRTCAppEE/rest/v2/vods/create?name=test.mp4
+```
+The uploaded file will be located in `antmedia/webapps/APP-NAME/streams` directory. MP4 file name will be changed to a random VOD ID, which you can find in the VOD section of the web panel application page.
+
+You can use below rest API call to get VOD file list from database:
+
+https://antmedia.io/rest/#/default/getVodList 
+
+You can access the uploaded VOD file through
+
+http://AMS-URL:5443/WebRTCAppEE/streams/VOD-ID.mp4
+
+Example:
+
+http://localhost:5080/WebRTCAppEE/streams/722484094956241856650105.mp4
+
 
 ## Creating the Playlist
 
