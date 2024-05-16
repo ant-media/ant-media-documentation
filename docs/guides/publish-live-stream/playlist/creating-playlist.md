@@ -56,7 +56,7 @@ The uploaded file will be located in `antmedia/webapps/APP-NAME/streams` directo
 
 You can use the [Get VOD list](https://antmedia.io/rest/#/default/getVodList) rest API call to get the VOD file list from the database.
 
-You can access the uploaded VOD file through the below URL format:
+ You can access the uploaded VOD file through the below URL format:
 
 ```
 http(s)://domain_or_IP:Port/AppName/streams/VOD-ID.mp4
@@ -64,8 +64,9 @@ http(s)://domain_or_IP:Port/AppName/streams/VOD-ID.mp4
 
 Example:
 
+```
 http://localhost:5080/WebRTCAppEE/streams/722484094956241856650105.mp4
-
+```
 
 ## Creating the Playlist
 
