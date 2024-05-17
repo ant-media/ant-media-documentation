@@ -2,7 +2,7 @@
 title: Scale AMS with AWS ECS Fargate 
 description: Scale AMS with AWS ECS Fargate
 keywords: [Scale AMS with AWS ECS Fargate, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 9
+sidebar_position: 10
 ---
 
 # Scale AMS with AWS ECS Fargate
