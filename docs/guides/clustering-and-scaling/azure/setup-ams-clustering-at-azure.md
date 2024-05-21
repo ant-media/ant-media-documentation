@@ -1,3 +1,10 @@
+---
+title: How to Setup Ant Media Server Clustering on Azure 
+description: How to Setup Ant Media Server Clustering on Azure
+keywords: [Ant Media Server Documentation, Ant Media Server Tutorials]
+sidebar_position: 1
+---
+
 # How to Setup Ant Media Server Clustering on Azure
 
 In this guide, I will explain how to setup Ant Media Server Clustering on Azure. When your load is high, one server instance is not enough for you and you can handle that load with a clustering solution.
@@ -78,15 +85,11 @@ Enter the following values and click "**Next: Advanced**"
 ![](@site/static/img/mongodb-7.png)
 
 Add the following lines to the "**Custom data**" area and click the "**Review + Create**" button to create a MongoDB instance.
-
-    #!/bin/bash
-    wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | sudo apt-key add -
-    echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/5.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-5.0.list
-    sudo apt-get update
-    sudo apt-get install -y mongodb-org
-    sed -i 's/bindIp:.*/bindIp: 0.0.0.0/g' /etc/mongod.conf
-    systemctl restart mongod
-
+```shell
+#!/bin/bash
+wget https://raw.githubusercontent.com/ant-media/Scripts/master/install_mongodb.sh && chmod +x install_mongodb.sh
+./install_mongodb.sh
+```
 ![](@site/static/img/mongodb-8.png)
 
 The process is completed by clicking on the "**Create**" button.
@@ -194,12 +197,12 @@ Select Custom and set the Cpu threshold to 60%. You can set other settings accor
 ![](@site/static/img/virtual-machine-6.png)
 
 Continue by clicking directly next to the "**Management**" and "**Health**" tabs and add the following lines to the "**Custom data**" area in the **Advanced section**.
-
+```
     #!/bin/bash
     sudo sed -i '/org.apache.catalina.valves.RemoteIpValve/d' /usr/local/antmedia/conf/jee-container.xml
     cd /usr/local/antmedia/
     ./change_server_mode.sh cluster 10.0.2.4
-
+```
 **10.0.2.4** IP address is the private IP address of the MongoDB instance I have set up before. Change according to your own MongoDB instance.
 
 ![](@site/static/img/virtual-machine-7.png)

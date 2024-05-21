@@ -25,7 +25,7 @@ Ant Media server is available in your favorite cloud platform:
 
 * [AWS](https://aws.amazon.com/marketplace/pp/prodview-464ritgzkzod6?sr=0-1&ref_=beagle&applicationId=AWSMPContessa)
 * [Azure](https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=Ant%20Media%20Server&page=1)
-* [Alibaba](https://marketplace.alibabacloud.com/products/56712002/Ant_Media_Server_Enterprise_2_2_1-sgcmjj00025347.html)
+* [Google](https://console.cloud.google.com/marketplace/product/antmedia-public/ant-media-server-enterprise-edition)
 * [Digital Ocean](https://marketplace.digitalocean.com/apps/antmedia-server-enterprise-edition-3) 
 * [Linode](https://www.linode.com/marketplace/apps/ant-media/ant-media-community-edition/)
 
@@ -51,3 +51,4 @@ If you would like to say thank you or/and support the active development of Ant 
 * Write interesting articles about the project on [Dev.to](https://dev.to/), [Medium](https://medium.com/) or personal blog.
 
 Together, we can make this project **better** every day! 😘
+

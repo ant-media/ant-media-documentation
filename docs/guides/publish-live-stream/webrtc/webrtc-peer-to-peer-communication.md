@@ -1,6 +1,10 @@
 ---
 title: WebRTC Peer to Peer Communication
+description: WebRTC Peer to Peer Communication
+keywords: [WebRTC Peer to Peer Communication, Ant Media Server Documentation, Ant Media Server Tutorials]
+sidebar_position: 5
 ---
+
 # WebRTC peer to peer communication
 
 In this documentation, we're going to explain how to implement WebRTC peer to peer communication with JavaScript SDK. There is already a working demo for this in peer.html file under your AMS installation URL:
@@ -129,11 +133,11 @@ JavaScript SDK provides several auxiliary methods to provide enough flexibility 
 
 ```turnOffLocalCamera```: Turn off the local camera in WebRTC peer to peer communication.
 
-    webRTCAdaptor.turnOffLocalCamera();
+    webRTCAdaptor.turnOffLocalCamera(streamId);
 
 ```turnOnLocalCamera```: Turn on the local camera in WebRTC peer to peer communication.
 
-    webRTCAdaptor.turnOnLocalCamera();
+    webRTCAdaptor.turnOnLocalCamera(streamId);
 
 ```muteLocalMic```: Mutes the local microphone in WebRTC peer to peer communication.
 

@@ -1,3 +1,10 @@
+---
+title: How to publish with OBS 
+description: How to publish with OBS
+keywords: [Ant Media Server Documentation, Ant Media Server Tutorials]
+sidebar_position: 2
+---
+
 # How to publish with OBS
 
 OBS (Open Broadcaster Software) is a free and open source video recording and live streaming software. With OBS, you can use either your PC's embedded camera or an externally connected camera as a video source. Audio sources can also be set up.
@@ -20,6 +27,13 @@ We assume that your Ant Media Server accepts all streams (e.g there is no securi
 *   Choose ```Custom Streaming Server``` in the ```Stream Type``` dropdown menu.
 *   In the URL box, type your RTMP URL without stream id. It's like ```rtmp://IP-or-server-domain-name/LiveApp```
 *   In the Stream key, you can write any stream id because we assume that all stream Ids are allowed.
+
+:::warning
+The RTMP URL should not contain any port number. The RTMP protocol will automatically listen on port 1935 which should be open on your server.
+
+ - **Wrong**: rtmp://am.streamomedia.com:5443/WebRTCAppEE/
+ - **Correct**:   rtmp://am.streamomedia.com/WebRTCAppEE/
+:::
 
 ![](@site/static/img/obs-rtmp-image/OBS-Stream.png)
 

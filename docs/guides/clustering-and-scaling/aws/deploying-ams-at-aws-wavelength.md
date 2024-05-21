@@ -1,3 +1,10 @@
+---
+title: Deploying Ant Media Server at AWS Wavelength 
+description: Deploying Ant Media Server at AWS Wavelength
+keywords: [Deploying Ant Media Server at AWS Wavelength, AWS Wavelength, Ant Media Server Documentation, Ant Media Server Tutorials]
+sidebar_position: 5
+---
+
 # Deploying Ant Media Server at AWS Wavelength
 
 AWS Wavelength enables developers to build applications that deliver ultra-low latencies to mobile devices and end users. Wavelength deploys standard AWS compute and storage services to the edge of telecommunication carriers' 5G networks. 
@@ -12,9 +19,8 @@ Second, there is no Elastic Load Balancer in Wavelength Zones for the Auto-scala
 
 You can use Ant Media Server v2.4.1 and later for AWS Wavelength Deployments.
 
-*   [Install SSL](/v1/docs/installing-ssl)
-*   [Configure STUN Server](/v1/docs/configuring-stun-server)
-*   [Standalone Server Deployment with Cloudformation](guides/clustering-and-scaling/aws/aws-wavelength-standalone-deployment)
-*   [Auto-Scalable Cluster Deployment with Cloudformation](guides/clustering-and-scaling/aws/aws-wavelength-cluster-deployment/)
+*   [Install SSL](/guides/installing-on-linux/setting-up-ssl)
+*   [Configure STUN Server](/guides/configuration-and-testing/configuring-stun-addresses/)
+*   [Standalone Server Deployment with Cloudformation](/guides/clustering-and-scaling/aws/aws-wavelength-standalone-deployment/)
+*   [Auto-Scalable Cluster Deployment with Cloudformation](/guides/clustering-and-scaling/aws/aws-wavelength-cluster-deployment/)
 
-docs/guides/clustering-and-scaling/aws/aws-wavelength-standalone-deployment

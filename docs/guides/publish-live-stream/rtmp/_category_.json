@@ -1,7 +1,8 @@
 {
-  "label": "RTMP",
-  "position": 1,
+  "label": "RTMP/S",
+  "position": 2,
   "link": {
-    "type": "generated-index"
+    "type": "generated-index",
+    "description": "RTMP Publishing with Ant Media Server."
   }
 }

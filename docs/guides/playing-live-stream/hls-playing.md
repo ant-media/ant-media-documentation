@@ -1,82 +1,229 @@
+---
+title: HLS Playing
+description: This documentation guide will help you achieve HLS playing and save HLS records to your servers.
+keywords: [HLS Playing, HLS Playing with Ant Media Server, Ant Media Server Documentation, Ant Media Server Tutorials]
+sidebar_position: 2
+---
+
 # HLS Playing
 
-HLS Playing is available in both the Community and Enterprise Editions. Before playing a stream, make sure that stream is broadcasting on the server.
+HLS playback is available in both the Community and Enterprise Editions of Ant Media Server. Prior to initiating playback of a stream, ensure that the stream is actively broadcasting on the server.
 
-> Quick Link: [Learn How to Publish Live Streams](/v1/docs/publishing-live-streams)
+> Quick Link: [Learn How to Publish Live Streams](/docs/category/publish-live-stream/)
 
-## 1. Navigate to the video player  
+## Enable HLS
 
-You can use play.html under the Application. Visit ```https://your_domain_name:5443/WebRTCAppEE/play.html```. If you're running Ant Media Server on your local computer, you can also visit ```http://localhost:5080/WebRTCAppEE/play.html```
+Ensure that HLS muxing is enabled in your application settings. You can verify this by selecting the ```Create HLS Streaming```checkbox within the application's settings on the web management panel. 
+
+HLS is automatically enabled by default.
+
+![](@site/static/img/playing-live-streams/hls-playing/hls-enabled.png)
+
+### Play HLS Streams with Embedded Player
+
+You can use the embedded player in `play.html` to play the streams with HLS. In order to use play.html, go to the below URL format.
+
+```https://AMS-domain-name:5443/WebRTCAppEE/play.html```.
+
+If you have Ant Media Server installed on your local machine, you may also go to
+
+```http://localhost:5080/WebRTCAppEE/play.html```.
+
+To play a HLS stream, provide ```streamId``` as the id and ```hls``` as the playOrder parameters in the URL shown below.
     
-You will encounter a Stream ID doesn't exist popup error.
+```https://AMS-domain-name:5443/WebRTCAppEE/play.html?id=test&playOrder=hls```
+
+The HLS playback will start automatically when the stream is live.
     
-![](@site/static/img/image-1645523240043.png)
-    
+![](@site/static/img/playing-live-streams/hls-playing/hls-started.png)
 
-## 2. Add the necessary URL parametres
+To learn more about the embedded player, check [the document](https://antmedia.io/docs/guides/playing-live-stream/embedded-web-player/).
 
-Pass the stream ID & HLS play order parameters in URL. 
-    
-```https://your_domain_name:5443/WebRTCAppEE/play.html?name=stream1&playOrder=hls```
-    
-![](@site/static/img/image-1645523879129.png)
-    
+Autoplay is enabled by default in a player, but it may be disabled for certain policies in Chrome and Firefox. So you might need to click the player button to get it started. Check out the following links:
 
-## 3. Playback starts automatically
+[Chrome policy](https://developers.google.com/web/updates/2017/09/autoplay-policy-changes)
 
-The HLS stream will start to play automatically when it becomes live.
-    
-![](@site/static/img/image-1645523922843.png)
-    
+[Firefox policy](https://hacks.mozilla.org/2019/02/firefox-66-to-block-automatically-playing-audible-video-and-audio/)
 
-Autoplay may not be activated for some policies in Chrome and Firefox. So you may need to click the player button to get it started. Look at the following links:
 
-[https://developers.google.com/web/updates/2017/09/autoplay-policy-changes](https://developers.google.com/web/updates/2017/09/autoplay-policy-changes) [https://hacks.mozilla.org/2019/02/firefox-66-to-block-automatically-playing-audible-video-and-audio/](https://hacks.mozilla.org/2019/02/firefox-66-to-block-automatically-playing-audible-video-and-audio/)
+### Playing streams from SubFolders
 
-Congrats. You're playing with HLS.
+When creating or updating a stream on Ant Media Server via the Rest API, you have the option to specify a subfolder for the broadcast. This allows HLS files to be generated within that designated folder.
 
-## More Details About HLS
+This functionality ensures that when HLS files are being generated on the server side, they will be placed in the specified subfolder path within the `/usr/local/antmedia/webapps/{appName}/streams` directory. For instance, if you create a stream with the streamId `teststream` and a subfolder `mySubFolder` in the WebRTCAppEE application, then your HLS files `(.m3u8 and.ts)` will be generated under:
 
-Make sure that HLS muxing is enabled in your application. By checking the HLS Muxing checkbox in the app's settings on the web management panel, you can verify it.
+```/usr/local/antmedia/webapps/WebRTCAppEE/streams/mySubFolder``` directory.
 
-Assume that HLS muxing is enabled and there is a stream publishing to Ant Media Server with an RTMP URL in this format: ```rtmp://`<SERVER_NAME>`/LiveApp/`<STREAM_ID>```
+Curl sample to create a broadcast with subFolder:
 
-*   HLS URL is in this format: ```http://<SERVER_NAME>:5080/LiveApp/streams/<STREAM_ID>.m3u8```
-*   If there are adaptive streams enabled in Enterprise Edition, HLS Master URL is in this format: ```http://<SERVER_NAME>:5080/LiveApp/streams/<STREAM_ID>_adaptive.m3u8```
+```bash
+curl -X 'POST' 'https://domain:5443/WebRTCAppEE/rest/v2/broadcasts/create' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "streamId":"teststream",
+    "subFolder": "mySubFolder"
+}'
+```
+
+Alternatively, if you name subFolder as ```teststream/mySubFolder``` your HLS files will be generated under:
+
+```/usr/local/antmedia/webapps/WebRTCAppEE/streams/teststream/mySubFolder``` directory.
+
+Curl Sample:
+
+```bash
+curl -X 'POST' 'https://domain:5443/WebRTCAppEE/rest/v2/broadcasts/create' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "streamId":"teststream",
+    "subFolder": "teststream/mySubFolder"
+}'
+```
+
+Remember, if you try to HLS play a stream which has a subFolder defined, you need to pass ```subFolderName/streamId``` as an ID to the embedded player.
+
+So if you created a stream with  ```"streamId":"teststream"``` and ```"subFolder":"mySubFolder"``` you should play it with:
+
+```https://domain:5443/WebRTCAppEE/play.html?id=mySubFolder/teststream&playOrder=hls```
+
+If you created a stream with ```"streamId":"teststream"``` and ```"subFolder":"teststream/mySubFolder"``` you should play it with:
+
+```https://domain:5443/WebRTCAppEE/play.html?id=teststream/mySubFolder/teststream&playOrder=hls```
+
+To observe how folders and files are generated, go to ```/usr/local/antmedia/webapps/{appName}/streams``` 
+directory.
+
+### Playing HLS stream directly via M3U8
+
+Assume HLS muxing is enabled and a stream is published to Ant Media Server.
+
+The default HLS (.m3u8) URL will be as follows:
+
+```http(s)://AMS-domain-or-IP:Port/AppName/streams/StreamId.m3u8```
+
+If adaptive bit rates are enabled in the application (Enterprise Edition), the HLS (.m3u8) URL will be as follows:
+
+```http(s)://AMS-domain-or-IP:Port/AppName/streams/StreamId_adaptive.m3u8```
+
+:::info
+Beginning with version 2.4.1, the filename structure included the bitrate in the name. For example, 480p ABR is enabled on the server and you want to play it.
+:::
+
+In prior versions, the HLS filename was streamId_480p.m3u8, but now it is stream1_480p1000kbps.m3u8, as we enabled the same resolution with multiple bitrates.
+
+If you would like to use the old structure, check the following
+[post](https://github.com/orgs/ant-media/discussions/4984).
+
+## Interactive HLS Streaming with ID3 Timed Metadata
+
+Using `ID3` tags in HLS, you can insert any kind of timed metadata, such as overlaying some text or images in specific moments to show comments, emojis, ads, markers, etc. where `ID3` is a data stream.
+
+The feature to use `ID3` tags was introduced in Ant Media Server version 2.7.0
+
+### Enabling ID3 Tags
+
+In order to use the `ID3`, it is first needed to enable the `ID3` tags for the application.
+
+It can be enabled from the `Advanced` settings by making `"id3TagEnabled": true` located under the application settings on the Ant Media Server Web Panel.
+
+![](@site/static/img/playing-live-streams/hls-playing/enabling-id3.png)
+
+### Adding ID3 Text
+
+To insert an ID3 tag into any stream, just call the [REST method](https://antmedia.io/rest/#/default/addID3Data) with your metadata and use that metadata in your player.
+
+Below is a curl sample to use ID3 meta data
+
+```bash
+curl -X 'POST' 'https://domain:5443/AppName/rest/v2/broadcasts/streamId/id3' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '"string"'
+```
+
+Checkout this [video tutorial](https://www.youtube.com/watch?v=Fq-a_tEXY4E&t=763s) where we discussed and demonstrated about ID3 tags.
+
+:::info
+Currently, ID3 Tags does not work with Ant Media Server default player (play.html) so you can use this [Codepen sample](https://codepen.io/Burak-Kekec/pen/PoXYMyG) for the testing.
+:::
+
 
 ## Save HLS Records
 
-HLS streaming is a more cost-effective and secure method than VOD streaming. You can record your HLS streams. You just need to change your application's HLS settings as below:
+HLS streaming is a more cost-effective and secure method of streaming than video-on-demand assets. Furthermore, you can also record your live streams with HLS.
 
-*   Open your apps ```red5-web.properties``` and change the below mentioned settings. The file is located under `/usr/local/antmedia/webapps/<App-name>/WEB-INF` folder.
-    
-```js 
-settings.hlsPlayListType=event
+To enable HLS recording for your live streams and store all the HLS files (.ts and .m3u8), just log in to your AMS Web Panel.
+
+Navigate to Application Setting -> Advanced, and configure the setting below:
+
+
+![Screenshot 2023-09-25 153916](https://github.com/ant-media/ant-media-documentation/assets/86982446/10ca309d-c40f-4e74-b006-3dbc23e0dea8)
+
+By default, only a certain number of TS files corresponding to segments are retained in the streams directory at any given time. However, by configuring the HLS playlist type to ```event```, the server continuously generates TS files, allowing for permanent storage if desired.
+
+```js
+ "hlsPlayListType":"event",
 ```
     
-To store HLS files permanently after the stream is ended.
+To store HLS files permanently after the stream is ended:
 
-```js 
-settings.deleteHLSFilesOnEnded=false
+```js
+"deleteHLSFilesOnEnded":false
 ```
     
-To prevent overwriting of old HLS files in case same stream Id is published again, use the below property.
+To prevent overwriting of old HLS files in case the same streamId is used again, use the `append_list` attribute in `hlsflags` property.
 
-```js 
-settings.hlsflags=+append_list
+Imagine you've completed streaming with an ID `teststream` and your last generated TS file is ```teststream000001013.ts.``` Without adding ```append_list``` to the HLS flags, restarting the `teststream` will initiate TS file generation from 0, overwriting existing .ts files. 
+
+However, by setting it to ```append_list``` the first generated .ts file will be named ```teststream000001014.ts``` ensuring that your .ts files remain intact without being overridden.
+
+```js
+"hlsflags":"+append_list",
 ```
 
-Restart the server on the command line.
-    
-```shell
-sudo service antmedia restart
+If you don't want the TS files to be appended to the previous recording, you may also enable date and timestamp for HLS files by adding the following property:.
+
+```js
+ "addDateTimeToHlsFileName":true,
 ```
-    
-Now, your HLS streams will record.
 
-## Announcement for v2.4.1:
-After version 2.4.1, the filename structure has added bitrate to the name. So for previous versions, the filename was "stream1_240p0001.ts", now it is "stream1_240p_300kbps0001.ts" , this change was needed because we enabled the same resolution with different bitrates
-    
+![](@site/static/img/hls_datetime.png)
 
-> Quick Link: [App Configurations](/guides/configuration-and-testing/ams-application-configuration/) 
-> Quick Link: [FFmpeg Configurations](https://ffmpeg.org/ffmpeg-formats.html#toc-Options-6)
+After making the changes, you can scroll down and save the settings. Now, your streams will be recorded as HLS.
+
+Additionally, it's also possible to push HLS files directly to a remote endpoint without generating them on the local server in real-time, or alternatively, upload them via standard procedure to an S3 bucket once the stream has finished.
+
+To upload HLS in real time, check out this guide:
+> Quick Link: [Uploading HLS Files](https://antmedia.io/docs/guides/recording-live-streams/s3-integration-http-forwarding/#uploading-hls-files-to-the-s3-bucket-in-real-time)
+
+## HLS Play For a Given Time Interval
+
+Using the HLS modifier, playing an HLS stream within specified time intervals is achievable in Ant Media Server.
+
+:::info
+HLS modifier feature is included by default on the server side, starting version 2.9.0 of Ant Media Server.
+:::
+
+You can include the ```startTime``` and ```endTime``` parameters in query string of m3u8 request to play the stream during that specific time frame.
+
+```https://domain:5443/WebRTCAppEE/streams/streamId.m3u8?start=1668454888&end=1668454999```
+
+### Configuration for HLS Manifest Modifier
+
+Set below settings from application settings -> advanced settings through web panel
+
+```"hlsflags":"+program_date_time",``` to add program date time in m3u8 file.
+
+```"hlsPlayListType":"event",``` to keep all ts files references in m3u8 file.
+
+```"deleteHLSFilesOnEnded":false``` to keep all ts files on the disk after stream finishes.
+
+### Usage of HLS Manifest Modifier Plugin
+
+Request m3u8 by adding the `start` and `end` date and time in unix timestamp as below:
+
+```https://domain:5443/AppName/streams/streamId.m3u8?start=1668454888&end=1668454999```
+
+You can get the time stamp as per the ts file date and time via [Epoch Converter](https://www.epochconverter.com/).

@@ -1,3 +1,10 @@
+---
+title: Clustering with AWS 
+description: Clustering with AWS
+keywords: [Clustering with AWS, Ant Media Server Documentation, Ant Media Server Tutorials]
+sidebar_position: 1
+---
+
 # Clustering with AWS
 
 In this document, we’re going to explain how to setup a Scalable Ant Media Server Cluster in Amazon Web Services. Scaling is required when a single server cannot meet the required demand. You can also estimate your cost and server requirement through our [cost calculator](https://antmedia.io/cost-calculator/) and down the page you can see the table for supported values as per server CPU resources.
@@ -32,8 +39,8 @@ The procedure below shows how to start an instance in AWS EC2 service as well. I
 ![](@site/static/img/152640816-06bcfe6e-35ed-4efe-9fda-bacb60826a82(1).png)
 
 * Choose Instance Type like m4.xlarge or m5.xlarge series. There are two points here.
-  * First one is you may optionally choose a bigger instance according to your streaming load.
-  * Second one don’t use any m5a instances because they have ARM architecture.
+* First one is you may optionally choose a bigger instance according to your streaming load.
+* Second one don’t use any m5a instances because they have ARM architecture.
 
 Then click “Review and Launch”.
 
@@ -60,55 +67,58 @@ Then click “Review and Launch”.
 
 ![](@site/static/img/152640825-06b86d38-f024-4ca9-b545-78d38ad87abe.png)
 
-* Right now, you should connect to your instance. To Connect your instance, open a terminal and run a command something like below. Please change {YOUR\_KEY\_FILE} and {INSTANCE\_PUBLIC\_IP} with your own credentials. For our case, they are “ant.pem” and “3.108.40.66”.
+* Right now, you should connect to your instance. To Connect your instance, open a terminal and run a command something like below. Please change `{YOUR_KEY_FILE}` and `{INSTANCE_PUBLIC_IP}` with your own credentials. For our case, they are `ant.pem` and `3.108.40.66`.
 
-  ssh -i {YOUR_KEY_FILE} ubuntu@{INSTANCE_PUBLIC_IP}
+```ssh -i {YOUR_KEY_FILE} ubuntu@{INSTANCE_PUBLIC_IP}```
 
-### **Install MongoDB to Your Instance*** After you get connected, run the following commands in order to install MongoDB to your instance.
+### Install MongoDB to Your Instance 
+
+- Connect your instance and download the following script.
 
 ```shell
-wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | sudo apt-key add -
-echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/5.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-5.0.list
-sudo apt-get update
-sudo apt-get install -y mongodb-org
-sudo systemctl enable mongod
+wget https://raw.githubusercontent.com/ant-media/Scripts/master/install_mongodb.sh && chmod +x install_mongodb.sh
 ```
+- Run the following commands in order to install MongoDB to your instance.
 
-* Open /etc/mongod.conf file with an editor like nano and change bind\_ip value to 0.0.0.0 to let MongoDB accept connections in all interfaces and save it.
+```shell
+./install_mongodb.sh
+```
+> If you want to enable authentication in MongoDB, you can simply provide the `--auto-create` parameter to the `install_mongodb.sh` script. It will automatically create a username and password for you.
 
-```sudo nano /etc/mongod.conf```
+MongoDB installation is complete, just save your MongoDB instance’s local address somewhere. We will use it later.
 
-![](@site/static/img/mongodb.png)
+### Step 2: Install Scalable Origin Group
 
-Press “Ctrl + X” to save the file.
+* Click `EC2 > Launch Templates` and Click `Create Launch Template`.
 
-Restart mongod and enable service.
+![](@site/static/img/aws-launch-templates-1.png)
 
-sudo systemctl restart mongod
-sudo systemctl enable mongod.service
-MongoDB installation is complete, just save your MongoDB instance’s local address somewhere. We will use it in later.
+* Give a name something like “Origin-Group”.
+* Enter version number.
+* Then click Browse more AMIs under Application and OS Images
 
-### **Step 2: Install Scalable Origin Group**
+![](@site/static/img/aws-launch-templates-2.png)
 
-* Click “Auto Scaling >` Launch Configurations” and Click “Create Launch Configuration”.
+* Click on the AWS Marketplace AMIs menu, type "Ant Media Server Enterprise" into the search bar, and search. Then select the product "Ant Media Server Enterprise - Ultra-Low Latency WebRTC Live Streaming."
 
-![](@site/static/img/152642513-780c642f-a689-4923-a160-dc88ae7a1afb.png)
+![](@site/static/img/aws-launch-templates-3.png)
 
-* You can see the name field just under the Create Launch Configuration header. Give a name something like “OriginGroup”.
-* In Launch configuration you need to search AMI of Ant media server using image Id as per your AWS region. You can see the image Ids [here](https://ami.antmedia.io/). For example, we are using ap-south-1 image Id in our cluster as shown in below image.
+* Choose instance type and Key pair, in our sample we choose c5.xlarge. You can choose any instance type according to your project and after proceed to next step.
 
-![](@site/static/img/image-1645168998733.png)
+![](@site/static/img/aws-launch-templates-4.png)
 
-* Choose instance type, in our sample we choose c5.xlarge. You can choose any instance type according to your project and after proceed to next step.
+* In Network Settings, The Security Group will be created automatically.
 
-![](@site/static/img/152643648-16a80676-25c5-4fe5-9517-0f46624a4b36.png)
+**Important Note:**
 
-* In the coming window as shown in the image below, We need to give name and set User data.
+> UDP: 50000-60000 (WebRTC. In v2.4.3 and higher, the default range is 50000-60000. Prior to 2.4.3, the default value was 5000-65000. 
 
-  * Then Click “Advanced Details” title. You will see the “User data” text area. Right now, copy the text below, change the “`{MongoIP}`” field with the MongoDB IP Address in the script and paste it to the “User data”.
-  * After that Click “Skip to review”
+> TCP: 5000 (This port needs to open only in cluster mode for internal network communication).
 
-  ```
+* Then Click “Advanced Details” title. You will see the “User data” text area. Right now, copy the text below, change the “`{MongoIP}`” field with the MongoDB IP Address in the script and paste it to the “User data”.
+* After that Click “Skip to review”
+
+  ```shell
   #!/bin/bash
   cd /usr/local/antmedia
   ./change_server_mode.sh cluster {MongoIP}
@@ -116,26 +126,16 @@ MongoDB installation is complete, just save your MongoDB instance’s local addr
 
 The form should be something like below.
 
-![](@site/static/img/152643848-f5a0cfb9-5682-40fb-957d-3649e8315f11.png)
+![](@site/static/img/aws-launch-templates-5.png)
 
-* Now you have to create new security group for Auto scaling group in which below ports need to be whitelisted as shown in image.
-
-Important Note:
-
-**UDP: 50000-60000 (WebRTC. In v2.4.3 and higher, the default range is 50000-60000. Prior to 2.4.3, the default value was 5000-65000. Note that, you can** [**change the port range**](https://stackoverflow.com/questions/62127593/how-to-limit-the-webrtc-udp-port-range-in-ant-media-server) **in all releases).**
-
-**TCP: 5000 (This port needs to open only in cluster mode for internal network communication).**
-
-![](@site/static/img/Screenshot(44).png)
-
-* Click “Create Launch Configuration”.
-* After launch configuration is created successfully, go to Auto Scaling Groups in EC2 section and create Auto Scaling Group.
+* Click “Create Launch Template”.
+* After the launch template is created successfully, go to Auto Scaling Groups in EC2 section and create Auto Scaling Group.
 
 ![](@site/static/img/152644118-b5f72bfe-8c4a-4ef3-b2b0-aafcf67a577d.png)
 
-* Give a name to scaling group. We give “AMS-Origin-Group” as a name and then Switch to launch configuration as by default it is selected to Launch template. Select your launch configuration group that you have created earlier for origin group as shown in below image.
+* Give a name to scaling group. We give “AMS-Origin-Group” as a name and then Select your launch template group that you have created earlier for origin group as shown in below image.
 
-![](@site/static/img/152644315-f2c607a7-a1ec-4b33-82bf-ba1ff05e2d18.png)
+![](@site/static/img/aws-asg-1.png)
 
 * Choose “ap-south-1a” subnet. We choose only one subnet to let all instances appear in the same subnet for having better connectivity.
 
@@ -151,13 +151,13 @@ Important Note:
 
 * Lastly, Review screen will come and click the “Create Auto Scaling group”.
 
-### **Step 3: Install Scalable Edge Group**
+### Step 3: Install Scalable Edge Group
 
 Installing scalable edge group almost same as scalable origin group. Please go to Step 2 again and follow same steps one more time. Just don’t forget to change naming (for instance give group name as Edge Group) and configure scaling policy and instance type according to your needs. If you have any question or problem with this, please let us know through [support@antmedia.io](mailto:support@antmedia.io).
 
-### **Step 4: Install Load Balancer**
+### Step 4: Install Load Balancer
 
-* Click the “Load Balancing >` Load Balancers” on EC2 Service and Click the “Create” button under Application Load Balancer.
+* Click the `Load Balancing > Load Balancers` on EC2 Service and Click the “Create” button under Application Load Balancer.
 
 ![](@site/static/img/152646071-b22ea083-c9d9-43ae-a98c-424f8a566a51.png)
 
@@ -173,7 +173,7 @@ Installing scalable edge group almost same as scalable origin group. Please go t
 
 ![](@site/static/img/152647166-ae859419-7bc9-49ab-871f-392fc5fc7cf1.png)
 
-* After creating Target Groups, again go to EC2 >` Target Groups >` Edit attributes and change the Load Balancing algorithm for Edge and Origin as below.
+* After creating Target Groups, again go to `EC2 > Target Groups > Edit attributes` and change the Load Balancing algorithm for Edge and Origin as below.
 
 ![](@site/static/img/152652226-86f30378-977e-4b53-8192-21f9c27d8b50.png)
 
@@ -183,7 +183,7 @@ Installing scalable edge group almost same as scalable origin group. Please go t
 
 * For the next versions, you need to configure as follows. After adding these rules, you can reach edge/origin using a single url for example [https://yourdomain.com/WebRTCAppEE/index.html?target=origin](https://yourdomain.com/WebRTCAppEE/index.html?target=origin) to the origin cluster and [https://yourdomain.com/WebRTCAppEE/index.html?target=edge](https://yourdomain.com/WebRTCAppEE/index.html?target=edge) to the edge. You will be able to reach. In other words, we are eliminating the 5443, 443 port separation.
 
-Click ```Load Balancer >` Your LoadBalancer >` HTTPS: 443 >` View/Edit Rules``` and add 2 rules as below.
+Click `Load Balancer > Your LoadBalancer > HTTPS: 443 > View/Edit Rules` and add 2 rules as below.
 
 ![](@site/static/img/aws-rules.png)
 
@@ -193,33 +193,38 @@ Right now Everything is ok. Just let me give a brief information about the diffe
 
 > Quick Link: [How to configure RTMP Load Balancer in AWS ?](/v1/docs/how-to-configure-rtmp-load-balancer-in-aws)
 
-### **Logging in Web Panel**
+### Logging in Web Panel
 
 You can login to web panel via the [https://your-domain-name/](https://your-domain-name/) and login with “JamesBond” and the first instances instance-id in your origin group. If you don’t know the instance-id, you need to change your password.
 
-We are storing passwords with MD5 encryption in the latest version. You can encrypt your password basically as follows.
+In the latest version, we store passwords with MD5 encryption. You can encrypt your password using the following methods:
 
-On the terminal program
+Via Terminal:
 
-echo -n 'new-password' | md5sum
-or any MD5 encrypter page like: [https://www.md5online.org/md5-encrypt.html](https://www.md5online.org/md5-encrypt.html)
+```echo -n 'new-password' | md5sum```
 
-Please ssh to your MongoDB instance and write the below commands via terminal
+Alternatively, you can use an online MD5 encrypter page, such as [https://www.md5online.org/md5-encrypt.html](https://www.md5online.org/md5-encrypt.html)
 
+SSH into your MongoDB instance and execute the following commands in the terminal:
+
+```shell
 $ mongo
+use serverdb
+db.getCollection('User').find()
+db.User.updateOne({"_id": "[Replace with user ID]"}, {$set:{password: "[Replace with encrypted password]"}})
+```
 
-> `use serverdb` db.getCollection('User').find()
-> ` db.User.updateOne({"_id": "5e978ef3c9e77c0001228040"}, {$set:{password: "md5Password"}})
->  It gives you an output like this
+The command will provide an output similar to the following:
+```
+{ "_id" : ObjectId("5e978ef3c9e77c0001228040"), "className" : "io.antmedia.rest.model.User", "email" : "JamesBond", "password" : "e4e6ca42342f95978a17c6257593c1e1", "userType" : "ADMIN" }
+```
 
-```{ "_id" : ObjectId("5e978ef3c9e77c0001228040"), "className" : "io.antmedia.rest.model.User", "email" : "JamesBond", "password" : "e4e6ca42342f95978a17c6257593c1e1", "userType" : "ADMIN" }```
+#### Enable IP Filtering
 
-### Enable IP Filtering
+Please visit: [How to enable IP filter behind a load balancer for Ant Media Server?](/v1/docs/how-to-enable-ip-filter-for-ant-media-servers-behind-load-balancer-in-aws)
 
-Please visit [How to enable IP filter behind a load balancer?](/v1/docs/how-to-enable-ip-filter-for-ant-media-servers-behind-load-balancer-in-aws)
+#### Test Flight
 
-### Test Flight
-
-For publishing please visit the ```https://your-domain-name/WebRTCAppEE/``` and click “Start Publishing” button. The default stream id is “stream1” For playing please visit the ```https://your-domain-name:5443/WebRTCAppEE/player.html``` and click “Start Playing” button. The default stream will be played.
+For publishing please visit the `https://your-domain-name/WebRTCAppEE/` and click the `Start Publishing` button. The default stream id is `stream1` For playing please visit the `https://your-domain-name:5443/WebRTCAppEE/player.html` and click the `Start Playing` button. The default stream will be played.
 
 As you figure out, we connect default https port(443) for publishing and 5443 port for playing. Because we configure load balancer to forward default port(443) to origin group and 5443 to edge group.

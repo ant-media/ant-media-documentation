@@ -1,9 +1,15 @@
+---
+title: coTURN Quick Installation 
+description: Install coTURN, TURN Server to stream your data without any firewall restrictions.
+keywords: [Setup TURN Server, TURN Server Installation, TURN Server Installation, coTURN Quick Installation, Ant Media Server Documentation, Ant Media Server Tutorials]
+---
+
 # coTURN quick installation
 
 What is a TURN Server?
 ----------------------
 
-A TURN server is a network entity in charge of relaying media in VoIP related protocols. This includes SIP, H.323, WebRTC and other protocols.
+A TURN server is a network entity in charge of relaying media in VoIP-related protocols. This includes SIP, H.323, WebRTC and other protocols.
 
 When you try reaching out directly from one browser to another with voice or video data (sometimes other arbitrary kind of data), you end up going through different network devices. Some of these devices include Firewalls and NATs (Network Address Translators) which may decide due to internal policies not to pass your data.
 
@@ -11,10 +17,18 @@ When there are some network securities like firewall, then data packet does not 
 
 So we use TURN server for this solution.
 
-Ant Media Server does not require TURN server even if there is Symmetric NAT. However it's required if UDP ports are blocked for any reason or Ant Media Server is used as signaling server in P2P communication.
+Ant Media Server does not require TURN server even if there is Symmetric NAT. However, it's required if UDP ports are blocked for any reason or Ant Media Server is used as signaling server in P2P communication.
 
-### Install TURN server
+## Install the TURN server
 
+By running the script, you can quickly install and configure the TURN server.
+
+```
+https://raw.githubusercontent.com/ant-media/Scripts/master/install_turn-server.sh && chmod +x install_turn-server.sh
+sudo ./install_turn-server.sh
+```
+
+### Manual Installation
 ```console
 apt-get update && apt-get install coturn
 ```
@@ -61,8 +75,8 @@ That 's it.
 
 **Command Line**
 
-```console
-shell turnutils\_uclient -v -t -T -u username -w password -p 3478 turn\_server\_ip
+```shell
+turnutils_uclient -v -t -T -u username -w password -p 3478 turn_server_ip
 ```
 
 **Web Browser**

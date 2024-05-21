@@ -1,3 +1,12 @@
+---
+title: Run Ant Media Server (Enterprise Edition) container on ECS in cluster mode 
+description: Run Ant Media Server (Enterprise Edition) container on ECS in cluster mode
+keywords: [ECS in cluster mode, Ant Media Server Documentation, Ant Media Server Tutorials]
+sidebar_position: 9
+---
+
+# Run Ant Media Server (Enterprise Edition) container on ECS in cluster mode
+
 In this document we will tell how you can run Ant Media Server Enterprise edition container on ECS in cluster mode.
 
 ### Step 0. Register to Ant Media Server Container product

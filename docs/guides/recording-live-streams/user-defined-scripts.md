@@ -1,6 +1,10 @@
 ---
 title: User Defined Scripts
+description: There are few scripts to help you to automate Ant Media Instance, like MP4 muxing(recording), MP4 Muxing script usage instructions, VoD upload finish process, VoD Upload script usage instructions.
+keywords: [MP4 muxing, MP4 recording, VoD Upload script, MP4 Muxing script usage instructions, Ant Media Server Documentation, Ant Media Server Tutorials]
+sidebar_position: 4
 ---
+
 # User defined Scripts
 
 User defined scripts are run automatically by the Ant Media Server after the MP4 Muxing process (recording) finishes or VoD upload process finishes. It enables users to make some changes on the mp4 file. A few examples:

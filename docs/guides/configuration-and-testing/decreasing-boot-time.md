@@ -1,3 +1,10 @@
+---
+title: Decreasing the boot time 
+description: This guide will help you to analyse which services are not much useful with systemd-analyze. This will help you to decreasing the boot time of your Ant Media Server Instance.
+keywords: [Ant Media Server Optimizations, Decreasing the boot time, systemd-analyze, Ant Media Server Documentation, Ant Media Server Tutorials]
+sidebar_position: 3
+---
+
 # Decreasing the boot time
 
 In this post, we are going to guide you to increase your system performance.

@@ -1,8 +1,8 @@
 {
   "label": "Kubernetes",
-  "position": 7,
+  "position": 4,
   "link": {
     "type": "generated-index",
-    "description": "5 minutes to learn the most important Docusaurus concepts."
+    "description": "This guide will help you to deploy Ant Media Server with Kubernetes by setting-up correct enviroment. Also, achive auto-Scaling and set-up SSL for Kubernetes."
   }
 }

@@ -1,78 +1,149 @@
-# Simulcasting to social media channels
+---
+title: Simulcasting to social media channels
+description: Simulcasting to social media channels
+keywords: [Simulcasting to social media channels, Restreaming, Ant Media Server Documentation, Ant Media Server Tutorials]
+sidebar_position: 7
+---
 
-This guide will show you how to use Ant Media Server to live stream to social media and other third-party RTMP end points.
-
-<VideoPlayer youtube="true" video="https://www.youtube.com/embed/NVhYthQk_js" />
+This guide will show you how to use Ant Media Server to push your live stream to social media channels like Facebook, YouTube, Twitch, and other third-party RTMP endpoints.
 
 ## How to Publish Live Stream on Facebook
 
-You can publish live streams on your pages/accounts. Just click the **Live** button in the Create Post tab.
+### Obtain the RTMPs endpoint from Facebook
+1. Login to your facebook account and on the homepage there's a **Live Video** section in the center, click on it.
 
-![](@site/static/img/iosmediacaptureresolutions(1).png)
+![](@site/static/img/publish-live-stream/simulcasting/live-video.png)
 
-After the click Live Button, you can see Facebook Live Dashboard as in the image shown below:
+2. Click on **Go live**
 
-![](@site/static/img/facebook-live-dashboard.png)
+![](@site/static/img/publish-live-stream/simulcasting/go-live.png)
 
-You just need to copy the **Stream URL** and **Stream Key.**
+3. Choose **Streaming software** and note the **Stream key**. The stream key will be used while adding the rtmp endpoint.
 
-**PS:** If you want to use a persistent stream key, you just need to enable **Use a Persistent Stream key** in Setup Option.
+![](@site/static/img/publish-live-stream/simulcasting/streaming-software.png)
 
-Your Facebook RTMP Endpoint URL that you will use in Ant Media Server should be like this: ```rtmps://rtmps://live-api-s.facebook.com:443/rtmp/Stream-key```
+4. Copy the **Server URL** listed under Advanced Settings. The server URL will also be used while adding the rtmp endpoint.
 
-For example: ```rtmps://live-api-s.facebook.com:443/rtmp/677122211923308?s_bl=1&s_psm=1&s_sc=677124129589969&s_sw=0&s_vt=api-s&a=AbxqZXR6X1VaKBzk```
+![](@site/static/img/publish-live-stream/simulcasting/server-url.png)
+
+:::info
+If you want to use a persistent stream key, you just need to enable **Persistent Stream key** in the Advanced settings option.
+:::
+
+The Facebook RTMPs Endpoint URL that will be used in Ant Media Server will be of the format: ```server-URL/stream-key```
+
+example:
+
+```
+rtmps://live-api-s.facebook.com:443/rtmp/FB-7359771564075190-0-AbwqSZYF2WgvXCVc
+```
+
+### Add the RTMPs endpoint to the stream
+
+1. Go to the Live Stream section of your application on the Ant Media Server then to New Live Streams and create the stream as per your need.
+
+2. Go to the stream you want to restream and click on the hamburger icon located at the extreme right of the screen.
+
+3. Click on **Edit RTMP Endpoint**.
 
 ![](@site/static/img/publish-live-stream/simulcasting/edit-endpoint.png)
 
-Simply add your Facebook RTMP Endpoint URL to the Ant Media Server ```Edit RTMP Endpoints``` tab, as shown in the image below.
+4. Add the Facebook RTMPs endpoint and click **Add RTMP endpoint**
 
-![](@site/static/img/publish-live-stream/simulcasting/add-fb-endpoint.png)
+![](@site/static/img/publish-live-stream/simulcasting/add-endpoint.png)
 
-So, you can start broadcasting now!
+Congratulations! The stream is live on Facebook.
 
 ## How to Publish Live Stream on Youtube
 
-You can publish live streams on your YouTube account. Just click the **Create** button and select **Go Live.**
+:::info
+
+- YouTube does not accept streams without audio, thus your stream needs to include audio.
+
+- In addition, [this link](https://support.google.com/youtube/answer/1722171?hl=en#zippy=) provides suggested upload encoding settings for YouTube streaming.
+
+:::
+
+### Obtain the RTMP endpoint from YouTube
+
+To publish live streams on your YouTube account, it is first needed to get the YouTube RTMP endpoint.
+
+1. Go to [YouTube](https://www.youtube.com/) and locate the **Create** button on the top right side and select **Go Live.**
 
 ![](@site/static/img/image-1645118331005.png)
 
-Just Click the **Go** button on the **Streaming Software** tab.
+2. It will open the YouTube Studio page where there's **Stream URL** and **Stream key**
 
-![](@site/static/img/youtube-studio.png)
+Then copy the **Stream URL** and **Stream Key.**
 
-Then copy the **Stream URL** and **Stream Key.****![](@site/static/img/youtube-studio-stream-url-stream-key.png)**
+![](@site/static/img/youtube-studio-stream-url-stream-key.png)
 
-Your YouTube RTMP Endpoint URL that you will use in Ant Media Server should be like this: ```rtmp://a.rtmp.youtube.com/live2/Stream-key```
+The YouTube RTMP Endpoint URL that will be used in Ant Media Server will be of the format: ```stream-URL/stream-key```
 
-For example: ```rtmp://a.rtmp.youtube.com/live2/dq1j-waph-e322-waxd-dxzd```
+example
+
+```
+rtmp://a.rtmp.youtube.com/live2/dq1j-waph-e322-waxd-dxzd
+```
+### Add the RTMP endpoint to the stream
+
+1. Go to the Live Stream section of your application on the Ant Media Server then to New Live Streams and create the stream as per your need.
+
+2. Go to the stream you want to restream and click on the hamburger icon located at the extreme right of the screen.
+
+3. Click on **Edit RTMP Endpoint**.
 
 ![](@site/static/img/publish-live-stream/simulcasting/edit-endpoint.png)
 
-Simply add your YouTube RTMP Endpoint URL to the Ant Media Server ```Edit RTMP Endpoints``` tab, as shown in the image below.
+4. Add the YouTube's RTMP endpoint and click **Add RTMP endpoint**
 
 ![](@site/static/img/publish-live-stream/simulcasting/add-youtube-endpoint.png)
 
-So, you can start broadcasting now!
+Congratulations! The stream is live on YouTube.
 
-## How to Publish Live Stream on Periscope
+## How to Publish Live Stream on Twitch
 
-You can publish live streams on your periscope account. Just click the **Profile** button and select **Producer.**
+### Obtain the RTMP endpoint from Twitch
 
-![](@site/static/img/periscope-profile-producer.png)
+1. Login to your [Twitch](https://www.twitch.tv/) account.
 
-Then copy **Stream URL** and **Stream Key.****![](@site/static/img/periscope-stream-url-stream-key.png)**  
+2. Navigate to the profile icon on the top right and go to **Creator Dashboard**
 
-Your Periscope RTMP Endpoint URL that you will use in Ant Media Server should be like this: `rtmp://de.pscp.tv:80/x/Stream-key`
+![](@site/static/img/publish-live-stream/simulcasting/twitch-account.png)
 
-For example: ,```rtmp://de.pscp.tv:80/x/baps3a3x7j32```
+3. Go to **Settings** > **Stream** and copy the primary **Stream Key**
+
+![](@site/static/img/publish-live-stream/simulcasting/stream-key.png)
+
+4. To get the Twitch RTMP **ingest endpoint**, please go to [Twitch Ingest Server](https://help.twitch.tv/s/twitch-ingest-recommendation?language=en_US) and copy the endpoint nearest to you.
+
+![](@site/static/img/publish-live-stream/simulcasting/twitch-ingest.png)
+
+Twitch RTMP Endpoint URL that will be used in Ant Media Server will be of the format: ```ingest-endpoint/stream-key```
+
+example
+
+```
+rtmp://del01.contribute.live-video.net/app/live_1019144780_gAWcIi9n8WTjQY5WvxHCarrltIXj3M
+```
+
+### Add the RTMP endpoint to the stream
+
+1. Go to the Live Stream section of your application on the Ant Media Server then to New Live Streams and create the stream as per your need.
+
+2. Go to the stream you want to restream and click on the hamburger icon located at the extreme right of the screen.
+
+3. Click on **Edit RTMP Endpoint**.
 
 ![](@site/static/img/publish-live-stream/simulcasting/edit-endpoint.png)
 
-Simply add your Periscope RTMP Endpoint URL to the Ant Media Server ```Edit RTMP Endpoints``` tab, as shown in the image below.
+4. Add your Twitch RTMPs endpoint and click **Add RTMP endpoint**
 
-![](@site/static/img/publish-live-stream/simulcasting/add-periscope-endpoint.png)
+![](@site/static/img/publish-live-stream/simulcasting/twitch-endpoint.png)
 
-So, you can start broadcasting now!
+Congratulations! The stream is live on Twitch.
+
+![](@site/static/img/publish-live-stream/simulcasting/twitch-live.png)
 
 ## How to Add/Remove RTMP Endpoints?
 
@@ -95,7 +166,7 @@ curl -X 'POST' \
   -H 'Content-Type: application/json' \
   -d '{
   "rtmpUrl": "rtmp://endpoint-URL/StreamKey",
-}'
+      }
 ```
 After adding the endpoint, you will receive one random ```dataId``` that will be used to remove the added endpoint using the remove rtmp-endpoint Rest API described in next step.
 

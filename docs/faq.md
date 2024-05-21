@@ -1,6 +1,8 @@
 ---
-sidebar_position: 8
 title: Frequently Asked Questions
+description: Ant Media Server Frequently Asked Questions and Solutions
+keywords: [Ant Media Server Frequently Asked Questions and Solutions, Ant Media Server FAQ, Deploy Ant Media Server, Tutorial to deploy Ant Media Server, Support Ant Media]
+sidebar_position: 4
 ---
 # Frequently Asked Questions
 
@@ -48,7 +50,7 @@ If you're using ```mongodb``` as the database, your password will be stored in t
 *   Type ```use serverdb;```
 *   Type ```db.User.find()``` and it shows you the output like below. ```{ "_id" : ObjectId("5ea486690f09e71c2462385a"), "className" : "io.antmedia.rest.model.User", "email" : "test@antmedia.io", "password" : "1234567", "userType" : "ADMIN" }```
 *   You can update the password with a command something like below. Change the parameters below according to the your case. ```db.User.updateOne( { email:"test@antmedia.io" }, { $set: { "password" : "test123" }})```
-*   Alternatively, you can delete the user with a command something like below. Change the parameters below according to the your case. ```db.User.deleteOne( { "email": "test@antmedia.io" } )```
+*   Alternatively, you can delete the user with a command something like below. Change the parameters below according to the your case. ```db.user.deleteOne( { "email": "test@antmedia.io" } )```
 *   As of version 2.3.2, passwords should be hashed with MD5.
 
 ## What is HLS?
@@ -204,7 +206,7 @@ Common Name (e.g. server FQDN or YOUR name) []:domain.com
 Email Address []: contact@antmedia.io
 ```
 
-### 4. Enable SSH
+### 4. Enable SSL
 
 The certificate and private key will be created at the specified location. Run the ```enable_ssl.sh``` script as below.
 

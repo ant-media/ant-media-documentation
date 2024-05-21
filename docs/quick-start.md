@@ -1,120 +1,104 @@
 ---
-title: Quick start with AMS
-id: introduction
-slug: /
+title: Quickstart
+description: Deploy Ant Media Server to choice of your cloud within minutes.
+keywords: [Download Ant Media Server, Setup Ant Media Server, Deploy Ant Media Server, Tutorial to deploy Ant Media Server, Ant Media Documentation]
 sidebar_position: 1
 ---
-<VideoPlayer video="https://www.youtube.com/embed/EH6v-yUyzjU" youtube="true">
-  <div><center><strong><i>Video tutorial of AWS marketplace installation</i></strong></center></div>
-</VideoPlayer>
 
-# Installation
+# Quick Start
 
-This quick start guide shows you how to set up Ant Media Server (AMS) in just a few minutes and try ultra-low latency streaming using the enterprise edition.
-
-The installation process for Ant Media Server Community and Enterprise Editions are the same so you can install The Community Edition by following the same instructions.
-
-There are two ways to install Ant Media Server (AMS).
-
-1. Manual installation to a remote server with a public IP address
-2. Launch in one of the cloud marketplaces [AWS](https://aws.amazon.com/marketplace/search/results?x=0&y=0&searchTerms=Ant+Media+Server&page=1&ref_=nav_search_box), [Azure](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/antmedia.ant_media_server_enterprise?tab=Overview), [DigitalOcean](https://marketplace.digitalocean.com/apps/ant-media-server-enterprise-edition) (video tutorial above).
-
-In this guide, we'll be going through the manual installation.
-
-## Download Ant Media Server
-
-You can download the Community Edition from [Releases](https://github.com/ant-media/Ant-Media-Server/releases) or if you have already purchased a license, you can download the enterprise edition by logging into your account at [antmedia.io](https://antmedia.io).
-
-After you download Community Edition AMS, you will have a compressed zip file that contains the Ant Media Server.
-
-## Install Ant Media Server
-
-If you didn't download AMS directly to your remote server, make sure to upload the downloaded .zip file first.
+## Step 1: Download script
 
 ```shell
-cd /path/to/where/ant-media-server/is/downloaded
+wget https://raw.githubusercontent.com/ant-media/Scripts/master/install_ant-media-server.sh -O install_ant-media-server.sh  && chmod 755 install_ant-media-server.sh
 ```
 
-Get the installation script `install_ant-media-server.sh`.
+## Step 2: Install Ant Media Server
+
+### Install Enterprise Edition
 
 ```shell
-wget https://raw.githubusercontent.com/ant-media/Scripts/master/install_ant-media-server.sh && chmod 755 install_ant-media-server.sh
+sudo ./install_ant-media-server.sh -l 'your-license-key'
 ```
 
-Install Ant Media Server(AMS) as follows. Please don't forget to replace `[ANT_MEDIA_SERVER_INSTALLATION_FILE]` below with the name of the downloaded .zip file that was fetched at step 1.
+### Install Community Edition
+```shell
+sudo ./install_ant-media-server.sh
+```
+
+### Install a specific version
+```shell
+sudo ./install_ant-media-server.sh -i <ANT_MEDIA_SERVER_ZIP_FILE>
+```
+
+**For more installation options check the help ```./install_ant-media-server.sh -h```.**
+
+### Fast, easy installation on Cloud Marketplace
+
+
+<div style={{display: 'flex', justifyContent: 'space-between', textAlign: 'center', fontWeight:'bold', height: 'auto'}}>
+  <div  style={{width: '49%', height:'300px'}}>
+      <iframe className="border border-rounded m-3" width="100%" height="250" src="https://www.youtube.com/embed/EH6v-yUyzjU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      Video tutorial of AWS marketplace installation
+  </div>
+  <div  style={{width: '49%', height:'300px'}}>
+      <iframe className="border border-rounded m-3" width="100%" height="250" src="https://www.youtube.com/embed/uE8uzWhKSBE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      Video tutorial of Azure marketplace installation
+  </div>
+</div>
+
+## Step 3: Configure SSL
+
+### Free antmedia.cloud sub domain
 
 ```shell
-sudo ./install_ant-media-server.sh -i [ANT_MEDIA_SERVER_DOWNLOADED_FILE] 
+cd /usr/local/antmedia/ && sudo ./enable_ssl.sh
 ```
 
-## Install SSL for Ant Media Server
-
-First make sure that your server instance has a public IP address and a valid domain name is pointing to your servers public IP address.
-
-Then go to the folder where Ant Media Server is installed. Default directory is `/usr/local/antmedia`
+### Custom domain name
 
 ```shell
-cd /usr/local/antmedia
+cd /usr/local/antmedia/ && sudo ./enable_ssl.sh -d domain.com
 ```
 
-Run ```./enable_ssl.sh``` script in the directory where AMS has been installed. Don't forget to replace `{DOMAIN_NAME}` with your domain name.
 
-```shell
-sudo ./enable_ssl.sh -d {DOMAIN_NAME}
-```
+## Step 4: Login to the Web Panel
 
-For detailed information about how to configure SSL for Ant Media Server, reference the [SSL Setup guide](/guides/installing-on-linux/setting-up-ssl/).
+Navigate to ```https://ant-media-server:5443``` and create the first user account.
 
-## Ultra-low latency publishing/playing
+![](@site/static/img/quick-start/create-first-account.png)
 
-Ant Media Server Enterprise Edition provides 0.5 seconds end-to-end latency. So let's try ultra-low latency first.
+## Step 5: Publishing and Playing WebRTC Live Streams
 
-### Publishing
+### Publishing a Live Stream
 
-- Visit the following page `https://your-domain-address.com:5443/WebRTCAppEE/`
-- Let the browser access the camera and mic. Then click `Start Publishing`
+You can quickly publish a WebRTC live stream from a sample page that's available at ```https://domain-name:5443/LiveApp```.
 
-  ![](@site/static/img/webrtc-publishing.png)
-  
-- After you press the button "Publishing", the status will change to publishing and you will start to see statistics showing the quality of the stream.
+![](@site/static/img/quick-start/publish-stream.png)
 
-  ![](@site/static/img/webrtc-publishing-2.png)
+### Playing a Live Stream
 
-### Playing
+Then playback the WebRTC live stream from another sample page available at ```https://domain-name:5443/LiveApp/player.html```.
 
-- Visit the following page `https://your-domain-address.com:5443/WebRTCAppEE/player.html`.
-- Input into the text box the same stream id used in the previous step ( `stream1` by default)
 
-  ![](@site/static/img/webrtc-playing.png)
+![](@site/static/img/quick-start/play-stream.png)
 
-- Press the `Start Play` button to start playing the WebRTC stream.
 
-  ![](@site/static/img/webrtc-playing.png)
+## Sample Tools and Applications
 
-## Playing and Publishing Options
+Access [sample tools and applications](/get-started/sample-tools-and-applications/) here ```https://ant-media-server:5443/LiveApp/samples.html```. 
 
-Both default play and publish pages have some options to customise the experience, incuding a data channel for sending and receiving text messages. 
+ - Multitrack conferencing
+ - WebRTC Test Tool
+ - DeepAR affects
 
-<InfoBox>
-  The data channel is covered here <a title="using the ant media server data channel" target="_blank" href="/guides/publish-live-stream/data-channel/">using the data channel</a>
-</InfoBox>
 
-### Publishing
+Below is an example of DeepAR.
 
-Clicking on the "Options" button will reveal more than one way to publish a live stream. 
+![](@site/static/img/quick-start/deepar-sample.png)
 
- ![](@site/static/img/webrtc-publish-options.png)
 
- In this example, there is more than one video source and more than one audio source. The default is to enabled your camera for a live stream chat, but other options include publishing your screen or publish your screen with your camera. 
 
-### Playing
+## Getting Help
 
-Click the "Options" button to see the different play back options. If adaptive bitrate (ABR) is enabled, you will be able to force the required quality. 
-
-![](@site/static/img/webrtc-playing-options.png)
-
-<InfoBox>
-Don't forget that the <code>stream id</code> on the publish and play pages should be the same.
-</InfoBox>
-
-This quick start lets your try ultra-low latency streaming in Ant Media Server. If you have any problems, don't be hesitate to [discuss](https://github.com/orgs/ant-media/discussions).
+If you need any help, feel free to head over to [Github discussions](https://github.com/orgs/ant-media/discussions) or follow our more detailed guide, [Installing Ant Media Server on Linux](/guides/installing-on-linux/installing-ams-on-linux/). 

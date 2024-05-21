@@ -1,28 +1,64 @@
-# WebRTC WebSocket Messaging Reference
+---
+title: WebRTC WebSocket Messaging Reference
+description: WebRTC WebSocket Messaging Reference
+keywords: [WebRTC WebSocket Messaging Reference, Ant Media Server Documentation, Ant Media Server Tutorials]
+sidebar_position: 6
+---
 
 This documentation is for developers who needs to implement signalling between Ant Media Server and clients for publishing & playing streams. Let's make it step by step
 
 ##  Publishing WebRTC Stream
 
-Client connects to Ant Media Server through WebSocket. URL of the WebSocket interface is something like
-    
-`ws://SERVER_NAME:5080/WebRTCAppEE/websocket`
-    
+1. To connect to Ant Media Server, client can use WebSocket with a URL in the format:    
+```
+wss://SERVER_NAME:5443/WebRTCAppEE/websocket
+```
+`wss` indicates that it's a secure WebSocket connection using SSL/TLS.
+`/WebRTCAppEE/websocket` specifies the endpoint for the WebSocket connection in Ant Media Server. 
 
-Client sends publish JSON command to the server with stream name parameter. (Remove token parameter if token control is not enabled) Only ```Command``` and ```streamId``` is mandatory. Audio and video is enabled default, it can be overwritten. ```Token```, ```subscriberId``` and ```subscriberCode``` is for stream security and optional like setting audio and video. You can take a look at this [guide](https://antmedia.io/time-based-one-time-password-totp-makes-streams-secure/) to learn more about ```subscriberId``` and ```subscriberCode``` and how to use them. For general ```stream security``` information take a look at [here](/guides/developer-sdk-and-api/rest-api-guide/stream-security/).
+2. To publish a stream, clients first sends the `publish` command to the server to start the stream.
+```json
+{
+  command : "publish",
+  streamId : "stream1",
+  streamName : "streamName",
+  token : "token",
+  mainTrack : "mainTrack",
+  metaData : "metaData",
+  subscriberCode : "subscriberCode",
+  subscriberId : "subscriberId",
+  video : "true",
+  audio : "true",
+}
+```
 
-If Server accepts the stream, it replies back with start command
+- ```token```: The ```token``` field is required if any stream security (token control) is enabled.
+If the user has enabled [stream-security](https://antmedia.io/docs/guides/advanced-usage/stream-security/), they need to fill in the ```token``` field with the correct token.
 
+- ```subscriberId``` and ```subscriberCode```: These are the values for the Time-based One-time Password (TOTP). If the user is using the TOTP mechanism, they need to pass the ```subscriberId``` and ```subscriberCode```.
+
+- ```streamName```: Zombie streams are streams that aren't in the database. Therefore, users can give these "on the fly" streams a ```streamName```.
+
+- ```mainTrack```: ```mainTrack``` is related to multitrack streaming and is required if the user wants to start the stream as a ```subtrack``` for this ```mainTrack```. For multitrack conferences, ```mainTrack``` is set as the room ID.
+
+- ```metaData```: The ```metaData``` is free text information for the stream to server.
+
+- ```enableVideo``` and ```enableAudio```: These parameters define whether to enable video and audio for the stream.
+If ```enableVideo``` is true, then video will be sent to the server. If ```enableAudio``` is true, then audio will be sent to the server.
+If ```enableVideo``` is false and ```enbleAudio``` is true, then it means it's an audio-only stream.
+
+- Only ```command``` and ```streamId``` are mandatory. Audio and video is enabled default. When the server receives the ```publish``` commands, it checks whether the license is suspended, whether the server has enough resources, and retrieves the token if necessary.
+
+3. If Server accepts the stream, it replies back with `start` command
 ```json
 {
   command : "start",
   streamId : "stream1",
+  subscriberId : "",
 }
 ```  
 
-
-
-4.  Client inits peer connections, creates offer sdp and send the sdp configuration to the server with takeConfiguration command
+4.  Client inits peer connections, creates offer sdp and send the sdp configuration to the server with `takeConfiguration` command
 ```json
 {
   command : "takeConfiguration",
@@ -32,8 +68,7 @@ If Server accepts the stream, it replies back with start command
 }
 ```    
 
-5.  Server creates answer sdp and send the sdp configuration to the client with takeConfiguration command
-
+5.  Server creates answer sdp and send the sdp configuration to the client with `takeConfiguration` command
 ```json
 {
   command : "takeConfiguration",
@@ -43,8 +78,7 @@ If Server accepts the stream, it replies back with start command
 }
 ```
 
-6.  Client and Server get ice candidates several times and sends to each other with takeCandidate command
-
+6.  Client and Server get ice candidates several times and sends to each other with `takeCandidate` command
 ```json 
 {
   command : "takeCandidate",
@@ -53,40 +87,60 @@ If Server accepts the stream, it replies back with start command
   id : "${CANDIDATE.SDP_MID}",
   candidate : "${CANDIDATE.CANDIDATE}"
 }
-```        
-    
+```  
 
-7.  Clients sends stop JSON command to stop publishing
+7. After a stream has started, the server sends a `publish_started` command
+```json
+{
+  command : "notification",
+  definition : "publish_started",
+  streamId : "stream1",
+}
+```
 
+8. Clients sends stop JSON command to stop publishing
 ```json
 {
   command : "stop",
-  streamId: "stream1"
+  streamId: "stream1",
 }
-```    
+```
+
+9. Server responds with publish_finished message to indicate that the stream has stopped
+```json
+{
+  command : "notification",
+  definition : "publish_finished",
+  streamId : "stream1",
+  subscriberId : "subscriberId",
+}
+```
 
 ## Playing WebRTC Stream
 
-1.  Client connects to Ant Media Server through WebSocket.
-    
-        ws://SERVER_NAME:5080/WebRTCAppEE/websocket
-    
+1. To connect to Ant Media Server, client can use WebSocket with a URL in the format:
+```
+wss://SERVER_NAME:5443/WebRTCAppEE/websocket
+```
 
-2.  Client sends play JSON command to the server with stream name parameter. (Remove token parameter if token control is not enabled) Only ```command``` and ```streamId``` is mandatory, rest is situational, such as ```subscriber id```, ```code```, ```token``` and ```enabled tracks```. You can take a look at this [guide](https://antmedia.io/time-based-one-time-password-totp-makes-streams-secure/) to learn more about ```subscriberId``` and ```subscriberCode``` and how to use them. For general ```stream security``` information take a look at [here](/guides/developer-sdk-and-api/rest-api-guide/stream-security/). When there are multitracks on the webrtc stream user can speficy the tracks that needs to be played. If there are 2 tracks on the stream, user can specify the both and both track will be played. To get all tracks in a stream you can take a look in ```getTrackList``` command that is in the [miscellaneous](#miscellaneous-websocket-methods) part.
-    
+2. Client sends play ```command``` to the server with ```streamId``` parameter.
 ```json
 {
   command : "play",
   streamId : "stream1",
-  token : "tokenId",
-  trackList: [enabledtracksarray],
-  subscriberId: "subscriberId",
-  subscriberCode: "subscriberCode"
+  token : "token",
+  subscriberCode : "subscriberCode",
+  subscriberId : "subscriberId",
+  trackList : [enabledtracksarray],
+  viewerInfo : "viwerInfo",
 }
-```   
+```
 
-3.  If Server accepts the stream, it replies back with offer command
+- Only ```command``` and ```streamId``` is mandatory, rest are situational, such as ```subscriber id```, ```code```, ```token``` and ```enabled tracks```.
+- If stream has subtracks, ```trackList``` is enabled by default. If there are 2 tracks on the stream, user can specify the both and both track will be played. To get all tracks in a stream you can take a look in ```getTrackList``` command that is in the [miscellaneous](#miscellaneous-websocket-methods) part.
+- ```viewerInfo``` is a kind of ```metaData``` used to collect informations.
 
+3. If Server accepts the stream, it replies back with offer command
 ```json 
 {
   command : "takeConfiguration",
@@ -96,8 +150,7 @@ If Server accepts the stream, it replies back with start command
 }
 ```    
 
-5.  Client creates answer sdp and send the sdp configuration to the server with takeConfiguration command
-
+4. Client creates answer sdp and send the sdp configuration to the server with takeConfiguration command
 ```json
 {
   command : "takeConfiguration",
@@ -107,8 +160,7 @@ If Server accepts the stream, it replies back with start command
 }
 ```    
 
-6.  Client and Server get ice candidates several times and sends to each other with takeCandidate command
-
+5. Client and Server get ice candidates several times and sends to each other with takeCandidate command
 ```json 
 {
   command : "takeCandidate",
@@ -117,20 +169,19 @@ If Server accepts the stream, it replies back with start command
   id : "${CANDIDATE.SDP_MID}",
   candidate : "${CANDIDATE.CANDIDATE}"
 }
-```        
-    
+```
 
-7.  Clients sends stop JSON command to stop playing
-
+6. Server notifies with `play_started` once the stream starts to play
 ```json
 {
-  command : "stop",
-  streamId: "stream1",
+  command : "notification",
+  definition : "play_started",
+  streamId : "stream1",
+  subscriberId : "subscriberId",
 }
-```    
+```
 
-8.  Client sends toggle video to stop/start incoming video packets from a video track ( streamId = trackId for single track use ) Enabled is ```true``` as default. ```trackId``` and ```streamId``` is mandatory.
-
+7. Client sends toggle video to stop/start incoming video packets from a video track ( streamId = trackId for single track use ) Enabled is ```true``` as default. ```trackId``` and ```streamId``` is mandatory.
 ```json 
 {
   command : "toggleVideo",
@@ -138,10 +189,9 @@ If Server accepts the stream, it replies back with start command
   trackId: "track1",
   enabled: boolean
 }
-```    
+```  
 
-9.  Client sends toggle audio to stop/start incoming audio packets from an audio track ( streamId = trackId for single track use ) Enabled is ```true``` as default. ```trackId``` and ```streamId``` is mandatory.
-
+8. Client sends toggle audio to stop/start incoming audio packets from an audio track ( streamId = trackId for single track use ) Enabled is ```true``` as default. ```trackId``` and ```streamId``` is mandatory.
 ```json 
 {
   command : "toggleAudio",
@@ -149,40 +199,182 @@ If Server accepts the stream, it replies back with start command
   trackId: "track1",
   enabled: boolean
 }
-```    
+```
+- If there are mutiple subtracks, user can enabled/disable any track using ```toggle``` so that the server does not send audio/video packets for that track.
+
+9. Clients sends `stop` JSON command to stop playing
+```json
+{
+  command : "stop",
+  streamId: "stream1",
+}
+```
+
+10. Server notifies with `play_finished` to notify that play has stopped
+```json
+{
+  command : "notification",
+  definition : "play_finished",
+  streamId : "stream1",
+  subscriberId : "subscriberId",
+}
+```
+
+## Conference WebRTC Stream
+
+1. Peers connects to Ant Media Server through WebSocket.   
+```
+wss://SERVER_NAME:5443/WebRTCAppEE/websocket
+```
+
+2. Client sends `joinRoom` JSON command to the server with room name parameter.
+
+```json
+{
+  command : "joinRoom",
+  room : "room1",
+  streamId : "stream_id_you_want_to_use",
+  mode : "multitrack"
+}
+```
+- `roomName` is the `roomId` and it acts as `mainTrack`
+- `streamId` represents the desired `streamId` that the client wishes to use to publish his stream to the room and it is an optional field. If it is not sent, server returns with a random `streamId` in the next message.
+- `mode` should be `multitrack`
+
+3. Server notifies the client with available streams in the room
+
+```json
+{
+  command : "notification",
+  definition : "joinedTheRoom",
+  room : "room1",
+  streamId : "unique_stream_id_returned_by_the_server"
+  streams: [ stream_id_1, stream_id_2, ...]
+}
+```
+- `streamId` returned by the server is the stream id client uses to publish stream to the room.
+- `streams` is the json array which client can play via WebRTC. Client can play each stream by play method above. This `streams` array can be empty if there is no stream in the room.
+
+4. Client publish the stream with `publish` command as we discussed in publish section above and these will be same.
+
+```json
+{
+  command : "publish",
+  streamId : "streamId",
+  streamName : "streamName",
+  mainTrack : "room1",
+  metaData : "metaData",
+  subscriberCode : "subscriberCode",
+  subscriberId : "subscriberId",
+  video : "true",
+  audio : "true",
+}
+```
+- `mainTrack` and `roomId` are being used interchangeably for multitrack conference. In near future, we'll change these to broadcasts and subTracks for better understanding and clarity.
+
+5. Client sends the `play` command to the server with `streamId` as the `roomId`
+
+```json
+{
+  command : "play",
+  room : "room1",
+  streamId : "room1",
+  token : "token",
+  subscriberCode : "subscriberCode",
+  subscriberId : "subscriberId",
+  trackList : [enabledtracksarray],
+  viewerInfo : "viwerInfo",
+}
+```
+- We only play the `roomId` as this `mainTrack` has all the `subTracks` in the room and therefore it is not required to play each `streamId` separately.
+    
+6. Web app should pull the server periodically for the room info as follows
+
+```json
+{
+  command : "getRoomInfo",
+  room : "room1",
+  streamId: "unique_stream_id_returned_by_the_server",
+}
+```
+
+7. Server returns the active streams in the room as follows. Application should synchronize the players in their side.
+
+```json
+{
+  command: "roomInformation",
+  room: "room1",
+  streams: [
+    "stream1_in_the_room",
+    "stream2_in_the_room",
+    ...
+  ]
+}
+```
+
+8. When a client wants to leave from the room they send `leaveFromRoom` command to the server.
+
+```json
+{
+  command : "leaveFromRoom",
+  room: "room1",
+}
+```
+
+9. Server responds back with `leavedFromRoom` message.
+
+```json
+{
+  command : "notification",
+  definition : "leavedFromRoom",
+}
+```
+
+- The JavaScript SDK/SDKs handle the background processing of multitrack streaming for conferences on their own. If you are implementing your own code using WebSocket references, it is likely that you will need to listen for `onTrackEvents` within the `initPeerConnections` function.
+When a new track, stream, or subTrack is dynamically added to the room during runtime, the `onTrack(event, streamId)` function is triggered. This function notifies the application that a new track is available, allowing the application to handle and play the newly added track as needed.
+
+- When a new `streamId` is added to or removed from the room, the server and client initiate a renegotiation process. During this process, the server sends a new Session Description Protocol (SDP) to the client, suggesting a change in the configuration. This change prompts the addition or removal of a new track to or from the room in real-time.
 
 ## Peer to Peer WebRTC Stream
 
-1.  Peers connects to Ant Media Server through WebSocket.
+1. Peers connects to Ant Media Server through WebSocket.
+```
+wss://SERVER_NAME:5443/WebRTCAppEE/websocket
+```
     
-`ws://SERVER_NAME:5080/WebRTCAppEE/websocket`
-    
-
-2.  Client sends join JSON command to the server with stream name parameter. If only want to play, mode can be set to play, if user wants to publish and play at the same time, both can be set. Only ```command``` and ```streamId``` is mandatory. Mode and multiPeer is only for embedded SDK and should not be used unless you are using embedded SDK. As default, ```mode``` is set to ```both``` and multiPeer is ```false```.
+2. Client sends join JSON command to the server with `streamId` parameter. If only want to `play`, `mode` can be set to `play`, if user wants to publish and play at the same time, `both` can be set. As default, `mode` is set to `both`. Only `command` and `streamId` are mandatory.
 
 ```json
 {
   command : "join",
   streamId : "stream1",
-  multiPeer: boolean,
   mode: "play or both"
 }
-```    
+```
 
-If there is only one peer in the stream1, server waits for the other peer to join the room.
-    
+3. Server notifies with `joined`.
 
-3.  When second peer joins the stream, server sends start JSON command to the first peer
-    
+```json
+{
+  command : "notification",
+  definition : "joined"
+  streamId : "stream1",
+}
+```
+
+4. If there is only one peer in the stream1, server waits for the other peer to join the room.    
+
+5. When second peer joins the stream, server sends `start` JSON command to the first peer.
+
 ```json 
 {
   command : "start",
   streamId : "stream1",
 }
-```    
+```
 
-4.  First peer create offer sdp and send to the server with takeConfiguration command,
-    
+6. First peer create offer sdp and send to the server with `takeConfiguration` command.
+
 ```json 
 {
   command : "takeConfiguration",
@@ -190,11 +382,11 @@ If there is only one peer in the stream1, server waits for the other peer to joi
   type : "offer",  
   sdp : "${SDP_PARAMETER}"
 }
- ```   
-    Server relays the offer sdp to the second peer
-    
+```   
+- Server relays the offer sdp to the second peer
 
-5.  Second peer creates answer sdp and sends to the server with takeConfiguration command
+7. Second peer creates answer sdp and sends to the server with `takeConfiguration` command.
+
 ```json     
 {
   command : "takeConfiguration",
@@ -202,11 +394,11 @@ If there is only one peer in the stream1, server waits for the other peer to joi
   type : "answer",  
   sdp : "${SDP_PARAMETER}"
 }
- ```   
-    Server relays the answer sdp to the first peer
-    
+```
+- Server relays the answer sdp to the first peer
 
-6.  Each peers get ice candidates several times and sends to each other with takeCandidate command through server
+8. Each peers get ice candidates several times and sends to each other with takeCandidate command through server.
+
 ```json 
 {
   command : "takeCandidate",
@@ -215,258 +407,259 @@ If there is only one peer in the stream1, server waits for the other peer to joi
   id : "${CANDIDATE.SDP_MID}",
   candidate : "${CANDIDATE.CANDIDATE}"
 }
- ```       
-    
+```
 
-7.  Clients sends leave JSON command to leave the room
+9. Clients sends leave JSON command to leave the room.
+
 ```json     
 {
   command : "leave",
   streamId: "stream1"
 }
-```    
+```
 
-## Conference WebRTC Stream
+10. Server notifies with `leaved`
 
-Peers connects to Ant Media Server through WebSocket.
-    
-`ws://SERVER_NAME:5080/WebRTCAppEE/websocket`
-    
-
-Client sends join JSON command to the server with room name parameter. 
-
-```streamId``` field is optional in case ```streamId``` should be specified in advance. If ```streamId``` is not sent, server returns with a random ```streamId``` in the second message.
-
- ```json    
-{
-  command : "joinRoom",
-  room : "room_id_for_your_conference",
-  streamId: "stream_id_you_want_to_use"
-}
-```    
-
-Server notifies the client with available streams in the room
-
- ```json    
+```json
 {
   command : "notification",
-  definition : "joinedTheRoom",
-  streamId: "unique_stream_id_returned_by_the_server"
-  streams: [
-      "stream1_in_the_room",
-      "stream2_in_the_room",
-      ...
-  ]
+  definition : "leaved",
 }
- ```   
-```streamId``` returned by the server is the stream id client uses to publish stream to the room. ```streams``` is the json array which client can play via WebRTC. Client can play each stream by play method above. This streams array can be empty if there is no stream in the room.
-    
+```
 
-Web app should pull the server periodically for the room info as follows,
+11. When second peer stops the stream or stream is ended, server sends `stop` JSON command to the first peer.
 
-```json 
+```json
 {
-  command : "getRoomInfo",
-  room : "room_id_for_your_conference",
-  streamId: "unique_stream_id_returned_by_the_server"
+  command : "stop",
+  streamId : "stream1",
 }
- ```   
-
-Server returns the active streams in the room as follows. Application should synchronize the players in their side.
-
- ```json    
-{
-  command:"roomInformation",
-  room: "room_id_for_your_conference",
-  streams: [
-    "stream1_in_the_room",
-    "stream2_in_the_room",
-    ...
-  ]
-}
-```    
-
-Any user can leave the room by sending below message
-
-```json 
-{
-  command : "leaveFromRoom",
-  room: "roomName"
-}
-```    
+```
 
 ## WebSocket Error Callbacks
 
-```noStreamNameSpecified```: it is sent when stream id is not specified in the message.
+- ```noStreamNameSpecified```: it is sent when stream id is not specified in the message.
 
- ```json    
+```json
 {
   command : "error",
   definition : "noStreamNameSpecified",
 }
- ```  
+```  
  
-```not_allowed_unregistered_streams```: This is sent back to the user if the publisher wants to send a stream with an unregistered id and server is configured not to allow this kind of streams.
-
-```json     
+- ```not_allowed_unregistered_streams```: The `not_allowed_unregistered_streams` error message is returned to the user when they try to send a stream with an unregistered `streamId`, and server is configured not to accept undefined streams.
+For conference, if it is not set then the room is created automatically and is removed once it finishes.
+```json
 {
   command : "error",
-  definition: "not_allowed_unregistered_streams",
+  definition : "not_allowed_unregistered_streams",
+  streamId : "stream1",
 }
- ```   
+```   
 
-```no_room_specified```: This is sent back to the user when there is no room specified in joining the video conference.
+- ```no_room_specified```: This is sent back to the user when there is no room specified in joining the video conference.
 
-```json     
+```json
 {
   command : "error",
   definition : "no_room_specified",
 }
- ```   
-```unauthorized_access```: This is sent back to the user when the token is not validated.
+```
 
-```json     
+- ```unauthorized_access```: When stream security is enabled but the token is either incorrect or not validated, or the subscriberId and/or subscriberCode are incorrect.
+
+```json
 {
   command : "error",
   definition : "unauthorized_access",
+  streamId: "stream1",
 }
- ```   
+```   
 
-```no_encoder_settings```: This is sent back to the user when there are no encoder settings available in publishing the stream.
+- ```no_encoder_settings```: This is sent back to the user when there are no encoder settings available in publishing the stream.
 
- ```json    
+```json
 {
   command : "error",
   definition : "no_encoder_settings",
 }
- ```   
+```   
 
-```no_peer_associated_before```: This is peer to peer connection error definition.It is sent back to the user when there is no peer associated with the stream.
+- ```no_peer_associated_before```: This is peer to peer connection error definition.It is sent back to the user when there is no peer associated with the stream.
 
-```json     
+```json
 {
   command : "error",
   definition : "no_peer_associated_before",
 }
-```  
+```
+- ```notSetRemoteDescription```: This is sent if there is a mismatch between the encoder and the decoders between the Ant Media Server and the client.
+```json
+{
+  command : "error",
+  definition : "notSetRemoteDescriptio",
+}
+```
 
-```notSetLocalDescription```: It is sent when local description is not set successfully
-```json  
-
+- ```notSetLocalDescription```: It is sent when local description is not set successfully.
+```json
 {
   command : "error",
   definition : "notSetLocalDescription",
 }
 ```   
 
-```highResourceUsage```: It is sent when server is overloaded. Server overload means over CPU usage or over RAM usage. Over CPU usage means CPU load is more than the ```server.cpu_limit``` value in ```conf/red5.properties```. Its default value is %85. Over RAM usage means available memory in the system is less than ```server.min_free_ram``` value in conf/red5.properties. Its unit is MB and default value is 10.
+- ```highResourceUsage```: It is sent when server is overloaded. Server overload means over CPU usage or over RAM usage. Over CPU usage means CPU load is more than the ```server.cpu_limit``` value in ```conf/red5.properties```. Its default value is %75. Over RAM usage means available memory in the system is less than ```server.min_free_ram``` value in conf/red5.properties. Its unit is MB and default value is 10.
 
- ```json    
+```json
 {
   command : "error",
   definition : "highResourceUsage",
 }
 ```   
 
-```streamIdInUse```: The server sends this message if it detects that there is already an active stream(preparing or publishing state) with that same stream id when a user tries to publish a stream. One may get this error if s/he tries to re-publish a stream with the same stream id without closing the previous WebRTC connection.
-
+- ```streamIdInUse```: This error message is returned by the server when a user tries to publish a stream with a `streamId` that is already in use by an active stream in either the preparing or publishing state.
+This error can occur if a user attempts to re-publish a stream with the same `streamId` without first closing the previous WebRTC connection.
 ```json     
 {
   command : "error",
   definition : "streamIdInUse",
+  streamId : "stream1",
 }
-```    
+```   
 
-```publishTimeoutError```: The server sends this message if WebRTC publishing is not started in a specified time period. This value is configurable via ```settings.webrtc.client.start.timeoutMs``` property in App Configuration. Its default value is 5000 milliseconds.
+- ```publishTimeoutError```: The server sends the `publishTimeoutError` message when WebRTC publishing fails to start within a specified time period.
 
-```json     
+This may occur due to network issues, such as the lack of an established ICE connection or the failure to send video and audio streams to the server. The timeout value can be customized using the `settings.webrtc.client.start.timeoutMs` property in the [App-Configuration](https://antmedia.io/docs/guides/advanced-usage/turn-and-stun-installation/coturn-quick-installation/), with a default value of 5000 milliseconds.
+
+Using a [TURN-server](/docs/guides/advanced-usage/turn-and-stun-installation/coturn-quick-installation/) helps mitigate these network-related issues.
+
+```json
 {
   command : "error",
   definition : "publishTimeoutError",
+  streamId : "stream1",
 }
- ```
+```
    
-```invalidStreamName```: it is send when stream name contains special characters.
+- ```invalidStreamName```: it is send when stream name contains special characters.
 
-```json     
+```json
 {
   command : "error",
   definition : "invalidStreamName",
 }
 ```    
 
-```data_store_not_available```: It's sent when data store is not available. It's not available if it's not initialized or closed.
+- ```data_store_not_available```: It's sent when data store is not available. It's not available if it's not initialized or closed.
 ```json     
 {
   command : "error",
   definition : "data_store_not_available"
 }
- ```   
-```license_suspended_please_renew_license```: It's send when license is suspended
- ```json    
+```
+
+- ```license_suspended_please_renew_license```: It's send when license is suspended
+```json    
 {
   command : "error",
   definition : "license_suspended_please_renew_license"
 }
-```    
-```already_playing```: This is sent back to the user when a new play message received while it is playing or it is about to play
+```
+
+- ```already_playing```: This is sent back to the user when a new play message received while it is playing or it is about to play.
 ```json     
 {
   command : "error",
   definition : "already_playing",
   streamId: "stream1"
 }
- ```   
-```already_publishing```: This is sent back to the user when a new publish message received while there it is publishing or it about to publish
- ```json    
+```  
+
+- ```already_publishing```: This message is sent when a new publish message is received while the server is either publishing or about to publish. The message indicates that publishing is already in progress.
+```json
 {
   command : "error",
   definition : "already_publishing",
-  streamId: "stream1"
+  streamId: "stream1",
 }
-```    
-```no_codec_enabled_in_the_server```: This is sent back to the user when there is no codec enabled in the server and someone try to make a publish
-```json     
+```
+
+- ```encoderNotOpened```: If the encoder fails to open, the server sends this error message to the client indicating that the encoder could not be opened.
+```json
+{
+  command : "error",
+  definition : "encoderNotOpened",
+  streamId : "stream1", 
+}
+```
+
+- ```encoderBlocked```: The server sends this error message if the encoder is blocked for some reason or not performing efficiently.
+```json
+{
+  command : "error",
+  definition : "encoderBlocked",
+  streamId : "stream1",
+}
+```
+
+- ```no_codec_enabled_in_the_server```: This is sent back to the user when there is no codec enabled in the server and someone try to make a publish
+```json
 {
   command : "error",
   definition : "no_codec_enabled_in_the_server",
   streamId: "stream1"
 }
- ```   
-```stream_not_active_or_expired```: This is sent back to the user when stream plannedStartDate and plannedEndDate values are in interval or not.
- ```json    
+```
+
+* ```stream_not_active_or_expired```: The message `stream_not_active_or_expired` is returned to the user when the `plannedStartDate` and `plannedEndDate` of a stream are either not in the specified interval or have expired.
+```json
 {
   command : "error",
   definition : "stream_not_active_or_expired",
+  streamId : "stream1",
 }
-```    
-```viewerLimitReached```: This is send when viewer limit reached. when user is trying to watch a broadcast that already hit the limit, this error is send to client.
- ```json    
+```
+
+- ```viewerLimitReached```: This is send when viewer limit reached. when user is trying to watch a broadcast that already hit the limit, this error is send to client.
+```json
 {
   command : "error",
   definition : "viewerLimitReached",
 }
-```    
+```
+
+- ```no_room_specified```: if roomId is not specified for a conference, server returns with "no_room_speficified" error message.
+```json
+{
+  command : "error",
+  definition : "no_room_specified",
+}
+```
 
 ## Miscellaneous WebSocket Methods
 
-```ping``` & ```pong``` Whenever you send a ping command to the server, it will respond you with pong command. Ping Command
- ```json    
+- ```ping``` & ```pong```
+Some load balancers may start to close connections after a certain amount of time to prevent idle connections from consuming resources.
+
+To prevent this from happening, the client sends `ping` messages to the server, and server returns with a `pong` response. This keeps the connection active and prevents it from being closed by the load balancer.
+```json    
 {
 command : "ping",
 }
 ```    
     Pong Response from Server
- ```json    
+```json    
 {
 command : "pong",
 }
-```    
-```getStreamInfo```: Get Stream Information from Server. You may use this method to learn more about stream status and bitrates. Client should send the following message.
+```
+
+- ```getStreamInfo```: Get Stream Information from Server. You may use this method to learn more about stream status and bitrates. Client should send the following message.
 ```json     
 {
  command: "getStreamInfo",
- streamId: "stream_id_that_you_want_to_get_info"
+ streamId: "stream_id_that_you_want_to_get_info",
 } 
 ```    
     Server returns in two ways. It may return stream information as follows
@@ -475,100 +668,113 @@ command : "pong",
  command: "streamInformation",
  streamId: "stream_id_of_the_stream_information",
  streamInfo: [{
-     streamWidth: resolution_width,
-     streamHeight: resolution_height,
-     videoBitrate: video_bitrate,
-     audioBitrate: audio_bitrate,
-     videoCodec: codec_of_the_video 
+     streamWidth: "resolution_width",
+     streamHeight: "resolution_height",
+     videoBitrate: "video_bitrate",
+     audioBitrate: "audio_bitrate",
+     videoCodec: "codec_of_the_video", 
      },
    ...
    ]
 }
 ```    
-    If stream is not active, it will return no\_stream\_exist
+    If stream is not active, it will return no_stream_exist
 ```json     
 {
 command : "error",
 definition : "no_stream_exist",
-streamId: "id_of_the_stream"
+streamId: "id_of_the_stream",
 }
-```    
-```getRoomInfo```: Get Room Information from server that returns the whole active streams in the room. Client should send the following message to get the response from the server.
+```
+
+- ```getRoomInfo```: The function ```getRoomInfo``` is called when a new participant or track is added to the room in order to retrieve information about the current state of the room, including the active streams. Client should send the following message to get the response from the server.
 ```json     
 {
  command: "getRoomInfo",
  room: "room_id_that_you_want_to_get_info",
- streamId: "server_returns_while_you_join_the_room"
+ streamId: "server_returns_while_you_join_the_room",
 } 
  ```   
-    Server responds in following format
+    Server responds in following format with the list of streams available in the room
  ```json    
 {
   command: "roomInformation",
   room: "room_id_that_this_information_belongs_to",
   streams: [ stream_id_1, stream_id_2, ...]
 }
-```    
-```bitrateMeasurement```: Server periodically sends this information to the WebRTC viewers. It lets develop show a message to the user if it's internet bandwidth is not good enough. If the ```targetBitrate``` is bigger than the sum of ```videoBitrate``` and ```audioBitrate```, it means internet bandwidth is good enough to play the video. If the ```targetBitrate``` is less than the sum of ```videoBitrate``` and ```audioBitrate```, it means some playback issues(pixelating, packet drop, etc.) may happen and it disturbs the user experience.
+```
+
+- ```bitrateMeasurement```: Server periodically sends this information to the WebRTC viewers. It lets develop show a message to the user if it's internet bandwidth is not good enough. If the ```targetBitrate``` is bigger than the sum of ```videoBitrate``` and ```audioBitrate```, it means internet bandwidth is good enough to play the video. If the ```targetBitrate``` is less than the sum of ```videoBitrate``` and ```audioBitrate```, it means some playback issues(pixelating, packet drop, etc.) may happen and it disturbs the user experience.
 ```json     
 {
   command : "notification",
   definition : "bitrateMeasurement",
   streamId: "unique_stream_id_returned_by_the_server"
-  targetBitrate: measured_bandwidth_of_the_client,
-  videoBitrate: video_bitrate_of_the_current_playing_video,
-  audioBitrate: "audio_bitrate_of_the_current_playing_audio
+  targetBitrate: "measured_bandwidth_of_the_client",
+  videoBitrate: "video_bitrate_of_the_current_playing_video",
+  audioBitrate: "audio_bitrate_of_the_current_playing_audio",
 }
 ```
     
-```forceStreamQuality```: If there are adaptive-bitrates(multi-bitrate) for that stream, you can get bitrates with ```getStreamInfo``` method and then you can make the Ant Media Server force to send you a specific resolution. If you want to switch back to auto stream quality, you can use give ```0``` for ```streamHeight``` and send the message below.
-    
+- ```forceStreamQuality```: If there are adaptive-bitrates(multi-bitrate) for that stream, you can get bitrates with ```getStreamInfo``` method and then you can make the Ant Media Server force to send you a specific resolution. If you want to switch back to auto stream quality, you can use give ```0``` for ```streamHeight``` and send the message below.
+```json    
 {
 command: "forceStreamQuality",
 streamId: "write_the_stream_id",
-streamHeight: write_the_height_of_the_resolution_you_want_to_force
+streamHeight: "write_the_height_of_the_resolution_you_want_to_force",
 }
-    
-```server_will_stop```: It's sent when server is in shutdown process.
-    
-{
-        
+```
+
+- ```server_will_stop```: When the server is about to stop and it receives a command from a service or the command line to initiate the shutdown process, it notifies the user with ```server_will_stop```
+```json    
+{ 
 command : "notification",
-definition : "server_will_stop"
+definition : "server_will_stop",
 }
-    
-```leavedFromRoom```: It's sent after stop command received or if client sents leaveFromRoom command.
-    
-{
-        
+```
+
+- ```leavedFromRoom```: It's sent after stop command received or if client sents leaveFromRoom command.
+```json    
+{        
 command : "notification",
 definition : "leavedFromRoom",
-ATTR_ROOM_NAME: "roomName"
+ATTR_ROOM_NAME: "roomName",
 }
-    
-```getTrackList```: Sends a request to server to get track list in specified stream. Token is not mandatory. If stream has token, token needs to be used, otherwise not needed.
-    
-{
-        
+```
+
+- ```getTrackList```: Sends a request to server to get track list in specified stream. Token is not mandatory. If stream has token, token needs to be used, otherwise not needed.
+```json    
+{ 
 command : "getTrackList",
 streamId: "stream1",
-token: "token"
+token: "token",
 }
-    
-```trackList```: Server returns track list of the specified stream after receiving getTrackList command.
-    
-{
-        
+```
+
+- ```trackList```: Server returns track list of the specified stream after receiving getTrackList command.
+```json    
+{ 
 command : "trackList",
 streamId: "stream1",
-trackList: [tracks]
+trackList: "tracks",
 }
-    
-```enableTrack```: Publisher can enable or disable the tracks in the broadcast.
-    
+```
+
+- ```enableTrack```: Player can enable or disable the tracks in the broadcast.
+```json    
 {
 command : "enableTrack",
 streamId: "stream1",
 trackId: "id of track",
-enabled: boolean
+enabled: "boolean",
 }
+```
+
+- ```streaming_Session_Restored```: when a WebRTC publish stream is interrupted due to network issues but is restored within the timeout duration, the server sends this message to indicate that the streaming session has been restored.
+The viewers connection remains active and are not dropped during the timeout duration.The timeout duration, `webRTCClientStartTimeout`is configurable and has a default value of 10 seconds.
+```json
+{
+  command : "notification",
+  description: "streaming_session_Restored",
+}
+```

@@ -1,3 +1,11 @@
+---
+title: HLS AES encryption 
+description: HLS with Advanced Encryption Standard encryption
+keywords: [HLS AES Encryption, Advanced Encryption Standard Encryption, Ant Media Server Documentation, Ant Media Server Tutorials]
+sidebar_position: 5
+
+---
+
 # HLS AES encryption
 
 HLS AES encryption refers to video streaming using HLS protocol, where the video files are encrypted by using AES-128 algorithms. There are many types of encryption algorithms, and the most common used method for HLS is AES-128.
@@ -43,15 +51,15 @@ Let’s assume that you're already running Ant Media Server v2.4+ on your server
 ActionScript
 
 2.  Add AES Encryption URI Path to the file above. Prepare the key info file as described above. You can even use URL for specifying the key info location.
-
+```
     settings.hlsEncryptionKeyInfoFile={FULL_PATH_OF_DIRECTORY}/hls_aes.keyinfo
-
+```
 ActionScript
 
 For example:
-
+```
     settings.hlsEncryptionKeyInfoFile={FULL_PATH_OF_DIRECTORY}/hls_aes.keyinfo
-
+```
 ActionScript
 
 3.  Restart the Ant Media Server.
@@ -60,8 +68,8 @@ ActionScript
 
 ActionScript
 
-4.  Publish any stream and check ```<AMS-FOLDER>`/webapps/WebRTCAppEE/streams/streamId.m3u8``` file. You should see ```EXT-X-KEY``` parameters like below:
-
+4.  Publish any stream and check ```<AMS-FOLDER>/webapps/WebRTCAppEE/streams/streamId.m3u8``` file. You should see ```EXT-X-KEY``` parameters like below:
+```
     #EXTM3U
     #EXT-X-VERSION:3
     #EXT-X-TARGETDURATION:2
@@ -76,3 +84,4 @@ ActionScript
     #EXTINF:1,970000,
     streamId_0p0019.ts
     #EXTINF:2,090000,
+```

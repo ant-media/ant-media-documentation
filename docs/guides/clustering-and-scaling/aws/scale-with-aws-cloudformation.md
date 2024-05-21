@@ -1,3 +1,12 @@
+---
+title: Scale AMS with AWS CloudFormation 
+description: Scale AMS with AWS CloudFormation
+keywords: [Scale AMS with AWS CloudFormation, Ant Media Server Documentation, Ant Media Server Tutorials]
+sidebar_position: 3
+---
+
+# Scale AMS with AWS CloudFormation
+
 Now let's start on to the CloudFormation setup and continue step by step.
 
 [Watch the YouTube Video: Setting up an Ant Media Server Scaling Solution with CloudFormation In 5 minutes](https://www.youtube.com/watch?v=y7bP0u0jQRQ)

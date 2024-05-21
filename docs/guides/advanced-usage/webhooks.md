@@ -1,6 +1,8 @@
 ---
 title: Webhooks
-sidebar_position: 16
+description: Ant Media Server provides webhooks for making your system/app know when certain events occurs on the server.
+keywords: [Ant Media Server Webhooks, Webhooks List for Ant Media Server, Custom Webhook for Streams, Ant Media Server Documentation, Ant Media Server Tutorials]
+sidebar_position: 3
 ---
 
 # Using webhooks
@@ -26,7 +28,7 @@ Ant Media Server provides creating streams through rest service. Therefore, If y
 As a result,  you can set _listenerHookURL_ for creating a stream at Ant Media Server.
 
 Here is a sample JSON for using _createBroadcast_ method with [Postman](https://www.getpostman.com/)
-
+```
     {
     	"variables": [],
     	"info": {
@@ -58,6 +60,18 @@ Here is a sample JSON for using _createBroadcast_ method with [Postman](https://
     		}
     	]
     }
+```
+#### Reliable Webhooks
+Ant Media Server supports webhook reliability starting from version 2.8.3. When sending a POST request to the configured webhook URL, if the response is not HTTP OK (200) or if an exception, such as a socket connection timeout, occurs, AMS can automatically initiate multiple retry attempts. Users have the flexibility to customize both the number of retry attempts and the delay between each attempt in milliseconds through the web panel advanced application settings.
+
+```
+"webhookRetryCount": 0,
+"webhookRetryDelay": 1000
+```
+
+![](@site/static/img/reliable_webhook_app_settings.png)
+
+
 
 ### Webhooks List
 
@@ -99,4 +113,4 @@ That's all. As a result, you can now determine the type of the request by using 
 
 We hope this post will help you to make automation in your project.  Please [keep in touch](https://antmedia.io/#contact) if you have any question. We will be happy if we can help you.
 
->` **Attention:** Please process the POST request within your application as quick as possible as the hooks are called within the event loop thread which will not wait for your application to complete complex tasks.
+> **Attention:** Please process the POST request within your application as quick as possible as the hooks are called within the event loop thread which will not wait for your application to complete complex tasks.

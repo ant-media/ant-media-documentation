@@ -1,83 +1,125 @@
+---
+title: Using Nvidia GPUs 
+description: To enhance encoding performance with GPU Encoder or GPU intence encoding, you may leverage Nvidia Graphics Cards. It is also helpful with Video Encode and Decode GPU Support Matrix.
+keywords: [Using Nvidia GPUs, Nvidia GPUs for Encoding, Enhance Encoding Performance with GPU Encoder, Ant Media Server Documentation, Ant Media Server Tutorials]
+sidebar_position: 7
+---
+
 # Using Nvidia GPUs
 
-Ant Media Server can use a hardware-based encoder that is available in NVIDIA GPUs. If you have an NVIDIA GPU, you can check whether your GPU contains a hardware-based encoder in [Video Encode and Decode GPU Support Matrix](https://developer.nvidia.com/video-encode-decode-gpu-support-matrix)
+Ant Media Server can take advantage of a hardware-based encoder found in NVIDIA GPUs. If you have an NVIDIA GPU, you can see if it has a hardware-based encoder in the [Video Encode and Decode GPU Support Matrix](https://developer.nvidia.com/video-encode-decode-gpu-support-matrix).
 
-**Why use NVIDIA GPU encoder**
-------------------------------
+## Why use the NVIDIA GPU encoder?
 
-The short answer is performance. In some cases, encoding performance increases 5x compared to x264 (CPU) encoder. Note that x264 is one of the best h.264 software encoders, and Ant Media Server uses x264 if there is no GPU in the system.
+The primary reason is performance. In certain scenarios, encoding performance can improve up to 5 times when compared to CPU-optimized encoders such as ```x264``` or ```openh264```. In the absence of a GPU on the system, Ant Media Server by default uses the ```openh264``` encoder from version 2.5.1 onwards. Prior to that, the x264 encoder was the default choice for AMS.
+
+The utilization of a GPU is advised for demanding transcoding tasks. If you want to publish numerous streams featuring multiple ABRs, using a GPU-optimized server rather than a CPU-optimized one would be a good decision. For instance, a single 4-core CPU-optimized server would struggle to manage a single stream with four ABRs (1080, 720, 480, and 360), and this approach is not recommended. However, a single 4-core GPU-optimized server can effortlessly handle 5–6 streams that have the same ABRs enabled.
 
 ![](@site/static/img/gpu.png)
 
-Install the CUDA toolkit
-------------------------
+## Install the CUDA toolkit
 
-After you are sure that your GPU contains a hardware based encoder, the only thing left is installing CUDA toolkit to your system.
+Once you have confirmed the existence of a hardware-based encoder in your GPU, the only remaining step is to install the CUDA toolkit onto your system.
 
-Installation on Ubuntu 16.04, 18.04 and 20.04
----------------------------------------------
+### Installation on Ubuntu 18.04, 20.04 and 22.04
 
-#### Ubuntu 16.04
+Ant Media Server now automatically utilizes the GPU with CUDA version 11.8, which is why it is necessary to install it. 
 
-Get the repo that contains Cuda.
+To install, follow [this link](https://developer.nvidia.com/cuda-11-8-0-download-archive) and select the settings according to your operating system and architecture. You can then use the commands provided to complete the installation. Refer to the screenshot below for further guidance.
 
-    wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/cuda-repo-ubuntu1604_10.2.89-1_amd64.deb
+![](@site/static/img/adavanced-usage/using-nvidia-gpu/cuda-11.8.png)
 
-Install repository meta-data.
-
-    sudo dpkg -i cuda-repo-ubuntu1604_10.2.89-1_amd64.deb
-
-Import CUDA Public GPG key.
-
-    sudo apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pub
+Instead of using ```sudo apt-get -y install cuda``` command to download whole CUDA package, we will just install the limited package of CUDA 11.8 to decrease installation time and space. 
 
 #### Ubuntu 18.04
 
-Get the repo that contains Cuda.
-
-    wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-repo-ubuntu1804_10.2.89-1_amd64.deb
-
-Install repository meta-data.
-
-    sudo dpkg -i cuda-repo-ubuntu1804_10.2.89-1_amd64.deb
-
-Import CUDA Public GPG key.
-
-    sudo apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/7fa2af80.pub
+```bash
+sudo wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-keyring_1.0-1_all.deb
+sudo dpkg -i cuda-keyring_1.0-1_all.deb
+sudo apt-get update
+sudo apt-get install cuda-runtime-11-8
+```
 
 #### Ubuntu 20.04
 
-Run the following commands:
+```bash
+sudo wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-keyring_1.0-1_all.deb
+sudo dpkg -i cuda-keyring_1.0-1_all.deb
+sudo apt-get update
+sudo apt-get install cuda-runtime-11-8
+```
 
-    wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-keyring_1.0-1_all.deb 
-    dpkg -i cuda-keyring_1.0-1_all.deb
+#### Ubuntu 22.04
+Ant Media Server officially supports Ubuntu 22.04 on versions 2.6 and higher.
 
-### Continue for Ubuntu 16.04, 18.04, 20.04
+```bash
+sudo wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.0-1_all.deb
+sudo dpkg -i cuda-keyring_1.0-1_all.deb
+sudo apt-get update
+sudo apt-get install cuda-runtime-11-8
+```
 
-Update repository cache.
+### NVIDIA A10 Tensor Core GPU
 
-    sudo apt-get update 
+If you are using a GPU instance of the ```NV4as_v4/NV6ads``` family from Azure Marketplace, which features the NVIDIA A10 Tensor Core GPU, you may need to install the NVIDIA GRID drivers to ensure proper GPU functionality.
 
-Install Cuda runtime 11.2 ( for v2.3.1+). For version 2.3.0 install 11.0, For versions earlier than 2.2, please install CUDA Runtime 10.0.
+```bash
+sudo wget https://storage.googleapis.com/nvidia-drivers-us-public/GRID/vGPU15.2/NVIDIA-Linux-x86_64-525.105.17-grid.run
+sudo chmod +x NVIDIA-Linux-x86_64-525.105.17-grid.run
+sudo ./NVIDIA-Linux-x86_64-525.105.17-grid.run
+sudo reboot
+```
 
-    sudo apt-get install cuda-runtime-11-2
+## Check the usage of GPU
 
-If you've installed another version and it does not work, you may want to install compatibility packets.
+After installation of CUDA toolkit, you can run the command below to see the status of your GPU.
 
-    sudo apt-get install cuda-cudart-11-2
-    sudo apt-get install cuda-compat-11-2
-
-Now you can run the command below to see the status of your GP
-
-    nvidia-smi
+```bash
+nvidia-smi
+```
 
 You can install Ant Media Server using the usual method, or if you have already installed it, you can restart the Ant Media Server.
 
-    sudo service antmedia restart
+```bash
+sudo service antmedia restart
+```
+ 
+You will see output below if the GPU is in use.
 
-Using NVIDIA hardware based encoder
------------------------------------
+![](@site/static/img/adavanced-usage/using-nvidia-gpu/gpu-use.png)
 
-Ant Media Server will check and log at startup if there is a hardware-based GPU encoder in the system and it will use it automatically. There is no need to do anything.
+
+## Using NVIDIA hardware based encoder
+
+When using CUDA 11.8, Ant Media Server will verify and record the presence of a hardware-based GPU encoder during startup, and will use it automatically without requiring any additional action.
+
+If you've already installed another CUDA version and it does not work with AMS, you may install compatibility packages.
+
+```bash
+sudo apt-get install cuda-cudart-11-8
+sudo apt-get install cuda-compat-11-8
+```
+
+After installing packages, reboot the server once.
 
 If you need more information for installing on other systems, please check [NVIDIA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html) docs and [CUDA downloads](https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=1604&target_type=debnetwork) pages.
+
+### Multi-GPU usage
+
+In v2.9.0 and above, hardware scaling property have been added on the server side for smooth streaming operations using GPUs.
+
+By default, hardware scaling is enabled in the application settings. You can find the property under Application's advanced settings.
+
+```html
+"hwScalingEnabled": true,
+```
+
+In case, when the system has multiple GPUs, set this property to false so that the load can be distributed between multiple GPUs.
+
+```html
+"hwScalingEnabled": false,
+```
+
+Please see the screenshot below for multi-GPU usage with Ant Media Server. In this example, 8 streams were published to the server using 4 ABRs, and as you can see, both GPUs were utilized.
+
+![](@site/static/img/adavanced-usage/using-nvidia-gpu/ams-multi-gpu.png)

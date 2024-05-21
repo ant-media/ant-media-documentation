@@ -10,5 +10,5 @@ export default {
   // Map the "highlight" tag to our <Highlight /> component!
   // `Highlight` will receive all props that were passed to `highlight` in MDX
   VideoPlayer: VideoPlayer,
-  InfoBox: InfoBox
+  InfoBox: InfoBox, 
 };
