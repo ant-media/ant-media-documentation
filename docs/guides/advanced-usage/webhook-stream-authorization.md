@@ -50,7 +50,7 @@ INFO  i.a.e.w.WebSocketEnterpriseHandler - Is publish allowed through Webhook Au
 Webhook publish authentication works with all publish types.(SRT, RTMP, WebRTC)
 
 ## Webhook Play Authorization
-Starting with Ant Media Server version 2.9.1, you can enable webhook play authorization for WebRTC play requests. When a client attempts to play a stream using WebRTC, Ant Media Server will send a POST request to your specified webhook end point. If your application server responds with a 200 status code, the viewer will be authorized to view the stream. If any other response code is returned, the viewer will not be authorized, and playback will not start.
+Starting with Ant Media Server version 2.9.1, you can enable webhook play authorization for **WebRTC play** requests. When a client attempts to play a stream using WebRTC, Ant Media Server will send a POST request to your specified webhook end point. If your application server responds with a 200 status code, the viewer will be authorized to view the stream. If any other response code is returned, the viewer will not be authorized, and playback will not start.
 
 To start using this feature, go to your Ant Media Server web panel application section advanced settings.
 
@@ -76,12 +76,59 @@ POST request sent by Ant Media Server will contain below payload:
   "appName": "WebRTCAppEE",
   "origin":"[domain_of_request_origin]",
   "token": "token_if_passed",
-  "subscriberCode": "subscriber_code_if_passed"
-  "subscriberId":"subscriberId_if_passed"
+  "subscriberCode": "subscriber_code_if_passed",
+  "subscriberId":"subscriberId_if_passed",
   "metaData":{"key":"value"}
 }
 ```
 The ```origin``` field is particularly useful for authentication purposes. On your application server, you can check the origin field, and if the request is not coming from your website, you can reject it by returning a non-200 response code.
+
+It is also possible to add clients IP address to the POST request payload. 
+
+To do this, we need to add a JVM argument to Ant Media Server service.
+
+Open Ant Media Server service file with your favourite editor.
+
+Example command:
+
+```sudo vim /etc/systemd/system/antmedia.service```
+
+Add below line to the end of ExecStart
+
+```--add-opens java.base/sun.nio.ch=ALL-UNNAMED```
+save and quit.
+
+Reload the service:
+
+```sudo systemctl daemon-reload```
+
+Restart service:
+
+```sudo systemctl restart antmedia```
+
+If you are running Ant Media Server directly from its folder with ```./start.sh``` script, similary open it with your favourite editor and add
+
+```--add-opens java.base/sun.nio.ch=ALL-UNNAMED```
+
+line to ```TOMCAT_OPTS```
+
+Save and quit. Restart the server.
+
+With this flag, tomcat will allow us to fetch users IP address through their websocket session. New webhook play auth payload will look like this:
+
+```
+{
+  "streamId": "teststream",
+  "mode": "play",
+  "appName": "WebRTCAppEE",
+  "origin":"[domain_of_request_origin]",
+  "token": "token_if_passed",
+  "subscriberCode": "subscriber_code_if_passed",
+  "subscriberId":"subscriberId_if_passed",
+  "metaData":{"key":"value"},
+  "ipAddress":"127.0.0.1"
+}
+```
 
 
 
