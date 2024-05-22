@@ -53,9 +53,11 @@ If you want to change any parameters like stream resolution, bitrate, profile ty
 
 ![](@site/static/img/publish-live-stream/srt/settings.png)
 
-```js
+
+:::info
 It's important to set the Profile type Baseline for WebRTC play.
-```
+:::
+
 
 ## Starting the SRT Stream
 
