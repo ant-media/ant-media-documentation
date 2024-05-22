@@ -11,7 +11,7 @@ SRT (Secure Reliable Transport) allows you to push streams to Ant Media Server a
 
 To enable this feature, we utilized Haivision's official [SRT library](https://github.com/Haivision/srt) and created an SRT preset for [JavaCPP-Presets](https://github.com/bytedeco/javacpp-presets). We intend to submit a pull request for the JavaCPP-Presets repository.
 
-Below is a guide on how to publish an SRT stream to Ant Media Server.
+Below is a guide on how to publish an SRT stream to the Ant Media Server.
 
 ## Pushing SRT stream with FFmpeg
 
@@ -45,13 +45,13 @@ srt://ant.media.server.address:4200?streamid=Application-Name/streamId,token=tok
 
 ### Publishing SRT stream with OBS Without streamId
 
-```js
-Starting from version 2.8.0 and above, Ant Media Server supports SRT publish without streamId
-```
+:::info
+Starting from version 2.8.0 and above, Ant Media Server supports SRT publishing without the explicit need for streamId.
+:::
 
 ![](@site/static/img/publish-live-stream/srt/srt-obs.png)
 
-- In such case, the system IP address is used as the streamId and it is published to the LiveApp application by default.
+- In such cases, the system IP address is used as the streamId and it is published to the LiveApp application by default.
 
 ![](@site/static/img/publish-live-stream/srt/srt-stream.png)
 
