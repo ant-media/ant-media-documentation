@@ -90,17 +90,7 @@ If the details you provided, validated, you will get the output as in the below 
 
 ![](https://raw.githubusercontent.com/wiki/ant-media/Ant-Media-Server/images/turn3.png)
 
-### How to add Turn Server to Ant Media sample pages
+### How to use TURN server with Ant Media
 
-To add TURN server on client side, edit `publish_webrtc.html` in the _/antmedia/webapps/App-Name/samples_ folder for WebRTC publish sample, and edit `play.html`, `player.html`, and other sample pages in the _/antmedia/webapps/App-Name_ directory.
-
-```
-var pc_config = {
-		'iceServers' : [ {
-			     'urls' : 'turn:turn_server_address:port_number',
-                             'username': "username",
-                             'credential': "password",
-		} ]
-	};
-```
-From Ant Media Server v2.5.0 & above, TURN server can be configured on server side as well. [Learn More](/guides/configuration-and-testing/configuring-stun-addresses/#configuring-for-ant-media-244-and-later-versions)
+To use your TURN server with Ant Media, check out this
+[Guide](https://antmedia.io/docs/guides/configuration-and-testing/configuring-stun-turn-addresses/#custom-turn-server-configuration-in-ant-media-server)
