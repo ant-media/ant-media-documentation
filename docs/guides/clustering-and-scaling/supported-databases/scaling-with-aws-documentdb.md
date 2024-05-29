@@ -19,32 +19,32 @@ Creating AWS DocumentDB
 
 First, open the Amazon DocumentDB service 
 
-![](@site/static/img/aws-document-db/aws-documentdb-1.png)
+![](@site/static/img/aws-documentdb/aws-documentdb-1.png)
 
 and then create Parameter Groups to disable TLS.
 
-![](@site/static/img/aws-document-db/aws-documentdb-2.png)
+![](@site/static/img/aws-documentdb/aws-documentdb-2.png)
 
 Select tls from the cluster parameters, click Edit and disable TLS.
 
-![](@site/static/img/aws-document-db/aws-documentdb-3.png)
+![](@site/static/img/aws-documentdb/aws-documentdb-3.png)
 
 
 Next, go to the Clusters tab and click the Create button to create a new cluster and Select the Instance Class and Number of instances.
 
-![](@site/static/img/aws-document-db/aws-documentdb-4.png)
+![](@site/static/img/aws-documentdb/aws-documentdb-4.png)
 
 Next, select Show advanced settings
 
-![](@site/static/img/aws-document-db/aws-documentdb-5.png)
+![](@site/static/img/aws-documentdb/aws-documentdb-5.png)
 
 choose the Cluster Parameter Group you created in previous step, and click Create to create your cluster.
 
-![](@site/static/img/aws-document-db/aws-documentdb-6.png)
+![](@site/static/img/aws-documentdb/aws-documentdb-6.png)
 
 Once the DocumentDB setup is complete, select your cluster, go to the Connectivity & Security tab, and obtain the connection information. You can now use this information in Ant Media Server.
 
-![](@site/static/img/aws-document-db/aws-documentdb-7.png)
+![](@site/static/img/aws-documentdb/aws-documentdb-7.png)
 
 
 Using mongoDB+srv URI with change\_server\_mode.sh
