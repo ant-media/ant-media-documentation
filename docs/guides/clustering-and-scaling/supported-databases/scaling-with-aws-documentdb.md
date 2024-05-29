@@ -1,0 +1,55 @@
+---
+title: Scaling with AWS DocumentDB
+description: Using AWS DocumentDB with AMS
+keywords: [Using DocumentDB with AMS, AWS DocumentDB, Ant Media Server Documentation, Ant Media Server Tutorials]
+sidebar_position: 11
+---
+
+AWS DocumentDB is a managed database service designed for scalability, high availability, and compatibility with MongoDB workloads. It simplifies the deployment and management of databases while providing the flexibility to build robust and performant global applications on AWS.
+
+In this document we'll explain how to use AWS DocumentDB with Ant Media Server.
+
+Prerequirements
+---------------------------------
+- Your AMS cluster should operate on the same VPC as your DocumentDB.
+- TLS must be disabled in DocumentDB.
+
+Creating AWS DocumentDB
+---------------------------------
+
+First, open the Amazon DocumentDB service 
+
+![](@site/static/img/aws-document-db/aws-documentdb-1.png)
+
+and then create Parameter Groups to disable TLS.
+
+![](@site/static/img/aws-document-db/aws-documentdb-2.png)
+
+Select tls from the cluster parameters, click Edit and disable TLS.
+
+![](@site/static/img/aws-document-db/aws-documentdb-3.png)
+
+
+Next, go to the Clusters tab and click the Create button to create a new cluster and Select the Instance Class and Number of instances.
+
+![](@site/static/img/aws-document-db/aws-documentdb-4.png)
+
+Next, select Show advanced settings
+
+![](@site/static/img/aws-document-db/aws-documentdb-5.png)
+
+choose the Cluster Parameter Group you created in previous step, and click Create to create your cluster.
+
+![](@site/static/img/aws-document-db/aws-documentdb-6.png)
+
+Once the DocumentDB setup is complete, select your cluster, go to the Connectivity & Security tab, and obtain the connection information. You can now use this information in Ant Media Server.
+
+![](@site/static/img/aws-document-db/aws-documentdb-7.png)
+
+
+Using mongoDB+srv URI with change\_server\_mode.sh
+--------------------------------------------------
+
+For MongoDB Atlas connections, you can directly give the mongodb+srv URI under **antmedia** directory as follows.
+
+    sudo ./change_server_mode.sh cluster mongodb+srv://`<username>`:`<password>`@`<url>`
