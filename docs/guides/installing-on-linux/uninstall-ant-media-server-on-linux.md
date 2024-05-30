@@ -1,41 +1,48 @@
+---
+title: Uninstalling Ant Media Server on Linux
+description: Uninstall Ant Media Server
+keywords: [Uninstall Ant Media Server, Ant Media Server Documentation, Ant Media Server Tutorials]
+sidebar_position: 4
+---
 
-# Uninstalling Ant Media Server on Linux
-
-This guide provides step-by-step instructions for uninstalling Ant Media Server from a Linux system. Follow the commands listed below to ensure a complete removal of the application.
+This guide provides step-by-step instructions for uninstalling Ant Media Server from a Linux system. Follow the commands listed below to ensure the complete removal of the application.
 
 ### Stop the Ant Media Server Service
 
 Before uninstalling, stop the Ant Media Server service to ensure there are no running processes.
 
-    sudo service antmedia stop
+```bash
+sudo service antmedia stop
+```
 
 ### Remove Ant Media Server Files
 
 Delete the directory where Ant Media Server is installed. This removes all application files and data.
 
-    sudo rm -rf /usr/local/antmedia
-
+```bash
+sudo rm -rf /usr/local/antmedia
+```
 
 ### Delete the Ant Media Server User
 
-If a specific user was created for running Ant Media Server, delete this user.
+The specific user was created to run Ant Media Server, delete this user.
 
-    sudo userdel antmedia
+```bash
+sudo userdel antmedia
+```
 
-### Disable the Ant Media Server Service
+### Reload the Systemd Configuration
 
-Prevent the service from starting automatically on boot by disabling it.
+Reload the systemd manager configuration to apply the changes.
 
-    sudo systemctl disable antmedia.service
+```bash
+sudo systemctl daemon-reload
+```
 
-### Reload the Systemd Manager Configuration
-
-Reload the systemd manager configuration to apply the changes made by disabling the service.
-
-    sudo systemctl daemon-reload
-
-### Reset Failed Systemd Services
+### Reset Failed Services
 
 Reset the status of any failed services to ensure the systemd state is clean.
 
-    sudo systemctl reset-failed
+```bash
+sudo systemctl reset-failed
+```
