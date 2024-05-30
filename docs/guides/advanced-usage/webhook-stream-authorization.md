@@ -103,11 +103,18 @@ It is also possible to add the client's IP address to the POST request payload. 
    sudo vim /etc/systemd/system/antmedia.service
    ```
 
- - Add below line to the end of ExecStart.
+ - Add below line to the ExecStart.
 
    ```bash
    --add-opens java.base/sun.nio.ch=ALL-UNNAMED
     ```
+
+    It should be follows as the order of the parameter is important.
+    
+    ```bash
+    ExecStart=/usr/bin/env ${JAVA_HOME}/bin/java --add-opens java.base/sun.nio.ch=ALL-UNNAMED -Dlogback.ContextSelector=org.red5.logging.LoggingContextSelector -cp ${ANTMEDIA_HOME}/ant-media-server-service.jar:${ANTMEDIA_HOME}/conf -Djava.security.debug=failure -Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom -Dcatalina.home=${ANTMEDIA_HOME} -Dcatalina.useNaming=true -Dorg.terracotta.quartz.skipUpdateCheck=true -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -XX:ParallelGCThreads=10 -XX:ConcGCThreads=5 -XX:+HeapDumpOnOutOfMemoryError -Djava.library.path=/usr/local/antmedia/lib/native -Xverify:none -XX:+TieredCompilation -XX:+UseBiasedLocking -XX:InitialCodeCacheSize=8m -XX:ReservedCodeCacheSize=32m -Djava.net.preferIPv4Stack=true $JVM_MEMORY_OPTIONS -Djdk.lang.Process.launchMechanism=vfork -Djava.system.class.loader=org.red5.server.classloading.ServerClassLoader -Xshare:off org.red5.server.Bootstrap 9999
+    ```
+    
 
  - Reload the service.
 
@@ -122,10 +129,16 @@ It is also possible to add the client's IP address to the POST request payload. 
    ```
    
 
-If you are running Ant Media Server directly from its folder with ```./start.sh``` script, open it with your favourite editor and add the below line to ```TOMCAT_OPTS```.
+If you are running Ant Media Server directly from its folder with the ```./start.sh``` script, open it with your favourite editor and add the below line to ```TOMCAT_OPTS```.
 
 ```bash
 --add-opens java.base/sun.nio.ch=ALL-UNNAMED
+```
+
+It should be as follows:
+
+```bash
+TOMCAT_OPTS="-Dcatalina.home=$RED5_HOME -Dcatalina.useNaming=true -Djava.net.preferIPv4Stack=true --add-opens java.base/sun.nio.ch=ALL-UNNAMED"
 ```
 
 After saving the file, restart the ant media server.
