@@ -7,33 +7,35 @@ sidebar_position: 4
 
 # Webhook Authorization
 
-There are plenty of [Security options for Publishing and Playing Streams](/guides/developer-sdk-and-api/rest-api-guide/stream-security/) available in Ant Media Server, however, if these are not suitable for your use case and you want to control which stream to be published or played directly from your own end, then you can use your own webhook structure for stream authentication.
+There are plenty of [Security options for Publishing and Playing Streams](/guides/developer-sdk-and-api/rest-api-guide/stream-security/) available in Ant Media Server; however, if these are not suitable for your use case and you want to control which stream to publish or play directly from your own end, then you can use your own webhook structure for stream authentication.
 
 ## Webhook Publish Authorization
 
 If you enable this feature, whenever a stream is initiated to publish, the server will send an HTTP request to your given webhook address. This request has information regarding the stream like stream name, app name, streamId etc.
 
-Based on this request, you can parse and process that information on your end and send a response. If the response code is 200, the server will authorize the stream and allow it to begin publishing. If the response code is different from 200, the server will refuse the stream to be published.
+Based on this request, you can parse and process that information on your end and send a response. If the response code is 200, the server will authorize the stream and allow it to begin publishing. If the response code is different from 200, the server will refuse to publish the stream.
 
 To enable publish webhook authentication feature, go to your web panel application settings advanced settings section and set this setting:
 
+```js
+  "webhookAuthenticateURL": "",
 ```
-webhookAuthenticateURL=your-webhook-URL
-```
-After editing this setting save it.
 
-You can use this [webhook site](https://webhook.site/) to test this feature and get your own webhook URL. However, when you send a request to that site correctly, the response code will always be 200 by default. Let's test this with an example to publish a stream.
+Change the settings and save them.
+
+You can use this [webhook site](https://webhook.site/) to test this feature and get your own webhook URL. However, when you send a request to that site correctly, the response code will always be 200 by default. Let's test this with an example by publishing a stream.
 
 Sample webhook URL from webhook site:
 
+```js
+"webhookAuthenticateURL": "https://webhook.site/e8c87b00-30aa-4a98-b4f0-6ff1eeddb6e5",
 ```
-"webhookAuthenticateURL"="https://webhook.site/23fd2ec9-8ecc-46fb-8144-65009c3aacbc"
-```
-After this, when a stream initiates to publish, it will trigger the webhook URL and sends the request like below.
+
+After this, when a stream starts publishing, it will trigger the webhook URL and send the request like below.
 
 ![Webhook-request1](@site/static/img/Webhook-request1.png)
 
-If the response is 200 then it allows the stream to be published with logs as follows.
+If the response is 200, then it allows the stream to be published with logs as follows:.
 ```
 INFO  i.a.s.AcceptOnlyStreamsWithWebhook - Response from webhook is: 200 for stream:stream1
 INFO  i.a.e.w.WebSocketEnterpriseHandler - Is publish allowed through Webhook Authentication: true
@@ -47,29 +49,32 @@ INFO  i.a.s.AcceptOnlyStreamsWithWebhook - Response from webhook is: 300 for str
 WARN  i.a.s.AcceptOnlyStreamsWithWebhook - Connection object is null for stream1
 INFO  i.a.e.w.WebSocketEnterpriseHandler - Is publish allowed through Webhook Authentication: false
 ```    
-Webhook publish authentication works with all publish types.(SRT, RTMP, WebRTC)
+
+Webhook publish authentication works with all publish types (SRT, RTMP, and WebRTC).
 
 ## Webhook Play Authorization
-Starting with Ant Media Server version 2.9.1, you can enable webhook play authorization for **WebRTC play** requests. When a client attempts to play a stream using WebRTC, Ant Media Server will send a POST request to your specified webhook end point. If your application server responds with a 200 status code, the viewer will be authorized to view the stream. If any other response code is returned, the viewer will not be authorized, and playback will not start.
 
-To start using this feature, go to your Ant Media Server web panel application section advanced settings.
+Starting with Ant Media Server version 2.9.1, you can enable webhook play authorization for **WebRTC play** requests. 
 
-Set
+When a client attempts to play a stream using WebRTC, Ant Media Server will send a POST request to your specified webhook end point. If your application server responds with a 200 status code, the viewer will be authorized to view the stream. If any other response code is returned, the viewer will not be authorized, and playback will not start.
 
+To start using this feature, go to your Ant Media Server web panel application's advanced settings and set your webhook API endpoint to the below property.
+
+```js
+ "webhookPlayAuthUrl":
 ```
-webhookPlayAuthUrl=
-```
-to your webhook api endpoint.
 
 Example:
 
+```js
+"webhookPlayAuthUrl":"https://webhook.site/6e669480-4daf-4f31-b891-6a873c076b92"
 ```
-"webhookPlayAuthUrl"= "https://webhook.site/6e669480-4daf-4f31-b891-6a873c076b92"
-```
-When ```webhookPlayAuthUrl``` is set, feature will be enabled.
 
-POST request sent by Ant Media Server will contain below payload:
-```
+When ```webhookPlayAuthUrl``` is set, the feature will be enabled.
+
+The POST request sent by Ant Media Server will contain the following payload:
+
+```json
 {
   "streamId": "teststream",
   "mode": "play",
@@ -81,42 +86,53 @@ POST request sent by Ant Media Server will contain below payload:
   "metaData":{"key":"value"}
 }
 ```
+
 The ```origin``` field is particularly useful for authentication purposes. On your application server, you can check the origin field, and if the request is not coming from your website, you can reject it by returning a non-200 response code.
 
-It is also possible to add clients IP address to the POST request payload. 
-
-To do this, we need to add a JVM argument to Ant Media Server service.
-
-Open Ant Media Server service file with your favourite editor.
-
-Example command:
-
-```sudo vim /etc/systemd/system/antmedia.service```
-
-Add below line to the end of ExecStart
-
-```--add-opens java.base/sun.nio.ch=ALL-UNNAMED```
-save and quit.
-
-Reload the service:
-
-```sudo systemctl daemon-reload```
-
-Restart service:
-
-```sudo systemctl restart antmedia```
-
-If you are running Ant Media Server directly from its folder with ```./start.sh``` script, similary open it with your favourite editor and add
-
-```--add-opens java.base/sun.nio.ch=ALL-UNNAMED```
-
-line to ```TOMCAT_OPTS```
-
-Save and quit. Restart the server.
-
-With this flag, tomcat will allow us to fetch users IP address through their websocket session. New webhook play auth payload will look like this:
+You will see the response as below if the webhook is wrong or request is rejected.
 
 ```
+2024-05-30 21:25:41,870 [https-jsse-nio2-0.0.0.0-5443-exec-8] INFO  i.a.e.w.WebSocketEnterpriseHandler - Response from play auth webhook is: 300 for stream: streamId_7j8HdStBX
+```
+
+It is also possible to add the client's IP address to the POST request payload.  To do this, we need to add a JVM argument to Ant Media Server service.
+
+ - Open Ant Media Server service file with your favourite editor.
+
+      ```bash
+   sudo vim /etc/systemd/system/antmedia.service
+   ```
+
+ - Add below line to the end of ExecStart.
+
+   ```bash
+   --add-opens java.base/sun.nio.ch=ALL-UNNAMED
+    ```
+
+ - Reload the service.
+
+   ```bash
+   sudo systemctl daemon-reload
+   ```
+
+ - Restart the antmedia service.
+
+   ```bash
+   sudo systemctl restart antmedia
+   ```
+   
+
+If you are running Ant Media Server directly from its folder with ```./start.sh``` script, open it with your favourite editor and add the below line to ```TOMCAT_OPTS```.
+
+```bash
+--add-opens java.base/sun.nio.ch=ALL-UNNAMED
+```
+
+After saving the file, restart the ant media server.
+
+With this flag, Tomcat will allow us to fetch the user's IP address through their websocket session. The new webhook play auth payload will look like this:
+
+```json
 {
   "streamId": "teststream",
   "mode": "play",
@@ -129,6 +145,3 @@ With this flag, tomcat will allow us to fetch users IP address through their web
   "ipAddress":"127.0.0.1"
 }
 ```
-
-
-
