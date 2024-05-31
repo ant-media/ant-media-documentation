@@ -26,7 +26,7 @@ Once the command is executed, the stream will be available in the `WebRTCAppEE` 
 :::info
  If you encounter a "**Protocol not found**" error, it means FFmpeg needs to be compiled with the [**--enable-libsrt**](https://srtlab.github.io/srt-cookbook/apps/ffmpeg/) to support the SRT protocol.
 
-**srt://ant.media.server.address:4200?streamid\=WebRTCAppEE/stream1: Protocol not found**
+srt://ant.media.server.address:4200?streamid\=WebRTCAppEE/stream1: Protocol not found
 :::
 
 In that case, you can verify if FFmpeg has SRT protocol support or not by running the following command:
@@ -35,7 +35,7 @@ In that case, you can verify if FFmpeg has SRT protocol support or not by runnin
 ffmpeg -protocols
 ```
 
-## Publishing SRT stream with OBS
+## Publishing SRT streams with OBS
 
 If you don’t have command-line experience and prefer a graphical interface, you can use OBS (Open Broadcaster Software) to push an SRT stream to Ant Media Server. If you are unfamiliar with OBS, you can look at this blog post [How to use OBS with Ant Media Server](https://antmedia.io/how-to-use-obs-with-ant-media-server/). 
 
@@ -87,5 +87,5 @@ SRT is enabled by default in Ant Media Server and communicates via UDP port 4200
 - After this, restart the server, and it will use the newly configured port number for SRT ingest.
 
 :::info
-SRT support is available for both x86_64 and ARM architectures starting from Ant Media Server version 2.6.0. For versions below 2.6.0 (till v2.5.3), SRT support is available for x86_64 architecture only.
+SRT support is available for both x86_64 and ARM architectures, starting with Ant Media Server version 2.6.0. For versions below 2.6.0 (till v2.5.3), SRT support is available for the x86_64 architecture only.
 :::
