@@ -27,7 +27,8 @@ Dash playback can be enabled from the application settings.
 
 - Go to `Settings` and under `Dash & CMAF Streaming` check `Create DASH Streaming` to enable it.
 
-![](@site/static/img/playing-live-streams/dash-playing/dash-enabled.png)
+![Screenshot 2024-06-01 000744](https://github.com/ant-media/ant-media-documentation/assets/86982446/32c0cb27-ca3f-4629-93e1-eae51ebfe04b)
+
 
 #### Enable Dash programmatically
 
@@ -71,7 +72,7 @@ You can use the embedded player `play.html` to play the streams with dash.
 
 - Make sure that your stream is publishing.
 
-> Quick Link: [Learn How to Publish Live Streams](/docs/category/publish-live-stream/)
+> Quick Link: [Learn How to Publish Live Streams](https://antmedia.io/docs/category/publish-live-stream/)
 
 - To play a stream with Dash, provide ```streamId``` as the id and ```dash``` as the playOrder parameter in the URL shown below.
 
@@ -122,13 +123,11 @@ settings.dashWindowSize=5
     
 - DASH extra window size. Number of segments kept outside of the manifest before removing from disk
 
-``
+```
 settings.dashExtraWindowSize=5
 ```    
 
-:::info
-If you're using Dash streaming with ABR enabled, make sure the following property is enabled in your application's advanced settings.
-:::
+**Note:** If you're using Dash streaming with ABR enabled, make sure the following property is enabled in your application's advanced settings.
 
 ```
 forceAspectRatioInTranscoding: true
