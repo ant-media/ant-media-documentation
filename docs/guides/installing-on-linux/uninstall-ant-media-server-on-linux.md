@@ -31,10 +31,3 @@ The specific user was created to run Ant Media Server, delete this user.
 sudo userdel antmedia
 ```
 
-### Reset Failed Services
-
-Reset the status of any failed services to ensure the systemd state is clean.
-
-```bash
-sudo systemctl reset-failed
-```
