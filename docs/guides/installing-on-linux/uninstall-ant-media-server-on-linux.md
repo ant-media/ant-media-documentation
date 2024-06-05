@@ -31,3 +31,9 @@ The specific user was created to run Ant Media Server, delete this user.
 sudo userdel antmedia
 ```
 
+### Delete systemd file
+
+```bash
+rm -rf /etc/systemd/system/antmedia.service
+systemctl daemon-reload
+```
