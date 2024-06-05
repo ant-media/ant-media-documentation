@@ -34,6 +34,6 @@ sudo userdel antmedia
 ### Delete systemd file
 
 ```bash
-rm -rf /etc/systemd/system/antmedia.service
-systemctl daemon-reload
+sudo rm -rf /etc/systemd/system/antmedia.service
+sudo systemctl daemon-reload
 ```
