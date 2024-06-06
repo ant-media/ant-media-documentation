@@ -86,11 +86,11 @@ You can use the embedded player `play.html` to play the streams with dash.
 
 Assume Dash muxing is enabled and a stream is published to the Ant Media Server.
 
-- The default MPEG-Dash (.mpd) URL will be as follows:
+The default MPEG-Dash (.mpd) URL will be as follows:
 
-   ```
-  https://AMS-domain-name:5443/WebRTCAppEE/streams/streamId/streamId.mpd
-  ```
+```
+https://AMS-domain-name:5443/WebRTCAppEE/streams/streamId/streamId.mpd
+```
   
 :::info
 If you play the **.mpd** file directly, the stream latency will be native to MPEG-Dash, which is about 15 seconds.
