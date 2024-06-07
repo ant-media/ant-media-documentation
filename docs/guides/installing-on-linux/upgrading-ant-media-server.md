@@ -6,7 +6,7 @@ sidebar_position: 3
 ---
 
 # Upgrading Ant Media Server
-This guide will explain how to upgrade Ant Media Server from an earlier version to latest version.
+This guide explains how to upgrade the Ant Media Server from an earlier version to the latest version.
 
 - There are two ways to upgrade your Ant Media Server to the latest edition.
 1. Using the ```upgrade.sh``` script that automatically gets the latest version of the Ant Media Server and makes the upgrade. This script is available under the ```usr/local/antmedia``` directory for Ant Media Server version 2.9.0 and above.
@@ -78,8 +78,6 @@ After downloading the zip file, kindly follow the below steps:
 
 Download the`install_ant-media-server.sh` shell script with the latest changes.
 
-Shell
-
 ```shell
 wget -O install_ant-media-server.sh https://raw.githubusercontent.com/ant-media/Scripts/master/install_ant-media-server.sh && sudo chmod 755 install_ant-media-server.sh
 ```
@@ -95,7 +93,7 @@ sudo ./install_ant-media-server.sh -i <ANT_MEDIA_SERVER_ZIP_FILE> -r true
 
 For change/release logs of the new version, please check [here](https://github.com/ant-media/Ant-Media-Server/releases).
 
-### **How do I restore the Ant Media Server if needed?**
+## **How do I restore the Ant Media Server if needed?**
 
 Last but not least, when you make a fresh installation or upgrade over an older version, the previous installation will be backed up in the **/usr/local** directory with a timestamp value like antmedia-backup-2022-11-18_15-42-54.
 
