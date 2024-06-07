@@ -67,13 +67,13 @@ Automatic installation script
 -----------------------------
 
 If you would like automatic installation instead of dealing with the steps above, you can use the script below.
-
+```
 [https://raw.githubusercontent.com/ant-media/Scripts/master/install-monitoring-tools.sh](https://raw.githubusercontent.com/ant-media/Scripts/master/install-monitoring-tools.sh)
-
+```
 **Usage:**
-
+```
     wget https://raw.githubusercontent.com/ant-media/Scripts/master/install-monitoring-tools.sh && chmod +x install-monitoring-tools.sh
-
+```
 After the installation is completed successfully, login to Web panel ```http://your_ip_address:3000/``` through your web browser. The default username and password is ```admin/admin```
 
 Install Apache Kafka
@@ -82,30 +82,30 @@ Install Apache Kafka
 Kafka is useful for building real-time streaming data pipelines to get data between the systems or applications.
 
 **1.** Install Java because Apache Kafka requires Java.
-
+```
     apt-get update && apt-get install openjdk-8-jdk -y
-
+```
 **2.** Download the Apache Kafka and then extract the archive file
-
+```
     wget https://archive.apache.org/dist/kafka/2.2.0/kafka_2.12-2.2.0.tgz
     tar -zxvf kafka_2.12-2.2.0.tgz
     sudo mv kafka_2.12-2.2.0 /opt/kafka
-
+```
 **3.** Edit **server.properties** ```vim /opt/kafka/config/server.properties``` file as below.
-
+```
     listeners=PLAINTEXT://your_server_ip:9092
-
+```
 **4.** Start Apache Kafka
-
+```
     sudo /opt/kafka/bin/zookeeper-server-start.sh /opt/kafka/config/zookeeper.properties &
     sudo /opt/kafka/bin/kafka-server-start.sh /opt/kafka/config/server.properties &
 
     sudo /opt/kafka/bin/kafka-server-start.sh /opt/kafka/config/server.properties &
-
+```
 Firstly, we've started ZooKeeper because Kafka needs ZooKeeper and then we've started Kafka **5.** Check if it's working. Run the command below
-
+```
     netstat -tpln | egrep "9092|2181"
-
+```
 if you see that the ports(9092 and 2181) are in listening mode, it means it's working.
 
 #### Run Apache Kafka as a ```systemd``` service.
@@ -118,7 +118,7 @@ Running Apache Kafka as a ```systemd``` service will let us manage Kafka service
     
 
 *   Copy and paste the below content into the ```kafka.service```you've created above. Make sure that you set the correct JAVA\_HOME path for your system in the content below
-    
+    ```
         [Unit]
         Description=Apache Kafka Server
         Requires=network.target remote-fs.target
@@ -132,13 +132,13 @@ Running Apache Kafka as a ```systemd``` service will let us manage Kafka service
         
         [Install]
         WantedBy=multi-user.target
-    
+    ```
 *   Create ```systemd```unit file for Zookeeper
     
     ```vim /lib/systemd/system/kafka-zookeeper.service```
     
 *   Copy and paste the below content to the ```kafka-zookeeper.service``` file you've created above.
-    
+    ```
         [Unit]
         Description=Apache Zookeeper Server
         Requires=network.target remote-fs.target
@@ -152,17 +152,17 @@ Running Apache Kafka as a ```systemd``` service will let us manage Kafka service
         
         [Install]
         WantedBy=multi-user.target
-    
+    ```
 *   Enable and reload the systemd daemon to apply new changes.
-    
+    ```
         systemctl enable kafka-zookeeper.service
         systemctl enable kafka.service
-    
+    ```
 *   Start kafka server
-    
+    ```
         systemctl start kafka-zookeeper.service
         systemctl start kafka.service
-    
+    ```
 
 #### Kafka settings for Ant Media Server
 
@@ -295,17 +295,17 @@ Install Grafana
 Grafana is an open source metric analytics & visualization suite.
 
 **1.** In order to install Grafana Server, run the following commands.
-
+```
     sudo apt-get install -y software-properties-common wget apt-transport-https
     wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add -
     sudo add-apt-repository "deb https://packages.grafana.com/oss/deb stable main"
     sudo apt-get update && sudo apt-get install grafana
-
+```
 **2.** Enable and start grafana server
-
+```
     sudo systemctl enable grafana-server
     sudo systemctl start grafana-server
-
+```
 #### Configure Grafana
 
 **1.** Login to Web panel(```http://your_ip_address:3000/login```) through your web browser. Default username and password is ```admin/admin```
@@ -317,12 +317,12 @@ Grafana is an open source metric analytics & visualization suite.
 ![](@site/static/img/grafana2.png)
 
  **4.** Set setting as below
-
+```
     URL : http://127.0.0.1:9200
     Index name: logstash-*
     Time filed name: @timestamp
     Version: 7.0+
-
+```
 ![](@site/static/img/grafana3_1.png)![](@site/static/img/grafana3.png)
 
 Click ```New dashboard```  
@@ -346,9 +346,9 @@ You can define an alert in Grafana and it can notify when specific events happen
 *   Create a channel in telegram and Invite your bot as an admin
 *   Send a test message and Get the Chat ID
 *   Use cURL or just visit the url below with your browser. Don't forget to replace the access token
-    
+ ```   
         https://api.telegram.org/bot{USE_YOUR_ACCESS_TOKEN}/getUpdates
-    
+ ```   
 *   You will get the lines like below.
 ```    
         {"ok":true,"result":[{"update_id":222389875,
