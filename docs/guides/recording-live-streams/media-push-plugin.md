@@ -4,6 +4,8 @@ description: This guide explains how to stream and record any specific web page 
 keywords: [Media Push Plugin, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 1
 ---
+
+# Media Push Plugin
   
 Explore the simplicity of recording and live streaming advanced cases such conference call, Player Kill, etc. with [Ant Media Server’s](https://github.com/ant-media/Ant-Media-Server/) Media Push Plugin🚀. This user-friendly tool lets you stream any web page. You just provide a URL to the plugin, and the plugin loads the web page on the server side and streams it in real time. You can then record 🎥 or re-stream the video if needed.
   
@@ -240,4 +242,4 @@ Go to the MediaPushPlugin and modify the customModification method as you wish. 
   ```bash  
   chmod +x redeploy.sh  
   ./redeploy.sh  
-  ```
+  ```  
