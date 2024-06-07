@@ -9,16 +9,16 @@ sidebar_position: 3
 This guide explains how to upgrade the Ant Media Server from an earlier version to the latest version.
 
 - There are two ways to upgrade your Ant Media Server to the latest edition.
-1. Using the ```upgrade.sh``` script that automatically gets the latest version of the Ant Media Server and makes the upgrade. This script is available under the ```usr/local/antmedia``` directory for Ant Media Server version 2.9.0 and above.
+1. Using the ```upgrade.sh``` script that automatically gets the latest version of the Ant Media Server and makes the upgrade. This script is available under the ```usr/local/antmedia``` directory by default for Ant Media Server version 2.9.0 and above.
 
 
-2. Using the ```install_ant-media-server.sh``` script and manually passing the Ant Media Server installation zip file. This approach can be used with every version of Ant Media Server.
+2. Using the ```install_ant-media-server.sh``` script and manually passing the Ant Media Server installation zip file.
 
 
 ## Upgrading with the ```upgrade.sh``` script
 
 :::info
-This approach is valid for Ant Media Server version 2.9.0 and above.
+This script is available under the installation directory for Ant Media Server version 2.9.0 and above. If you want to use the script with an older version, kindly get the script from [here](https://github.com/ant-media/Ant-Media-Server/blob/master/src/main/server/upgrade.sh)
 :::
 
 **1. SSH into your Ant Media Server instance.**
@@ -60,7 +60,7 @@ This command will show the version of the installed Ant Media Server.
 
 Another way to upgrade the Ant Media Server is by using the ```install_ant-media-server.sh```
 
-This approach can be used with all versions of Ant Media Server. It is important to have the Ant Media Server installation zip file to upgrade using the installation script.
+To use this approach, it is important to have the Ant Media Server installation zip file.
 
 - If you have purchased a license from Ant Media, then in the downloads section of your [antmedia.io](https://antmedia.io/my-account/downloads/) account, you can download the most recent version zip file.
 
