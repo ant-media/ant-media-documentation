@@ -89,18 +89,13 @@ The ability to customize ABR settings at the broadcast level provides enhanced f
 
 Please note that if a broadcast has ABR settings configured, it will disregard the ABR settings at the application level and instead utilize the ABR settings specified at the broadcast level.
 
-To set broadcast level ABR, send a ```PUT``` request and update broadcast objects ```encoderSettingsString``` field with desired ABR settings.
+To set broadcast level ABR, send a ```PUT``` request and update broadcast objects ```encoderSettingsList``` field with desired ABR settings.
 
 [Update Broadcast Rest API](https://antmedia.io/rest/#/BroadcastRestService/updateBroadcast)
 
 Below is an example curl command that sets the 240p, 1080p, and 720p ABR options for a broadcast with the ID ```teststream```:
 ```
-curl --location --request PUT 'https://AMS_URL:5443/WebRTCAppEE/rest/v2/broadcasts/teststream' \
---header 'Content-Type: application/json' \
---data '{
-     "encoderSettingsString": "[{\"videoBitrate\":500000,\"forceEncode\":true,\"audioBitrate\":32000,\"height\":240},{\"videoBitrate\":2500000,\"forceEncode\":true,\"audioBitrate\":256000,\"height\":1080},{\"videoBitrate\":2000000,\"forceEncode\":true,\"audioBitrate\":128000,\"height\":720}]"
-}
-'
+curl --location --request PUT 'http://localhost:5080/WebRTCAppEE/rest/v2/broadcasts/stream1' --header 'Content-Type: application/json' --data '{"encoderSettingsList": [{"videoBitrate": 500000, "forceEncode": true, "audioBitrate": 32000, "height": 240},{"videoBitrate": 2500000, "forceEncode": true, "audioBitrate": 256000, "height": 1080},{"videoBitrate": 2000000, "forceEncode": true, "audioBitrate": 128000, "height": 720}]}'
 ```
 Settings must be passed as a JSON string. 
 
