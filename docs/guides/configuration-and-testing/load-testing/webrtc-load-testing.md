@@ -9,8 +9,7 @@ sidebar_position: 1
 
 In this tutorial, we'll explain how to do WebRTC load testing on your Ant Media Server. The test environment has two parts: the test server and the SUT (system under test). We have two different setups for two different SUTs.
 
-Preparation of SUT
-------------------
+## Preparation of SUT
 
 ### One instance setup
 
@@ -66,23 +65,21 @@ Here we have a cluster structure as SUT which contains one origin and N edge ser
 ```
 To deploy an Ant Media Server cluster, please see [here](https://github.com/ant-media/Ant-Media-Server/wiki/Scaling-and-Load-Balancing).
 
-Ant Media WebRTC test tool
---------------------------
+## Ant Media WebRTC test tool
 
 You can download the WebRTC load test tool from your account at [antmedia.io](https://antmedia.io/). The test tool is listed for Enterprise Edition under the Download section of your account.
 
 Ant Media WebRTC Test Tool is a Java project for testing Ant Media Server WebRTC capabilities and has the following features:.
 
-*   This tool is compatible with Ant Media Server signaling protocol.
-*   It has two modes: publisher and player (-m flag determines the mode)
-*   It has two options with UI or without UI (-u flag determines the UI on/off)
-*   You can also save received (in player mode) video.
-*   You can create a load with the -n flag.
+* This tool is compatible with the Ant Media Server signaling protocol.
+* It has two modes: publisher and player (-m flag determines the mode)
+* It has two options: with UI or without UI (-u flag determines the UI on/off)
+* You can also save received (in player mode) video.
+* You can create a load with the `-n` flag.
 
-Running Ant Media WebRTC Test Tool
-----------------------------------
+## Running Ant Media WebRTC Test Tool
 
-#### Installation
+### Installation
 
 ```bash
 apt-get install openjdk-11-jre -y
@@ -108,7 +105,7 @@ If you are doing load testing on a cluster via a load balancer, and if your orig
 ./run.sh -m player -i streamId -n 100 -s server-domain-name -p 5443 -q true -u false
 ```
 
-#### Parameters
+### Parameters
 
 ```
 Flag 	 Name      	    Default   	 Description                 
@@ -127,6 +124,7 @@ k        Kafka Broker.  null         Kafka broker address with port
 r    	 Publish Loop.  false        true or false
 c    	 Codec          h264         h264 or VP8 
 d    	 Data Channel.  false        true or false 
+a        App Name       WebRTCAppEE  application name
 ```
 
 :::imp
