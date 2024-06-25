@@ -5,7 +5,6 @@ keywords: [Ant Media Load Testing, WebRTC test tool, Ant Media Server Documentat
 sidebar_position: 1
 ---
 
-# Load testing
 
 In this tutorial, we'll explain how to do WebRTC load testing on your Ant Media Server. The test environment has two parts: the test server and the SUT (system under test). We have two different setups for two different SUTs.
 
