@@ -85,9 +85,9 @@ Running Ant Media WebRTC Test Tool
 #### Installation
 
 ```bash
-apt-get install openjdk-11-jre -y
-unzip webrtctest-release-*.zip
-cd webrtctest/
+sudo apt install openjdk-17-jdk
+sudo unzip webrtctest-release-*.zip
+cd webrtc-load-test/
 ```
 
 This tool can be run from the terminal with the following commands:.
