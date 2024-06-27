@@ -28,7 +28,7 @@ By running the `install_turn-server.sh` script, you can quickly install and conf
 - Get the `install_turn-server.sh` script
 
 ```js
-https://raw.githubusercontent.com/ant-media/Scripts/master/install_turn-server.sh && chmod +x install_turn-server.sh
+wget https://raw.githubusercontent.com/ant-media/Scripts/master/install_turn-server.sh && chmod +x install_turn-server.sh
 ```
 - Run the installation script
 
@@ -40,13 +40,13 @@ sudo ./install_turn-server.sh
 
 If you want to install the TURN server manually, please follow the below steps.
 
-1. Install coturn
+1. **Install coturn**
   
 ```js
 apt-get update && apt-get install coturn
 ```
 
-2. Enable TURN server
+2. **Enable TURN server**
 
 - Edit the below file.
 
@@ -60,7 +60,7 @@ vim /etc/default/coturn
 TURNSERVER_ENABLED=1
 ```
 
-3. Configure the TURN server
+3. **Configure the TURN server**
 
 - Edit file: ```/etc/turnserver.conf``` by adding the following 2 lines as mentioned below:
 
@@ -69,18 +69,18 @@ user=username:password
 realm=your_public_ip_address
 ```
 
-4. Once you are done with making the changes as suggested above, restart the TURN server with the below command.
+4. Once you are done with making the changes as suggested above, **restart the TURN server** with the below command.
 
 ```js
 systemctl restart coturn
 ```
 
-Note: If you using an AWS EC2, GCP, or Azure instance, etc. where NAT is used, you must add the following lines in the ```turnserver.conf``` file.
+**Note**: If you using an AWS EC2, GCP, or Azure instance, etc. where NAT is used, you must add the following lines in the ```turnserver.conf``` file.
 
   - EC2 private ip address : ```relay-ip=your_private_ip```
   - EC2 Public/Private ip address : ```external-ip=your_public_ip/your_private_ip```
 
-Also, Open the following ports on the AWS security group
+Also, Open the following ports on the security group or firewall.
 
   - TCP 443 #TLS listening port
   - TCP 3478-3479 #coturn listening port
@@ -100,12 +100,11 @@ turnutils_uclient -v -t -T -u username -w password -p 3478 turn_server_ip
 
 2. **Web Browser**
 
-Open the following link and fill required details. Thereafter, _Add Server_ here : [https://webrtc.github.io/samples/src/content/peerconnection/trickle-ice/](https://webrtc.github.io/samples/src/content/peerconnection/trickle-ice/)
+- Open the following link and fill required details. Thereafter, _Add Server_ here : [https://webrtc.github.io/samples/src/content/peerconnection/trickle-ice/](https://webrtc.github.io/samples/src/content/peerconnection/trickle-ice/)
 
 ![](@site/static/img/turn1.png)
 
-Once done. Click ``` Gather Candidates```.
-If the details you provided, are validated, you will get the output as in the below image.
+- Once done. Click ``` Gather Candidates```. If the details you provided, are validated, you will get the output as in the below image.
 
 ![](https://raw.githubusercontent.com/wiki/ant-media/Ant-Media-Server/images/turn3.png)
 
