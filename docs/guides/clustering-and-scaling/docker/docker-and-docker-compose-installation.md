@@ -71,7 +71,7 @@ docker-compose up -d
 ```
 
 **Optional:** If you would like to mount an existing volume, simply change the lines below and uncomment it.
-
+```
     #    volumes:
     #      - antmedia_vol:/usr/local/antmedia/
     #    volumes:
@@ -79,3 +79,4 @@ docker-compose up -d
     #      external: true
     #      name:
     #      antmedia_volume
+```
