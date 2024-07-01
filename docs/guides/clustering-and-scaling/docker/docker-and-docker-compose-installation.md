@@ -38,7 +38,7 @@ docker build --network=host -t antmediaserver --build-arg AntMediaServer=<Replac
 Now we have a docker container with Ant Media Server. Run the image.
 
 ```shell
-docker run -d --name antmedia --network=host -it antmediaserver
+docker run --restart=always -d --name antmedia --network=host -it antmediaserver
 ```
 
 **Optional:** If you would like to use persistent volume, you can use it as follows. In this way, volume keeps even if your container is destroyed.
@@ -71,7 +71,7 @@ docker-compose up -d
 ```
 
 **Optional:** If you would like to mount an existing volume, simply change the lines below and uncomment it.
-
+```
     #    volumes:
     #      - antmedia_vol:/usr/local/antmedia/
     #    volumes:
@@ -79,3 +79,4 @@ docker-compose up -d
     #      external: true
     #      name:
     #      antmedia_volume
+```
