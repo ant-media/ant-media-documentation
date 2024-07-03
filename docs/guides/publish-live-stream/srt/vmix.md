@@ -1,11 +1,11 @@
 ---
 title: vMix
 description: How to Ingest SRT with VMix
-keywords: [Ingest SRT with VMix, Ant Media Server Documentation, Ant Media Server Tutorials]
+keywords: [Ingest SRT with vMix, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 2
 ---
 
-# How to Ingest SRT with VMix
+# How to Ingest SRT with vMix
 
 ```vMix``` is a software vision mixer available for the Windows operating system. The software is developed by StudioCoast PTY LTD. Like most vision mixing software, it allows users to switch inputs, mix audio, record outputs and live stream cameras, videos files, audio, and more in resolutions of up to 4K. It can stream up to three destinations at one time.
 
@@ -17,7 +17,7 @@ Click the add input button and add an input for the broadcast. As an example, I 
 
 ![](@site/static/img/95338115-41285180-08bb-11eb-8e61-d8a63e564cf5.png)
 
-As you can see my input has been added successfully and its preview can be seen:
+As you can see, my input has been added successfully, and its preview can be seen:
 
 ![](@site/static/img/95338335-7df44880-08bb-11eb-839c-5f9a443ec6bf.png)
 
