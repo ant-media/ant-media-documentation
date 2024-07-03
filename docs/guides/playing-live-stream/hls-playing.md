@@ -45,6 +45,27 @@ Autoplay is enabled by default in a player, but it may be disabled for certain p
 
 [Firefox policy](https://hacks.mozilla.org/2019/02/firefox-66-to-block-automatically-playing-audible-video-and-audio/)
 
+### Play HLS Streams with React Player
+To play HLS streams with [React Player](https://github.com/cookpete/react-player) component in React, configure the player like below:
+
+```
+<ReactPlayer
+  url="https://{AMS-URL}:5443/{APP-NAME}/streams/{STREAM-ID}.m3u8"
+  config={{
+    file: {
+      hlsOptions: { 
+        xhrSetup: function(xhr) {
+          xhr.withCredentials = true // send cookies
+        }
+      }
+    }
+  }}
+/>
+```
+Enabling `xhr.withCredentials` to send cookies is essential for accurate HLS viewer counts. Without this configuration, the viewer count may not be correctly determined by the Ant Media Server. 
+
+Special thanks to [@geneukum](https://github.com/geneukum) for this configuration contribution.
+
 
 ### Playing streams from SubFolders
 

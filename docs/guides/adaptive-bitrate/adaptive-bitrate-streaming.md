@@ -83,6 +83,31 @@ The format of the file is as follows: resolution height, video bitrate per secon
 ```shell
 sudo service antmedia restart
 ```
+### Broadcast Level Adaptive Bitrate Setting
+Starting from Ant Media Server version 2.8.3, it is now possible to configure Adaptive Bitrate (ABR) settings for individual broadcasts. Previously, ABR settings could only be adjusted at the application level, affecting all broadcasts of the application uniformly. 
+The ability to customize ABR settings at the broadcast level provides enhanced flexibility and proves beneficial in specific scenarios.
+
+Please note that if a broadcast has ABR settings configured, it will disregard the ABR settings at the application level and instead utilize the ABR settings specified at the broadcast level.
+
+To set broadcast level ABR, send a ```PUT``` request and update broadcast objects ```encoderSettingsList``` field with desired ABR settings.
+
+[Update Broadcast Rest API](https://antmedia.io/rest/#/BroadcastRestService/updateBroadcast)
+
+Below is an example curl command that sets the 240p, 1080p, and 720p ABR options for a broadcast with the ID ```teststream```:
+```
+curl --location --request PUT 'http://localhost:5080/WebRTCAppEE/rest/v2/broadcasts/stream1' --header 'Content-Type: application/json' --data '{"encoderSettingsList": [{"videoBitrate": 500000, "forceEncode": true, "audioBitrate": 32000, "height": 240},{"videoBitrate": 2500000, "forceEncode": true, "audioBitrate": 256000, "height": 1080},{"videoBitrate": 2000000, "forceEncode": true, "audioBitrate": 128000, "height": 720}]}'
+```
+Settings must be passed as a JSON string. 
+
+All ABR resolution options as JSON string (240p,360p,480p,640p,720p,1080p,2160p,2880p):
+
+```json
+"[{\"videoBitrate\":8000000,\"forceEncode\":true,\"audioBitrate\":320000,\"height\":2880},{\"videoBitrate\":6000000,\"forceEncode\":true,\"audioBitrate\":256000,\"height\":2160},{\"videoBitrate\":2500000,\"forceEncode\":true,\"audioBitrate\":256000,\"height\":1080},{\"videoBitrate\":2000000,\"forceEncode\":true,\"audioBitrate\":128000,\"height\":720},{\"videoBitrate\":1800000,\"forceEncode\":true,\"audioBitrate\":96000,\"height\":640},{\"videoBitrate\":1500000,\"forceEncode\":true,\"audioBitrate\":96000,\"height\":540},{\"videoBitrate\":1000000,\"forceEncode\":true,\"audioBitrate\":96000,\"height\":480},{\"videoBitrate\":800000,\"forceEncode\":true,\"audioBitrate\":64000,\"height\":360},{\"videoBitrate\":500000,\"forceEncode\":true,\"audioBitrate\":32000,\"height\":240}]"
+
+```
+
+
+
 
 ### Stats Based Adaptive Bitrate switching
 Starting from Ant Media Server version 2.6.0, we have introduced [Stats Based Adaptive Bitrate switching](https://github.com/orgs/ant-media/discussions/5267). By default, the settings `settings.statsBasedABREnabled` property is set to `true`, enabling this feature.
