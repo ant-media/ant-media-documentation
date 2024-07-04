@@ -11,7 +11,7 @@ In this tutorial, we'll explain how to do WebRTC load testing on your Ant Media 
 
 ## Preparation of SUT
 
-### One instance setup
+### Standalone server setup
 
 In this option, we have only one Ant Media Server instance as SUT.
 
@@ -26,11 +26,12 @@ In this option, we have only one Ant Media Server instance as SUT.
     |                   |    rest          |                      |
     +-------------------+                  +----------------------+
 ```
-To setup the Ant Media Server, please check [here](https://github.com/ant-media/Ant-Media-Server/wiki/Installation).
+To setup the Ant Media Server, please check [here](https://antmedia.io/docs/guides/installing-on-linux/installing-ams-on-linux/).
 
 ### Cluster setup
 
 Here we have a cluster structure as SUT which contains one origin and N edge servers.
+
 ```
                                            +--------------------+
                                            |                    |
@@ -82,9 +83,9 @@ Ant Media WebRTC Test Tool is a Java project for testing Ant Media Server WebRTC
 ### Installation
 
 ```bash
-apt-get install openjdk-11-jre -y
-unzip webrtctest-release-*.zip
-cd webrtctest/
+sudo apt-get install openjdk-17-jre -y
+unzip webrtc-load-test-tool-*.zip
+cd webrtc-load-test/
 ```
 
 This tool can be run from the terminal with the following options:.
