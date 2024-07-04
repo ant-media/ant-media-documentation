@@ -183,7 +183,7 @@ const config = {
         },
 	{
           from: '/guides/configuration-and-testing/load-testing/',
-          to: '/guides/configuration-and-testing/'
+          to: '/category/configuration--testing/'
         },
 	{
           from: '/v1/docs/ssl-setup/',
