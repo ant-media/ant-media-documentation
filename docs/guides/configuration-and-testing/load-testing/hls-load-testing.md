@@ -22,12 +22,12 @@ The script will simulate a specified number of HLS viewers accessing a live stre
 - Use the following command to download the `hls_players.sh` script and give it executable permission:
 
      ```bash
-     sudo wget https://raw.githubusercontent.com/ant-media/Scripts/master/hls_players.sh && sudo chmod +x hls_players.sh
+     sudo wget https://raw.githubusercontent.com/ant-media/Scripts/master/load-testing/hls_players.sh && sudo chmod +x hls_players.sh
      ```
 
 ### Step 2: Run the HLS Load Test
 
-- Start publishing your live stream and let's say it has streamId stream1.
+- Start publishing your live stream and let's say it has streamId `stream1`.
 - Open a terminal window on your Ubuntu server or virtual machine and go to the directory where you have downloaded the `hls_players.sh` script.
 - Use the following command to start the HLS load test:
      ```bash
