@@ -183,7 +183,7 @@ const config = {
         },
 	{
           from: '/guides/configuration-and-testing/load-testing/',
-          to: '/guides/configuration-and-testing/webrtc-load-testing/'
+          to: '/guides/configuration-and-testing/'
         },
 	{
           from: '/v1/docs/ssl-setup/',
