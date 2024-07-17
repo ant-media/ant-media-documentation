@@ -147,23 +147,23 @@ For this document, we installed MinIO on our Ubuntu Linux server. For installati
 Once the installation is done and you are able to access the MinIO console on your browser with http://IP-or-domain:9001, follow below steps for integration with Ant Media Server.
 
 - First, go to Configuration and set the region. As MinIO uses the AWS S3 API's, you can define the same region names, like `ap-south-1` for Asia Pacific, etc., as per your region. After setting the region, it will ask you to restart the server.
-         ![](@site/static/img/recording-live-streams/s3-integration/minio-bucket-integration/minio-region.png)
+  ![](@site/static/img/recording-live-streams/s3-integration/minio-bucket-integration/minio-region.png)
 
 - Once the region is set, go to Access Keys and generate one access key to use on the Ant Media Server to access the bucket.
 
-![](@site/static/img/recording-live-streams/s3-integration/minio-bucket-integration/minio-access-key.png)
+  ![](@site/static/img/recording-live-streams/s3-integration/minio-bucket-integration/minio-access-key.png)
 
 - Now, go to the buckets and create one S3 bucket. After the bucket is created, make sure that it is public.
 
-![](@site/static/img/recording-live-streams/s3-integration/minio-bucket-integration/minio-bucket.png)
+  ![](@site/static/img/recording-live-streams/s3-integration/minio-bucket-integration/minio-bucket.png)
  
 - Now, in order to record the stream to the MinIO bucket, enable the S3 recording option in application settings and add the required details according to your bucket information.
 
-![](@site/static/img/recording-live-streams/s3-integration/minio-bucket-integration/ams-settings.png)
+  ![](@site/static/img/recording-live-streams/s3-integration/minio-bucket-integration/ams-settings.png)
 
 - Once the stream is published and stopped, the recording will be uploaded to the bucket under the streams folder.
 
-![](@site/static/img/recording-live-streams/s3-integration/minio-bucket-integration/minio-bucket-objects.png)
+  ![](@site/static/img/recording-live-streams/s3-integration/minio-bucket-integration/minio-bucket-objects.png)
 
 Now, in order to play the stream directly using the AMS mp4 URL, use the HTTP forwarding below.
 
@@ -171,13 +171,13 @@ Now, in order to play the stream directly using the AMS mp4 URL, use the HTTP fo
 
 HTTP forwarding is implemented to forward incoming HTTP requests to any other place. It's generally used for forwarding incoming requests to a storage system like S3.
 
-Let us tell you how HTTP Forwarding works step by step
+Kindly follow the below steps to enable HTTP port forwarding:
 
 - Open the management panel of your AMS, go to the Application settings, switch to Advanced settings and set the below properties.
 
-```javascript
+```js
       "httpForwardingExtension": "mp4,png,m3u8",
-      "httpForwardingBaseURL": "https://{YOUR_DOMAIN}",
+      "httpForwardingBaseURL": "https://{BUCKET_URL}",
 ```
 
 :::info
@@ -189,7 +189,9 @@ Don't add any leading, or trailing white spaces.
     `https://{s3BucketName}.s3.{awsLocation}.amazonaws.com`.
 
   If you are using Digital Ocean Spaces, the URL will be like this:
-  `https://{BucketName}.{BucketLocation}.digitaloceanspaces.com`
+  `https://{s3BucketName}.{BucketLocation}.digitaloceanspaces.com`
+
+  Similarly for other S3 storages, you need to put the URL as per their end point pattern.
 
 - After making the changes, save the settings. 
 
@@ -200,19 +202,19 @@ Don't add any leading, or trailing white spaces.
 
 HLS HTTP Endpoint is implemented to push the HLS content (m3u8 and ts files) to any HTTP endpoint, such as CDN or your own HTTP endpoint. You can enable it with the following steps:
 
-1. Open the management panel of your AMS. Go to the Application settings, and switch to Advanced settings.
+1. Open the management panel of your AMS. Go to the Application settings and switch to Advanced settings.
 
 2. Add the following property to the file:
 
-```
-hlsHttpEndpoint=https://example.com/hls-stream/
-```
+   ```js
+   hlsHttpEndpoint=https://example.com/hls-stream/
+   ```
 
-Kindly make sure to update the HTTP URL with your own. 
+   Kindly make sure to update the HTTP URL with your own. 
 
-3. Save the file to apply the settings.
+3. Save to apply the settings.
 
-After that, just push a stream to Ant Media Server with stream123, and AMS will push the files to the following endpoints with the PUT method
+After that, just push a stream to Ant Media Server with test streamId `stream123`, and AMS will push the files to the following endpoints with the PUT method.
 
 ```
 https://example.com/hls-stream/stream123.m3u8
@@ -230,20 +232,22 @@ When you use S3 integration, your record will be uploaded as soon as the livestr
 If you want to upload your HLS content (m3u8 and ts files) in real-time to the S3-compatible systems (AWS, OVH, Digital Ocean, etc.), you can use the `HLS Upload` servlet.
 
 To be able to use the HLS Upload servlet first, you should enter S3 credentials into the management console. Then, you can use HLS HTTP Endpoint instructions with the following property:
+
 - Open the management panel of your AMS, Go to the Application settings, and switch to Advanced settings.
-- Locate the setting hlsHttpEndpoint and set it to:
 
-```
-hlsHttpEndpoint=http://localhost:5080/LiveApp/hls-upload
-```
+- Locate the setting `hlsHttpEndpoint` and set it to:
 
-Here, LiveApp is the application name and you can replace it with your preferred application.
+  ```js
+  hlsHttpEndpoint=http://Domain-or-IP:5080/LiveApp/hls-upload
+  ```
+
+  Here, LiveApp is the application name and you can replace it with your preferred application.
 
 - It can also be set as:
 
-```
-hlsHttpEndpoint=https://{SERVER_DOMAIN}:5443/{APPLICATION_NAME}/hls-upload
-```
+  ```js
+  hlsHttpEndpoint=https://Domain-or-IP:5443/AppName/hls-upload
+  ```
 
 ### How to play AWS S3 VOD files with Embedded Web Player?
 
