@@ -176,8 +176,8 @@ Kindly follow the below steps to enable HTTP port forwarding:
 - Open the management panel of your AMS, go to the Application settings, switch to Advanced settings and set the below properties.
 
 ```js
-      "httpForwardingExtension": "mp4,png,m3u8",
-      "httpForwardingBaseURL": "https://{BUCKET_URL}",
+"httpForwardingExtension": "mp4,png,m3u8",
+"httpForwardingBaseURL": "https://{BUCKET_URL}",
 ```
 
 :::info
