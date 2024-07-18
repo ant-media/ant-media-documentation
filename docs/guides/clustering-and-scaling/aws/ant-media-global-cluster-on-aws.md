@@ -139,11 +139,11 @@ AWS Global Accelerator is a service in which you create accelerators to improve 
 
  - Now, first add the endpoint groups before adding the endpoints.
 
-  ![](@site/static/img/aws-global-cluster/endpoint-groups.png)
+   ![](@site/static/img/aws-global-cluster/endpoint-groups.png)
 
  - Add the endpoint as follows for the Frankfurt zone.
 
-  ![](@site/static/img/aws-global-cluster/spain-accelerator.png)
+   ![](@site/static/img/aws-global-cluster/spain-accelerator.png)
 
 - For the Mumbai region, add endpoint as follows
 
