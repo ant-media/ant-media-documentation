@@ -183,7 +183,7 @@ const config = {
         },
 	{
           from: '/guides/configuration-and-testing/load-testing/',
-          to: '/guides/configuration-and-testing/webrtc-load-testing/'
+          to: '/category/configuration--testing/'
         },
 	{
           from: '/v1/docs/ssl-setup/',
@@ -255,7 +255,7 @@ const config = {
           },
           {
             label: 'SDK references',
-            href: '/sdk-reference/',
+            href: '/category/sdk-integration/',
             position: 'right'
           },
           {
