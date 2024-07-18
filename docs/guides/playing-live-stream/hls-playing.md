@@ -19,6 +19,23 @@ HLS is automatically enabled by default.
 
 ![](@site/static/img/playing-live-streams/hls-playing/hls-enabled.png)
 
+### Enable HLS at Broadcast Level
+
+To enhance the HLS (HTTP Live Streaming) feature, you can now pass HLS parameters (`hlsTime`, `hlsListSize`, `hlsPlayListType`) while creating a live stream. This allows for more granular control over your HLS streams directly during the creation process.
+-   `hlsTime`: Sets the target duration of each segment in seconds.
+-   `hlsListSize`: Defines the number of segments in the playlist.
+-   `hlsPlayListType`: Specifies the playlist type (`event` or `vod`).
+
+Example
+Here’s an example of how to pass these parameters in a `POST` request to create a live stream with specific HLS settings:
+
+```bash
+curl -X POST -H "Accept: Application/json" -H "Content-Type: application/json" http://<Your-Ant-Media-Server>/<App-Name>/rest/v2/broadcasts/create -d '{"streamId":"test1","name":"test1s","type":"liveStream","hlsParameters":{"hlsTime":"4","hlsListSize":"7","hlsPlayListType":"event"}}'
+```
+-   `hlsTime` is set to `4`, meaning each segment will be 4 seconds long.
+-   `hlsListSize` is set to `7`, meaning the playlist will contain 7 segments.
+-   `hlsPlayListType` is set to `event`, indicating that the playlist type is an event playlist.
+
 ### Play HLS Streams with Embedded Player
 
 You can use the embedded player in `play.html` to play the streams with HLS. In order to use play.html, go to the below URL format.
