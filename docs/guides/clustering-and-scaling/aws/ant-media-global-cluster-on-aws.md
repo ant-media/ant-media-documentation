@@ -42,11 +42,11 @@ Once the cluster creation in both regions is completed, you can proceed with VPC
 
 - Go to VPC service in the Frankfurt region.
 
-**VPC > Peering connections > Create Peering connection**
+  **VPC > Peering connections > Create Peering connection**
 
-**VPC ID (Requester) :** Your VPC where Ant Media Cluster is installed. In this case, the requester is Frankfurt region.
+  **VPC ID (Requester) :** Your VPC where Ant Media Cluster is installed. In this case, the requester is Frankfurt region.
 
-**Another Region :** Enter another region VPC Id where Ant Media Server Cluster is installed. In this case, the acceptor region is Mumbai.
+  **Another Region :** Enter another region VPC Id where Ant Media Server Cluster is installed. In this case, the acceptor region is Mumbai.
 
   ![](@site/static/img/aws-global-cluster/peering-connection.png)
 
