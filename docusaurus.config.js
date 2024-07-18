@@ -221,6 +221,10 @@ const config = {
           from: '/guides/clustering-and-scaling/kubernetes/kubernetes-autoscaling/',
           to: '/guides/clustering-and-scaling/kubernetes/deploy-ams-on-kubernetes/'
         },
+	{
+          from: '/sdk-reference/',
+          to: '/category/sdk-integration/'
+        },
 
       ],
     },
