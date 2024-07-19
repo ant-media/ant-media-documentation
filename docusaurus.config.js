@@ -255,7 +255,7 @@ const config = {
           },
           {
             label: 'SDK references',
-            href: '/sdk-reference/',
+            href: '/category/sdk-integration/',
             position: 'right'
           },
           {
