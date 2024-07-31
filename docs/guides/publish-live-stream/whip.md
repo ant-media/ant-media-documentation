@@ -31,18 +31,18 @@ Open Broadcaster Software (OBS) is a popular open-source tool for live streaming
 
 - In OBS, go to  `Settings`  and then  `Stream`.
 - Select `WHIP` as the service.
-- In the  `Server`  field, enter the WHIP endpoint URL provided by your Ant Media Server. Here is the WHIP endpoint format.
+- In the  `Server`  field, enter the WHIP endpoint URL provided by your Ant Media Server. Here is the WHIP endpoint format: 
 `https://antmedia.example.com:5443/App_Name/whip/streamId`
 
  ![](@site/static/img/publish-live-stream/whip/whip-settings.png)
 
-From Output tab of OBS, you can control your streaming parameters like bit rate, key frames, etc. You can use the same settings as shown below in screenshot.
+From Output tab of OBS, you can control your streaming parameters like bit rate, key frames, etc. You can use the same settings as shown below in screenshot or you can modify them as per your requirements.
 
 ![](@site/static/img/obs-rtmp-image/OBS-Output.png)
 
 After your Output and streaming settings are done, you can start publishing your stream from OBS.
 
-When the stream is published, you can play the stream with WebRTC, HLS or Dash. Check out the [**stream playback**](https://antmedia.io/docs/category/playing-live-streams/) document for more reference.
+When the stream is published, you can play the stream with WebRTC, HLS or Dash. Check out the [stream playback](https://antmedia.io/docs/category/playing-live-streams/) document for more reference.
 
 
 ## Streaming to AMS with WHIP using Sample Web page
@@ -51,7 +51,7 @@ If you directly want to publish the WebRTC stream from your browser using WHIP p
 
 This sample page uses the [Eyevinn WHIP client](https://www.npmjs.com/package/@eyevinn/whip-endpoint) to publish the stream to the server using the WHIP protocol. You can also directly integrate it into your web application.
 
-Now, in order to publish the stream using the sample page, go to https://AMS-domain:5443/AppName/whip.html and start publishing.
+Now, in order to publish the WHIP stream using the sample page, go to https://AMS-domain:5443/AppName/whip.html of your Ant Media Server and start publishing.
 
 For example, you can test via this [sample page](https://test.antmedia.io:5443/WebRTCAppEE/whip.html).
 
