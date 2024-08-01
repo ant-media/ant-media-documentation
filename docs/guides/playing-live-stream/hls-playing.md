@@ -19,14 +19,15 @@ HLS is automatically enabled by default.
 
 ![](@site/static/img/playing-live-streams/hls-playing/hls-enabled.png)
 
-### Enable HLS at Broadcast Level
+### Enable HLS at the Broadcast Level
 
 To enhance the HLS (HTTP Live Streaming) feature, you can now pass HLS parameters (`hlsTime`, `hlsListSize`, `hlsPlayListType`) while creating a live stream. This allows for more granular control over your HLS streams directly during the creation process.
 -   `hlsTime`: Sets the target duration of each segment in seconds.
 -   `hlsListSize`: Defines the number of segments in the playlist.
 -   `hlsPlayListType`: Specifies the playlist type (`event` or `vod`).
 
-Example
+Example:
+
 Here’s an example of how to pass these parameters in a `POST` request to create a live stream with specific HLS settings:
 
 ```bash
@@ -38,7 +39,7 @@ curl -X POST -H "Accept: Application/json" -H "Content-Type: application/json" h
 
 ### Play HLS Streams with Embedded Player
 
-You can use the embedded player in `play.html` to play the streams with HLS. In order to use play.html, go to the below URL format.
+You can use the embedded player in `play.html` to play the streams with HLS. To use play.html, go to the below URL format.
 
 ```https://AMS-domain-name:5443/WebRTCAppEE/play.html```.
 
@@ -120,7 +121,7 @@ curl -X 'POST' 'https://domain:5443/WebRTCAppEE/rest/v2/broadcasts/create' \
 }'
 ```
 
-Remember, if you try to HLS play a stream which has a subFolder defined, you need to pass ```subFolderName/streamId``` as an ID to the embedded player.
+Remember, if you try to HLS play a stream that has a subFolder defined, you need to pass ```subFolderName/streamId``` as an ID to the embedded player.
 
 So if you created a stream with  ```"streamId":"teststream"``` and ```"subFolder":"mySubFolder"``` you should play it with:
 
@@ -162,7 +163,7 @@ The feature to use `ID3` tags was introduced in Ant Media Server version 2.7.0
 
 ### Enabling ID3 Tags
 
-In order to use the `ID3`, it is first needed to enable the `ID3` tags for the application.
+To use the `ID3`, it is first needed to enable the `ID3` tags for the application.
 
 It can be enabled from the `Advanced` settings by making `"id3TagEnabled": true` located under the application settings on the Ant Media Server Web Panel.
 
@@ -172,7 +173,7 @@ It can be enabled from the `Advanced` settings by making `"id3TagEnabled": true`
 
 To insert an ID3 tag into any stream, just call the [REST method](https://antmedia.io/rest/#/default/addID3Data) with your metadata and use that metadata in your player.
 
-Below is a curl sample to use ID3 meta data
+Below is a curl sample to use ID3 metadata
 
 ```bash
 curl -X 'POST' 'https://domain:5443/AppName/rest/v2/broadcasts/streamId/id3' \
@@ -181,7 +182,7 @@ curl -X 'POST' 'https://domain:5443/AppName/rest/v2/broadcasts/streamId/id3' \
   -d '"string"'
 ```
 
-Checkout this [video tutorial](https://www.youtube.com/watch?v=Fq-a_tEXY4E&t=763s) where we discussed and demonstrated about ID3 tags.
+Check out this [video tutorial](https://www.youtube.com/watch?v=Fq-a_tEXY4E&t=763s) where we discussed and demonstrated ID3 tags.
 
 :::info
 Currently, ID3 Tags does not work with Ant Media Server default player (play.html) so you can use this [Codepen sample](https://codepen.io/Burak-Kekec/pen/PoXYMyG) for the testing.
@@ -231,9 +232,9 @@ If you don't want the TS files to be appended to the previous recording, you may
 
 After making the changes, you can scroll down and save the settings. Now, your streams will be recorded as HLS.
 
-Additionally, it's also possible to push HLS files directly to a remote endpoint without generating them on the local server in real-time, or alternatively, upload them via standard procedure to an S3 bucket once the stream has finished.
+Additionally, it's also possible to push HLS files directly to a remote endpoint without generating them on the local server in real-time, or alternatively, upload them via the standard procedure to an S3 bucket once the stream has finished.
 
-To upload HLS in real time, check out this guide:
+To upload HLS in real-time, check out this guide:
 > Quick Link: [Uploading HLS Files](https://antmedia.io/docs/guides/recording-live-streams/s3-integration-http-forwarding/#uploading-hls-files-to-the-s3-bucket-in-real-time)
 
 ## HLS Play For a Given Time Interval
@@ -241,26 +242,26 @@ To upload HLS in real time, check out this guide:
 Using the HLS modifier, playing an HLS stream within specified time intervals is achievable in Ant Media Server.
 
 :::info
-HLS modifier feature is included by default on the server side, starting version 2.9.0 of Ant Media Server.
+The HLS modifier feature is included by default on the server side, starting with version 2.9.0 of Ant Media Server.
 :::
 
-You can include the ```startTime``` and ```endTime``` parameters in query string of m3u8 request to play the stream during that specific time frame.
+You can include the ```startTime``` and ```endTime``` parameters in the query string of the m3u8 request to play the stream during that specific time frame.
 
 ```https://domain:5443/WebRTCAppEE/streams/streamId.m3u8?start=1668454888&end=1668454999```
 
 ### Configuration for HLS Manifest Modifier
 
-Set below settings from application settings -> advanced settings through web panel
+Set the below settings from application settings -> advanced settings through the web panel
 
 ```"hlsflags":"+program_date_time",``` to add program date time in m3u8 file.
 
 ```"hlsPlayListType":"event",``` to keep all ts files references in m3u8 file.
 
-```"deleteHLSFilesOnEnded":false``` to keep all ts files on the disk after stream finishes.
+```"deleteHLSFilesOnEnded":false``` to keep all .ts files on the disk after the stream finishes.
 
 ### Usage of HLS Manifest Modifier Plugin
 
-Request m3u8 by adding the `start` and `end` date and time in unix timestamp as below:
+Request m3u8 by adding the `start` and `end` date and time in the Unix timestamp as below:
 
 ```https://domain:5443/AppName/streams/streamId.m3u8?start=1668454888&end=1668454999```
 
