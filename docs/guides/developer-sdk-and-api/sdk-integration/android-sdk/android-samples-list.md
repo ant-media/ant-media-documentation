@@ -46,8 +46,7 @@ Under settings, you need to pass your Ant Media Server websocket URL and the Roo
 ### Publish Activity 
 This sample can be used to publish WebRTC streams and it also has a data channel function embedded in this sample.
 
-![publish-sample-07](https://github.com/user-attachments/assets/e74b608f-f69c-4435-a7a0-1f134aa7f260)
-
+![publish-sample-07](https://github.com/user-attachments/assets/91953e44-b7ef-40d1-a579-bc03c86aa05f)
 
 To verify whether the stream is published successfully or not, open the web panel of your Ant Media Server (e.g., http://server_ip:5080) and view the stream there.
 
