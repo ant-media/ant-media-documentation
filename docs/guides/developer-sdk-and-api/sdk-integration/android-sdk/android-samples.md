@@ -126,7 +126,7 @@ This is also a conference sample and it indicates when a speaker is speaking.
 This is also an example of a publishing activity that flashes `Are you Speaking` in case the speaker is speaking but the microphone is muted.
 
 ### Peer Activity
-The sample also includes a sample for peer-to-peer cases. In peer-to-peer, the Ant Media Server is only a signaling server to establish the connection. Video and Audio are not relayed through the Ant Media Server.
+The includes a sample for peer-to-peer cases. In peer-to-peer, the Ant Media Server is only a signaling server to establish the connection. Video and Audio are not relayed through the Ant Media Server.
 
 ![peer-015](https://github.com/user-attachments/assets/98257707-181a-4643-9a02-e5b84dd1d416)
 
