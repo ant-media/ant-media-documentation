@@ -46,7 +46,7 @@ Under settings, you need to pass your Ant Media Server websocket URL and the Roo
 ### Publish Activity 
 This sample can be used to publish WebRTC streams and it also has a data channel function embedded in this sample.
 
-![publish-sample-07](https://github.com/user-attachments/assets/91953e44-b7ef-40d1-a579-bc03c86aa05f)
+![publish-sample-07](https://github.com/user-attachments/assets/eb8aa1de-fab2-4efa-b4b4-824ab33d23e4)
 
 To verify whether the stream is published successfully or not, open the web panel of your Ant Media Server (e.g., http://server_ip:5080) and view the stream there.
 
@@ -55,46 +55,42 @@ To verify whether the stream is published successfully or not, open the web pane
 ### Play Activity
 This sample is to play WebRTC stream and like the publish activity, it also has the data channel function embedded.
 
-![play-sample-08](https://github.com/user-attachments/assets/28abd9d0-2960-4d94-82cf-97d245319b86)
-
+![play-sample-08](https://github.com/user-attachments/assets/7bc4b6df-2b2f-4c74-b7c9-046797cc580e)
 
 ### Conference Activity
 The conference activity sample can be used for video conference calls. 
 
 It can also be used to join in Play Only mode as well and has enable/disable audio and video.
 
-![conference-sample-09](https://github.com/user-attachments/assets/0a79cef1-8cce-49cb-80f2-39002925f7c0)
-
+![conference-sample-09](https://github.com/user-attachments/assets/4ce7fe1b-6564-4eb9-a36e-87c5440b9f23)
 
 ### Screen Share Activity
 This sample activity demonstrates how to share screens with the WebRTC Android sample app.
 
-![screen-share-010](https://github.com/user-attachments/assets/bd2e356e-813e-4fa1-894a-04faf1f5456f)
-
+![screen-share-010](https://github.com/user-attachments/assets/172c39ed-c0ef-459c-ba2c-c7cd22f9f0cb)
 
 It has three variations, Screen, Front camera, and Rear camera.
 
-![screen-variations-011](https://github.com/user-attachments/assets/7605e5fb-37e7-40e0-9b4e-7e3d6795d4a3)
+![screen-variations-011](https://github.com/user-attachments/assets/87bc2b09-9998-449b-9283-b9cea1c2db79)
 
 
 ### Data Channel Only Activity
-The data channel is another channel in WebRTC other than video and audio. In the data channel, you can send any kind of information to the other clients. Data channels can be utilized in various use cases including chat, control messages or file sharing.
+The data channel is another channel in WebRTC other than video and audio. In the data channel, you can send any kind of information to the other clients. Data channels can be utilized in various use cases including chat, control messages, or file sharing.
 
 - To use the data channel, please make sure that it is [enabled on the application settings](https://antmedia.io/docs/guides/publish-live-stream/webrtc/data-channel/#enabling-the-data-channel).
 
-![data-channel-012](https://github.com/user-attachments/assets/fb45451e-be0c-46ce-9479-72627c12a580)
+![data-channel-012](https://github.com/user-attachments/assets/1e7f631e-7f4a-4b4a-afd2-676320297e84)
+
 
 ### Stats Activity
 This sample page includes Webrtc publish and shows the various audio and video stats of the published stream when `Show Stats` is called.
 
-![stats-013](https://github.com/user-attachments/assets/bc4e309a-a030-4bd9-bd00-7310e0e9a317)
-
+![stats-013](https://github.com/user-attachments/assets/e7110d62-311f-4c92-887c-93e003020b4e)
 
 ### Conference with Speaking Indicator Activity
 This is also a conference sample and it indicates when a speaker is speaking.
 
-![speaker-014](https://github.com/user-attachments/assets/260bdedf-85dd-4f59-9155-19b09b14cabe)
-
+![speaker-014](https://github.com/user-attachments/assets/c4ac309e-810b-46db-b937-fad1af1b9e07)
 
 ### Publish with Are You Speaking Activity
 This is also an example of a publishing activity that flashes `Are you Speaking` in case the speaker is speaking but the microphone is muted.
@@ -102,8 +98,7 @@ This is also an example of a publishing activity that flashes `Are you Speaking`
 ### Peer Activity
 The sample also includes a sample for peer-to-peer cases. In peer-to-peer, the Ant Media Server is only a signaling server to establish the connection. Video and Audio are not relayed through the Ant Media Server.
 
-![peer-015](https://github.com/user-attachments/assets/5f00e8a1-46ed-4ae9-9d61-fc752b60cfcd)
-
+![peer-015](https://github.com/user-attachments/assets/98257707-181a-4643-9a02-e5b84dd1d416)
 
 :::info
 There are many more samples included with the Android SDK like USB Camera, mp3, mp4, mp4 with Surface, and Multi Track activity, etc. which you can check according to your use.
