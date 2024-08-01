@@ -5,14 +5,14 @@ keywords: [Android SDK User Guide, Android SDK Basic Samples, Android SDK Minima
 sidebar_position: 6
 ---
 
-To compile and build the SDK, we need to connect the Android studio to an Android mobile device. It can be a virtual device/emulator or a physical device. For this demonstration, I'm using a phyiscal android device.
+To compile and build the SDK, we need to connect the Android studio to an Android mobile device. It can be a virtual device/emulator or a physical device. For this demonstration, I'm using a physical Android device.
 
 ## Run the WebRTC Android SDK
 Now that we have the Android SDK, we will connect a mobile device to the Android studio and then run the SDK.
 
 ### Connecting the Android Device with Android Studio
-- Connect your Android device to your system and switch to the developer mode.
-- Go to developer options and enable USB debugging.
+- Connect your Android device to your system and switch to the **developer mode**.
+- Go to developer options and **enable USB debugging**.
 - In the Android Studio application, you will see your mobile device name which shows that it is connected.
 
 ![connected-device-01](https://github.com/user-attachments/assets/86a5433c-736a-4992-a942-f217d2fee6ab)
