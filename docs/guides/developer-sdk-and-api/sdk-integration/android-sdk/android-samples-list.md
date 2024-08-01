@@ -31,8 +31,7 @@ Now that we have the Android SDK, we will connect a mobile device to the Android
 
 - On your mobile device, you can see all the samples under the Ant Media WebRTC Sample App.
 
-<img src="https://github.com/user-attachments/assets/8f587c0b-7b01-43f9-a5e3-b02135832bae" alt="samples-04" />
-
+![samples-004](https://github.com/user-attachments/assets/3a5db35f-91ff-4fcf-bf4c-b071ac164afd)
 
 ## WebRTC Android SDK Samples
 The samples are divided into three categories, Minimal, Basic, and Advanced. We will discuss some of these samples here. Feel free to explore all the samples as you may require.
