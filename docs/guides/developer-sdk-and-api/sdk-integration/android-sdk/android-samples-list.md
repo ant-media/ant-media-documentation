@@ -41,8 +41,7 @@ The samples are divided into three categories, Minimal, Basic, and Advanced. We 
 Under settings, you need to pass your Ant Media Server websocket URL and the Room Name (in case of a conference).
 - All the stream samples that you publish/play will be carried from this Ant Media Server only.
 
-![settings-06](https://github.com/user-attachments/assets/1f3c0d6a-40bc-4670-ae24-216fc7f5b9a4)
-
+![settings-06](https://github.com/user-attachments/assets/97e6945a-8bc8-4e57-8f57-c8992f8a7df3)
 
 ### Publish Activity 
 This sample can be used to publish WebRTC streams and it also has a data channel function embedded in this sample.
