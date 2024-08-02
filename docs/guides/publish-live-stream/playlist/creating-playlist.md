@@ -165,8 +165,9 @@ Starting from Ant Media server version 2.10.0, you can schedule your playlist to
 
 ![choose-time](https://github.com/user-attachments/assets/9f9f0985-2875-4fcb-ab4b-2ed3d1941a12)
 
-:::info
+:::important 
 Please make sure that your server time is in sync with the NTP.
+:::
 
 - At the scheduled time, your playlist will start :)
 
