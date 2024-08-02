@@ -9,11 +9,11 @@ It is very simple to create a playlist from the Ant Media Server dashboard by fo
 
 ## VoD files
 
-In order to create a playlist, we need to have a set of VoD files that will be used as playlist items. Therefore, as the first step, we will upload some VoD files to the Ant Media Server.
+To create a playlist, we need to have a set of VoD files that will be used as playlist items. Therefore, as the first step, we will upload some VoD files to the Ant Media Server.
 
 ### Login to your Ant Media Server Dashboard
 
-Login to your Ant Media Server Web Panel/dashboard. The url is like this: `https://YOUR_ANT_MEDIA_SERVER:5443/`
+Login to your Ant Media Server Web Panel/dashboard. The URL is like this: `https://YOUR_ANT_MEDIA_SERVER:5443/`
 
 ![image.png](@site/static/img/publish-live-stream/playlist/webpanel.png)
 
@@ -165,7 +165,7 @@ Starting from Ant Media server version 2.10.0, you can schedule your playlist to
 
 ![choose-time](https://github.com/user-attachments/assets/9f9f0985-2875-4fcb-ab4b-2ed3d1941a12)
 
-::: info
+:::info
 Please make sure that your server time is in sync with the NTP.
 
 - At the scheduled time, your playlist will start :)
