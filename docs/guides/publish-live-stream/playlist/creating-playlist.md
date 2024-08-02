@@ -72,21 +72,21 @@ http://localhost:5080/WebRTCAppEE/streams/722484094956241856650105.mp4
 
 Now that we have the VoD files ready, we will create the playlist with these VoD files as the playlist items.
 
-- Go to the `Live Streams` section, click on `New Live Stream`, and then select `Playlist` from the drop-down menu.
+- Go to the `Live Streams` section, click `New Live Stream`, and then select `Playlist` from the drop-down menu.
 
 ![image.png](@site/static/img/publish-live-stream/playlist/playlist.png)
 
 - Name your playlist, and click on `Add Playlist Item`. Under the dropdown menu, there are two options.
 
-1. Add URL Directly
-2. Add From VODs
+1. **Add URL Directly**
+2. **Add From VODs**
 
 ![add-playlist-item-01](https://github.com/user-attachments/assets/7b292014-d319-4a5e-8d3d-b5f388a07bc3)
 
 - Let's discuss both options and you can use any of these options based on your convenience. 
 
 ### Add URL Directly
-If you have the VoD URL handy or if you are adding external VoDs, then you can use this option.
+If you have the VoD URL handy or are adding external VoDs, you can use this option.
 
 #### Get the VoD URL
 
@@ -96,7 +96,7 @@ If you have the VoD URL handy or if you are adding external VoDs, then you can u
 
 ![copy-vod](https://github.com/user-attachments/assets/2693c0db-006c-4a04-ba72-f6835e950565)
 
-- Now we have the VoDs accessible through the below links.
+- Now we have the VoDs accessible through the links below.
 
 ```
 http://localhost:5080/LiveApp/streams/044283659243035008593467.mp4
@@ -149,6 +149,28 @@ This option is more useful if all the VoD files you want to stream are on your A
 - Congratulations! The playlist is successfully created and running.
 
 ![playlist-streaming](https://github.com/user-attachments/assets/44ef7735-163e-4105-a179-ac1b2b22bfeb)
+
+## Scheduling Playlist
+Starting from Ant Media server version 2.10.0, you can schedule your playlist to start at any time in advance with the ```Schedule to Start Automatically``` option and control the start of your playlist according to your schedule.
+
+- This can be set at both times: When creating the playlist as well as after the playlist is created.
+
+![schedule-while-creating](https://github.com/user-attachments/assets/334be0d7-c2c2-4a9c-b9d8-bc01d34513bd)
+
+- Click `Schedule to Start Automatically`, and choose the date from the calendar.
+
+![choose-date](https://github.com/user-attachments/assets/950805ae-d04f-44e0-9857-fef3f7f6b698)
+
+- Set the exact time when you want the playlist to be started and save.
+
+![choose-time](https://github.com/user-attachments/assets/9f9f0985-2875-4fcb-ab4b-2ed3d1941a12)
+
+::: info
+Please make sure that your server time is in sync with the NTP.
+
+- At the scheduled time, your playlist will start :)
+
+![playlist-scheduled](https://github.com/user-attachments/assets/b8471730-eba7-42d2-afcb-f9345072551c)
 
 ## Optimizing Playlist for Better Playback Experience
 
