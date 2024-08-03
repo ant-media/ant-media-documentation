@@ -444,8 +444,8 @@ We prefer to use SSL termination.
 
 ```sh
     vim /etc/nginx/conf.d/grafana.conf
-
 ```
+
 ```echo
     server {
     	listen 443 ssl;
@@ -555,4 +555,4 @@ Edit the `logstash.yml` file with command `vim /etc/logstash/logstash.yml` then 
 ```
 
 This is the whole setup of monitoring Ant Media Servers. 
-If you have any questions, please just drop a line to contact[@]antmedia.io
+If you have any questions, please just drop a line to contact@antmedia.io
