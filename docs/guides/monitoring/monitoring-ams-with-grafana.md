@@ -11,17 +11,16 @@ In this document, you'll learn how to monitor Ant Media Servers with Apache Kafk
 - [Use Automatic Installation Script](#Automatic-Installation-Script)
 - [Install Apache Kafka](#Install-Apache-Kafka)
 - [Install Elasticsearch and Logstash](#Install-Elasticsearch-and-Logstash)
-- [Install Grafana](#install-grafana)
+- [Install Grafana](#Install-Grafana)
 
 > #### Information about CVE-2021-44228
 > 
 > Since Apache Kafka uses Log4j 1.x, there is no impact\[1\]. If your Logstash and Elasticsearch version is lower than 7.16.1, you can upgrade to the latest version with the command `apt-get update && apt-get install -y logstash elasticsearch`. If you do not have the possibility to update, you need to add the parameter `-Dlog4j2.formatMsgNoLookups=true` to the JVM option.
 >>
 >> \[1\] [https://logging.apache.org/log4j/2.x/security.html](https://logging.apache.org/log4j/2.x/security.html)
->>
 >> \[2\] [https://discuss.elastic.co/t/apache-log4j2-remote-code-execution-rce-vulnerability-cve-2021-44228-esa-2021-31/291476](https://discuss.elastic.co/t/apache-log4j2-remote-code-execution-rce-vulnerability-cve-2021-44228-esa-2021-31/291476)
 
-## Which data can you access from Ant Media?
+### Which data can you access from Ant Media?
 -----------------------------------------
 
 Ant Media Server provides the following statistics.
@@ -45,7 +44,7 @@ Ant Media Server provides the following statistics.
 - server-timing
 - host-addres
 
-### Automatic installation script
+## Automatic Installation Script
 
 If you would like automatic installation instead of dealing with the steps above, you can use the script below:
 - [Install Monitoring Tools through shell script for Ant Media Server](https://raw.githubusercontent.com/ant-media/Scripts/master/install-monitoring-tools.sh)
@@ -56,9 +55,9 @@ If you would like automatic installation instead of dealing with the steps above
 wget https://raw.githubusercontent.com/ant-media/Scripts/master/install-monitoring-tools.sh && chmod +x install-monitoring-tools.sh
 ```
 
-After the installation is completed successfully, login to Web panel ```http://your_ip_address:3000/``` through your web browser. The default username and password is ```admin/admin```
+After the installation is completed successfully, login to Web panel `http://your_ip_address:3000/` through your web browser. The default username and password is `admin/admin`
 
-# Install Apache Kafka
+## Install Apache Kafka
 
 Kafka is useful for building real-time streaming data pipelines to get data between the systems or applications.
 
@@ -74,7 +73,7 @@ Kafka is useful for building real-time streaming data pipelines to get data betw
     tar -zxvf kafka_2.12-2.2.0.tgz
     sudo mv kafka_2.12-2.2.0 /opt/kafka
 ```
-3. Edit **server.properties** ```vim /opt/kafka/config/server.properties``` file as below.
+3. Edit **server.properties** `vim /opt/kafka/config/server.properties` file as below.
 ```sh
     listeners=PLAINTEXT://your_server_ip:9092
 ```
@@ -82,13 +81,12 @@ Kafka is useful for building real-time streaming data pipelines to get data betw
 ```sh
     sudo /opt/kafka/bin/zookeeper-server-start.sh /opt/kafka/config/zookeeper.properties &
     sudo /opt/kafka/bin/kafka-server-start.sh /opt/kafka/config/server.properties &
-
     sudo /opt/kafka/bin/kafka-server-start.sh /opt/kafka/config/server.properties &
 ```
 Firstly, we've started ZooKeeper because Kafka needs ZooKeeper and then we've started Kafka.
 
 5. Check if it's working. Run the command below
-```
+```sh
     netstat -tpln | egrep "9092|2181"
 ```
 if you see that the ports(`9092` and `2181`) are in listening mode, it means it's working.
@@ -102,9 +100,9 @@ Running Apache Kafka as a `systemd` service will let us manage Kafka services to
     vim /lib/systemd/system/kafka.service
 ```
 
-- Copy and paste the below content into the ```kafka.service```you've created above. Make sure that you set the correct JAVA\_HOME path for your system in the content below
+- Copy and paste the below content into the `kafka.service`you've created above. Make sure that you set the correct JAVA\_HOME path for your system in the content below
     
-```
+```echo
     [Unit]
     Description=Apache Kafka Server
     Requires=network.target remote-fs.target
@@ -126,7 +124,7 @@ Running Apache Kafka as a `systemd` service will let us manage Kafka services to
 ```
     
 - Copy and paste the below content to the `kafka-zookeeper.service` file you've created above.
-```  
+```echo
     [Unit]
     Description=Apache Zookeeper Server
     Requires=network.target remote-fs.target
@@ -163,10 +161,7 @@ If you want to monitor Ant Media Server, you need to set the IP address of your 
     vim /usr/local/antmedia/conf/red5.properties
 ```
     
-- Edit the following line
-
-```server.kafka_brokers=ip_address:port_number```
-    
+- Edit the line: `server.kafka_brokers=ip_address:port_number`
 > Replace `ip_address:port_number` with Apache Kafka IP Address and port number.
 > Example: `server.kafka_brokers=192.168.1.230:9092`
     
@@ -184,7 +179,7 @@ If you want to monitor Ant Media Server, you need to set the IP address of your 
 ```
     
 - Output should be something like below:
-```echo    
+```json
         {"instanceId":"a06e5437-40ee-49c1-8e38-273544964335","cpuUsage":
         {"processCPUTime":596700000,"systemCPULoad":0,"processCPULoad":1},"jvmMemoryUsage": 
         {"maxMemory":260046848,"totalMemory":142606336,"freeMemory":21698648,"inUseMemory":120907688},"systemInfo": 
@@ -216,9 +211,9 @@ Example:
 ```
     
 
-# Install Elasticsearch and Logstash
+## Install Elasticsearch and Logstash
 
-## Install Elasticseach
+### Install Elasticseach
 
 1. Import GPG key and Repo
 ```sh
@@ -238,7 +233,7 @@ Example:
     sudo systemctl start elasticsearch.service
 ```
 
-## Install Logstash
+### Install Logstash
 
 Logstash is a server‑side data processing pipeline that ingests data from multiple sources simultaneously, transforms it and then sends it to a “stash” like Elasticsearch
 
@@ -251,8 +246,8 @@ Logstash is a server‑side data processing pipeline that ingests data from mult
     sudo systemctl enable logstash.service
 ```
 3. Configure logstash. Create `/etc/logstash/conf.d/logstash.conf` file and add below content. Please don't forget to replace `kafka_server_ip` and make sure `elasticsearch_ip` is correct.
-```echo
 
+```echo
     #kafka
     input {
       kafka {
@@ -296,7 +291,7 @@ Example output:
     yellow open   logstash-log-2020.03.23 mf-ffIHBSNO4s7_YoUr_Rw   1   1       1300            0    527.5kb        527.5kb
 ```
 
-# Install Grafana
+## Install Grafana
 
 Grafana is an open source metric analytics & visualization suite.
 
@@ -314,9 +309,9 @@ Grafana is an open source metric analytics & visualization suite.
     sudo systemctl start grafana-server
 ```
 
-#### Configure Grafana
+### Configure Grafana
 
-1. Login to Web panel `http://your_ip_address:3000/login` through your web browser. Default username and password is ```admin/admin```
+1. Login to Web panel `http://your_ip_address:3000/login` through your web browser. Default username and password is `admin/admin`
 
 2. Click `Add data source`.  
 ![](@site/static/img/grafana1.png)
@@ -378,7 +373,7 @@ Keep your token secure and store it safely, it can be used by anyone to control 
 
 4. Save the id number: ```-1001181377238``` because we'll need it in next step
 
-#### Configure Grafana Notification
+### Configure Grafana Notification
 
 We have configured the chatbot aboe. Now let's start to configure Grafana Notification.
 
@@ -412,12 +407,8 @@ We prefer to use SSL termination.
 - Run the following commands to install Nginx and certbot
 
 ```sh
-sudo apt install curl ca-certificates lsb-release -y
-
-```
-```echo
-    echo "deb http://nginx.org/packages/`lsb_release -d | awk '{print $2}' | tr '[:upper:]' '[:lower:]'` `lsb_release -cs` nginx" \
-        | sudo tee /etc/apt/sources.list.d/nginx.list
+    sudo apt install curl ca-certificates lsb-release -y
+    echo "deb http://nginx.org/packages/`lsb_release -d | awk '{print $2}' | tr '[:upper:]' '[:lower:]'` `lsb_release -cs` nginx" | sudo tee /etc/apt/sources.list.d/nginx.list
 ```
 
 - Now import an official Nginx signing key
@@ -477,40 +468,36 @@ sudo apt install curl ca-certificates lsb-release -y
                     proxy_pass http://127.0.0.1:3000;
                 }
     }
-    
 ```
-- You can reach Grafana through: ```https://yourdomain.com/```
+- You can reach Grafana through: `https://yourdomain.com/`
 
 ### Performance Tuning
 
 The performance will be affected by system resources and network status.
 
 1. Heap size has to be less than 4Gb and not more than 8Gb. Set the minimum (Xms) and maximum (Xmx) heap allocation size to the same value to prevent the heap size from being resized.
-
-> For example, 4GB / 4GB is set for a total of 8Gb memory.
+>> For example, 4GB / 4GB is set for a total of 8Gb memory.
 
 Open the following file then change Xms and Xmx values according to your total memory.
 
 ```sh
     vim /etc/logstash/jvm.options
 ```
-> Xms4g
-> Xmx4g
+>> Xms4g
+>> Xmx4g
 
 2. The pipeline.workers setting determines how many threads to run for filter and output processing. This defaults to the number of the host's CPU cores.
 
-Edit the following file then change pipeline.workes according to your CPU cores.
+Edit the `logstash.yml` file with command `vim /etc/logstash/logstash.yml` then change pipeline.workes according to your CPU cores. Example:
 
 ```sh
-    vim /etc/logstash/logstash.yml
+    pipeline.workers: 4
 ```
-
-```pipeline.workers: 4```
 
 3. Ensure that the consumer\_threads parameter matches the number of partitions that are specified in the Apache Kafka configuration. If you specify fewer partitions than consumer threads, some threads remain idle while they wait for an available partition.
 
 ```sh
-/etc/logstash/conf.d/logstash.conf
+    /etc/logstash/conf.d/logstash.conf
 ```
 ```echo
     input {
@@ -519,6 +506,9 @@ Edit the following file then change pipeline.workes according to your CPU cores.
         client_id =>` "logstash"
         group_id =>` "logstash"
         consumer_threads =>` 4
+        ...
+      }
+    }
 ```
 
 - You can find out how many partitions Kafka has by following the command below. And you can equate the number of consumer threads to the number of partitions.
@@ -533,7 +523,7 @@ Edit the following file then change pipeline.workes according to your CPU cores.
     ./kafka-topics.sh --zookeeper 127.0.0.1:2181 --alter --topic ams-instance-stats --partitions 4
 ```
 
-4. Comment the setting for syslog logging ```stdout { codec =>` rubydebug }``` from `/etc/logstash/conf.d/logstash.conf` file.
+4. Comment the setting for syslog logging `stdout { codec => rubydebug }` from `/etc/logstash/conf.d/logstash.conf` file.
 ```echo
     input {
       kafka {
