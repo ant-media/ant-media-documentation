@@ -1,5 +1,5 @@
 ---
-title: Analytics Logs: Usage and Processing with New Relic   
+title: "Analytics Logs: Usage and Processing with New Relic"   
 description: Analytics Logs: Usage and Processing with New Relic 
 keywords: [Analytics, Analytics with New Relic, Ant Media Server Tutorials]
 ---
@@ -112,6 +112,6 @@ Filter logs based on NRQL: filePath = '/var/log/antmedia/ant-media-server-analyt
 Parsing rule: %{TIMESTAMP_ISO8601:timestamp} %{SPACE}\{"subscriberId":"%{USERNAME:subscriberId}","totalBytesTransferred":%{INT:totalBytesTransferred},"byteTransferred":%{INT:byteTransferred},"event":"%{WORD:event}","timeMs":%{NUMBER:timeMs},"app":"%{WORD:app}","streamId":"%{USERNAME:streamId}","logSource":"%{WORD:logSource}"\}
 ```
 
-5. We have done the hardest part, now you just need to import the dashboard from [here](https://raw.githubusercontent.com/ant-media/Scripts/master/monitor/ams-new-relic-dashboard.json) under Dashboard > Import dashboard. 
+5. We have done the hardest part, now you just need to import the dashboard from [here](https://raw.githubusercontent.com/ant-media/Scripts/master/monitor/ams-new-relic-dashboard.json) under `Dashboard > Import dashboard`. 
 
 You can write your own queries using NRQL and create your own dashboard. 
