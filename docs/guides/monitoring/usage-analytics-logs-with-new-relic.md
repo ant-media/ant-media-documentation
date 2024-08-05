@@ -1,6 +1,6 @@
 ---
 title: "Analytics Logs: Usage and Processing with New Relic"   
-description: Analytics Logs: Usage and Processing with New Relic 
+description: "Analytics Logs: Usage and Processing with New Relic" 
 keywords: [Analytics, Analytics with New Relic, Ant Media Server Tutorials]
 ---
 
