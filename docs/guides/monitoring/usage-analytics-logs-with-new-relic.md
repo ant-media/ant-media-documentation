@@ -114,4 +114,7 @@ Parsing rule: %{TIMESTAMP_ISO8601:timestamp} %{SPACE}\{"subscriberId":"%{USERNAM
 
 5. We have done the hardest part, now you just need to import the dashboard from [here](https://raw.githubusercontent.com/ant-media/Scripts/master/monitor/ams-new-relic-dashboard.json) under `Dashboard > Import dashboard`. 
 
+![image.png](@site/static/img/analytics/antmedia-analytics-new-relic-3.png)
+
+
 You can write your own queries using NRQL and create your own dashboard. 
