@@ -119,4 +119,4 @@ Parsing rule: %{TIMESTAMP_ISO8601:timestamp} %{SPACE}\{"subscriberId":"%{USERNAM
 ![image.png](@site/static/img/analytics/antmedia-analytics-new-relic-7.png)
 
 
-You can write your own queries using NRQL and create your own dashboard. 
+If you wish, you can customize the dashboard according to your preferences by using [NRQL](https://docs.newrelic.com/docs/nrql/get-started/introduction-nrql-new-relics-query-language/) queries.
