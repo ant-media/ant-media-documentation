@@ -2,11 +2,10 @@
 title: Monitor Ant Media Server statistics with New Relic
 description: Monitor Ant Media Server statistics with New Relic
 keywords: [Analytics, New Relic, Statistics, Ant Media Server Tutorials]
-sidebar_position: 4
+sidebar_position: 1
 ---
 
 # Monitor Ant Media Server statistics with New Relic
-
 
 Since v2.10.0 of AMS, analytics logs have been provided to monitor important statistics for users. These logs are located at `/var/log/antmedia/` in JSON format, named `ant-media-server-analytics.log`. This structure allows you to transfer your logs to any log management server and process them in various ways. 
 
