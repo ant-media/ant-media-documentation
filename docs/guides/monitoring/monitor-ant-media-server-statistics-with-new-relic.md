@@ -129,9 +129,9 @@ Parsing rule: \{"subscriberId":"%{USERNAME:subscriberId}","totalBytesTransferred
 :::info
 Please do not forget to change the account ID of your New Relic account in the json.
 
- "accountIds": [
-                  0000000  //replace your account ID in whole json
-                ],
+    "accountIds": [
+      0000000    //replace your account ID in whole json
+    ],
  :::
 
 ![image.png](@site/static/img/analytics/antmedia-analytics-new-relic-5.png)
