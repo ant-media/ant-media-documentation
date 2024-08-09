@@ -30,7 +30,10 @@ New Relic is a software analytics and performance monitoring platform that helps
 
 After creating and logging into your [New Relic](https://newrelic.com/) account, follow these steps to configure and install the New Relic Client on the server where your Ant Media Server is installed.
 
-1. Select from the side bar, **All Entities > Add Data > Linux Logs > Create a new key**
+
+### Genrate the key and install the agent
+
+Select from the side bar, **All Entities > Add Data > Linux Logs > Create a new key**
 
 ![image.png](@site/static/img/analytics/antmedia-analytics-new-relic-1.png)
 
@@ -42,7 +45,8 @@ After creating and logging into your [New Relic](https://newrelic.com/) account,
 curl -Ls https://download.newrelic.com/install/newrelic-cli/scripts/install.sh | bash && sudo NEW_RELIC_API_KEY=NRAK-************YI91R NEW_RELIC_ACCOUNT_ID=44799 NEW_RELIC_REGION=EU /usr/local/bin/newrelic install -y
 ```
 
-2. Configuration of Log Files
+
+### Configuration of Log Files
 
 To process only Ant Media Server's Analytics logs in New Relic, delete all the YAML files under `/etc/newrelic-infra/logging.d ` folder and create a new file named `antmedia.yaml` with the following lines:
 
@@ -65,7 +69,9 @@ Once you complete these steps, your logs will start being transferred to New Rel
 ![image.png](@site/static/img/analytics/antmedia-analytics-new-relic-3.png)
 
 
-3. We need to add log parse on New Relic to process logs for each event. You can perform a parsing process suitable for your log format using the log parsing tools provided by New Relic. This step is critical for correctly interpreting and analyzing your logs.
+### Log Parsing
+
+We need to add log parse on New Relic to process logs for each event. You can perform a parsing process suitable for your log format using the log parsing tools provided by New Relic. This step is critical for correctly interpreting and analyzing your logs.
 
 Let's create the rules by clicking `Logs > Parsion Logs > Create parsin rule`. Unfortunately, there is no Import/Export feature in New Relic Parsing Rules, so you need to create the parsing rule for each event manually, as below:
 
@@ -124,7 +130,10 @@ Filter logs based on NRQL: filePath = '/var/log/antmedia/ant-media-server-analyt
 Parsing rule: \{"subscriberId":"%{USERNAME:subscriberId}","totalBytesTransferred":%{INT:totalBytesTransferred},"byteTransferred":%{INT:byteTransferred},"event":"%{WORD:event}","timeMs":%{NUMBER:timeMs},"app":"%{WORD:app}","streamId":"%{USERNAME:streamId}","logSource":"%{WORD:logSource}"\}
 ```
 
-4. We have done the hardest part, now you just need to import the dashboard from [here](https://raw.githubusercontent.com/ant-media/Scripts/master/monitor/ams-new-relic-dashboard.json) under `Dashboard > Import dashboard`. 
+
+### Dashboard creation 
+
+We have done the hardest part, now you just need to import the dashboard from [here](https://raw.githubusercontent.com/ant-media/Scripts/master/monitor/ams-new-relic-dashboard.json) under `Dashboard > Import dashboard`. 
 
 :::info
 Please do not forget to change the account ID of your New Relic account in the json.
