@@ -31,7 +31,7 @@ New Relic is a software analytics and performance monitoring platform that helps
 After creating and logging into your [New Relic](https://newrelic.com/) account, follow these steps to configure and install the New Relic Client on the server where your Ant Media Server is installed.
 
 
-### Genrate the key and install the agent
+### New Relic Client Installation
 
 Select from the side bar, **All Entities > Add Data > Linux Logs > Create a new key**
 
@@ -46,7 +46,7 @@ curl -Ls https://download.newrelic.com/install/newrelic-cli/scripts/install.sh |
 ```
 
 
-### Configuration of Log Files
+### Configuration of Log File
 
 To process only Ant Media Server's Analytics logs in New Relic, delete all the YAML files under `/etc/newrelic-infra/logging.d ` folder and create a new file named `antmedia.yaml` with the following lines:
 
