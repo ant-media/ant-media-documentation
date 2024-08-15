@@ -30,13 +30,13 @@ The script will simulate a specified number of RTMP live streams published to th
 - Open a terminal window on your Ubuntu server or virtual machine and go to the directory where you have downloaded the `rtmp_publisher.sh` script.
 - Use the following command to start the RTMP load test:
      ```bash
-     sudo ./rtmp_publisher.sh file-name.mp4 rtmp://domain-or-Ip/AppName/streamId 10
+     sudo ./rtmp_publisher.sh /path/to/file.mp4 rtmp://domain-or-Ip/AppName/streamId 10
      ```
 
   Here is the sample command:
 
   ```bash
-  sudo ./rtmp_publisher.sh test.mp4 rtmp://rtmp.antmedia.io/LiveApp/test 10
+  sudo ./rtmp_publisher.sh /home/ubuntu/test.mp4 rtmp://rtmp.antmedia.io/LiveApp/test 10
   ```
      
   This command will publish 10 RTMP streams with stream IDs `test_1`, `test_2` etc. in the LiveApp application of your Ant Media Server.
@@ -50,4 +50,4 @@ The script will simulate a specified number of RTMP live streams published to th
      sudo pkill ffmpeg
      ```
 
-Similary, you can increase the RTMP streams load count as needed.
+Similarly, you can increase the RTMP streams load count as needed.
