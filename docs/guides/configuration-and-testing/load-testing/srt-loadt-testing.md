@@ -41,7 +41,7 @@ The script will simulate a specified number of SRT live streams published to the
      
   This command will publish 10 SRT streams with stream IDs `test_1`, `test_2` etc. in the LiveApp application of your Ant Media Server.
 
-  Replace the `file.mp4` with the actual mp4 file, the URL with the actual URL of your Ant Media Server and `10` with the number of SRT streams you want to simulate.
+  Replace `file.mp4` with the actual mp4 file, the URL with the actual URL of your Ant Media Server and `10` with the number of SRT streams you want to simulate.
 
 - Wait for the test to be completed.
 - Use the following command to stop the HLS load test:
