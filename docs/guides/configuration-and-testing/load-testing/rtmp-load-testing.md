@@ -29,6 +29,7 @@ The script will simulate a specified number of RTMP live streams published to th
 
 - Open a terminal window on your Ubuntu server or virtual machine and go to the directory where you have downloaded the `rtmp_publisher.sh` script.
 - Use the following command to start the RTMP load test:
+
      ```bash
      sudo ./rtmp_publisher.sh /path/to/file.mp4 rtmp://domain-or-Ip/AppName/streamId 10
      ```
