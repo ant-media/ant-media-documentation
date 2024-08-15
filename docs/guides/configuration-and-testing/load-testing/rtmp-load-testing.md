@@ -42,7 +42,7 @@ The script will simulate a specified number of RTMP live streams published to th
      
   This command will publish 10 RTMP streams with stream IDs `test_1`, `test_2` etc. in the LiveApp application of your Ant Media Server.
 
-  Replace the `file.mp4` with the actual mp4 file, the URL with the actual URL of your Ant Media Server and `10` with the number of RTMP streams you want to simulate.
+  Replace `file.mp4` with the actual mp4 file, the URL with the actual URL of your Ant Media Server and `10` with the number of RTMP streams you want to simulate.
 
 - Wait for the test to be completed.
 - Use the following command to stop the HLS load test:
