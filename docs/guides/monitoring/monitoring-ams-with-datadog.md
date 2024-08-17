@@ -11,9 +11,9 @@ In this document, you'll learn how to monitor Ant Media Servers with Datadog. Fi
 ### Step 1 - Install Datadog
 
 Firstly, you need to create a Datadog account in [this link](https://www.datadoghq.com/). After that just go ```Integrations / Agent``` section like this URL: ```https://app.datadoghq.com/account/settings#agent/ubuntu```. Select ```Ubuntu```. Run installation command as below:
-
+```sh
     DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=XXXXXXXXXXXXXXXXXXXX DD_SITE="datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"
-    
+```sh
 
 Check this link for more details: https://docs.datadoghq.com/agent/
 
@@ -22,15 +22,16 @@ Check this link for more details: https://docs.datadoghq.com/agent/
 **Enable process monitoring:**  
 Edit ```process_config``` parameter in ```/etc/datadog-agent/datadog.yaml```
 
+```echo
     process_config:
         enabled: 'true'
-
+```
 
 **Enable network performance monitoring:**  
 Create ```system-probe.yaml``` file with example settings.
-
+```sh
     sudo -u dd-agent cp /etc/datadog-agent/system-probe.yaml.example /etc/datadog-agent/system-probe.yaml
-    
+```
 
 Add network config parameter in ```/etc/datadog-agent/system-probe.yaml```
 
