@@ -350,15 +350,15 @@ const config = {
 	theme: prismThemes.github,
 	darkTheme: prismThemes.dracula,
       },
-      announcementBar: {
+    /*  announcementBar: {
         id: 'announcement-bar',
-     //   content:
-     //     `<div style="font-size:16px;">
-     //     </div>`,
+        content:
+          `<div style="font-size:16px;">
+          </div>`,
         backgroundColor: '#fff5bd',
         textColor: '#091E42',
         isCloseable: false,
-      },
+      },*/
     }),
 };
 
