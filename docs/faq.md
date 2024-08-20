@@ -357,3 +357,27 @@ Save and exit the editor. Run the following commands.
     sudo systemctl daemon-reload
     sudo service antmedia stop
     sudo service antmedia start
+
+## How can I use Web Player or Javascript SDK in Next.js?
+
+Next.js is a server-side rendering React framework. To integrate Ant Media Server JavaScript SDKs into a Next.js project, you must specify that your component should be client-side rendered.
+
+1- Add the line ```use client```  at the very beginning of the component where you import the web player or WebRTCAdaptor.
+![](@site/static/img/nextjs1.png)
+
+2-When importing a component that uses WebRTCAdaptor or Web Player in a Next.js page or component, use dynamic import with SSR disabled.
+
+```
+import dynamic from "next/dynamic";
+const VideoPlayerComponent = dynamic(
+   () => import("../videoplayer/VideoPlayerComponent"),
+   {
+     ssr: false,
+   }
+ );
+```
+Now you shouldnt get any errors and SDK should work as expected.
+
+
+
+
