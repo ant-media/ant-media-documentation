@@ -350,18 +350,15 @@ const config = {
 	theme: prismThemes.github,
 	darkTheme: prismThemes.dracula,
       },
-      announcementBar: {
+    /*  announcementBar: {
         id: 'announcement-bar',
         content:
           `<div style="font-size:16px;">
-          <a target="_blank" href="https://antmedia.io/create-your-own-streaming-service-on-aws-in-5-minutes/">
-            <strong>How to Get Your Own Auto Scalable Streaming Service on AWS in 5 minutes?</strong>
-          </a>
           </div>`,
         backgroundColor: '#fff5bd',
         textColor: '#091E42',
         isCloseable: false,
-      },
+      },*/
     }),
 };
 
