@@ -31,10 +31,10 @@ The following steps outline the basic operations of an AMS cluster:
 
 - Instance Registration: Each AMS node registers itself with the MongoDB database upon startup.
 - Stream Origin Assignment: When a node begins receiving a live stream, it registers itself as the origin node for that stream in the database.
-- Load Balancer Operations: When the load balancer receives a playback request, it forwards the request to an edge group node
-1. The edge node retrieves the stream's origin information from MongoDB.
-2. The edge node then fetches the stream from the origin node.
-3. Finally, the edge node distributes the stream to the requesting viewers.
+- Load Balancer Operations: When the load balancer receives a playback request, it forwards the request to an edge group node:
+  1. The edge node retrieves the stream's origin information from MongoDB.
+  2. The edge node then fetches the stream from the origin node.
+  3. Finally, the edge node distributes the stream to the requesting viewers.
 
 **Important Note:** Ensure that TCP port range 5000-65000 is open on the internal network. These ports should not be exposed to the public internet to maintain security.
 
