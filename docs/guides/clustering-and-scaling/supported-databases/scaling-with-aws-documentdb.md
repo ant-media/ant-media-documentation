@@ -7,49 +7,65 @@ sidebar_position: 11
 
 AWS DocumentDB is a managed database service designed for scalability, high availability, and compatibility with MongoDB workloads. It simplifies the deployment and management of databases while providing the flexibility to build robust and performant global applications on AWS.
 
-In this document we'll explain how to use AWS DocumentDB with Ant Media Server.
+In this document, we'll explain how to use AWS DocumentDB with Ant Media Server.
 
-Prerequirements
----------------------------------
-- Your AMS cluster should operate on the same VPC as your DocumentDB.
+### Prerequisites
+
+- Your AMS (standalone or cluster) server should operate on the same VPC as your DocumentDB.
 - TLS must be disabled in DocumentDB.
 
-Creating AWS DocumentDB
----------------------------------
+## Creating AWS DocumentDB
 
-First, open the Amazon DocumentDB service 
+Follow below steps to create Document DB cluster and connect AMS to the database.
+
+### Create Parameter Groups
+
+First, open the Amazon DocumentDB service and go to the `Parameter groups` sections, as shown below.
 
 ![](@site/static/img/aws-documentdb/aws-documentdb-1.png)
 
-and then create Parameter Groups to disable TLS.
+Now, create Parameter Groups to disable TLS.
 
 ![](@site/static/img/aws-documentdb/aws-documentdb-2.png)
 
-Select tls from the cluster parameters, click Edit and disable TLS.
+Select `tls` from the cluster parameters, click Edit and disable TLS.
 
 ![](@site/static/img/aws-documentdb/aws-documentdb-3.png)
 
 
-Next, go to the Clusters tab and click the Create button to create a new cluster and Select the Instance Class and Number of instances.
+### Create Document DB cluster
+
+Now go to the Clusters tab and click the Create button to create a new cluster. Select the instance class and number of instances as required.
 
 ![](@site/static/img/aws-documentdb/aws-documentdb-4.png)
 
-Next, select Show advanced settings
+Their is no need to change any parameter. Define your username and password for authentication and then go to advanced settings.
 
 ![](@site/static/img/aws-documentdb/aws-documentdb-5.png)
 
-choose the Cluster Parameter Group you created in previous step, and click Create to create your cluster.
+In advance settings, choose the Cluster Parameter Group you created in previous step, and click Create to create your cluster.
 
 ![](@site/static/img/aws-documentdb/aws-documentdb-6.png)
 
-Once the DocumentDB setup is complete, select your cluster, go to the Connectivity & Security tab, and obtain the connection information. You can now use this information in Ant Media Server.
+Once the DocumentDB setup is complete, select your cluster, go to the Connectivity & Security tab, and obtain the connection string. 
+
+You can now use this information in Ant Media Server.
 
 ![](@site/static/img/aws-documentdb/aws-documentdb-7.png)
 
 
-Using mongoDB+srv URI with change\_server\_mode.sh
---------------------------------------------------
+### Connect AMS to Document DB cluster
 
-For MongoDB Atlas connections, you can directly give the mongodb+srv URI under **antmedia** directory as follows.
+To connect AMS with Document DB, you need to use the `mongodb+srv` connection string copied from the cluster in above steps.
 
-    sudo ./change_server_mode.sh cluster mongodb+srv://`<username>`:`<password>`@`<url>`
+Now go to `/usr/local/antmedia` directory and run below command:
+
+```bash
+sudo ./change_server_mode.sh cluster mongodb+srv://`username`:`password`@`url`
+```
+
+Here is the sample command to connect with Document DB.
+
+```bash
+sudo ./change_server_mode.sh cluster "mongodb://testadmin:password@docdb-2024-08-25-19-28-55.cluster-crg1b1lxnbdb.ap-south-1.docdb.amazonaws.com:27017/?replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false"
+```
