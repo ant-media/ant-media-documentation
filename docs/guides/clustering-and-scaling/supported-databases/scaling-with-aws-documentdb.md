@@ -61,7 +61,7 @@ To connect AMS with Document DB, you need to use the `mongodb+srv` connection st
 Now go to `/usr/local/antmedia` directory and run below command:
 
 ```bash
-sudo ./change_server_mode.sh cluster mongodb+srv://`username`:`password`@`url`
+sudo ./change_server_mode.sh cluster mongodb+srv://username:password@url
 ```
 
 Here is the sample command to connect with Document DB.
