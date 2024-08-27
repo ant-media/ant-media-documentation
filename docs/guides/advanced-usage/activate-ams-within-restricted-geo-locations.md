@@ -106,7 +106,7 @@ If the output of the above command returns a "valid" value, your license can be 
 
 #### 6. Add the settings for Ant Media Server.
 ```
-echo "proxy.address=username:password@proxy.antmedia.io:80" >> /usr/local/antmedia/conf/red5.properties
+echo "proxy.address=username:password@license-verification.antmedia.io:80" >> /usr/local/antmedia/conf/red5.properties
 ```
 Finally, restart the Ant Media Server.
 ```
