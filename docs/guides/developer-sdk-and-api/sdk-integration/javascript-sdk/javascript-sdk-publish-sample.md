@@ -5,11 +5,11 @@ keywords: [JavaScript SDK User Guide, Ant Media Server Documentation, Ant Media 
 sidebar_position: 4
 ---
 
-In order to test the publish sample, let's open publish_webrtc.html file inside the samples folder. Go to the definition of **websocketURL** variable and set you Ant Media Server EE instance's WebSocket URL.
+In order to test the publish sample, let's open the `publish_webrtc.html` file inside the samples folder. Go to the definition of **websocketURL** variable and set your Ant Media Server WebSocket URL.
 
 ![](@site/static/img/sdk-integration/javascript-sdk/edit-websocket-url-publish-sample.png)
 
- - Open your favorite browser and go to your http server's address.
+ - Open your favorite browser and go to your HTTP server's address.
 
  - Accept microphone and camera usage permissions.
 
@@ -19,6 +19,6 @@ In order to test the publish sample, let's open publish_webrtc.html file inside 
 
 ![](@site/static/img/sdk-integration/javascript-sdk/publish-sample.png)
 
-To verify whether the stream is published successfully or not,  open the web panel of your Ant Media Server (e.g http://server_ip:5080) and view the stream there.
+To verify whether the stream is published successfully or not,  open the web panel of your Ant Media Server and view the stream there.
 
 You can also quickly play the stream via an embedded player. Check [this document](https://antmedia.io/docs/guides/playing-live-stream/embedded-web-player/) for more details.
