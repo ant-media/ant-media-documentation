@@ -26,9 +26,9 @@ To run the sample apps, you need to run the HTTP server inside `webapps` folder.
 
 ![](@site/static/img/sdk-integration/javascript-sdk/run-http-server.png)
 
-Before proceeding further, to make the samples work locally, move the `js` folder under `/src/main` folder to `webapps` folder.
+Before proceeding further, to make the samples work locally, move or copy the `js` folder under `/src/main` folder to `webapps` folder.
 
-After moving the `js` folder, in mentioned samples of this document, the `loglevel.min.js` file is importing but it is under the external folder inside the js folder so change the path of the file in the sample as below
+After moving the `js` folder, in some samples like webrtc publish and play of this document, the `loglevel.min.js` file is importing but it is under the external folder inside the `js` folder so change the path of the file in the sample as below:
 
 ```js
 import  "../js/external/loglevel.min.js";
