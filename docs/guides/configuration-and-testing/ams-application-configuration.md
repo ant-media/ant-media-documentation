@@ -28,7 +28,7 @@ You’ll find two categories of settings:
 - **Advanced Settings**: Includes additional configuration options.
 
 :::info
-Starting from Ant Media Server version 2.6.2, all application settings—whether in Standalone or Cluster mode—can be managed directly through the management console.
+Starting from Ant Media Server version 2.6.2, all application settings whether in Standalone or Cluster mode can be managed directly through the management console.
 :::
 
 ![](@site/static/img/configuration-and-testing/application-settings.png)
@@ -77,7 +77,7 @@ There are two ways to update the application settings:
 
 ![image](https://github.com/user-attachments/assets/4c410e68-c908-496f-a3ca-0400deeb3876)
 
-2. Pass only the settings that need to be changed/updated.
+2. Passing only the settings that need to be changed/updated.
 
 ![image](https://github.com/user-attachments/assets/b05eb409-f292-4ea3-bc59-d39b75a4f210)
 
@@ -99,7 +99,7 @@ private boolean aacEncodingEnabled;
 3. **Update the Configuration File**:
 To add a setting, either use the Advanced Settings in the management console or directly append the setting to the ```red5-web.properties``` file.
 
-- For example, to disable AAC encoding, add the following line to the file:
+- For example, to disable AAC encoding, add the following line under the Advanced Settings of the application:
 ```js
 settings.aacEncodingEnabled=false
 ```
