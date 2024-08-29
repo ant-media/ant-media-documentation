@@ -43,7 +43,7 @@ Now restart the Ant Media Server
 sudo service antmedia restart
 ```
 
-REST API for the web panel is listed [Management REST Service](https://antmedia.io/rest/#/ManagementRestService). Web Panel REST methods are binded below `https://SERVER\_FQDN:PORT/rest/`
+REST API for the web panel is listed [Management REST Service](https://antmedia.io/rest/?urls.primaryName=2.11.0-management). Web Panel REST methods are binded below `https://SERVER\_FQDN:PORT/rest/`
 
 
 ### Generate JWT Token
@@ -59,7 +59,7 @@ Let's use the JWT Token in `ProxyAuthorization` header as follows
 ```
 curl -X GET -H "Content-Type: application/json" -H "ProxyAuthorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.e30.tA6sZwz_MvD9Nocf3Xv_DXhJaeTNgfsHPlg3RHEoZRk" "https://example.com:5443/rest/v2/system-resources"
 ```
-Then Ant Media Server responds with system resources information such as CPU Load, Memory, etc. For all REST Methods, please visit the [Management REST Service Reference](https://antmedia.io/rest/#/ManagementRestService) 
+Then Ant Media Server responds with system resources information such as CPU Load, Memory, etc. For all REST Methods, please visit the [Management REST Service Reference](https://antmedia.io/rest/?urls.primaryName=2.11.0-management) 
 
 
 
@@ -67,7 +67,7 @@ Then Ant Media Server responds with system resources information such as CPU Loa
 
 Now, we need to authenticate the username and password.
 
-In order to authenticate the user, we need to pass the login username and password to the [AuthenticateUser](https://antmedia.io/rest/#/ManagementRestService/authenticateUser) API call.
+In order to authenticate the user, we need to pass the login username and password to the [AuthenticateUser](https://antmedia.io/rest/?urls.primaryName=2.11.0-management#/default/authenticateUser) API call.
 
 ### Convert Password to MD5 Hash
 
@@ -87,7 +87,7 @@ The payload in the body can be entered like:
 
 Now that the User is authenticated, we can make the REST API calls for accessing Dashboard REST Services.
 
-Let's get the list of [Applications](https://antmedia.io/rest/#/ManagementRestService/getApplications) from the Server:
+Let's get the list of [Applications](https://antmedia.io/rest/?urls.primaryName=2.11.0-management#/default/getApplications) from the Server:
 
 ```
 curl -X GET -H "Content-Type: application/json" -H "Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.e30.tA6sZwz_MvD9Nocf3Xv_DXhJaeTNgfsHPlg3RHEoZRk" "https://SERVER_FQDN:5443/rest/v2/applications"
@@ -99,6 +99,4 @@ The response should be something like
 {"applications":["LiveApp","WebRTCAppEE"]}
 ```
 
-Then, you can use all [Web panel REST methods](https://antmedia.io/rest/#/ManagementRestService) using the header as shown in the sample above.
-
-[](https://antmedia.io/rest/#/ManagementRestService/getApplications)
+Then, you can use all [Web panel REST methods](https://antmedia.io/rest/?urls.primaryName=2.11.0-management) using the header as shown in the sample above.
