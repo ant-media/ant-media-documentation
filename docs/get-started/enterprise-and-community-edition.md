@@ -87,7 +87,7 @@ Ant Media provides _free Enterprise Licenses_\* for the \*students, academics, a
 
 ## Supported Environments
 
-Ant Media Server runs on **Linux(Ubuntu)** and **MacOS**. it supports both x64 and ARM architecture. Ubuntu 20.04, Ubuntu 22.04 and CentOS 8 are officially supported. In addition, It's known that Ant Media Server is used on SUSE, Debian, WSL, and RHLE distributions as well.
+Ant Media Server runs on **Linux(Ubuntu)** and **MacOS**. it supports both x64 and ARM architecture. Ubuntu 20.04, Ubuntu 22.04, Ubuntu 24.04 and CentOS 8 are officially supported. In addition, It's known that Ant Media Server is used on Debian, WSL, and RHLE distributions as well.
 
 ## Extensions
 
