@@ -7,13 +7,13 @@ sidebar_position: 1
 
 # Quick Start
 
-### Step 1: Download the Installation Script
+### 1. Download the Installation Script
 
 ```shell
 wget https://raw.githubusercontent.com/ant-media/Scripts/master/install_ant-media-server.sh -O install_ant-media-server.sh  && chmod 755 install_ant-media-server.sh
 ```
 
-### Step 2: Install Ant Media Server
+### 2. Install Ant Media Server
 
 #### Install the Enterprise Edition
 
@@ -47,7 +47,7 @@ sudo ./install_ant-media-server.sh -i <ANT_MEDIA_SERVER_ZIP_FILE>
   </div>
 </div>
 
-### Step 3: Configure SSL
+### 3. Configure SSL
 
 #### Free antmedia.cloud Subdomain
 
@@ -62,13 +62,13 @@ cd /usr/local/antmedia/ && sudo ./enable_ssl.sh -d domain.com
 ```
 
 
-### Step 4: Login to the Web Panel
+### 4. Login to the Web Panel
 
 Navigate to ```https://ant-media-server:5443``` and create the first user account.
 
 ![](@site/static/img/quick-start/create-first-account.png)
 
-### Step 5: Publish and Play WebRTC Live Streams
+### 5. Publish and Play WebRTC Live Streams
 
 #### Publish a Live Stream
 
