@@ -10,7 +10,7 @@ sidebar_position: 1
 ### 1. Download the Installation Script
 
 ```shell
-wget https://raw.githubusercontent.com/ant-media/Scripts/master/install_ant-media-server.sh -O install_ant-media-server.sh  && chmod 755 install_ant-media-server.sh
+sudo wget https://raw.githubusercontent.com/ant-media/Scripts/master/install_ant-media-server.sh -O install_ant-media-server.sh  && sudo chmod 755 install_ant-media-server.sh
 ```
 
 ### 2. Install Ant Media Server
