@@ -86,7 +86,7 @@ Then playback the WebRTC live stream from another sample page available at ```ht
 
 ### Sample Tools and Applications
 
-Access [sample tools and applications](/get-started/sample-tools-and-applications/) here ```https://ant-media-server:5443/LiveApp/samples.html```. 
+Access the [sample tools and applications](/get-started/sample-tools-and-applications/) via ```https://ant-media-server:5443/LiveApp/samples.html```. As an example,
 
  - Multitrack Conferencing
  - WebRTC Test Tool
