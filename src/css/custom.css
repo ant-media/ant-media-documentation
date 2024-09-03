@@ -210,13 +210,6 @@ main[class^="docMainContainer"] > .container {
       border: 0;
     }
 
-    &:hover {
-      color: var(--ifm-link-color);
-
-      code {
-        color: var(--ifm-link-color);
-      }
-    }
   }
 
   .table-of-contents__link--active {
@@ -232,13 +225,7 @@ main[class^="docMainContainer"] > .container {
       white-space: nowrap;
     }
 
-    &:hover {
-      color: var(--ifm-font-color-base);
 
-      code {
-        color: var(--ifm-font-color-base);
-      }
-    }
   }
 }
 
