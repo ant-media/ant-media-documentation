@@ -25,7 +25,7 @@ After enabling TOTP on the server, the following operations should be performed 
 
 You can generate the TOTP token without first registering the subscriber, but if `Accept Undefined Streams` option in stream security is not allowed, only pre-registered subscribers with pre-registered streamId can publish and play streams.
 
-The user can create a new subscriber (publisher or player) by using [Add Subscriber](https://antmedia.io/rest/#/BroadcastRestService/addSubscriber) Rest API method. You should assign a base 32Ssecret to each subscriber at the time of creation. A secret key should be a multiple of 8 characters, as stated in the above note.
+The user can create a new subscriber (publisher or player) by using [Add Subscriber](https://antmedia.io/rest/#/default/addSubscriber) Rest API method. You should assign a base 32Ssecret to each subscriber at the time of creation. A secret key should be a multiple of 8 characters, as stated in the above note.
  
  - The sample API call to register a subscriber for publishing:
 
@@ -42,21 +42,21 @@ curl -X POST -H "Accept: Application/json" -H "Content-Type: application/json" '
 ### Other Subscriber APIs
 
  - Get the subscriber list using the [following
-   API](https://antmedia.io/rest/#/BroadcastRestService/listSubscriberV2):
+   API](https://antmedia.io/rest/#/default/listSubscriberV2):
 
 ```bash
 curl -X 'GET' 'http://IP-address-or-domain:5080/Application_Name/rest/v2/broadcasts/streamId/subscriber-stats/list/0/10' -H 'accept: application/json'
 ```
 
  - Delete the subscribers using the [following
-   API](https://antmedia.io/rest/#/BroadcastRestService/revokeSubscribers):
+   API](https://antmedia.io/rest/#/default/revokeSubscribers):
 
 ```bash
 curl -X 'DELETE' 'https://IP-address-or-domain:5080/Application_Name/rest/v2/broadcasts/streamId/subscribers' -H 'accept: application/json'
 ```
 
  - Get the subscriber statistics using the [following
-   API](https://antmedia.io/rest/#/BroadcastRestService/listSubscriberStatsV2):
+   API](https://antmedia.io/rest/#/default/listSubscriberStatsV2):
 
 ```bash
 curl -X 'GET' 'https://test.antmedia.io:5443/Sandbox/rest/v2/broadcasts/test/subscribers/list/0/10' -H 'accept: application/json'
@@ -64,7 +64,7 @@ curl -X 'GET' 'https://test.antmedia.io:5443/Sandbox/rest/v2/broadcasts/test/sub
 
 ## TOTP Token Creation
 
-TOTP token can be created using [this Rest API](https://antmedia.io/rest/#/BroadcastRestService/getTOTP).
+TOTP token can be created using [this Rest API](https://antmedia.io/rest/#/default/getTOTP).
 
 By default, the TOTP generated for playback remains valid for 60 seconds after its generation. Consequently, users intending to utilize this token must send a play request to AMS within this 60-second timeframe.
 
@@ -97,9 +97,11 @@ curl -X 'GET' 'http://IP-adddress-or-domain:5080/Application_Name/rest/v2/broadc
 
 The subscriber block feature allows blocking a specific user from engaging in publishing, playback, or both at any given moment. This implies that even if the user is actively publishing or playing the stream, their ability to publish or play will cease until the block is removed or expires. Block is valid for all publish and play types. The subscriber block feature can be used in version 2.7.0 and later.
 
-Before proceeding further, you need to enable the below property in the application settings as well.
+Before proceeding further, you need to enable the below property in the application adavanced settings as well.
 
-    timeTokenSubscriberOnly=true
+```js
+timeTokenSubscriberOnly=true
+```
 
 Please save the settings after making any changes.
 
@@ -120,7 +122,7 @@ webRTCAdaptor.publish("teststream", null, "lastpeony", "451222");
 ##(The 2nd parameter, which is null here, represents the token(for example a JWT), not subscriberCode)
 ```
 
-After utilizing the TOTP token for publishing, you can block the subscriber from publishing using a block request. To prevent the user from publishing for 120 seconds, send a [subscriber block API request](https://antmedia.io/rest/#/BroadcastRestService/blockSubscriber) as below.
+After utilizing the TOTP token for publishing, you can block the subscriber from publishing using a block request. To prevent the user from publishing for 120 seconds, send a [subscriber block API request](https://antmedia.io/rest/#/default/blockSubscriber) as below.
 
 ```bash
 curl -X 'PUT' 'http://IP-address-or-domain:5080/Application_Name/rest/v2/broadcasts/streamId/subscribers/subscriberId/block/120/publish' -H 'accept: application/json'
@@ -158,7 +160,7 @@ webRTCAdaptor.play("teststream", null, "lastpeony", "451222");
 ##(The 2nd parameter, which is null here, represents the token(for example a JWT), not subscriberCode)
 ```
 
-After utilizing the TOTP token for playing, you can block the subscriber from playing using a block request. To prevent the user from playing for 120 seconds, send a [subscriber block API request](https://antmedia.io/rest/#/BroadcastRestService/blockSubscriber) as below.
+After utilizing the TOTP token for playing, you can block the subscriber from playing using a block request. To prevent the user from playing for 120 seconds, send a [subscriber block API request](https://antmedia.io/rest/#/default/blockSubscriber) as below.
 
 ```bash
 curl -X 'PUT' 'http://IP-address-or-domain:5080/Application_Name/rest/v2/broadcasts/streamId/subscribers/subscriberId/block/120/play' -H 'accept: application/json'
