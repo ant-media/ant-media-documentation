@@ -44,7 +44,7 @@ Clone WebRTC-Android-SDK repo to your local.
 git clone https://github.com/ant-media/WebRTC-Android-SDK.git
 ```
 Open your android project with android studio. From left top corner click `File > New > Import Module`
-Choose webrtc-android-sdk from your file system.
+Open webrtc-android-sdk and choose `webrtc-android-framework` from your file system.
 ![](@site/static/img/sdk-integration/android-sdk/android-sdk-as-module-1.png)
 
 Click `Ok > Finish`
