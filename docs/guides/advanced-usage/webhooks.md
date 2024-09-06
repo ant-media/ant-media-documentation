@@ -253,7 +253,8 @@ Ant Media Server will send a POST request to your application server endpoint wi
 	"streamName": "stream_name",
 	"category": "stream_category",
 	"subscriberId": "subscriber_id",
-	"mainTrackId":"main_track_id"
+	"mainTrackId":"main_track_id",
+	"timestamp": "1725578684839"
 	}
 	```
 	- **Fields**:
@@ -275,7 +276,8 @@ Ant Media Server will send a POST request to your application server endpoint wi
 	"streamName": "stream_name",
 	"category": "stream_category",
 	"subscriberId": "subscriber_id",
-	"mainTrackId":"main_track_id"
+	"mainTrackId":"main_track_id",
+	"timestamp": "1725578684839"
 	}
 	```
 	- **Fields**:
@@ -297,7 +299,8 @@ Ant Media Server will send a POST request to your application server endpoint wi
 	"streamName": "stream_name",
 	"category": "stream_category",
 	"subscriberId": "subscriber_id",
-	"mainTrackId":"main_track_id"
+	"mainTrackId":"main_track_id",
+	"timestamp": "1725578684839"
 	}
 	```
 	- **Fields**:
@@ -319,7 +322,8 @@ Ant Media Server will send a POST request to your application server endpoint wi
 	"streamName": "stream_name",
 	"category": "stream_category",
 	"subscriberId": "subscriber_id",
-	"mainTrackId":"main_track_id"
+	"mainTrackId":"main_track_id",
+	"timestamp": "1725578684839"
 	}
 	```
 	- **Fields**:
