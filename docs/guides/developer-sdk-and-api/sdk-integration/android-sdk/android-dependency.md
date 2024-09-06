@@ -61,20 +61,20 @@ That is all. We have added the dependency and we are ready to create our WebRTC 
 
 ![](@site/static/img/sdk-integration/android-sdk/android-sdk-as-module-2.png)
 
-To fix those errors, remove `publish-remote.gradle` file from `webrtc-android-framework module`.
+- To fix those errors, remove `publish-remote.gradle` file from `webrtc-android-framework module`.
 
-After removing,  go to `build.gradle` file of `webrtc-android-framework` module and remove  below line
+  After removing,  go to `build.gradle` file of `webrtc-android-framework` module and remove  below line.
 
-```java
-apply from: 'publish-remote.gradle'
-```
+  ```java
+  apply from: 'publish-remote.gradle'
+  ```
 
-Go to your app project's `build.gradle` file and add below line to the dependencies.
+  Then, go to your app project's `build.gradle` file and add below line to the dependencies.
 
-```java
-api project(":webrtc-android-framework")
-```
+  ```java
+  api project(":webrtc-android-framework")
+  ```
 
-Finally, sync gradle and it should be all done.
+- Finally, sync gradle and it should be all done.
 
 You can now navigate to your application module and begin developing your streaming application. If needed, you can edit any of the Android SDK files within the `webrtc-android-framework`, and your changes will be applied.
