@@ -13,7 +13,7 @@ Sending a token parameter with every publish request and play request is require
 
 ## Generate One Time Token
 
-The token can be generated with [one-time token](https://antmedia.io/rest/#/BroadcastRestService/getTokenV2) Rest API, gets ```streamId```, ```expireDate``` and ```type``` as query parameters. The service returns tokenId and other parameters as a response. 
+The token can be generated with [one-time token](https://antmedia.io/rest/#/default/getTokenV2) Rest API, gets ```streamId```, ```expireDate``` and ```type``` as query parameters. The service returns tokenId and other parameters as a response. 
 
 It is important that the ```streamId``` and ```type``` parameters are properly defined because ```tokenId``` needs to match with both ```streamId``` and ```type```.
 

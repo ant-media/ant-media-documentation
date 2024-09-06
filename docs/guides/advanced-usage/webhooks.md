@@ -24,9 +24,9 @@ Your Ant Media Server now has a default hook which is called when certain events
 
 #### Add Custom Webhook for Streams
 
-Ant Media Server provides creating streams through rest service. Therefore, If you want to specify the webhook URL for each stream, you can use _createBroadcast_ method in the [rest service.](https://github.com/ant-media/Ant-Media-Server/blob/master/src/main/java/io/antmedia/rest/BroadcastRestService.java)  _createBroadcast_ method has Broadcast object parameter which has _listenerHookURL_ field_._
+Ant Media Server provides creating streams through rest service. Therefore, If you want to specify the webhook URL for each stream, you can use _createBroadcast_ method in the [rest service.](https://github.com/ant-media/Ant-Media-Server/blob/master/src/main/java/io/antmedia/rest/BroadcastRestService.java)  _createBroadcast_ method has Broadcast object parameter which has _listenerHookURL_ field_._
 
-As a result,  you can set _listenerHookURL_ for creating a stream at Ant Media Server.
+As a result,  you can set _listenerHookURL_ for creating a stream at Ant Media Server.
 
 Here is a sample JSON for using _createBroadcast_ method with [Postman](https://www.getpostman.com/)
 ```
@@ -334,3 +334,5 @@ Ant Media Server will send a POST request to your application server endpoint wi
 That's it! You can read the `action` field from the POST request body and take appropriate actions on your application server. Be sure to respond with a 200 status code to acknowledge receipt of the POST request.
 
 > **Attention:** Please process the POST request within your application as quick as possible as the hooks are called within the event loop thread which will not wait for your application to complete complex tasks.
+
+To secure streams using Webhook, refer to the [Webhook Authorization](https://antmedia.io/docs/category/stream-security/webhook-stream-authorization) document.

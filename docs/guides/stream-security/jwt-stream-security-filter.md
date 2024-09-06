@@ -13,7 +13,7 @@ Sending a token parameter with every publish request and play request is require
 
 ## Generate JWT Token
 
-JWT Token can be generated in two ways. One way to generate is using the [JWT debugger](https://jwt.io/#debugger-io) and other way is to generate the token using the [JWT token Rest API](https://antmedia.io/rest/#/BroadcastRestService/getJwtTokenV2).
+JWT Token can be generated in two ways. One way to generate is using the [JWT debugger](https://jwt.io/#debugger-io) and other way is to generate the token using the [JWT token Rest API](https://antmedia.io/rest/#/default/getJwtTokenV2).
 
  - To generate the token in both ways, ```streamId```, ```expireDate```
    and ```type``` parameters are required. The service returns tokenId
