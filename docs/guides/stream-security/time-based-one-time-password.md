@@ -97,7 +97,7 @@ curl -X 'GET' 'http://IP-adddress-or-domain:5080/Application_Name/rest/v2/broadc
 
 The subscriber block feature allows blocking a specific user from engaging in publishing, playback, or both at any given moment. This implies that even if the user is actively publishing or playing the stream, their ability to publish or play will cease until the block is removed or expires. Block is valid for all publish and play types. The subscriber block feature can be used in version 2.7.0 and later.
 
-Before proceeding further, you need to enable the below property in the application adavanced settings as well.
+Before proceeding further, you need to enable the below property in the application advanced settings as well.
 
 ```js
 timeTokenSubscriberOnly=true
