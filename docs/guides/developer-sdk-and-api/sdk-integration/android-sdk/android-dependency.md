@@ -52,9 +52,9 @@ Click `Ok > Finish`
 After clicking Finish you will face with 2 errors
 ![](@site/static/img/sdk-integration/android-sdk/android-sdk-as-module-2.png)
 
-To fix those errors remove `publish-remote.gradle` file from webrtc-android-sdk module.
+To fix those errors remove `publish-remote.gradle` file from `webrtc-android-framework module`.
 
-After removing,  go to `build.gradle` file of webrtc-android-sdk module and remove 
+After removing,  go to `build.gradle` file of `webrtc-android-framework` module and remove 
 ```
 apply from: 'publish-remote.gradle'
 ```
