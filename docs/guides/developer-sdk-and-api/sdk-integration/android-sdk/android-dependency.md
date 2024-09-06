@@ -69,4 +69,4 @@ to the dependencies.
 
 Finally, sync gradle and it should be all done.
 
-You can now navigate to your application module and begin developing your streaming application. If needed, you can edit any of the Android SDK files within the webrtc-android-sdk module, and your changes will be applied.
+You can now navigate to your application module and begin developing your streaming application. If needed, you can edit any of the Android SDK files within the `webrtc-android-framework`, and your changes will be applied.
