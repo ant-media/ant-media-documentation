@@ -2,7 +2,7 @@
 title: Creating Android App Project in Android Studio
 description: We will first create an Android App Project in Android Studio
 keywords: [Android SDK User Guide, Android Project, Android Studio, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 2
+sidebar_position: 1
 ---
 
 ## Step 1: Create an Android App Project in Android Studio

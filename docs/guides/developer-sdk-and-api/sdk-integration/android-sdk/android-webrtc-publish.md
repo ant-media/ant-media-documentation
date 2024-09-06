@@ -2,7 +2,7 @@
 title: Publish WebRTC stream in Android
 description: Publishing WebRTC Live stream Using Android SDK 
 keywords: [Android SDK User Guide, Android SDK Publish, Publish Stream from your Android device, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 4
+sidebar_position: 3
 ---
 ## Step 3: Publish a WebRTC Live Stream in Android
 

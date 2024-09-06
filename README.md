@@ -51,4 +51,3 @@ If you would like to say thank you or/and support the active development of Ant 
 * Write interesting articles about the project on [Dev.to](https://dev.to/), [Medium](https://medium.com/) or personal blog.
 
 Together, we can make this project **better** every day! 😘
-
