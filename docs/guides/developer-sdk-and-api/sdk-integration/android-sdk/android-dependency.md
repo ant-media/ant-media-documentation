@@ -13,30 +13,30 @@ Alternatively, the second method entails importing the Android SDK as a module. 
 
 ### Add WebRTC-Android-SDK From Maven Repo (Easy)
 
-At this point, we should add the dependency on the WebRTC Android SDK module to our newly created project. Since the module is hosted in the Sonatype Maven repository, we will add that repository to the dependency manager. The related setting is in the `settings.gradle` file. Add the following lines to the dependencyResolutionManagement/repositories section:.
+- At this point, we should add the dependency on the WebRTC Android SDK module to our newly created project. Since the module is hosted in the Sonatype Maven repository, we will add that repository to the dependency manager. The related setting is in the `settings.gradle` file. 
 
-```java
+  Add the following lines to the `dependencyResolutionManagement/repositories section`:
+
+  ```java
     maven {
       url "https://oss.sonatype.org/content/repositories/snapshots/" }
-```
+  ```
 
 ![](@site/static/img/sdk-integration/android-sdk/settings.gradle.png)
 
-After adding the repository, we will add the following lines to the dependencies session in the app `build.gradle` file.
+- After adding the repository, we will add the following lines to the dependencies session in the app `build.gradle` file.
 
 ```java
     implementation "io.antmedia:webrtc-android-framework:{version}"
 ```
 
-Replace version with the latest android sdk version released on maven. You can see all released versions through this link:
-https://mvnrepository.com/artifact/io.antmedia/webrtc-android-framework
+- Replace version with the latest android sdk version released on maven. You can see all released versions [here](https://mvnrepository.com/artifact/io.antmedia/webrtc-android-framework).
 
+  For Example:
 
-Example:
-
-```java
-    implementation "io.antmedia:webrtc-android-framework:2.11.0"
-```
+  ```java
+  implementation "io.antmedia:webrtc-android-framework:2.11.0"
+  ```
 
 ![](@site/static/img/sdk-integration/android-sdk/build.gradle.png)
 
