@@ -93,6 +93,7 @@ Ant Media Server will send a POST request to your application server endpoint wi
        "action": "liveStreamStarted",
        "streamName": "stream_name",
        "category": "stream_category",
+	   "metadata":"metadata_of_broadcast",
 	   "timestamp": "1725578684839"
      }
      ```
@@ -101,6 +102,7 @@ Ant Media Server will send a POST request to your application server endpoint wi
      - `action`: The action performed, in this case, "liveStreamStarted".
      - `streamName`: The name of the stream (can be null).
      - `category`: The category of the stream (can be null).
+	 - `metadata`: The metadata field of the broadcast object. If its a JSON string metadata field will be a JSON object.
 	 - `timestamp`: The current server timestamp miliseconds as string.
 
 2. **`liveStreamEnded`**
@@ -112,6 +114,7 @@ Ant Media Server will send a POST request to your application server endpoint wi
        "action": "liveStreamEnded",
        "streamName": "stream_name",
        "category": "stream_category",
+	   "metadata":"metadata_of_broadcast",
 	   "timestamp": "1725578684839"
      }
      ```
@@ -120,6 +123,7 @@ Ant Media Server will send a POST request to your application server endpoint wi
      - `action`: The action performed, in this case, "liveStreamEnded".
      - `streamName`: The name of the stream (can be null).
      - `category`: The category of the stream (can be null).
+	 - `metadata`: The metadata field of the broadcast object. If its a JSON string metadata field will be a JSON object.
 	 - `timestamp`: The current server timestamp miliseconds as string.
 
 3. **`vodReady`**
@@ -131,6 +135,7 @@ Ant Media Server will send a POST request to your application server endpoint wi
        "action": "vodReady",
        "vodName": "vod_file_name",
        "vodId": "vod_id",
+	   "metadata":"metadata_of_broadcast",
 	   "timestamp": "1725578684839"
      }
      ```
@@ -139,6 +144,7 @@ Ant Media Server will send a POST request to your application server endpoint wi
      - `action`: The action performed, in this case, "vodReady".
      - `vodName`: The name of the VOD file.
      - `vodId`: The ID of the VOD in the datastore.
+	 - `metadata`: The metadata field of the broadcast object. If its a JSON string metadata field will be a JSON object.
 	 - `timestamp`: The current server timestamp miliseconds as string.
 
 4. **`endpointFailed`**
@@ -172,6 +178,7 @@ Ant Media Server will send a POST request to your application server endpoint wi
        "action": "publishTimeoutError",
        "streamName": "stream_name",
        "category": "stream_category",
+	   "metadata": "{subscriberId:'subscriber_id'}",
 	   "timestamp": "1725578684839"
      }
      ```
@@ -180,6 +187,7 @@ Ant Media Server will send a POST request to your application server endpoint wi
      - `action`: The action performed, in this case, "publishTimeoutError".
      - `streamName`: The name of the stream (can be null).
      - `category`: The category of the stream (can be null).
+	 - `metadata`: JSON object which contains subscriber id.
 	 - `timestamp`: The current server timestamp miliseconds as string.
 
 
@@ -192,6 +200,7 @@ Ant Media Server will send a POST request to your application server endpoint wi
        "action": "encoderNotOpenedError",
        "streamName": "stream_name",
        "category": "stream_category",
+	   "metadata":"metadata_of_broadcast",
 	   "timestamp": "1725578684839"
      }
      ```
@@ -199,6 +208,7 @@ Ant Media Server will send a POST request to your application server endpoint wi
      - `id`: The stream ID of the broadcast.
      - `action`: The action performed, in this case, "encoderNotOpenedError".
      - `streamName`: The name of the stream (can be null).
+	 - `metadata`: The metadata field of the broadcast object. If its a JSON string metadata field will be a JSON object.
      - `timestamp`: The current server timestamp miliseconds as string.
 
 7. **`playStopped`**
