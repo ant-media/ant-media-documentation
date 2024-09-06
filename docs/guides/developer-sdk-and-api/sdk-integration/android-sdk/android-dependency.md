@@ -21,8 +21,17 @@ At this point, we should add the dependency on the WebRTC Android SDK module to 
 
 After adding the repository, we will add the following lines to the dependencies session in the app `build.gradle` file.
 ```
-    implementation "io.antmedia:webrtc-android-framework:2.8.0-SNAPSHOT"
+    implementation "io.antmedia:webrtc-android-framework:{version}"
 ```
+Replace version with the latest android sdk version released on maven. You can see all released versions through this link:
+https://mvnrepository.com/artifact/io.antmedia/webrtc-android-framework
+
+
+Example:
+```
+    implementation "io.antmedia:webrtc-android-framework:2.11.0"
+```
+
 ![](@site/static/img/sdk-integration/android-sdk/build.gradle.png)
 
 That is all. We have added the dependency and we are ready to create our WebRTC streaming application.
