@@ -36,7 +36,7 @@ The following steps outline the basic operations of an AMS cluster:
   2. The edge node then fetches the stream from the origin node.
   3. Finally, the edge node distributes the stream to the requesting viewers.
 
-**Important Note:** Ensure that TCP port range 5000-65000 is open on the internal network. These ports should not be exposed to the public internet to maintain security.
+**Important Note:** Ensure that TCP port **5000** is open for internal network communication when running in **Cluster mode**. For security reasons, this port should remain inaccessible from the public internet.
 
 
 ## 1. Installing Ant Media Server (AMS)
