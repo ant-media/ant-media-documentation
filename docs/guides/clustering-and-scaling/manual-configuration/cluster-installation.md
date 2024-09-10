@@ -27,7 +27,9 @@ AMS cluster has 4 main components.
   * Node fetches the stream from the origin node.
   * Node distributes the stream to viewers.
 
-**Important note:** You need to open TCP port range (TCP:5000-65000) to the internal network. It should not be open to public.
+**Important notes:** You would need to open the below ports to the internal network communication. These should not be open to public. 
+* TCP port range (TCP:5000-65000).
+* TCP 5000 for Cluster communication.
 
 To run AMS in a cluster please follow these steps.
 
