@@ -1,5 +1,5 @@
 ---
-title: Recording to AWS S3 
+title: AWS S3 
 description: Record streams to AWS S3
 keywords: [S3 Integration with Ant Media Server, S3 Integration, Record streams to AWS S3, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 1
@@ -38,3 +38,40 @@ Then, log in to http://your_ams_server:5080, enable Record Live Streams as MP4 a
 ![image.png](@site/static/img/image-285229.png)
 
 Your MP4 files and Preview files will be uploaded to your S3 Storage automatically.
+
+## Play recorded VOD files from an AWS S3 bucket using the embedded web player
+
+If you would like to embed the VODs stored in an AWS S3 bucket, you need to configure CORS parameters on AWS S3 bucket Permissions.
+
+CORS parameters of the AWS S3 bucket should be modified so that the requests that are coming from another origin to play the VODs can be processed.
+
+Go to your  `AWS -> Services -> S3 -> Buckets -> "Your Bucket" -> Permissions`
+
+At the bottom of the page, there is Cross-origin resource sharing (CORS). The CORS configuration, written in JSON, defines a way for client web applications that are loaded in one domain to interact with resources in a different domain."  
+
+Click Edit and paste the code provided below:
+
+You need to put your AMS domain address to the allowed origins field.
+
+```json
+    [
+        {
+            "AllowedHeaders": [
+                "*"
+            ],
+            "AllowedMethods": [
+                "HEAD",
+                "GET",
+                "PUT",
+                "POST",
+                "DELETE"
+            ],
+            "AllowedOrigins": [
+                "https://your-AMS-domain:5443"
+            ],
+            "ExposeHeaders": []
+        }
+    ]
+```
+
+`*` on the origin field, as it accepts requests from all origins, can be used for quick testing. However, it can be changed to allow permissions for exact origins, such as `http://www.your-domain.com` since you only want to accept requests that are coming from your end.
