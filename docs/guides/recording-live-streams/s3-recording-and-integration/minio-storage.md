@@ -1,5 +1,5 @@
 ---
-title: Recording to MinIO Storage
+title: MinIO Storage
 description: Record streams to MinIO Storage Bucket
 keywords: [S3 Integration with Ant Media Server, S3 Integration, Record streams to MinIO Storage, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 6
