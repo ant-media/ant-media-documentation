@@ -1,5 +1,5 @@
 ---
-title: Recording to Wasabi Storage
+title: Wasabi Storage
 description: Record streams to Wasabi Storage
 keywords: [S3 Integration with Ant Media Server, S3 Integration, Record streams to Wasabi Storage, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 4
