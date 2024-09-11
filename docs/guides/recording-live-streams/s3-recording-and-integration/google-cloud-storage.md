@@ -1,5 +1,5 @@
 ---
-title: Recording to Google Cloud Storage
+title: Google Cloud Storage
 description: Record streams to Google Cloud Storage
 keywords: [S3 Integration with Ant Media Server, S3 Integration, Record streams to Google Cloud Storage, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 5
