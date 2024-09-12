@@ -1,6 +1,6 @@
 ---
-title: Recording live streams 
-description: Recording live streams enables you to record every stream in the application.
+title: MP4 & WebM Recording 
+description: Recording live streams in mp4 and webm format
 keywords: [Recording live streams, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 2
 ---
