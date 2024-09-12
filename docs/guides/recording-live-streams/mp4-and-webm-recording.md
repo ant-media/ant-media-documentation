@@ -1,9 +1,11 @@
 ---
 title: MP4 & WebM Recording 
-description: Recording live streams in mp4 and webm format
+description: Recording live streams in MP4 and WebM format
 keywords: [Recording live streams, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 2
+sidebar_position: 1
 ---
+
+# MP4 & WebM Recording
 
 Ant Media Server supports several types of live stream recording. Recording can be enabled or disabled from the AMS web panel or via the Rest API as well.
 
@@ -157,38 +159,3 @@ To remove/unlink the imported directory, check [this API](https://antmedia.io/re
 ```bash
 curl -X 'DELETE' 'https://test.antmedia.io:5443/Sandbox/rest/v2/vods/directory?directory=/home/recordings' -H 'accept: application/json'
 ```
-
-## Uploading records to S3
-
-Please check [S3 Intergration documentation](https://antmedia.io/docs/guides/recording-live-streams/s3-integration-http-forwarding/) to record and upload streams to the s3 bucket.
-
-To record the **HLS**, **MP4**/**WebM** or **PNG** files to the bucket, you can use the following setting;
-
-`"uploadExtensionsToS3": 7`
-  
-You can change this property in the Application's Advanced settings on web panel. The default value is 7, which records all HLS, MP4/WebM and PNG files.
-
-This setting is a number where the digits represent whether an upload will be done or not. The least significant digit switches MP4/WebM files, the second switches HLS and the third for PNG.
-
-Example: `uploadExtensionsToS3=5` ( 101 in binary ) means upload MP4 and PNG but not HLS.
-
-Possible values are as follows:
-
- - Don't upload anything: `uploadExtensionsToS3=0`
- 
- - Only (MP4/WebM) upload: `uploadExtensionsToS3=1`
-
- - HLS upload only: `uploadExtensionsToS3=2`
-
- - HLS and record upload: `uploadExtensionsToS3=3`
-
- - PNG upload only: `uploadExtensionsToS3=4`
-
- - PNG and record upload: `uploadExtensionsToS3=5`
-
- - PNG and HLS upload: `uploadExtensionsToS3=6`
-
- - Upload everything: `uploadExtensionsToS3=7`
-
-
-Other than MP4 and WebM, HLS recording can also be done. Check out the [HLS recording document](https://antmedia.io/docs/guides/playing-live-stream/hls-playing/#save-hls-records).
