@@ -45,9 +45,11 @@ For example, I created the `fuse_connection.yaml` file in the `blobfuse_config` 
 Now in this file, you need to put the **storage account name**, **access key**, **endpoint** and **container name**.
 
 account-name: **storage-account-name**
+
 account-key: **storage-account-access-key**
+
 endpoint: https://**storagename**.blob.core.windows.net/
-mode: key
+
 container: **your-container-name**
 :::
 
