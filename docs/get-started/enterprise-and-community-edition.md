@@ -29,7 +29,7 @@ Here are the fundamental features of Ant Media Server:
 
 ## Community Edition & Enterprise Edition
 
-Ant Media Server has two versions. One of them is the Community Edition(Free) and the other one is Enterprise Edition. Community Edition is available to [download on Github.](https://github.com/ant-media/Ant-Media-Server) Enterprise Edition can be purchased [on antmedia.io](https://antmedia.io/)
+Ant Media Server has two versions. One of them is the Community Edition(Free) and the other one is Enterprise Edition. Community Edition is available to [download on Github.](https://github.com/ant-media/Ant-Media-Server) Enterprise Edition can be purchased on [antmedia.io](https://antmedia.io/)
 
 
 |                                            | **Community Edition** | **Enterprise Edition**  |
@@ -45,7 +45,8 @@ Ant Media Server has two versions. One of them is the Community Edition(Free) an
 | WebRTC Data Channel                               |![true](@site/static/img/cross.png)                   | ![true](@site/static/img/tick.png)                     |
 | Adaptive Bitrate                                  |![true](@site/static/img/cross.png)                   | ![true](@site/static/img/tick.png)                     |
 | Secure Streaming                                  |![true](@site/static/img/cross.png)                 |   ![true](@site/static/img/tick.png)                   |
-| iOS & Android RTMP SDK                            |![true](@site/static/img/tick.png)                    | ![true](@site/static/img/tick.png)                     |
+| WHIP                                              |![true](@site/static/img/tick.png)                    | ![true](@site/static/img/tick.png)                     |
+| LL-HLS(Paid plugin)                                |![true](@site/static/img/tick.png)                    | ![true](@site/static/img/tick.png)                     |
 | iOS & Android WebRTC SDK                          |![true](@site/static/img/cross.png)                   |  ![true](@site/static/img/tick.png)                    |
 | VP8 and H.265 Support                             | ![true](@site/static/img/cross.png)                  |   ![true](@site/static/img/tick.png)                   |
 | JavaScript SDK                                    |![true](@site/static/img/tick.png)                   |  ![true](@site/static/img/tick.png)                    |
