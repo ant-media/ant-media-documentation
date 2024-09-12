@@ -31,39 +31,21 @@ Using Multi-Tenancy with REST API
 
 With the following REST API methods, you can manage user access on the Ant Media Server:
 
-> **Note**: The `scope` parameter can be set to either `system` or a specific application name, such as `LiveApp`. If you use `LiveApp`, the user’s scope will be limited to `LiveApp`. `system` scope can reach all application scopes.
+:::info
+The `scope` parameter can be set to either `system` or a specific application name, such as `LiveApp`. If you use `LiveApp`, the user’s scope will be limited to `LiveApp`. `system` scope can reach all application scopes.
+:::
 
 The `userType` parameter can be set to `ADMIN`, `USER` or `READ-ONLY`.
 
 ## Create User
 
-To create a user for applications using the web panel, use the following REST method:
-
-```json
-    @POST
-    @Path("/users")
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-
-```  
-
 You can call the following method to create a user with `curl`:
 
 ```
 curl -X POST -H "Content-Type: application/json" -d '{"firstName": "Ant", "lastName": "Media", "email": "abc@antmedia.io", "password": "testtest", "scope": "system", "userType": "ADMIN"}'  "https://{YOUR_SERVER_ADDRESS}:5443/rest/v2/users"
-```
-    
+```    
 
 ## Edit User
-
-To edit a user for applications using the web panel, use the following REST method:
-
-```json
-    @PUT
-    @Path("/users")
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-```
 
 You can call the following method to edit a user with `curl`.
 
@@ -72,15 +54,6 @@ curl -X PUT -H "Content-Type: application/json" -d '{"firstName": "Ant", "lastNa
 ```
 
 ## Remove User
-
-To remove a user for applications using the web panel, use the following REST method:
-
-```json
-    @DELETE
-    @Path("/users/{username}")
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-```
 
 You can call the following method to remove a user with `curl`:
 ```
@@ -98,6 +71,8 @@ With this feature, you can define the scope of a user’s access on a per-applic
 *   **ADMIN Access** The user has full administrative rights within the access to the `LiveApp`. This includes the ability to create, modify, delete, and manage all aspects of `LiveApp`. 
 *   **USER Access** The same user can have standard user privileges within the `WebRTCAppEE` application. They can interact with `WebRTCAppEE` but cannot perform administrative tasks.
 *   **READ-ONLY Access** The user can have read-only access to `live`.They can view content and data in `live` but cannot make changes or perform any modifications.
+
+![User-Management](/static/img/user-management/user_management_screen.png)
 
 ## Benefits
 This level of control allows for:
