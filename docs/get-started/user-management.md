@@ -72,7 +72,7 @@ With this feature, you can define the scope of a user’s access on a per-applic
 *   **USER Access** The same user can have standard user privileges within the `WebRTCAppEE` application. They can interact with `WebRTCAppEE` but cannot perform administrative tasks.
 *   **READ-ONLY Access** The user can have read-only access to `live`.They can view content and data in `live` but cannot make changes or perform any modifications.
 
-![User-Management](/static/img/user-management/user_management_screen.png)
+![User-Management](@site/static/img/user-management/user_management_screen.png)
 
 ## Benefits
 This level of control allows for:
