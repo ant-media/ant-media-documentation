@@ -1,5 +1,3 @@
-s3 integration
-s3 integration
 ---
 title: S3 Integration and HTTP Forwarding 
 description: Record streams to S3-compatible systems (AWS S3, OVH, Digital Ocean Space, etc.) and configure HTTP forwarding.
