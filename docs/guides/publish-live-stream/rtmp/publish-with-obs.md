@@ -57,6 +57,17 @@ Close ```Settings``` window and just click the “Start Streaming” button in t
 
 Congrats! You're publishing a live stream with OBS.
 
+## Enhanced RTMP
+Starting with version v2.11.0, Ant Media Server introduces Enhanced RTMP support. This feature allows you to publish using RTMP with modern encoders like HEVC (H.265), which can deliver the same or better quality at lower bitrates, thus reducing bandwidth costs. 
+
+However, keep in mind that HEVC support for WebRTC is quite limited across browsers. As a result, if you use this encoder for RTMP publishing, you might encounter compatibility issues when trying to play it via WebRTC on various platforms. To verify HEVC support on different platforms, please refer to this [this page](https://caniuse.com/hevc).
+If you are not using WebRTC play, you do not need to worry about this.
+
+To use HEVC encoder with OBS, you can set your settings as below:
+![](@site/static/img/obs-rtmp-image/obs_hevc_enhanced_rtmp.png)
+
+After encoder is set, you can publish as you do in RTMP.
+
 ## Troubleshooting
 
 If you are experiencing stream quality issues, you should check the following indicators in OBS.
