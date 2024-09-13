@@ -517,6 +517,7 @@ Click Edit and paste the code provided below:
 
 You need to put your AMS domain address to the allowed origins field.
 
+```json
     [
         {
             "AllowedHeaders": [
@@ -535,6 +536,8 @@ You need to put your AMS domain address to the allowed origins field.
             "ExposeHeaders": []
         }
     ]
+```
+
 * on the origin field, as it accepts requests from all origins, can be used for quick testing. However, it can be changed to allow permissions for exact origins, such as "http://www.your-domain.com" since you only want to accept requests that are coming from your end.
 
 Markdown selection 1916 bytes 265 words 49 lines Ln 250, Col 5HTML 9528 characters 1797 words 123 paragraphs
