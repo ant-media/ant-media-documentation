@@ -7,33 +7,33 @@ sidebar_position: 1
 
 # Quick Start
 
-## Step 1: Download script
+### 1. Download the Installation Script
 
 ```shell
-wget https://raw.githubusercontent.com/ant-media/Scripts/master/install_ant-media-server.sh -O install_ant-media-server.sh  && chmod 755 install_ant-media-server.sh
+sudo wget https://raw.githubusercontent.com/ant-media/Scripts/master/install_ant-media-server.sh -O install_ant-media-server.sh  && sudo chmod 755 install_ant-media-server.sh
 ```
 
-## Step 2: Install Ant Media Server
+### 2. Install Ant Media Server
 
-### Install Enterprise Edition
+#### Install the Enterprise Edition
 
 ```shell
 sudo ./install_ant-media-server.sh -l 'your-license-key'
 ```
 
-### Install Community Edition
+#### Install the Community Edition
 ```shell
 sudo ./install_ant-media-server.sh
 ```
 
-### Install a specific version
+#### Install a Specific Version
 ```shell
 sudo ./install_ant-media-server.sh -i <ANT_MEDIA_SERVER_ZIP_FILE>
 ```
 
 **For more installation options check the help ```./install_ant-media-server.sh -h```.**
 
-### Fast, easy installation on Cloud Marketplace
+#### Checkout: Fast & Easy Installations on Cloud Marketplaces
 
 
 <div style={{display: 'flex', justifyContent: 'space-between', textAlign: 'center', fontWeight:'bold', height: 'auto'}}>
@@ -47,36 +47,36 @@ sudo ./install_ant-media-server.sh -i <ANT_MEDIA_SERVER_ZIP_FILE>
   </div>
 </div>
 
-## Step 3: Configure SSL
+### 3. Configure SSL
 
-### Free antmedia.cloud sub domain
+#### Free antmedia.cloud Subdomain
 
 ```shell
 cd /usr/local/antmedia/ && sudo ./enable_ssl.sh
 ```
 
-### Custom domain name
+#### Custom Domain Name(Your FQDN)
 
 ```shell
 cd /usr/local/antmedia/ && sudo ./enable_ssl.sh -d domain.com
 ```
 
 
-## Step 4: Login to the Web Panel
+### 4. Login to the Web Panel
 
 Navigate to ```https://ant-media-server:5443``` and create the first user account.
 
 ![](@site/static/img/quick-start/create-first-account.png)
 
-## Step 5: Publishing and Playing WebRTC Live Streams
+### 5. Publish and Play WebRTC Live Streams
 
-### Publishing a Live Stream
+#### Publish a Live Stream
 
 You can quickly publish a WebRTC live stream from a sample page that's available at ```https://domain-name:5443/LiveApp```.
 
 ![](@site/static/img/quick-start/publish-stream.png)
 
-### Playing a Live Stream
+#### Play a Live Stream
 
 Then playback the WebRTC live stream from another sample page available at ```https://domain-name:5443/LiveApp/player.html```.
 
@@ -84,11 +84,11 @@ Then playback the WebRTC live stream from another sample page available at ```ht
 ![](@site/static/img/quick-start/play-stream.png)
 
 
-## Sample Tools and Applications
+### Sample Tools and Applications
 
-Access [sample tools and applications](/get-started/sample-tools-and-applications/) here ```https://ant-media-server:5443/LiveApp/samples.html```. 
+Access the [sample tools and applications](/get-started/sample-tools-and-applications/) via ```https://ant-media-server:5443/LiveApp/samples.html```. As an example,
 
- - Multitrack conferencing
+ - Multitrack Conferencing
  - WebRTC Test Tool
  - DeepAR affects
 
@@ -99,6 +99,6 @@ Below is an example of DeepAR.
 
 
 
-## Getting Help
+### Getting Help
 
 If you need any help, feel free to head over to [Github discussions](https://github.com/orgs/ant-media/discussions) or follow our more detailed guide, [Installing Ant Media Server on Linux](/guides/installing-on-linux/installing-ams-on-linux/). 
