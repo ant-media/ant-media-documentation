@@ -58,9 +58,10 @@ Ant Media Server has two versions. One of them is the Community Edition (Free) a
 | IP Camera Support                                 | ![true](@site/static/img/tick.png)                   |  ![true](@site/static/img/tick.png)                    |
 | Re-stream Remote Streams                          | ![true](@site/static/img/tick.png)                   | ![true](@site/static/img/tick.png)
 | WHIP                                              |![true](@site/static/img/tick.png)                    | ![true](@site/static/img/tick.png)                     |
-| LL-HLS(Paid plugin)                                |![true](@site/static/img/tick.png)                    | ![true](@site/static/img/tick.png)                         |
+| LL-HLS (Paid plugin)                                |![true](@site/static/img/tick.png)                    | ![true](@site/static/img/tick.png)                         |
 | Open Source                                       | ![true](@site/static/img/tick.png)                   | ![true](@site/static/img/tick.png)                     |
-| Simulcast to all Social Media via RTMP            | ![true](@site/static/img/tick.png)                   | ![true](@site/static/img/tick.png)                     |
+| Linear Live Streaming (Playlist)                                     | ![true](@site/static/img/tick.png)                   | ![true](@site/static/img/tick.png) 
+| Simulcast to Social Media via RTMP            | ![true](@site/static/img/tick.png)                   | ![true](@site/static/img/tick.png)                     |
 | Support                                           | Community         | E-mail, On-site     |
 | Price                                             | Free              | Paid                |
 
