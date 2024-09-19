@@ -27,12 +27,12 @@ Here are the fundamental features of Ant Media Server:
 * Linear Live Streaming with Playlist
 
 :::info
-This document includes information both for Community and Enterprise Editions. If something is not working according to this document, you may be using Community Edition and you try to use a feature of Enterprise. Check the Community vs. Enterprise below
+This document provides information for both the Community and Enterprise Editions. If something does not work as described in this document, you may be using Community Edition and attempting to use a feature of Enterprise Edition.
 :::
 
 ## Community Edition & Enterprise Edition
 
-Ant Media Server has two versions. One of them is the Community Edition (Free) and the other one is Enterprise Edition. Community Edition is available to [download on Github.](https://github.com/ant-media/Ant-Media-Server) Enterprise Edition can be purchased on [antmedia.io](https://antmedia.io/)
+Ant Media Server has two versions. One of them is the Community Edition (Free) and the other one is Enterprise Edition. Community Edition is available to [download on Github.](https://github.com/ant-media/Ant-Media-Server/releases) Enterprise Edition can be purchased on [antmedia.io](https://antmedia.io/)
 
 
 |                                            | **Community Edition** | **Enterprise Edition**  |
