@@ -15,7 +15,7 @@ Users in the AMS dashboard can only view applications and sections of the dashbo
 *   **User:** Can perform actions on applications to which they have been granted access but cannot see or modify other applications.
 *   **Read-only user:** Can view all data in the dashboard for applications to which they have been granted access but cannot access web panel services, create applications, or start broadcasts.
 
-## Create Users via Web Panel
+## User Management via Web Panel
 
 To create user roles in Ant Media Server, navigate to the `Settings` menu on the left, then click on the `Users` section, and click the `New User` button. Fill out the required fields according to your use case.
 
@@ -25,7 +25,7 @@ After logging in with your new user credentials, you will see a dashboard simila
 
 ![specific-application-admin-user-dashboard](https://antmedia.io/wp-content/uploads/2022/02/specific-application-admin-user-dashboard.png)
 
-## Using Multi-Tenancy with REST API
+## User Management via REST API
 
 With the following REST API methods, you can manage user access on the Ant Media Server:
 
@@ -70,7 +70,9 @@ In version 2.10.1 and above of Ant Media Server, you can manage user access more
 With this feature, you can define the scope of a user’s access on a per-application basis. This means you can grant a user various types of access depending on the application they are interacting with. For example:
 
 *   **ADMIN Access** The user has full administrative rights within the access to the `LiveApp`. This includes the ability to create, modify, delete, and manage all aspects of `LiveApp`. 
+
 *   **USER Access** The same user can have standard user privileges within the `WebRTCAppEE` application. They can interact with `WebRTCAppEE` but cannot perform administrative tasks.
+
 *   **READ-ONLY Access** The user can have read-only access to `live`.They can view content and data in `live` but cannot make changes or perform any modifications.
 
 Check out the below screenshot to define different scope for different application:
