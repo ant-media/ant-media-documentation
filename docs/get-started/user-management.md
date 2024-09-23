@@ -15,8 +15,7 @@ Users in the AMS dashboard can only view applications and sections of the dashbo
 *   **User:** Can perform actions on applications to which they have been granted access but cannot see or modify other applications.
 *   **Read-only user:** Can view all data in the dashboard for applications to which they have been granted access but cannot access web panel services, create applications, or start broadcasts.
 
-Creating User Roles in Ant Media Server
-----------------------------------------
+## Create Users via Web Panel
 
 To create user roles in Ant Media Server, navigate to the `Settings` menu on the left, then click on the `Users` section, and click the `New User` button. Fill out the required fields according to your use case.
 
@@ -26,45 +25,47 @@ After logging in with your new user credentials, you will see a dashboard simila
 
 ![specific-application-admin-user-dashboard](https://antmedia.io/wp-content/uploads/2022/02/specific-application-admin-user-dashboard.png)
 
-Using Multi-Tenancy with REST API
----------------------------------------
+## Using Multi-Tenancy with REST API
 
 With the following REST API methods, you can manage user access on the Ant Media Server:
 
 :::info
-The `scope` parameter can be set to either `system` or a specific application name, such as `LiveApp`. If you use `LiveApp`, the user’s scope will be limited to `LiveApp`. `system` scope can reach all application scopes.
-:::
+The `scope` parameter can be set to either `system` or a specific application name, such as `LiveApp`. If you use `LiveApp`, the user’s scope will be limited to `LiveApp` and if you want whole access to the server, then `system` scope can be defined.
 
 The `userType` parameter can be set to `ADMIN`, `USER` or `READ-ONLY`.
+:::
 
-## Create User
+To use the management APIs, authentication is required. Check out this [Rest API document](https://antmedia.io/docs/guides/developer-sdk-and-api/rest-api-guide/management-rest-apis/) for more details.
 
-You can call the following method to create a user with `curl`:
+### Create User
 
-```
+You can call the following method to create a user:
+
+```json
 curl -X POST -H "Content-Type: application/json" -d '{"firstName": "Ant", "lastName": "Media", "email": "abc@antmedia.io", "password": "testtest", "scope": "system", "userType": "ADMIN"}'  "https://{YOUR_SERVER_ADDRESS}:5443/rest/v2/users"
 ```    
 
-## Edit User
+### Edit User
 
-You can call the following method to edit a user with `curl`.
+You can call the following method to edit a user:
 
-```
+```json
 curl -X PUT -H "Content-Type: application/json" -d '{"firstName": "Ant", "lastName": "Media", "email": "test", "password": "testtest", "scope": "system", "userType": "USER"}'  "https://{YOUR_SERVER_ADDRESS}:5443/rest/v2/users"
 ```
 
-## Remove User
+### Remove User
 
-You can call the following method to remove a user with `curl`:
-```
+You can call the following method to remove a user:
+
+```json
 curl -X DELETE -H "Content-Type: application/json" "https://{YOUR_SERVER_ADDRESS}:5443/rest/v2/users/{username}"
 ```
 
-## Access to Multiple Applications in versions 2.10.1 and above
+## Multi Application Access Management
 
-In version 2.10.1 of Ant Media Server, you can manage user access more precisely by assigning different levels of permissions to the same user across multiple applications. This feature enhances flexibility and control over user roles within your environment.
+In version 2.10.1 and above of Ant Media Server, you can manage user access more precisely by assigning different levels of permissions to the same user across multiple applications. This feature enhances flexibility and control over user roles within your environment.
 
-## How It Works
+### How It Works
 
 With this feature, you can define the scope of a user’s access on a per-application basis. This means you can grant a user various types of access depending on the application they are interacting with. For example:
 
@@ -72,9 +73,18 @@ With this feature, you can define the scope of a user’s access on a per-applic
 *   **USER Access** The same user can have standard user privileges within the `WebRTCAppEE` application. They can interact with `WebRTCAppEE` but cannot perform administrative tasks.
 *   **READ-ONLY Access** The user can have read-only access to `live`.They can view content and data in `live` but cannot make changes or perform any modifications.
 
+Check out the below screenshot to define different scope for different application:
+
 ![User-Management](@site/static/img/user-management/user_management_screen.png)
 
-## Benefits
+Here is the Rest API call to create a user with access to multiple applications with different scopes.
+
+```json
+curl -X POST -H "Content-Type: application/json" -d '{"firstName": "Ant", "lastName": "Media", "email":  "abc@antmedia.io", "password": "testtest", "appNameUserType": {"LiveApp": "ADMIN",  "WebRTCAppEE": "USER", "live": "READ_ONLY"}}'  "https://{YOUR_SERVER_ADDRESS}:5443/rest/v2/users"
+```
+
+### Benefits
+
 This level of control allows for:
 
 *   **Granular Permissions:** Tailor access based on the specific needs and responsibilities of each user. This minimizes the risk of unauthorized actions or exposure of sensitive information.
