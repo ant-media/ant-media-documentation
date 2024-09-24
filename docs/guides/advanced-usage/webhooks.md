@@ -1,6 +1,6 @@
 ---
 title: Webhooks
-description: Ant Media Server provides webhooks for making your system/app know when certain events occurs on the server.
+description: Ant Media Server provides webhooks for letting your system/app know when certain events occur on the server.
 keywords: [Ant Media Server Webhooks, Webhooks List for Ant Media Server, Custom Webhook for Streams, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 3
 ---
@@ -13,23 +13,24 @@ Ant Media Server offers webhooks to notify your application when specific events
 
 ### Register Your Webhook URL
 
-You can add default webhook URL to your streaming app on Ant Media Server. In addition, it lets you add custom specific webhook URL's in creating broadcast.
+You can add a default webhook URL to your streaming app on Ant Media Server. In addition, it lets you add custom-specific webhook urls in creating broadcasts.
 
 #### Add default Webhook URL
 
-In order to add default Webhook URL, you just need to add/change Webhook URL your app settings as below:  
+To add the default Webhook URL, you just need to add/change the Webhook URL in your app settings as below:  
 ![](@site/static/img/ant-media-server-webhook-configuration.png)
 
 Your Ant Media Server now has a default hook which is called when certain events happen (see below)
 
 #### Add Custom Webhook for Streams
 
-Ant Media Server provides creating streams through rest service. Therefore, If you want to specify the webhook URL for each stream, you can use _createBroadcast_ method in the [rest service.](https://github.com/ant-media/Ant-Media-Server/blob/master/src/main/java/io/antmedia/rest/BroadcastRestService.java)  _createBroadcast_ method has Broadcast object parameter which has _listenerHookURL_ field_._
+Ant Media Server provides creating streams through rest service. Therefore, If you want to specify the webhook URL for each stream, you can use `createBroadcast` method in the [rest service.](https://github.com/ant-media/Ant-Media-Server/blob/master/src/main/java/io/antmedia/rest/BroadcastRestService.java)  `createBroadcast` method has Broadcast object parameter which has `listenerHookURL` field.
 
 As a result,  you can set _listenerHookURL_ for creating a stream at Ant Media Server.
 
 Here is a sample JSON for using _createBroadcast_ method with [Postman](https://www.getpostman.com/)
-```
+
+```js
     {
     	"variables": [],
     	"info": {
@@ -62,10 +63,11 @@ Here is a sample JSON for using _createBroadcast_ method with [Postman](https://
     	]
     }
 ```
-#### Reliable Webhooks
-Ant Media Server supports webhook reliability starting from version 2.8.3. When sending a POST request to the configured webhook URL, if the response is not HTTP OK (200) or if an exception, such as a socket connection timeout, occurs, AMS can automatically initiate multiple retry attempts. Users have the flexibility to customize both the number of retry attempts and the delay between each attempt in milliseconds through the web panel advanced application settings.
 
-```
+## Reliable Webhooks
+Ant Media Server supports webhook reliability starting from version 2.8.3. When sending a POST request to the configured webhook URL, if the response is not HTTP OK (200) or if an exception, such as a socket connection timeout, occurs, AMS can automatically initiate multiple retry attempts. Users have the flexibility to customize both the number of retry attempts and the delay between each attempt in milliseconds through the web panel's advanced application settings.
+
+```js
 "webhookRetryCount": 0,
 "webhookRetryDelay": 1000
 ```
@@ -74,7 +76,7 @@ Ant Media Server supports webhook reliability starting from version 2.8.3. When 
 
 
 
-### Webhooks List
+## Webhooks List
 
 Ant Media Server will send a POST request to your application server endpoint with a `Content-Type` of `application/json` in the body by default. If you prefer, you can change the webhook payload content type to `application/x-www-form-urlencoded` through the advanced application settings on the web panel by setting 
 
@@ -82,7 +84,7 @@ Ant Media Server will send a POST request to your application server endpoint wi
 "webhookContentType": "application/x-www-form-urlencoded"
 ```
 
-##### Available Webhooks
+### Available Webhooks
 
 1. **`liveStreamStarted`**
    - **Trigger**: Fired when a new live stream starts.
@@ -102,8 +104,8 @@ Ant Media Server will send a POST request to your application server endpoint wi
      - `action`: The action performed, in this case, "liveStreamStarted".
      - `streamName`: The name of the stream (can be null).
      - `category`: The category of the stream (can be null).
-	 - `metadata`: The metadata field of the broadcast object. If its a JSON string metadata field will be a JSON object.
-	 - `timestamp`: The current server timestamp miliseconds as string.
+	 - `metadata`: The metadata field of the broadcast object. If it's a JSON string metadata field will be a JSON object.
+	 - `timestamp`: The current server timestamp milliseconds as a string.
 
 2. **`liveStreamEnded`**
    - **Trigger**: Fired when a live stream ends.
@@ -123,8 +125,8 @@ Ant Media Server will send a POST request to your application server endpoint wi
      - `action`: The action performed, in this case, "liveStreamEnded".
      - `streamName`: The name of the stream (can be null).
      - `category`: The category of the stream (can be null).
-	 - `metadata`: The metadata field of the broadcast object. If its a JSON string metadata field will be a JSON object.
-	 - `timestamp`: The current server timestamp miliseconds as string.
+	 - `metadata`: The metadata field of the broadcast object. If it's a JSON string metadata field will be a JSON object.
+	 - `timestamp`: The current server timestamp milliseconds as a string.
 
 3. **`vodReady`**
    - **Trigger**: Fired when the recording of a live stream is completed.
@@ -143,9 +145,9 @@ Ant Media Server will send a POST request to your application server endpoint wi
      - `id`: The stream ID of the broadcast.
      - `action`: The action performed, in this case, "vodReady".
      - `vodName`: The name of the VOD file.
-     - `vodId`: The ID of the VOD in the datastore.
-	 - `metadata`: The metadata field of the broadcast object. If its a JSON string metadata field will be a JSON object.
-	 - `timestamp`: The current server timestamp miliseconds as string.
+     - `vodId`: The ID of the VOD in the data store.
+	 - `metadata`: The metadata field of the broadcast object. If it's a JSON string metadata field will be a JSON object.
+	 - `timestamp`: The current server timestamp milliseconds as a string.
 
 4. **`endpointFailed`**
    - **Trigger**: Fired when an RTMP endpoint broadcast fails.
@@ -166,7 +168,7 @@ Ant Media Server will send a POST request to your application server endpoint wi
      - `streamName`: The name of the stream (can be null).
      - `category`: The category of the stream (can be null).
      - `metadata`: The RTMP URL of the endpoint.
-	 - `timestamp`: The current server timestamp miliseconds as string.
+	 - `timestamp`: The current server timestamp milliseconds as a string.
 
 
 5. **`publishTimeoutError`**
@@ -188,7 +190,7 @@ Ant Media Server will send a POST request to your application server endpoint wi
      - `streamName`: The name of the stream (can be null).
      - `category`: The category of the stream (can be null).
 	 - `metadata`: JSON object which contains subscriber id.
-	 - `timestamp`: The current server timestamp miliseconds as string.
+	 - `timestamp`: The current server timestamp milliseconds as a string.
 
 
 6. **`encoderNotOpenedError`**
@@ -208,8 +210,8 @@ Ant Media Server will send a POST request to your application server endpoint wi
      - `id`: The stream ID of the broadcast.
      - `action`: The action performed, in this case, "encoderNotOpenedError".
      - `streamName`: The name of the stream (can be null).
-	 - `metadata`: The metadata field of the broadcast object. If its a JSON string metadata field will be a JSON object.
-     - `timestamp`: The current server timestamp miliseconds as string.
+	 - `metadata`: The metadata field of the broadcast object. If it's a JSON string metadata field will be a JSON object.
+     - `timestamp`: The current server timestamp milliseconds as a string.
 
 7. **`playStopped`**
 	- **Trigger**: Fired when a webrtc player stops playing a stream.
@@ -230,7 +232,7 @@ Ant Media Server will send a POST request to your application server endpoint wi
 	- `streamName`: The name of the stream (can be null).
 	- `category`: The category of the stream (can be null).
 	- `subscriberId`: Subscriber id of the webrtc player. You can pass subscriber id to .publish() and .play() methods in all SDKs.
-	- `timestamp`: The current server timestamp miliseconds as string.
+	- `timestamp`: The current server timestamp milliseconds as a string.
 
 8. **`playStarted`**
 	- **Trigger**: Fired when a webrtc player starts playing a stream.
@@ -251,10 +253,10 @@ Ant Media Server will send a POST request to your application server endpoint wi
 	- `streamName`: The name of the stream (can be null).
 	- `category`: The category of the stream (can be null).
 	- `subscriberId`: Subscriber id of the webrtc player. You can pass subscriber id to .publish() and .play() methods in all SDKs.
-	- `timestamp`: The current server timestamp miliseconds as string.
+	- `timestamp`: The current server timestamp milliseconds as a string.
 
 9. **`subtrackAddedInTheMainTrack`**
-	- **Trigger**: Fired when a subtrack has been created within the main track. In video conferencing applications, this event signifies that a new stream has been started within the room. E.g. participant joined to the room
+	- **Trigger**: Fired when a sub-track has been created within the main track. In video conferencing applications, this event signifies that a new stream has been started within the room. e.g., The participant joined to the room
 	- **Payload (JSON)**:
 	```json
 	{
@@ -273,11 +275,11 @@ Ant Media Server will send a POST request to your application server endpoint wi
 	- `streamName`: The name of the stream (can be null).
 	- `category`: The category of the stream (can be null).
 	- `subscriberId`: Subscriber id of the webrtc player. You can pass subscriber id to .publish() and .play() methods in all SDKs.
-	- `mainTrackId`: The stream ID of the main track broadcast. In conference context this will be stream id of the room.
-	- `timestamp`: The current server timestamp miliseconds as string.
+	- `mainTrackId`: The stream ID of the main track broadcast. In a conference context, this will be the stream id of the room.
+	- `timestamp`: The current server timestamp milliseconds as a string.
 
 10. **`subtrackLeftTheMainTrack`**
-	- **Trigger**: Fired when a subtrack has left the main track. In video conferencing applications, this event signifies that a new stream has left from the room. E.g. participant left the room
+	- **Trigger**: Fired when a sub-track has left the main track. In video conferencing applications, this event signifies that a new stream has left the room. e.g., The participant left the room
 	- **Payload (JSON)**:
 	```json
 	{
@@ -296,11 +298,11 @@ Ant Media Server will send a POST request to your application server endpoint wi
 	- `streamName`: The name of the stream (can be null).
 	- `category`: The category of the stream (can be null).
 	- `subscriberId`: Subscriber id of the webrtc player. You can pass subscriber id to .publish() and .play() methods in all SDKs.
-	- `mainTrackId`: The stream ID of the main track broadcast. In conference context this will be stream id of the room.
-	- `timestamp`: The current server timestamp miliseconds as string.
+	- `mainTrackId`: The stream ID of the main track broadcast. In a conference context, this will be the stream id of the room.
+	- `timestamp`: The current server timestamp milliseconds as a string.
 
 11. **`firstActiveTrackAddedInMainTrack`**
-	- **Trigger**: Fired when first active subtrack has created in the main track. In video conferencing applications, this event signifies that first stream started in room. E.g. first participant joined room.
+	- **Trigger**: Fired when the first active sub-track has been created in the main track. In video conferencing applications, this event signifies that the first stream started in the room. e.g., the first participant joined the room.
 	- **Payload (JSON)**:
 	```json
 	{
@@ -319,11 +321,11 @@ Ant Media Server will send a POST request to your application server endpoint wi
 	- `streamName`: The name of the stream (can be null).
 	- `category`: The category of the stream (can be null).
 	- `subscriberId`: Subscriber id of the webrtc player. You can pass subscriber id to .publish() and .play() methods in all SDKs.
-	- `mainTrackId`: The stream ID of the main track broadcast. In conference context this will be stream id of the room.
-	- `timestamp`: The current server timestamp miliseconds as string.
+	- `mainTrackId`: The stream ID of the main track broadcast. In a conference context, this will be the stream id of the room.
+	- `timestamp`: The current server timestamp milliseconds as a string.
 
 12. **`noActiveSubtracksLeftInMainTrack`**
-	- **Trigger**: Fired when there is no active subtracks left in the main track. In video conferencing applications, this event signifies that no stream left in room. E.g. Everybody left the room.
+	- **Trigger**: Fired when there are no active sub-tracks left in the main track. In video conferencing applications, this event signifies that no stream is left in the room. e.g., Everybody left the room.
 	- **Payload (JSON)**:
 	```json
 	{
@@ -342,11 +344,11 @@ Ant Media Server will send a POST request to your application server endpoint wi
 	- `streamName`: The name of the stream (can be null).
 	- `category`: The category of the stream (can be null).
 	- `subscriberId`: Subscriber id of the webrtc player. You can pass subscriber id to .publish() and .play() methods in all SDKs.
-	- `mainTrackId`: The stream ID of the main track broadcast. In conference context this will be stream id of the room.
-	- `timestamp`: The current server timestamp miliseconds as string.
+	- `mainTrackId`: The stream ID of the main track broadcast. In a conference context, this will be the stream id of the room.
+	- `timestamp`: The current server timestamp milliseconds as a string.
 
 That's it! You can read the `action` field from the POST request body and take appropriate actions on your application server. Be sure to respond with a 200 status code to acknowledge receipt of the POST request.
 
-> **Attention:** Please process the POST request within your application as quick as possible as the hooks are called within the event loop thread which will not wait for your application to complete complex tasks.
+> **Attention:** Please process the POST request within your application as quickly as possible as the hooks are called within the event loop thread which will not wait for your application to complete complex tasks.
 
 To secure streams using Webhook, refer to the [Webhook Authorization](https://antmedia.io/docs/category/stream-security/webhook-stream-authorization) document.
