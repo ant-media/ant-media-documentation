@@ -65,7 +65,9 @@ Here is a sample JSON for using _createBroadcast_ method with [Postman](https://
 ```
 
 ## Reliable Webhooks
-Ant Media Server supports webhook reliability starting from version 2.8.3. When sending a POST request to the configured webhook URL, if the response is not HTTP OK (200) or if an exception, such as a socket connection timeout, occurs, AMS can automatically initiate multiple retry attempts. Users have the flexibility to customize both the number of retry attempts and the delay between each attempt in milliseconds through the web panel's advanced application settings.
+Ant Media Server supports webhook reliability starting from version 2.8.3. When sending a POST request to the configured webhook URL, if the response is not HTTP OK (200) or if an exception, such as a socket connection timeout, occurs, AMS can automatically initiate multiple retry attempts.
+
+Users have the flexibility to customize both the number of retry attempts and the delay between each attempt in milliseconds through the web panel's advanced application settings.
 
 ```js
 "webhookRetryCount": 0,
