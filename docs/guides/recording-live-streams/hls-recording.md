@@ -50,9 +50,9 @@ After making the changes, you can scroll down and save the settings. Now, your s
 
 Additionally, it's also possible to push HLS files directly to a remote endpoint without generating them on the local server in real-time, or alternatively, upload them via the standard procedure to an S3 bucket once the stream has finished.
 
-## Uploading HLS files to Cloud Storage
+## Record HLS files to Cloud Storage
 
-Before uploading files to S3 or any other cloud storage, let us first learn about the HTTP Endpoint.
+Before uploading files to S3 or any other cloud storage in real time, let us first learn about the HTTP Endpoint.
 
 ### HLS HTTP Endpoint
 
@@ -81,9 +81,9 @@ https://example.com/hls-stream/stream123.m3u8
 . . .
 ```
 
-### Uploading HLS files to the S3 bucket
+### Record HLS files to the S3 bucket
 
-When you use S3 integration, your record will be uploaded as soon as the livestream is finished.
+When you use standard S3 integration, your record will be uploaded as soon as the livestream is finished.
 
 But if you want to upload your HLS files in real-time to the S3-compatible systems (AWS, OVH, Digital Ocean, etc.), you can use the `HLS Upload` servlet.
 
