@@ -2,7 +2,7 @@
 title: HTTP Forwarding
 description: HTTP forwarding from the server to the bucket
 keywords: [HTTP Forwarding, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 5
+sidebar_position: 6
 ---
 
 # HTTP Forwarding
