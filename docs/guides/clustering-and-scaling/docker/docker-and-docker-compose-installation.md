@@ -7,6 +7,13 @@ sidebar_position: 1
 
 # Docker and Docker Compose Installation
 
+To use the Ant Media Server Enterprise Edition official Docker Hub image, you can execute the following command, which will pull the latest version directly from Docker Hub.
+
+```shell
+
+docker run --restart=always -d --name antmedia --network=host -it antmedia/enterprise:latest
+```
+
 Dockerfile
 ----------
 
@@ -32,7 +39,6 @@ docker build --network=host -t antmediaserver --build-arg LicenseKey=<Your_Licen
 docker build --network=host -t antmediaserver --build-arg AntMediaServer=<Replace_With_Ant_Media_Server_Zip_File> .
 ``` 
     
-
 ### 3\. Run the Docker Container
 
 Now we have a docker container with Ant Media Server. Run the image.
@@ -46,7 +52,7 @@ docker run --restart=always -d --name antmedia --network=host -it antmediaserver
 ```shell
 docker volume create antmedia_volume
 docker run -d --name antmedia --mount source=antmedia_volume,target=/usr/local/antmedia/ --network=host -it antmediaserver
-```  
+```
 
 Docker Compose
 --------------
