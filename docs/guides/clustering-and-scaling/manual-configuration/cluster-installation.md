@@ -7,55 +7,107 @@ sidebar_position: 2
 
 # Cluster installation
 
-AMS can run in cluster mode. This way, a number of AMS nodes can work together to increase the number of viewers and publishers. In other words, you can publish a live stream to one node of AMS in the cluster and you can watch the stream in another node in the cluster.
+Ant Media Server (AMS) can be deployed in a cluster configuration to enhance scalability and reliability. This setup allows multiple AMS nodes to work together, thereby increasing the number of viewers and publishers that can be supported. In simpler terms, you can publish a live stream to one AMS node within the cluster, and that stream can be viewed from another node within the same cluster.
 
 ![](@site/static/img/origin_edge.png)
 
-AMS cluster has 4 main components.
+## Components of an AMS Cluster
 
-1. **Database (MongoDB):** Stream information is recorded to the database to let all nodes access the data. Stream information contains bitrates, settings, origin node of the stream, and other data.
-2. **Origin group:** This group consists of AMS nodes that ingest streams and do the necessary actions such as transcoding, transmuxing, etc. Nodes in origin group distribute the streams to the nodes in the edge group. Viewers don't get connected to the nodes in the origin group to play streams. Nodes in the origin group are suggested to have GPU, if adaptive bitrates are enabled in the cluster.
-3. **Edge group:** This group consists of AMS nodes that get streams from nodes in the origin group and send to the viewers. Nodes in this group should not ingest stream and these nodes don't not perform any actions like transcoding or transmuxing. They only get the stream from origin and send it to the viewers.
-4. **Load balancer:** This component is the frontend for the viewers and publishers. It receives the request from the users and forwards the request to a node in the origin or edge group. It balances the incoming load into the nodes running in the backend.
+To better understand how an AMS cluster operates, it's essential to know the roles of its key components:
 
-## Basics of clustering
+1. **Database (MongoDB):**
 
-* Each instance registers itself to the MongoDB database.
-* When an instance starts receiving a live stream, it registers itself as the origin of the stream.
-* When the load balancer forwards a play request to any of the nodes in the edge group,
-  * Node gets the stream origin from MongoDB.
-  * Node fetches the stream from the origin node.
-  * Node distributes the stream to viewers.
+The database is central to the AMS cluster, storing all stream-related information. This data includes bitrates, settings, the origin node of the stream, and additional metadata necessary for stream management. The database ensures that all nodes in the cluster have consistent access to this information, facilitating seamless streaming across different nodes.
 
-**Important note:** You need to open TCP port range (TCP:5000-65000) to the internal network. It should not be open to public.
+3. **Origin Group:**
 
-To run AMS in a cluster please follow these steps.
+The origin group consists of AMS nodes responsible for ingesting live streams. These nodes perform various tasks such as transcoding (converting streams to different formats or bitrates) and transmuxing (changing the container format of the stream). Once processed, the streams are distributed to nodes within the edge group. Importantly, viewers do not connect directly to origin group nodes for playback. It is recommended that nodes in this group be equipped with a GPU, especially if adaptive bitrate streaming is enabled.
 
-## Installing the Mongodb database
+4. **Edge Group:**
 
-You can install MongoDB to an instance or even you can make cluster installation for MongoDB. In this documentation, we explain how to install MongoDB to an Ubuntu Linux machine. As the commands are specific to Ubuntu, you can use corresponding Linux commands to deploy to a yum based Linux distribution as well.
+The edge group contains AMS nodes that receive streams from the origin group nodes and deliver them to viewers. Unlike origin nodes, edge nodes do not ingest streams or perform tasks such as transcoding or transmuxing. Their sole purpose is to fetch the stream from an origin node and forward it to the viewers, ensuring efficient distribution of content.
 
-Connect your instance and download the following script.
+6. **Load Balancer (Nginx or HAProxy):**
+The load balancer acts as the entry point for both viewers and publishers. It receives user requests and intelligently directs them to an appropriate node in either the origin or edge group, based on the current load and availability of resources. The load balancer is crucial for distributing traffic evenly across the cluster, thereby optimizing performance and avoiding overloading any single node.
 
-```shell
-wget https://raw.githubusercontent.com/ant-media/Scripts/master/install_mongodb.sh && chmod +x install_mongodb.sh
+## Basics of Clustering
+
+The following steps outline the basic operations of an AMS cluster:
+
+- **Instance Registration:** Each AMS node registers itself with the MongoDB database upon startup.
+- **Stream Origin Assignment:** When a node begins receiving a live stream, it registers itself as the origin node for that stream in the database.
+- **Load Balancer Operations:** When the load balancer receives a playback request, it forwards the request to an edge group node:
+  1. The edge node retrieves the stream's origin information from MongoDB.
+  2. The edge node then fetches the stream from the origin node.
+  3. Finally, the edge node distributes the stream to the requesting viewers.
+
+:::info
+Ensure that TCP port **5000** is open for internal network communication when running in Cluster mode. For security reasons, this port should remain inaccessible from the public internet.
+:::
+
+
+## Install Ant Media Server
+
+Before configuring AMS for cluster mode, you first need to install AMS on each server (node) that will be part of the cluster. Follow these steps:
+
+### Download Installation Script
+
+Download and prepare the AMS installation script by running the following command:
+
+```bash
+wget -O install_ant-media-server.sh https://raw.githubusercontent.com/ant-media/Scripts/master/install_ant-media-server.sh && sudo chmod 755 install_ant-media-server.sh
 ```
 
-Then run it and the latest version of MongoDB will be installed. If you run it without parameters, authentication will not be enabled.
+### Run the Installation Script
 
-```shell
-./install_mongodb.sh
+Execute the script to install Ant Media Server:
+
+- Community Edition
+
+```bash
+sudo ./install_ant-media-server.sh
 ```
 
-If you run it with the **--auto-create** parameter, then authentication will be enabled. It will generate a random username and password for your MongoDB server.
+- Enterprise Edition
 
-```shell
-./install_mongodb.sh --auto-create
+```bash
+sudo ./install_ant-media-server.sh -l 'your-license-key'
 ```
 
-After MongoDB 4.4, if the amount of open files ulimit is below 64000, you may encounter a startup error. For this, add the following lines under `/etc/security/limits.conf`
+This will install AMS in standalone mode by default. Repeat this process on each server you intend to include in the cluster. Check out [this link](https://antmedia.io/docs/guides/installing-on-linux/installing-ams-on-linux/) for more details.
 
-```shell
+
+## Install MongoDB
+
+MongoDB acts as the central database for your AMS cluster, storing stream-related data that ensures consistency across all nodes.
+
+### Download MongoDB Installation Script
+
+Download the MongoDB installation script with the following command:
+
+```bash
+wget https://raw.githubusercontent.com/ant-media/Scripts/master/install_mongodb.sh && sudo chmod +x install_mongodb.sh
+```
+
+### Install MongoDB
+
+Run the script to install the latest version of MongoDB:
+
+```bash
+sudo ./install_mongodb.sh
+```
+
+**Optional:** To enable authentication (highly recommended for security), use the `--auto-create` parameter. This generates a random username and password for your MongoDB server:
+
+```bash
+sudo ./install_mongodb.sh --auto-create
+```
+
+### Configure MongoDB Limits
+
+If you are using MongoDB 4.4 or later, ensure that the open files limit (ulimit) is set appropriately to avoid startup errors. Add the following lines to `/etc/security/limits.conf`:
+
+```bash
 root soft       nproc          65535  
 root hard       nproc          65535   
 root soft       nofile         65535   
@@ -66,50 +118,57 @@ mongodb soft    nofile         65535
 mongodb hard    nofile         65535
 ```
 
-We set 0.0.0.0 in the mongodb.conf. It means ```listen on every available network interface```. If you don't have a firewall, you will accept all connections from everywhere to your MongoDB server. We recommend adding security credentials to your MongoDB instance with the following commands.
+### Bind MongoDB to All Network Interfaces
 
-## Install the origin and edge groups
+Modify the `/etc/mongod.conf` file to set the bind address to `0.0.0.0`. This allows MongoDB to listen on all available network interfaces. Ensure you secure your MongoDB instance, especially if you don’t have a firewall, to avoid unauthorized access.
 
-You can easily switch AMS from ```standalone``` mode to ```cluster``` mode or vice versa. Let's switch AMS from standalone mode to cluster mode.
 
-In order to configure AMS run in cluster mode, you just need to run the below command.
+## Switching AMS to Cluster Mode
 
-<InfoBox>
-If you have set up a username and password for MongoDB, then you need to pass the credentials in the command:
-</InfoBox>
+Once AMS is installed on all servers and MongoDB is set up, you can configure AMS to run in cluster mode.
 
-Note: If you set username and password authentication on MongoDB, you should run ```change_server_mode.sh``` as follows:
+### Switch to Cluster Mode:
 
-**Without credentials**
+To configure each AMS node to operate in cluster mode, run the following command:
 
-```shell
+#### Without MongoDB Credentials
+
+```bash
 cd /usr/local/antmedia
 sudo ./change_server_mode.sh cluster <MONGODB_SERVER_IP>
 ```
-**With credentials**
 
-```shell
+#### With MongoDB Credentials
+
+If you set up MongoDB with authentication, include the credentials in the command:
+
+```bash
 cd /usr/local/antmedia
-sudo ./change_server_mode.sh cluster <MONGODB_SERVER_IP> <MONGODB_USERNAME> <MONGODB_PASSWORD>`
+sudo ./change_server_mode.sh cluster <MONGODB_SERVER_IP> <MONGODB_USERNAME> <MONGODB_PASSWORD>
 ```
 
-For **MongoDB Atlas** connections, you can give the direct ```mongodb+srv``` URL as follows
+#### Use MongoDB Atlas
 
-```shell
+For MongoDB Atlas or other cloud-based MongoDB instances, provide the full connection string:
+
+```bash
 sudo ./change_server_mode.sh cluster mongodb+srv://<username>:<password>@<url>/<name>?<params>
 ```
+
+Repeat this process on every node in the cluster.
+
+### Monitor Cluster Nodes
+
+Once all nodes are configured in cluster mode, you can monitor them through the AMS dashboard by visiting the following URL on any node:
+
+```html
+http://<ANT_MEDIA_SERVER_NODE_IP>:5080
 ```
-    http://<ANT_MEDIA_SERVER_NODE_IP>:5080/#/cluster
-```
-#### Basics of clustering
 
-You can monitor all nodes in the cluster by visiting the web page below in any node.
-
-`http://<ANT_MEDIA_SERVER_NODE_IP>:5080/#/cluster`
-
-## Installing the load balancer
+## Install the load balancer
 
 Install the load balancer using either one of the below two options. AMS uses Nginx by default, bu you can also use HAProxy as your load balancer. You can read how to install either of these options in the documents below.
 
-* [Nginx Load Balancer](/guides/clustering-and-scaling/load-balancing/nginx-load-balancer/)
-* [HAProxy Load Balancer](/guides/clustering-and-scaling/load-balancing/load-balancer-with-haproxy-ssl-termination/)
+- [Nginx Load Balancer](https://antmedia.io/docs/guides/clustering-and-scaling/load-balancing/nginx-load-balancer/)
+
+- [HAProxy Load Balancer](https://antmedia.io/docs/guides/clustering-and-scaling/load-balancing/load-balancer-with-haproxy-ssl-termination/)

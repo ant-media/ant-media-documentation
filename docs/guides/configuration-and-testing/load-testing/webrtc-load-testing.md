@@ -26,7 +26,7 @@ In this option, we have only one Ant Media Server instance as SUT.
     |                   |    rest          |                      |
     +-------------------+                  +----------------------+
 ```
-To setup the Ant Media Server, please check [here](https://antmedia.io/docs/guides/installing-on-linux/installing-ams-on-linux/).
+To set up the Ant Media Server, please check [here](https://antmedia.io/docs/guides/installing-on-linux/installing-ams-on-linux/).
 
 ### Cluster setup
 
@@ -64,7 +64,7 @@ Here we have a cluster structure as SUT which contains one origin and N edge ser
                +----------------+  +----------------+     +----------------+
     
 ```
-To deploy an Ant Media Server cluster, please see [here](https://github.com/ant-media/Ant-Media-Server/wiki/Scaling-and-Load-Balancing).
+To deploy an Ant Media Server cluster, please see [here](https://antmedia.io/docs/guides/clustering-and-scaling/scaling-ant-media-server/).
 
 ## Ant Media WebRTC test tool
 
