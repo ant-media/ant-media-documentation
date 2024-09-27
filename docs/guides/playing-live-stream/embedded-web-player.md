@@ -2,7 +2,7 @@
 title: Embedded Web Player
 description: Embed AMS Web Player to your webpage
 keywords: [Embedded Web Player, Embedded Player using iFrame, Ant Media Server Documentation, Ant Media Server Tutorials, play streams, play on separate websites]
-sidebar_position: 4
+sidebar_position: 5
 ---
 
 # Embedded Web Player
