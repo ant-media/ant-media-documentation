@@ -2,7 +2,7 @@
 title: S3 Integration and HTTP Forwarding 
 description: Record streams to S3-compatible systems (AWS S3, OVH, Digital Ocean Space, etc.) and configure HTTP forwarding.
 keywords: [S3 Integration with Ant Media Server, S3 Integration, Record streams to AWS S3, Digital Ocean Space Ant Media Integration, HTTP Forwarding, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 3
+sidebar_position: 4
 ---
 
 # S3 Integration and HTTP Forwarding
@@ -125,7 +125,7 @@ After creating the Bucket, go to the bucket and create a folder named streams.
 ![](@site/static/img/image-1665067824644.png )
 
 After creating the streams folder, go to the settings and interoperability tab. On the User Account HMAC section, choose the default project for interoperability access.
- 
+
 ![](@site/static/img/image-1665067873135.png)
 
 After choosing the default project, create an access key for the user account.  
@@ -156,7 +156,7 @@ Once the installation is done and you are able to access the MinIO console on yo
 - Now, go to the buckets and create one S3 bucket. After the bucket is created, make sure that it is public.
 
   ![](@site/static/img/recording-live-streams/s3-integration/minio-bucket-integration/minio-bucket.png)
- 
+
 - Now, in order to record the stream to the MinIO bucket, enable the S3 recording option in application settings and add the required details according to your bucket information.
 
   ![](@site/static/img/recording-live-streams/s3-integration/minio-bucket-integration/ams-settings.png)
@@ -197,7 +197,7 @@ Don't add any leading, or trailing white spaces.
 
 - If it's configured properly, your incoming MP4 requests, such as  
 `https://domain:5443/AppName/streams/vod.mp4` will be forwarded to `https://s3-bucket-URL/streams/vod.mp4`.
-    
+
 ### HLS HTTP Endpoint
 
 HLS HTTP Endpoint is implemented to push the HLS content (m3u8 and ts files) to any HTTP endpoint, such as CDN or your own HTTP endpoint. You can enable it with the following steps:
@@ -224,19 +224,12 @@ https://example.com/hls-stream/stream123_360p800kbps0003.ts
 https://example.com/hls-stream/stream123.m3u8
 . . .
 ```
-
 ### Uploading HLS files to the S3 bucket in real-time
-
 When you use S3 integration, your record will be uploaded as soon as the livestream is finished.
-
 If you want to upload your HLS content (m3u8 and ts files) in real-time to the S3-compatible systems (AWS, OVH, Digital Ocean, etc.), you can use the `HLS Upload` servlet.
-
 To be able to use the HLS Upload servlet first, you should enter S3 credentials into the management console. Then, you can use HLS HTTP Endpoint instructions with the following property:
-
 - Open the management panel of your AMS, Go to the Application settings, and switch to Advanced settings.
-
 - Locate the setting `hlsHttpEndpoint` and set it to:
-
   ```js
   hlsHttpEndpoint=http://Domain-or-IP:5080/LiveApp/hls-upload
   ```
@@ -258,11 +251,8 @@ CORS parameters of the AWS S3 bucket should be modified so that the requests tha
 Go to your ``` AWS -> Services -> S3 -> Buckets -> "Your Bucket" -> Permissions``` 
 
 At the bottom of the page, there is Cross-origin resource sharing (CORS). The CORS configuration, written in JSON, defines a way for client web applications that are loaded in one domain to interact with resources in a different domain."  
-
 Click Edit and paste the code provided below:
-
 You need to put your AMS domain address to the allowed origins field.
-
 ```json
     [
         {

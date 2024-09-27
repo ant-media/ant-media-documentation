@@ -2,7 +2,7 @@
 title: Media Push Plugin
 description: This guide explains how to stream and record any specific web page using the media push plugin
 keywords: [Media Push Plugin, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 1
+sidebar_position: 6
 ---
 
 # Media Push Plugin
