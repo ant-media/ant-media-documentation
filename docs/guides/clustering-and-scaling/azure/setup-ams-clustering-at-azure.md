@@ -7,21 +7,21 @@ sidebar_position: 1
 
 # How to Setup Ant Media Server Clustering on Azure
 
-In this guide, I will explain how to setup Ant Media Server Clustering on Azure. When your load is high, one server instance is not enough for you and you can handle that load with a clustering solution.
+In this guide, I will explain how to set up Ant Media Server Clustering on Azure. When your load is high, one server instance is not enough for you and you can handle that load with a clustering solution.
 
-For streaming applications, you will need a clustering solution when you have high numbers of publishers and viewers. Especially when you require ultra-low latency and adaptive bitrate because they need more processing power. Ultra-low latency is achieved by WebRTC and it is a CPU intensive protocol. Adaptive bitrating is downgrading video quality in bad networks if needed. It is also CPU intensive because there is video conversion. Luckily, Ant Media Server Enterprise Edition supports clustering, so that you can handle the high load in your streaming applications.
+For streaming applications, you will need a clustering solution when you have a high number of publishers and viewers. Especially when you require ultra-low latency and adaptive bitrate because they need more processing power. Ultra-low latency is achieved by WebRTC and it is a CPU-intensive protocol. Adaptive bitrating is downgrading video quality in bad networks if needed. It is also CPU intensive because there is video conversion. Luckily, Ant Media Server Enterprise Edition supports clustering, so that you can handle the high load in your streaming applications.
 
 **Requirements:**
 
-To set up media server, Having an Azure account and a ready AntMedia Server Image are needed.
+To set up the Ant Media Server, having an Azure account and a ready AntMedia Server Image are needed.
 
-The architecture of the cluster setup could be found [here](/guides/configuration-and-testing/load-testing#cluster-setup). Introduction to clustering with AntMedia Server could be found [here](/v1/docs/clustering).
+The architecture of the cluster setup can be found [here](https://antmedia.io/docs/guides/clustering-and-scaling/manual-configuration/cluster-installation/). Introduction to clustering with AntMedia Server can be found [here](https://antmedia.io/docs/category/clustering-and-scaling/).
 
 #### Step 1: Create a Resource Group
 
 Each resource created must be in the same resource group. For this, we will first create a resource group. Named **antmedia-cluster**
 
-Click Resource groups in the portal which is on the left side then click **+Add**  
+Click Resource Groups in the portal which is on the left side then click **+Add**  
 **![](@site/static/img/create-resource-1.png)**
 
 Enter "**Resource group**" then choose your zone.
@@ -34,9 +34,9 @@ Proceed by clicking "**Create**" button
 
 #### Step 2: Create a Virtual Network
 
-We need to create a virtual network named antmedia-cluster-virtual-network, and then we will add gateway-subnet, origin-subnet and edge-subnet
+We need to create a virtual network named antmedia-cluster-virtual-network, and then we will add gateway-subnet, origin-subnet, and edge-subnet.
 
-Click Create a Resource in the portal which is on the upper left. Enter Virtual network in the Search the Marketplace box at the top of the New pane that appears. Click Virtual network when it appears in the search results.
+Click Create a Resource in the portal which is on the upper left. Enter Virtual network in the Search the Marketplace box at the top of the New pane that appears. Click Virtual Network when it appears in the search results.
 
 ![](@site/static/img/virtual-network-1.png)
 
@@ -44,11 +44,11 @@ click "**Create**"
 
 ![](@site/static/img/virtual-network-2.png)
 
-Select the resource group that we created before, enter **antmedia-cluster-virtual-network** in the name field and click on the "**Next: IP Address**" button.
+Select the resource group that we created before, enter **antmedia-cluster-virtual-network** in the name field, and click on the "**Next: IP Address**" button.
 
 ![](@site/static/img/virtual-network-3.png)
 
-Click on the Add subnet button and create the antmedia-origin-subnet, antmedia-edge-subnet and antmedia-gw-subnet as shown in the figure below.  
+Click on the Add subnet button and create the antmedia-origin-subnet, antmedia-edge-subnet, and antmedia-gw-subnet as shown in the figure below.  
 ![](@site/static/img/virtual-network-4.png)
 
 ![](@site/static/img/virtual-network-5.png)
@@ -76,7 +76,7 @@ Select the Virtual Network that you created, click "**Advanced**" from "**Nic ne
 
 ![](@site/static/img/mongodb-4.png)
 
-Click the "**Add an inbound rule**" button in the windows that appears and click the "**Add inbound security rule**" button
+Click the "**Add an inbound rule**" button in the windows that appear and click the "**Add inbound security rule**" button
 
 ![](@site/static/img/mongodb-6.png)
 
@@ -121,7 +121,7 @@ Click on "**Add a routing rule**" in the window that appears.
 
 ![](@site/static/img/application-gateway-8.png)
 
-Enter the following values for Edge sides then click "**Add**" button.
+Enter the following values for Edge sides then click the "**Add**" button.
 
 ![](@site/static/img/application-gateway-9.png)
 
@@ -157,11 +157,11 @@ Likewise, configure port 5443 for Edge as follows.
 
 ![](@site/static/img/application-gateway-17.png)
 
-Select "**BackendHttpSetting**" as HTTP Settings and Select "**Edge**" as Backend target.
+Select "**BackendHttpSetting**" as HTTP Settings and Select "**Edge**" as the Backend target.
 
 ![](@site/static/img/application-gateway-18.png)
 
-Application-gateway settings will look like the following. If everything is ok, click "**Next: Tags**"
+Application gateway settings will look like the following. If everything is ok, click "**Next: Tags**"
 
 ![](@site/static/img/application-gateway-19.png)
 
@@ -171,14 +171,14 @@ The process is completed by clicking on the "Create" button.
 
 ####  Step 4: Create Edge/Origin Scale Sets
 
-We need to setup scale sets. Click Create a Resource in the portal which is on the upper left. Enter "**Virtual Machine Scale Set**" in the Search the Marketplace box at the top of the New pane that appears. Click "**Virtual Machine Scale Set**" when it appears in the search results.  
+We need to set up scale sets. Click Create a Resource in the portal which is on the upper left. Enter "**Virtual Machine Scale Set**" in the Search the Marketplace box at the top of the New pane that appears. Click "**Virtual Machine Scale Set**" when it appears in the search results.  
 ![](@site/static/img/virtual-machine-1.png)
 
 Proceed by clicking "**Create**" button
 
 ![](@site/static/img/virtual-machine-2.png)
 
-First, we will create the Origin Scale Set. Select the Resource Group, enter Virtual Machine scale set name, choose Region settings as follows. Then click on "**Browse all public and private images**"
+First, we will create the Origin Scale Set. Select the Resource Group, enter the Virtual Machine scale set name, and choose Region settings as follows. Then click on "**Browse all public and private images**"
 
 ![](@site/static/img/virtual-machine-3.png)
 
@@ -188,11 +188,11 @@ In the window that appears, search for Ant Media Server and select the "**Ant Me
 
 ![](@site/static/img/virtual-machine-4.png)
 
-Select the **antmedia-cluster-virtual-network** that we created before as Virtual Network in this screen. Select the **origin subnet** as Network interface and click “**Yes**” for Use a load balancer choice. Select the application gateway that we created before and select **Origin** as Backend pool then click the "**Next: Scaling**"
+Select the **antmedia-cluster-virtual-network** that we created before as a Virtual Network in this screen. Select the **origin subnet** as the Network interface and click “**Yes**” to Use a load balancer choice. Select the application gateway that we created before and select **Origin** as the Backend pool then click the "**Next: Scaling**"
 
 ![](@site/static/img/virtual-machine-9.png)
 
-Select Custom and set the Cpu threshold to 60%. You can set other settings according to yourself.
+Select Custom and set the CPU threshold to 60%. You can set other settings according to yourself.
 
 ![](@site/static/img/virtual-machine-6.png)
 
@@ -222,7 +222,7 @@ Finally, your scale sets will look like the following.
 
 ####  Test
 
-If the following pages are responding then your edge / origin redirects are working correctly.
+If the following pages are responding then your edge/origin redirects are working correctly.
 
 Edge URL Address [https://application-gateway-ip:5443](https://application-gateway-ip:5443/)
 
