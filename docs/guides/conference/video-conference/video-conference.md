@@ -25,12 +25,14 @@ A broadcast object whose ```mainTrackStreamId``` field is set to another broadca
 
 ## Video Conferencing In Action
 
-Since we understood basic conference concepts, now lets observe video conferencing in action.
+Now that we've covered the fundamental concepts of conferencing, let's take a look at video conferencing in action.
 
-Go to 
+Go to:
+
 ```https://{ams-url}:5443/{appName}/conference.html```
 
 Example:
+
 ```https://test.antmedia.io:5443/LiveApp/conference.html```
 
 This page is ant media conference sample. 
@@ -77,14 +79,16 @@ Observe that mainTrackId is set to our rooms id.
 
 ![](@site/static/img/conference/video-conference/video-conference-4.png)
 
-## Develope a Video Conference Application In React
+## Developing a Video Conference Application In React
 
 In this section, we will develope a simple video conference application on top of Ant Media Server using javascript SDK with React.
-Before you start reading this section, take a quick look at to [javascript sdk documentation](https://antmedia.io/docs/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/)
+Before you start reading this section, take a quick look at to [Javascript SDK Documentation](https://antmedia.io/docs/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/)
 
-For a more comprehensive conference sample in pure javascript, you can reference to this [javascript conference sample](https://github.com/ant-media/StreamApp/blob/8544ecd2111952008f187f1e0d35fda4cccb030a/src/main/webapp/conference.html)
+For a more comprehensive conference sample in pure javascript, you can reference to this [Javascript Conference Sample](https://github.com/ant-media/StreamApp/blob/8544ecd2111952008f187f1e0d35fda4cccb030a/src/main/webapp/conference.html)
 
-Circle reference here
+To see a production-ready open-source video conferencing application built on Ant Media Server using React, visit [Circle](https://meet.antmedia.io/Conference/).
+
+Circle is fully open source on [Github](https://github.com/ant-media/conference-call-application)
 
 ### Step 1: Create a new React Project
 Go to a directory and run below command to create a React project
@@ -1274,7 +1278,7 @@ At step 13 we will learn how to match streamId of participants with their video 
 
 ### Step 13: Match Participant Stream ID with Their Video Track
 
-At step 9, we received video and audio tracks of participants with ```onNewVideoTrack``` message coming from Ant Media Server. But this incoming object did not contain stream id of the related video track.
+At step 10, we received video and audio tracks of participants with ```onNewVideoTrack``` message coming from Ant Media Server. But this incoming object did not contain stream id of the related video track.
 
 ****Ant Media Server sends stream id of participant in a seperate message called ```VIDEO_TRACK_ASSIGNMENT_LIST``` via data channel. This message contains which video track belongs to which stream id. This seperation is caused by the nature of multi track webrtc streaming.****
 
@@ -1450,7 +1454,7 @@ Finally we set the remoteParticipantTracks state with ```setRemoteParticipantTra
 
 Now its time for some testing action again! Open ```localhost``` in 3 seperate tabs. Join the same room with distinct stream id from all tabs.
 
-You should observe streamIds are matched correctly with video tracks and rendered under video of each participant.
+You should observe streamIds are matched correctly with video tracks and rendered below video of each participant.
 
 
 ![](@site/static/img/conference/video-conference/video-conference-8.png)
@@ -1767,7 +1771,7 @@ export default function ConferenceComponent(){
 }
 ```
 
-### Step 14: Leave From Conference Room
+### Step 14: Leave Conference Room
 In this step we will implement functionality to allow participants to leave from the conference room.
 To do that add a new function called ```leaveRoom()```
 
@@ -1828,7 +1832,8 @@ return(
 )
 ```
 ### Step 15: The Final Test
-We have completed all the necessary steps to launch a production-ready video conferencing app on top of Ant Media Server that will bring the world closer and make it a better place than ever before!
+You’ve completed all the essential steps to embark on your journey to launch a production-ready video conferencing app powered by Ant Media Server, bringing the world closer together and making it a better place than ever!
+
 
 Its time for a final test.
 
@@ -1840,12 +1845,13 @@ You can click on Leave Room button from participants to leave the room.
 
 That's it! What a journey it's been. Thanks to Ant Media Server, you've built a simple yet powerful video conferencing application in React in just 14 steps.
 
-You can find source code to this tutorial in [github](https://github.com/lastpeony/antmedia-react-conference-sample)
+You can find source code of this tutorial on [Github](https://github.com/lastpeony/antmedia-react-conference-sample)
 
 ### What's Next?
-The 15 steps should give you a strong foundation to build a production-ready video conferencing app.
+The 15 steps should give you a strong foundation to start building a production-ready video conferencing app on top of Ant Media Server. Keep in mind that the conferencing concepts are consistent across all SDKs. Therefore, if you're developing a conferencing application with other SDKs, the principles you've learned here will still apply.
 
-For further development and examples dont forget to take a look at Circle.
+
+For further development and examples dont forget to take a look at [Circle](https://github.com/ant-media/conference-call-application)
 
 
 
