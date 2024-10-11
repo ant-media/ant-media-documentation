@@ -1,13 +1,13 @@
 ---
-title: Playing Recorded Files 
-description: Ant Media Server can create an MP4 asset when you finish broadcasting to your live stream.
+title: Play Recorded Files 
+description: Playback of Recorded live streams
 keywords: [Live Stream Recording, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 3
 ---
 
 In previous section, you have already gone through recording of live streams. In this particular section, we will learn about playing these recorded files and some VOD-related APIs.
 
-## Playing VOD streams with MP4
+## Play VOD files with MP4
 
 First, confirm that your application has MP4 recording enabled. It can be enabled in the application settings on the Web panel.
 
@@ -23,7 +23,7 @@ Assume that there is a live stream with streamId `stream1` publishing to the `Li
 
     *   ```http(s)://domain-or-IP:Port/LiveApp/streams/stream1_480p1000kbps.mp4```
 
-## Playing VOD streams with WEBM
+## Play VOD files with WEBM
 
 First, confirm that your application has WEBM recording enabled. It can be enabled in the application settings on the Web panel. WEBM can be recorded if the VP8 codec is enabled in the application's settings.
 
@@ -37,7 +37,7 @@ Assume that there is a live stream with streamId `stream1` publishing to the `Li
 
     *   ```http(s)://domain-or-IP:Port/LiveApp/streams/stream1_480p1000kbps.webm```
 
-## Playing VoD streams with an embedded player
+## Play VoD streams with an embedded player
 
 There is embedded player (play.html) in both the Community and Enterprise Editions of Ant Media Server. Both live and VoD (recorded or uploaded) streams can be played by this player. Check out the [embedded player](https://deploy-preview-254--ant-media.netlify.app/guides/playing-live-stream/embedded-web-player/) document.
 
