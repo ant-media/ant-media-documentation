@@ -1,6 +1,6 @@
 ---
-title: Sending Notification in Android 
-description: Sending Notification in Android Tutorial
+title: Configure APN Certificates 
+description: Sending Notification in iOS Tutorial
 keywords: [Push Notification Management Tutorial, Push Notification Management, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 2
 ---

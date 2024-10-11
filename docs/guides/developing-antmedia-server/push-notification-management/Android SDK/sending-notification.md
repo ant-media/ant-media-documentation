@@ -1,5 +1,5 @@
 ---
-title: Sending Notification in Android 
+title: Sending Notifications to Web and Mobile Clients 
 description: Sending Notification in Android Tutorial
 keywords: [Push Notification Management Tutorial, Push Notification Management, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 7
