@@ -206,3 +206,25 @@ sudo service antmedia restart
 ```
 
 After restarting, your webhook URL is called with data channel messages by Ant Media Server. POST method is used for sending data channel messages with "**multipart/form-data**" encoding. The name of the variable is the data that contains the data channel message.
+
+## Data channel messages in conference
+
+Below are the conference-related data channel messages. These are essential for managing various user actions such as camera and microphone control, recording status, and interaction with other participants. You can reference the [Circle Conference Application](https://github.com/ant-media/conference-call-application/blob/main/react/src/pages/AntMedia.js) for proper usage in the WebRTC conference implementation.
+
+*   ```CAM_TURNED_ON```: Triggered when a camera is turned on. This message contains the stream ID for publishing and a list of active streams in the conference for playback.
+*   ```CAM_TURNED_OFF```: Triggered when a participant turns off their camera.
+*   ```MIC_MUTED```: Triggered when a microphone is muted.
+*   ```MIC_UNMUTED```: Triggered when a microphone is unmuted.
+*   ```TURN_YOUR_MIC_OFF```: Used to request a participant to turn off their microphone.
+*   ```TURN_YOUR_MIC_ON```: Used to request a participant to turn on their microphone.
+*   ```TURN_YOUR_CAM_OFF```: Used to request a participant to turn off their camera.
+*   ```RECORDING_TURNED_ON```: Triggered when recording is started in the conference.
+*   ```RECORDING_TURNED_OFF```: Triggered when recording is stopped.
+*   ```REACTIONS```: Used for sending reactions such as emojis or other feedback in the conference.
+*   ```PIN_USER```: Used to pin a specific participant’s video on the screen.
+*   ```UNPIN_USER```: Used to unpin a previously pinned participant's video.
+*   ```VIDEO_TRACK_ASSIGNMENT_LIST```: Used to manage video track assignments for different participants.
+*   ```AUDIO_TRACK_ASSIGNMENT```: Used to manage audio track assignments for different participants.
+*   ```TRACK_LIST_UPDATED```: Triggered when the list of active tracks (audio or video) is updated.
+*   ```MESSAGE_RECEIVED```: Used to notify when a chat message is received during the conference.
+*   ```UPDATE_PARTICIPANT_ROLE```: Used to update the role of a participant in the conference (e.g., from attendee to moderator).
