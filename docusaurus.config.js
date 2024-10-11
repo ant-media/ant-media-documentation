@@ -163,7 +163,7 @@ const config = {
         },
 	{
           from: '/v1/docs/amazon-aws-s3-integration/',
-          to: '/guides/recording-live-streams/s3-integration-http-forwarding/'
+          to: '/category/s3-recording-and-integration/'
         },
 	{
           from: '/guides/developer-sdk-and-api/rest-api-guide/stream-security/',
@@ -191,7 +191,7 @@ const config = {
         },
 	{
           from: '/v1/docs/integrating-with-s3/',
-          to: '/guides/recording-live-streams/s3-integration-http-forwarding/'
+          to: '/category/s3-recording-and-integration/'
         },
 	{
           from: '/v1/docs/clustering/',
