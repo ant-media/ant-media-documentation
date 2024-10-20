@@ -188,55 +188,6 @@ Check out this [video tutorial](https://www.youtube.com/watch?v=Fq-a_tEXY4E&t=76
 Currently, ID3 Tags does not work with Ant Media Server default player (play.html) so you can use this [Codepen sample](https://codepen.io/Burak-Kekec/pen/PoXYMyG) for the testing.
 :::
 
-
-## Save HLS Records
-
-HLS streaming is a more cost-effective and secure method of streaming than video-on-demand assets. Furthermore, you can also record your live streams with HLS.
-
-To enable HLS recording for your live streams and store all the HLS files (.ts and .m3u8), just log in to your AMS Web Panel.
-
-Navigate to Application Setting -> Advanced, and configure the setting below:
-
-
-![Screenshot 2023-09-25 153916](https://github.com/ant-media/ant-media-documentation/assets/86982446/10ca309d-c40f-4e74-b006-3dbc23e0dea8)
-
-By default, only a certain number of TS files corresponding to segments are retained in the streams directory at any given time. However, by configuring the HLS playlist type to ```event```, the server continuously generates TS files, allowing for permanent storage if desired.
-
-```js
- "hlsPlayListType":"event",
-```
-    
-To store HLS files permanently after the stream is ended:
-
-```js
-"deleteHLSFilesOnEnded":false
-```
-    
-To prevent overwriting of old HLS files in case the same streamId is used again, use the `append_list` attribute in `hlsflags` property.
-
-Imagine you've completed streaming with an ID `teststream` and your last generated TS file is ```teststream000001013.ts.``` Without adding ```append_list``` to the HLS flags, restarting the `teststream` will initiate TS file generation from 0, overwriting existing .ts files. 
-
-However, by setting it to ```append_list``` the first generated .ts file will be named ```teststream000001014.ts``` ensuring that your .ts files remain intact without being overridden.
-
-```js
-"hlsflags":"+append_list",
-```
-
-If you don't want the TS files to be appended to the previous recording, you may also enable date and timestamp for HLS files by adding the following property:.
-
-```js
- "addDateTimeToHlsFileName":true,
-```
-
-![](@site/static/img/hls_datetime.png)
-
-After making the changes, you can scroll down and save the settings. Now, your streams will be recorded as HLS.
-
-Additionally, it's also possible to push HLS files directly to a remote endpoint without generating them on the local server in real-time, or alternatively, upload them via the standard procedure to an S3 bucket once the stream has finished.
-
-To upload HLS in real-time, check out this guide:
-> Quick Link: [Uploading HLS Files](https://antmedia.io/docs/guides/recording-live-streams/s3-integration-http-forwarding/#uploading-hls-files-to-the-s3-bucket-in-real-time)
-
 ## HLS Play For a Given Time Interval
 
 Using the HLS modifier, playing an HLS stream within specified time intervals is achievable in Ant Media Server.
