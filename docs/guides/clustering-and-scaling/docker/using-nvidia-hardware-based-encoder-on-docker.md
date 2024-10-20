@@ -60,7 +60,7 @@ In this docker container, you can install Ant-Media-Server Enterprise edition. I
 
 **2.** Alternatively, you can use [Ant Media Server Docker file](https://github.com/ant-media/Scripts/blob/master/docker/Dockerfile_Process) and just change the line **FROM ubuntu:22.04** to  **FROM nvidia/cuda:11.8.0-runtime-ubuntu22.04**.
 
-**3.** Create the Docker image using the Docker file after making the above-mentioned changes. Before that, you also need to use the Ant Media Server Enterprise Edition zip file.
+**3.** Create the Docker image using the Docker file after making the above-mentioned changes. Before that, you also need to download the Ant Media Server Enterprise Edition zip file to your instance.
 
 ```bash
 docker build --network=host -t antmediaserver --build-arg AntMediaServer=ant-media-server-enterprise.zip .
@@ -71,3 +71,5 @@ docker build --network=host -t antmediaserver --build-arg AntMediaServer=ant-med
 ```bash
 docker run -d --name nvidia --runtime=nvidia --privileged --network host -e NVIDIA_VISIBLE_DEVICES=all -e NVIDIA_DRIVER_CAPABILITIES=compute,utility,video -it antmediaserver
 ```
+
+**5.** You can check the usage of the GPU driver via the `nvidia-smi` command.
