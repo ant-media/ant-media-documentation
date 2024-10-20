@@ -13,7 +13,7 @@ You can use NVIDIA hardware-based encoder on Docker with Ant Media Server.
 
 * Instance with Ubuntu 20.04 or 22.04
 * [Install CUDA Drivers](/guides/advanced-usage/using-nvidia-gpu/)
-*   Install docker-ce using this [link](%28https://docs.docker.com/install/%29) or by using below instructions
+*   Install docker-ce using using the below commands
 
 ```bash
 # Add Docker's official GPG key:
