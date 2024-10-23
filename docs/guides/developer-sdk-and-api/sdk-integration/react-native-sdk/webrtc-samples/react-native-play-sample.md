@@ -1,6 +1,6 @@
 ---
-title: Play WebRTC Stream Sample in React Native
-description: Play WebRTC Live Stream Sample Using React Native SDK 
+title: Play WebRTC Stream
+description: Play WebRTC Stream Sample
 keywords: [React Native SDK User Guide, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 2
 ---
