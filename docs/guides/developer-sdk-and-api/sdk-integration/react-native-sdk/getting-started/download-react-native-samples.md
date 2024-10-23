@@ -1,6 +1,6 @@
 ---
-title: Download and install React Native WebRTC sample projects
-description: Download and install React Native WebRTC sample projects 
+title: Download React Native WebRTC Sample Project
+description: Download and Install React Native WebRTC Sample Project
 keywords: [React Native SDK User Guide, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 2
 ---
