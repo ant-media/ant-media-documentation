@@ -1,6 +1,6 @@
 ---
-title: Publish WebRTC Stream Sample in React Native
-description: Publish WebRTC Live stream Using React Native SDK 
+title: Publish WebRTC Stream
+description: Publish WebRTC Stream Using React Native SDK
 keywords: [React Native SDK User Guide, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 1
 ---
