@@ -154,8 +154,25 @@ File is located at `/usr/local/antmedia/webapps/LiveApp/player_with_timestamp.ht
 
 ![](@site/static/img/138709249-aa18beda-a575-42d0-981a-b62758b8df10.png )
 
-## 15. WebRTC stream merger
+## 15. WebRTC Multi-Participant Conference and Recording without Circle
 
-You can connect a conference room, get all streams & merge them into a canvas & republish to Ant Media Server. This solution is useful if you want to publish conference room to large number of audience in a single stream. Please check this [blogpost for more information](https://antmedia.io/merge-webrtc-conferences-as-a-single-video-stream/) for details. WebRTC stream merger is available **in Enterprise Edition**.
+The **multitrack-play.html** page provides a server-side display of all participants in a conference room (e.g., room1). By loading this page on the server, it will automatically join the specified room, aggregating all video and audio tracks from active participants into a single view. This consolidated view allows the conference session to be recorded on the server without relying on the Circle Conference application.
 
-File is located at `/usr/local/antmedia/webapps/LiveApp/merge_streams.html`
+```https://AMS-Domain:5443/AppName/multitrack-play.html?id=room1```
+
+Participants can be added to the room using the link provided below, which enables users to join room1 and participate with both audio and video. This setup is particularly useful for scenarios where a multi-participant conference needs to be saved or viewed by a server-admin without engaging additional conferencing software.
+
+```https://AMS-Domain:5443/AppName/conference.html```
+
+File is located at ```/usr/local/antmedia/webapps/LiveApp/multitrack-play.html```
+
+## 16. Publish WebRTC Stream with WHIP Protocol
+
+If you directly want to publish the WebRTC stream from your browser using WHIP protocol, then you can check the whip.html sample page of Ant Media Server for reference. This sample page uses the Eyevinn WHIP client to publish the stream to the server using the WHIP protocol. You can also directly integrate it into your web application.
+
+Now, in order to publish the WHIP stream using the sample page, go to the below page of your Ant Media Server and start publishing
+
+```
+https://AMS-domain:5443/AppName/whip.html
+```
+File is located at ```/usr/local/antmedia/webapps/LiveApp/whip.html```
