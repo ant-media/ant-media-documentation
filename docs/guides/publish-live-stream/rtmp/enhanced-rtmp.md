@@ -1,6 +1,6 @@
 ---
-title: How to publish with Enhanced RTMP
-description: How to publish with Enhanced RTMP
+title: Publish Enhanced RTMP
+description: Publish stream with Enhanced RTMP
 keywords: [Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 6
 ---
