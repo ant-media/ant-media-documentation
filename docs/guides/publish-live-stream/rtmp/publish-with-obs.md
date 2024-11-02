@@ -1,11 +1,11 @@
 ---
-title: How to publish with OBS 
-description: How to publish with OBS
+title: Publish Using OBS 
+description: Publish RTMP stream using OBS
 keywords: [Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 2
 ---
 
-# How to publish with OBS
+# Publish RTMP stream using OBS
 
 OBS (Open Broadcaster Software) is a free and open source video recording and live streaming software. With OBS, you can use either your PC's embedded camera or an externally connected camera as a video source. Audio sources can also be set up.
 
