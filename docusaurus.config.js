@@ -183,7 +183,11 @@ const config = {
         },
 	{
           from: '/guides/configuration-and-testing/load-testing/',
-          to: '/category/configuration--testing/'
+          to: '/category/load-testing/'
+        },
+	{
+          from: '/guides/configuration-and-testing/webrtc-load-testing/',
+          to: '/category/load-testing/'
         },
 	{
           from: '/v1/docs/ssl-setup/',
@@ -217,9 +221,25 @@ const config = {
           from: '/guides/developer-sdk-and-api/rest-api-guide/rest-api-guide/',
           to: '/category/rest-api-guide/'
         },
+	{
+          from: '/guides/developer-sdk-and-api/rest-api-guide/',
+          to: '/category/rest-api-guide/'
+        },
         {
           from: '/guides/clustering-and-scaling/kubernetes/kubernetes-autoscaling/',
           to: '/guides/clustering-and-scaling/kubernetes/deploy-ams-on-kubernetes/'
+        },
+	{
+          from: '/guides/configuration-and-testing/configuring-stun-addresses/',
+          to: '/guides/configuration-and-testing/configuring-stun-turn-addresses/'
+        },
+	{
+          from: '/guides/advanced-usage/turn-and-stun-installation/coturn-quick-installation/',
+          to: '/guides/advanced-usage/turn-instalation/coturn-quick-installation/'
+        },
+	{
+          from: '/category/stream-security/webhook-stream-authorization',
+          to: '/guides/stream-security/webhook-stream-authorization/'
         },
 
       ],
