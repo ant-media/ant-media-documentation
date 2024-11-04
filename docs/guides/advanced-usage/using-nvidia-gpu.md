@@ -21,7 +21,7 @@ The utilization of a GPU is advised for demanding transcoding tasks. If you want
 
 Once you have confirmed the existence of a hardware-based encoder in your GPU, the only remaining step is to install the CUDA toolkit onto your system.
 
-### Installation on Ubuntu 18.04, 20.04, 22.04 and 24.04
+### Installation on Ubuntu 20.04, 22.04 and 24.04
 
 Ant Media Server now automatically utilizes the GPU with CUDA version 11.8, which is why it is necessary to install it. 
 
