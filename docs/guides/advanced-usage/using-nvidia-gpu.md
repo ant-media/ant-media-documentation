@@ -21,7 +21,7 @@ The utilization of a GPU is advised for demanding transcoding tasks. If you want
 
 Once you have confirmed the existence of a hardware-based encoder in your GPU, the only remaining step is to install the CUDA toolkit onto your system.
 
-### Installation on Ubuntu 18.04, 20.04 and 22.04
+### Installation on Ubuntu 18.04, 20.04, 22.04 and 24.04
 
 Ant Media Server now automatically utilizes the GPU with CUDA version 11.8, which is why it is necessary to install it. 
 
@@ -30,15 +30,6 @@ To install, follow [this link](https://developer.nvidia.com/cuda-11-8-0-download
 ![](@site/static/img/adavanced-usage/using-nvidia-gpu/cuda-11.8.png)
 
 Instead of using ```sudo apt-get -y install cuda``` command to download whole CUDA package, we will just install the limited package of CUDA 11.8 to decrease installation time and space. 
-
-#### Ubuntu 18.04
-
-```bash
-sudo wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-keyring_1.0-1_all.deb
-sudo dpkg -i cuda-keyring_1.0-1_all.deb
-sudo apt-get update
-sudo apt-get install cuda-runtime-11-8
-```
 
 #### Ubuntu 20.04
 
@@ -57,6 +48,18 @@ sudo wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x8
 sudo dpkg -i cuda-keyring_1.0-1_all.deb
 sudo apt-get update
 sudo apt-get install cuda-runtime-11-8
+```
+
+#### Ubuntu 24.04
+
+```bash
+wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-keyring_1.1-1_all.deb
+sudo dpkg -i cuda-keyring_1.1-1_all.deb
+sudo apt-get update
+sudo apt-get -y install cuda-toolkit-12-6
+sudo apt-get install -y cuda-drivers
+sudo reboot
+
 ```
 
 ### NVIDIA A10 Tensor Core GPU
