@@ -53,10 +53,14 @@ const config = {
           editUrl: 'https://github.com/ant-media/ant-media-documentation/edit/master/',
           lastVersion: '2.11.3',
           versions: {
-            current: {
-              label: '2.11.3', // Customize the label for the current (unversioned) docs
+            'current': {
+              label: '2.12.0', // Customize the label for the current (unversioned) docs
               path: '', // Leave empty to use the root URL for the latest version
             },
+            '2.11.3': {
+              label: '2.11.3', // Customize the label for the current (unversioned) docs
+              path: 'version-2.11.3', // Leave empty to use the root URL for the latest version
+              }
           },
         },
         blog: false,
