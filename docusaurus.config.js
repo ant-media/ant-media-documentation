@@ -51,6 +51,13 @@ const config = {
           // Remove this to remove the "edit this page" links.
           // editUrl: 'https://github.com/facebook/docusaurus/edit/main/website/',
           editUrl: 'https://github.com/ant-media/ant-media-documentation/edit/master/',
+          lastVersion: '2.11.3',
+          versions: {
+            current: {
+              label: '2.11.3', // Customize the label for the current (unversioned) docs
+              path: '', // Leave empty to use the root URL for the latest version
+            },
+          },
         },
         blog: false,
         theme: {
@@ -267,6 +274,12 @@ const config = {
           srcDark: 'img/Ant-Media-Logo-light.png',
         },
         items: [
+          {
+            type: 'docsVersionDropdown',
+            position: 'right',
+            dropdownActiveClassDisabled: false,
+          },
+
           {
             type: 'doc',
             docId: 'introduction',
