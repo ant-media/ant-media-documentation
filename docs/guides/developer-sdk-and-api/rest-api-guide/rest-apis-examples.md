@@ -7,16 +7,16 @@ sidebar_position: 5
 
 # REST API examples
 
-Here are some handy examples that you can consume on REST API. Please replace curly braces with your own configuration. Typical values for ```{domain}``` is either your server's accessible IP address or fully qualified domain name, ```port``` is 5080 for HTTP and 5443 for HTTPS. ```{application}``` can be either ```LiveApp``` or any other one.
+Here are some handy examples that you can consume on REST API. Please replace curly braces with your configuration. Typical values for ```{domain}``` is either your server's accessible IP address or fully qualified domain name, ```port``` is 5080 for HTTP and 5443 for HTTPS. ```{application}``` can be either ```LiveApp``` or any other one.
 
 **Note:**
 
-This guide assumes that you included your IP in the IP-Filter as [mentioned here](/v1/docs/rest-api-guide#security-%E2%80%93-ip-filtering) so that you can do REST API calls.
+This guide assumes that you included your IP in the IP-Filter as [mentioned here](https://antmedia.io/docs/guides/developer-sdk-and-api/rest-api-guide/securing-rest-apis/#ip-filter-for-the-web-panel) so that you can do REST API calls.
 
 Create
 ------
 
-Following command creates a stream on Ant Media Server
+The following command creates a stream on the Ant Media Server
 ```
     curl -X POST -H "Content-Type: application/json" "https://{domain:port}/{application}/rest/v2/broadcasts/create"
 ```
@@ -59,7 +59,7 @@ It returns the Broadcast object or 404 if there is no streamId specified in the 
 
 ### Read Broadcast Statistics
 
-Following methods return Broadcast Statistics for the specified stream Id
+The following methods return Broadcast Statistics for the specified stream Id
 ```
     curl -X GET "https://{domain:port}/{application}/rest/v2/broadcasts/{streamid}/broadcast-statistics"
 ```
@@ -68,17 +68,17 @@ Broadcast Statistics contains the number of viewers for the broadcast.
 Update
 ------
 
-Following method change the name of the Broadcast.
+The following method changes the name of the Broadcast.
 ```
     curl -X PUT -H "Content-Type: application/json" "https://{domain:port}/{application}/rest/v2/broadcasts/{streamid}" -d '{"name":"
     {streamname}"}'
 ```
-The method above returns Result object that shows if operation is successful or not
+The method above returns the result object that shows if the operation is successful or not
 
 Delete
 ------
 
-Delete requests are straight-forward which means these methods are aim to delete from database 
+Delete requests are straight-forward which means these methods aim to delete from the database 
 ```
     curl -X DELETE https://{domain:port}/{application}/rest/v2/broadcasts/{streamId}
 ```
@@ -86,8 +86,8 @@ The command above deletes the broadcast with the specified streamId
 
 ### REST API Reference
 
-In this doc, we just provide some sample commands for consuming REST methods. For the all methods in the REST API, please visit [https://antmedia.io/rest/](https://antmedia.io/rest/)
+In this doc, we just provide some sample commands for consuming REST methods. For all methods in the REST API, please visit [https://antmedia.io/rest/](https://antmedia.io/rest/)
 
 Note:
 
-On Windows Command Prompt, body part of the requests should be like the following : ```-d "{""name"":""{streamname}""}"```.
+On Windows Command Prompt, the body part of the requests should be like the following: ```-d "{""name"":""{streamname}""}"```.

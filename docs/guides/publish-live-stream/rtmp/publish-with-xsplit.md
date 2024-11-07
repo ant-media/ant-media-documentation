@@ -1,11 +1,11 @@
 ---
-title: How to publish with XSplit 
-description: How to publish with XSplit
+title: Publish Using XSplit 
+description: Publish RTMP stream using XSplit
 keywords: [Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 4
 ---
 
-# How to publish with XSplit
+# Publish RTMP stream using XSplit
 
 XSplit is a free and open source software for live streaming and video recording. It is easy to use and provides a great canvas with a screen share option for different purposes (PC gaming, talk shows or presentations). Embedded or external cameras and audio sources can be used with XSplit.
 
