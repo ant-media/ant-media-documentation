@@ -1,7 +1,7 @@
 ---
 title: WebRTC codecs 
-description: Simplified understanding of H.264, VP8, and H.265 codecs used with Ant Media Server. This guide also explains how to enable or disable H.264, VP8, and H.265.
-keywords: [Enable H.264, VP8, and H.265, Disable H.264, VP8, and H.265, WebRTC codecs, Ant Media Server Documentation, Ant Media Server Tutorials]
+description: Simplified understanding of H.264, VP8, and H.265 codecs used with Ant Media Server. This guide also explains how to enable H.264, VP8, and H.265.
+keywords: [Enable H.264, VP8, and H.265, WebRTC codecs, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 6
 ---
 
@@ -18,14 +18,13 @@ VP8 and H.264 are mandatory in WebRTC as per RFC 7742. However, not all browsers
 
 - Each codec can be enabled or disabled based on your requirements. This guide will cover how to enable and configure these codecs in different scenarios.
 
-## Enabling and Configuring Codecs
+## Enabling and Configuring H.264 & VP8 Codecs
 
 ### Enabling H.264 and VP8 Together
 
 Both H.264 & VP8 can be enabled in the basic application settings.
 
-![h264 vp8](https://github.com/user-attachments/assets/f87412d0-f65c-4ec7-ac8e-bed77eb135b0)
-
+![h264andvp8](https://github.com/user-attachments/assets/37123332-5f07-4350-ac11-09b64a433cb2)
 
 - **SFU Mode (No adaptive bitrate):** Ant Media Server can ingest a WebRTC stream in either H.264 or VP8; if both are available, H.264 is prioritized. In this mode, no transcoding occurs, so the original stream is forwarded to players.
 
@@ -49,3 +48,58 @@ You can check if your device supports H264 [at this link](https://mozilla.github
 
 ::: info
 Compatibility Note: HLS and MP4 recording require H.264. Enabling only VP8 will limit recording (WebM) and playback (WebRTC) options.
+
+## Enabling H.265 (HEVC)
+HEVC, also known as H.265, provides better video quality at the same bitrate, making it ideal for bandwidth-sensitive environments.
+
+### How to Enable and Use H.265 in Ant Media Server
+
+1. **Enable H.265 in Configuration**
+H.265 support is disabled by default. To enable it, follow these steps:
+- Go to the advanced settings of the application & set
+
+```js
+"h265Enabled": true,
+```
+- If you set H.264 & VP8 true as well, then AMS will accept the incoming streams with all the video codecs.
+- If H.264 & VP8 are set to false, then AMS will only accept the incoming streams with H.265 codec.
+  
+```js
+"h264Enabled": false,
+"vp8Enabled": false,
+"h265Enabled": true,
+```
+
+![h265](https://github.com/user-attachments/assets/a41545a1-9ec9-43ff-b41b-8e0aa88f159b)
+
+- Scroll down & save the settings after making changes.
+
+2. **Send an RTMP Stream to Ant Media Server**
+- Use a tool like OBS to send an RTMP stream to the Ant Media Server with H.265 video codec.
+
+3. **Play H.265 WebRTC Stream on Android Devices**
+- Most Android devices natively support H.265 playback. The Ant Media Server [WebRTC Android SDK](https://antmedia.io/docs/category/android-sdk/) also natively supports H.265 playback.
+- You can use the [Android SDK play sample](https://antmedia.io/docs/guides/developer-sdk-and-api/sdk-integration/android-sdk/android-webrtc-play/) to play the H.265 ingested streams with WebRTC.
+
+4. **Play H.265 Stream on browsers**
+The majority of the browsers do not support H.265 playback yet. You can check the [H.265 supported browsers](https://caniuse.com/?search=H.265).
+
+- Like H.264 & VP8, H.265 can also be used in both SFU & Adaptive bitrate mode.
+
+5. **Play H.265 transcoded streams with H.264**
+- Since H.265 support is limited for browsers, a workaround solution is to enable H.264 & make use of Adaptive streaming to transcode the H.265 ingested stream with H.264.
+- To do this, along with H.265, enable H.264:
+
+```js
+"h264Enabled": true,
+"h265Enabled": true,
+```
+
+- Enable at least one adaptive session
+
+![h265andh264](https://github.com/user-attachments/assets/366e921c-8ab1-4235-a9d9-5062b8c109a3)
+
+- This will transcode the incoming H.265 coded stream to H.264 codec & browsers will be able to play the stream. 
+
+
+
