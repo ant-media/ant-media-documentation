@@ -58,7 +58,7 @@ HEVC, also known as H.265, provides better video quality at the same bitrate, ma
 
 1. **Enable H.265 in Configuration**
 H.265 support is disabled by default. To enable it, follow these steps:
-- Go to the advanced settings of the application & set
+- Go to the advanced application settings & set
 
 ```js
 "h265Enabled": true,
