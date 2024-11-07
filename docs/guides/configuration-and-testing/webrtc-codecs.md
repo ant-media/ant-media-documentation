@@ -13,7 +13,9 @@ In this guide, we’ll explain how to use H.264, VP8, and H.265 (HEVC) codecs in
 
 ![codec-support](https://github.com/user-attachments/assets/951a04d9-eaf2-4377-8793-95cced896736)
 
-:::info VP8 and H.264 are mandatory in WebRTC as per RFC 7742. However, not all browsers support these codecs at the same time.
+:::info
+VP8 and H.264 are mandatory in WebRTC as per RFC 7742. However, not all browsers support these codecs at the same time.
+:::
 
 - Each codec can be enabled or disabled based on your requirements. This guide will cover how to enable and configure these codecs in different scenarios.
 
@@ -45,7 +47,9 @@ You can check if your device supports H264 [at this link](https://mozilla.github
 - **SFU Mode:** Only VP8 streams are ingested and forwarded to players.
 - **Adaptive Bitrate Mode:** VP8 is ingested and transcoded to different bitrates. Note that HLS Streaming and MP4 Recording will not work if only VP8 is enabled.
 
-:::info Compatibility Note: HLS and MP4 recording require H.264. Enabling only VP8 will limit recording (WebM) and playback (WebRTC) options.
+:::info Compatibility Note:
+HLS and MP4 recording require H.264. Enabling only VP8 will limit recording (WebM) and playback (WebRTC) options.
+:::
 
 ## Enabling H.265 (HEVC)
 HEVC, also known as H.265, provides better video quality at the same bitrate, making it ideal for bandwidth-sensitive environments.
