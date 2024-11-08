@@ -1,13 +1,13 @@
 ---
-title: React Native SDK Reference
+title: React Native SDK Usage
 description: React Native SDK Usage 
 keywords: [React Native SDK User Guide, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 9
+sidebar_position: 3
 ---
 
 Before moving forward with using WebRTC React Native SDK, we highly recommend using the sample project to get started with your application. It's good to know the dependencies and how it works in general.
 
-### Install @antmedia/react-native-ant-media Package
+### Install react-native-ant-media Package
 
 **```npm```**
 
@@ -21,11 +21,10 @@ npm i @antmedia/react-native-ant-media react-native-webrtc
 yarn add @antmedia/react-native-ant-media react-native-webrtc
 ```
 
-### initialize useAntMedia adaptor
+### Initialize useAntMedia Adaptor
 
 
 ```js
-
 import { useAntMedia, rtc_view } from "@antmedia/react-native-ant-media";
 
 const adaptor = useAntMedia({
@@ -51,98 +50,87 @@ const adaptor = useAntMedia({
   debug: true,
   onlyDataChannel: false, // for using only data channel not audio and video
 });
-
 ```
     
+The example above is taken from [ WebRTC-React-Native-SDK](https://github.com/ant-media/WebRTC-React-Native-SDK/blob/main/example/src/App.tsx)
 
-The example above is taken from [ant-media / WebRTC-React-Native-SDK](https://github.com/ant-media/WebRTC-React-Native-SDK/blob/main/samples/publish/src/App.tsx)
+### Publish Stream
 
-### How to publish a stream
-
-The method below is used to publish a stream.
+The method below is used to publish a stream:
 
 ```js    
 adaptor.publish(streamName);
 ```
-    
-    
 
-The method below is used to stop publish
+The method below is used to stop the stream:
 
 ```js 
 adaptor.stop(streamName);
 ```
-    
-    
 
-Detailed code can be viewed in [ant-media / WebRTC-React-Native-SDK Publish](https://github.com/ant-media/WebRTC-React-Native-SDK/blob/main/samples/publish/src/App.tsx)
+Detailed code can be viewed at [WebRTC-React-Native-SDK Publish](https://github.com/ant-media/WebRTC-React-Native-SDK/blob/main/example/src/App.tsx)
 
-### How to play a stream
+### Play Stream
 
-The method below is used to play a stream.
+The method below is used to play a stream:
 
 ```js
 adaptor.play(streamName);
 ```
     
-Detailed code can be viewed in [ant-media / WebRTC-React-Native-SDK Play](https://github.com/ant-media/WebRTC-React-Native-SDK/blob/main/samples/play/src/Play.tsx)
+Detailed code can be viewed at [WebRTC-React-Native-SDK Play](https://github.com/ant-media/WebRTC-React-Native-SDK/blob/main/example/src/Play.tsx)
 
-### How to use peer 2 peer
+### Use Peer-To-Peer
 
-The method method is used to join a room.
+The method method is used to join a room:
 
 ```js
 adaptor.join(streamName);
 ```
-    
-    
 
-The method below is used to leave a room.
+The method below is used to leave a room:
 
 ```js
 adaptor.leave(streamName);
 ```
-    
 
-Detailed code can be viewed in [ant-media / WebRTC-React-Native-SDK p2p](https://github.com/ant-media/WebRTC-React-Native-SDK/blob/main/samples/peer/src/Peer.tsx)
+Detailed code can be viewed at [WebRTC-React-Native-SDK p2p](https://github.com/ant-media/WebRTC-React-Native-SDK/blob/main/example/src/Peer.tsx)
 
-### How to use conference
+### Use Conference
 
-The method below is used to join a room.
+The method below is used to join a room:
 
 ```js
 adaptor.joinRoom(room);
 ```
-    
-    
 
-The method below is used to leave a room.
+The method below is used to leave a room:
 
 ```js
 adaptor.leaveFromRoom(room);
 ```
     
-Detailed code can be viewed in [ant-media / WebRTC-React-Native-SDK Conference](https://github.com/ant-media/WebRTC-React-Native-SDK/blob/main/samples/conference/src/conference.tsx)
+Detailed code can be viewed at [WebRTC-React-Native-SDK Conference](https://github.com/ant-media/WebRTC-React-Native-SDK/blob/main/example/src/Conference.tsx)
 
-### How to use the data channel
+### Use The Data Channel
 
-The method below is used to send messages.
+The method below is used to send messages:
 
 ```js
 adaptor.sendData(streamId, message);
 ```
     
-Detailed code can be viewed in [ant-media / WebRTC-React-Native-SDK Data Channel](https://github.com/ant-media/WebRTC-React-Native-SDK/blob/develop/samples/DataChannel/src/Chat.tsx)
+Detailed code can be viewed in [WebRTC-React-Native-SDK Data Channel](https://github.com/ant-media/WebRTC-React-Native-SDK/blob/main/example/src/Chat.tsx)
 
-### How to render stream
+### Render Stream
 
-To display a local or remote video stream, use the rtc_view component.
+To display a local or remote video stream, use the `rtc_view` component.
 
 ```js
 rtc_view(stream, /*custom style*/{ width: 100, height: 100 });
 ```
 
-### How to switch camera
+### Switch Camera
 
 You need to get video track to switch camera.
 
@@ -162,7 +150,7 @@ try {
 };
 ```
 
-### How to toggle the microphone
+### Toggle The Microphone
 
 You can mute/unmute microphone by toggling the track enabled value. It can be applied to local microphone and remote audio tracks.
 
@@ -179,11 +167,11 @@ try {
 };
 ```
 
-### How to change remote audio tracks volume level
+### Change Remote Audio Tracks Volume Level
 
 ```js
 const audioTrack = remoteMediaStream.getAudioTracks()[0];
 audioTrack._setVolume(0.5);
 ```
 
-> Check Also: [WebRTC-React-Native-SDK](https://github.com/ant-media/WebRTC-React-Native-SDK)
+For more information about the React Native SDK, check [the repository](https://github.com/ant-media/WebRTC-React-Native-SDK)
