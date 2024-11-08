@@ -1,11 +1,11 @@
 ---
-title: How to publish with Wirecast 
-description: How to publish with Wirecast
+title: Publish Using Wirecast 
+description: Publish RTMP stream using Wirecast
 keywords: [Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 3
 ---
 
-# How to publish with Wirecast
+# Publish RTMP stream using Wirecast
 
 Wirecast is a live video streaming production tool by Telestream. It allows users to create live or on-demand broadcasts for the web. Wirecast supports various sources for capturing such as webcams, IP cameras, NDIs and capture cards. 
 
