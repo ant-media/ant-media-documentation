@@ -110,7 +110,7 @@ Click on Create to finalize the configuration for both the Backend and the Healt
 
 Repeat these steps for the Edge side as well.
 
-[!NOTE] If the Load Balancers cannot access the Backend servers, you should add a firewall rule as shown below.
+ **_NOTE:_** If the Load Balancers cannot access the Backend servers, you should add a firewall rule as shown below.
 
 Go to VPC Network > Firewall > Create firewall Rule and add the rule as shown below. Now the load balancer should be able to access the Ant Media Server Backend servers.
 
@@ -131,7 +131,8 @@ Finally, in your DNS management, define the IP addresses of both the origin and 
 That’s it! You’re all set. You can now access the Ant Media Server servers to publish, and play the streams using either the origin or edge group.
 
 ![](@site/static/img/gcp-installation/antmedia-gcp-marketplace-image-thirteen-1024x496.png)
-*Create a Managing Account for Ant Media Server*
+<p align="left">Create a Managing Account for Ant Media Server</p>
+
 
 ![](@site/static/img/gcp-installation/antmedia-gcp-marketplace-image-fourteen-1024x496.png)
-*Cluster overview on Ant Media Server dashboard*
+<p align="left">Cluster overview on Ant Media Server dashboard</p>
