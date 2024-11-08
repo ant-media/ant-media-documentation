@@ -95,7 +95,7 @@ Then, fill in the required fields and create the certificate. You can also use y
 ![](@site/static/img/gcp-installation/antmedia-gcp-marketplace-image-eight-1024x496.png)
 *Create a backend service on GoogleCloud*
 
-![](@site/static/img/gcp-installation/antmedia-gcp-marketplace-image-eight-1024x496.png)
+![](@site/static/img/gcp-installation/antmedia-gcp-marketplace-image-nine-1024x496.png)
 *How to configure backend service on GoogleCloud?*
 
 
@@ -103,7 +103,7 @@ In the upcoming screen, we will create the Backend Pool (both Origin and Edge) a
 
 In the same backend configuration, to create the Health Check configuration, click on Health Check > CREATE HEALTH CHECK and add it as shown below:
 
-![](@site/static/img/gcp-installation/antmedia-gcp-marketplace-image-eight-1024x496.png)
+![](@site/static/img/gcp-installation/antmedia-gcp-marketplace-image-ten-1024x496.png)
 *How to set up the Health Check on Google Cloud?*
 
 Click on Create to finalize the configuration for both the Backend and the Health check. Then, click Create again to complete the Load Balancer configuration.
@@ -116,22 +116,22 @@ Go to VPC Network > Firewall > Create firewall Rule and add the rule as shown be
 
 You can allow all IPs by adding the 0.0.0.0/0 CIDR block if required.
 
-![](@site/static/img/gcp-installation/antmedia-gcp-marketplace-image-nine-1024x496.png)
+![](@site/static/img/gcp-installation/antmedia-gcp-marketplace-image-eleven-1024x496.png)
 *How to set up Firewall policies on Google Cloud?*
 
 ### Step 6: Configure Firewall rule for Ant Media Servers
 
 For TCP port 5000 and UDP ports 50000–60000, go to VPC Network > Firewall > Create firewall rule and add the rule as shown in the image below.
 
-![](@site/static/img/gcp-installation/antmedia-gcp-marketplace-image-ten-1024x496.png)
+![](@site/static/img/gcp-installation/antmedia-gcp-marketplace-image-twelve-1024x496.png)
 *How to Configure Firewall rule for Ant Media Servers on Google Cloud?*
 
 Finally, in your DNS management, define the IP addresses of both the origin and edge load balancers.
 
 That’s it! You’re all set. You can now access the Ant Media Server servers to publish, and play the streams using either the origin or edge group.
 
-![](@site/static/img/gcp-installation/antmedia-gcp-marketplace-image-eleven-1024x496.png)
+![](@site/static/img/gcp-installation/antmedia-gcp-marketplace-image-thirteen-1024x496.png)
 *Create a Managing Account for Ant Media Server*
 
-![](@site/static/img/gcp-installation/antmedia-gcp-marketplace-image-eleven-1024x496.png)
+![](@site/static/img/gcp-installation/antmedia-gcp-marketplace-image-fourteen-1024x496.png)
 *Cluster overview on Ant Media Server dashboard*
