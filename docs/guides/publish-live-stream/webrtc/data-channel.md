@@ -227,4 +227,5 @@ Below are the conference-related data channel messages. These are essential for 
 *   ```AUDIO_TRACK_ASSIGNMENT```: Used to manage audio track assignments for different participants.
 *   ```TRACK_LIST_UPDATED```: Triggered when the list of active tracks (audio or video) is updated.
 *   ```MESSAGE_RECEIVED```: Used to notify when a chat message is received during the conference.
+    ```UPDATE_AUDIO_LEVEL```: Used to receive participants audio level through data channel. Audio Level between 0 and 127. 0 means max, and 127 means min. Contains audioLevel and streamId of the participant. You can use this to show a speaking indicator on client side.
 *   ```UPDATE_PARTICIPANT_ROLE```: Used to update the role of a participant in the conference (e.g., from attendee to moderator).
