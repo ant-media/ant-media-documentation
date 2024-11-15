@@ -1,11 +1,11 @@
 ---
-title: How to publish RTMPS
-description: How to publish RTMPS
+title: Publish RTMPS
+description: Publish stream with RTMPS
 keywords: [Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 1
 ---
 
-# How to publish RTMPS
+# Publish RTMPS Stream
 
 Please follow the below steps to publish the RTMPS stream to Ant Media Server:
 

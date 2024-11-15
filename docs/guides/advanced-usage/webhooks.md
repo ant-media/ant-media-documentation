@@ -7,7 +7,9 @@ sidebar_position: 3
 
 # Using webhooks
 
-Ant Media Server offers webhooks to notify your application when specific events occur on the server. By registering your URL with Ant Media Server, you can receive POST requests with certain JSON payloads when events such as the start, finish, or recording of a live stream take place. First, we will cover the process of registering your backend URL as a webhook with Ant Media Server. Following that, we will provide references and details on how to use these webhooks effectively.
+Ant Media Server offers webhooks to notify your application when specific events occur on the server. By registering your URL with Ant Media Server, you can receive POST requests with certain JSON payloads when events such as the start, finish, or recording of a live stream take place.
+
+First, we will cover the process of registering your backend URL as a webhook with Ant Media Server. Following that, we will provide references and details on how to use these webhooks effectively.
   
 ![](@site/static/img/68747470733a2f2f616e746d656469612e696f2f77702d636f6e74656e742f75706c6f6164732f323031382f31312f776562686f6f6b732d333030783237332e706e67.png)
 
@@ -353,4 +355,4 @@ That's it! You can read the `action` field from the POST request body and take a
 
 > **Attention:** Please process the POST request within your application as quickly as possible as the hooks are called within the event loop thread which will not wait for your application to complete complex tasks.
 
-To secure streams using Webhook, refer to the [Webhook Authorization](https://antmedia.io/docs/category/stream-security/webhook-stream-authorization) document.
+To secure streams using Webhook, refer to the [Webhook Authorization](https://antmedia.io/docs/guides/stream-security/webhook-stream-authorization/) document.

@@ -11,47 +11,65 @@ You can use NVIDIA hardware-based encoder on Docker with Ant Media Server.
 
 ### Requirements
 
-On host(18.04 and 20.04)
+* Instance with Ubuntu 20.04 or 22.04
+* [Install CUDA Drivers](/guides/advanced-usage/using-nvidia-gpu/)
+*   Install docker-ce using using the below commands
 
-*   [Install CUDA Drivers](/guides/advanced-usage/using-nvidia-gpu/)
-*   Install docker-ce according to the link - [https://docs.docker.com/install/](https://docs.docker.com/install/)
+```bash
+# Add Docker's official GPG key:
 
-    sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-    sudo apt-get update
-    sudo apt-get install docker-ce docker-ce-cli containerd.io
+sudo apt-get update
+sudo apt-get install ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+    
+# Add the repository to Apt sources:
 
-**1**. Add Repos for nvidia-docker2
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
+```
 
-    curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -
-    distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
-    curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | sudo tee /etc/apt/sources.list.d/nvidia-docker.list
-    sudo apt-get update
+### Install Nvidia Container Toolkit
 
-**2.** Install nvidia-docker2 for Ubuntu 18.04 and 20.04
+**1**. Add Repos for nvidia-container-toolkit
 
-    sudo apt-get install -y nvidia-docker2
-    sudo pkill -SIGHUP dockerd
+```bash
+curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg && curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
+```
 
-**3.** Start a docker container with following command
+**2.** Install nvidia-container-toolkit for Ubuntu 20.04 and 22.04
 
-*   Ubuntu 18.04
+```bash
+sudo apt-get update
+sudo apt-get install -y nvidia-container-toolkit
+sudo nvidia-ctk runtime configure --runtime=docker
+sudo systemctl restart docker
+```
 
-    sudo docker run --runtime=nvidia \
-     --privileged --network host --name cuda-docker2 \
-     -e NVIDIA_VISIBLE_DEVICES=all -e NVIDIA_DRIVER_CAPABILITIES=compute,utility,video \
-     -it nvidia/cuda:10.0-runtime-ubuntu18.04
+### Docker Container
 
-*   Ubuntu 20.04
+**1.** Start a Docker container with the following command:
 
-    sudo docker run --runtime=nvidia \
-     --privileged --network host --name cuda-docker2 \
-     -e NVIDIA_VISIBLE_DEVICES=all -e NVIDIA_DRIVER_CAPABILITIES=compute,utility,video \
-     -it nvidia/cuda:11.7.0-runtime-ubuntu20.04
+```bash
+docker run -d --name nvidia --runtime=nvidia --privileged --network host -e NVIDIA_VISIBLE_DEVICES=all -e NVIDIA_DRIVER_CAPABILITIES=compute,utility,video -it nvidia/cuda:11.8.0-runtime-ubuntu22.04
+```
 
-4\. In this docker container, you can install Ant-Media-Server Enterprise edition. It automatically uses hardware encoder. Alternatively, you can use [Ant Media Server Docker file](https://github.com/ant-media/Scripts/blob/master/docker/Dockerfile_Process) and just change the line **FROM ubuntu:20.04** to \`**FROM nvidia/cuda:11.7.0-runtime-ubuntu20.04**'. After that build the image and run the container with below command.
+In this docker container, you can install Ant-Media-Server Enterprise edition. It automatically uses hardware encoder.
 
-    sudo docker run -d --name antmedia --runtime=nvidia --privileged --network host  \
-    -e NVIDIA_VISIBLE_DEVICES=all -e NVIDIA_DRIVER_CAPABILITIES=compute,utility,video \
-    -it antmediaserver
+**2.** Alternatively, you can use [Ant Media Server Docker file](https://github.com/ant-media/Scripts/blob/master/docker/Dockerfile_Process) and just change the line **FROM ubuntu:22.04** to  **FROM nvidia/cuda:11.8.0-runtime-ubuntu22.04**.
+
+**3.** Create the Docker image using the Docker file after making the above-mentioned changes. Before that, you also need to download the Ant Media Server Enterprise Edition zip file to your instance.
+
+```bash
+docker build --network=host -t antmediaserver --build-arg AntMediaServer=ant-media-server-enterprise.zip .
+```
+
+**4.** Run the docker container using the Ant Media Server Image
+
+```bash
+docker run -d --name nvidia --runtime=nvidia --privileged --network host -e NVIDIA_VISIBLE_DEVICES=all -e NVIDIA_DRIVER_CAPABILITIES=compute,utility,video -it antmediaserver
+```
+
+**5.** You can check the usage of the GPU driver via the `nvidia-smi` command.
