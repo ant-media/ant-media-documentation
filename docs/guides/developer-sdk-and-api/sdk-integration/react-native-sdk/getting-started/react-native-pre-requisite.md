@@ -1,11 +1,11 @@
 ---
-title: Pre-Requisite for React Native development
-description: Pre-Requisite for React Native development 
+title: Pre-Requisite For React Native SDK
+description: Pre-Requisite for React Native SDK
 keywords: [React Native SDK User Guide, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 2
+sidebar_position: 1
 ---
 
-### Software requirements
+### Software Requirements
 
 *   Android Studio (IDE)
 *   Android SDK
@@ -16,7 +16,7 @@ sidebar_position: 2
 
 First of all, you’re required to install the node on your system. If your machine already has Node.js installed, then skip this step.
 
-### Node.js Installation
+### Node JS Installation
 
 ![](@site/static/img/image(83).png)
 
@@ -35,7 +35,7 @@ node -v
 npm –v
 ```   
 
-### React Native
+### React Native CLI
 
 Use the below command to install React Native CLI.
 
@@ -51,9 +51,9 @@ Download & Install the Android Studio [https://developer.android.com/studio/inst
 
 The Android Studio lets you run the Reactive Native application in an emulator and test the application.
 
-### Verify React Native Installation By running a sample app
+### Verify React Native Installation
 
-We’ll be building a project using React Native by running the following command:
+We’ll be building a sample project using React Native by running the following command:
 
 ```shell
 react-native init MySampleApp
