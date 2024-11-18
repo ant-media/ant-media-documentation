@@ -61,7 +61,7 @@ HLS and MP4 recording require H.264 codec. Enabling only VP8 will limit recordin
 
 HEVC, also known as H.265, provides better video quality at the same bitrate, making it ideal for bandwidth-sensitive environments.
 
-1. **Enable H.265 in Configuration**
+#### **Enable H.265 in Configuration**
 
    H.265 codec support is disabled by default. To enable it, follow these steps:
 
@@ -84,21 +84,21 @@ HEVC, also known as H.265, provides better video quality at the same bitrate, ma
 
 - Scroll down & save the settings after making changes.
 
-2. **Send an RTMP Stream to Ant Media Server**
+#### **Send an RTMP Stream to Ant Media Server**
 
 - Use a tool like OBS to send an RTMP stream to the Ant Media Server with H.265 video codec. Check out [Enhanced RTMP document](https://antmedia.io/docs/guides/publish-live-stream/rtmp/enhanced-rtmp/) for more details.
 
-4. **Play H.265 Stream**
+#### **Play H.265 Stream**
 
 - Most Android devices natively support H.265 playback, so you can play the HLS, LL-HLS, and Dash directly in supported video players. You can use player like VLC or integrate third-party players in your applications to play the H265 encoded stream.
 
-4. **Play H.265 Stream on browsers**
+#### **Play H.265 Stream on browsers**
 
 The majority of the browsers do not support H.265 playback yet. You can check the [H.265 supported browsers](https://caniuse.com/?search=H.265).
 
 - Like H.264 & VP8, H.265 can also be used in both SFU & Adaptive bitrate mode.
 
-5. **Play H.265 transcoded streams with H.264**
+#### **Play H.265 transcoded streams with H.264**
 
 - Since H.265 support is limited for browsers and WebRTC, a workaround solution is to enable H.264 & make use of Adaptive streaming to transcode the H.265 ingested stream with H.264.
 
