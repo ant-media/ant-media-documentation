@@ -36,6 +36,6 @@ By clicking on Options on the sample page, you can also change the Max Video Bit
 
 ![](@site/static/img/publish-live-stream/WebRTC/WebRTC-publishing/WebRTC-options.png)
 
-Learn more about playing this stream with WebRTC to complete the loop and stream with ~0.5-Second latency.
+Learn more about playing this stream with WebRTC to complete the loop and stream with ~0.5-second latency.
 
-> Quick Link: [Learn How to Play with WebRTC](/guides/playing-live-stream/webrtc-playing/).
+> Quick Link: [Learn How to Play with WebRTC](https://antmedia.io/docs/guides/playing-live-stream/webrtc-playback/).
