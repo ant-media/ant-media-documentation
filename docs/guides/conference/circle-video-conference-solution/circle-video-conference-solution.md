@@ -1,8 +1,9 @@
+---
 title: Circle - Free Video Conferencing Solution
 description: Circle - Free Video Conferencing Solution on top of Ant Media Server
 keywords: [Conference Ant Media, Ant Media video conference, ant media conferencing, Circle]
 sidebar_position: 1
--------------------
+---
 
 # Circle - Free Video Conferencing Solution
 
@@ -48,7 +49,7 @@ First Login to Ant Media Server Management Panel.
 
 # Usage
 
-* Visit "https://<antmediaserver_url>/<application_name>"
+* Visit `https://<antmediaserver_url>/<application_name>`
 * Click "Create Meeting"
   ![](@site/static/img/conference/circle/circle-room-creation.png)
 * Enter your name for yourself and join the meeting
