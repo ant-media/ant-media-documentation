@@ -33,19 +33,19 @@ wget https://raw.githubusercontent.com/ant-media/Scripts/master/install_mongodb.
 
 To deploy Ant Media Server Enterprise Edition as a cluster on GCP, start by launching Ant Media Server Enterprise Edition through the Marketplace. For detailed steps, refer to this blog post on launching AMS through the Marketplace.
 
-![](@site/static/img/gcp-installation/antmedia-gcp-marketplace-image-one-1024x496.png)
+![](@site/static/img/gcp-installation/antmedia-gcp-marketplace-first-image-1024x496.png)
 *Ant Media Server on Google Cloud Platform Marketplace*
 
 After the deployment, stop the instance.
 
 Next, go to Images > CREATE IMAGE and select the instance you just set up as the Source disk.
 
-![](@site/static/img/gcp-installation/antmedia-gcp-marketplace-image-two-1024x496.png)
+![](@site/static/img/gcp-installation/antmedia-gcp-marketplace-second-image-1024x496.png)
 *Choose Source disk for Ant Media Server on Google Cloud*
 
 On the same screen, navigate to the Boot Disk section and click on Change > Custom Images. Then, select the image you created in the previous step.
 
-![](@site/static/img/gcp-installation/antmedia-gcp-marketplace-image-three-1024x496.png)
+![](@site/static/img/gcp-installation/antmedia-gcp-marketplace-third-image-1024x496.png)
 *Create Ant Media Server instance template on Google Cloud – Boot Disk*
 
 After that, go to Advanced Options > Management Tab and add the following startup script to the Automation section:
@@ -65,7 +65,7 @@ In the script, please replace the private IP of your MongoDB created in Step 1. 
 
 Navigate on Google Cloud to Compute Engine > Instance Groups > CREATE INSTANCE GROUP. Then, select the name and template as shown in the screenshot, and choose Multiple Zones for the Location.
 
-![](@site/static/img/gcp-installation/antmedia-gcp-marketplace-image-four-1024x496.png)
+![](@site/static/img/gcp-installation/antmedia-gcp-marketplace-fourth-image-1024x496.png)
 *Create instance group on Google Cloud*
 
 
@@ -79,20 +79,20 @@ The autoscaling groups are now created. Let’s move on to configuring the Load 
 
 In the search bar, type “Load Balancer” and open the “Load balancing” service, then click on **CREATE LOAD BALANCER** and select **Application Load Balancer**.
 
-![](@site/static/img/gcp-installation/antmedia-gcp-marketplace-image-five-1024x496.png)
+![](@site/static/img/gcp-installation/antmedia-gcp-marketplace-fifth-image-1024x496.png)
 *Start configuration for Application Load Balancer on Google Cloud*
 
 In the Load Balancer menu, after selecting the Name and Protocol, go to the certificate section and create a new certificate by choosing “CREATE A NEW CERTIFICATE.”
 
-![](@site/static/img/gcp-installation/antmedia-gcp-marketplace-image-six-1024x496.png)
+![](@site/static/img/gcp-installation/antmedia-gcp-marketplace-sixth-image-1024x496.png)
 *Create a new HTTPS certificate on Google Cloud*
 
-![](@site/static/img/gcp-installation/antmedia-gcp-marketplace-image-seven-1024x496.png)
+![](@site/static/img/gcp-installation/antmedia-gcp-marketplace-seventh-image-1024x496.png)
 *How to create a certificate form on Google Cloud*
 
 Then, fill in the required fields and create the certificate. You can also use your own SSL certificate by uploading it. After that, click on the “Backend configuration” section.
 
-![](@site/static/img/gcp-installation/antmedia-gcp-marketplace-image-eight-1024x496.png)
+![](@site/static/img/gcp-installation/antmedia-gcp-marketplace-eight-image-1024x496.png)
 *Create a backend service on GoogleCloud*
 
 ![](@site/static/img/gcp-installation/antmedia-gcp-marketplace-image-nine-1024x496.png)
