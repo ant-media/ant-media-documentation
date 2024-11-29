@@ -93,7 +93,7 @@ To set broadcast level ABR, send a ```PUT``` request and update broadcast object
 
 [Update Broadcast Rest API](https://antmedia.io/rest/#/BroadcastRestService/updateBroadcast)
 
-Below is an example curl command that sets the 240p, 1080p, and 720p ABR options for a broadcast with the ID ```teststream```:
+Below is an example curl command that sets the 240p, 1080p, and 720p ABR options for a broadcast with the ID ```stream1```:
 ```
 curl --location --request PUT 'http://localhost:5080/WebRTCAppEE/rest/v2/broadcasts/stream1' --header 'Content-Type: application/json' --data '{"encoderSettingsList": [{"videoBitrate": 500000, "forceEncode": true, "audioBitrate": 32000, "height": 240},{"videoBitrate": 2500000, "forceEncode": true, "audioBitrate": 256000, "height": 1080},{"videoBitrate": 2000000, "forceEncode": true, "audioBitrate": 128000, "height": 720}]}'
 ```
