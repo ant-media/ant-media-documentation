@@ -1,6 +1,6 @@
 ---
-title: Deploying Ant Media Server Cluster On GCP with Jinja Template
-description: Deploying Ant Media Server Cluster On GCP with Jinja Template
+title: Cluster with GCP Jinja Template
+description: Cluster Deployment with GCP Jinja Template
 keywords: [AMS Cluster Deployment on GCP, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 2
 ---
@@ -8,6 +8,9 @@ sidebar_position: 2
 In this guide, we’ll dive into how to use Jinja Templates and Google Cloud Deployment Manager to streamline the deployment of Ant Media Server clusters on Google Cloud Platform (GCP). We’ll cover the essentials of both Jinja Templates and Deployment Manager, explore how these tools integrate seamlessly, and provide a step-by-step walkthrough to help you deploy an Ant Media Server cluster with confidence and ease.
 
 ## What is Google Deployment Manager and Jinja Template?
+
+Let's first learn about the Google Deployment Manager and GCP Jinja Template.
+
 ### Google Deployment Manager
 It is an infrastructure management service provided by Google Cloud Platform (GCP). It allows you to define the desired state of your cloud resources using configuration files, enabling you to automate the creation, deployment, and updates of complex cloud infrastructure.
 
@@ -27,7 +30,9 @@ Before you begin the deployment process, ensure you have the following prerequis
 
 * **Ant Media Server Marketplace Image:** Ant Media Server Marketplace Image will serve as the base for your Ant Media Server cluster. To create an image, you first need to launch an Ant Media Server instance from GCP Marketplace and then create an image from that. Please follow the instructions in [Step 2 of this blog post](https://antmedia.io/scale-ant-media-server-google-cloud-platform-guide/) to create an image.
 
-`Note:` Please note the name of the image as it will be used in the configuration file to create the cluster. For this demo, I will name the image **ams-latest**
+:::info
+Please note the name of the image, as it will be used in the configuration file to create the cluster. For this demo, I will name the image **ams-latest**
+:::
 
 * **Ant Media Server Cluster GCP Jinja Template:** Get the Ant Media Server Cluster [GCP Jinja Template](https://github.com/ant-media/Scripts) from the GitHub repository. This template contains the configuration settings for deploying an Ant Media Server cluster on GCP using Google Deployment Manager and Jinja Templates.
 
@@ -36,22 +41,28 @@ Before you begin the deployment process, ensure you have the following prerequis
 Now that we have all the prerequisites covered, let’s access the GCP account to get started.
 
 * Login to your GCP account using the gcloud CLI tool in the terminal
- ```gcloud auth login```
+
+ ```bash
+ gcloud auth login
+ ```
   
   ![image](https://github.com/user-attachments/assets/4f209dc6-d2ac-47cf-ad73-e7d474d4b585)
   
-* Go to the above displayed URL in your browser, follow the prompts, and enter the verification code and you will be logged in to your gcloud environment.
+* Go to the above-displayed URL in your browser, follow the prompts, and enter the verification code, and you will be logged in to your gCloud environment.
+
 * You can create a new project for the deployment or if you already have a project created, you can switch to the existing project with
   
-```gcloud config set project YOUR_PROJECT_ID```
+```bash
+gcloud config set project YOUR_PROJECT_ID
+```
 
-## Deploying the Cluster
+## Deploy the Cluster
 
 To deploy the Ant Media Cluster, we will quickly edit a couple of files and then launch it with a single command.
 
 ### Step 1: Edit the antmedia.yaml file
 
-* Open the **antmedia.yaml** file to edit from the gcp-jinja-template files you downloaded with your favorite editor.
+* Open the **antmedia.yaml** file to edit from the `gcp-jinja-template` files you downloaded with your favorite editor.
 * Adjust the region, zone, and instance type settings according to your structure and save it
    
 ```properties:
@@ -90,14 +101,19 @@ Your Private Key
 —–END PRIVATE KEY—–
 ```
 
-* Make sure that your certificate and Private key are properly indented to avoid any errors.
+* Make sure that your certificate and private key are properly indented to avoid any errors.
+
 * Save the file and exit from the editor.
+
 ![image](https://github.com/user-attachments/assets/7ae6182e-ab14-48e8-81d1-89e12970039c)
 
-### Step 3: Launching the Cluster
-Once the above configurations are complete, deploy the Ant Media Server Cluster using **gcloud** cli as follows.
+### Step 3: Launch the Cluster
 
-```gcloud deployment-manager deployments create ams-cluster --config antmedia.yaml```
+Once the above configurations are complete, deploy the Ant Media Server Cluster using **gcloud** cli as follows:.
+
+```bash
+gcloud deployment-manager deployments create ams-cluster --config antmedia.yaml
+```
 
 This step will take advantage of the automatic scaling and management features provided by GCP and create the Ant Media Server Cluster using a Jinja template.
 
@@ -105,22 +121,27 @@ This step will take advantage of the automatic scaling and management features p
 
 * In case the deployment is aborted or halted due to any issues, you can check the deployment status with
   
-  ```gcloud deployment-manager deployments describe ams-cluster```
+  ```bash
+  gcloud deployment-manager deployments describe ams-cluster
+  ```
   
 * If the deployment failed and you need to redeploy from scratch, you can delete the failed deployment and create it again
 
-```
+ ```bash
 gcloud deployment-manager deployments delete ams-cluster
 gcloud deployment-manager deployments create ams-cluster --config antmedia.yaml
 ```
-**Congratulations!** Your very own Ant Media Server Cluster is ready using Google Deployment Manager and Jinja template. 
 
-## Accessing the Ant Media Server Cluster
+**Congratulations!** Your very own Ant Media Server Cluster is ready using Google Deployment Manager and the Jinja template. 
+
+## Access the Ant Media Server Cluster
 
 Now that your Ant Media Server cluster is created and ready, let’s connect to it.
 
 * Go to your GCP account console > Load Balancing and under Load Balancers.
-* There will be two load balancers, one of them is Edge and another one Origin, named ams-edge and ams-origin.
+
+* There will be two load balancers, one of them is Edge and another one is Origin, named ams-edge and ams-origin.
+
 * You can connect to your cluster via the Load Balancer Public IP or update your DNS records based on the certificate hostname.
 
   Ant Media Server LBs
@@ -140,9 +161,3 @@ Webrtc sample publish page
 
 Webrtc player page
 ![image](https://github.com/user-attachments/assets/476d44e4-12ff-4694-b3e5-c701e59d42b6)
-
-
-
-
-
-
