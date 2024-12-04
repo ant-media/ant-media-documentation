@@ -9,7 +9,7 @@ sidebar_position: 6
 
 Enhanced RTMP significantly advances video streaming by supporting modern video encoders like HEVC (H.265), VP9, and AV1, unlike traditional RTMP, which is limited to the older H.264 codec. These newer codecs offer far more efficient compression, allowing for higher-quality streams at lower bitrates. 
 
-For example, using Enhanced RTMP with Ant Media Server enables streaming with HEVC, which delivers better video quality than H.264 at the same bitrate, greatly reducing bandwidth consumption without sacrificing clarity. This is ideal for bandwidth-constrained scenarios like mobile streaming or large-scale broadcasting, making Enhanced RTMP a more adaptable and future-proof solution for modern streaming needs.
+For example, using Enhanced RTMP with Ant Media Server enables streaming with HEVC, which delivers better video quality than H.264 at the same bitrate, greatly reducing bandwidth consumption without sacrificing clarity. This is ideal for bandwidth-constrained scenarios like mobile streaming or large-scale broadcasting, making Enhanced RTMP a more adaptable and future-proof solution for modern streaming needs. Please note that **AV1 & VP9** support will be introduced in future releases of Ant Media Server
 
 ## How to use Enhanced RTMP with Ant Media Server?
 
