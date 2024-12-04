@@ -34,14 +34,12 @@ wget https://raw.githubusercontent.com/ant-media/Scripts/master/install_mongodb.
 To deploy Ant Media Server Enterprise Edition as a cluster on GCP, start by launching Ant Media Server Enterprise Edition through the Marketplace. For detailed steps, refer to this blog post on launching AMS through the Marketplace.
 
 ![](@site/static/img/gcp-installation/antmedia-gcp-marketplace-image-one.png)
-*Ant Media Server on Google Cloud Platform Marketplace*
 
 After the deployment, stop the instance.
 
 Next, go to Images > CREATE IMAGE and select the instance you just set up as the Source disk.
 
 ![](@site/static/img/gcp-installation/antmedia-gcp-marketplace-image-two-1024x496.png)
-*Choose Source disk for Ant Media Server on Google Cloud*
 
 ### Step 3: Create an Instance Template
 
@@ -49,12 +47,10 @@ After the image creation process is complete, proceed to the Instance Templates 
 
 Select the instance type
 ![](@site/static/img/gcp-installation/antmedia-gcp-marketplace-image-three.png)
-*Create Ant Media Server instance template on Google Cloud
 
 On the same screen, navigate to the Boot Disk section and click on Change > Custom Images. Then, select the image you created in the previous step.
 
 ![](@site/static/img/gcp-installation/antmedia-gcp-marketplace-image-four.png)
-*Create Ant Media Server instance template on Google Cloud – Boot Disk
 
 After that, go to Advanced Options > Management Tab and add the following startup script to the Automation section:
 
@@ -74,7 +70,6 @@ In the script, please replace the private IP of your MongoDB created in Step 1. 
 Navigate on Google Cloud to Compute Engine > Instance Groups > CREATE INSTANCE GROUP. Then, select the name and template as shown in the screenshot, and choose Multiple Zones for the Location.
 
 ![](@site/static/img/gcp-installation/antmedia-gcp-marketplace-image-five.png)
-*Create instance group on Google Cloud*
 
 For auto-scaling, specify the minimum and maximum instance counts you want to set up, then configure the CPU Utilization to 60% and click on the Create button.
 
@@ -87,58 +82,50 @@ The autoscaling groups are now created. Let’s move on to configuring the Load 
 In the search bar, type “Load Balancer” and open the “Load balancing” service, then click on **CREATE LOAD BALANCER** and select **Application Load Balancer**.
 
 ![](@site/static/img/gcp-installation/antmedia-gcp-marketplace-image-six.png)
-*Start configuration for Application Load Balancer on Google Cloud*
 
 In the Load Balancer menu, after selecting the Name and Protocol, go to the certificate section and create a new certificate by choosing “CREATE A NEW CERTIFICATE.”
 
 ![](@site/static/img/gcp-installation/antmedia-gcp-marketplace-image-seven.png)
-*Create a new HTTPS certificate on Google Cloud*
 
 ![](@site/static/img/gcp-installation/antmedia-gcp-marketplace-image-eight.png)
-*How to create a certificate form on Google Cloud*
 
 Then, fill in the required fields and create the certificate. You can also use your own SSL certificate by uploading it. After that, click on the “Backend configuration” section.
 
 ![](@site/static/img/gcp-installation/antmedia-gcp-marketplace-image-nine.png)
-*Create a backend service on GoogleCloud*
 
 ![](@site/static/img/gcp-installation/antmedia-gcp-marketplace-image-ten.png)
-*How to configure backend service on GoogleCloud?*
 
 In the upcoming screen, we will create the Backend Pool (both Origin and Edge) and Health Check.
 
 In the same backend configuration, to create the Health Check configuration, click on Health Check > CREATE HEALTH CHECK and add it as shown below:
 
 ![](@site/static/img/gcp-installation/antmedia-gcp-marketplace-image-eleven.png)
-*How to set up the Health Check on Google Cloud?*
 
 Click on Create to finalize the configuration for both the Backend and the Health check. Then, click Create again to complete the Load Balancer configuration.
 
 Repeat these steps for the Edge side as well.
 
- **_NOTE:_** If the Load Balancers cannot access the Backend servers, you should add a firewall rule as shown below.
+:::info
+If the Load Balancers cannot access the Backend servers, you should add a firewall rule as shown below.
+:::
 
 Go to VPC Network > Firewall > Create firewall Rule and add the rule as shown below. Now the load balancer should be able to access the Ant Media Server Backend servers.
 
 You can allow all IPs by adding the 0.0.0.0/0 CIDR block if required.
 
 ![](@site/static/img/gcp-installation/antmedia-gcp-marketplace-image-twelve.png)
-*How to set up Firewall policies on Google Cloud?*
 
 ### Step 6: Configure Firewall rule for Ant Media Servers
 
 For TCP port 5000 and UDP ports 50000–60000, go to VPC Network > Firewall > Create firewall rule and add the rule as shown in the image below.
 
 ![](@site/static/img/gcp-installation/antmedia-gcp-marketplace-image-thirteen.png)
-*How to Configure Firewall rule for Ant Media Servers on Google Cloud?*
 
 Finally, in your DNS management, define the IP addresses of both the origin and edge load balancers.
 
 That’s it! You’re all set. You can now access the Ant Media Server servers to publish, and play the streams using either the origin or edge group.
 
 ![](@site/static/img/gcp-installation/antmedia-gcp-marketplace-image-fourteen.png)
-<p align="left">Create a Managing Account for Ant Media Server</p>
 
 
 ![](@site/static/img/gcp-installation/antmedia-gcp-marketplace-image-fifteen.png)
-<p align="left">Cluster overview on Ant Media Server dashboard</p>
