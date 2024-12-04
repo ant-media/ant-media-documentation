@@ -105,7 +105,6 @@ Then, fill in the required fields and create the certificate. You can also use y
 ![](@site/static/img/gcp-installation/antmedia-gcp-marketplace-image-ten.png)
 *How to configure backend service on GoogleCloud?*
 
-
 In the upcoming screen, we will create the Backend Pool (both Origin and Edge) and Health Check.
 
 In the same backend configuration, to create the Health Check configuration, click on Health Check > CREATE HEALTH CHECK and add it as shown below:
