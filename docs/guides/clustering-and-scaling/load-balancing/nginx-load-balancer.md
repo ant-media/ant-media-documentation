@@ -1,6 +1,6 @@
 ---
-title: Installing with Nginx load balancer 
-description: Installing with Nginx load balancer
+title: Nginx Load Balancer 
+description: Load Balancer with Nginx proxy
 keywords: [Installing with Nginx load balancer, Nginx Load Balancer, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 1
 ---
