@@ -102,6 +102,8 @@ If you would like to dive in further regarding the technology behind live stream
 
 WebRTC Multitrack Player is available in **Enterprise Edition**.
 
+In this sample, you can play the multiple tracks coming in the main track. Suppose there are two subtracks available in the main track, and only one needs to be played at a time; then only one can be selected to play and one will be disabled. The track can be enabled/diabled on the fly as well.
+
 The file is located at `/usr/local/antmedia/webapps/LiveApp/multitrackplayer.html`
 
 ## 8. WebRTC Publish with WhiteBoard
