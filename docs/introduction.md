@@ -58,6 +58,7 @@ Ant Media Server resolves interactivity and scalability issues by providing ultr
 
 Build your own telehealth application with Ant Media Server to create a seamless interaction between doctors and patients. [Read more](https://antmedia.io/solutions/telehealth/)
 
+
 ### Community and Enterprise Edition comparison
 
 |               **Feature**               |         **Community Edition**         |        **Enterprise Edition**        |
