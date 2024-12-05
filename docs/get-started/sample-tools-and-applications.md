@@ -1,5 +1,5 @@
 ---
-title: Sample tools and Applications
+title: Sample Tools and Applications
 description: With Ant Media Server WebRTC Samples, you may play and experience through our pre-made examples and see Ant Media Server in action. These examples may help you to achieve your use cases.
 keywords: [Ant Media Server WebRTC Samples, Ant Media Server Demo, Ant Media Server Documentation, Ant Media Server Tutorials, Ant Media Demonstration]
 sidebar_position: 1
