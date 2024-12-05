@@ -66,6 +66,7 @@ Build your own telehealth application with Ant Media Server to create a seamless
 |            End-to-End Latency            |             8-12 Seconds             |         0.5 Seconds (500ms)         |
 |                   CMAF                   | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
 |                 Scaling                 | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
+|            Kubernetes Support            | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
 |   RTMP(Ingesting) to WebRTC (Playing)   | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
 | Hardware Encoding(Nvidia GPU, QuickSync) | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
 |           WebRTC Data Channel           | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
@@ -73,16 +74,19 @@ Build your own telehealth application with Ant Media Server to create a seamless
 |             Secure Streaming             | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
 |            SRT ingest support            | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
 |         iOS & Android WebRTC SDK         | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
-|          VP8 and H.265 Support          | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
-|          iOS & Android SDK          | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
+|          VP8 and H.265 Support           | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
+|             iOS & Android SDK            | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
 |              JavaScript SDK              | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
 |     RTMP, RTSP, MP4 and HLS Support     | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
+|           LL-HLS (Paid plugin)           | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
 |          WebRTC to RTMP Adapter          | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
 |      360 Degree Live & VoD Streams      | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
 |         Web Management Dashboard         | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
 |            IP Camera Support            | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
 |         Re-stream Remote Streams         | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
+|                  WHIP                    | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
 |               Open Source               | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
+|      Linear Live Streaming (Playlist)    | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
 |  Simulcast to all Social Media via RTMP  | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
 |                 Support                 |               Community               |           E-mail, On-site           |
 |                  Price                  |                 Free                 |                 Paid                 |
