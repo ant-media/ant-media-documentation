@@ -38,12 +38,17 @@ Assume you have two audio tracks with the stream IDs **audio1** and **audio2**.
 
 ![multitrack-streams.png](@site/static/img/multitrack-streams.png)
 
-### Playing multitrack streams
+### Playing Multitrack streams
 
-Multitrack streams can be played with the sample page, **multitrackplayer.html**
+Ant Media Server supports two distinct methods for playing multitrack streams. Users can either manage individual tracks separately or aggregate multiple tracks under a single main stream ID for unified playback. Here’s a breakdown of both approaches:
 
-`https://AMS-domain:5443/AppName/multitrackplayer.html`
 
+#### - Multitrack streams can be played with multitrackplayer.html the sample page 
+The multitrackplayer.html page is designed for scenarios where multiple streams are published as individual tracks, allowing precise control over each track.
+
+```
+https://AMS-domain:5443/AppName/multitrackplayer.html
+```
 ![sample.png](@site/static/img/sample(1).png)
 
 1.  Write the group ID in the text box
@@ -54,6 +59,14 @@ Multitrack streams can be played with the sample page, **multitrackplayer.html**
 You can enable or disable the video/audio feed for a sub-track with the ```enableTrack(mainTrackId, trackId, enabled)``` methods in the webrtc-adaptor SDK.
 
 ![multitrack-player-1.png](@site/static/img/multitrack-player-1(1).png)
+
+#### Unified Multitrack Playback with multitrack-play.html sample page
+For a simpler experience, the multitrack-play.html page consolidates multiple subtracks under one main track ID, providing a unified stream for playback. This is ideal for users who prefer not to manage individual subtracks but want all streams merged automatically.
+```
+https://<your-server-domain>:<port>/<application-name>/multitrack-play.html?id=<main-stream-id>
+```
+![image](https://github.com/user-attachments/assets/9aa86c6a-7fde-4488-996d-f332367bec5a)
+
 
 ## Multitrack conference
 
