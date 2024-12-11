@@ -170,5 +170,8 @@ Ensure you have registered & subscribed to the [Ant Media Server Enterprise cont
 
    - Your Ant Media Server using AWS ECS is ready to use.
 
+     ![image](https://github.com/user-attachments/assets/53fd9282-4163-45fe-a279-43556687fb94)
+
+
 
 
