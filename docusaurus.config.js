@@ -54,7 +54,7 @@ const config = {
           lastVersion: 'current',
           versions: {
             'current': {
-              label: '2.12-SNAPSHOT', // Customize the label for the current (unversioned) docs
+              label: '2.12', // Customize the label for the current (unversioned) docs
               path: '', // Leave empty to use the root URL for the latest version
               banner: 'none',
             },
