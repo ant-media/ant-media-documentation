@@ -1,0 +1,8 @@
+{
+  "label": "GCP",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "Deploy Ant Media Server at GCP."
+  }
+}
