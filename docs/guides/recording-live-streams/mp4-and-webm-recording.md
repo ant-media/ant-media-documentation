@@ -98,7 +98,7 @@ curl -X 'PUT' 'http(s)://domain-or-IP:Port/AppName/rest/v2/broadcasts/streamId/r
 
 You can also add the date time to recorded files by enabling the `Add Date-Time to Record File names` option in the application settings on the web panel.
 
-![](@site/static/img/recording-live-streams/recording-live-streams/date-and-time.png)
+![image](https://github.com/user-attachments/assets/8a42cebc-0c7d-4905-8a11-da14721ac420)
 
 Once the recording is completed, the record file name will be like `streamId9666-2024-04-02_13-18-35.844.mp4` with a date and time.
 
@@ -115,6 +115,30 @@ Enabling adaptive bitrate means the server is transcoding the video inside itsel
 Containers do not support every codec. Assume you are publishing with RTMP with H264 codec but you want to record in WebM format. But in order to record in WebM format, you need to enable the VP8 codec. In this case, Ant Media Server can transcode video and audio codecs to the required format with adaptive bitrate. 
 
 Let's say a 240p adaptive bitrate is added in application settings and RTMP publishing is ongoing. If you enable webM recording, 240p stream will be recorded, like ```stream1_240p500kbps.webm```
+
+### Customize Recording Filename
+Ant Media Server allows you to customize the filenames of recorded MP4 and TS files directly from the **Ant Media Web panel.** You can define how the filename appears by combining components like resolution, bitrate, custom text, and timestamps. This is helpful for better organization and identification of recorded files.
+
+- **Customize Options:**
+You can include the following placeholders in your file naming format:
+
+`Base name`- The default name of the stream (e.g., "stream1").  
+`%r`- Adds the video resolution (e.g., 720p) (eg: stream1_720p1500kbps)  
+`%b`- Adds the video bitrate in kbps (e.g., 1500kbps) (eg: stream1_HD720p)  
+`fileNameFormat`: A format string to combine the components (resolution, bitrate, custom text).  
+`{customText}`- Adds any custom text you define within curly braces.  
+`Timestamp`- Adds a timestamp to the filename when enabled (e.g., 2023-10-15_12-05-30.123).  
+
+- Examples below for reference-
+1. name = "myVideo", resolution = 720, bitrate = 1500, **fileNameFormat = "%r%b"**  
+Result: "myVideo_720p1500kbps"
+2. name = "stream1", resolution = 480, bitrate = 800, **fileNameFormat = "{HD}%r%b"**  
+Result: "stream1_HD480p800kbps"
+3. name = "stream2", resolution = 720, bitrate = 1500, **fileNameFormat=%b%r, Date-Time ON**  
+Result: "stream2-2023-10-15_12-05-30.123_1500kbps720p.mp4"
+
+![image](https://github.com/user-attachments/assets/ce11a0ef-fdf0-4610-8ffc-b6c9afd63d0e)
+
 
 ## Store recordings to another directory
 
