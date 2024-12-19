@@ -1,6 +1,6 @@
 ---
 title: Circle - Video Conferencing Solution
-description: Circle: Video Conferencing Solution on top of Ant Media Server
+description: Circle Video Conferencing Solution on top of Ant Media Server
 keywords: [Conference Ant Media, Ant Media video conference, ant media conferencing, Circle]
 sidebar_position: 1
 ---
