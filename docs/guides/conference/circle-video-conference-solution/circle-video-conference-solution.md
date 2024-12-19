@@ -42,7 +42,7 @@ You should have `Maven`, `Java 17 SDK`, and `Node` installed on your system.
 
 After running the script, the `ConferenceCall.war` file should be in the `target` folder.
 
-## Application Installation
+### Application Installation
 
 First, log in to the Ant Media Server Management Panel.
 
@@ -53,7 +53,7 @@ First, log in to the Ant Media Server Management Panel.
 
 ![Circla App Installation](@site/static/img/conference/circle/circle-app-installation.png)
 
-## Usage
+### Usage
 
 * Visit `https://antmediaserver-domain/Application_Name`
 
@@ -66,7 +66,7 @@ First, log in to the Ant Media Server Management Panel.
 * You are in the room now
   ![](@site/static/img/conference/circle/circle-room.png)
 
-## Try Now
+### Try Now
 
 If you want to try the Circle conference application without any installation, visit [here](https://meet.antmedia.io/Conference).
 
