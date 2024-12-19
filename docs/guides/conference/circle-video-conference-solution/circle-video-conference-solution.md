@@ -17,11 +17,11 @@ Circle is a ready-to-use open-source, online video conferencing application buil
 * **Distribute Live to Your Large Audience:** Distribute your video call to tens of thousands of viewers as a single video through CDN, Youtube, Vimeo, etc.
 * **Record:** Record your video conference to watch it later or for archiving.
 
-# Installation of Circle on AMS
+## Installation of Circle on AMS
 
 Circle is a web application that runs on Ant Media Server. To install Circle on Ant Media Server, you need to have a war file of the Circle application. You can either build it by yourself or you can download the latest war file. You can download [the stable version](https://github.com/ant-media/conference-call-application/releases) or [latest snapshot](https://oss.sonatype.org/#nexus-search;gav~io.antmedia.webrtc~ConferenceCall~~~~kw,versionexpand).
 
-## Build Circle (Optional)
+### Build Circle (Optional)
 
 If you want to build it by yourself, you can follow these steps. 
 
@@ -53,7 +53,7 @@ First, log in to the Ant Media Server Management Panel.
 
 ![Circla App Installation](@site/static/img/conference/circle/circle-app-installation.png)
 
-# Usage
+## Usage
 
 * Visit `https://antmediaserver-domain/Application_Name`
 
@@ -66,11 +66,11 @@ First, log in to the Ant Media Server Management Panel.
 * You are in the room now
   ![](@site/static/img/conference/circle/circle-room.png)
 
-# Try Now
+## Try Now
 
 If you want to try the Circle conference application without any installation, visit [here](https://meet.antmedia.io/Conference).
 
-# Advanced Topics (for Developers)
+## Advanced Topics (for Developers)
 
 ### Customization:
 
@@ -82,6 +82,6 @@ If you want to change only look and feel, for example, button availabilities, th
 
 If you want to embed Circle into your website as a component, please follow [this guide](https://antmedia.io/docs/guides/developing-antmedia-server/circle-component-usage/).
 
-----------------------------------------------------------------------------------------------------------
+----------
 
 In the next document, we will learn in more detail about the Ant Media Server Conferece solution structure.
