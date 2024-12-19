@@ -1,124 +1,138 @@
 ---
-title: Video Conference
-description: Video Conference features, details and tutorial with ant media server
+title: AMS Conference Structure
+description: Ant Media Conference Structure with Demo Application
 keywords: [Conference Ant Media, Ant Media video conference, ant media conferencing, Publish, Multitrack conference, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 1
+sidebar_position: 2
 ---
 
-# Video Conference
+# Ant Media Server Conference Framework
+
 Ant Media Server enables the development of robust WebRTC video conferencing applications across all supported SDK platforms, supporting unlimited conference participants.
 
 Before beginning the development of a conference application on top of Ant Media Server, there are a few key concepts you need to understand.
 
-## Main Track Broadcast(Conference Room)
-When you publish a regular stream to Ant Media Server, regardless of the publishing method, the server creates a Broadcast object, which is also visible on the web panel. This object stores various details about the broadcast, such as its streamId, status, type, subTrackStreamIds and more. Take a look at Broadcast schema fields from [REST API page](https://antmedia.io/rest/)
+## Main Track Broadcast (Conference Room)
 
+When you publish a regular stream to Ant Media Server, regardless of the publishing method, the server creates a Broadcast object, which is also visible on the web panel. This object stores various details about the broadcast, such as its streamId, status, type, `subTrackStreamIds` and more. Take a look at Broadcast schema fields from broadcast [Rest API](https://antmedia.io/rest/#/default/createBroadcast).
 
+:::info
+In Ant Media Server, there is no distinct concept of a conference room. Instead, conference room and participants are  represented by broadcast objects. Each conference room is treated as a broadcast, and every participant within a room is also represented by their own broadcast object.
+:::
 
-**In Ant Media Server, there is no distinct concept of a conference room. Instead, conference room and participants are  represented by broadcast objects. Each conference room is treated as a broadcast, and every participant within a room is also represented by their own broadcast object.**
+A broadcast object that holds the streamIds of other broadcast objects in its `subTrackStreamIds` field is known as the main track broadcast. In a video conferencing context, this object represents the **conference room**, and its streamId will serve as the **roomId**.
 
-A broadcast object that holds the streamIds of other broadcast objects in its ```subTrackStreamIds``` field is known as the main track broadcast. In a video conferencing context, this object represents the **conference room**, and its streamId will serve as the roomId.
+## Sub Track Broadcast (Conference Participant)
 
-## Sub Track Broadcast(Conference Participant)
+A broadcast object whose `mainTrackStreamId` field is set to another broadcast objects streamId is known as the sub track broadcast. 
 
-A broadcast object whose ```mainTrackStreamId``` field is set to another broadcast objects streamId is known as the sub track broadcast. In video conferencing context, this object represents the **conference participant**, and its streamId will serve as participant id, which will also exist in ```subTrackStreamIds``` field of main track broadcast.
+In video conferencing context, this object represents the **conference participant**, and its streamId will serve as participant id, which will also exist in `subTrackStreamIds` field of main track broadcast.
 
-## Video Conferencing In Action
+## Sample Video Conference Application
 
-Now that we've covered the fundamental concepts of conferencing, let's take a look at video conferencing in action.
+Now that we've covered the fundamental concepts of conferencing, let's take a look at video conferencing in action via sample Conference application on AMS.
 
-Go to:
+By default, their is a sample conference applictaion page available in all applications of AMS. Here is the URL format:
 
 ```https://{ams-url}:5443/{appName}/conference.html```
 
 Example:
 
-```https://test.antmedia.io:5443/LiveApp/conference.html```
+```https://test.antmedia.io:5443/live/conference.html```
 
-This page is ant media conference sample. 
-
-
-Type a roomId and click on ```Join Room```.
+**Step 1:** Type a roomId and click on ```Join Room```.
 
 ![](@site/static/img/conference/video-conference/video-conference-1.png)
 
-
 After joining the room, 2 broadcasts will be created on the server.
 
-1-Room Broadcast (Main track)
+1- Room Broadcast (Main track)
 
-2-Participant Broadcast (Sub track of room broadcast)
+2- Participant Broadcast (Sub track of room broadcast)
 
 Observe that both broadcasts are created on a web panel.
 
 ![](@site/static/img/conference/video-conference/video-conference-2.png)
 
-Now send a GET request to Ant Media Server with main track broadcast streamId to retrieve broadcast object.
+**Step 2:** Now send a [GET request](https://antmedia.io/rest/#/default/getBroadcast) to Ant Media Server with main track broadcast streamId to retrieve broadcast object.
 
-```https://{ams-url}:5443/{app-name}/rest/v2/broadcasts/{room-stream-id}```
+```https://{ams-url}:5443/{app-name}/rest/v2/broadcasts/{room-streamId}```
 
-Example:
-```https://test.antmedia.io:5443/LiveApp/rest/v2/broadcasts/room1```
+**Example:** ```https://test.antmedia.io:5443/LiveApp/rest/v2/broadcasts/room1```
 
-This will return broadcast object.
+This will return the broadcast object.
 
-Observe that ```subTrackStreamIds``` field contains our participants stream id.
+Observe that ```subTrackStreamIds``` field contains our participants streamIds.
 
 ![](@site/static/img/conference/video-conference/video-conference-3.png)
 
 Next, we will do the same for participant broadcast.
 
-Send a GET request to Ant Media Server with sub track broadcast streamId to retrieve broadcast object.
+**Step 3:** Send a [GET request](https://antmedia.io/rest/#/default/getBroadcast) to Ant Media Server with sub track broadcast streamId to retrieve broadcast object.
 
 ```https://{ams-url}:5443/{app-name}/rest/v2/broadcasts/{participant-stream-id}```
 
-Example:
+**Example:**
 ```https://test.antmedia.io:5443/LiveApp/rest/v2/broadcasts/idiTofPCrEx4```
 
 Observe that mainTrackId is set to our rooms id.
 
 ![](@site/static/img/conference/video-conference/video-conference-4.png)
 
-## Developing a Video Conference Application In React
+## Develop a Video Conference Application In React
 
-In this section, we will develope a simple video conference application on top of Ant Media Server using javascript SDK with React.
-Before you start reading this section, take a quick look at to [Javascript SDK Documentation](https://antmedia.io/docs/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/)
+In this section, we will develop a simple video conference application on top of Ant Media Server using javascript SDK with React Framework.
 
-For a more comprehensive conference sample in pure javascript, you can reference to this [Javascript Conference Sample](https://github.com/ant-media/StreamApp/blob/8544ecd2111952008f187f1e0d35fda4cccb030a/src/main/webapp/conference.html)
+With the help of this demo project, we will learn more deeply about the Ant Media Server conference structure.
+
+Before you start reading this section, take a quick look at to [Javascript SDK Documentation](https://antmedia.io/docs/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/).
+
+For a more comprehensive conference sample in pure javascript, you can reference to this [Javascript Conference Sample](https://github.com/ant-media/StreamApp/blob/8544ecd2111952008f187f1e0d35fda4cccb030a/src/main/webapp/conference.html) that we tested in above section.
 
 To see a production-ready open-source video conferencing application built on Ant Media Server using React, visit [Circle](https://meet.antmedia.io/Conference/).
 
-Circle is fully open source on [Github](https://github.com/ant-media/conference-call-application)
+Circle is fully open source on [Github](https://github.com/ant-media/conference-call-application).
+
+Now, let's proceed for the React based Conference application.
 
 ### Step 1: Create a new React Project
-Go to a directory and run below command to create a React project
-```
+
+Go to a directory and run below command to create a React project.
+
+```bash
 npx create-react-app antmedia-react-conference-sample
 ```
+
 ### Step 2: Install Ant Media Javascript SDK
-Run below command to install Ant Media javascript SDK with npm
-```
+
+Run below command to install Ant Media javascript SDK with npm.
+
+```bash
 npm i @antmedia/webrtc_adaptor
 ```
+
 ### Step 3: Disable Strict Mode
+
 Before we jump into writing code, disable strict mode.
-Go to ```index.js``` file and remove ```<StrictMode>``` tags around ```<App/>```
+
+Go to `index.js` file and remove `<StrictMode>` tags around `<App/>`
 
 ### Step 4: Create a Conference Component
-In your src directory create a new folder with name ```components```.
 
-Inside this directory create a new file called ```ConferenceComponent.js```
+In your **src** directory create a new folder with name `components`. Inside this directory create a new file called `ConferenceComponent.js`.
 
 This is where we will write our implementation code.
 
-Import WebRTCAdaptor with:
+**Import WebRTCAdaptor with:**
 
-```import { WebRTCAdaptor } from '@antmedia/webrtc_adaptor'```
+```js
+import { WebRTCAdaptor } from '@antmedia/webrtc_adaptor'
+```
 
 Add some JSX inside return and import few useful react hooks which we will use while doing the implementation.
 
 Your component at this state should look like this:
-```
+
+```js
 import { useEffect, useState, useRef } from 'react';
 import { WebRTCAdaptor } from '@antmedia/webrtc_adaptor'
 
@@ -134,12 +148,11 @@ export default function ConferenceComponent(){
 }
 ```
 
-Go to ```App.js``` in src directory. 
-
-Import ```ConferenceComponent``` and add it inside return.
+Go to `App.js` in src directory, import `ConferenceComponent` and add it inside return.
 
 Your App component should look like this:
-```
+
+```js
 import './App.css';
 import ConferenceComponent from './components/ConferenceComponent';
 
@@ -153,10 +166,12 @@ function App() {
 
 export default App;
 ```
+
 Now we are done with project setup and ready to start writing code for conference.
 
 
 ### Step 5: Create a WebRTC Adaptor Object
+
 Whether you are going to do webrtc publishing, playing or conferencing the first step in all SDKs is to create a webrtc adaptor object.
 
 This will initialize users camera, microphone and establish a websocket connection to your Ant Media Server.
@@ -167,7 +182,7 @@ So lets initialize them with ```useRef``` hook.
 
 We will also initialize a new state variable called  ```roomId```. This will be a state because it will change based on user input.
 
-```
+```js
 const [localParticipantStreamId, setLocalParticipantStreamId] = useState('')
 const [roomId, setRoomId] = useState('') // this is a state because it will change through user input.
 const localVideoElement = useRef(null)
@@ -183,7 +198,7 @@ const webrtcAdaptor = useRef(null)
 
 Now we will create webrtc adaptor object inside useEffect hook with empty array so that it runs on component mount once.
 
-```
+```js
 useEffect(() => {
 
     webrtcAdaptor.current = new WebRTCAdaptor({
@@ -229,13 +244,14 @@ useEffect(() => {
 Notice that inside callback we receive some events. We will use those events while implementing our conference logic.
 
 Now lets add a video element to our JSX to render local users video on page.
-```
+
+```js
 <video  muted={true} autoPlay={true} style={{width:"360", height:"202px"}} ref={localVideoElement.current} id={localParticipantVideoElementId.current}></video>
 ```
 
 At this state your ConferenceComponent should look like this:
 
-```
+```js
 import { useEffect, useState, useRef } from 'react';
 import { WebRTCAdaptor } from '@antmedia/webrtc_adaptor'
 
@@ -307,7 +323,9 @@ export default function ConferenceComponent(){
 }
 ```
 
-Now, run ```npm start``` command and start the development server. Go to ```localhost``` page, open console and observe that webrtc adaptor is initialized succesfully and your camera video is rendered inside ```localParticipantVideoElement```
+Now, run ```npm start``` command and start the development server. 
+
+Go to ```localhost``` page, open console and observe that webrtc adaptor is initialized succesfully and your camera video is rendered inside ```localParticipantVideoElement```
 
 ![](@site/static/img/conference/video-conference/video-conference-5.png)
 
@@ -316,18 +334,19 @@ This means that our client succesfully connected to Ant Media Server through web
 
 ### Step 6: Join a Room
 
-There are 2 main methods in all Ant Media WebRTC SDKs: ```publish()``` and ```play()```
+There are 2 main methods in all Ant Media WebRTC SDKs: ```publish()``` and ```play()```.
 
 In Ant Media Server joining a conference room means that publishing to main track broadcast and playing the main track broadcast.
 
-```
+```js
 const joinRoom = () => {
     var userStatusMetaData = getUserStatusMetaData()
     webrtcAdaptor.current.publish(localParticipantStreamId, null, null, null, localParticipantStreamId, roomId, JSON.stringify(userStatusMetaData));
     webrtcAdaptor.current.play(roomId)
 }
 ```
-for ```.publish()``` 1st, 6th and 7th arguments are required for conference.
+
+For ```.publish()``` 1st, 6th and 7th arguments are required for conference.
 
 First argument is participants ```streamId```, 6th argument is ```roomId```(main track id). 7th argument is ```metadata``` of the broadcast. 
 
@@ -337,7 +356,7 @@ Metadata field of broadcast object in conference context is used to store users 
 
 Go ahead and add ```getUserStatusMetaData``` function for that:
 
-```
+```js
 const getUserStatusMetaData = ()=>{
     let metadata = {
         isMicMuted: false,
@@ -348,14 +367,14 @@ const getUserStatusMetaData = ()=>{
 ```
 
 After publish we need to call ```.play()``` with ```roomId```, so that we will receive all other participants video tracks and start playing them.
+
 For javascript SDK, its okay to call ```.play()``` right after calling ```.publish()``` like above.
 
 You can also start playing the room when you receive ```publish_started``` callback from webrtc adaptor. 
 
-So go ahead and add 
-```webrtcAdaptor.current.play(roomId);``` inside ```publish_started``` also.
+So go ahead and add ```webrtcAdaptor.current.play(roomId);``` inside ```publish_started``` also.
 
-```
+```js
 else if (info == "publish_started") {
     console.log("publish started to room " + roomId);
     webrtcAdaptor.current.play(roomId);
@@ -365,14 +384,11 @@ else if (info == "publish_started") {
 For ```.play()```, only ```roomId``` is required. For all other parameters and explanations take a look at
 [this on github](https://github.com/ant-media/StreamApp/blob/3cd4fb74033cbfd99638947e473507352788278c/src/main/js/webrtc_adaptor.js#L582).
 
-
-
-To call ```joinRoom()``` function create a join room button and an input for roomId.
-We will also create a new input to set our local participants streamId.
-
+To call ```joinRoom()``` function create a join room button and an input for roomId. We will also create a new input to set our local participants streamId.
 
 return of ```ConferenceComponent``` should be like below:
-```
+
+```js
 return(
     <div style={{width:"100%", height:"100%", display:"flex", flexDirection:"column"}}>
         <h1 style={{marginLeft:"auto", marginRight:"auto"}}>Ant Media React Conference Sample</h1>
@@ -410,23 +426,26 @@ return(
 
 
 ### Step 7: Retrieve Main Track Broadcast Object
+
 After you call ```.play()``` with ```roomId``` if it is succesfull you will receive ```play_started``` event from webrtc adaptor.
 
 Catch the ```play_started``` message on webrtc adaptor callback and call.
 
-```
+```js
 webrtcAdaptor.current.getBroadcastObject(roomId);
 ```
 
 with the ```roomId```. This will request main track(room) broadcast object from Ant Media Server.
 
-```
+```js
 else if (info === "play_started") {     
 webrtcAdaptor.current.getBroadcastObject(roomId);
 }
 ```
-After you request the main track object, Ant Media Server will respond with main track broadcast object. You will get the main track object through webrtc adaptor callback event ```broadcastObject```
-```
+
+After you request the main track object, Ant Media Server will respond with main track broadcast object. You will get the main track object through webrtc adaptor callback event ```broadcastObject```.
+
+```js
 else if (info === "broadcastObject") {
       if (obj.broadcast === undefined) {
         return;
@@ -443,25 +462,24 @@ else if (info === "broadcastObject") {
       }
 }
 ```
+
 ### Step 8: Process Main Track Broadcast Object
-When you receive a broadcast object, check if it is main track(room broadcast) or sub track(participant broadcast) by comparing its streamId with roomId. If it is equal to roomId call
 
-```handleMainTrackBroadcastObject(broadcastObject)```
+When you receive a broadcast object, check if it is main track(room broadcast) or sub track(participant broadcast) by comparing its streamId with roomId. 
 
-function for further processing.
+If it is equal to roomId, call ```handleMainTrackBroadcastObject(broadcastObject)``` function for further processing.
 
-```handleMainTrackBroadcastObject``` will read participants of the room from ```subTrackStreamIds``` field and if their track does not exist in ```allParticipants``` object as a key it will request it from Ant Media Server.
+The ```handleMainTrackBroadcastObject``` will read participants of the room from ```subTrackStreamIds``` field and if their track does not exist in ```allParticipants``` object as a key it will request it from Ant Media Server.
 
 Initialize a new empty object reference as ```allParticipants``` with ```useRef```.
 
-```
+```js
 const allParticipants = useRef({})
 ```
 
 Then create ```handleMainTrackBroadcastObject``` function.
 
-
-```
+```js
 const handleMainTrackBroadcastObject = (broadcastObject) => {
     let participantIds = broadcastObject.subTrackStreamIds;
 
@@ -483,8 +501,10 @@ const handleMainTrackBroadcastObject = (broadcastObject) => {
     });
 }
 ```
+
 At this state your ```ConferenceComponent``` should be like this:
-```
+
+```js
 import { useEffect, useState, useRef } from 'react';
 import { WebRTCAdaptor } from '@antmedia/webrtc_adaptor'
 
@@ -625,7 +645,7 @@ If you go to Ant Media Server web panel and check, you will see 2 broadcasts. On
 
 As you remember we requested sub track broadcast objects at step 7 inside ```handleMainTrackBroadcastObject``` function.
 
-```
+```js
 participantIds.forEach(pid => {
     if (allParticipants[pid] === undefined) {
         webrtcAdaptor.current.getBroadcastObject(pid);
@@ -636,7 +656,7 @@ Ant Media Server will respond with sub track objects.
 
 Create a new function ```handleSubtrackBroadcastObject```
 
-```
+```js
 function handleSubtrackBroadcastObject(broadcastObject) {
     if (broadcastObject.metaData !== undefined && broadcastObject.metaData !== null) {
         let userStatusMetadata = JSON.parse(broadcastObject.metaData);
@@ -657,7 +677,8 @@ function handleSubtrackBroadcastObject(broadcastObject) {
 This function will set broadcast object to ```allParticipants``` map with streamId as its key. Main reason of doing this is to retrieve camera and microphone status of the remote participant through broadcast objects ```metadata``` field.
 
 Listen for subtracks inside webrtc adaptors event ```broadcastObject```
-```
+
+```js
 else if (info === "broadcastObject") {
             if (obj.broadcast === undefined) {
                 return;
@@ -677,7 +698,8 @@ else if (info === "broadcastObject") {
 When you join a room with participants, Ant Media Server will emit a ```newTrackAvailable``` event for each participant in the room. This event will also be triggered when a new participant joins the room. We will capture this event in the WebRTC adaptor and add the users video and audio tracks to a state array to be rendered on screen.
 
 Edit ```newTrackAvailable``` as below:
-```
+
+```js
 else if (info == "newTrackAvailable") {
 onNewTrack(obj)
 }
@@ -689,8 +711,9 @@ This function will be called with 2 types of objects:
 
 2- Audio track object
 
-Example video track object:
-```
+**Example video track object:**
+
+```js
 {
   "stream": {
     "active": true,
@@ -720,7 +743,9 @@ Example video track object:
   "trackId": "ARDAMSvvideoTrack0"
 }
 ```
-Example audio track object:
+
+**Example audio track object:**
+
 ```
 {
   "stream": {
@@ -750,12 +775,13 @@ Example audio track object:
 }
 ```
 
-****Those track objects ```streamId``` field  will be always equal to our ```roomId```, eventhough they are video or audio tracks of remote participants. So do not confuse it. We will explain how to assign participant streamIds to video tracks in next steps.**** 
-
-
+:::info
+Those track objects ```streamId``` field  will be always equal to our ```roomId```, eventhough they are video or audio tracks of remote participants. So do not confuse it. We will explain how to assign participant streamIds to video tracks in next steps.
+:::
 
 At this state we need to store those tracks in a state variable to render them on screen. Before we render them first go ahead and create a new state variable to store remote participant tracks.
-```
+
+```js
 const [remoteParticipantTracks, setRemoteParticipantTracks] = useState([]) 
 ```
 
@@ -767,7 +793,7 @@ Then create ```onNewTrack``` function to do the following:
 
 3- Listen for track end event. If its ended remove it from ```remoteParticipantTracks```, thus from screen.
 
-```
+```js
 const onNewTrack = (obj) => {
 
     //In multitrack conferencing the stream is same, tracks are being and remove from the stream
@@ -803,6 +829,7 @@ const onNewTrack = (obj) => {
 
 } 
 ```
+
 ### Step 11: Render Remote Participants On Screen
 
 Now we store both audio and video tracks in a state variable. 
@@ -814,11 +841,11 @@ To render those tracks on screen we will create 2 new components.
 
 2-```RemoteParticipantAudioComponent```
 
-Create a new file inside ```components``` directory with name ```RemoteParticipantVideoComponent.js```
+Create a new file inside ```components``` directory with name ```RemoteParticipantVideoComponent.js```.
 
 This will act like a participant card. It will have a ```video``` element to play video track and a ```span``` element to display participants stream id.
 
-```
+```js
 import { useEffect, useState, useRef } from 'react';
 
 export default function RemoteParticipantVideoComponent({videoTrack, streamIdProp}){
@@ -853,19 +880,20 @@ export default function RemoteParticipantVideoComponent({videoTrack, streamIdPro
     )
 }
 ```
+
 As you see it has 2 ```useEffect``` hooks.
 
-1st ```useEffect``` will be triggered when video track is assigned and updated. 
-In that ```useEffect``` we create a new ```MediaStream``` and add video track to it. 
-Then we assign media stream to video element using videoRef so that it can play it.
+First ```useEffect``` will be triggered when video track is assigned and updated.  
 
-2nd ```useEffect``` hook will be used to update ```streamId``` of the participant. We will come to that in next steps.
+In that ```useEffect``` we create a new ```MediaStream``` and add video track to it.  Then we assign media stream to video element using videoRef so that it can play it.
+
+Second ```useEffect``` hook will be used to update ```streamId``` of the participant. We will come to that in next steps.
 
 Similar to ```RemoteParticipantVideoComponent``` we need to create another component to render audio track on screen so that we can play remote participants audio. This will also contain a video element but since its audio we will hide it with CSS.
 
-Create a new file inside ```components``` directory with name ```RemoteParticipantAudioComponent.js```
+Create a new file inside ```components``` directory with name ```RemoteParticipantAudioComponent.js```.
 
-``` 
+``` js
 import { useEffect, useState, useRef } from 'react';
 
 export default function RemoteParticipantAudioComponent({audioTrack}){
@@ -889,22 +917,21 @@ export default function RemoteParticipantAudioComponent({audioTrack}){
     )
 }
 ``` 
+
 Just like ```RemoteParticipantVideoComponent```, ```RemoteParticipantAudioComponent``` contains a ```useEffect``` hook to assign audio track to video element with creating a ```MediaStream```. 
 
 Notice that in return of this component we hide video element with ```display:"none"``` because it will be used to play audio.
 
-Now go back to ```ConferenceComponent```
+Now go back to ```ConferenceComponent```, add
 
-Add
-
-```
+```js
 import RemoteParticipantAudioComponent from './RemoteParticipantAudioComponent';
 import RemoteParticipantVideoComponent from './RemoteParticipantVideoComponent';
 ```
 
-lines to import remote participant components. To render those on screen we will add a new function called ```renderRemoteParticipantTracks()```
+lines to import remote participant components. To render those on screen we will add a new function called ```renderRemoteParticipantTracks()```.
 
-```
+```js
 const renderRemoteParticipantTracks = () => {
     return remoteParticipantTracks.map((trackObj) => {
         if (trackObj.kind === 'video') {
@@ -940,7 +967,8 @@ Since it is iterating a state variable it will be updated every time
 Go ahead and add ```renderRemoteParticipantTracks()``` function to return() of the component.
 
 Your return should look like this:
-```
+
+```js
 return(
     <div style={{width:"100%", height:"100%", display:"flex", flexDirection:"column"}}>
         <h1 style={{marginLeft:"auto", marginRight:"auto"}}>Ant Media React Conference Sample</h1>
@@ -979,7 +1007,8 @@ return(
 ```
 
 Full ```ConferenceComponent```:
-```
+
+```js
 import { useEffect, useState, useRef } from 'react';
 import { WebRTCAdaptor } from '@antmedia/webrtc_adaptor'
 
@@ -1261,12 +1290,12 @@ export default function ConferenceComponent(){
 ```
 
 ### Step 12: Time For Some Conferencing Action
+
 We completed base structure required for simple conferencing. So if you managed to follow until this step, kudos to you!
 
 At this state we should be able to receive remote participants and play them. Each participant should be able to see and hear each other.
 
-Open ```localhost``` page in 3 seperate tabs on your browser for testing.
-Type the same room id in each tab and a distinct stream id.
+Open ```localhost``` page in 3 seperate tabs on your browser for testing. Type the same room id in each tab and a distinct stream id.
 
 Click on join room button in each tab and each participant should be able to see and hear each other!
 
@@ -1280,12 +1309,15 @@ At step 13 we will learn how to match streamId of participants with their video 
 
 At step 10, we received video and audio tracks of participants with ```onNewVideoTrack``` message coming from Ant Media Server. But this incoming object did not contain stream id of the related video track.
 
-****Ant Media Server sends stream id of participant in a seperate message called ```VIDEO_TRACK_ASSIGNMENT_LIST``` via data channel. This message contains which video track belongs to which stream id. This seperation is caused by the nature of multi track webrtc streaming.****
+:::info
+Ant Media Server sends stream id of participant in a seperate message called ```VIDEO_TRACK_ASSIGNMENT_LIST``` via data channel. This message contains which video track belongs to which stream id. This seperation is caused by the nature of multi track webrtc streaming.
+:::
 
 Whenever a data channel message received, webrtc adaptor notifies us with ```data_received``` message.
 
 Listen for this event in webrtc adaptor callbacks:
-```
+
+```js
 else if (info === "data_received") {
     handleNotificationEvent(obj)
 }
@@ -1293,7 +1325,7 @@ else if (info === "data_received") {
 
 Add ```handleNotificationEvent()``` function to handle the message:
 
-```
+```js
 const handleNotificationEvent = (data) => {
     var notificationEvent = JSON.parse(data.data);
     console.log(notificationEvent);
@@ -1352,12 +1384,14 @@ const handleNotificationEvent = (data) => {
     }
 };
 ```
+
 There are many useful messages such as  ```CAM_TURNED_ON ```, ```MIC_MUTED``` and ```CHAT_MESSAGE```.  
 
 At this stage ```VIDEO_TRACK_ASSIGNMENT_LIST``` message is crucial for us because it will allow us to match video track and stream id.
 
 Example notification event object received for ```VIDEO_TRACK_ASSIGNMENT_LIST``` will look like below:
-``` 
+
+``` js
 {
   "streamId": "testroom",
   "payload": [
@@ -1369,32 +1403,30 @@ Example notification event object received for ```VIDEO_TRACK_ASSIGNMENT_LIST```
   "eventType": "VIDEO_TRACK_ASSIGNMENT_LIST"
 }
 ``` 
+
 As you see its payload contains ```videoLabel```  field and ```trackId```  field.
 
 ```videoLabel``` is our track id and ```trackId``` is actually our participants stream id.
 
 We will store this object inside a reference array called ```videoTrackAssignmentList``` to process it ****periodicly****.
 
-Add 
-```
-const videoTrackAssignmentList = useRef([])
-```
+Add ```const videoTrackAssignmentList = useRef([])``` to beginning of your ```ConferenceComponent```.
 
-to beginning of your ```ConferenceComponent```.
-
-****The reason we are storing this data instead of assigning it immediately upon receiving the ```VIDEO_TRACK_ASSIGNMENT_LIST``` message is that there is no guarantee it will arrive after the ```onNewVideoTrack``` event. Due to the nature of multi-track WebRTC, the ```VIDEO_TRACK_ASSIGNMENT_LIST``` message can be received after the ```onNewVideoTrack``` event.****
+:::info
+The reason we are storing this data instead of assigning it immediately upon receiving the ```VIDEO_TRACK_ASSIGNMENT_LIST``` message is that there is no guarantee it will arrive after the ```onNewVideoTrack``` event. Due to the nature of multi-track WebRTC, the ```VIDEO_TRACK_ASSIGNMENT_LIST``` message can be received after the ```onNewVideoTrack``` event.
+:::
 
 Now lets go ahead and do the matching.
 
 Create a new ref using ```useRef``` to store our periodic intervals id.
 
-```
+```js
 const streamIdVideoTrackMatcherInterval = useRef(null)
 ```
 
 Create the interval in same ```useEffect``` where we initialized the webrtc adaptor so that it will be called only once on component mount.
 
-```
+```js
 streamIdVideoTrackMatcherInterval.current = setInterval(() => matchStreamIdsAndVideoTracks(), 50);
 ```
 
@@ -1403,13 +1435,14 @@ Alternatively, you can create this interval inside ```play_started``` event.
 We will add another reference variable, a copy of ```remoteParticipantTracks``` state variable to avoid direct processing on it.
 
 Go to the beginning of your component and create it as:
-```
+
+```js
 const remoteParticipantTracksRef = useRef(remoteParticipantTracks);
 ```
 
 Now we will add another ```useEffect``` hook to update this ref when ```remoteParticipantTracks``` state is updated.
 
-```
+```js
 useEffect(() => {
     remoteParticipantTracksRef.current = remoteParticipantTracks;
 
@@ -1417,7 +1450,8 @@ useEffect(() => {
 ```
 
 Finally, lets create ```matchStreamIdsAndVideoTracks()``` function to do the actual matching periodicly.
-```
+
+```js
 const matchStreamIdsAndVideoTracks = () => {
     // Create a new array to store the updated tracks
     const updatedTracks = [];
@@ -1460,7 +1494,8 @@ You should observe streamIds are matched correctly with video tracks and rendere
 ![](@site/static/img/conference/video-conference/video-conference-8.png)
 
 Your full component at the end of this step should look like below:
-```
+
+```js
 import { useEffect, useState, useRef } from 'react';
 import { WebRTCAdaptor } from '@antmedia/webrtc_adaptor'
 
@@ -1772,10 +1807,12 @@ export default function ConferenceComponent(){
 ```
 
 ### Step 14: Leave Conference Room
+
 In this step we will implement functionality to allow participants to leave from the conference room.
+
 To do that add a new function called ```leaveRoom()```
 
-```
+```js
 const leaveRoom = () => {
     allParticipants.current = {};
     webrtcAdaptor.current.stop(localParticipantStreamId);
@@ -1783,17 +1820,17 @@ const leaveRoom = () => {
     setRemoteParticipantTracks([])
 }
 ```
-In this function we reset the ```allParticipants``` ref.
-
-Call ```webrtcAdaptor.current.stop()``` 2 times. 
+In this function we reset the ```allParticipants``` ref. Call ```webrtcAdaptor.current.stop()``` 2 times. 
 
 1st one is with ```localParticipantStreamId``` to stop publishing.
+
 2nd one is with ```roomId``` to stop playing.
 
 Finally we reset ```remoteParticipantTracks``` state array to clear remote participant videos from screen.
 
 To call this function add a new Leave Room button.
-```
+
+```js
 return(
     <div style={{width:"100%", height:"100%", display:"flex", flexDirection:"column"}}>
         <h1 style={{marginLeft:"auto", marginRight:"auto"}}>Ant Media React Conference Sample</h1>
@@ -1831,9 +1868,10 @@ return(
     </div>
 )
 ```
-### Step 15: The Final Test
-You’ve completed all the essential steps to embark on your journey to launch a production-ready video conferencing app powered by Ant Media Server, bringing the world closer together and making it a better place than ever!
 
+### Step 15: The Final Test
+
+You’ve completed all the essential steps to embark on your journey to launch a production-ready video conferencing app powered by Ant Media Server, bringing the world closer together and making it a better place than ever!
 
 Its time for a final test.
 
@@ -1848,20 +1886,8 @@ That's it! What a journey it's been. Thanks to Ant Media Server, you've built a 
 You can find source code of this tutorial on [Github](https://github.com/lastpeony/antmedia-react-conference-sample)
 
 ### What's Next?
+
 The 15 steps should give you a strong foundation to start building a production-ready video conferencing app on top of Ant Media Server. Keep in mind that the conferencing concepts are consistent across all SDKs. Therefore, if you're developing a conferencing application with other SDKs, the principles you've learned here will still apply.
 
 
 For further development and examples dont forget to take a look at [Circle](https://github.com/ant-media/conference-call-application)
-
-
-
-
-
-
-
-
-
-
-
-
-
