@@ -52,7 +52,7 @@ Ensure you have registered & subscribed to the [Ant Media Server Enterprise cont
    - Create an IAM role with the name of ``ecsTaskExecutionRole`` and attach ``AmazonECSTaskExecutionRolePolicy``, ``AWSMarketplaceMeteringRegisterUsage`` policies.
    - Select the ``ecsTaskExecutionRole`` under Task roles.
      
-Check: [Creating an IAM role](https://antmedia.io/docs/version-2.11.3/guides/clustering-and-scaling/aws/running-ams-container-at-ecs/#step-2-create-an-identity-and-access-management-iam-role-for-task-execution).
+Check: [Creating an IAM role](https://antmedia.io/docs/guides/clustering-and-scaling/aws/running-ams-container-at-ecs/#step-2-create-an-identity-and-access-management-iam-role-for-task-execution).
 
 5. Add a Container:
    - Container Name: **mongo-container**
