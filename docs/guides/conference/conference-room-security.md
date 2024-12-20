@@ -2,7 +2,7 @@
 title: Room Security
 description: Video Conference Room Security with AMS
 keywords: [Conference Ant Media, Ant Media conference room security, ant media conference token, ant media conference room password, ant media conference room, ant media video conference room security, Ant Media video conference, ant media conferencing, Publish, Multitrack conference, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 # Room Security
@@ -15,7 +15,7 @@ To secure a conference room, enable related token security for both publishing a
 
 The generated publish token must be passed to both ```.publish()``` and ```.play()``` functions in conferencing. Otherwise, the participant won't be able to join the room.
 
-A generated token can be a [JWT](https://antmedia.io/docs/guides/stream-security/jwt-stream-security-filter/) or [One Time Token](https://antmedia.io/docs/guides/stream-security/one-time-token-control/).
+A generated token can be a [JWT](https://antmedia.io/docs/guides/stream-security/jwt-stream-security-filter/) or [One Time Token](https://antmedia.io/docs/guides/stream-security/one-time-token-control/). We use the JWT token for this document.
 
 ### Security with JSON Web Tokens
 
@@ -38,7 +38,7 @@ Generate a JWT with payload as below:
 ![](@site/static/img/conference/video-conference/room-security-1.png)
 
 
-[Generate JWT With Room ID](https://antmedia.io/docs/guides/stream-security/jwt-stream-security-filter/#generate-jwt-token)
+You can either generate the JWT token with the JWT Debugger UI or via the Rest API as defined in the document.
 
 #### Step 3: Join The Room Using JWT
 
@@ -61,9 +61,8 @@ Check [Javascript Conference Room Sample](https://github.com/ant-media/StreamApp
 
 #### Step 4: Conference Room Security In Action
 
-In this step, we will use a conference sample to do a simple room security test.
+In this step, we will use a conference sample to do a simple conference room security test. Here is the URL format:
 
-Go to 
 ```https://{ams-url}:5443/{appName}/conference.html?token={YOUR_JWT_TOKEN_HERE}```
 
 **Example:**
@@ -84,16 +83,18 @@ Now, open another tab. This time do not pass token as a query parameter. Optiona
 
 **Example:**
 
-```https://test.antmedia.io:5443/LiveApp/conference.html```
+```https://test.antmedia.io:5443/live/conference.html```
 
 Type the same room ID and click on join. Since there is no token, you won't be able to join the room.
 
 ![](@site/static/img/conference/video-conference/room-security-3.png)
 
-### Security with One-Time Tokens
+### Secure Circle Conference Room
 
-Securing a conference room with OTTs is identical to using JWTs. 
+In case, you are using the Circle Conference application, the token generation steps are the same. You just need to use the below URL format to use the token with the Circle conference room.
 
-You must pass the publish type OTTs to both ```.publish()``` and ```.play()``` after enabling this feature for both publishing and playing through the web panel and generating the tokens.
+```https://ams-domain:5443/Conference/roomId?token={YOUR_JWT_TOKEN_HERE}```
 
-To learn more about OTTs, check [OTT Documentation](https://antmedia.io/docs/guides/stream-security/one-time-token-control/)
+**Example:**
+
+```https://test.antmedia.io:5443/Conference/test?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdHJlYW1JZCI6InRlc3QiLCJ0eXBlIjoicHVibGlzaCIsImV4cCI6OTk5OTk5OTk5OX0.AE9DiAxsA4N1tGbg08NC4ISnXlnPaybF84psMOoDDus```
