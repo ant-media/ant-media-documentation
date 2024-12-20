@@ -124,7 +124,7 @@ You can include the following placeholders in your file naming format:
 
 `Base name`- The default name of the stream (e.g., "stream1").  
 `%r`- Adds the video resolution (e.g., 720p) (eg: stream1_720p1500kbps)  
-`%b`- Adds the video bitrate in kbps (e.g., 1500kbps) (eg: stream1_HD720p)  
+`%b`- Adds the video bitrate in kbps (e.g., 1500kbps) (eg: `stream1_HD720p`)  
 `fileNameFormat`: A format string to combine the components (resolution, bitrate, custom text).  
 `{customText}`- Adds any custom text you define within curly braces.  
 `Timestamp`- Adds a timestamp to the filename when enabled (e.g., 2023-10-15_12-05-30.123).  
@@ -132,8 +132,8 @@ You can include the following placeholders in your file naming format:
 - Examples below for reference-
 1. name = "myVideo", resolution = 720, bitrate = 1500, **fileNameFormat = "%r%b"**  
 Result: "myVideo_720p1500kbps"
-2. name = "stream1", resolution = 480, bitrate = 800, **fileNameFormat = "{HD}%r%b"**  
-Result: "stream1_HD480p800kbps"
+2. name = "stream1", resolution = 480, bitrate = 800, **fileNameFormat = "`{HD}`%r%b"**  
+Result: "`stream1_HD480p800kbps`"
 3. name = "stream2", resolution = 720, bitrate = 1500, **fileNameFormat=%b%r, Date-Time ON**  
 Result: "stream2-2023-10-15_12-05-30.123_1500kbps720p.mp4"
 
