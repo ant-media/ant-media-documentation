@@ -40,6 +40,12 @@ In addition to this, you can also upload preview images to Amazon S3. Please [ch
 
 Similarly, you can add/change other preview-related properties in the Advance settings of the application we changed above.
 
+```previewFormat```: The preview image is saved as png by default. If you want to change the image format, change the following parameter in the advance settings. The available formats are jpg, png, webp.
+
+```js
+previewFormat="jpg"
+```
+
 ```previewHeight```: The preview image is saved as 480p by default. If you want to increase the resolution, change the following parameter in the advance settings.
 
 ```js
