@@ -51,6 +51,19 @@ const config = {
           // Remove this to remove the "edit this page" links.
           // editUrl: 'https://github.com/facebook/docusaurus/edit/main/website/',
           editUrl: 'https://github.com/ant-media/ant-media-documentation/edit/master/',
+          lastVersion: 'current',
+          versions: {
+            'current': {
+              label: '2.12', // Customize the label for the current (unversioned) docs
+              path: '', // Leave empty to use the root URL for the latest version
+              banner: 'none',
+            },
+            '2.11.3': {
+              label: '2.11', // Customize the label for the current (unversioned) docs
+              path: 'version-2.11.3', // Leave empty to use the root URL for the latest version
+              banner: 'none',
+              }
+          },
         },
         blog: false,
         theme: {
@@ -163,7 +176,7 @@ const config = {
         },
 	{
           from: '/v1/docs/amazon-aws-s3-integration/',
-          to: '/guides/recording-live-streams/s3-integration-http-forwarding/'
+          to: '/category/s3-recording-and-integration/'
         },
 	{
           from: '/guides/developer-sdk-and-api/rest-api-guide/stream-security/',
@@ -183,7 +196,11 @@ const config = {
         },
 	{
           from: '/guides/configuration-and-testing/load-testing/',
-          to: '/category/configuration--testing/'
+          to: '/category/load-testing/'
+        },
+	{
+          from: '/guides/configuration-and-testing/webrtc-load-testing/',
+          to: '/category/load-testing/'
         },
 	{
           from: '/v1/docs/ssl-setup/',
@@ -191,7 +208,7 @@ const config = {
         },
 	{
           from: '/v1/docs/integrating-with-s3/',
-          to: '/guides/recording-live-streams/s3-integration-http-forwarding/'
+          to: '/category/s3-recording-and-integration/'
         },
 	{
           from: '/v1/docs/clustering/',
@@ -217,9 +234,25 @@ const config = {
           from: '/guides/developer-sdk-and-api/rest-api-guide/rest-api-guide/',
           to: '/category/rest-api-guide/'
         },
+	{
+          from: '/guides/developer-sdk-and-api/rest-api-guide/',
+          to: '/category/rest-api-guide/'
+        },
         {
           from: '/guides/clustering-and-scaling/kubernetes/kubernetes-autoscaling/',
           to: '/guides/clustering-and-scaling/kubernetes/deploy-ams-on-kubernetes/'
+        },
+	{
+          from: '/guides/configuration-and-testing/configuring-stun-addresses/',
+          to: '/guides/configuration-and-testing/configuring-stun-turn-addresses/'
+        },
+	{
+          from: '/guides/advanced-usage/turn-and-stun-installation/coturn-quick-installation/',
+          to: '/guides/advanced-usage/turn-instalation/coturn-quick-installation/'
+        },
+	{
+          from: '/category/stream-security/webhook-stream-authorization',
+          to: '/guides/stream-security/webhook-stream-authorization/'
         },
 
       ],
@@ -247,6 +280,12 @@ const config = {
           srcDark: 'img/Ant-Media-Logo-light.png',
         },
         items: [
+          {
+            type: 'docsVersionDropdown',
+            position: 'right',
+            dropdownActiveClassDisabled: false,
+          },
+
           {
             type: 'doc',
             docId: 'introduction',
