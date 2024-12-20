@@ -15,6 +15,6 @@ To protect the send push notification WebSocket message, you need to generate tw
 
 ```bash
 curl -X 'GET' 'https://your-antmedia-server-address:5080/WebRTCAppEE/rest/v2/push-notification/subscriber-auth-token?subscriberId=<your-subscriber-id>'
-```jsx
+```
 
 We will call the sender’s token as authToken in the rest of the documentation. We will call the sender’s Subscriber ID as subscriberId and we will call the receiver’s Subscriber ID as sendNotificationToSubscriber.
