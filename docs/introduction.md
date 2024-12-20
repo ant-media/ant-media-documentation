@@ -9,9 +9,9 @@ sidebar_position: 1
 
 # Introduction to Ant Media Server
 
-Ant Media Server is a ready-to-use, highly scalable, real-time video streaming solution. It supports Ultra-Low Latency (WebRTC), Low Latency Dash (CMAF), and HLS live streaming.
+Ant Media Server is a ready-to-use, highly scalable, real-time video streaming solution. It supports Ultra-Low Latency (WebRTC), Low Latency (LL-DASH/CMAF and LL-HLS) and standard latency (HLS) for live streaming.
 
-Ant Media Server (AMS) can be easily and quickly deployed on-premises or on public cloud networks like AWS, Azure, Google Cloud, Digital Ocean, Oracle, and Linode.
+Ant Media Server (AMS) can be easily and quickly deployed on-premises or on public cloud networks like AWS, Azure, Google Cloud, Digital Ocean, Oracle, and Linode/Akamai.
 
 Ant Media Server is available in two versions: **Community Edition** and **Enterprise Edition**. A table of comparisons is provided below.
 
@@ -65,8 +65,8 @@ Build your own telehealth application with Ant Media Server to create a seamless
 | :----------------------------------------: | :-------------------------------------: | :------------------------------------: |
 |       One-to-Many WebRTC Streaming       | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
 |            End-to-End Latency            |             8-12 Seconds             |         0.5 Seconds (500ms)         |
-|                   CMAF                   | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
-|                 Scaling                 | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
+|             LL-DASH(CMAF)                   | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
+|               Auto Scaling                 | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
 |            Kubernetes Support            | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
 |   RTMP(Ingesting) to WebRTC (Playing)   | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
 | Hardware Encoding(Nvidia GPU, QuickSync) | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
@@ -84,12 +84,13 @@ Build your own telehealth application with Ant Media Server to create a seamless
 |      360 Degree Live & VoD Streams      | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
 |         Web Management Dashboard         | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
 |            IP Camera Support            | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
-|         Re-stream Remote Streams         | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
+|         Re-stream to End Points         | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
 |                  WHIP                    | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
 |               Open Source               | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
 |      Linear Live Streaming (Playlist)    | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
 |  Simulcast to all Social Media via RTMP  | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
-|                 Support                 |               Community               |           E-mail, On-site           |
+|  Recording (MP4,WebM,HLS)  | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
+|                 Support                 |               Community               |           E-mail, Slack           |
 |                  Price                  |                 Free                 |                 Paid                 |
 
 ## Community Edition and Enterprise Edition Releases
