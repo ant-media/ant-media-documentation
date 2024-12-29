@@ -32,67 +32,66 @@ LL-HLS is a **paid plugin** offered by the Ant Media Server. So before using LL-
 
 1. **Purchase the Plugin** 
 
-- Email contact@antmedia.io to purchase the LL-HLS plugin.
-- Alternatively, you can also [get it directly](https://antmedia.io/product/low-latency-hls-plugin/) from the website based on a monthly subscription basis.
+   - Email contact@antmedia.io to purchase the LL-HLS plugin.
+   - Alternatively, you can also [get it directly](https://antmedia.io/product/low-latency-hls-plugin/) from the website based on a monthly subscription basis.
 
-3. **Install the Plugin**
+2. **Install the Plugin**
 
-- Upload/copy the plugin file to your instance running the Ant Media Server.
-- Run the following commands to install:
-
-```bash
-unzip low-latency-hls-plugin.zip
-cd low-latency-hls-plugin
-sudo ./install_low-latency-hls-plugin.sh
-sudo service antmedia restart
-```
-
+   - Upload/copy the plugin file to your instance running the Ant Media Server.
+   - Run the following commands to install:
+   
+     ```bash
+     unzip low-latency-hls-plugin.zip
+     cd low-latency-hls-plugin
+     sudo ./install_low-latency-hls-plugin.sh
+     sudo service antmedia restart
+     ```
 ### Step 2: Publish a Stream
 
 Ant Media Server provides LL-HLS endpoints for all ingested streams. You can check the [publish live streams](https://antmedia.io/docs/category/publish-live-stream/) section to learn how to publish streams using different protocols with Ant Media Server. For this example, let's [publish with WebRTC](https://antmedia.io/docs/guides/publish-live-stream/webrtc/).
 
 1. **Access the WebRTC Publish Page**
 
-- Open the following URL in your browser: https://yourserver.com:5443/live/?streamId=stream1
+   - Open the following URL in your browser: https://yourserver.com:5443/live/?streamId=stream1
 
-- Replace the domain with your Ant Media server's domain.
+   - Replace the domain with your Ant Media server's domain.
 
-- You can use `stream1` or any custom stream ID.
+   - You can use `stream1` or any custom stream ID.
 
 2. **Start Publishing the Stream**
 
-- Click the **Start Publishing** button on the page.
+   - Click the **Start Publishing** button on the page.
 
-  ![Screenshot 2024-09-23 130823](https://github.com/user-attachments/assets/ce967db5-640a-4ddb-b584-7a7b9eb03883)
+   ![Screenshot 2024-09-23 130823](https://github.com/user-attachments/assets/ce967db5-640a-4ddb-b584-7a7b9eb03883)
 
 ### Step 3: Play the Stream with LL-HLS
 
 1. **Open a Video Player**
 
-- Use a player that supports LL-HLS, like THEO Player, AMS Player, or others.
+   - Use a player that supports LL-HLS, like THEO Player, AMS Player, or others.
 
-  For this example, we are going to use [THEO Player](https://www.theoplayer.com/test-your-stream-hls-dash-hesp).
+     For this example, we are going to use [THEO Player](https://www.theoplayer.com/test-your-stream-hls-dash-hesp).
 
-- From AMS v2.12 onwards, the LL-HLS playabck is supported via AMS Embedded Player as well. To learn more about embedded web player, check [here](https://antmedia.io/docs/guides/playing-live-stream/embedded-web-player/).
+   - From AMS v2.12 onwards, the LL-HLS playabck is supported via AMS Embedded Player as well. To learn more about embedded web player, check [here](https://antmedia.io/docs/guides/playing-live-stream/embedded-web-player/).
 
 2. **Enter the LL-HLS URL**
 
-In the player, enter the following URL to play the stream:
+   In the player, enter the following URL to play the stream:
 
-```https://yourserver.com:5443/live/streams/ll-hls/stream1/stream1__master.m3u8```
+   ```https://yourserver.com:5443/live/streams/ll-hls/stream1/stream1__master.m3u8```
 
-![Screenshot 2024-09-23 131202](https://github.com/user-attachments/assets/63bca3f6-0c71-4ba8-a8f7-5b8d8f56c24f)
+   ![Screenshot 2024-09-23 131202](https://github.com/user-attachments/assets/63bca3f6-0c71-4ba8-a8f7-5b8d8f56c24f)
 
 
-- Ensure two underscores (__) exist between the stream ID and `master.m3u8`.
+   - Ensure two underscores (__) exist between the stream ID and `master.m3u8`.
 
-- **URL pattern:** ```https://{YOUR_SERVER}:{PORT}/{APP}/streams/ll-hls/{STREAM_ID}/{STREAM_ID}__master.m3u8```
+   - **URL pattern:** ```https://{YOUR_SERVER}:{PORT}/{APP}/streams/ll-hls/{STREAM_ID}/{STREAM_ID}__master.m3u8```
 
-- If you are using the Ant Media Server player, then the URL pattern would be as follows:
+   - If you are using the Ant Media Server player, then the URL pattern would be as follows:
 
-  `https://{YOUR_SERVER DOMAIN}:5443/AppName/play.html?name={streamId}&playOrder=ll-hls`
+     `https://{YOUR_SERVER DOMAIN}:5443/AppName/play.html?name={streamId}&playOrder=ll-hls`
 
-  You can test the LL-HLS playback via this [testing URL](https://test.antmedia.io:5443/24x7test/play.html?name=live_test&playOrder=ll-hls).
+     You can test the LL-HLS playback via this [testing URL](https://test.antmedia.io:5443/24x7test/play.html?name=live_test&playOrder=ll-hls).
 
 
 ## Customize LL-HLS
