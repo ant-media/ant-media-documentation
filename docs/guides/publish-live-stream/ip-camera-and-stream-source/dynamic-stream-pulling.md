@@ -92,6 +92,3 @@ https://AMS_DOMAIN:Port/AppName/play.html?id=streamId&playOrder=webrtc
 Now the server will start fetching streams.
 
 Close the player tab. Since there are no viewers anymore, Ant Media Server will stop pulling the stream within a few seconds, and the broadcast status will change to Offline.
-
-Markdown 2537 bytes 344 words 52 lines Ln 52, Col 179HTML 1999 characters 333 words 26 paragraphs
-4
