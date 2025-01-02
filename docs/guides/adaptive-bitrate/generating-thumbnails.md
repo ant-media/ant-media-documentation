@@ -3,7 +3,7 @@ title: Generating Thumbnails from streams
 description: Enable generating periodic preview images (snapshots) on the fly with adaptive bitrate streaming.
 keywords: [Generating Thumbnails from streams, Generated Preview Images, Ant Media Server Documentation, Ant Media Server Tutorials]
 categories: [How to enable, Configuration parameters]
-
+subcategory: [How to enable, Configuration parameters]
 ---
 
 # Periodic Preview
