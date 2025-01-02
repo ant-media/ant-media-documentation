@@ -20,7 +20,7 @@ In order to restream from an external source, follow these steps:
 
 ![](@site/static/img/publish-live-stream/IP-Camera-and-External-Sources/Stream-Source.png)
 
-::info
+:::info
 Make sure that the port that you are using to pull the stream source should be whitelisted on the firewall to avoid any issue.
 :::
 
