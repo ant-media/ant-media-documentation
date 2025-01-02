@@ -2,9 +2,10 @@
 title: Generating Thumbnails from streams
 description: Enable generating periodic preview images (snapshots) on the fly with adaptive bitrate streaming.
 keywords: [Generating Thumbnails from streams, Generated Preview Images, Ant Media Server Documentation, Ant Media Server Tutorials]
+categories: [How to enable, Configuration parameters]
 ---
 
-# Generating thumbnails from streams
+# Periodic Preview
 
 Ant Media Server can generate periodic previews (snapshots) of the incoming streams on the fly. This guide will help you learn configuration parameters for generating and using previews.
 
@@ -40,11 +41,18 @@ In addition to this, you can also upload preview images to Amazon S3. Please [ch
 
 Similarly, you can add/change other preview-related properties in the Advance settings of the application we changed above.
 
-```previewFormat```: The preview image is saved as png by default. If you want to change the image format, change the following parameter in the advance settings. The available formats are jpg, png, webp.
+```previewFormat```: By default, the preview image is saved in png format. If you prefer a different image format, you can update the corresponding parameter in the advanced settings. The supported formats include jpg, png, and webp. To achieve the desired format, ensure you select the appropriate option based on your requirements, such as file size, quality, and compatibility with your application. Adjusting this setting allows for greater flexibility in how the preview images are generated and used.
 
 ```js
 previewFormat="jpg"
 ```
+
+```previewQuality```: Specifies the preview quality for JPG and WEBP formats. For JPG, the quality range is from 2 to 31, where 2 provides the best quality with the largest file size, and 31 delivers the lowest quality with the smallest file size. The recommended value for JPG is 5. For WEBP, the quality range is from 0 to 100, where 0 provides the lowest quality with the smallest file size, and 100 delivers the best quality with the largest file size. The recommended value for WEBP is 75. Note that the previewQuality isn't available for the PNG format.
+
+```js
+previewQuality=5
+```
+
 
 ```previewHeight```: The preview image is saved as 480p by default. If you want to increase the resolution, change the following parameter in the advance settings.
 
