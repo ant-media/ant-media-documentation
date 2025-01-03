@@ -8,60 +8,63 @@ sidebar_position: 1
 
 # Creating a new application
 
-Ant Media Server supports application development on the fly. This feature actually resolves the multi-tenancy problem for online video platforms.Ant Media Server has 2 built-in applications. Users want to able to use different settings for each application and able to specify the name of the application.
+Ant Media Server supports dynamic application development, effectively addressing the multi-tenancy challenges of online video platforms. With three built-in applications, the server allows users to configure distinct settings for each application and customize application names.
 
-Because of that, customers want to add/create new applications. There are several ways to create/delete application. Let us tell how to do that.
+To accommodate this, customers can create or delete applications as needed. There are multiple methods available for managing applications, which we will outline below.
 
 ### Web Panel
 
-The fastest and easies way to create new applications on the web panel.
+The fastest and easiest way to create new applications on the web panel.
 
 #### Step 1
 
-Login to the web panel & Click the New Application
+Login to the web panel, on the Dashboard & Click the New Application button
 
-![](@site/static/img/gpu(1).png)
+![image](https://github.com/user-attachments/assets/4df34b28-ff9d-429b-a061-8dd5b6938d5f)
 
 #### Step 2
 
 Enter application name and click the ```Create``` button
 
-![](@site/static/img/new_application_form.png)
+![image](https://github.com/user-attachments/assets/546a3581-0dbb-494f-8600-0248fc0eaa8b)
 
-The good thing is that if the server is cluster mode, it will deploy the application to all nodes in the cluster. If the application is deleted, it'll also be deleted in all nodes.
+Note- In cluster mode, the server automatically creates the new application across all nodes in the cluster. Similarly, if an application is deleted, it will be removed from all nodes as well.
 
 ### Shell Script
 
-There a script that creates new applications in Ant Media Server easily. You just need to type a few simple commands.
+There is a script that creates new applications in Ant Media Server easily. You just need to type a few simple commands.
 
 Let’s have a look at the steps:
 
 #### Step 1
 
 Go to the folder where Ant-Media-Server is installed. Default directory is ```/usr/local/antmedia```
-
-    cd /usr/local/antmedia
+```
+cd /usr/local/antmedia
+```
 
 #### Step 2
 
 create\_app.sh usage in below.
-
-    sudo ./create_app.sh -n applicationName -p AMS-Installation-Directory
+```
+sudo ./create_app.sh -n applicationName -p AMS-Installation-Directory
+```
 
 For example:
+```
+sudo ./create_app.sh -n streamHive -p /usr/local/antmedia
+```
 
-```sudo ./create_app.sh -n streamHive -p /usr/local/antmedia```
+You can add some parameters in **create_app** script. Here are the options:
 
-You can add some parameters in ```create_app``` script. Here are the options:
-
-       -n:  Name of the application that you want to have. It's mandatory
-       -p: (Optional) Path is the install location of Ant Media Server which is /usr/local/antmedia by default.
-       -w: (Optional) The flag to deploy application as war file. Default value is false
-       -c: (Optional) The flag to deploy application in cluster mode. Default value is false
-       -m:  Mongo DB host. If it's a cluster, it's mandatory. Otherwise optional
-       -u:  Mongo DB user. If it's a cluster, it's mandatory. Otherwise optional
-       -s:  Mongo DB password. If it's a cluster, it's mandatory. Otherwise optional
-       -h: print this usage
+-n:  Name of the application that you want to have. It's mandatory  
+-p: (Optional) Path is the install location of Ant Media Server which is /usr/local/antmedia by default.  
+-w: (Optional) The flag to deploy application as war file. Default value is false  
+-c: (Optional) The flag to deploy application in cluster mode. Default value is false  
+-m:  Mongo DB host. If it's a cluster, it's mandatory. Otherwise optional  
+-u:  Mongo DB user. If it's a cluster, it's mandatory. Otherwise optional  
+-s:  Mongo DB password. If it's a cluster, it's mandatory. Otherwise optional  
+-h: print this usage  
 
 Please check it for more detail: [Create App Script](https://github.com/ant-media/Ant-Media-Server/blob/master/src/main/server/create_app.sh#L5)
 
@@ -70,10 +73,11 @@ Please check it for more detail: [Create App Script](https://github.com/ant-med
 #### Step 3
 
 Restart Ant Media Service
-
-    sudo service antmedia restart
-
+```
+sudo service antmedia restart
+```
 \*This feature is available in Ant Media Server 1.9.0+ versions.
+
 
 ### Rest Method
 
