@@ -27,7 +27,7 @@ Ant Media server is available in your favorite cloud platform:
 * [Azure](https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=Ant%20Media%20Server&page=1)
 * [Google](https://console.cloud.google.com/marketplace/product/antmedia-public/ant-media-server-enterprise-edition)
 * [Digital Ocean](https://marketplace.digitalocean.com/apps/antmedia-server-enterprise-edition-3) 
-* [Linode](https://www.linode.com/marketplace/apps/ant-media/ant-media-community-edition/)
+* [Linode](https://www.linode.com/docs/marketplace-docs/guides/antmediaenterpriseserver/)
 
 ## 🌱 Links
 

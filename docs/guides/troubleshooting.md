@@ -78,3 +78,13 @@ As an example, see the commands below:
 ```keytool -import -trustcacerts -alias comodointermediate -file addtrustexternalcaroot.crt -keystore /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/security/cacerts```
 
 ```keytool -import -trustcacerts -alias comodointermediate2 -file comodorsadomainvalidationsecureserverca.crt -keystore /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/security/cacerts```
+
+### I deployed Ant Media Server on Linode Marketplace and I can not login to my dashboard after the deployment.
+
+The Ant Media Server Marketplace deployment available in the Linode Marketplace is preconfigured with security best practices(firewalls, SSL, Secure Passwords) by default. This deployment automatically sets up Ant Media with a username (email address entered during the intial deployment) and a randomly generated secure password. The generated password along with the generated sudo user password can be found by running the following command in the terminal:
+ 
+ ```cat /home/<username>/.credentials```  
+
+**NOTE:** Replace <username> with the sudo username specified during the initial deployment.
+
+
