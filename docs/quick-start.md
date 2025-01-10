@@ -38,7 +38,7 @@ sudo ./install_ant-media-server.sh -i <ANT_MEDIA_SERVER_ZIP_FILE>
 
 <div style={{display: 'flex', justifyContent: 'space-between', textAlign: 'center', fontWeight:'bold', height: 'auto'}}>
   <div  style={{width: '49%', height:'300px'}}>
-      <iframe className="border border-rounded m-3" width="100%" height="250" src="https://youtu.be/1yQT-D8gPUo?si=WNfKk35nGa-3l3Pd" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <iframe className="border border-rounded m-3" width="100%" height="250" src="https://www.youtube.com/embed/1yQT-D8gPUo?si=CoXX6jXFZQ0j9xI2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       Video tutorial of AWS marketplace installation
   </div>
   <div  style={{width: '49%', height:'300px'}}>
