@@ -172,4 +172,4 @@ Install the load balancer using either one of the below two options. AMS uses Ng
 
 - [Nginx Load Balancer](https://antmedia.io/docs/guides/clustering-and-scaling/load-balancing/nginx-load-balancer/)
 
-- [HAProxy Load Balancer](https://antmedia.io/docs/guides/clustering-and-scaling/load-balancing/load-balancer-with-haproxy-ssl-termination/)
+- [HAProxy Load Balancer](https://antmedia.io/docs/guides/clustering-and-scaling/load-balancing/haproxy-load-balancer/)
