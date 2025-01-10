@@ -10,7 +10,7 @@ sidebar_position: 1
 ### 1. Download the Installation Script
 
 ```shell
-sudo wget https://raw.githubusercontent.com/ant-media/Scripts/master/install_ant-media-server.sh -O install_ant-media-server.sh  && sudo chmod 755 install_ant-media-server.sh
+wget https://raw.githubusercontent.com/ant-media/Scripts/master/install_ant-media-server.sh -O install_ant-media-server.sh  && sudo chmod 755 install_ant-media-server.sh
 ```
 
 ### 2. Install Ant Media Server
@@ -38,7 +38,7 @@ sudo ./install_ant-media-server.sh -i <ANT_MEDIA_SERVER_ZIP_FILE>
 
 <div style={{display: 'flex', justifyContent: 'space-between', textAlign: 'center', fontWeight:'bold', height: 'auto'}}>
   <div  style={{width: '49%', height:'300px'}}>
-      <iframe className="border border-rounded m-3" width="100%" height="250" src="https://www.youtube.com/embed/EH6v-yUyzjU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <iframe className="border border-rounded m-3" width="100%" height="250" src="https://youtu.be/1yQT-D8gPUo?si=WNfKk35nGa-3l3Pd" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       Video tutorial of AWS marketplace installation
   </div>
   <div  style={{width: '49%', height:'300px'}}>
