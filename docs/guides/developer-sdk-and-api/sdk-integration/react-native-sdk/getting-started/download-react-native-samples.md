@@ -6,10 +6,24 @@ sidebar_position: 2
 ---
 
 ## Download React Native WebRTC Sample Project
+Ant Media WebRTC React Native samples are available for free download on GitHub. You can access the repository through the link below:
 
-Ant Media WebRTC React Native samples are free to download. You can access them through [this link on GitHub](https://github.com/ant-media/react-native-webrtc-samples).
+[React Native WebRTC Samples on GitHub](https://github.com/ant-media/react-native-webrtc-samples)
 
-After downloading the entire project, you can find all the sample implementations in the `example/src` folder.
+To download the entire project and access the sample implementations, follow these steps:
+
+1. Clone the GitHub repository:
+
+   ```bash
+   git clone https://github.com/ant-media/react-native-webrtc-samples.git
+   ```
+2. Navigate to the examples/src folder where all sample implementations are stored:
+
+   ```bash
+   cd react-native-webrtc-samples/example/src
+   ```
+   Once inside the src folder, you'll find all the sample implementations ready for use.
+
 
 ---
 
