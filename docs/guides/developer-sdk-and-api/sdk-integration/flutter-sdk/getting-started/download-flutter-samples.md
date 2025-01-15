@@ -2,7 +2,7 @@
 title: Download and install Flutter WebRTC sample projects
 description: Download and install Flutter WebRTC sample projects 
 keywords: [Flutter SDK User Guide, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 3
+sidebar_position: 2
 ---
 
 WebRTC Flutter samples are free to download. You can download/clone them via [Flutter SDK Github repository](https://github.com/ant-media/WebRTC-Flutter-SDK/).

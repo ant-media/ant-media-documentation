@@ -2,7 +2,7 @@
 title: P2P Communication Sample in Flutter
 description: P2P Communication Sample Using Flutter SDK 
 keywords: [Flutter SDK User Guide, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 6
+sidebar_position: 5
 ---
 
 In order to run the peer sample app, select the `Peer` application from the target list and click the Run button. Once the app is installed and running on your device, enter the server IP address. To enter the IP address, please follow the below steps.
