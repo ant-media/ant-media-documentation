@@ -48,7 +48,8 @@ Just select the device, select the sample project from the target list, and clic
 
 ![Screenshot 2025-01-15 233410](https://github.com/user-attachments/assets/e7fd0647-9441-4d83-8c84-d53c6f7690d2)
 
-- After the build is successful, the app will be installed & launched on your connected Android mobile device.
+- After the build is successful, the app will be installed and launched on your connected Android mobile device.
+- For this demonstration, we are going to run the example application.
 
 ![Screenshot 2025-01-15 234344](https://github.com/user-attachments/assets/a8f14bfd-a6ca-419f-ba1c-98c9dc31c09c)
 
