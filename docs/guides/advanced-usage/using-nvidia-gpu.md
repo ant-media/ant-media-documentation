@@ -37,7 +37,8 @@ Instead of using ```sudo apt-get -y install cuda``` command to download whole CU
 sudo wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-keyring_1.0-1_all.deb
 sudo dpkg -i cuda-keyring_1.0-1_all.deb
 sudo apt-get update
-sudo apt-get install cuda-runtime-11-8
+sudo apt-get install cuda-runtime-12-6
+sudo reboot
 ```
 
 #### Ubuntu 22.04
@@ -47,7 +48,8 @@ Ant Media Server officially supports Ubuntu 22.04 on versions 2.6 and higher.
 sudo wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.0-1_all.deb
 sudo dpkg -i cuda-keyring_1.0-1_all.deb
 sudo apt-get update
-sudo apt-get install cuda-runtime-11-8
+sudo apt-get install cuda-runtime-12-6
+sudo reboot
 ```
 
 #### Ubuntu 24.04
@@ -59,7 +61,6 @@ sudo apt-get update
 sudo apt-get -y install cuda-toolkit-12-6
 sudo apt-get install -y cuda-drivers
 sudo reboot
-
 ```
 
 ### NVIDIA A10 Tensor Core GPU
@@ -94,35 +95,15 @@ You will see output below if the GPU is in use.
 
 ## Using NVIDIA hardware based encoder
 
-When using CUDA 11.8, Ant Media Server will verify and record the presence of a hardware-based GPU encoder during startup, and will use it automatically without requiring any additional action.
+When using CUDA 12.6, Ant Media Server will verify and record the presence of a hardware-based GPU encoder during startup, and will use it automatically without requiring any additional action.
 
 If you've already installed another CUDA version and it does not work with AMS, you may install compatibility packages.
 
 ```bash
-sudo apt-get install cuda-cudart-11-8
-sudo apt-get install cuda-compat-11-8
+sudo apt-get install cuda-cudart-12-6
+sudo apt-get install cuda-compat-12-6
 ```
 
 After installing packages, reboot the server once.
 
 If you need more information for installing on other systems, please check [NVIDIA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html) docs and [CUDA downloads](https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=1604&target_type=debnetwork) pages.
-
-### Multi-GPU usage
-
-In v2.9.0 and above, hardware scaling property have been added on the server side for smooth streaming operations using GPUs.
-
-By default, hardware scaling is enabled in the application settings. You can find the property under Application's advanced settings.
-
-```html
-"hwScalingEnabled": true,
-```
-
-In case, when the system has multiple GPUs, set this property to false so that the load can be distributed between multiple GPUs.
-
-```html
-"hwScalingEnabled": false,
-```
-
-Please see the screenshot below for multi-GPU usage with Ant Media Server. In this example, 8 streams were published to the server using 4 ABRs, and as you can see, both GPUs were utilized.
-
-![](@site/static/img/adavanced-usage/using-nvidia-gpu/ams-multi-gpu.png)
