@@ -5,22 +5,28 @@ keywords: [Flutter SDK User Guide, Ant Media Server Documentation, Ant Media Ser
 sidebar_position: 2
 ---
 
-In order to run the play sample app, select the `Play` application from the target list and click the Run button. Once the app is installed and running on your device, enter the server IP address. To enter the IP address, please follow the below steps.
+### Step 1. Set the Server Address.
+Once the app is installed and running on your device, enter the server IP address. To enter the IP address, please follow the below steps.
 
-* Tap on the Setting icon in the top right corner of the application.
-* Enter the Server IP as         `ws://ant_media_server_address:Port/WebRTCAppEE/websocket`
-* Click **Set Server Ip** button to save it.
+- Tap on the Setting icon in the top right corner of the application.
+  
+  ![1000131640](https://github.com/user-attachments/assets/0ee23ed3-62eb-4bd8-a2cd-55ffb5615e82)
 
-![](@site/static/img/IMG_02A254033728-1(1).jpeg)
+- Enter the Server details as ```wss://ant_media_server_address:Port/live/websocket```
 
-Before playing, make sure that there is a stream that is already publishing to the server with the same streamId that you want to play. You can quickly publish a WebRTC stream to the Ant Media Server via a sample page.
+  ![1000131641](https://github.com/user-attachments/assets/1edd11f1-0813-4d2d-9dd1-afc7ed778178)
+ 
+- Click **Set Server Ip** button to save it.
 
-`https://your_domain:5443/WebRTCAppEE`
+### Step 2. Play the WebRTC Stream.
 
- - Select Play from the list item.
+- Before playing, make sure that there is a stream that is already publishing to the server with the same streamId that you want to play.
 
-![](@site/static/img/image-1654688010762.png)
+- Select the Play option from the list & enter the streamId.
 
- - Enter the stream Id which you want to play.
+  ![1000131648](https://github.com/user-attachments/assets/f2584f07-ce36-470e-8ed3-cc3d9cd03d18)
 
-![](@site/static/img/image-1654688079112.png)
+- The WebRTC stream will start to play.
+
+  ![1000131649](https://github.com/user-attachments/assets/8c034b6f-1e3d-4fa6-b816-b7ce8194a8b8)
+
