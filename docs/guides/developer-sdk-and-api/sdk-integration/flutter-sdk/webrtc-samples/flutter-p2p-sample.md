@@ -5,24 +5,27 @@ keywords: [Flutter SDK User Guide, Ant Media Server Documentation, Ant Media Ser
 sidebar_position: 5
 ---
 
-In order to run the peer sample app, select the `Peer` application from the target list and click the Run button. Once the app is installed and running on your device, enter the server IP address. To enter the IP address, please follow the below steps.
+### Step 1. Set the Server Address.
+Once the app is installed and running on your device, enter the server IP address. To enter the IP address, please follow the below steps.
 
-* Tap on the Setting icon in the top right corner of the application.
-* Enter the Server IP as          `ws://ant_media_server_address:Port/WebRTCAppEE/websocket`
-* Click **Set Server Ip** button to save it.
+- Tap on the Setting icon in the top right corner of the application.
+  
+  ![1000131640](https://github.com/user-attachments/assets/0ee23ed3-62eb-4bd8-a2cd-55ffb5615e82)
 
-![](@site/static/img/IMG_61C65FD7D641-1.jpeg)
+- Enter the Server details as ```wss://ant_media_server_address:Port/live/websocket```
 
- - Select P2P from the list item.
+  ![1000131641](https://github.com/user-attachments/assets/1edd11f1-0813-4d2d-9dd1-afc7ed778178)
+ 
+- Click **Set Server Ip** button to save it.
 
-![](https://lh5.googleusercontent.com/n47OOeKbuiLx-xrAObZYkT1B0lx-2-Dkcxwgqri9pr9zfKK4u1RfeADusJwxR11MOcyly-pwiIxF8dBWmqY1I_QNcokHiazCgphUQxyW015Vi6OYT6Qpf6ONjsV3hdP0FZ2RuN0rZYy7XS4b4w )
+### Step 2. Start a P2P stream.
 
- - Enter the streamId that you want to join in  mode.
+- Select P2P from the list item & enter the streamId that you want to join in P2P mode.
 
-![](https://lh3.googleusercontent.com/v7SfoBnIbnS-mexwFN6NbHapQQGeEWFYkJGkAL24ww6vi9iJ4SbTdIwcmKUxeXpLjkY2xuwlwe5A5y_T6oWqci1pAZVIgnVQUPm59TYV_HCwro6LVFgZSrGorQI3UyxILwpIPXX1YYY1wnMAVg )
+  ![1000131648](https://github.com/user-attachments/assets/eb6c1e68-9ffa-4d47-9d88-4aae28f112a2)
 
-When there is another peer connected to the same streamId via Android, iOS, or the web, P2P communication will be established, and you can talk to each other.
+- When another peer is connected to the same streamId via Android, iOS, or the web, P2P communication will be established, and you can talk to each other.
 
-You can quickly join as a peer to the same streamId via the peer-to-peer sample page.
+- You can quickly join as a peer to the same streamId via the peer-to-peer sample page.
 
-`https://your_domain:5443/WebRTCAppEE/peer.html`
+  ```https://your_domain:5443/live/peer.html```
