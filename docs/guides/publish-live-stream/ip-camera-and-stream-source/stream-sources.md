@@ -11,7 +11,7 @@ Ant Media Server (AMS) can handle a variety of streaming flows. It can accept an
 
 The stream sources that Ant Media Server can fetch are: **RTSP, RTMP, HLS, SRT, UDP, FLV, etc.**
 
-In order to restream from an external source, follow these steps:
+To restream from an external source, follow these steps:
 
 - First, log in to the management panel. Click on 
 **New Live Stream** > **Stream Source**. Define stream name, stream URL, and stream ID.
@@ -21,7 +21,7 @@ In order to restream from an external source, follow these steps:
 ![](@site/static/img/publish-live-stream/IP-Camera-and-External-Sources/Stream-Source.png)
 
 :::info
-Make sure that the port that you are using to pull the stream source should be whitelisted on the firewall to avoid any issue.
+Make sure that the port that you are using to pull the stream source should be whitelisted on the firewall to avoid any issues.
 :::
 
 In AMS v2.5.3 and later, the stream auto-fetcher is disabled by default, so streams do not start themselves after a server restart. 
@@ -40,7 +40,7 @@ For other stream sources like RTSP, RTMP, etc., you can directly pull it as the 
 
 You can pull the UDP stream on a server as a stream source by following the below steps.
 
- - First, send the stream with UDP to the Ant Media Server IP address using an encoder or FFMPEG. In this example, we used FFMPEG command.
+ - First, send the stream with UDP to the Ant Media Server IP address using an encoder or FFMPEG. In this example, we used the FFMPEG command.
 
    ```bash
    ffmpeg -f lavfi -re -i smptebars=duration=60:size=1280x720:rate=30 -f lavfi -re -i sine=frequency=1000:duration=60:sample_rate=44100 -pix_fmt yuv420p -c:v libx264 -b:v 1000k -g 30 -keyint_min 120 -profile:v baseline -preset veryfast -f mpegts "udp://server-IP:5000?pkt_size=1316"
