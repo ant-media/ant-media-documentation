@@ -5,24 +5,29 @@ keywords: [Flutter SDK User Guide, Ant Media Server Documentation, Ant Media Ser
 sidebar_position: 3
 ---
 
-In order to run the Conference sample app, select the `Conference` application from the target list and click the Run button. Once the app is installed and running on your device, enter the server IP address. To enter the IP address, please follow the below steps.
+### Step 1. Set the Server Address.
+Once the app is installed and running on your device, enter the server IP address. To enter the IP address, please follow the below steps.
 
-* Tap on the Setting icon in the top right corner of the application.
-* Enter the Server IP as          `ws://ant_media_server_address:Port/WebRTCAppEE/websocket`
-* Click **Set Server Ip** button to save it.
+- Tap on the Setting icon in the top right corner of the application.
+  
+  ![1000131640](https://github.com/user-attachments/assets/0ee23ed3-62eb-4bd8-a2cd-55ffb5615e82)
 
-![](@site/static/img/IMG_7404B1521BFA-1.jpeg)
+- Enter the Server details as ```wss://ant_media_server_address:Port/live/websocket```
 
- - Select Conference from list item.
+  ![1000131641](https://github.com/user-attachments/assets/1edd11f1-0813-4d2d-9dd1-afc7ed778178)
+ 
+- Click **Set Server Ip** button to save it.
 
-![](https://lh3.googleusercontent.com/UV-_SAwEqBhU6IvWj3yWLd9rqAyNbVVlVktP-609CbjxtSjg4-ssoAK8Qvom8HLTOoRovoMIbl_Ae-HH7mdb30B_3tideWT-d6fx2nl7IB5LsX3oSbTFhOPIYLAIck0aLOvyqoLWObNrDilOkA )
+### Step 2. Setting the Conference
 
- - Enter the streamId, and roomId of the conference room that you want to join.
+- Select the Conference option from the list.
 
-![stream and room id.jpeg ](https://lh6.googleusercontent.com/AGwDbjsjQmCX9BNcKNGVHSliJ6V0IFxTyhihca7xK0M7uyllrLuT0Frglzfp1l6v1OZIZeMsHSi7Fh4FNKiT-eyCST5nI3YLJuQzQi4a-X_b1W96LNJRPCR3q_VihaAOePu3dGFwePLKeyW5-A )
+- Enter the streamId, and roomId of the conference room that you want to join.
 
-When there are other streams connected to the same roomId via Android, iOS, or the Web, then a conference room will be established and users can communicate with each other. 
+  ![1000131650](https://github.com/user-attachments/assets/0df6251d-17a4-4f82-8d65-60dcb5260a36)
+  
 
-You can quickly join the conference room via the conference sample page.
+- When there are other streams connected to the same roomId via Android, iOS, or the Web, then a conference room will be established and users can communicate with each other. 
 
-`https://your-domain:5443/WebRTCAppEE/conference.html`
+- You can quickly join the conference room via the conference sample page.
+  ```https://your-domain:5443/live/conference.html```
