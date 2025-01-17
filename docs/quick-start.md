@@ -49,18 +49,20 @@ sudo ./install_ant-media-server.sh -i <ANT_MEDIA_SERVER_ZIP_FILE>
 
 ### 3. Configure SSL
 
-#### Free antmedia.cloud Subdomain
+- After [installaling the Ant Media Server](https://antmedia.io/docs/guides/installing-on-linux/installing-ams-on-linux/), login to the web panel and navigate to `SETTINGS > SSL`.
+![](@site/static/img/ssl-webpanel/ssl-settings.png)
 
-```shell
-cd /usr/local/antmedia/ && sudo ./enable_ssl.sh
-```
+- In the drop-down select box named Type, choose among the various options to enable SSL, like [using your own domain](https://antmedia.io/docs/guides/installing-on-linux/setting-up-ssl/#create-lets-encrypt-certificate-with-http-01-challenge), [free subdomain of antmedia.cloud](https://antmedia.io/docs/guides/installing-on-linux/setting-up-ssl/#get-a-free-subdomain-and-install-ssl-with-lets-encrypt), or [import your own certificate](https://antmedia.io/docs/guides/installing-on-linux/setting-up-ssl/#import-your-custom-certificate) and then click Activate to enable the SSL and restart your server.
 
-#### Custom Domain Name(Your FQDN)
+![](@site/static/img/ssl-webpanel/ssl-options.png)
 
-```shell
-cd /usr/local/antmedia/ && sudo ./enable_ssl.sh -d domain.com
-```
+- This will start to enable SSL for your Ant Media Server.
+![](@site/static/img/ssl-webpanel/enabling-ssl.png)
 
+- The Ant Media Server instance will restart and the server can now be accessed securely with SSL enabled.
+![](@site/static/img/ssl-webpanel/ssl-status.png)
+
+- Check this to learn how to [enable SSL via the terminal](https://antmedia.io/docs/version-2.11.3/guides/installing-on-linux/setting-up-ssl/#option-2-installing-ssl-using-the-terminal).
 
 ### 4. Login to the Web Panel
 
