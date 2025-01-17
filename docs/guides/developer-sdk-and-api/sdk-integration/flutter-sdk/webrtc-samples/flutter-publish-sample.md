@@ -18,8 +18,6 @@ Once the app is installed and running on your device, enter the server IP addres
  
 - Click **Set Server Ip** button to save it.
 
-![](@site/static/img/IMG_F1372DF3182B-1(2).jpeg)
-
  ### Step 2. Publish WebRTC stream.
 
 - Select the Publish option from the list & enter the streamId.
