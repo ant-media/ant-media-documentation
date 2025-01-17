@@ -17,7 +17,7 @@ Make sure that the paths of Flutter and Dart SDK are correctly configured in the
 
 If these plugins have been installed and the locations of Flutter and Dart SDK are configured correctly, then the options to run the samples will appear automatically after source code indexing. Please refer to the below screenshot.
 
-![image](https://github.com/user-attachments/assets/5ffa3d5f-49e7-4eeb-9d9a-054b205ac7a7
+![Screenshot 2025-01-15 225112](https://github.com/user-attachments/assets/91e1a5d4-3877-4e83-b6f0-7228e0cbcf29)
 
 ### Install dependencies and run the sample project
 
