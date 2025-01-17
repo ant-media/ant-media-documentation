@@ -13,9 +13,9 @@ The Dynamic Stream Pulling feature is available in versions 2.8.3 and up.
 
 Dynamic Stream Pulling offers an efficient bandwidth optimization solution by automatically starting and stopping stream pulling based on user demand. 
 
-For example, when a user attempts to view an offline stream with a stream source or IP camera, Ant Media Server automatically initiates stream pulling, enabling the broadcast to go live.
+For example, when a user attempts to view an offline stream with a stream source or IP camera, the Ant Media Server automatically initiates stream pulling, enabling the broadcast to go live.
 
-Conversely, when viewership declines and there are no remaining viewers, Ant Media Server automatically halts stream pulling, returning the broadcast to an offline state. 
+Conversely, when viewership declines and there are no remaining viewers, the Ant Media Server automatically halts stream pulling, returning the broadcast to an offline state. 
 
 This feature proves invaluable for bandwidth optimization, especially when continuous stream recording isn't necessary. By activating stream pulling only when someone tries to watch the stream and ceasing it when there are no viewers, Ant Media Server significantly conserves bandwidth resources.
 
@@ -49,4 +49,4 @@ curl --location --request PUT 'http(s)://AMS_DOMAIN:Port/AppName/rest/v2/broadca
 
    Now the server will start fetching streams.
 
- - Close the player tab. Since there are no viewers anymore, Ant Media Server will stop pulling the stream within a few seconds, and the broadcast status will change to `Offline`.
+ - Close the player tab. Since there are no viewers anymore, the Ant Media Server will stop pulling the stream within a few seconds, and the broadcast status will change to `Offline`.
