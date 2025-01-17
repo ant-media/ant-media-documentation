@@ -64,41 +64,32 @@ sudo ./install_ant-media-server.sh -i <ANT_MEDIA_SERVER_ZIP_FILE>
 
 - Check this to learn how to [enable SSL via the terminal](https://antmedia.io/docs/version-2.11.3/guides/installing-on-linux/setting-up-ssl/#option-2-installing-ssl-using-the-terminal).
 
-### 4. Login to the Web Panel
+### 4. Log in to the Web Panel
 
 Navigate to ```https://ant-media-server:5443``` and create the first user account.
 
-![](@site/static/img/quick-start/create-first-account.png)
+![management-panel](https://github.com/user-attachments/assets/8901d363-23b2-4f08-979c-6c7e6e15a7df)
 
 ### 5. Publish and Play WebRTC Live Streams
 
 #### Publish a Live Stream
 
-You can quickly publish a WebRTC live stream from a sample page that's available at ```https://domain-name:5443/LiveApp```.
+- Publish a WebRTC live stream from the sample webrtc publish page, which is available at ```https://domain-name:5443/live ```
 
-![](@site/static/img/quick-start/publish-stream.png)
+![publish](https://github.com/user-attachments/assets/510d9d26-275a-459f-939c-0acec27b8632)
 
 #### Play a Live Stream
 
-Then playback the WebRTC live stream from another sample page available at ```https://domain-name:5443/LiveApp/player.html```.
+- Play the live stream with WebRTC using the sample WebRTC player page, which is available at ```https://domain-name:5443/live/player.html```
 
-
-![](@site/static/img/quick-start/play-stream.png)
+![play](https://github.com/user-attachments/assets/dad6d64e-6462-408e-849b-4b25c590ca96)
 
 
 ### Sample Tools and Applications
 
-Access the [sample tools and applications](/get-started/sample-tools-and-applications/) via ```https://ant-media-server:5443/LiveApp/samples.html```. As an example,
+Access the [sample tools and applications](/get-started/sample-tools-and-applications/) via ```https://domain-name:5443/live/samples.html```.
 
- - Multitrack Conferencing
- - WebRTC Test Tool
- - DeepAR affects
-
-
-Below is an example of DeepAR.
-
-![](@site/static/img/quick-start/deepar-sample.png)
-
+- Experience the different samples now at ```https://test.antmedia.io:5443/live/samples.html```
 
 
 ### Getting Help
