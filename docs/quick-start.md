@@ -89,7 +89,7 @@ Navigate to ```https://ant-media-server:5443``` and create the first user accoun
 
 Access the [sample tools and applications](/get-started/sample-tools-and-applications/) via ```https://domain-name:5443/live/samples.html```.
 
-- Experience the different samples now at ```https://test.antmedia.io:5443/live/samples.html```
+- Experience the different samples now at [https://test.antmedia.io:5443/live/samples.html](https://test.antmedia.io:5443/live/samples.html)
 
 
 ### Getting Help
