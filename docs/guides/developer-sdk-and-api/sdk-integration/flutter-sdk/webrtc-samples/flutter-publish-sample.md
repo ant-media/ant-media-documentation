@@ -5,7 +5,7 @@ keywords: [Flutter SDK User Guide, Ant Media Server Documentation, Ant Media Ser
 sidebar_position: 1
 ---
 
-### Step 1. Set the server address:
+### Step 1. Set the Server Address.
 Once the app is installed and running on your device, enter the server IP address. To enter the IP address, please follow the below steps.
 
 - Tap on the Setting icon in the top right corner of the application.
