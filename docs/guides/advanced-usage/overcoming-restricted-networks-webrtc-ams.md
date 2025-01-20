@@ -5,11 +5,11 @@ keywords: [Overcoming Restricted Networks for WebRTC with Ant Media Server, Solu
 sidebar_position: 13
 ---
 
-Let’s imagine you are in a restricted network where only HTTP/HTTPS ports are open to the outside world, and you want to publish and play using WebRTC via Ant Media Server. However, due to the limitations of your network, you cannot achieve this. In this guide, I will explain how to overcome this limitation step by step.
+Imagine being in a restricted network environment where only HTTP/HTTPS ports are open to the outside world, and you want to publish and play WebRTC streams using Ant Media Server. Network restrictions can prevent WebRTC from functioning properly in such a scenario. In this document, we will show you how to overcome these limitations using a TURN server and Ant Media Server.
 
 ![](@site/static/img/ams-restricted-networks-turn.png)
 
-# TURN Server Installation
+## TURN Server Installation
 
 1. First, update your package list and install the Coturn server:
 
@@ -60,13 +60,13 @@ systemctl restart coturn
 lsof -i:80 -i:443
 ```
 
-Once the TURN server is running, you can test its functionality to ensure proper configuration using this address. 
+Once the TURN server is running, you can test its functionality to ensure proper configuration using this [address](https://webrtc.github.io/samples/src/content/peerconnection/trickle-ice/). 
 
-# Ant Media Server Installation
+## Ant Media Server Installation
 
-1. After purchasing your monthly license with a 5% discount here, follow the installation steps provided in the documentation.
+1. [Install](https://antmedia.io/docs/guides/installing-on-linux/installing-ams-on-linux/) the Ant Media Server or launch it from any [cloud marketplace](https://antmedia.io/docs/quick-start/#checkout-fast--easy-installations-on-cloud-marketplaces).
 
-2. Once SSL setup is complete, log in to your Ant Media Server at https://your-ams:5443, select the application you want to use, and navigate to Settings > Advanced. Update the following fields according to your TURN server configuration and save the settings:
+2. Once [SSL setup](https://antmedia.io/docs/guides/installing-on-linux/setting-up-ssl/) is complete, log in to your Ant Media Server at `https://your-ams:5443`, select the application you want to use, and navigate to Settings > Advanced. Update the following fields according to your TURN server configuration and save the settings:
 
 ```
 stunServerURI=turn:your-turn-server-address:443?transport=tcp
@@ -91,5 +91,5 @@ turnServerCredential=your-turn-server-password
     }
 ```
 
-By following these steps, you can successfully use WebRTC even in a restricted network where only HTTP/HTTPS ports are open, and stream video through Ant Media Server. With the configuration of the Coturn TURN server and its integration with Ant Media Server, you can overcome all network limitations required to communicate with the outside world.
+Setting up a TURN server and configuring it with Ant Media Server allows you to seamlessly use WebRTC in restricted networks where only HTTP/HTTPS ports are open. This solution ensures uninterrupted communication with the outside world, enabling reliable video streaming through Ant Media Server.
 
