@@ -27,4 +27,23 @@ The Zixi Broadcaster is the central component of the Zixi Video Network. It acce
 
 For more details about the deployment and use of Zixi Broadcaster with the Ant Media Plugin, check [here](https://github.com/ant-media/Plugins/tree/master/ZixiPlugin).
 
+
+### Low-Latency HLS (LL-HLS) Plugin
+
+LL-HLS, available from AMS v2.11+, reduces live stream latency to 2–5 seconds compared to the 8–12 seconds of traditional HLS. It uses smaller video parts, enabling playback before segments finish. LL-HLS achieves this by using smaller video segments (called parts) that allow the video player to start playback before an entire segment is completed and it is a **paid plugin** offered by the Ant Media Server.
+
+For more details about LL-HLS plugin, visit [here](https://antmedia.io/docs/guides/playing-live-stream/ll-hls/)
+
+### HLS Merger Plugin
+
+The HLSMerger plugin in Ant Media Server combines multiple HLS streams into a single, unified output, ideal for scenarios like multi-camera setups or dynamic scene switches. It synchronizes .m3u8 playlists and segments, offering a seamless viewing experience. Supported from version 2.6.2 onward, it enhances streaming workflows efficiently. 
+
+For More details about the HLS Merger Plugin, visit [here](https://antmedia.io/supercharge-hls-streaming-with-hlsmerger-plugin/)
+
+### Media Push Plugin
+
+The Media Push Plugin, introduced in Ant Media Server v2.8.1, enables recording of live streams or conferences. It operates by joining a session as a "play-only participant," capturing the streams displayed on a configured webpage, and saving the merged output as a VOD file. This is ideal for creating single recordings of conference sessions or customized layouts using tools like Circle or custom webpages.
+
+For setup instructions and more details about the plugin, visit [here](https://antmedia.io/docs/guides/recording-live-streams/media-push-plugin/)
+
 Know More about recent plugins developed, kindly visit [Ant Media Marketplace](https://antmedia.io/marketplace/).
