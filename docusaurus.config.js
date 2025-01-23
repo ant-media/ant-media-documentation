@@ -171,10 +171,6 @@ const config = {
           to: '/guides/monitoring/monitoring-ams-with-grafana/'
         },
 	{
-          from: '/guides/publish-live-stream/webrtc-peer-to-peer-communication/',
-          to: '/guides/publish-live-stream/webrtc/webrtc-peer-to-peer-communication/'
-        },
-	{
           from: '/v1/docs/amazon-aws-s3-integration/',
           to: '/category/recording-live-streams/'
         },
@@ -283,7 +279,7 @@ const config = {
           to: '/guides/clustering-and-scaling/load-balancing/haproxy-load-balancer/'
         },
 	{
-          from: '/docs/guides/advanced-usage/webhook-stream-authorization/',
+          from: '/guides/advanced-usage/webhook-stream-authorization/',
           to: '/guides/stream-security/webhook-stream-authorization/'
         },
 	{
@@ -344,7 +340,7 @@ const config = {
         },
 	{
           from: '/old-front-page/',
-          to: '/'
+          to: '/guides/'
         },
 	{
           from: '/guides/publish-live-stream/WebRTC/',
@@ -384,7 +380,7 @@ const config = {
         },
 	{
           from: '/guides/advanced-usage/WebRTC-codecs/',
-          to: '/guides/configuration-and-testing/video-codecs/'
+          to: '/guides/configuration-and-testing/webrtc-codecs/'
         },
 	{
           from: '/guides/advanced-usage/webrtc-play-page-creation-tutorial/',
@@ -421,6 +417,10 @@ const config = {
 	{
           from: '/guides/advanced-usage/Plugins-for-Ant-Media-Server/',
           to: '/guides/developing-antmedia-server/plugins-for-ant-media-server/'
+        },
+	{
+          from: '/guides/publish-live-stream/webrtc-peer-to-peer-communication/',
+          to: '/guides/publish-live-stream/webrtc/webrtc-peer-to-peer-communication/'
         },
 	      
       ],
