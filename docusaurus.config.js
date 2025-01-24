@@ -336,7 +336,7 @@ const config = {
         },
 	{
           from: '/old-front-page/',
-          to: '/guides/'
+          to: '/quick-start/'
         },
 	{
           from: '/guides/publish-live-stream/WebRTC/',
@@ -417,6 +417,10 @@ const config = {
 	{
           from: '/guides/publish-live-stream/webrtc-peer-to-peer-communication/',
           to: '/guides/publish-live-stream/webrtc/webrtc-peer-to-peer-communication/'
+        },
+	{
+          from: '/guides/advanced-usage/webrtc-codecs/',
+          to: '/guides/configuration-and-testing/video-codecs/'
         },
 	      
       ],
