@@ -267,10 +267,6 @@ const config = {
           to: '/category/react-native-sdk/'
         },
 	{
-          from: '/guides/configuration-and-testing/webrtc-codecs/',
-          to: '/guides/configuration-and-testing/video-codecs/'
-        },
-	{
           from: '/guides/recording-live-streams/',
           to: '/category/recording-live-streams/'
         },
