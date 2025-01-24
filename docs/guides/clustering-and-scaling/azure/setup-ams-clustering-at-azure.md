@@ -199,7 +199,6 @@ Select Custom and set the CPU threshold to 60%. You can set other settings accor
 Continue by clicking directly next to the "**Management**" and "**Health**" tabs and add the following lines to the "**Custom data**" area in the **Advanced section**.
 ```
     #!/bin/bash
-    sudo sed -i '/org.apache.catalina.valves.RemoteIpValve/d' /usr/local/antmedia/conf/jee-container.xml
     cd /usr/local/antmedia/
     ./change_server_mode.sh cluster 10.0.2.4
 ```
