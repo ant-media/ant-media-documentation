@@ -187,10 +187,7 @@ const config = {
           to: '/guides/clustering-and-scaling/kubernetes/kubernetes-services/installing-ams-on-aws-eks/'
         },
 	{
-          from: [
-            '/guides/playing-live-stream/webrtc-conference-call/',
-	    '/guides/playing-live-stream/WebRTC-conference-call/\\?utm_source=github\\&utm_medium=wiki'
-	  ],
+          from: '/guides/playing-live-stream/webrtc-conference-call/',
           to: '/guides/publish-live-stream/webrtc/webrtc-conference-call/',
         },
 	{
