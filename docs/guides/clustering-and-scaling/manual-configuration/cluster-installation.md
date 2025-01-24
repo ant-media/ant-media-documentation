@@ -19,15 +19,16 @@ To better understand how an AMS cluster operates, it's essential to know the rol
 
 The database is central to the AMS cluster, storing all stream-related information. This data includes bitrates, settings, the origin node of the stream, and additional metadata necessary for stream management. The database ensures that all nodes in the cluster have consistent access to this information, facilitating seamless streaming across different nodes.
 
-3. **Origin Group:**
+2. **Origin Group:**
 
 The origin group consists of AMS nodes responsible for ingesting live streams. These nodes perform various tasks such as transcoding (converting streams to different formats or bitrates) and transmuxing (changing the container format of the stream). Once processed, the streams are distributed to nodes within the edge group. Importantly, viewers do not connect directly to origin group nodes for playback. It is recommended that nodes in this group be equipped with a GPU, especially if adaptive bitrate streaming is enabled.
 
-4. **Edge Group:**
+3. **Edge Group:**
 
 The edge group contains AMS nodes that receive streams from the origin group nodes and deliver them to viewers. Unlike origin nodes, edge nodes do not ingest streams or perform tasks such as transcoding or transmuxing. Their sole purpose is to fetch the stream from an origin node and forward it to the viewers, ensuring efficient distribution of content.
 
-6. **Load Balancer (Nginx or HAProxy):**
+4. **Load Balancer (Nginx or HAProxy):**
+
 The load balancer acts as the entry point for both viewers and publishers. It receives user requests and intelligently directs them to an appropriate node in either the origin or edge group, based on the current load and availability of resources. The load balancer is crucial for distributing traffic evenly across the cluster, thereby optimizing performance and avoiding overloading any single node.
 
 ## Basics of Clustering
@@ -167,8 +168,8 @@ http://<ANT_MEDIA_SERVER_NODE_IP>:5080
 
 ## Install the load balancer
 
-Install the load balancer using either one of the below two options. AMS uses Nginx by default, bu you can also use HAProxy as your load balancer. You can read how to install either of these options in the documents below.
+Install the load balancer using either one of the below two options. AMS uses Nginx by default, but you can also use HAProxy as your load balancer. You can read how to install either of these options in the documents below.
 
 - [Nginx Load Balancer](https://antmedia.io/docs/guides/clustering-and-scaling/load-balancing/nginx-load-balancer/)
 
-- [HAProxy Load Balancer](https://antmedia.io/docs/guides/clustering-and-scaling/load-balancing/load-balancer-with-haproxy-ssl-termination/)
+- [HAProxy Load Balancer](https://antmedia.io/docs/guides/clustering-and-scaling/load-balancing/haproxy-load-balancer/)
