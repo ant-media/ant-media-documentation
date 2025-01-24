@@ -380,7 +380,7 @@ const config = {
         },
 	{
           from: '/guides/advanced-usage/WebRTC-codecs/',
-          to: '/guides/configuration-and-testing/webrtc-codecs/'
+          to: '/guides/configuration-and-testing/video-codecs/'
         },
 	{
           from: '/guides/advanced-usage/webrtc-play-page-creation-tutorial/',
