@@ -416,11 +416,11 @@ const config = {
         },
 	{
           from: '/guides/publish-live-stream/webrtc-peer-to-peer-communication/',
-          to: '/guides/publish-live-stream/webrtc/webrtc-peer-to-peer-communication/'
+          to: '/guides/publish-live-stream/webrtc/webrtc-peer-to-peer-communication/',
         },
 	{
           from: '/guides/advanced-usage/webrtc-codecs/',
-          to: '/guides/configuration-and-testing/video-codecs/'
+          to: '/guides/configuration-and-testing/video-codecs/',
         },
 	{
           from: [
