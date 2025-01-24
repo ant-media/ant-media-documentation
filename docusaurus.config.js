@@ -191,7 +191,7 @@ const config = {
             '/guides/playing-live-stream/webrtc-conference-call/',
 	    '/guides/playing-live-stream/WebRTC-conference-call/?utm_source=github&utm_medium=wiki'
 	  ],
-          to: '/guides/publish-live-stream/webrtc/webrtc-conference-call/'
+          to: '/guides/publish-live-stream/webrtc/webrtc-conference-call/',
         },
 	{
           from: [
