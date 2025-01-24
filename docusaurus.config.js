@@ -187,11 +187,15 @@ const config = {
           to: '/guides/clustering-and-scaling/kubernetes/kubernetes-services/installing-ams-on-aws-eks/'
         },
 	{
-          from: '/guides/playing-live-stream/webrtc-conference-call/',
+          from: ['/guides/playing-live-stream/webrtc-conference-call/',
+		 '/guides/playing-live-stream/WebRTC-conference-call/?utm_source=github&utm_medium=wiki'
+	  ],
           to: '/guides/publish-live-stream/webrtc/webrtc-conference-call/'
         },
 	{
-          from: '/guides/configuration-and-testing/load-testing/',
+          from: ['/guides/configuration-and-testing/load-testing/',
+		 '/docs/guides/configuration-and-testing/Load-testing/?utm_source=github&utm_medium=wiki'
+          ]
           to: '/category/load-testing/'
         },
 	{
@@ -235,7 +239,9 @@ const config = {
           to: '/category/rest-api-guide/'
         },
         {
-          from: '/guides/clustering-and-scaling/kubernetes/kubernetes-autoscaling/',
+          from: ['/guides/clustering-and-scaling/kubernetes/kubernetes-autoscaling/',
+		 '/guides/clustering-and-scaling/Kubernetes/Kubernetes-Autoscaling/?utm_source=github&utm_medium=wiki'
+	  ],
           to: '/guides/clustering-and-scaling/kubernetes/deploy-ams-on-kubernetes/'
         },
 	{
@@ -271,7 +277,9 @@ const config = {
           to: '/category/recording-live-streams/'
         },
 	{
-          from: '/guides/clustering-and-scaling/load-balancing/load-balancer-with-haproxy-ssl-termination/',
+          from: ['/guides/clustering-and-scaling/load-balancing/load-balancer-with-haproxy-ssl-termination/',
+		 '/guides/clustering-and-scaling/load-balancing/Load-Balancer-with-HAProxy-SSL-Termination/?utm_source=github&utm_medium=wiki'
+	  ],
           to: '/guides/clustering-and-scaling/load-balancing/haproxy-load-balancer/'
         },
 	{
@@ -395,7 +403,9 @@ const config = {
           to: '/guides/developing-antmedia-server/circle-component-usage/'
         },
 	{
-          from: '/guides/developer-sdk-and-api/sdk-integration/webrtc-sdk/',
+          from: ['/guides/developer-sdk-and-api/sdk-integration/webrtc-sdk/',
+		 '/guides/developer-sdk-and-api/sdk-integration/Javascript-SDK/?utm_source=github&utm_medium=wiki'
+	  ],
           to: '/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/'
         },
 	{
@@ -405,6 +415,10 @@ const config = {
 	{
           from: '/guides/configuration-and-testing/AMS-application-configuration/',
           to: '/guides/configuration-and-testing/ams-application-configuration/'
+        },
+	{
+          from: '/guides/configuration-and-testing/AMS-server-configuration/?utm_source=github&utm_medium=wiki',
+          to: '/guides/configuration-and-testing/ams-server-configuration/'
         },
 	{
           from: '/guides/advanced-usage/Plugins-for-Ant-Media-Server/',
@@ -421,6 +435,22 @@ const config = {
 	{
           from: '/guides/advanced-usage/webrtc-codecs/',
           to: '/guides/configuration-and-testing/video-codecs/'
+        },
+	{
+          from: [
+          '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/react-native-p2p-sample/',
+          '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/react-native-conference-sample/',
+          '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/react-native-play-sample/',
+	  '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/react-native-data-channel-sample/',
+          '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/react-native-publish-sample/'
+          ],
+          to: '/category/webrtc-samples/'
+        },
+	{
+          from: ['/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/download-react-native-samples/',
+		 '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/react-native-pre-requisite/'
+	  ],
+          to: '/category/getting-started/'
         },
 	      
       ],
