@@ -193,7 +193,7 @@ const config = {
 	{
           from: [
 	     '/guides/configuration-and-testing/load-testing/',
-	     '/guides/configuration-and-testing/Load-testing/?utm_source=github&utm_medium=wiki'
+	     '/guides/configuration-and-testing/Load-testing/?utm_source=github&utm_medium=wiki/'
           ],
           to: '/category/load-testing/'
         },
