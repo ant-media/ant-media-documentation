@@ -411,10 +411,6 @@ const config = {
           to: '/guides/developing-antmedia-server/plugins-for-ant-media-server/'
         },
 	{
-          from: '/guides/advanced-usage/Plugins-for-Ant-Media-Server/',
-          to: '/guides/developing-antmedia-server/plugins-for-ant-media-server/'
-        },
-	{
           from: '/guides/publish-live-stream/webrtc-peer-to-peer-communication/',
           to: '/guides/publish-live-stream/webrtc/webrtc-peer-to-peer-communication/',
         },
@@ -439,7 +435,10 @@ const config = {
 	  ],
           to: '/category/getting-started/'
         },
-	      
+	{
+          from: '/guides/publish-live-stream/ip-cameras-and-external-resources/',
+          to: '/category/ip-camera--stream-sources/',
+        },
       ],
     },
   ], /*
