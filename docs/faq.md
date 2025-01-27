@@ -327,36 +327,46 @@ Use the below configuration to setup an Apache virtual host as a reverse proxy.
 
 First, build glibc 2.29.
 
-    sudo apt install build-essential bison
-    wget http://ftp.gnu.org/gnu/glibc/glibc-2.29.tar.gz
-    tar -xf glibc-2.29.tar.gz
-    cd glibc-2.29/
-    mkdir build
-    cd build
-    ../configure --prefix=/opt/glibc-2.29
-    make
-    sudo make install
+```
+sudo apt install build-essential bison
+wget http://ftp.gnu.org/gnu/glibc/glibc-2.29.tar.gz
+tar -xf glibc-2.29.tar.gz
+cd glibc-2.29/
+mkdir build
+cd build
+../configure --prefix=/opt/glibc-2.29
+make
+sudo make install
+```
 
 Run the server as an init.d service.
 
-    sudo systemctl stop antmedia
-    sudo systemctl disable antmedia
-    sudo rm /etc/systemd/system/antmedia.service
-    sudo cp /usr/local/antmedia/antmedia /etc/init.d/
-    sudo update-rc.d antmedia defaults
-    sudo update-rc.d antmedia enable
+```
+sudo systemctl stop antmedia
+sudo systemctl disable antmedia
+sudo rm /etc/systemd/system/antmedia.service
+sudo cp /usr/local/antmedia/antmedia /etc/init.d/
+sudo update-rc.d antmedia defaults
+sudo update-rc.d antmedia enable
+```
 
 Add LD\_PRELOAD to the init.d script.
 
-    sudo nano /etc/init.d/antmedia 
-    # ADD the following line before the line case "$1" in
-    export LD_PRELOAD="/opt/glibc-2.29/lib/libm.so.6"
+```
+sudo nano /etc/init.d/antmedia 
+
+# ADD the following line before the line case "$1" in
+
+export LD_PRELOAD="/opt/glibc-2.29/lib/libm.so.6"
+```
 
 Save and exit the editor. Run the following commands.
 
-    sudo systemctl daemon-reload
-    sudo service antmedia stop
-    sudo service antmedia start
+```
+sudo systemctl daemon-reload
+sudo service antmedia stop
+sudo service antmedia start
+```
 
 ## How can I use Web Player or Javascript SDK in Next.js?
 
