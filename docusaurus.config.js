@@ -171,10 +171,6 @@ const config = {
           to: '/guides/monitoring/monitoring-ams-with-grafana/'
         },
 	{
-          from: '/guides/publish-live-stream/webrtc-peer-to-peer-communication/',
-          to: '/guides/publish-live-stream/webrtc/webrtc-peer-to-peer-communication/'
-        },
-	{
           from: '/v1/docs/amazon-aws-s3-integration/',
           to: '/category/recording-live-streams/'
         },
@@ -192,7 +188,7 @@ const config = {
         },
 	{
           from: '/guides/playing-live-stream/webrtc-conference-call/',
-          to: '/guides/publish-live-stream/webrtc/webrtc-conference-call/'
+          to: '/guides/publish-live-stream/webrtc/webrtc-conference-call/',
         },
 	{
           from: '/guides/configuration-and-testing/load-testing/',
@@ -271,10 +267,6 @@ const config = {
           to: '/category/react-native-sdk/'
         },
 	{
-          from: '/guides/configuration-and-testing/webrtc-codecs/',
-          to: '/guides/configuration-and-testing/video-codecs/'
-        },
-	{
           from: '/guides/recording-live-streams/',
           to: '/category/recording-live-streams/'
         },
@@ -283,7 +275,7 @@ const config = {
           to: '/guides/clustering-and-scaling/load-balancing/haproxy-load-balancer/'
         },
 	{
-          from: '/docs/guides/advanced-usage/webhook-stream-authorization/',
+          from: '/guides/advanced-usage/webhook-stream-authorization/',
           to: '/guides/stream-security/webhook-stream-authorization/'
         },
 	{
@@ -344,7 +336,7 @@ const config = {
         },
 	{
           from: '/old-front-page/',
-          to: '/'
+          to: '/quick-start/'
         },
 	{
           from: '/guides/publish-live-stream/WebRTC/',
@@ -421,6 +413,31 @@ const config = {
 	{
           from: '/guides/advanced-usage/Plugins-for-Ant-Media-Server/',
           to: '/guides/developing-antmedia-server/plugins-for-ant-media-server/'
+        },
+	{
+          from: '/guides/publish-live-stream/webrtc-peer-to-peer-communication/',
+          to: '/guides/publish-live-stream/webrtc/webrtc-peer-to-peer-communication/',
+        },
+	{
+          from: '/guides/advanced-usage/webrtc-codecs/',
+          to: '/guides/configuration-and-testing/video-codecs/',
+        },
+	{
+          from: [
+            '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/react-native-p2p-sample/',
+            '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/react-native-conference-sample/',
+            '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/react-native-play-sample/',
+	    '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/react-native-data-channel-sample/',
+            '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/react-native-publish-sample/'
+          ],
+          to: '/category/webrtc-samples/'
+        },
+	{
+          from: [
+	    '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/download-react-native-samples/',
+	    '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/react-native-pre-requisite/'
+	  ],
+          to: '/category/getting-started/'
         },
 	      
       ],
