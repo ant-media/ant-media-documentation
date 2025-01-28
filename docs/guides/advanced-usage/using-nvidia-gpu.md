@@ -23,19 +23,19 @@ Once you have confirmed the existence of a hardware-based encoder in your GPU, t
 
 ### Installation on Ubuntu 20.04, 22.04 and 24.04
 
-Ant Media Server now automatically utilizes the GPU with CUDA version 11.8, which is why it is necessary to install it. 
+Ant Media Server now automatically utilizes the GPU with CUDA version 12.6, which is why it is necessary to install it. 
 
-To install, follow [this link](https://developer.nvidia.com/cuda-11-8-0-download-archive) and select the settings according to your operating system and architecture. You can then use the commands provided to complete the installation. Refer to the screenshot below for further guidance.
+To install, follow [this link](https://developer.nvidia.com/cuda-12-6-0-download-archive) and select the settings according to your operating system and architecture. You can then use the commands provided to complete the installation. Refer to the screenshot below for further guidance.
 
 ![](@site/static/img/adavanced-usage/using-nvidia-gpu/cuda-11.8.png)
 
-Instead of using ```sudo apt-get -y install cuda``` command to download whole CUDA package, we will just install the limited package of CUDA 11.8 to decrease installation time and space. 
+Instead of using ```sudo apt-get -y install cuda``` command to download whole CUDA package, we will just install the limited package of CUDA 12.6 to decrease installation time and space.
 
 #### Ubuntu 20.04
 
 ```bash
-sudo wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-keyring_1.0-1_all.deb
-sudo dpkg -i cuda-keyring_1.0-1_all.deb
+sudo wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-keyring_1.1-1_all.deb
+sudo dpkg -i cuda-keyring_1.1-1_all.deb
 sudo apt-get update
 sudo apt-get install cuda-runtime-12-6
 sudo reboot
@@ -45,8 +45,8 @@ sudo reboot
 Ant Media Server officially supports Ubuntu 22.04 on versions 2.6 and higher.
 
 ```bash
-sudo wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.0-1_all.deb
-sudo dpkg -i cuda-keyring_1.0-1_all.deb
+sudo wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb
+sudo dpkg -i cuda-keyring_1.1-1_all.deb
 sudo apt-get update
 sudo apt-get install cuda-runtime-12-6
 sudo reboot
