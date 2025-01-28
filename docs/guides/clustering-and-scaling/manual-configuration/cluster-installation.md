@@ -136,7 +136,7 @@ To configure each AMS node to operate in cluster mode, run the following command
 
 ```bash
 cd /usr/local/antmedia
-sudo ./change_server_mode.sh cluster <MONGODB_SERVER_IP>
+sudo ./change_server_mode.sh cluster mongodb://[username]:[password]@[url]
 ```
 
 #### With MongoDB Credentials
@@ -145,7 +145,7 @@ If you set up MongoDB with authentication, include the credentials in the comman
 
 ```bash
 cd /usr/local/antmedia
-sudo ./change_server_mode.sh cluster <MONGODB_SERVER_IP> <MONGODB_USERNAME> <MONGODB_PASSWORD>
+sudo ./change_server_mode.sh cluster mongodb://[username]:[password]@[url]
 ```
 
 #### Use MongoDB Atlas
