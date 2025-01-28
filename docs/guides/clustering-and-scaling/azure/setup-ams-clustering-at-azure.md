@@ -11,7 +11,7 @@ In this guide, we will explain how to set up Ant Media Server Clustering on Azur
 
 For streaming applications, you will need a clustering solution when you have a high number of publishers and viewers. Especially when you require ultra-low latency and adaptive bitrate because they need more processing power. Ultra-low latency is achieved by WebRTC and it is a CPU-intensive protocol. Adaptive bitrating is downgrading video quality in bad networks if needed. It is also CPU intensive because there is video conversion. Luckily, Ant Media Server Enterprise Edition supports clustering, so that you can handle the high load in your streaming applications.
 
-### **Requirements**
+#### **Requirements**
 
 To set up the Ant Media Server, having an Azure account and a ready AntMedia Server Image are needed.
 
@@ -19,21 +19,23 @@ To set up the Ant Media Server, having an Azure account and a ready AntMedia Ser
 
 - Introduction to clustering with AntMedia Server can be found [here](https://antmedia.io/docs/category/clustering-and-scaling/).
 
+Let's proceed for the cluster deployment.
+
 ### Step 1: Create a Resource Group
 
 - Each resource created must be in the same resource group. For this, we will first create a resource group. Named **antmedia-cluster**
 
-- Click Resource Groups in the portal which is on the left side then click **+Add**  
+- Click Resource Groups in the portal which is on the left side then click **+Add**
 
-   ![](@site/static/img/create-resource-1.png)
+![](@site/static/img/create-resource-1.png)
 
-- Enter **Resource group** then choose your zone.
+- Enter **Resource group** then choose your zone
 
-   ![](@site/static/img/create-resource-2.png)
+![](@site/static/img/create-resource-2.png)
 
 - Proceed by clicking **Create** button
 
-   ![](@site/static/img/create-resource-3.png)
+![](@site/static/img/create-resource-3.png)
 
 ### Step 2: Create a Virtual Network
 
@@ -41,24 +43,25 @@ We need to create a virtual network named antmedia-cluster-virtual-network, and 
 
 - Click Create a Resource in the portal which is on the upper left. Enter Virtual network in the Search the Marketplace box at the top of the New pane that appears. Click Virtual Network when it appears in the search results.
 
-   ![](@site/static/img/virtual-network-1.png)
+![](@site/static/img/virtual-network-1.png)
 
 - Click **Create**
 
-   ![](@site/static/img/virtual-network-2.png)
+![](@site/static/img/virtual-network-2.png)
 
 - Select the resource group that we created before, enter **antmedia-cluster-virtual-network** in the name field, and click on the "**Next: IP Address**" button.
 
 ![](@site/static/img/virtual-network-3.png)
 
-- Click on the Add subnet button and create the antmedia-origin-subnet, antmedia-edge-subnet, and antmedia-gw-subnet as shown in the figure below.  
+- Click on the Add subnet button and create the antmedia-origin-subnet, antmedia-edge-subnet, and antmedia-gw-subnet as shown in the figure below.
+
 ![](@site/static/img/virtual-network-4.png)
 
 ![](@site/static/img/virtual-network-5.png)
 
 - The process is completed by clicking on the "**Create**" button.
 
- ![](@site/static/img/virtual-network-6.png)
+![](@site/static/img/virtual-network-6.png)
 
 ### Step 3: Create a MongoDB Virtual Machine
 
@@ -109,7 +112,7 @@ We need to create a virtual network named antmedia-cluster-virtual-network, and 
 
   Click the "**Application Gateway**" when it appears in the search results.  
 
-  ![](@site/static/img/application-gateway-1.png)
+![](@site/static/img/application-gateway-1.png)
 
 - Proceed by clicking "**Create**" button
 
@@ -243,7 +246,8 @@ If the following pages are responding then your edge/origin redirects are workin
 
 - Edge URL Address [https://application-gateway-ip:5443](https://application-gateway-ip:5443/)
 
-- Origin URL Address: [https://application-gateway-ip](https://application-gateway-ip/)  
+- Origin URL Address: [https://application-gateway-ip](https://application-gateway-ip/)
+
 ![](@site/static/img/antmedia-login.png)
 
 When you go to the Cluster Menu, you can see the joined nodes as below.
@@ -252,8 +256,8 @@ When you go to the Cluster Menu, you can see the joined nodes as below.
 
 ### Streaming Test
 
-For publishing please visit the ```https://your-domain-name/WebRTCAppEE/``` and click `Start Publishing` button.
+For publishing please visit the ```https://your-domain-name/live/``` and click `Start Publishing` button.
 
-For playing please visit the ```https://your-domain-name:5443/WebRTCAppEE/player.html```, put your streamId and click `Start Playing` button.
+For playing please visit the ```https://your-domain-name:5443/live/player.html```, put your streamId and click `Start Playing` button.
 
 As you figure out, we connect default HTTPS port (443) for publishing and 5443 port for playing. Because we configure load balancer to forward default port(443) to origin group and 5443 to edge group.
