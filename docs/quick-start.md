@@ -31,7 +31,7 @@ sudo ./install_ant-media-server.sh
 sudo ./install_ant-media-server.sh -i <ANT_MEDIA_SERVER_ZIP_FILE>
 ```
 
-**For more installation options check the help ```./install_ant-media-server.sh -h```.**
+**For more installation options check the help:** `./install_ant-media-server.sh -h`.
 
 #### Checkout: Fast & Easy Installations on Cloud Marketplaces
 
@@ -74,13 +74,14 @@ Navigate to ```https://ant-media-server:5443``` and create the first user accoun
 
 #### Publish a Live Stream
 
-- Publish a WebRTC live stream from the sample webrtc publish page, which is available at ```https://domain-name:5443/live ```
+Publish a WebRTC live stream from the sample webrtc publish page, which is available at ```https://domain-name:5443/live ```
 
 ![publish](https://github.com/user-attachments/assets/510d9d26-275a-459f-939c-0acec27b8632)
 
+
 #### Play a Live Stream
 
-- Play the live stream with WebRTC using the sample WebRTC player page, which is available at ```https://domain-name:5443/live/player.html```
+Play the live stream with WebRTC using the sample WebRTC player page, which is available at ```https://domain-name:5443/live/player.html```
 
 ![play](https://github.com/user-attachments/assets/dad6d64e-6462-408e-849b-4b25c590ca96)
 
