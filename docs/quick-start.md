@@ -31,7 +31,7 @@ sudo ./install_ant-media-server.sh
 sudo ./install_ant-media-server.sh -i <ANT_MEDIA_SERVER_ZIP_FILE>
 ```
 
-**For more installation options check the help:** `./install_ant-media-server.sh -h`.
+**For more installation options check the help:** `./install_ant-media-server.sh -h`
 
 #### Checkout: Fast & Easy Installations on Cloud Marketplaces
 
@@ -88,11 +88,11 @@ Play the live stream with WebRTC using the sample WebRTC player page, which is a
 
 ### Sample Tools and Applications
 
-Access the [sample tools and applications](/get-started/sample-tools-and-applications/) via ```https://domain-name:5443/live/samples.html```.
+- Access the [sample tools and applications](/get-started/sample-tools-and-applications/) via ```https://domain-name:5443/live/samples.html```.
 
-- Experience the different samples now at [https://test.antmedia.io:5443/live/samples.html](https://test.antmedia.io:5443/live/samples.html)
+- Experience the sample pages [here](https://test.antmedia.io:5443/live/samples.html) now.
 
 
 ### Getting Help
 
-If you need any help, feel free to head over to [Github discussions](https://github.com/orgs/ant-media/discussions) or follow our more detailed guide, [Installing Ant Media Server on Linux](/guides/installing-on-linux/installing-ams-on-linux/). 
+If you need any help, feel free to head over to [Github discussions](https://github.com/orgs/ant-media/discussions) or follow our more detailed [AMS Installation Guide](/guides/installing-on-linux/installing-ams-on-linux/).
