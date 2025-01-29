@@ -449,7 +449,7 @@ const config = {
         },
 	{
           from: '/guides/configuration-and-testing/decreasing-boot-time/',
-          to: '/guides/configuration-and-testing/',
+          to: '/category/configuration--testing/',
         },
       ],
     },
