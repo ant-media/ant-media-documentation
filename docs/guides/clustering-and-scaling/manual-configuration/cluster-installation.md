@@ -5,13 +5,13 @@ keywords: [Ant Media Cluster Mode, Ant Media Server Documentation, Ant Media Ser
 sidebar_position: 2
 ---
 
-# Cluster installation
+# Cluster Installation
 
-Ant Media Server (AMS) can be deployed in a cluster configuration to enhance scalability and reliability. This setup allows multiple AMS nodes to work together, thereby increasing the number of viewers and publishers that can be supported. In simpler terms, you can publish a live stream to one AMS node within the cluster, and that stream can be viewed from another node within the same cluster.
+Ant Media Server (AMS) can be deployed in a cluster configuration to enhance scalability and reliability. This setup allows multiple AMS nodes to work together, thereby increasing the number of viewers and publishers that can be supported. In simple terms, you can publish a live stream to one AMS node within the cluster, and that stream can be viewed from another node within the same cluster.
 
 ![](@site/static/img/origin_edge.png)
 
-## Components of an AMS Cluster
+## Components of AMS Cluster
 
 To better understand how an AMS cluster operates, it's essential to know the roles of its key components:
 
@@ -136,8 +136,14 @@ To configure each AMS node to operate in cluster mode, run the following command
 
 ```bash
 cd /usr/local/antmedia
-sudo ./change_server_mode.sh cluster mongodb://[username]:[password]@[url]
+sudo ./change_server_mode.sh cluster mongodb://@[url]
 ```
+
+:::info
+To avoid unexpected issues, we recommend that you secure MongoDB using a username and a password.
+
+The MongoDB connection string with login and password is mentioned below.
+:::
 
 #### With MongoDB Credentials
 
