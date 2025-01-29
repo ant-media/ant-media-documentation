@@ -439,6 +439,18 @@ const config = {
           from: '/guides/publish-live-stream/ip-cameras-and-external-resources/',
           to: '/category/ip-camera--stream-sources/',
         },
+	{
+          from: '/guides/advanced-usage/hls-aes-encryption/',
+          to: '/guides/playing-live-stream/hls-playing/',
+        },
+	{
+          from: '/guides/advanced-usage/stream-quality-filtering/',
+          to: '/guides/configuration-and-testing/ams-application-configuration/',
+        },
+	{
+          from: '/guides/configuration-and-testing/decreasing-boot-time/',
+          to: '/guides/configuration-and-testing/',
+        },
       ],
     },
   ], /*
