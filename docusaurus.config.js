@@ -411,10 +411,6 @@ const config = {
           to: '/guides/developing-antmedia-server/plugins-for-ant-media-server/'
         },
 	{
-          from: '/guides/advanced-usage/Plugins-for-Ant-Media-Server/',
-          to: '/guides/developing-antmedia-server/plugins-for-ant-media-server/'
-        },
-	{
           from: '/guides/publish-live-stream/webrtc-peer-to-peer-communication/',
           to: '/guides/publish-live-stream/webrtc/webrtc-peer-to-peer-communication/',
         },
@@ -439,7 +435,22 @@ const config = {
 	  ],
           to: '/category/getting-started/'
         },
-	      
+	{
+          from: '/guides/publish-live-stream/ip-cameras-and-external-resources/',
+          to: '/category/ip-camera--stream-sources/',
+        },
+	{
+          from: '/guides/advanced-usage/hls-aes-encryption/',
+          to: '/guides/playing-live-stream/hls-playing/',
+        },
+	{
+          from: '/guides/advanced-usage/stream-quality-filtering/',
+          to: '/guides/configuration-and-testing/ams-application-configuration/',
+        },
+	{
+          from: '/guides/configuration-and-testing/decreasing-boot-time/',
+          to: '/category/configuration--testing/',
+        },
       ],
     },
   ], /*
