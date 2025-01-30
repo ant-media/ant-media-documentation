@@ -17,13 +17,13 @@ In this documentation, we will go through Keycloak and Ant Media Side configurat
 
 1. Please check [Keycloak Getting Started](https://www.keycloak.org/guides#getting-started) documentation to Setup Keycloak.
 
-2. After making it run, we will create a **Realm** from Keycloak Dashboard. Lets name it **antmedia**.
+2. After making it run, we will create a **Realm** from Keycloak Dashboard. Let's name it **antmedia**.
 
-3. Create an **Open ID Client** in the Realm (**antmedia**) we created in step 2. Let's name it **stream-application**. Then set the URL as in the image below.
+3. Create an **Open ID Client** in the Realm (**antmedia**). Let's name it **stream-application**. Then set the URL as in the image below.
 
 ![](@site/static/img/stream-security/keycloak-client-creation.png)
 
-4. Create a role in the client (**stream-application**) we created in step 3. Let's make a role name **user**.
+4. Create a role in the client (**stream-application**). Let's make a role name **user**.
 
 ![](@site/static/img/stream-security/keycloak-role.png)
 
@@ -56,8 +56,8 @@ With the above configurations, the Keycloak side is ready. Now we will proceed w
    ```
    
    :::info
-  The appName should be the same as the application name we are configuring. Also, all these parameters should be compatible with the configuration in the Keycloak.
-   :::
+   The appName should be the same as the application name we are configuring. Also, all these parameters should be compatible with the configuration in the Keycloak.
+  :::
 
 3. Uncomment the following lines in web.xml as below:
 
