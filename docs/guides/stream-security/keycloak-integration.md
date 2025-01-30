@@ -1,48 +1,68 @@
 ---
 title: Keycloak Integration
-description: This guide explains how you can integrate your streaming application with [Keycloak](https://www.keycloak.org/) Identity Management to make WebRTC pages secure.
+description: This guide explains how you can integrate your streaming application with Keycloak Identity Management to make WebRTC pages secure.
 keywords: [Keycloak, Stream security, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 7
 ---
 
-[Keycloak](https://www.keycloak.org/) is an Identity Management tool which makes authentication and authorization easy for different services by providing a single sign-on (SSO) solution. We can use Keycloak to make WebRTC pages secure by Keycloak authentication.
+# Keycloak Integration
 
-Ant Media default streaming application `StreamApp.war` has Keycloak integration as disabled. So if you create your own streaming application using from `StreamApp.war` or configure an existing application coming from installation, you should enable and configure Keycloak configurations. Here we will tell Keycloak and Ant Media Side configurations.
+[Keycloak](https://www.keycloak.org/) is an Identity Management tool that makes authentication and authorization easy for different services by providing a single sign-on (SSO) solution. We can use Keycloak to make WebRTC pages secure by Keycloak authentication.
 
-# Keycloak Confiuration
+Ant Media default streaming application `StreamApp.war` has Keycloak integration disabled. So if you create your own streaming application using `StreamApp.war` or configure an existing application coming from installation, you should enable and configure Keycloak configurations. 
+
+In this documentation, we will go through Keycloak and Ant Media Side configurations.
+
+## Keycloak Configuration
 
 1. Please check [Keycloak Getting Started](https://www.keycloak.org/guides#getting-started) documentation to Setup Keycloak.
-2. After make it run we will create a **Realm** from Keycloak Dashboard. Lets name it **antmedia**
-3. Create an **Open ID Client** in the Realm (**antmedia**) we created in step2. Lets name it **stream-application**. Then set the URL as in the image below.
+
+2. After making it run, we will create a **Realm** from Keycloak Dashboard. Lets name it **antmedia**.
+
+3. Create an **Open ID Client** in the Realm (**antmedia**) we created in step 2. Let's name it **stream-application**. Then set the URL as in the image below.
+
 ![](@site/static/img/stream-security/keycloak-client-creation.png)
 
-4. Create a role in the Client (**stream-application**) we created in step3. Lets make role name **user**
+4. Create a role in the client (**stream-application**) we created in step 3. Let's make a role name **user**.
+
+![](@site/static/img/stream-security/keycloak-role.png)
+
 5. Create a User in Realm with the role (**user**) we created in step4. Lets make user name **streamer1**
 
+![](@site/static/img/stream-security/keycloak-user.png)
 
-With the above configurations Keycloak side is ready. Now we will proceed with AMS configuration.
+Please do not forget to create the password from `Users            --> Click streamer1 --> Credentials --> Set Password`
 
-# AMS Configuration
-1. Please navigate to the application folder in your AMS installation like:
-`cd /usr/local/antmedia/webapps/{APP-NAME}/WEB-INF`
-2. Uncomment the following lines in red5-web.xml and set the values according to you Keycloak server configurations.
+With the above configurations, the Keycloak side is ready. Now we will proceed with AMS configuration.
+
+## AMS Configuration
+
+1. Please navigate to the application folder in your AMS installation, like:
+
+   ```bash
+   cd /usr/local/antmedia/webapps/{APP-NAME}/WEB-INF
+   ```
+
+2. Uncomment the following lines in `red5-web.xml` and set the values according to your Keycloak server configurations.
+
    ```xml
    <!-- For Keycloak Integration -->
-	<!--
 	<bean id="openid.config" class="io.antmedia.SecurityConfiguration">
 		<property name="realmUrl" value="http://keycloak.antmedia.cloud:8080/realms/antmedia" />
-		<property name="appName" value="demo" />
+		<property name="appName" value="live" />
 		<property name="clientId" value="stream-application" />
 		<property name="role" value="user" />
 	</bean>
-	-->
    ```
-   **Note that:** appName should be the same with the application name we are configuring. Also all these parameters shoul be compatible with the configuration in the Keycloak.
+   
+   :::info
+  The appName should be the same as the application name we are configuring. Also, all these parameters should be compatible with the configuration in the Keycloak.
+   :::
 
-3. Uncomment the following lines in web.xml
+3. Uncomment the following lines in web.xml as below:
+
    ```xml
    <!-- For Keycloak Integration -->
-	<!--
 	<filter>
 		<filter-name>ContentSecurityPolicyHeaderFilter</filter-name>
 		<filter-class>io.antmedia.filter.ContentSecurityPolicyHeaderFilter</filter-class>
@@ -52,17 +72,26 @@ With the above configurations Keycloak side is ready. Now we will proceed with A
 		<filter-name>ContentSecurityPolicyHeaderFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-   -->
    ```
-4. Restart the antmedia service
    
-   `sudo service antmedia restart`
+4. Restart the antmedia service.
 
- # AMS Configuration
+   ```bash
+   sudo service antmedia restart
+   ```
 
-Try to publish a WebRTC stream through sample publish page. It should requires Keycloak authentication.
+## Stream Testing with Keycloak Integration
+
+Try to publish a WebRTC stream through a sample publish page.
+
 `https://{AMS-URL}/{APP-NAME}/samples/publish_webrtc.html`
 
+Try to play a stream through the sample play page:
 
-Try to play a stream through sample play page:
 `https://{AMS-URL}/{APP-NAME}/player.html`
+
+When you try to publish or play, it will first ask you to authenticate with the user that we created.
+
+![](@site/static/img/stream-security/keycloak-login.png)
+
+Once you authenticate, you will be able to publish the stream.
