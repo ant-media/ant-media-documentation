@@ -82,16 +82,16 @@ The appName should be the same as the application name we are configuring. Also,
 
 ## Stream Testing with Keycloak Integration
 
-Try to publish a WebRTC stream through a sample publish page.
+- Try to publish a WebRTC stream through a sample publish page.
 
-`https://{AMS-URL}/{APP-NAME}/samples/publish_webrtc.html`
+  `https://{AMS-URL}/{APP-NAME}/samples/publish_webrtc.html`
 
-Try to play a stream through the sample play page:
+- Try to play a stream through the sample play page:
 
-`https://{AMS-URL}/{APP-NAME}/player.html`
+  `https://{AMS-URL}/{APP-NAME}/player.html`
 
-When you try to publish or play, it will first ask you to authenticate with the user that we created.
+- When you try to publish or play, it will first ask you to authenticate with the keycloak user that we created.
 
-![](@site/static/img/stream-security/keycloak-login.png)
+  ![](@site/static/img/stream-security/keycloak-login.png)
 
-Once you authenticate, you will be able to publish the stream.
+  Once you authenticate, you will be able to publish the stream via sample page.
