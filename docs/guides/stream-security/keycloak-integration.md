@@ -55,9 +55,9 @@ With the above configurations, the Keycloak side is ready. Now we will proceed w
 	</bean>
    ```
    
-   :::info
-   The appName should be the same as the application name we are configuring. Also, all these parameters should be compatible with the configuration in the Keycloak.
-  :::
+:::info
+The appName should be the same as the application name we are configuring. Also, all these parameters should be compatible with the configuration in the Keycloak.
+:::
 
 3. Uncomment the following lines in web.xml as below:
 
