@@ -11,7 +11,7 @@ We have created a new Ant Media Server Unity WebRTC SDK on top of the WebRTC for
 
 I assumed that you have already installed Unity on your computer.
 
-# Setup The Project
+## Setup The Project
 1. Clone the Unity SDK project from github repository:
 
    `git clone https://github.com/ant-media/WebRTC-Unity-SDK.git`
@@ -29,18 +29,18 @@ I assumed that you have already installed Unity on your computer.
 
    - Set stream id by passing as the first parameter to the WebRTCClient constructor.
 
-# Build The Project
+## Build The Project
 
 Unity projects can be built for multiple platforms. Here I will tell for Windows and Android platforms.
 
-## Windows Build
+### Windows Build
 1. Navigate to File/Build settings
 2. Select Windows as the platform
    ![Unity WebRTC SDK - Windows](https://antmedia.io/wp-content/uploads/2023/02/AMSUnitySDK-Windows-Build-1024x576.jpg)
 
 3. Click Build and select the folder that you want to create the executable file
 
-## Android Build
+### Android Build
 1. Navigate to File/Build settings
 2. Select Android as the platform and click the Switch Platform button
    ![Unity WebRTC SDK Android](https://antmedia.io/wp-content/uploads/2023/02/AMSUnitySDK-Android-Build-1024x576.jpg)
@@ -62,7 +62,7 @@ Unity projects can be built for multiple platforms. Here I will tell for Windows
 
 9. Click Build or Build and Run button and select the folder that you want to create the apk file
 
-# Run The Project
+## Run The Project
 
 After running the executable of the Ant Media Unity WebRTC Sample Application you will get the following screen.
 

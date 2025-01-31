@@ -5,13 +5,13 @@ keywords: [Ant Media Cluster Mode, Ant Media Server Documentation, Ant Media Ser
 sidebar_position: 2
 ---
 
-# Cluster installation
+# Cluster Installation
 
-Ant Media Server (AMS) can be deployed in a cluster configuration to enhance scalability and reliability. This setup allows multiple AMS nodes to work together, thereby increasing the number of viewers and publishers that can be supported. In simpler terms, you can publish a live stream to one AMS node within the cluster, and that stream can be viewed from another node within the same cluster.
+Ant Media Server (AMS) can be deployed in a cluster configuration to enhance scalability and reliability. This setup allows multiple AMS nodes to work together, thereby increasing the number of viewers and publishers that can be supported. In simple terms, you can publish a live stream to one AMS node within the cluster, and that stream can be viewed from another node within the same cluster.
 
 ![](@site/static/img/origin_edge.png)
 
-## Components of an AMS Cluster
+## Components of AMS Cluster
 
 To better understand how an AMS cluster operates, it's essential to know the roles of its key components:
 
@@ -19,15 +19,16 @@ To better understand how an AMS cluster operates, it's essential to know the rol
 
 The database is central to the AMS cluster, storing all stream-related information. This data includes bitrates, settings, the origin node of the stream, and additional metadata necessary for stream management. The database ensures that all nodes in the cluster have consistent access to this information, facilitating seamless streaming across different nodes.
 
-3. **Origin Group:**
+2. **Origin Group:**
 
 The origin group consists of AMS nodes responsible for ingesting live streams. These nodes perform various tasks such as transcoding (converting streams to different formats or bitrates) and transmuxing (changing the container format of the stream). Once processed, the streams are distributed to nodes within the edge group. Importantly, viewers do not connect directly to origin group nodes for playback. It is recommended that nodes in this group be equipped with a GPU, especially if adaptive bitrate streaming is enabled.
 
-4. **Edge Group:**
+3. **Edge Group:**
 
 The edge group contains AMS nodes that receive streams from the origin group nodes and deliver them to viewers. Unlike origin nodes, edge nodes do not ingest streams or perform tasks such as transcoding or transmuxing. Their sole purpose is to fetch the stream from an origin node and forward it to the viewers, ensuring efficient distribution of content.
 
-6. **Load Balancer (Nginx or HAProxy):**
+4. **Load Balancer (Nginx or HAProxy):**
+
 The load balancer acts as the entry point for both viewers and publishers. It receives user requests and intelligently directs them to an appropriate node in either the origin or edge group, based on the current load and availability of resources. The load balancer is crucial for distributing traffic evenly across the cluster, thereby optimizing performance and avoiding overloading any single node.
 
 ## Basics of Clustering
@@ -135,8 +136,14 @@ To configure each AMS node to operate in cluster mode, run the following command
 
 ```bash
 cd /usr/local/antmedia
-sudo ./change_server_mode.sh cluster <MONGODB_SERVER_IP>
+sudo ./change_server_mode.sh cluster mongodb://@[url]
 ```
+
+:::info
+To avoid unexpected issues, we recommend that you secure MongoDB using a username and a password.
+
+The MongoDB connection string with login and password is mentioned below.
+:::
 
 #### With MongoDB Credentials
 
@@ -144,7 +151,7 @@ If you set up MongoDB with authentication, include the credentials in the comman
 
 ```bash
 cd /usr/local/antmedia
-sudo ./change_server_mode.sh cluster <MONGODB_SERVER_IP> <MONGODB_USERNAME> <MONGODB_PASSWORD>
+sudo ./change_server_mode.sh cluster mongodb://[username]:[password]@[url]
 ```
 
 #### Use MongoDB Atlas
@@ -167,8 +174,8 @@ http://<ANT_MEDIA_SERVER_NODE_IP>:5080
 
 ## Install the load balancer
 
-Install the load balancer using either one of the below two options. AMS uses Nginx by default, bu you can also use HAProxy as your load balancer. You can read how to install either of these options in the documents below.
+Install the load balancer using either one of the below two options. AMS uses Nginx by default, but you can also use HAProxy as your load balancer. You can read how to install either of these options in the documents below.
 
 - [Nginx Load Balancer](https://antmedia.io/docs/guides/clustering-and-scaling/load-balancing/nginx-load-balancer/)
 
-- [HAProxy Load Balancer](https://antmedia.io/docs/guides/clustering-and-scaling/load-balancing/load-balancer-with-haproxy-ssl-termination/)
+- [HAProxy Load Balancer](https://antmedia.io/docs/guides/clustering-and-scaling/load-balancing/haproxy-load-balancer/)
