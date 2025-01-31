@@ -1,37 +1,67 @@
 ---
-title: Download and install WebRTC sample projects
-description: Download and install WebRTC sample projects 
+title: Project Setup
+description: Setting up project for JavaScript SDK
 keywords: [JavaScript SDK User Guide, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 3
 ---
 
-WebRTC samples are free to download. You can download/clone them via [StreamApp Github repository](https://github.com/ant-media/StreamApp).
+Now lets setup our project and start using JS SDK>
 
-Open the project in Visual Studio Code, and make sure you have installed the `Node.js` and `NPM`. 
+### Create Project 
 
+Create a folder
+
+```
+mkdir jssdk-examples
+```
+
+cd into the folder 
+
+```
+cd jssdk-examples
+```
 
 ### Install dependencies
 
-Open Terminal and run **npm install** to be able to install the dependencies.
+Open Terminal and run **npm install** to be install dependencies
 
-![](@site/static/img/sdk-integration/javascript-sdk/install-dependencies.png)
-
-### Run sample project
-
-In the project navigator, you will find a folder named `webapps` inside the `src/main` path. Inside this folder, there are a couple of sample HTML files that use the Ant Media Server's JavaScript SDK to test. 
-
-All projects use [@antmedia/webrtc_adaptor](https://www.npmjs.com/package/@antmedia/webrtc_adaptor) dependency.
-
-To run the sample apps, you need to run the HTTP server inside `webapps` folder. 
-
-![](@site/static/img/sdk-integration/javascript-sdk/run-http-server.png)
-
-Before proceeding further, to make the samples work locally, move or copy the `js` folder under `/src/main` folder to `webapps` folder.
-
-After moving the `js` folder, in some samples like webrtc publish and play of this document, the `loglevel.min.js` file is importing but it is under the external folder inside the `js` folder so change the path of the file in the sample as below:
-
-```js
-import  "../js/external/loglevel.min.js";
+```
+npm i @antmedia/webrtc_adaptor
 ```
 
-After that, your samples should work fine.
+### Start HTTP Server
+
+Now we will Start HTTP server to live Prview HTML files. 
+
+```
+python -m http.server
+```
+
+### Testing
+
+Before we proceed with streaming lets confirm if everything is working fine.
+
+create test.html file and paste this content into the file.
+
+```
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  </head>
+  <body>
+    <script type="module">
+        import { WebRTCAdaptor } from './node_modules/@antmedia/webrtc_adaptor/src/main/js/webrtc_adaptor.js';
+    </script>
+  </body>
+</html>
+
+```
+
+
+open the file with http server.
+
+```
+http://localhost:8000/test.html
+```
+
+open console logs by pressing F12 and verify that there are no errors in console logs.Now that we have setup the project we can start developing with JS SDK.
