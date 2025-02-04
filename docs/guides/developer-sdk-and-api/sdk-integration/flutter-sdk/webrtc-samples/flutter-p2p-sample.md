@@ -14,7 +14,7 @@ Once the app is installed and running on your device, enter the server IP addres
 
 - Enter the Server details as ```wss://ant_media_server_address:Port/live/websocket```
 
-  ![1000131641](https://github.com/user-attachments/assets/1edd11f1-0813-4d2d-9dd1-afc7ed778178)
+  ![Screenshot_20250204-210520](https://github.com/user-attachments/assets/acbc2006-746c-49a0-97b7-2803bb0129da)
  
 - Click **Set Server Ip** button to save it.
 
