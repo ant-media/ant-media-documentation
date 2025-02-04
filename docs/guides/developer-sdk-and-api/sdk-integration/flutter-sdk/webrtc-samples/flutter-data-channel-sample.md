@@ -14,8 +14,8 @@ Once the app is installed and running on your device, enter the server IP addres
 
 - Enter the Server details as ```wss://ant_media_server_address:Port/live/websocket```
 
-  ![1000131641](https://github.com/user-attachments/assets/1edd11f1-0813-4d2d-9dd1-afc7ed778178)
- 
+  ![Screenshot_20250204-210520](https://github.com/user-attachments/assets/1a5f7797-b20e-4203-b96a-a3f71e72a82e)
+
 - Click **Set Server Ip** button to save it.
 
 ### Step 2. Using data channel
