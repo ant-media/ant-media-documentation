@@ -14,8 +14,9 @@ Once the app is installed and running on your device, enter the server IP addres
 
 - Enter the Server details as ```wss://ant_media_server_address:Port/live/websocket```
 
-  ![1000131641](https://github.com/user-attachments/assets/1edd11f1-0813-4d2d-9dd1-afc7ed778178)
- 
+  ![Screenshot_20250204-210520](https://github.com/user-attachments/assets/9eb4d8aa-a96c-469f-9caf-87176e1f8136)
+
+
 - Click **Set Server Ip** button to save it.
 
  ### Step 2. Publish WebRTC stream.
