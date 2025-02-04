@@ -44,4 +44,4 @@ Add the Dart language plugins and Flutter extensions to Android Studio. Please f
 
 ### Verify Installation
 
-To verify the Flutter installation, please create and sample an app and build it by following the instructions provided here [Create a Flutter project](https://docs.flutter.dev/get-started/codelab).
+To verify the Flutter installation, please create a sample app and build it by following the instructions provided here [Create a Flutter project](https://docs.flutter.dev/get-started/codelab).
