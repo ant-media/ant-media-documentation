@@ -10,7 +10,7 @@ sidebar_position: 6
 Explore the simplicity of recording and live streaming advanced cases such conference call, Player Kill, etc. with [Ant Media Server’s](https://github.com/ant-media/Ant-Media-Server/) Media Push Plugin🚀. This user-friendly tool lets you stream any web page. You just provide a URL to the plugin, and the plugin loads the web page on the server side and streams it in real time. You can then record 🎥 or re-stream the video if needed.
   
 
-# How Media Push Works  
+## How Media Push Works  
 
 Media Push opens up Headless Chrome on the server side. A user can send a REST request with the URL of the page that is desired to be recorded. When the request is received on the server side, a new Chrome tab is opened with the URL. As soon as the page gets loaded, the screen is recorded using Media Stream APIs and re-streamed back to Ant Media Server, from where you can record the stream or play back the stream using WebRTC HLS or Dash.  
   

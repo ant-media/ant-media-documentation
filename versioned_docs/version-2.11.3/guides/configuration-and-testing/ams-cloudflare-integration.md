@@ -5,11 +5,13 @@ keywords: [Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 7
 ---
 
+# AMS Cloudflare Integration
+
 You can seamlessly broadcast and play WebRTC, HLS, and DASH using Ant Media Server in conjunction with CloudFlare. Let's walk through the step-by-step process of achieving this:
 
 ![](@site/static/img/cloudflare/antmedia-cloudflare.png)
 
-# Step 1: CloudFlare Configuration
+## Step 1: CloudFlare Configuration
 
  - After logging into Cloudflare, navigate to SSL > TLS > Overview, and
    set the SSL/TLS encryption mode to "Full (strict)."
@@ -30,7 +32,7 @@ You can seamlessly broadcast and play WebRTC, HLS, and DASH using Ant Media Serv
  - Ensure that the A record in DNS settings is set to "Proxied"
    (enabled).
 
-# Step 2: Nginx Configuration
+## Step 2: Nginx Configuration
 
  - Complete the installation of Nginx by following the instructions
    provided [in this
