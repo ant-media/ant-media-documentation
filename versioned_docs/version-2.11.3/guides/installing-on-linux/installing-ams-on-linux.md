@@ -193,7 +193,7 @@ sudo apt-get install iptables-persistent
 The command above will install iptables-persistent package. After installation, run the command below every time you make a change and want it to be persistent.
 
 ```shell
-sudo sh -c "iptables-save >` /etc/iptables/rules.v4"
+sudo sh -c "iptables-save > /etc/iptables/rules.v4"
 ```
 
 ## Please watch the quick installation of Ant Media Server.
