@@ -92,7 +92,9 @@ The command above should give an output live as follows:
   1    REDIRECT   tcp  --  anywhere             anywhere             tcp dpt:https redir ports 5443
   2    REDIRECT   tcp  --  anywhere             anywhere             tcp dpt:http redir ports 5080
 ```
-To delete a specific rule, use the following command, replacing <line_number> with the actual rule number from the output. For example, to remove the rule forwarding port 5080, run below command. This will delete the rule at line 2, which redirects HTTP traffic (port 80) to port 5080.
+
+To delete a specific rule, use the following command, replacing **line_number** with the actual rule number from the output. For example, to remove the rule forwarding port 5080, run below command. This will delete the rule at line 2, which redirects HTTP traffic (port 80) to port 5080.
+
 ```
 iptables -t nat -D PREROUTING 2
 ```
