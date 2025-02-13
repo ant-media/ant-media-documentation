@@ -15,7 +15,7 @@ Imagine being in a restricted network environment where only HTTP/HTTPS ports ar
 
 ```
 sudo apt update
-sudo apt install coturn certbot -y
+sudo apt install coturn -y
 ```
 
 2. To run Coturn on ports below 1024, make the following changes:
@@ -26,11 +26,7 @@ sed -i -e 's/^User=.*/User=root/' -e 's/^Group=.*/Group=root/' /etc/systemd/syst
 systemctl daemon-reload
 ```
 
-3. Create a SSL certificate by using Let's Encrypt (Or you can use your own SSL certificates)
-
-```
-sudo certbot certonly --standalone -d {YOUR-DOMAIN}
-```
+3. Get a certificate for your domain. (TLS/TCP does not work in Let's Encrpyt Coturn due to socket buffer operation error) 
 
 4. Update the TURN server configuration file (/etc/turnserver.conf) with these parameters:
 
@@ -44,8 +40,8 @@ alt-listening-port=3478
 alt-tls-listening-port=5349
 proto=tcp
 syslog
-cert=/etc/letsencrypt/live/{YOUR-DOMAIN}/fullchain.pem
-pkey=/etc/letsencrypt/live/{YOUR-DOMAIN}/privkey.pem
+cert=/etc/ssl/{YOUR-DOMAIN-CERT}.pem
+pkey=/etc/ssl/{YOUR-DOMAIN-KEY}.pem
 ```
 
 5. Apply the changes by restarting Coturn:
