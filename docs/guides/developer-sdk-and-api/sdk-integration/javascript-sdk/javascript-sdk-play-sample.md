@@ -96,8 +96,10 @@ If Stream does not Play , open Developer console on the html page and check for 
 
 - Comment import from directory and uncomment import from URL , It should look something like this.
 
+```
 import {WebRTCAdaptor} from "https://cdn.skypack.dev/@antmedia/webrtc_adaptor@SNAPSHOT";
 //import { WebRTCAdaptor } from './node_modules/@antmedia/webrtc_adaptor/src/main/js/webrtc_adaptor.js';
+```
 
 - Click on Result button It will show small webpage where you can see the output.
 
