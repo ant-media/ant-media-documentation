@@ -312,7 +312,6 @@ In that file, copy the following contents. Please change the content in curl bra
                     proxy_set_header Host $host;
                     proxy_set_header Upgrade $http_upgrade;
                     proxy_set_header Connection "Upgrade";
-                    proxy_set_header X-Forwarded-Proto https;
                 }
             }
     
@@ -331,7 +330,6 @@ In that file, copy the following contents. Please change the content in curl bra
                     proxy_set_header Host $host;
                     proxy_set_header Upgrade $http_upgrade;
                     proxy_set_header Connection "Upgrade";
-                    proxy_set_header X-Forwarded-Proto https;
                 }
             }
         
