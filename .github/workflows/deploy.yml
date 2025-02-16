@@ -69,7 +69,8 @@ jobs:
 
     - name: Connect and upload
       run: |
-        ls -alh 
+        pwd 
+        ls -alh /root/.ssh/
         ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "ls -alh"
 
 
