@@ -396,7 +396,7 @@ const config = {
         },
 	{
           from: '/guides/developer-sdk-and-api/sdk-integration/webrtc-sdk/',
-          to: '/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/'
+          to: '/category/sdk-integration/'
         },
 	{
           from: '/Glossary/',
