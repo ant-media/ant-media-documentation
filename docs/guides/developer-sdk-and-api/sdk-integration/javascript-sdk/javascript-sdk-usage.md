@@ -2,7 +2,7 @@
 title: JavaScript SDK Usage
 description: JavaScript SDK Usage 
 keywords: [JavaScript SDK User Guide, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 8
+sidebar_position: 3
 ---
 
 Before moving forward with using WebRTC JavaScript SDK, we highly recommend using the sample project to get started with your application. It's good to know the dependencies and how it works in general.
