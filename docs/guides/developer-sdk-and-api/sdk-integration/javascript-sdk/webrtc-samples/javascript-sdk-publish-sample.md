@@ -5,15 +5,15 @@ keywords: [JavaScript SDK User Guide, Ant Media Server Documentation, Ant Media 
 sidebar_position: 1
 ---
 
-Lets start with a simple example for publishing a Live Stream to Ant Media using JavaScript SDK.
+Let's start with a simple example for publishing a live stream to Ant Media using the JavaScript SDK.
 
 - Create a new file , name it `publish.html`
 
 - make sure HTTP server is running in same directory
 
-```
-python -m http.server
-```
+  ```
+  python3 -m http.server
+  ```
 
 <iframe height="550" style={{ width: '100%' }} scrolling="no" title="Quick WebRTC Publish  - Ant Media Server" src="https://codepen.io/USAMAWIZARD/embed/KwPEZKE?default-tab=js&editable=true" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
   See the Pen <a href="https://codepen.io/USAMAWIZARD/pen/KwPEZKE">
@@ -21,87 +21,147 @@ python -m http.server
   on <a href="https://codepen.io">CodePen</a>.
 </iframe>
 
-## WebRTCAdapter
+## WebRTCAdaptor
 
 ```
 var webRTCAdaptor = new WebRTCAdaptor(prams....)
 ```
 
-`WebRTCAdapter` Class is responsible for handling Handling WebSocket Messages and WebRTC Connections with the server.
-One `WebRTCAdapter` can be used to publish one stream , multiple `WebRTCAdapter` can be created to publish multiple streams to the server.
+`WebRTCAdaptor` Class is responsible for handling WebSocket Messages and WebRTC Connections with the server.
+One `WebRTCAdaptor` can be used to publish one stream; multiple `WebRTCAdaptor` can be created to publish multiple streams to the server.
 
-`WebRTCAdapter` takes various parameters , all parameters are listed here. 
+`WebRTCAdaptor` takes various parameters; all parameters are listed here. 
 
-### WebRTCAdapter Parameters
+### WebRTCAdaptor Parameters
 
-```
-websocket_url
-```
+#### WebSocket URL
 
-`WebSocket URL` is the Server URL of Your Ant Media Server, Check out this page to install Ant Media Server Or for testing purpose this URL can be Used. 
+- `WebSocket URL` is the server URL of your Ant Media Server. Check out this page to install Ant Media Server, or for testing purposes, this URL can be used. 
 
-`wss://test.antmedia.io:5443/WebRTCAppEE/websocket`
+  ```
+  websocket_url
+  ```
 
-Web Socket URL format.
-```
-protocol://IP_ADDRESS:PORT/APPLICATION_NAME/websocket
-```
+- Web socket URL format.
 
-`protocol = ws if http` or
-`protocol = wss if https`
+  ```
+  protocol://IP_ADDRESS:PORT/APPLICATION_NAME/websocket
+  ```
 
-If Ant Media is running on HTTP, websocket url should connect to port `5080` insted of `5443`.
+  `wss://test.antmedia.io:5443/WebRTCAppEE/websocket`
 
-Multiple applications can be created in Ant Media to which streams can be published , use correct application name in `WebSocket URL` to publish to That application.
+  `protocol = ws` if HTTP or `protocol = wss` if HTTPS.
+
+
+If Ant Media is running on HTTP, the websocket url should connect to the port `5080` instead of `5443`.
+
+Multiple applications can be created in Ant Media to which streams can be published; use the correct application name `WebSocket URL` to publish to that application.
+
+#### localVideoElement
 
 ```
 localVideoElement
 ```
 
-This should point to the video element which will have the video which will be streamed to the Sever.
+This should point to the video element, which contains the video that will be streamed to the server.
+
+#### Callback
 
 ```
 callback
 ```
 
-Messages & notifications sent from server will be received in this callback , This includes notifications like publish_started play_started publish_timeout , data channel messages etc..
+Messages & notifications sent from the server will be received in this callback. This includes notifications like `publish_started`, `play_started`, `publish_timeout` , `data channel messages`, etc.
+
+#### WebRTC Adaptor
 
 ```
 webRTCAdaptor.publish(streamid)
 ```
 
- `WebRTCAdapter` publish function initiate  WebRTC Connection with Ant Media Server and starts to publish the stream.
+The `WebRTCAdaptor` publish function initiates a WebRTC connection with Ant Media Server and starts to publish the stream.
 
 ```
 webRTCAdaptor.stop(streamid)
 ```
-Stops Publishing WebRTC Streams.
+
+Stops publishing WebRTC streams.
 
 
 ### Running Code
 
-Copy the above code from HTML and JS section in  publish.html file.
+Copy the above code from the HTML and JS sections in the `publish.html` file as below:
 
-open the publish.html page in the browser `http://localhost:8000/publish.html`  (make sure python server is up and running)
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+
+<video id="localVideo" autoplay controls width=480px height=360px></video>
+<br/>
+<button id="publish_start">Start Publishing</button>
+<button id="publish_stop">Stop Publishing</button>
+<br/>
+<p id="status_info">Offline</p>
+
+</body>
+
+<script type="module">
+import { WebRTCAdaptor } from './node_modules/@antmedia/webrtc_adaptor/src/main/js/webrtc_adaptor.js';
+
+var webRTCAdaptor = new WebRTCAdaptor({
+  websocket_url: "wss://test.antmedia.io:5443/WebRTCAppEE/websocket",
+	localVideoElement: document.getElementById("localVideo"),
+ 
+  callback: (info, obj) => {
+     console.log("callback info: " + info);
+     if (info == "publish_started") {
+        console.log("publish started");
+        statusInfo.innerHTML = "Broadcasting - Stream Id: " + streamId; 
+     }
+     else if (info == "publish_finished") {
+        console.log("publish finished")
+        statusInfo.innerHTML = "Offline"
+
+     }
+  },
+  
+});
+var streamId = "stream" + parseInt(Math.random()*999999);
+var statusInfo = document.getElementById("status_info");
+document.getElementById("publish_start").addEventListener("click",()=> {
+  webRTCAdaptor.publish(streamId)
+})
+
+document.getElementById("publish_stop").addEventListener("click",()=> {
+  webRTCAdaptor.stop(streamId)
+})
+</script>
+</html>
+```
+
+Open the publish.html page in the browser `http://localhost:8000/publish.html`  (make sure python server is up and running)
 
  - Accept microphone and camera usage permissions.
 
  - Click publish button.
 
-To verify whether the stream is published successfully or not,  open the web panel of your Ant Media Server and view the stream there. If it does not works open Developer console on the html page and check for any errors.
+To verify whether the stream is published successfully or not, open the web panel of your Ant Media Server and view the stream there. If it does not work, open the developer console on the HTML page and check for any errors.
 
 ### Running Code in Live Example
 
-- Navigate to code section above on this page.
+- Navigate to the code section above on this page.
 
-- Comment import from directory and uncomment import from URL , It should look something like this.
+- Comment import from directory and uncomment import from URL. It should look something like this.
 
-```
-import {WebRTCAdaptor} from "https://cdn.skypack.dev/@antmedia/webrtc_adaptor@SNAPSHOT";
-//import { WebRTCAdaptor } from './node_modules/@antmedia/webrtc_adaptor/src/main/js/webrtc_adaptor.js';
-```
-
-- Click on Result button It will show small webpage where you can see the output.
+  ```
+  import {WebRTCAdaptor} from "https://cdn.skypack.dev/@antmedia/webrtc_adaptor@SNAPSHOT";
+  //import { WebRTCAdaptor } from './node_modules/@antmedia/webrtc_adaptor/src/main/js/webrtc_adaptor.js';
+  ```
+ 
+- Click on the Result button; it will show a small webpage where you can see the output.
 
 
 You can also quickly play the stream via an embedded player. Check [this document](https://antmedia.io/docs/guides/playing-live-stream/embedded-web-player/) for more details.
