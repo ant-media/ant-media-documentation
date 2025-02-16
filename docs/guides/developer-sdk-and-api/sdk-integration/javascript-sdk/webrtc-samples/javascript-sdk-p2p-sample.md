@@ -1,5 +1,5 @@
 ---
-title: WebRTC Peer-To-Peer Sample
+title: WebRTC Peer-To-Peer
 description: WebRTC Peer To Peer Using JavaScript SDK 
 keywords: [JavaScript SDK User Guide, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 4
