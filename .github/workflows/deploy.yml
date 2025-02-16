@@ -3,7 +3,7 @@ name: Update Docs
 on:
   push:
     branches:
-      - ci-test
+      - master
     paths-ignore:
       - '**/README.md'
       - '**/.github/**'
@@ -38,41 +38,40 @@ jobs:
       run: |
         apt update 
         apt install -y openssh-client -y
-    # - name: Make changes
-    #   run: |
-    #     sed -i "s^baseUrl:.*^baseUrl:'/docs',^" docusaurus.config.js
-    #     sed -i "s^appId.*^appId: '${{ secrets.ALGOLIA_APP_ID }}',^" docusaurus.config.js
-    #     sed -i "s^apiKey.*^apiKey: '${{ secrets.ALGOLIA_API_KEY }}',^" docusaurus.config.js
+    - name: Make changes
+      run: |
+        sed -i "s^baseUrl:.*^baseUrl:'/docs',^" docusaurus.config.js
+        sed -i "s^appId.*^appId: '${{ secrets.ALGOLIA_APP_ID }}',^" docusaurus.config.js
+        sed -i "s^apiKey.*^apiKey: '${{ secrets.ALGOLIA_API_KEY }}',^" docusaurus.config.js
 
-    # - name: Set up Node.js
-    #   uses: actions/setup-node@v3
-    #   with:
-    #     node-version: '18.x'
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18.x'
 
-    # - name: Install dependencies
-    #   run: npm install
+    - name: Install dependencies
+      run: npm install
 
-    # - name: Build
-    #   run: npm run build
+    - name: Build
+      run: npm run build
 
-    # - name: Package build artifacts
-    #   run: cd build && tar -zcvf ../docs.tar *
+    - name: Package build artifacts
+      run: cd build && tar -zcvf ../docs.tar *
 
-    # - name: Install SSH keys
-    #   run: |
-    #     ls -alh
-    #     install -m 600 -D /dev/null ~/.ssh/id_rsa
-    #     echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-    #     ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
-    #     ls -alh ~/.ssh/
+    - name: Install SSH keys
+      run: |
+        ls -alh
+        install -m 600 -D /dev/null ~/.ssh/id_rsa
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+        ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
+        ls -alh ~/.ssh/
 
 
     - name: Connect and upload
       run: |
         ls -alh 
-#        find / -iname "docs.tar"
-#        scp -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -r docs.tar ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}":"
-#        ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "find /home/antmedia.io/public_html/docs/ -type f -not -name "*.tar" -not -path "/home/antmedia.io/public_html/docs/.ssh/*" -exec rm {} \; && tar -zxvf docs.tar && rm -rf docs.tar"
-        ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "ls -alh"
+        find / -iname "docs.tar"
+        scp -o StrictHostKeyChecking=no -i /root/.ssh/id_rsa -r docs.tar ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}":"
+        ssh -o StrictHostKeyChecking=no -i /root/.ssh/id_rsa ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "find /home/antmedia.io/public_html/docs/ -type f -not -name "*.tar" -not -path "/home/antmedia.io/public_html/docs/.ssh/*" -exec rm {} \; && tar -zxvf docs.tar && rm -rf docs.tar"
 
 
