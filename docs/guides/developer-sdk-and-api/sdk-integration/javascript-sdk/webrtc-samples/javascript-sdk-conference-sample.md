@@ -2,7 +2,7 @@
 title: WebRTC Conference
 description: WebRTC Conference Using JavaScript SDK 
 keywords: [JavaScript SDK User Guide, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 7
+sidebar_position: 3
 ---
 
 Lets see a very simple WebRTC Conference example with JS SDK.
