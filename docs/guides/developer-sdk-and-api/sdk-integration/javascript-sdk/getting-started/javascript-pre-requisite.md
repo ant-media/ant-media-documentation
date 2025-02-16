@@ -2,7 +2,7 @@
 title: Pre-Requisite for AMS Web Application development
 description: Pre-requisite for AMS Web Application development 
 keywords: [JavaScript SDK User Guide, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 2
+sidebar_position: 1
 ---
 
 ## Software requirements
