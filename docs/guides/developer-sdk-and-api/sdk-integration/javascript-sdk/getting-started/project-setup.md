@@ -5,25 +5,25 @@ keywords: [JavaScript SDK User Guide, Ant Media Server Documentation, Ant Media 
 sidebar_position: 2
 ---
 
-Now lets setup our project and start using Ant Media Server Java Script SDK.
+Now let's setup our project and start using Ant Media Server Java Script SDK.
 
 ### Create Project 
 
-Create a folder
+- Create a folder
 
-```
-mkdir jssdk-examples
-```
+  ```
+  mkdir jssdk-examples
+  ```
 
-Switch to the created folder
+- Switch to the created folder
 
-```
-cd jssdk-examples
-```
+  ```
+  cd jssdk-examples
+  ```
 
 ### Install dependencies
 
-Open Terminal and run **npm install** to install dependencies
+Open Terminal and run **npm install** to install dependencies.
 
 ```
 npm i @antmedia/webrtc_adaptor
@@ -31,19 +31,23 @@ npm i @antmedia/webrtc_adaptor
 
 ### Start HTTP Server
 
-Now, we will Start HTTP server to live Prview HTML files. 
+Now, we will start an HTTP server to live preview HTML files. 
 
 ```
 python -m http.server
+
+OR
+
+python3 -m http.server
 ```
 
 ### Testing
 
-Before we proceed with streaming lets confirm if everything is working fine.
+Before we proceed with streaming, let's confirm if everything is working fine.
 
-create test.html file and paste this content into the file.
+Create a `test.html` file inside the folder and paste this content into the file.
 
-```
+```html
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -54,14 +58,12 @@ create test.html file and paste this content into the file.
     </script>
   </body>
 </html>
-
 ```
 
-
-open the file with http server.
+Now, open the file with the HTTP server.
 
 ```
 http://localhost:8000/test.html
 ```
 
-open console logs by pressing F12 and verify that there are no errors in console logs.Now that we have setup the project we can start developing with JS SDK.
+Open console logs by pressing F12 and verify that there are no errors in console logs. Now that we have setup the project, we can start developing with JS SDK.
