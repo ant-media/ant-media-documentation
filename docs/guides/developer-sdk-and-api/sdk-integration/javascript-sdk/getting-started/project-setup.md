@@ -2,7 +2,7 @@
 title: Project Setup
 description: Setting up project for JavaScript SDK Integration
 keywords: [JavaScript SDK User Guide, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 3
+sidebar_position: 2
 ---
 
 Now lets setup our project and start using Ant Media Server Java Script SDK.
