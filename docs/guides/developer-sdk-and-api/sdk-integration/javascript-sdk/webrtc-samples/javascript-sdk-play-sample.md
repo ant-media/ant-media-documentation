@@ -1,19 +1,19 @@
 ---
 title: Play WebRTC Stream
-description: Play WebRTC Stream Using JavaScript SDK
+description: Play WebRTC Live Stream Using JavaScript SDK
 keywords: [JavaScript SDK User Guide, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 2
 ---
 
-Lets start with a simple example for playing a Live Stream to Ant Media using JavaScript SDK.
+Let's start with a simple example for playing a live stream to Ant Media using the JavaScript SDK.
 
 - Create a new file , name it `play.html`
 
-- make sure HTTP server is running in same directory
+- Make sure HTTP server is running in same directory
 
-```
-python -m http.server
-```
+  ```
+  python3 -m http.server
+  ```
 
 <iframe height="550" style={{ width: '100%' }} scrolling="no" title="Quick WebRTC Play - Ant Media Server" src="https://codepen.io/USAMAWIZARD/embed/myboqYB?default-tab=js&editable=true" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
   See the Pen <a href="https://codepen.io/USAMAWIZARD/pen/myboqYB">
@@ -21,88 +21,145 @@ python -m http.server
   on <a href="https://codepen.io">CodePen</a>.
 </iframe>
 
-## WebRTCAdapter
+
+## WebRTCAdaptor
+
+`WebRTCAdaptor` Class is responsible for handling WebSocket Messages and WebRTC Connections with the server.
+One `WebRTCAdaptor` can be used to publish one stream; multiple `WebRTCAdaptor` can be created to publish multiple streams to the server.
 
 ```
 var webRTCAdaptor = new WebRTCAdaptor(prams....)
 ```
 
-`WebRTCAdapter` Class is responsible for handling Handling WebSocket Messages and WebRTC Connections with the server.
-One `WebRTCAdapter` can be used to play multiple stream.
+The `WebRTCAdaptor` takes various parameters; all parameters are listed here. 
 
-`WebRTCAdapter` takes various parameters , all parameters are listed here. 
+### WebRTCAdaptor Parameters
 
-### WebRTCAdapter Parameters
+#### WebSocket URL
 
-```
-websocket_url
-```
+- `WebSocket URL` is the server URL of your Ant Media Server. Check out this page to install Ant Media Server, or for testing purposes, this URL can be used. 
 
-`WebSocket URL` is the Server URL of Your Ant Media Server, Check out this page to install Ant Media Server Or for testing purpose this URL can be Used. 
+  ```
+  websocket_url
+  ```
 
-`wss://test.antmedia.io:5443/WebRTCAppEE/websocket`
+- Web socket URL format.
 
-Web Socket URL format.
-```
-protocol://IP_ADDRESS:PORT/APPLICATION_NAME/websocket
-```
+  ```
+  protocol://IP_ADDRESS:PORT/APPLICATION_NAME/websocket
+  ```
 
-`protocol = ws if http` or
-`protocol = wss if https`
+  `wss://test.antmedia.io:5443/live/websocket`
 
-If Ant Media is running on HTTP, websocket url should connect to port `5080` insted of `5443`.
+- If HTTP,  `protocol = ws` or if HTTPS `protocol = wss`
 
-Multiple applications can be created in Ant Media to which streams can be played , use correct application name in `WebSocket URL` to play to That application.
+
+If Ant Media is running on HTTP, the websocket url should connect to the port `5080` instead of `5443`.
+
+Multiple applications can be created in Ant Media to which streams can be published; use the correct application name `WebSocket URL` to publish to that application.
+
+#### localVideoElement
 
 ```
 remoteVideoElement
 ```
 
-This should point to the video element which will show this stream.
+This should point to the video element that will show this stream.
+
+#### Callback
 
 ```
 callback
 ```
 
-Messages & notifications sent from server will be received in this callback , This includes notifications like play_started play_started play_timeout , data channel messages etc..
+Messages & notifications sent from the server will be received in this callback. This includes notifications like `play_started`, `play_timeout` , `data channel messages`, etc.
 
-```
-webRTCAdaptor.play(streamid)
-```
+#### WebRTC Adaptor
 
- `WebRTCAdapter` play function initiate  WebRTC Connection with Ant Media Server and starts to play the stream. Specify correct stream id and make sure stream is currently publishing which you are trying to play. 
+-  `WebRTCAdaptor` play function initiate a WebRTC connection with Ant Media Server and starts to play the stream. Specify the correct stream ID and make sure the stream is currently publishing, which you are trying to play.
 
-```
-webRTCAdaptor.stop(streamid)
-```
-Stops playing WebRTC Streams.
+   ```
+   webRTCAdaptor.play(streamid)
+   ```
+
+- Stops playing WebRTC streams.
+
+  ```
+  webRTCAdaptor.stop(streamid)
+  ```
 
 
 ### Running Code
 
-Copy the above code from HTML and JS section in  play.html file.
+Copy the above code from the HTML and JS sections in the `play.html` file as below:
+
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+
+<video id="remoteVideo" controls autoplay playsinline width="480" height="360"></video>
+<br/>
+<button id="play_start">Start Playing</button>
+<button id="play_stop">Stop Playing</button>
+<br/>
+
+</body>
+
+<script type="module">
+import { WebRTCAdaptor } from './node_modules/@antmedia/webrtc_adaptor/src/main/js/webrtc_adaptor.js';
+//PAY ATTENTION: WRITE YOUR STREAM ID BELOW TO PLAY
+
+var streamId = "test"
+var webRTCAdaptor = new WebRTCAdaptor({
+  websocket_url: "wss://test.antmedia.io:5443/live/websocket",
+	remoteVideoElement: document.getElementById("remoteVideo"),
+ 
+  callback: (info, obj) => {
+     console.log("callback info: " + info);
+     if (info == "play_started") {
+        console.log("publish started");
+        statusInfo.innerHTML = "Playing - Stream Id:" + streamId; 
+     }
+     else if (info == "play_finished") {
+        console.log("publish finished")
+        statusInfo.innerHTML = "Offline"
+     }
+  },
+  
+});
+
+document.getElementById("play_start").addEventListener("click",()=> {
+  webRTCAdaptor.play(streamId)
+})
+document.getElementById("play_stop").addEventListener("click",()=> {
+  webRTCAdaptor.stop(streamId)
+})
+</script>
+</html>
+```
 
 open the play.html page in the browser `http://localhost:8000/play.html`  (make sure python server is up and running)
 
  - Accept microphone and camera usage permissions.
 
- - Click play button.
+- Click the play button.
 
-If Stream does not Play , open Developer console on the html page and check for any errors.
+If stream does not play, open the developer console on the HTML page and check for any errors.
 
 ### Running Code in Live Example
 
-- Navigate to code section above on this page.
+- Navigate to the code section above on this page.
 
-- Comment import from directory and uncomment import from URL , It should look something like this.
+- Comment import from directory and uncomment import from URL. It should look something like this.
 
-```
-import {WebRTCAdaptor} from "https://cdn.skypack.dev/@antmedia/webrtc_adaptor@SNAPSHOT";
-//import { WebRTCAdaptor } from './node_modules/@antmedia/webrtc_adaptor/src/main/js/webrtc_adaptor.js';
-```
+  ```
+  import {WebRTCAdaptor} from "https://cdn.skypack.dev/@antmedia/webrtc_adaptor@SNAPSHOT";
+  //import { WebRTCAdaptor } from './node_modules/@antmedia/webrtc_adaptor/src/main/js/webrtc_adaptor.js';
+  ```
 
-- Click on Result button It will show small webpage where you can see the output.
+- Click on the Result button; it will show a small webpage where you can see the output.
 
-- Click on play button to start playing the stream.
-
-Run live example by clicking in Result in The Code Section above.
+- Click on the play button to start playing the stream.
