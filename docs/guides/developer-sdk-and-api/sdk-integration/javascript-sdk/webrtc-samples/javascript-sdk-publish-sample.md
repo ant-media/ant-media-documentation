@@ -1,6 +1,6 @@
 ---
 title: Publish WebRTC Stream
-description: Publish WebRTC Live stream Using JavaScript SDK 
+description: Publish WebRTC Live Stream Using JavaScript SDK 
 keywords: [JavaScript SDK User Guide, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 1
 ---
@@ -23,14 +23,14 @@ Let's start with a simple example for publishing a live stream to Ant Media usin
 
 ## WebRTCAdaptor
 
+`WebRTCAdaptor` Class is responsible for handling WebSocket Messages and WebRTC Connections with the server.
+One `WebRTCAdaptor` can be used to publish one stream; multiple `WebRTCAdaptor` can be created to publish multiple streams to the server.
+
 ```
 var webRTCAdaptor = new WebRTCAdaptor(prams....)
 ```
 
-`WebRTCAdaptor` Class is responsible for handling WebSocket Messages and WebRTC Connections with the server.
-One `WebRTCAdaptor` can be used to publish one stream; multiple `WebRTCAdaptor` can be created to publish multiple streams to the server.
-
-`WebRTCAdaptor` takes various parameters; all parameters are listed here. 
+The `WebRTCAdaptor` takes various parameters; all parameters are listed here. 
 
 ### WebRTCAdaptor Parameters
 
@@ -48,10 +48,9 @@ One `WebRTCAdaptor` can be used to publish one stream; multiple `WebRTCAdaptor` 
   protocol://IP_ADDRESS:PORT/APPLICATION_NAME/websocket
   ```
 
-  `wss://test.antmedia.io:5443/WebRTCAppEE/websocket`
+    For example, `wss://test.antmedia.io:5443/live/websocket`
 
-  `protocol = ws` if HTTP or `protocol = wss` if HTTPS.
-
+- If HTTP,  `protocol = ws` or if HTTPS `protocol = wss`
 
 If Ant Media is running on HTTP, the websocket url should connect to the port `5080` instead of `5443`.
 
@@ -75,17 +74,17 @@ Messages & notifications sent from the server will be received in this callback.
 
 #### WebRTC Adaptor
 
-```
-webRTCAdaptor.publish(streamid)
-```
+- The `WebRTCAdaptor` publish function initiates a WebRTC connection with Ant Media Server and starts to publish the stream.
 
-The `WebRTCAdaptor` publish function initiates a WebRTC connection with Ant Media Server and starts to publish the stream.
+  ```
+  webRTCAdaptor.publish(streamid)
+  ```
 
-```
-webRTCAdaptor.stop(streamid)
-```
+- Stops publishing WebRTC streams.
 
-Stops publishing WebRTC streams.
+  ```
+  webRTCAdaptor.stop(streamid)
+  ```
 
 
 ### Running Code
@@ -112,7 +111,7 @@ Copy the above code from the HTML and JS sections in the `publish.html` file as 
 import { WebRTCAdaptor } from './node_modules/@antmedia/webrtc_adaptor/src/main/js/webrtc_adaptor.js';
 
 var webRTCAdaptor = new WebRTCAdaptor({
-  websocket_url: "wss://test.antmedia.io:5443/WebRTCAppEE/websocket",
+  websocket_url: "wss://test.antmedia.io:5443/live/websocket",
 	localVideoElement: document.getElementById("localVideo"),
  
   callback: (info, obj) => {
@@ -146,7 +145,7 @@ Open the publish.html page in the browser `http://localhost:8000/publish.html`  
 
  - Accept microphone and camera usage permissions.
 
- - Click publish button.
+- Click the publish button.
 
 To verify whether the stream is published successfully or not, open the web panel of your Ant Media Server and view the stream there. If it does not work, open the developer console on the HTML page and check for any errors.
 
