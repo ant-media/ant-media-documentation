@@ -30,17 +30,17 @@ Starting with version 2.13, the Ant Media Server supports the concept of primary
 
 ## How Failover Scenario Works?
 
-#### Step-1: Publish the Primary Stream
+### Step-1: Publish the Primary Stream
 
 Publish the main stream using WebRTC, RTMP, or any other protocol.
 
 For example, publish one RTMP stream with streamId `main` using the FFMPEG.
 
 ```bash
-ffmpeg -re -i test.mp4 -c copy -f flv rtmp://IP-address/live/main
+ffmpeg -re -i test.mp4 -c copy -f flv rtmp://IP-address/live/primary
 ```
 
-#### Step-2: Publish the Backup Stream
+### Step-2: Publish the Backup Stream
 
 Publish the main stream using WebRTC, RTMP, or any other protocol.
 
@@ -57,15 +57,17 @@ ffmpeg -re -i test.mp4 -c copy -f flv rtmp://IP-address/live/backup
 - Suppose you are playing the stream with WebRTC playback with the below URL.
 
   ```
-  https://domain:5443/live/play/html?name=main&playOrder=webrtc
+  https://domain:5443/live/play/html?name=primary&playOrder=webrtc
   ```
 
   In this case, it only plays the primary stream and will not switch to the backup stream if primary fails.
 
-- Now in order to add a backup stream, add the **&backupStreamId** parameter to the playback URL.
+- Now in order to add a backup stream as a failover stream, add the **&backupStreamId** parameter to the playback URL and pass your backup stream ID.
+
+  In this case, the streamId is `backup`.
 
   ```
-  https://domain:5443/live/play.html?name=main&backupStreamId=backup&playOrder=webrtc
+  https://domain:5443/live/play.html?name=primary&backupStreamId=backup&playOrder=webrtc
   ```
 
 Now you can stop publishing the primary stream and check that the player will switch to the backup stream within a few seconds.
