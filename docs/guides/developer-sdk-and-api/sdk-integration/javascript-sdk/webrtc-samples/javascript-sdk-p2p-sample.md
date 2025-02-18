@@ -26,11 +26,7 @@ Let's see a simple example for joining a peer-to-peer live stream call with Ant 
 
 - Open this page on a new tab and join from there. 
 
-<iframe height="550" style={{ width: '100%' }} scrolling="no" title="Untitled" src="https://codepen.io/USAMAWIZARD/embed/azoMqdq?default-tab=js&editable=true" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
-  See the Pen <a href="https://codepen.io/USAMAWIZARD/pen/azoMqdq">
-  Untitled</a> by USAMA (<a href="https://codepen.io/USAMAWIZARD">@USAMAWIZARD</a>)
-  on <a href="https://codepen.io">CodePen</a>.
-</iframe>
+<iframe height="550" style="width: 100%;" scrolling="no" title="Untitled" src="https://codepen.io/USAMAWIZARD/embed/azoMqdq?default-tab=js&editable=true" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true" allow="camera; microphone; autoplay; encrypted-media"> </iframe>
 
 ## Create P2P Sample For Deployment
 
