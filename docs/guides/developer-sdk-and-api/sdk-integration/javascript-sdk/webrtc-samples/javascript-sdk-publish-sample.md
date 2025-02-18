@@ -9,22 +9,16 @@ Let's start with a simple example for publishing a live stream to Ant Media usin
 
 ## WebRTC Publish Live Sample
 
-- Navigate to the code section above on this page.
+- Navigate to the Play sample [here](https://codepen.io/USAMAWIZARD/embed/KwPEZKE?default-tab=js&editable=true) at Codepen.
 
 - Comment import from directory and uncomment import from URL. It should look something like this.
 
   ```
-  import {WebRTCAdaptor} from "https://cdn.skypack.dev/@antmedia/webrtc_adaptor@SNAPSHOT";
+  import  {WebRTCAdaptor} from  "https://esm.sh/@antmedia/webrtc_adaptor";
   //import { WebRTCAdaptor } from './node_modules/@antmedia/webrtc_adaptor/src/main/js/webrtc_adaptor.js';
   ```
  
 - Click on the Result button; it will show a small webpage where you can see the output.
-
-<iframe height="550" style={{ width: '100%' }} scrolling="no" title="Quick WebRTC Publish  - Ant Media Server" src="https://codepen.io/USAMAWIZARD/embed/KwPEZKE?default-tab=js&editable=true" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
-  See the Pen <a href="https://codepen.io/USAMAWIZARD/pen/KwPEZKE">
-  Quick WebRTC Publish  - Ant Media Server</a> by USAMA (<a href="https://codepen.io/USAMAWIZARD">@USAMAWIZARD</a>)
-  on <a href="https://codepen.io">CodePen</a>.
-</iframe>
 
 
 ## Create Publish Sample For Deployment
