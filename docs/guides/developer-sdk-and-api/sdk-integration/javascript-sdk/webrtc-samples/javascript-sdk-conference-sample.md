@@ -9,6 +9,31 @@ Let's see a very simple example of WebRTC Conference with the JS SDK.
 
 In simple terms, a conference is a room where a user can join and publish his streams, and he will receive the streams of other users who join the same room. So to put it simply, we will use the publish and play function as we did in previous examples to implement a conference.
 
+## WebRTC Conference Live Sample
+
+- Navigate to the code section above on this page.
+
+- Comment import from directory and uncomment import from URL. It should look something like this.
+
+  ```
+  import {WebRTCAdaptor} from "https://cdn.skypack.dev/@antmedia/webrtc_adaptor@SNAPSHOT";
+  //import { WebRTCAdaptor } from './node_modules/@antmedia/webrtc_adaptor/src/main/js/webrtc_adaptor.js';
+  ```
+
+- Click on Result button It will show small webpage where you can see the output.
+
+- Enter a room ID and join the room.
+
+- Open this page in another tab and join with the same room ID.
+
+<iframe height="550" style={{ width: '100%' }}  scrolling="no" title="Conference" src="https://codepen.io/USAMAWIZARD/embed/JoPzLgX?default-tab=js&editable=true" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/USAMAWIZARD/pen/JoPzLgX">
+  Conference</a> by USAMA (<a href="https://codepen.io/USAMAWIZARD">@USAMAWIZARD</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
+
+## Create Conference Sample For Deployment
+
 - Create a new file , name it `conference.html`
 
 - Make sure HTTP server is running in same directory
@@ -17,94 +42,9 @@ In simple terms, a conference is a room where a user can join and publish his st
   python3 -m http.server
   ```
 
-<iframe height="550" style={{ width: '100%' }}  scrolling="no" title="Conference" src="https://codepen.io/USAMAWIZARD/embed/JoPzLgX?default-tab=js&editable=true" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
-  See the Pen <a href="https://codepen.io/USAMAWIZARD/pen/JoPzLgX">
-  Conference</a> by USAMA (<a href="https://codepen.io/USAMAWIZARD">@USAMAWIZARD</a>)
-  on <a href="https://codepen.io">CodePen</a>.
-</iframe>
+- Copy the above code from the HTML and JS sections in the `conference.html` file as below:
 
-## WebRTCAdaptor
-
-`WebRTCAdapter` Class is responsible for handling WebSocket Messages and WebRTC Connections with the server. The `WebRTCAdaptor` takes various parameters; all parameters are listed here.
-
-```
-var webRTCAdaptor = new WebRTCAdaptor(prams....)
-```
-
-### WebRTCAdaptor Parameters
-
-#### WebSocket URL
-
-- `WebSocket URL` is the server URL of your Ant Media Server. Check out this page to install Ant Media Server, or for testing purposes, this URL can be used. 
-
-  ```
-  websocket_url
-  ```
-
-- Web socket URL format.
-
-  ```
-  protocol://IP_ADDRESS:PORT/APPLICATION_NAME/websocket
-  ```
-
-  For example, `wss://test.antmedia.io:5443/live/websocket`
-
-- If HTTP,  `protocol = ws` or if HTTPS `protocol = wss`
-
-
-If Ant Media is running on HTTP, the websocket url should connect to the port `5080` instead of `5443`.
-
-Multiple applications can be created in Ant Media to which streams can be published; use the correct application name `WebSocket URL` to publish to that application.
-
-#### localVideoId
-
-```
-localVideoId
-```
-
-This is the ID of the Video Element where the local video stream will be displayed.
-
-#### Callback
-
-```
-callback
-```
-
-Messages & notifications sent from the server will be received in this callback. This includes notifications like `publish_started`, `play_started`, `publish_timeout` , `data channel messages`, etc.
-
-`if (info == "newTrackAvailable")` 
-
-We will get `newTrackAvailable` callback here where all the remote video streams will be received. We can play these remote streams by creating a video element and appending it to the DOM.
-
-#### WebRTC Adaptor
-
-- `WebRTCAdaptor` publish function initiates a WebRTC connection with Ant Media Server and starts to publish the stream.
-When publishing for a conference room, your own stream ID and the room to which the stream needs to be published must be specified. 
-
-  ```
-  webRTCAdaptor.publish(our_publish_id, "", "", "", "",roomid, JSON.stringify(""), "");
-  ```
-
-- `WebRTCAdapter` play function initiate  WebRTC Connection with Ant Media Server and starts to play the stream. Specify the correct stream ID and make sure the stream is currently publishing, which you are trying to play. 
-
-  When playing the streams from a room, the room ID should be specified.
-
-  ```
-  webRTCAdaptor.play(roomid, "", roomid, [], "", "", null, "");
-  ```
-
-- Stops publishing & playing WebRTC streams.
-
-  ```
-  webRTCAdaptor.stop(streamid)
-  ```
-
-
-### Running Code
-
-Copy the above code from the HTML and JS sections in the `conference.html` file as below:
-
-```
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -214,19 +154,78 @@ Open the conference.html page in the browser `http://localhost:8000/conference.h
 
 Join the room in a new tab as a second user and verify if you can receive remote video and remote participants can see your video.
 
-### Running Code in Live Example
+## WebRTCAdaptor
 
-- Navigate to the code section above on this page.
+`WebRTCAdapter` Class is responsible for handling WebSocket Messages and WebRTC Connections with the server. The `WebRTCAdaptor` takes various parameters; all parameters are listed here.
 
-- Comment import from directory and uncomment import from URL. It should look something like this.
+```
+var webRTCAdaptor = new WebRTCAdaptor(prams....)
+```
+
+### WebRTCAdaptor Parameters
+
+#### WebSocket URL
+
+- `WebSocket URL` is the server URL of your Ant Media Server. Check out this page to install Ant Media Server, or for testing purposes, this URL can be used. 
 
   ```
-  import {WebRTCAdaptor} from "https://cdn.skypack.dev/@antmedia/webrtc_adaptor@SNAPSHOT";
-  //import { WebRTCAdaptor } from './node_modules/@antmedia/webrtc_adaptor/src/main/js/webrtc_adaptor.js';
+  websocket_url
   ```
 
-- Click on Result button It will show small webpage where you can see the output.
+- Web socket URL format.
 
-- Enter a room ID and join the room.
+  ```
+  protocol://IP_ADDRESS:PORT/APPLICATION_NAME/websocket
+  ```
 
-- Open this page in another tab and join with the same room ID.
+  For example, `wss://test.antmedia.io:5443/live/websocket`
+
+- If HTTP,  `protocol = ws` or if HTTPS `protocol = wss`
+
+
+If Ant Media is running on HTTP, the websocket url should connect to the port `5080` instead of `5443`.
+
+Multiple applications can be created in Ant Media to which streams can be published; use the correct application name `WebSocket URL` to publish to that application.
+
+#### localVideoId
+
+```
+localVideoId
+```
+
+This is the ID of the Video Element where the local video stream will be displayed.
+
+#### Callback
+
+```
+callback
+```
+
+Messages & notifications sent from the server will be received in this callback. This includes notifications like `publish_started`, `play_started`, `publish_timeout` , `data channel messages`, etc.
+
+`if (info == "newTrackAvailable")` 
+
+We will get `newTrackAvailable` callback here where all the remote video streams will be received. We can play these remote streams by creating a video element and appending it to the DOM.
+
+#### WebRTC Adaptor
+
+- `WebRTCAdaptor` publish function initiates a WebRTC connection with Ant Media Server and starts to publish the stream.
+When publishing for a conference room, your own stream ID and the room to which the stream needs to be published must be specified. 
+
+  ```
+  webRTCAdaptor.publish(our_publish_id, "", "", "", "",roomid, JSON.stringify(""), "");
+  ```
+
+- `WebRTCAdapter` play function initiate  WebRTC Connection with Ant Media Server and starts to play the stream. Specify the correct stream ID and make sure the stream is currently publishing, which you are trying to play. 
+
+  When playing the streams from a room, the room ID should be specified.
+
+  ```
+  webRTCAdaptor.play(roomid, "", roomid, [], "", "", null, "");
+  ```
+
+- Stops publishing & playing WebRTC streams.
+
+  ```
+  webRTCAdaptor.stop(streamid)
+  ```
