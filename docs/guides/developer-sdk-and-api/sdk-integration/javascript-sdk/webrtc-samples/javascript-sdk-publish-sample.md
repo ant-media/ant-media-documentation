@@ -9,7 +9,7 @@ Let's start with a simple example for publishing a live stream to Ant Media usin
 
 ## WebRTC Publish Live Sample
 
-- Navigate to the Play sample [here](https://codepen.io/USAMAWIZARD/embed/KwPEZKE?default-tab=js&editable=true) at Codepen.
+- Navigate to the Publish sample [here](https://codepen.io/USAMAWIZARD/embed/KwPEZKE?default-tab=js&editable=true) at Codepen.
 
 - Comment import from directory and uncomment import from URL. It should look something like this.
 
