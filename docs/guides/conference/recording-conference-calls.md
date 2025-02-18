@@ -122,7 +122,7 @@ Alternatively, the recording can also be started from the web panel.
   curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "${ANT_MEDIA_SERVER_BASE_URL}/${APP_NAME}/rest/v1/media-push/start" -d  '{"url": "'"${URL_TO_RECORD}"'", "width": 1280, "height": 720, "recordType":"mp4"}'
   ```
 
-- This command will initiate the broadcast of the specified URL and simultaneously record it in MP4 format. Ensure to replace "${URL_TO_RECORD}" with the actual URL you want to broadcast and record. In this case, the sample page URL merges the conference room streams.
+- This command will initiate the broadcast of the specified URL and simultaneously record it in MP4 format. Ensure to replace `${URL_TO_RECORD}` with the actual URL you want to broadcast and record. In this case, the sample page URL merges the conference room streams.
 
 
 ### Stop the Media Push Plugin broadcast
