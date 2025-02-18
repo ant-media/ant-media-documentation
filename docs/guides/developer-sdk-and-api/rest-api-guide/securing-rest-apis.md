@@ -33,6 +33,10 @@ If you want to remove the REST Filter in AMS, you should delete the below codes 
 
 If you delete the AuthenticationFilter code block in the application, everyone can access the REST API.
 
+**Here is a demo of how to configure the IP filter**
+
+![](@site/static/img/rest-api/rest-api-ip-filtering-demo.gif)
+
 ## IP Filter for the Web Panel
 
 * Open ```/usr/local/antmedia/conf/red5.properties``` file.
@@ -47,8 +51,5 @@ Save the file and restart the server.
 
 Now only the IPs that are in the CIDR block can access the Web panel.
 
-**Here is a demo of how to configure the IP filter**
-
-![](@site/static/img/rest-api/rest-api-ip-filtering-demo.gif)
 
 For more details, you can check this link [IP Filter Gif](https://raw.githubusercontent.com/wiki/ant-media/Ant-Media-Server/images/ip-filter.gif)

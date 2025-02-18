@@ -395,10 +395,6 @@ const config = {
           to: '/guides/developing-antmedia-server/circle-component-usage/'
         },
 	{
-          from: '/guides/developer-sdk-and-api/sdk-integration/webrtc-sdk/',
-          to: '/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/'
-        },
-	{
           from: '/Glossary/',
           to: '/streaming-glossary/'
         },
