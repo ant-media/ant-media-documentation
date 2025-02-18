@@ -13,12 +13,12 @@ Let's see a simple example for joining a peer-to-peer live stream call with Ant 
 
 ## WebRTC P2P Live Sample
 
-- Navigate to the code section above on this page.
+- Navigate to the P2P sample page [here](https://codepen.io/USAMAWIZARD/embed/azoMqdq?default-tab=js&editable=true) at Code Pen.
 
 - Comment import from directory and uncomment import from URL. It should look something like this.
 
   ```
-  import {WebRTCAdaptor} from "https://cdn.skypack.dev/@antmedia/webrtc_adaptor@SNAPSHOT";
+  import  {WebRTCAdaptor} from  "https://esm.sh/@antmedia/webrtc_adaptor";
   //import { WebRTCAdaptor } from './node_modules/@antmedia/webrtc_adaptor/src/main/js/webrtc_adaptor.js';
   ```
 
@@ -26,13 +26,6 @@ Let's see a simple example for joining a peer-to-peer live stream call with Ant 
 
 - Open this page on a new tab and join from there. 
 
-{
-<iframe height="550" style={{ width: '100%' }} scrolling="no" title="Untitled" src="https://codepen.io/USAMAWIZARD/embed/azoMqdq?default-tab=js&editable=true" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
-  See the Pen <a href="https://codepen.io/USAMAWIZARD/pen/azoMqdq">
-  Untitled</a> by USAMA (<a href="https://codepen.io/USAMAWIZARD">@USAMAWIZARD</a>)
-  on <a href="https://codepen.io">CodePen</a>.
-</iframe>
-}
 
 ## Create P2P Sample For Deployment
 
