@@ -11,6 +11,29 @@ In this case, Ant Media Server will only act as a Signaling server, which will h
 
 Let's see a simple example for joining a peer-to-peer live stream call with Ant Media using the JavaScript SDK.
 
+## WebRTC P2P Live Sample
+
+- Navigate to the code section above on this page.
+
+- Comment import from directory and uncomment import from URL. It should look something like this.
+
+  ```
+  import {WebRTCAdaptor} from "https://cdn.skypack.dev/@antmedia/webrtc_adaptor@SNAPSHOT";
+  //import { WebRTCAdaptor } from './node_modules/@antmedia/webrtc_adaptor/src/main/js/webrtc_adaptor.js';
+  ```
+
+- Click the join button.
+
+- Open this page on a new tab and join from there. 
+
+<iframe height="550" style={{ width: '100%' }} scrolling="no" title="Untitled" src="https://codepen.io/USAMAWIZARD/embed/azoMqdq?default-tab=js&editable=true" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/USAMAWIZARD/pen/azoMqdq">
+  Untitled</a> by USAMA (<a href="https://codepen.io/USAMAWIZARD">@USAMAWIZARD</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
+
+## Create P2P Sample For Deployment
+
 - Create a new file , name it `peer.html`
 
 - make sure HTTP server is running in same directory
@@ -19,11 +42,73 @@ Let's see a simple example for joining a peer-to-peer live stream call with Ant 
   python3 -m http.server
   ```
 
-<iframe height="550" style={{ width: '100%' }} scrolling="no" title="Untitled" src="https://codepen.io/USAMAWIZARD/embed/azoMqdq?default-tab=js&editable=true" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
-  See the Pen <a href="https://codepen.io/USAMAWIZARD/pen/azoMqdq">
-  Untitled</a> by USAMA (<a href="https://codepen.io/USAMAWIZARD">@USAMAWIZARD</a>)
-  on <a href="https://codepen.io">CodePen</a>.
-</iframe>
+- Copy the above code from the HTML and JS sections in the `peer.html` file as below:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+
+<video id="localVideo" autoplay controls width=480px height=360px></video>
+<video id="remoteVideo" controls autoplay playsinline width="480" height="360"></video>
+<br/>
+<input type=text placeholder="p2p room id" id="roomid">
+<button id="joinroom">join</button>
+<br/>
+
+</body>
+
+<script type="module">
+import { WebRTCAdaptor } from './node_modules/@antmedia/webrtc_adaptor/src/main/js/webrtc_adaptor.js';
+
+var webRTCAdaptor = new WebRTCAdaptor({
+  websocket_url: "wss://test.antmedia.io:5443/live/websocket",
+	remoteVideoElement: document.getElementById("remoteVideo"),
+ 	localVideoElement: document.getElementById("localVideo"),
+
+  callback: (info, obj) => {
+     console.log("callback info: " + info);
+     if (info == "play_started") {
+        console.log("publish started");
+        statusInfo.innerHTML = "Playing - Stream Id:" + streamId; 
+     }
+     else if (info == "play_finished") {
+        console.log("publish finished")
+        statusInfo.innerHTML = "Offline"
+     }
+  },
+  
+});
+
+document.getElementById("joinroom").addEventListener("click",()=> {
+  var roomid = document.getElementById("roomid").value;
+  var status = document.getElementById("joinroom");
+  
+  if(status.innerHTML =="join"){
+    status.innerHTML  = "leave";
+    webRTCAdaptor.join(roomid);
+  }
+  else{
+    status.innerHTML  = "join";
+    webRTCAdaptor.stop(roomid);
+  }
+})
+
+</script>
+</html>
+```
+
+Open the peer.html page in the browser `http://localhost:8000/peer.html`  (make sure python server is up and running)
+
+- Accept microphone and camera usage permissions.
+
+- Click the join button.
+
+- Open the same page on a new tab and join from there. 
+
+If the stream does not start publishing / playing, open the developer console on the HTML page and check for any errors.
 
 ## WebRTCAdaptor
 
@@ -98,89 +183,3 @@ webRTCAdaptor.join(streamid)
 ```
 webRTCAdaptor.stop(streamid)
 ```
-
-
-### Running Code
-
-Copy the above code from the HTML and JS sections in the `peer.html` file as below:
-
-```
-<!DOCTYPE html>
-<html lang="en">
-<head>
-</head>
-<body>
-
-<video id="localVideo" autoplay controls width=480px height=360px></video>
-<video id="remoteVideo" controls autoplay playsinline width="480" height="360"></video>
-<br/>
-<input type=text placeholder="p2p room id" id="roomid">
-<button id="joinroom">join</button>
-<br/>
-
-</body>
-
-<script type="module">
-import { WebRTCAdaptor } from './node_modules/@antmedia/webrtc_adaptor/src/main/js/webrtc_adaptor.js';
-
-var webRTCAdaptor = new WebRTCAdaptor({
-  websocket_url: "wss://test.antmedia.io:5443/live/websocket",
-	remoteVideoElement: document.getElementById("remoteVideo"),
- 	localVideoElement: document.getElementById("localVideo"),
-
-  callback: (info, obj) => {
-     console.log("callback info: " + info);
-     if (info == "play_started") {
-        console.log("publish started");
-        statusInfo.innerHTML = "Playing - Stream Id:" + streamId; 
-     }
-     else if (info == "play_finished") {
-        console.log("publish finished")
-        statusInfo.innerHTML = "Offline"
-     }
-  },
-  
-});
-
-document.getElementById("joinroom").addEventListener("click",()=> {
-  var roomid = document.getElementById("roomid").value;
-  var status = document.getElementById("joinroom");
-  
-  if(status.innerHTML =="join"){
-    status.innerHTML  = "leave";
-    webRTCAdaptor.join(roomid);
-  }
-  else{
-    status.innerHTML  = "join";
-    webRTCAdaptor.stop(roomid);
-  }
-})
-
-</script>
-</html>
-```
-
-Open the peer.html page in the browser `http://localhost:8000/peer.html`  (make sure python server is up and running)
-
-- Accept microphone and camera usage permissions.
-
-- Click the join button.
-
-- Open the same page on a new tab and join from there. 
-
-If the stream does not start publishing / playing, open the developer console on the HTML page and check for any errors.
-
-### Running Code in Live Example
-
-- Navigate to the code section above on this page.
-
-- Comment import from directory and uncomment import from URL. It should look something like this.
-
-  ```
-  import {WebRTCAdaptor} from "https://cdn.skypack.dev/@antmedia/webrtc_adaptor@SNAPSHOT";
-  //import { WebRTCAdaptor } from './node_modules/@antmedia/webrtc_adaptor/src/main/js/webrtc_adaptor.js';
-  ```
-
-- Click the join button.
-
-- Open this page on a new tab and join from there. 
