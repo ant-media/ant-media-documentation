@@ -1,37 +1,87 @@
 ---
-title: JavaScript SDK
-description: Ant Media Server provides a WebSocket interface in publishing and playing WebRTC streams. In this document, you will learn the basics of WebRTC JavaScript SDK and JavaScript Error Callbacks.
-keywords: [JavaScript SDK, WebRTC JavaScript SDK, JavaScript Error Callbacks, Ant Media Server Documentation, Ant Media Server Tutorials]
+title: JavaScript SDK Usage
+description: JavaScript SDK Usage 
+keywords: [JavaScript SDK User Guide, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 3
 ---
 
-Ant Media Server provides a WebSocket interface in publishing and playing WebRTC streams. In this document, you will learn the basics of WebRTC JavaScript SDK and JavaScript Error Callbacks.
+Before moving forward with using WebRTC JavaScript SDK, we highly recommend using the sample project to get started with your application. It's good to know the dependencies and how it works in general.
+
+### Install @antmedia/webrtc_adaptor package from **[npm.js](https://www.npmjs.com/package/@antmedia/webrtc_adaptor)**
+
+    ```npm install @antmedia/webrtc_adaptor```
+
+    or 
+
+    ```yarn add @antmedia/webrtc_adaptor```
+
+**Imports and initialise the WebRTCAdaptor from JavaScript-SDK**
+
+```
+    import { WebRTCAdaptor } from '@antmedia/webrtc_adaptor';
+
+    const webRTCAdaptor = new WebRTCAdaptor({
+      websocket_url: "wss://your-domain.tld:5443/WebRTCAppEE/websocket",
+      mediaConstraints: {
+          video: true,
+          audio: true,
+      },
+      peerconnection_config: {
+          'iceServers': [{'urls': 'stun:stun1.l.google.com:19302'}]
+      },
+      sdp_constraints: {
+          OfferToReceiveAudio : false,
+          OfferToReceiveVideo : false,
+      },
+      localVideoId: "id-of-video-element", // <video id="id-of-video-element" autoplay muted></video>
+      bandwidth: int|string, // default is 900 kbps, string can be 'unlimited'
+      dataChannelEnabled: true|false, // enable or disable data channel
+      callback: (info, obj) => {}, // check info callbacks bellow
+      callbackError: function(error, message) {}, // check error callbacks bellow
+    });
+```
+
+In another part of your script:
+
+**Publish**
+
+```
+    // You can start streaming by calling the publish method
+    webRTCAdaptor.publish(streamId);
+```
+
+**Play**
+
+```
+    // You can start playing the stream by calling the play method
+    webRTCAdaptor.play(streamId);
+```
+
+### Tutorial for Creating Publish and Play Page using JS SDK
+
+- [publish page creation using JS SDK](https://antmedia.io/docs/guides/developing-antmedia-server/webrtc-publish-page-creation-tutorial/)
+
+- [play page creation using JS SDK](https://antmedia.io/docs/guides/developing-antmedia-server/webrtc-play-page-creation-tutorial/)
 
 ## WebRTCAdaptor methods
 
 ```WebRTCAdaptor``` object has the following methods:
 
-*   ```getUserMedia(mediaConstraints, audioConstraint)```: It's called to get access to audio and video sources in the browser.
-*   ```openScreen(audioConstraint, openCamera)```: It's called to access the screen sharing session.
-*   ```openStream(mediaConstraints)```: It's called to open screen, camera or audio resources.
-*   ```closeStream(streamId)```: It's called to close streams. If you want to stop peer connection, call stop(streamId).
-*   ```checkExtension()```: It's called to check chrome screen share extension is available. If exists it call callback with "screen\_share\_extension\_available".
-*   ```enableMicInMixedAudio(enable)```: It's called enable Microphone in Mixed Audio.
-*   ```publish(streamId, token)```: It's called to publish stream.
-*   ```joinRoom(roomName, streamId)```: It's called to Join Room function in N to N WebRTC Streaming.
-*   ```play(streamId, token, roomId)```: It's called when playing the stream in N to N WebRTC.
+*   ```openStream(mediaConstraints, streamId)```: It's called to open screen, camera or audio resources.
+*   ```closeStream()```: It's called to close streams. If you want to stop peer connection, call stop(streamId).
+*   ```publish(streamId, token, subscriberId, subscriberCode, streamName, mainTrack, metaData)```: It's called to publish stream.
+*   ```join(streamId)```: Called to join a peer-to-peer mode session as peer.
+*   ```joinRoom(roomName, streamId, mode)```: It's called to Join Room function in N to N WebRTC Streaming.
+*   ```play(streamId, token, roomId, enableTracks, subscriberId, subscriberCode, metaData)```: It's called when playing the stream in N to N WebRTC.
 *   ```stop(streamId)```: It's called to stop the stream.
-*   ```join(streamId)```: It's called to join the stream.
 *   ```leaveFromRoom(roomName)```: It's called to leave from the room.
 *   ```leave(streamId)```: It's called to leave the stream.
 *   ```getStreamInfo(streamId)```: It's called to return information about a stream.
-*   ```gotStream(stream)```: It's called to reassign stream values.
-*   ```switchVideoCapture(streamId)```: It's called for provide to switch video capture.
 *   ```switchDesktopCapture(streamId)```: It's called for switch desktop capture.
-*   ```switchVideoSource(streamId, mediaConstraints, onEndedCallback)```: It's called to switch video source.
+*   ```switchVideoCameraCapture(streamId, deviceId,onEndedCallback)```: It's called to switch video source.
 *   ```onTrack(event, streamId)```: It's called to track to peer connections.
 *   ```iceCandidateReceived(event, streamId)```: It's called for ice candidate messages received.
-*   ```initPeerConnection(streamId)```: It's called for starting Init peer connection.
+*   ```initPeerConnection(streamId, dataChannelMode)```: It's called for starting Init peer connection.
 *   ```closePeerConnection(streamId)```: It's called for close peer connection.
 *   ```signallingState(streamId)```: It's called to return signaling state.
 *   ```iceConnectionState(streamId)```: It's called to return Ice connection state.
@@ -40,15 +90,15 @@ Ant Media Server provides a WebSocket interface in publishing and playing WebRTC
 *   ```turnOnLocalCamera()```: It's called to turn on the local camera.
 *   ```muteLocalMic()```: It's called to mute local mic.
 *   ```unmuteLocalMic()```: It's called to unmute local mic. If there is audio it calls callbackError with "AudioAlreadyActive" parameter.
-*   ```takeConfiguration(idOfStream, configuration, typeOfConfiguration)```: It's called to take configuration.
+*   ```takeConfiguration(idOfStream, configuration, typeOfConfiguration, idMapping)```: It's called to take configuration.
 *   ```takeCandidate(idOfTheStream, tmpLabel, tmpCandidate)```: It's called to take candidate.
 *   ```addIceCandidate(streamId, candidate)```: It's called to add ice candidate.
 *   ```startPublishing(idOfStream)```: It's called to start Publishing.
 *   ```getVideoSender(streamId)```: It's called to get Video Sender. If we have multiple video tracks in coming versions, this method may cause some issues.
 *   ```changeBandwidth(bandwidth, streamId)```: It's called to change bandwidth is in kbps.
 *   ```getStats(streamId)```: It's called for return WebRTC stats.
-*   ```enableStats(streamId)```: It's called to enable stats, setting interval 5 sec.
-*   ```closeWebSocket(streamId)```: It's called to close WebSocket connection. After calling this function, create a new WebRTCAdaptor instance, don't use the same objectone. \* Because all streams are closed on the server side as well when WebSocket connection is closed.
+*   ```enableStats(streamId, periodMs)```: It's called to enable stats, setting interval 5 sec.
+*   ```closeWebSocket()```: It's called to close WebSocket connection. After calling this function, create a new WebRTCAdaptor instance, don't use the same objectone. \* Because all streams are closed on the server side as well when WebSocket connection is closed.
 
 This documentation is for developers who need to callbacks and their descriptions for WebRTC operations.
 
@@ -85,47 +135,3 @@ This documentation is for developers who need to callbacks and their description
 *   ```no_peer_associated_before```: This is peer to peer connection error definition. It is sent back to the user when there is no peer associated with the stream.
 *   ```notSetLocalDescription```: It is sent when the local description is not sent successfully.
 *   ```screen_share_permission_denied```: It is sent when the user does not allow screen share
-
-## Using the WebRTCAdaptor in your project as a Module
-
-In your project, run:
-
-```shell
-npm i @antmedia/webrtc_adaptor --save-dev
-```
-
-Then inside your javascript file initialize the WebRTCAdaptor.
-
-```js
-import { WebRTCAdaptor } from '@ant-media/webrtc_adaptor';
-
-const webRTCAdaptor = new WebRTCAdaptor({
-    websocket_url: "wss://your-domain.tld:5443/WebRTCAppEE/websocket",
-    mediaConstraints: {
-        video: true,
-        audio: true,
-    },
-    peerconnection_config: {
-        'iceServers': [{'urls': 'stun:stun1.l.google.com:19302'}]
-    },
-    sdp_constraints: {
-        OfferToReceiveAudio : false,
-        OfferToReceiveVideo : false,
-    },
-    localVideoId: "id-of-video-element", // `<video id="id-of-video-element" autoplay muted>``</video>`
-    bandwidth: int|string, // default is 900 kbps, string can be 'unlimited'
-    dataChannelEnabled: true|false, // enable or disable data channel
-    callback: (info, obj) =>` {}, // check info callbacks bellow
-    callbackError: function(error, message) {}, // check error callbacks bellow
-});
-
-// Then, in another part of your script, you can start streaming by calling the publish method
-webRTCAdaptor.publish(streamId, token, subscriberId, subscriberCode, streamName);
-```
-
-Above example taken from the [StreamApp repository](https://github.com/ant-media/StreamApp/blob/fb37558823769f3145be7a777343502ffd6793e4/src/main/webapp/samples/publish_webrtc.html#L509).
-
-### Tutorial for Creating Publish and Play Page using JS SDK
-- [play page creation using JS SDK](https://antmedia.io/docs/guides/developing-antmedia-server/webrtc-play-page-creation-tutorial/)
-- [publish page creation using JS SDK](https://antmedia.io/docs/guides/developing-antmedia-server/webrtc-publish-page-creation-tutorial/)
-
