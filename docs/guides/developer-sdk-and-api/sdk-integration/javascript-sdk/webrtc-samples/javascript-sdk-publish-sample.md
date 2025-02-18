@@ -7,6 +7,28 @@ sidebar_position: 1
 
 Let's start with a simple example for publishing a live stream to Ant Media using the JavaScript SDK.
 
+## WebRTC Publish Live Sample
+
+- Navigate to the code section above on this page.
+
+- Comment import from directory and uncomment import from URL. It should look something like this.
+
+  ```
+  import {WebRTCAdaptor} from "https://cdn.skypack.dev/@antmedia/webrtc_adaptor@SNAPSHOT";
+  //import { WebRTCAdaptor } from './node_modules/@antmedia/webrtc_adaptor/src/main/js/webrtc_adaptor.js';
+  ```
+ 
+- Click on the Result button; it will show a small webpage where you can see the output.
+
+<iframe height="550" style={{ width: '100%' }} scrolling="no" title="Quick WebRTC Publish  - Ant Media Server" src="https://codepen.io/USAMAWIZARD/embed/KwPEZKE?default-tab=js&editable=true" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/USAMAWIZARD/pen/KwPEZKE">
+  Quick WebRTC Publish  - Ant Media Server</a> by USAMA (<a href="https://codepen.io/USAMAWIZARD">@USAMAWIZARD</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
+
+
+## Create Publish Sample For Deployment
+
 - Create a new file , name it `publish.html`
 
 - make sure HTTP server is running in same directory
@@ -15,11 +37,66 @@ Let's start with a simple example for publishing a live stream to Ant Media usin
   python3 -m http.server
   ```
 
-<iframe height="550" style={{ width: '100%' }} scrolling="no" title="Quick WebRTC Publish  - Ant Media Server" src="https://codepen.io/USAMAWIZARD/embed/KwPEZKE?default-tab=js&editable=true" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
-  See the Pen <a href="https://codepen.io/USAMAWIZARD/pen/KwPEZKE">
-  Quick WebRTC Publish  - Ant Media Server</a> by USAMA (<a href="https://codepen.io/USAMAWIZARD">@USAMAWIZARD</a>)
-  on <a href="https://codepen.io">CodePen</a>.
-</iframe>
+- Copy the above code from the HTML and JS sections in the `publish.html` file as below:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+
+<video id="localVideo" autoplay controls width=480px height=360px></video>
+<br/>
+<button id="publish_start">Start Publishing</button>
+<button id="publish_stop">Stop Publishing</button>
+<br/>
+<p id="status_info">Offline</p>
+
+</body>
+
+<script type="module">
+import { WebRTCAdaptor } from './node_modules/@antmedia/webrtc_adaptor/src/main/js/webrtc_adaptor.js';
+
+var webRTCAdaptor = new WebRTCAdaptor({
+  websocket_url: "wss://test.antmedia.io:5443/live/websocket",
+	localVideoElement: document.getElementById("localVideo"),
+ 
+  callback: (info, obj) => {
+     console.log("callback info: " + info);
+     if (info == "publish_started") {
+        console.log("publish started");
+        statusInfo.innerHTML = "Broadcasting - Stream Id: " + streamId; 
+     }
+     else if (info == "publish_finished") {
+        console.log("publish finished")
+        statusInfo.innerHTML = "Offline"
+
+     }
+  },
+  
+});
+var streamId = "stream" + parseInt(Math.random()*999999);
+var statusInfo = document.getElementById("status_info");
+document.getElementById("publish_start").addEventListener("click",()=> {
+  webRTCAdaptor.publish(streamId)
+})
+
+document.getElementById("publish_stop").addEventListener("click",()=> {
+  webRTCAdaptor.stop(streamId)
+})
+</script>
+</html>
+```
+   
+ Open the publish.html page in the browser `http://localhost:8000/publish.html`  (make sure python server is up and running)
+
+ - Accept microphone and camera usage permissions.
+
+- Click the publish button.
+
+To verify whether the stream is published successfully or not, open the web panel of your Ant Media Server and view the stream there. If it does not work, open the developer console on the HTML page and check for any errors.
+
 
 ## WebRTCAdaptor
 
@@ -85,82 +162,3 @@ Messages & notifications sent from the server will be received in this callback.
   ```
   webRTCAdaptor.stop(streamid)
   ```
-
-
-### Running Code
-
-Copy the above code from the HTML and JS sections in the `publish.html` file as below:
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-</head>
-<body>
-
-<video id="localVideo" autoplay controls width=480px height=360px></video>
-<br/>
-<button id="publish_start">Start Publishing</button>
-<button id="publish_stop">Stop Publishing</button>
-<br/>
-<p id="status_info">Offline</p>
-
-</body>
-
-<script type="module">
-import { WebRTCAdaptor } from './node_modules/@antmedia/webrtc_adaptor/src/main/js/webrtc_adaptor.js';
-
-var webRTCAdaptor = new WebRTCAdaptor({
-  websocket_url: "wss://test.antmedia.io:5443/live/websocket",
-	localVideoElement: document.getElementById("localVideo"),
- 
-  callback: (info, obj) => {
-     console.log("callback info: " + info);
-     if (info == "publish_started") {
-        console.log("publish started");
-        statusInfo.innerHTML = "Broadcasting - Stream Id: " + streamId; 
-     }
-     else if (info == "publish_finished") {
-        console.log("publish finished")
-        statusInfo.innerHTML = "Offline"
-
-     }
-  },
-  
-});
-var streamId = "stream" + parseInt(Math.random()*999999);
-var statusInfo = document.getElementById("status_info");
-document.getElementById("publish_start").addEventListener("click",()=> {
-  webRTCAdaptor.publish(streamId)
-})
-
-document.getElementById("publish_stop").addEventListener("click",()=> {
-  webRTCAdaptor.stop(streamId)
-})
-</script>
-</html>
-```
-
-Open the publish.html page in the browser `http://localhost:8000/publish.html`  (make sure python server is up and running)
-
- - Accept microphone and camera usage permissions.
-
-- Click the publish button.
-
-To verify whether the stream is published successfully or not, open the web panel of your Ant Media Server and view the stream there. If it does not work, open the developer console on the HTML page and check for any errors.
-
-### Running Code in Live Example
-
-- Navigate to the code section above on this page.
-
-- Comment import from directory and uncomment import from URL. It should look something like this.
-
-  ```
-  import {WebRTCAdaptor} from "https://cdn.skypack.dev/@antmedia/webrtc_adaptor@SNAPSHOT";
-  //import { WebRTCAdaptor } from './node_modules/@antmedia/webrtc_adaptor/src/main/js/webrtc_adaptor.js';
-  ```
- 
-- Click on the Result button; it will show a small webpage where you can see the output.
-
-
-You can also quickly play the stream via an embedded player. Check [this document](https://antmedia.io/docs/guides/playing-live-stream/embedded-web-player/) for more details.
