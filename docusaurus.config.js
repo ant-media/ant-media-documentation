@@ -44,6 +44,7 @@ const config = {
       src: "https://us-js.zonka.co/679b6f226131b4000836e0bf", // External script URL
       async: true,
       defer: true,
+      crossOrigin: "use-credentials"
     },
     {
       // This will add the inline script
