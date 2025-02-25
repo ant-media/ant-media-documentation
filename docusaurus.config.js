@@ -47,7 +47,7 @@ const config = {
     },
     {
       // This will add the inline script
-      src: "/js/zfEmbed.js",  // Custom JavaScript file (you'll create this next)
+      src: "/zfEmbed.js",  // Custom JavaScript file (you'll create this next)
       async: true,
       defer: true,
     },
