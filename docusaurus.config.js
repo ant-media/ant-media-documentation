@@ -38,6 +38,21 @@ const config = {
   ],
   */
 
+
+  scripts: [
+    {
+      src: "https://us-js.zonka.co/679b6f226131b4000836e0bf", // External script URL
+      async: true,
+      defer: true,
+    },
+    {
+      // This will add the inline script
+      src: "/js/zfEmbed.js",  // Custom JavaScript file (you'll create this next)
+      async: true,
+      defer: true,
+    },
+  ],
+
   presets: [
     [
       '@docusaurus/preset-classic',
