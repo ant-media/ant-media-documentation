@@ -41,7 +41,7 @@ const config = {
 
   scripts: [
     {
-      src: "https://us-js.zonka.co/679b6f226131b4000836e0bf", // External script URL
+      src: "/js/zonka.js", // External script URL
       async: true,
       defer: true,
       crossOrigin: "use-credentials"
