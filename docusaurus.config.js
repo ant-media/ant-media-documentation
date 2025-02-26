@@ -39,19 +39,19 @@ const config = {
   */
 
 
-  scripts: [
+scripts: [
     {
-      src: "/js/zonka.js", // External script URL
+      src: "/js/zfEmbed.js", // Ensure this loads first
+      async: false, // Load it synchronously
+      defer: true,	    
+    },
+    {
+      src: "/js/zonka.js", // Load after zfEmbed.js
       async: true,
       defer: true,
     },
-    {
-      // This will add the inline script
-      src: "/js/zfEmbed.js",  // Custom JavaScript file (you'll create this next)
-      async: true,
-      defer: true,
-    },
-  ],
+],
+
 
   presets: [
     [
