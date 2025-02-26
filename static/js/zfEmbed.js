@@ -38,7 +38,7 @@ function _zf() {
           width: 260px !important;
           height: 40px !important;
           border-radius: 10px !important;
-          background-color:rgb(12, 13, 13) !important;
+          background-color: #1e1e1f !important;
           color:rgba(0, 0, 0, 0.1) !important;
           border: none !important;
           box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2) !important;
