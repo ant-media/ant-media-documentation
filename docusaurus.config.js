@@ -38,6 +38,20 @@ const config = {
   ],
   */
 
+
+scripts: [
+    {
+      src: "/js/zfEmbed.js", // Ensure this loads first
+      async: false, // Load it synchronously	    
+    },
+    {
+      src: "/js/zonka.js", // Load after zfEmbed.js
+      async: true,
+      defer: true,
+    },
+],
+
+
   presets: [
     [
       '@docusaurus/preset-classic',
