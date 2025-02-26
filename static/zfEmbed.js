@@ -52,3 +52,14 @@ function _zf() {
     const observer = new MutationObserver(() => {
       customizeFeedbackButton();
     });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+  }
+
+  // Apply styles as soon as DOM is ready
+  document.addEventListener("DOMContentLoaded", function() {
+    observeWidget();
+    customizeFeedbackButton(); // Apply immediately if already available
+  });
+
+})();
