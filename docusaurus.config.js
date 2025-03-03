@@ -38,6 +38,20 @@ const config = {
   ],
   */
 
+
+scripts: [
+    {
+      src: "/zfEmbed.js", // Ensure this loads first
+      async: false, // Load it synchronously	    
+    },
+    {
+      src: "/zonka.js", // Load after zfEmbed.js
+      async: true,
+      defer: true,
+    },
+],
+
+
   presets: [
     [
       '@docusaurus/preset-classic',
@@ -393,10 +407,6 @@ const config = {
 	{
           from: '/guides/advanced-usage/circle-component-usage/',
           to: '/guides/developing-antmedia-server/circle-component-usage/'
-        },
-	{
-          from: '/guides/developer-sdk-and-api/sdk-integration/webrtc-sdk/',
-          to: '/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/'
         },
 	{
           from: '/Glossary/',

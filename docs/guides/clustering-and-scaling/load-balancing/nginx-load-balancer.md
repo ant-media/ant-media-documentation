@@ -285,11 +285,12 @@ In that file, copy the following contents. Please change the content in curl bra
     
                 location / {
                     proxy_pass http://antmedia_origin;
-        	    	proxy_http_version 1.1;
+        	    	    proxy_http_version 1.1;
                     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
                     proxy_set_header Host $host;
                     proxy_set_header Upgrade $http_upgrade;
                     proxy_set_header Connection "Upgrade";
+                   proxy_set_header X-Forwarded-Proto https;
                 }
             }
         
@@ -306,12 +307,13 @@ In that file, copy the following contents. Please change the content in curl bra
                     proxy_pass http://antmedia_edge;
                     proxy_http_version 1.1;
                     proxy_connect_timeout 7d;
-            	proxy_send_timeout 7d;
-    		proxy_read_timeout 7d;
+                    proxy_send_timeout 7d;
+    		            proxy_read_timeout 7d;
                     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
                     proxy_set_header Host $host;
                     proxy_set_header Upgrade $http_upgrade;
                     proxy_set_header Connection "Upgrade";
+                    proxy_set_header X-Forwarded-Proto https;
                 }
             }
     
