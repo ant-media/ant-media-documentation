@@ -23,9 +23,13 @@ The JavaScript SDK is available for Ant Media Server and can be accessed via ```
 
 Its file location is ```/usr/local/antmedia/webapps/LiveApp/js/webrtc_adaptor.js``` and the source code is available [here](https://github.com/ant-media/StreamApp/blob/fb37558823769f3145be7a777343502ffd6793e4/src/main/webapp/samples/publish_webrtc.html#L509)
 
+Check out the [Java Script SDK documentation](https://antmedia.io/docs/category/javascript-sdk/) here for more details and implementation.
+
 ## Can I use Docker to deploy Ant Media Server?
 
-Yes. Utilizing a Docker image is a very common way of deploying Ant Media Server. Check the [Installation](https://antmedia.io/docs/guides/clustering-and-scaling/docker/docker-and-docker-compose-installation/) and the official Ant Media Server Docker images [here](https://hub.docker.com/u/antmedia)
+Yes, AMS can be deployed using the Docker.
+
+Utilizing a Docker image is a very common way of deploying Ant Media Server. Check the [Installation](https://antmedia.io/docs/guides/clustering-and-scaling/docker/docker-and-docker-compose-installation/) and the official Ant Media Server Docker images [here](https://hub.docker.com/u/antmedia).
 
 ## I cannot login to AMS dashboard after upgrading
 
@@ -36,11 +40,11 @@ Here are the steps:
 1.  Login to MongoDB
 2.  Run the commands below:
 
-```js
-use serverdb
-db.getCollection('User').find() //Get User details```
-db.User.updateOne({"_id": "5e978ef3c9e77c0001228040"}, {$set:{password: "md5Password"}}) //Use User ID in updateOne section and use password with MD5 protection
-```
+    ```js
+    use serverdb
+    db.getCollection('User').find() //Get User details```
+    db.User.updateOne({"_id": "5e978ef3c9e77c0001228040"},    {$set:{password: "md5Password"}}) //Use User ID in updateOne section and use password with MD5 protection 
+    ```
 
 ## How can I reset the admin password?
 
@@ -119,6 +123,7 @@ Note- For WebRTC, the default range is 50000-60000 in v2.4.3 & above. Before 2.4
 A 403 error usually indicates insufficient permissions or authentication issues when accessing the Ant Media REST APIs. Please refer to [this](https://antmedia.io/docs/guides/developer-sdk-and-api/rest-api-guide/securing-rest-apis/) guide for details on securing REST APIs and ensuring proper authentication.
 
 ## How can I prevent streams from stuttering when publishing in Ant Media Server?
+
 To prevent stuttering in streams, ensure your network bandwidth is stable and sufficient for the bitrate you're streaming. Additionaly, please adjust these settings on your encoders (like OBS and etc).
 - Avoid **B-frames (Must)**
 - Set the profile to **baseline** for better compatibility.
@@ -129,17 +134,20 @@ To prevent stuttering in streams, ensure your network bandwidth is stable and su
 ## How does adaptive bitrate work (ABR)?
 
 Ant Media Server dynamically measures the client's bandwidth and selects the most suitable video quality based on available adaptive bitrates.
+
 For example, if three bitrate options are available—2000Kbps, 1500Kbps, and 1000Kbps—and the client’s bandwidth is 1700Kbps, the server will automatically deliver the 1500Kbps stream to ensure smooth playback.
+
 Click [here](https://antmedia.io/docs/guides/adaptive-bitrate/adaptive-bitrate-streaming/) for more details on ABR. 
 
 ## How to configure auto-scaling and clustering with Ant Media Server?
 
 Please refer to the auto-scaling documentation [here](https://antmedia.io/docs/guides/clustering-and-scaling/scaling-ant-media-server/).
 
-## What is the difference between the LiveApp and the WebRTCAppEE?
-The primary difference between the two applications is their names. To enhance flexibility, Ant Media Server allows each application to have its own unique settings and configurations.
+## What is the difference between the LiveApp, WebRTCAppEE and live?
 
-The two default applications included with Ant Media Server let you run separate setups with different configurations, catering to different use cases. For example, one application can be configured to use H.264, while the other uses VP8.
+The primary difference between the three applications is their names. To enhance flexibility, Ant Media Server allows each application to have its own unique settings and configurations.
+
+The three default applications included with Ant Media Server let you run separate setups with different configurations, catering to different use cases. For example, one application can be configured to use H.264, while the other uses VP8.
 
 ## How can I improve WebRTC bitrate?
 
@@ -172,7 +180,7 @@ Here are the recommended resolutions and their corresponding bitrates:
 
 ## Does ultra-low latency streaming support adaptive bit rates?
 
-Yes. Ant Media Server provides ultra-low latency and adaptive bitrate support at the same time.
+Yes, Ant Media Server provides ultra-low latency and adaptive bitrate support at the same time.
 
 ## Does Ant Media Server have an Embedded SDK?
 
@@ -182,10 +190,9 @@ Yes. Ant Media Server Enterprise has a native Embedded SDK for ARM, x86 and x64 
 
 By default, MP4 recordings are saved in the streams folder within the respective web application's directory in Ant Media Server.
 
-If you want to store recordings in a different location, you can create a symbolic link (soft link) pointing to your desired folder. Use the following command:
-```
-ln -s {target_folder} {link_name}
-```
+If you want to store recordings in a different location, you can create a symbolic link (soft link) pointing to your desired folder. 
+
+Check out [**this document**](https://antmedia.io/docs/guides/recording-live-streams/mp4-and-webm-recording/#store-recordings-in-another-directory) for more details.
 
 ## How to use Self-Signed Certificate on Ant Media Server?
 
@@ -193,7 +200,7 @@ ln -s {target_folder} {link_name}
 
 For Ubuntu, you can install OpenSSL with the following command. Similarly, for CentOS, you can use **yum** to install it.
 
-```
+```bash
 apt-get update && apt-get install openssl -y
 ```
 
@@ -204,7 +211,7 @@ Use the below command to create a self-signed certificate.
 ams.crt = your certificate file  
 ams.key = your key file
 
-```
+```bash
 openssl req -newkey rsa:4096 -x509 -sha256 -days 3650 -nodes -out ams.crt -keyout ams.key
 ```
 
@@ -226,20 +233,24 @@ Email Address []: contact@antmedia.io
 
 The certificate and private key will be created at the specified location. Run the ```enable_ssl.sh``` script as shown below. Update "ams_server_ip" with your AMS IP address. 
 
-```
+```bash
 /usr/local/antmedia/enable_ssl.sh -f ams.crt -p ams.key -c ams.crt -d ams_server_ip
 ```
 
 #### Enable SSL locally
 
 If you're using a domain name in a local network, add the following entry to the ```/etc/hosts``` file:
+
 ```
 ams_server_ip domain.com
 ```
+
 After adding the domain, re-run the ```enable_ssl.sh``` script with the domain name:
+
 ```
 /usr/local/antmedia/enable_ssl.sh -f ams.crt -p ams.key -c ams.crt -d domain.com
 ```
+
 After running the final command with your domain name, SSL will be enabled for your Ant Media Server. This allows secure connections using HTTPS for the specified domain, ensuring that data transmission is encrypted. Make sure the server's domain is correctly mapped in the **/etc/hosts** file for local usage, and verify the SSL setup by accessing your server via the secure HTTPS protocol.
 
 ## How can I install a custom SSL by building a chain certificate?
@@ -249,15 +260,18 @@ Uploading your intermediate certificate along with your SSL certificate is cruci
 You can obtain the intermediate certificates from your certificate provider's website.
 
 The certificate chain should follow this order:
-```
+
+```bash
 Root Certificate
 Intermediate Certificate
 ```
+
 For example, for Comodo, you can combine the certificates using the following command:
-```
+
+```bash
 cat COMODORSAAddTrustCA.crt COMODORSADomainValidationSecureServerCA.crt AddTrustExternalCARoot.crt > chain.crt
 ```
-Now, your full chain certificate is stored in ```chain.crt```
+Now, your full chain certificate is stored in ```chain.crt```.
 
 ## How can I change the default HTTP port (5080)?
 
@@ -265,7 +279,7 @@ If you need to run Ant Media Server on a HTTP port that's not the default 5080, 
 
 Change the value of the ```http.port``` setting in the file located at ```/AMS-FOLDER/conf/red5.properties```. For example, to change the default port of ```5080``` to ```8080```, use the below setting.
 
-```conf
+```bash
 http.port=8080 // the value has been updated from 5080 to 8080
 ```
 
@@ -337,7 +351,7 @@ Use the below configuration to setup an Apache virtual host as a reverse proxy.
 
 First, build glibc 2.29.
 
-```
+```bash
 sudo apt install build-essential bison
 wget http://ftp.gnu.org/gnu/glibc/glibc-2.29.tar.gz
 tar -xf glibc-2.29.tar.gz
@@ -351,7 +365,7 @@ sudo make install
 
 Run the server as an init.d service.
 
-```
+```bash
 sudo systemctl stop antmedia
 sudo systemctl disable antmedia
 sudo rm /etc/systemd/system/antmedia.service
@@ -362,7 +376,7 @@ sudo update-rc.d antmedia enable
 
 Add LD\_PRELOAD to the init.d script.
 
-```
+```bash
 sudo nano /etc/init.d/antmedia 
 
 # ADD the following line before the line case "$1" in
@@ -372,7 +386,7 @@ export LD_PRELOAD="/opt/glibc-2.29/lib/libm.so.6"
 
 Save and exit the editor. Run the following commands.
 
-```
+```bash
 sudo systemctl daemon-reload
 sudo service antmedia stop
 sudo service antmedia start
@@ -387,7 +401,7 @@ Next.js is a server-side rendering React framework. To integrate Ant Media Serve
 
 2-When importing a component that uses WebRTCAdaptor or Web Player in a Next.js page or component, use dynamic import with SSR disabled.
 
-```
+```js
 import dynamic from "next/dynamic";
 const VideoPlayerComponent = dynamic(
    () => import("../videoplayer/VideoPlayerComponent"),
@@ -397,9 +411,3 @@ const VideoPlayerComponent = dynamic(
  );
 ```
 Now you shouldnt get any errors and SDK should work as expected.
-
-
- 
-
-
-
