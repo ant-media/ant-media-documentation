@@ -26,15 +26,15 @@ Ant Media Server Enterprise Edition is available on Google Cloud Marketplace.
 
 - Access the **[Google Cloud Marketplace](https://console.cloud.google.com/marketplace)** service and locate the **Ant Media Server Enterprise Edition**.
 
-![ams-gcp-marketplace](@/static/img/cdn-integration/ams-gcp-marketplace.webp)
+![ams-gcp-marketplace](@site/static/img/cdn-integration/ams-gcp-marketplace.webp)
 
 - Initiate the installation process by clicking the **Launch** button.
 
-![ams-gcp-launch](@/static/img/cdn-integration/ams-gcp-launch.webp)
+![ams-gcp-launch](@site/static/img/cdn-integration/ams-gcp-launch.webp)
 
 -   Note the **External IP address** upon completion; be used later.
 
-![ams-gcp-instance](@/static/img/cdn-integration/ams-gcp-instance.webp)
+![ams-gcp-instance](@site/static/img/cdn-integration/ams-gcp-instance.webp)
 
 ## Configure Google Cloud CDN
 
@@ -42,19 +42,19 @@ Now that we have successfully launched the Ant Media Server on the Google Cloud 
 
 - Navigate to the **Cloud CDN** service and select **ADD ORIGIN**.
 
-![gcp-cloud-cdn](@/static/img/cdn-integration/gcp-cloud-cdn.webp)
+![gcp-cloud-cdn](@site/static/img/cdn-integration/gcp-cloud-cdn.webp)
 
 - Choose the **Custom Origin** and input the **External IP address** of the Ant Media Server Enterprise instance with port **5080**. Specify the origin name and click Next.
 
-![cloud-cdn-origin-configuration](@/static/img/cdn-integration/cloud-cdn-origin-configuration.webp)
+![cloud-cdn-origin-configuration](@site/static/img/cdn-integration/cloud-cdn-origin-configuration.webp)
 
 - Select **Create new load balancer for me**, enter the load balancer name, and continue with Next.
 
-![cloud-cdn-load-balancer](@/static/img/cdn-integration/cloud-cdn-load-balancer.webp)
+![cloud-cdn-load-balancer](@site/static/img/cdn-integration/cloud-cdn-load-balancer.webp)
 
 - Configure **TTL settings**, leave the other settings to default, and click **Done** to finalize the installation.
 
-![cloud-cdn-cache-configuration](@/static/img/cdn-integration/cloud-cdn-cache-configuration.webp)
+![cloud-cdn-cache-configuration](@site/static/img/cdn-integration/cloud-cdn-cache-configuration.webp)
 
 ## Publish Live Stream with Ant Media Server
 
@@ -70,4 +70,4 @@ http://your_cloudcdn_load_balancer_ip_address/live/play.html?id=your_stream_Id&p
 
 Launch the URL in your browser to verify the stream playback, now distributed seamlessly via the CDN.
 
-![cloud-cdn-playback](@/static/img/cdn-integration/cloud-cdn-playback.webp)
+![cloud-cdn-playback](@site/static/img/cdn-integration/cloud-cdn-playback.webp)
