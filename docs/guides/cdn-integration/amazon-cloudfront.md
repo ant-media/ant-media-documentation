@@ -53,7 +53,6 @@ Now that we have fulfilled the prerequisites, let's configure CloudFront to deli
 - Choose Cache policy and origin request policy.
 - Click on Create Cache Policy & configure it as shown below.
   ![cache-policy-01](https://github.com/user-attachments/assets/89ed69cd-4d7c-4f7b-a0e0-f5e02b4efb26)
-
   ![cache-policy-02](https://github.com/user-attachments/assets/b11f53a9-85e9-4de6-b93c-40be361fb355)
 
 - After the policy is created, attach it to the `Cache policy`
