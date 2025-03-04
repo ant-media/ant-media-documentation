@@ -25,7 +25,7 @@ Before diving into configuration, make sure that you have met the prerequisites.
 - [HLS is enabled](https://antmedia.io/docs/guides/playing-live-stream/hls-playing/#enable-hls) for your Ant Media Server instance.
 - The [LL-HLS plugin](https://antmedia.io/docs/guides/playing-live-stream/ll-hls/#how-to-enable-ll-hls-in-ant-media-server) is installed if you want to play the streams with LL-HLS.
 
-## Configure Amazon CloudFront for HLS Delivery
+## Configure Amazon CloudFront Playback
 
 Now that we have fulfilled the prerequisites, let's configure CloudFront to deliver the Ant Media Server HLS stream.
 
@@ -35,7 +35,7 @@ Now that we have fulfilled the prerequisites, let's configure CloudFront to deli
 - Click Create Distribution.
   ![cloudFront-console](https://github.com/user-attachments/assets/d31380e5-fd0d-4776-96c4-f66be4e7212d)
 
-#### Origin
+#### Origin Configuration
 
 ![origin](https://github.com/user-attachments/assets/4483bda9-207e-4dd9-824e-7f696376ebf6)
 
@@ -63,6 +63,56 @@ Now that we have fulfilled the prerequisites, let's configure CloudFront to deli
 - Disable the Web Application Firewall (WAF) protection for the distribution.
   ![disable-waf](https://github.com/user-attachments/assets/a89e8863-27af-4630-b3ab-fed24c876393)
 
+Now, the distribution will be created and listed in the CloudFront console.
+
+### Configuring Error Pages
+
+- Click the distribution listed in the CloudFront console, then click the Error Pages tab. In this tab, click Create Custom Error Response.
+  ![error-pages](https://github.com/user-attachments/assets/533c17e0-4a72-4b1a-8f6b-43dd0d1ea402)
+
+- Select 404: Not Found as the HTTP Error Code, set the Error Caching Minimum TTL to 3 seconds, and click the Create button.
+  ![custom-error-response](https://github.com/user-attachments/assets/0d2641b8-3e0c-4f16-b722-f5c0307367ac)
+
+- Wait until the distribution is deployed. Once it is deployed, you can note your CloudFront Domain Name.
+
+  ![cloudfront](https://github.com/user-attachments/assets/424dfb36-02ca-4e39-871a-979bb938ce0d)
+
+## Publish Live Stream with Ant Media Server
+
+Now that we have everything set, let’s publish a live stream in Ant Media Server following the [Publish Live Stream instructions](https://antmedia.io/docs/category/publish-live-stream/) and note the **Stream Id**.
+
+- For this demo, we are going to [publish a RTMP stream](https://antmedia.io/docs/guides/publish-live-stream/rtmp/publish-with-obs/).
+
+## Play the Live Stream with HLS
+
+Create the HLS playback URL using your Amazon CloudFront in the below format:
+
+  ```js
+  http://your_cloud_front_domain_name/play.html?id=your_stream_id&playOrder=hls
+  ```
+
+  - Example: If the `streamId` is `stream01`, the CloudFront playback URL will be like:
+    ```js
+    http://d3m1pdd4lln4vj.cloudfront.net/play.html?id=stream01&playOrder=hls
+    ```
+
+    ![cloudfront-play](https://github.com/user-attachments/assets/c48f610b-e974-4d48-8746-4aefed6944e2)
+
+## Play the Live Stream with LL-HLS
+
+Create the LL-HLS playback URL using your Amazon CloudFront in the below format:
+
+  ```js
+  http://your_cloud_front_domain_name/play.html?id=your_stream_id&playOrder=ll-hls
+  ```
+
+  - Example: If the `streamId` is `stream001`, the CloudFront playback URL will be like:
+    ```js
+    http://d3m1pdd4lln4vj.cloudfront.net/play.html?id=stream001&playOrder=ll-hls
+    ```
+
+    ![ll-hls-play](https://github.com/user-attachments/assets/d6b637ea-b2cd-4e21-bfc3-632da88aaf1e)
 
 
 
+  
