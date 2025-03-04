@@ -66,10 +66,10 @@ Now, the distribution will be created and listed in the CloudFront console.
 
 ### Configuring Error Pages
 
-- Click the distribution listed in the CloudFront console, then click the Error Pages tab. In this tab, click Create Custom Error Response.
+- Click the distribution listed in the CloudFront console, then click the **Error Page**s tab. In this tab, click Create **Custom Error Response**.
   ![error-pages](https://github.com/user-attachments/assets/533c17e0-4a72-4b1a-8f6b-43dd0d1ea402)
 
-- Select 404: Not Found as the HTTP Error Code, set the Error Caching Minimum TTL to 3 seconds, and click the Create button.
+- **Select 404**: Not Found as the **HTTP Error Code**, set the **Error Caching Minimum TTL** to **3 seconds**, and click the Create button.
   ![custom-error-response](https://github.com/user-attachments/assets/0d2641b8-3e0c-4f16-b722-f5c0307367ac)
 
 - Wait until the distribution is deployed. Once it is deployed, you can note your CloudFront Domain Name.
