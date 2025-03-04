@@ -25,7 +25,7 @@ Before diving into configuration, make sure that you have met the prerequisites.
 - [HLS is enabled](https://antmedia.io/docs/guides/playing-live-stream/hls-playing/#enable-hls) for your Ant Media Server instance.
 - The [LL-HLS plugin](https://antmedia.io/docs/guides/playing-live-stream/ll-hls/#how-to-enable-ll-hls-in-ant-media-server) is installed if you want to play the streams with LL-HLS.
 
-## Configure Amazon CloudFront Playback
+## Configure Amazon CloudFront
 
 Now that we have fulfilled the prerequisites, let's configure CloudFront to deliver the Ant Media Server HLS stream.
 
