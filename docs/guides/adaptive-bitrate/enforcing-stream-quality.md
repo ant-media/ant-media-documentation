@@ -91,7 +91,7 @@ For example, if your HLS playlist has multiple qualities:
 You can enforce quality by explicitly requesting the URL:
 
 ```js
-https://your_server.com/appName/stream_name_360p.m3u8
+https://your_server.com:port/appName/streams/[streamid]_[quality].m3u8
 ```
 This ensures the player loads only specified quality instead of relying on adaptive selection.
 
