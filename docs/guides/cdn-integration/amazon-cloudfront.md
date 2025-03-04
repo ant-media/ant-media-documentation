@@ -27,7 +27,7 @@ Before diving into configuration, make sure that you have met the prerequisites.
 
 ## Configure Amazon CloudFront
 
-Now that we have fulfilled the prerequisites, let's configure CloudFront to deliver the Ant Media Server HLS stream.
+Now that we have fulfilled the prerequisites, let's configure CloudFront to deliver the Ant Media Server streams.
 
 ### Create Distribution
 
