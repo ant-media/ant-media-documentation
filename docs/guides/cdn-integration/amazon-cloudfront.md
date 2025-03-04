@@ -48,7 +48,7 @@ Now that we have fulfilled the prerequisites, let's configure CloudFront to deli
 - Fill the Default Cache Behavior Settings as shown below.
   ![default-cache](https://github.com/user-attachments/assets/21018812-c11d-4920-a6e9-7682689b3068)
 
-##### Cache key and origin requests
+##### Cache key and origin requests Configuration
 
 - Choose Cache policy and origin request policy.
 - Click on Create Cache Policy & configure it as shown below.
@@ -58,7 +58,7 @@ Now that we have fulfilled the prerequisites, let's configure CloudFront to deli
 
 - After the policy is created, attach it to the `Cache policy`
 
-#### Disable Web Application Firewall (WAF) settings
+#### Web Application Firewall (WAF) Configuration
 
 - Disable the Web Application Firewall (WAF) protection for the distribution.
   ![disable-waf](https://github.com/user-attachments/assets/a89e8863-27af-4630-b3ab-fed24c876393)
