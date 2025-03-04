@@ -43,7 +43,7 @@ Now that we have fulfilled the prerequisites, let's configure CloudFront to deli
 - **Protocol**: You can choose HTTP (5080) or HTTPS (5443). If you choose HTTPS, then [SSL should be enabled](https://antmedia.io/docs/guides/installing-on-linux/setting-up-ssl/).
 - **Origin path**: The name of your Ant Media Server [application](https://antmedia.io/docs/guides/developing-antmedia-server/create-new-application/). In this example, I'm using live.
 
-#### Default Cache Behavior
+#### Default Cache Behavior Configuration
 
 - Fill the Default Cache Behavior Settings as shown below.
   ![default-cache](https://github.com/user-attachments/assets/21018812-c11d-4920-a6e9-7682689b3068)
