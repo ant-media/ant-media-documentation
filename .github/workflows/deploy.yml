@@ -71,7 +71,10 @@ jobs:
       run: |
         ls -alh 
         find / -iname "docs.tar"
+        
+        ssh -o StrictHostKeyChecking=no -i /root/.ssh/id_rsa ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "find /home/antmedia.io/public_html/docs/ -type f -not -name "*.tar" -not -path "/home/antmedia.io/public_html/docs/.ssh/*" -exec rm {} \;" 
+        ssh -o StrictHostKeyChecking=no -i /root/.ssh/id_rsa ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "find /home/antmedia.io/public_html/docs/ -type d -empty -not -path "/home/antmedia.io/public_html/docs/.ssh*" -delete"
         scp -o StrictHostKeyChecking=no -i /root/.ssh/id_rsa -r docs.tar ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}":"
-        ssh -o StrictHostKeyChecking=no -i /root/.ssh/id_rsa ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "find /home/antmedia.io/public_html/docs/ -type f -not -name "*.tar" -not -path "/home/antmedia.io/public_html/docs/.ssh/*" -exec rm {} \; && tar -zxvf docs.tar && rm -rf docs.tar"
-
+        echo $pwd
+        ssh -o StrictHostKeyChecking=no -i /root/.ssh/id_rsa ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "tar -zxvf docs.tar"
 
