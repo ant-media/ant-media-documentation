@@ -234,11 +234,11 @@ scripts: [
         },
 	{
           from: '/v1/docs/how-to-enable-ip-filter-for-ant-media-servers-behind-load-balancer-in-aws/',
-          to: '/guides/clustering-and-scaling/aws/enabling-ip-filtering-behind-load-balancer-in-aws/'
+          to: '/guides/clustering-and-scaling/aws/aws-lb/enabling-ip-filtering-behind-load-balancer-in-aws/'
         },
 	{
           from: '/v1/docs/how-to-configure-rtmp-load-balancer-in-aws/',
-          to: '/guides/clustering-and-scaling/aws/configuring-rtmp-lb-in-aws/'
+          to: '/guides/clustering-and-scaling/aws/aws-lb/configuring-rtmp-lb-in-aws/'
         },
         {
           from: '/guides/developer-sdk-and-api/rest-api-guide/rest-api-guide/',
