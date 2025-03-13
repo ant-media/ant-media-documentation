@@ -130,15 +130,15 @@ scripts: [
         },
         {
           from: '/guides/developer-sdk-and-api/rest-api-guide/enabling-ip-filtering-behind-load-balancer-in-aws/',
-          to: '/guides/clustering-and-scaling/aws/enabling-ip-filtering-behind-load-balancer-in-aws/'
+          to: '/guides/clustering-and-scaling/aws/aws-lb/enabling-ip-filtering-behind-load-balancer-in-aws/'
         },
         {
           from: '/guides/clustering-and-scaling/aws/Configuring-RTMP-LB-in-AWS/',
-          to: '/guides/clustering-and-scaling/aws/configuring-rtmp-lb-in-aws/'
+          to: '/guides/clustering-and-scaling/aws/aws-lb/configuring-rtmp-lb-in-aws/'
         },
         {
           from: '/guides/clustering-and-scaling/aws/Scaling-at-AWS-ECS-Fargate/',
-          to: '/guides/clustering-and-scaling/aws/scaling-at-aws-ecs-fargate/'
+          to: '/guides/clustering-and-scaling/aws/aws-ecs/scaling-at-aws-ecs-fargate/'
         },
         {
           from: '/guides/playing-live-stream/HLS-Playing/',
