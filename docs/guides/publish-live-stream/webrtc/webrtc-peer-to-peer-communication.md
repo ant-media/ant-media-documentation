@@ -15,95 +15,20 @@ File is located under ```/usr/local/antmedia/webapps/LiveApp/peer.html```
 
 > WebRTC video Conference is available in the Enterprise Edition.
 
-## Implementation of Peer to Peer Communication
+## Navigate to the Peer Sample page
 
- Let’s proceed step by step for implementing a peer to peer call. Before starting the implementation, make sure that you've installed SSL to your Ant Media Server Enterprise Edition. If you haven’t got any domain for your Ant Media Server, you can get a free domain in [Freenom](https://www.freenom.com/).
+In the Enterprise Edition, go to 
+```https://your domain name:5443/WebRTCAppEE/peer.html```or
+```https://your domain name:5443/WebRTCApp/peer.html``` in the Community Edition.
 
-> Quick Link: [Learn How to Install SSL to your Ant Media Server](/guides/installing-on-linux/setting-up-ssl/)
+If you have Ant Media Server installed on your local machine, you can also go to ```http://localhost:5080/WebRTCAppEE/peer.html``` in the Enterprise Edition or ```http://localhost:5080/WebRTCApp/peer.html``` in the Community Edition.
 
-### Preparing the web page
+![](@site/static/img/publish-live-stream/WebRTC/WebRTC-publishing/WebRTC-peer.png)
 
-Please go to ```LiveApp``` application folder which is under ```/usr/local/antmedia/webapps/LiveApp``` and create a file named ```peer.html```.
+## Input the stream id
 
-![](@site/static/img/image-1645111368769.png)
+Input the Stream id and click join button.now open the same page in a new browser tab or any other machine and click join.Congratulations! You're now using WebRTC to connect in P2P Mode from your browser!
 
-Include JavaScript files to your page in the header as follows.
-
-```html
-<head>
-...
-<script src="https://webrtc.github.io/adapter/adapter-latest.js">``</script>`
-<script src="js/webrtc_adaptor.js">``</script>`
-...
-</head>
-```
-
-Include the following lines in your page body as follows.
-
-```html
-<body>
-...
-<video id="localVideo" autoplay muted width="480"></video>
-<video id="remoteVideo" autoplay controls width="480"></video>
-<br /> <br />
-<div class="input-group col-sm-offset-2 col-sm-8">
-<input type="text" class="form-control" value="stream1" id="streamName" placeholder="Type stream name"> <span class="input-group-btn">
-<button onclick="join()" class="btn btn-default" disabled id="join_button">Join</button>
-<button onclick="leave()" class="btn btn-default" disabled id="leave_button">Leave</button>
-</span>
-</div>
-<div style="padding:10px">
-<button onclick="turnOffLocalCamera()" class="btn btn-default"  >Turn off Camera</button>
-<button onclick="turnOnLocalCamera()" class="btn btn-default"  >Turn on Camera</button>
-
-<button onclick="muteLocalMic()" class="btn btn-default"  >Mute Local Mic</button>
-<button onclick="unmuteLocalMic()" class="btn btn-default"  >Unmute Local Mic</button>
-</div>
-...
-</body>
-```
-
-Include the following JavaScript code in your page. Please take a look at the full JS code at [peer.html](https://github.com/ant-media/StreamApp/blob/master/src/main/webapp/peer.html).
-
-```js
- <script>
-...
-Define Media Source variable, SDP variable and etc.
-
-Define websocketURL your URL.
-var websocketURL = "wss://domain-name.com:5443/WebRTCAppEE/websocket";
-
-var webRTCAdaptor = new WebRTCAdaptor({
-      websocket_url: websocketURL,
-      mediaConstraints: mediaConstraints,
-      peerconnection_config: pc_config,
-      sdp_constraints: sdpConstraints,
-      localVideoId: "localVideo",
-      remoteVideoId: "remoteVideo",
-      callback: function(info) {
-        if (info == "initialized") {
-          console.log("initialized");
-        }
-        else if (info == "joined") {
-          //joined the stream
-          console.log("joined");
-        }
-        else if (info == "leaved") {
-          //leaved the stream
-          console.log("leaved");
-        }
-      },
-      callbackError: function(error) {
-        //some of the possible errors, NotFoundError, SecurityError,PermissionDeniedError
-        
-        console.log("error callback: " + error);
-        alert(error);
-      }
-    });
-  
-...
-</script>
-```
 
 ### Joining a peer to peer communication
 

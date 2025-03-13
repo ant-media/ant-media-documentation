@@ -221,41 +221,14 @@ wss://SERVER_NAME:5443/WebRTCAppEE/websocket
 ```
 
 ## Conference WebRTC Stream
+Think of Conference room as this way , we will publish our video streams and we will play the videos of the remote participants, so essentially we will be using same publish and play functions , we normally use for publishing and plying streams.
 
-1. Peers connect to the Ant Media Server through WebSocket.   
+1. Participants connect to the Ant Media Server through WebSocket.
 ```
 wss://SERVER_NAME:5443/WebRTCAppEE/websocket
 ```
 
-2. The client sends the `joinRoom` JSON command to the server with the room name parameter.
-
-```json
-{
-  command : "joinRoom",
-  room : "room1",
-  streamId : "stream_id_you_want_to_use",
-  mode : "multitrack"
-}
-```
-- `roomName` is the `roomId` and it acts as `mainTrack`
-- `streamId` represents the desired `streamId` that the client wishes to use to publish his stream to the room and it is an optional field. If it is not sent, the server returns with a random `streamId` in the next message.
-- `mode` should be `multitrack`
-
-3. The server notifies the client of available streams in the room
-
-```json
-{
-  command : "notification",
-  definition : "joinedTheRoom",
-  room : "room1",
-  streamId : "unique_stream_id_returned_by_the_server"
-  streams: [ stream_id_1, stream_id_2, ...]
-}
-```
-- The `streamId` returned by the server is the stream id the client uses to publish the stream to the room.
-- `streams` is the JSON array that the client can play via WebRTC. The client can play each stream-by-play method above. This `streams` array can be empty if there is no stream in the room.
-
-4. The client publishes the stream with the `publish` command as we discussed in the publishing section above and these will be the same.
+2. The client publishes his stream with the `publish` command as we discussed in the publishing section above and these will be the same. mainTrack is the room name that client is publishing his stream to.
 
 ```json
 {
@@ -270,9 +243,8 @@ wss://SERVER_NAME:5443/WebRTCAppEE/websocket
   audio : "true",
 }
 ```
-- `mainTrack` and `roomId` are being used interchangeably for multitrack conferences. Soon, we'll change these to broadcasts and sub-tracks for better understanding and clarity.
 
-5. The client sends the `play` command to the server with `streamId` as the `roomId`
+3. The client sends the `play` command to the server with `streamId` as the `roomId`
 
 ```json
 {
@@ -287,46 +259,40 @@ wss://SERVER_NAME:5443/WebRTCAppEE/websocket
 }
 ```
 - We only play the `roomId` as this `mainTrack` has all the `subTracks` in the room and therefore it is not required to play each `streamId` separately.
-    
-6. The web app should pull the server periodically for the room info as follows
 
+- all the remote video tracks will be received in "newTrackAvailable" callback in WebRTCAdapter callback.Once the tracks are received they can then be played by application logic.
+
+4. When a client wants to leave the room they send the `stop` command to the server for both publish and play.
+
+stop publish our stream
 ```json
 {
-  command : "getRoomInfo",
-  room : "room1",
-  streamId: "unique_stream_id_returned_by_the_server",
+  command : "stop",
+  streamId : "stream1",
 }
 ```
 
-7. The server returns the active streams in the room as follows. The application should synchronize the players on their side.
-
+stop playing from room.
 ```json
 {
-  command: "roomInformation",
-  room: "room1",
-  streams: [
-    "stream1_in_the_room",
-    "stream2_in_the_room",
-    ...
-  ]
+  command : "stop",
+  streamId : "room1",
 }
 ```
 
-8. When a client wants to leave the room they send the `leaveFromRoom` command to the server.
-
-```json
-{
-  command : "leaveFromRoom",
-  room: "room1",
-}
-```
-
-9. The server responds with a `leavedFromRoom` message.
+9. The server responds with a `play_finished` or `publish_finished` message.
 
 ```json
 {
   command : "notification",
-  definition : "leavedFromRoom",
+  definition : "publish_finished",
+}
+```
+
+```json
+{
+  command : "notification",
+  definition : "play_finished",
 }
 ```
 

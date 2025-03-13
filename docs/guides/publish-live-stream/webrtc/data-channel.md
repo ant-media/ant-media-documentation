@@ -7,7 +7,7 @@ sidebar_position: 3
 
 # Using the data channel
 
-Data channel is another channel in WebRTC other than video and audio. In the data channel, you can send any kind of information to the other clients. Data channels can be utilized in various use cases including chat, control messages or file sharing. Ant Media Server provides a generic data channel infrastructure that can be used in all use cases.
+Data channel is another channel in WebRTC other than video and audio.Using data channel, you can send any kind of information to the other clients. Data channels can be utilized in various use cases including chat, control messages or file sharing. Ant Media Server provides a generic data channel mechanism that can be used in all use cases.
 
 ## Enabling the data channel
 
@@ -20,54 +20,46 @@ There are some data delivery options for data channels you can choose:
 *   **Nobody**: Only the publisher can send messages to the players and players cannot send messages.
 *   **Only publisher**: Player messages are only delivered to the publisher. Publisher messages are delivered to all players.
 *   **Publisher and all players:** Players' and publisher's messages are delivered to the publisher and all other players who are watching the stream and publisher.
+ 
+## Navigate to the data channel sample page
 
-## Sending and receiving messages with JavaScript
+In the Enterprise Edition, go to 
+```https://your domain name:5443/WebRTCAppEE/datachannel.html```or
+```https://your domain name:5443/WebRTCApp/datachannel.html``` in the Community Edition.
 
-Sending and receiving messages via data channels can be implemented using Ant Media Server Javascript SDK with less than 10 lines of code.
+If you have Ant Media Server installed on your local machine, you can also go to ```http://localhost:5080/WebRTCAppEE/datachannel.html``` in the Enterprise Edition or ```http://localhost:5080/WebRTCApp/datachannel.html``` in the Community Edition.
 
-### Sending a message
+Open the same page on another tab or another system and join with the same stream id there, Once you join from two or more tabs you can send message between peers.
 
-```sendData = function(streamId, message)``` function in ```webrtc_adaptor.js``` is used to send messages as shown in the following code: 
+![](@site/static/img/publish-live-stream/WebRTC/WebRTC-publishing/Datachannel-page.png)
 
-    webRTCAdaptor.sendData("stream1", "Hi!");
 
-Here is a screenshot of the sample page that you can try in WebRTC publishing:
+## Sending & receiving data with JavaScript SDK
 
-![](@site/static/img/image-1645113728234.png)
+For sending Datachannel message with JavaScript SDK sendData function can be used you can send either text messages or even Binary Data using ArrayBuffer or Blob.this functiontakes parameter as streamId and data.
 
-### Receiving a message
+```sendData(streamId, data);```
 
-In order to receive a message, just add the following callback for WebRTCAdaptor.
+`data_received` callback will be received, in WebRTCAdapter whenever we receive a datachannel message for connected stream id.
 
-```js
-  callback : function(info, description) {
-  
-    if (info == "data_channel_opened") {
-  
-        console.log("data channel is open");
-  
-    }
-    else if (info == "data_received") {
-  
-        console.log("Message received ", description.data );
-  
-        handleData(description);
-    }
-  
-    else if (info == "data_channel_error") {
-  
-        handleError(description);
-  
-    } else if (info == "data_channel_closed") {
-  
-        console.log("Data channel closed " );
-    }
 ```
-![](@site/static/img/image-1645113777763.png)
 
-  
+callback: function (info, obj) {
+    if (info == "data_received") {
+      var data = obj.data;
 
-Basic sample for sending and receiving messages through data channel is available in WebRTC Publishing and Playing pages as shown above.
+      if (data instanceof ArrayBuffer) {
+        handleImageData(data);
+      } else if (data instanceof Blob) {
+        data.arrayBuffer().then((buffer) => handleImageData(buffer));
+      } else {
+        handleTextMessage(data);
+      }
+    } else {
+      console.log(info + " notification received");
+    }
+}
+```
 
 ## Sending & receiving data with Android SDK
 
@@ -107,10 +99,8 @@ Exchanging data through WebRTC data channels is also straightforward with AMS An
 this.getIntent().putExtra(EXTRA_DATA_CHANNEL_ENABLED, true);
 
 //Set your Data Channel observer in the WebRTCClient 
-webRTCClient.setDataChannelObserver(this);
+webRTCClient.setDataChannelObserver(IDataChannelObserver setDataChannelObserver);
 
-//Init the WebRTCClient
-webRTCClient.init(SERVER_URL, streamId, webRTCMode, tokenId, this.getIntent());
 ```
 
 ### Sending data
