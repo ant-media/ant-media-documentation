@@ -2,7 +2,7 @@
 title: Configuring RTMP LB in AWS 
 description: Configuring RTMP LB in AWS
 keywords: [Configuring RTMP LB in AWS, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 2
+sidebar_position: 1
 ---
 
 # Configuring RTMP LB in AWS
