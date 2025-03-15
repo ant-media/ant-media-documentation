@@ -1,8 +1,8 @@
 ---
 title: Scale AMS on AWS using Self-Hosted license
-description: Scale AMS on AWS with AWS CloudFormation using self-hosted license
+description: Scale AMS on AWS using self-hosted license
 keywords: [Scale AMS with AWS CloudFormation, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 12
+sidebar_position: 6
 ---
 
 # Scale AMS with AWS CloudFormation using Self-Hosted license
