@@ -9,6 +9,8 @@ sidebar_position: 2
 
 Ant Media Server (AMS) has the ability to force stream quality. In this guide, you'll learn what it is, how it works, and how to benefit from the stream quality feature.
 
+The client-side viewer can enforce a resolution it would like to get. Keep in mind that if you request a quality with a bitrate higher than the client's bandwidth, you may see some packet drops or pixelations.
+
 ## How does the adaptive bitrate work?
 
 Ant Media Server measures the viewers' internet speed and sends the best quality according to the internet speed of the viewer.
@@ -26,10 +28,6 @@ Example:
 The adaptive bitrate feature makes sure that the end user only gets what the server is sending out.
 
 You can learn more about the adaptive bitrate in the previous document.
-
-## Enforce Stream Quality
-
-The client-side viewer can enforce a resolution it would like to get. Keep in mind that if you request a quality with a bitrate higher than the client's bandwidth, you may see some packet drops or pixelations.
 
 ## Enforce Quality in WebRTC
 
