@@ -123,7 +123,7 @@ Check out **[here](https://antmedia.io/docs/guides/playing-live-stream/ll-hls/)*
 Here is the LL-HLS URL format for specific bitrate and resolution:
 
 ```
-https://domain:port/live/streams/ll-hls/streamId/480/streamId__lowlatency.m3u8
+https://domain:port/AppName/streams/ll-hls/streamId/resolution/streamId__lowlatency.m3u8
 ```
 
 For example:
