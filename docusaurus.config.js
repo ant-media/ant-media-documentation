@@ -41,11 +41,11 @@ const config = {
 
 scripts: [
     {
-      src: "/zfEmbed.js", // Ensure this loads first
+      src: "/docs/zfEmbed.js", // Ensure this loads first
       async: false, // Load it synchronously	    
     },
     {
-      src: "/zonka.js", // Load after zfEmbed.js
+      src: "/docs/zonka.js", // Load after zfEmbed.js
       async: true,
       defer: true,
     },
@@ -130,15 +130,15 @@ scripts: [
         },
         {
           from: '/guides/developer-sdk-and-api/rest-api-guide/enabling-ip-filtering-behind-load-balancer-in-aws/',
-          to: '/guides/clustering-and-scaling/aws/enabling-ip-filtering-behind-load-balancer-in-aws/'
+          to: '/guides/clustering-and-scaling/aws/aws-lb/enabling-ip-filtering-behind-load-balancer-in-aws/'
         },
         {
           from: '/guides/clustering-and-scaling/aws/Configuring-RTMP-LB-in-AWS/',
-          to: '/guides/clustering-and-scaling/aws/configuring-rtmp-lb-in-aws/'
+          to: '/guides/clustering-and-scaling/aws/aws-lb/configuring-rtmp-lb-in-aws/'
         },
         {
           from: '/guides/clustering-and-scaling/aws/Scaling-at-AWS-ECS-Fargate/',
-          to: '/guides/clustering-and-scaling/aws/scaling-at-aws-ecs-fargate/'
+          to: '/guides/clustering-and-scaling/aws/aws-ecs/scaling-at-aws-ecs-fargate/'
         },
         {
           from: '/guides/playing-live-stream/HLS-Playing/',
@@ -234,11 +234,11 @@ scripts: [
         },
 	{
           from: '/v1/docs/how-to-enable-ip-filter-for-ant-media-servers-behind-load-balancer-in-aws/',
-          to: '/guides/clustering-and-scaling/aws/enabling-ip-filtering-behind-load-balancer-in-aws/'
+          to: '/guides/clustering-and-scaling/aws/aws-lb/enabling-ip-filtering-behind-load-balancer-in-aws/'
         },
 	{
           from: '/v1/docs/how-to-configure-rtmp-load-balancer-in-aws/',
-          to: '/guides/clustering-and-scaling/aws/configuring-rtmp-lb-in-aws/'
+          to: '/guides/clustering-and-scaling/aws/aws-lb/configuring-rtmp-lb-in-aws/'
         },
         {
           from: '/guides/developer-sdk-and-api/rest-api-guide/rest-api-guide/',
