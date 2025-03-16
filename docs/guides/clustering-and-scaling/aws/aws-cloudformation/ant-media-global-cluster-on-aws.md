@@ -2,7 +2,7 @@
 title: Deploy Ant Media Server Global Cluster On AWS 
 description: Deploy Ant Media Server Global Cluster On AWS
 keywords: [AMS Global Cluster on AWS, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 1
+sidebar_position: 3
 ---
 
 # Ant Media Server Global Cluster
