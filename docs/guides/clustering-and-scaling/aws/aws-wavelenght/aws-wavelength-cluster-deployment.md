@@ -2,7 +2,7 @@
 title: AWS Wavelength Cluster Deployment 
 description: AWS Wavelength Cluster Deployment
 keywords: [AWS Wavelength Cluster Deployment, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 1
+sidebar_position: 3
 ---
 
 # AWS Wavelength Cluster Deployment
