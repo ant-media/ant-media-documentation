@@ -1,11 +1,11 @@
 ---
-title: Enable IP filter behind AWS load balancer 
-description: Enabling IP filtering behind a load balancer in AWS
+title: Enable IP Filter Behind AWS Load Balancer 
+description: Enable IP filter behind AWS Load Balancer
 keywords: [Load Balancer, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 2
 ---
 
-# Enabling IP filtering behind a load balancer in AWS
+# Enable IP Filter Behind AWS Load Balancer
 
 This document explains how to enable IP filter for Ant Media Server behind a load balancer in AWS. Follow the instructions below.
 
