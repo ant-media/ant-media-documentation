@@ -14,8 +14,8 @@ Nginx started out as an open-source web server designed for maximum performance 
 
 #### Prerequisites
 
-- One server with Ubuntu 20.04 installed for Nginx Load Balancer.
-- One server with Ubuntu 20.04 installed for MongoDB Server (Optional).
+- One server with Ubuntu 24.04 installed for Nginx Load Balancer.
+- One server with Ubuntu 24.04 installed for MongoDB Server (Optional).
 
 > This document is compatible with all Debian-based OS (Debian, Ubuntu, etc.)
 
@@ -231,6 +231,7 @@ In that file, copy the following contents. Please change the content in curl bra
     
     
         sendfile on;
+        client_max_body_size 250M;
         tcp_nopush on;
         tcp_nodelay on;
         server_tokens off;
