@@ -70,4 +70,6 @@ webRTCAdaptor.forceStreamQuality("{your_stream_Id}",  {the_resolution_to_be_forc
 
 There is a working sample in player.html as shown below. When you choose a resolution, it'll force the quality. You can select the resolution, as you can see from the screenshot below.
 
-![](@site/static/img/92497488-14bcdf00-f202-11ea-9790-b9afcbe0f456.png)In the example above, ```240p``` is selected, and the bitrate is ```500000```.
+![](@site/static/img/adaptive-streaming/stream-quality.webp)
+
+In the example above, ```240p``` is selected, and the bitrate is ```500000```.
