@@ -15,12 +15,13 @@ Adaptive Bitrate Streaming (ABR) enables Ant Media Server to automatically adjus
 
 Internet users have varying connection speeds, from fast broadband to congested mobile networks. Without ABR, viewers with limited bandwidth may suffer from long buffering times, playback interruptions, or inability to watch your streams at all.
 
+![](@site/static/img/buffering.jpg)
+
 With ABR:
 - Viewers always get the best possible quality for their network.
 - Automatic switching happens behind the scenes, improving engagement and reducing viewer drop-off.
 - Smooth playback is ensured even during network fluctuations.
 
-![](@site/static/img/buffering.jpg)
 ![](@site/static/img/AP658325161480_131.jpg)
 
 ---
@@ -43,6 +44,12 @@ Ant Media Server supports ABR for both **WebRTC** and **HLS** streaming:
 ### Recommended: Use REST API (No Restart Required)
 
 Modern ABR configuration is done directly through Ant Media Server’s REST API. This eliminates the need for manual file edits or server restarts.
+
+### From the dashboard
+
+You can enable ABR from your Ant Media application settings:
+
+![](@site/static/adaptive-streaming/dashboardABR.png)
 
 ### Broadcast-Level ABR Configuration
 
