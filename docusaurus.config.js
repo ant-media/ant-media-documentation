@@ -38,6 +38,20 @@ const config = {
   ],
   */
 
+
+scripts: [
+    {
+      src: "/docs/zfEmbed.js", // Ensure this loads first
+      async: false, // Load it synchronously	    
+    },
+    {
+      src: "/docs/zonka.js", // Load after zfEmbed.js
+      async: true,
+      defer: true,
+    },
+],
+
+
   presets: [
     [
       '@docusaurus/preset-classic',
@@ -51,6 +65,19 @@ const config = {
           // Remove this to remove the "edit this page" links.
           // editUrl: 'https://github.com/facebook/docusaurus/edit/main/website/',
           editUrl: 'https://github.com/ant-media/ant-media-documentation/edit/master/',
+          lastVersion: 'current',
+          versions: {
+            'current': {
+              label: '2.12', // Customize the label for the current (unversioned) docs
+              path: '', // Leave empty to use the root URL for the latest version
+              banner: 'none',
+            },
+            '2.11.3': {
+              label: '2.11', // Customize the label for the current (unversioned) docs
+              path: 'version-2.11.3', // Leave empty to use the root URL for the latest version
+              banner: 'none',
+              }
+          },
         },
         blog: false,
         theme: {
@@ -103,15 +130,15 @@ const config = {
         },
         {
           from: '/guides/developer-sdk-and-api/rest-api-guide/enabling-ip-filtering-behind-load-balancer-in-aws/',
-          to: '/guides/clustering-and-scaling/aws/enabling-ip-filtering-behind-load-balancer-in-aws/'
+          to: '/guides/clustering-and-scaling/aws/aws-lb/enabling-ip-filtering-behind-load-balancer-in-aws/'
         },
         {
           from: '/guides/clustering-and-scaling/aws/Configuring-RTMP-LB-in-AWS/',
-          to: '/guides/clustering-and-scaling/aws/configuring-rtmp-lb-in-aws/'
+          to: '/guides/clustering-and-scaling/aws/aws-lb/configuring-rtmp-lb-in-aws/'
         },
         {
           from: '/guides/clustering-and-scaling/aws/Scaling-at-AWS-ECS-Fargate/',
-          to: '/guides/clustering-and-scaling/aws/scaling-at-aws-ecs-fargate/'
+          to: '/guides/clustering-and-scaling/aws/aws-ecs/scaling-at-aws-ecs-fargate/'
         },
         {
           from: '/guides/playing-live-stream/HLS-Playing/',
@@ -158,12 +185,8 @@ const config = {
           to: '/guides/monitoring/monitoring-ams-with-grafana/'
         },
 	{
-          from: '/guides/publish-live-stream/webrtc-peer-to-peer-communication/',
-          to: '/guides/publish-live-stream/webrtc/webrtc-peer-to-peer-communication/'
-        },
-	{
           from: '/v1/docs/amazon-aws-s3-integration/',
-          to: '/category/s3-recording-and-integration/'
+          to: '/category/recording-live-streams/'
         },
 	{
           from: '/guides/developer-sdk-and-api/rest-api-guide/stream-security/',
@@ -179,7 +202,7 @@ const config = {
         },
 	{
           from: '/guides/playing-live-stream/webrtc-conference-call/',
-          to: '/guides/publish-live-stream/webrtc/webrtc-conference-call/'
+          to: '/guides/publish-live-stream/webrtc/webrtc-conference-call/',
         },
 	{
           from: '/guides/configuration-and-testing/load-testing/',
@@ -211,11 +234,11 @@ const config = {
         },
 	{
           from: '/v1/docs/how-to-enable-ip-filter-for-ant-media-servers-behind-load-balancer-in-aws/',
-          to: '/guides/clustering-and-scaling/aws/enabling-ip-filtering-behind-load-balancer-in-aws/'
+          to: '/guides/clustering-and-scaling/aws/aws-lb/enabling-ip-filtering-behind-load-balancer-in-aws/'
         },
 	{
           from: '/v1/docs/how-to-configure-rtmp-load-balancer-in-aws/',
-          to: '/guides/clustering-and-scaling/aws/configuring-rtmp-lb-in-aws/'
+          to: '/guides/clustering-and-scaling/aws/aws-lb/configuring-rtmp-lb-in-aws/'
         },
         {
           from: '/guides/developer-sdk-and-api/rest-api-guide/rest-api-guide/',
@@ -241,7 +264,203 @@ const config = {
           from: '/category/stream-security/webhook-stream-authorization',
           to: '/guides/stream-security/webhook-stream-authorization/'
         },
-
+        {
+          from: '/get-started/enterprise-and-community-edition/',
+          to: '/quick-start/'
+        },
+	{
+          from: '/guides/recording-live-streams/s3-integration-http-forwarding/',
+          to: '/category/s3-recording-and-integration/'
+        },
+	{
+          from: '/category/rtmps/',
+          to: '/guides/publish-live-stream/rtmp/rtmps/'
+        },
+	{
+          from: '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/',
+          to: '/category/react-native-sdk/'
+        },
+	{
+          from: '/guides/recording-live-streams/',
+          to: '/category/recording-live-streams/'
+        },
+	{
+          from: '/guides/clustering-and-scaling/load-balancing/load-balancer-with-haproxy-ssl-termination/',
+          to: '/guides/clustering-and-scaling/load-balancing/haproxy-load-balancer/'
+        },
+	{
+          from: '/guides/advanced-usage/webhook-stream-authorization/',
+          to: '/guides/stream-security/webhook-stream-authorization/'
+        },
+	{
+          from: '/category/turn--stun-installation/',
+          to: '/category/turn-server-installation/'
+        },
+	{
+          from: '/guides/advanced-usage/turn-and-stun-installation/setting-up-turn-using-coturn/',
+          to: '/category/turn-server-installation/'
+        },
+	{
+          from: '/guides/publish-live-stream/introduction/',
+          to: '/category/publish-live-stream/'
+        },
+	{
+          from: '/guides/playing-live-stream/Embedded-Web-Player/',
+          to: '/guides/developer-sdk-and-api/sdk-integration/embedded-sdk-guide/'
+        },
+	{
+          from: '/guides/developer-sdk-and-api/sdk-integration/Unity-SDK/',
+          to: '/guides/developer-sdk-and-api/sdk-integration/unity-sdk/'
+        },
+	{
+          from: '/category/monitoring-ant-media-instance/',
+          to: '/category/monitoring-solutions/'
+        },
+	{
+          from: '/guides/upgrading-ant-media-server/',
+          to: '/guides/installing-on-linux/upgrading-ant-media-server/'
+        },
+	{
+          from: '/guides/publish-live-stream/Recording-live-streams/',
+          to: '/category/recording-live-streams/'
+        },
+	{
+          from: '/guides/publish-live-stream/WebRTC-WebSocket-Messaging-Reference/',
+          to: '/guides/publish-live-stream/webrtc/webrtc-websocket-messaging-reference/'
+        },
+	{
+          from: '/guides/developer-sdk-and-api/sdk-integration/iOS-SDK/',
+          to: '/category/ios-sdk/'
+        },
+	{
+          from: '/guides/playing-live-stream/WebRTC-Playing/',
+          to: '/guides/playing-live-stream/webrtc-playback/'
+        },
+	{
+          from: '/guides/installing-on-linux/Setting-up-SSL/',
+          to: '/guides/installing-on-linux/setting-up-ssl/'
+        },
+	{
+          from: '/Frequently-Asked-Questions/',
+          to: '/faq/'
+        },
+	{
+          from: '/guides/advanced-usage/building-ams-from-source-code/',
+          to: '/guides/developing-antmedia-server/building-ams-from-source-code/'
+        },
+	{
+          from: '/old-front-page/',
+          to: '/quick-start/'
+        },
+	{
+          from: '/guides/publish-live-stream/WebRTC/',
+          to: '/guides/publish-live-stream/webrtc/'
+        },
+	{
+          from: '/get-started/Security-and-privacy/',
+          to: '/get-started/security-and-privacy/'
+        },
+	{
+          from: '/guides/publish-live-stream/user-defined-scripts/',
+          to: '/guides/recording-live-streams/user-defined-scripts/'
+        },
+	{
+          from: '/get-started/introduction/',
+          to: '/'
+        },
+	{
+          from: '/guides/clustering-and-scaling/Kubernetes/Preparation-of-Kubernetes-Environment-for-AMS-Deployment/',
+          to: '/guides/clustering-and-scaling/kubernetes/prepare-environment-to-deploy-ams-at-kubernetes/'
+        },
+	{
+          from: '/ant-media-server-administration-guide/',
+          to: '/get-started/user-management/'
+        },
+	{
+          from: '/edge-server-configuration-guide/',
+          to: '/guides/clustering-and-scaling/manual-configuration/cluster-installation/'
+        },
+	{
+          from: '/guides/advanced-usage/Using-Intel-Quick-Sync/',
+          to: '/guides/advanced-usage/using-intel-quick-sync/'
+        },
+	{
+          from: '/guides/developer-sdk-and-api/rest-api-guide/REST-API-examples/',
+          to: '/guides/developer-sdk-and-api/rest-api-guide/rest-apis-examples/'
+        },
+	{
+          from: '/guides/advanced-usage/WebRTC-codecs/',
+          to: '/guides/configuration-and-testing/video-codecs/'
+        },
+	{
+          from: '/guides/advanced-usage/webrtc-play-page-creation-tutorial/',
+          to: '/guides/developing-antmedia-server/webrtc-play-page-creation-tutorial/'
+        },
+	{
+          from: '/get-started/User-Management/',
+          to: '/get-started/user-management/'
+        },
+	{
+          from: '/guides/advanced-usage/using-nvidia-hardware-based-encoder-on-docker/',
+          to: '/guides/clustering-and-scaling/docker/using-nvidia-hardware-based-encoder-on-docker/'
+        },
+	{
+          from: '/guides/advanced-usage/circle-component-usage/',
+          to: '/guides/developing-antmedia-server/circle-component-usage/'
+        },
+	{
+          from: '/Glossary/',
+          to: '/streaming-glossary/'
+        },
+	{
+          from: '/guides/configuration-and-testing/AMS-application-configuration/',
+          to: '/guides/configuration-and-testing/ams-application-configuration/'
+        },
+	{
+          from: '/guides/advanced-usage/Plugins-for-Ant-Media-Server/',
+          to: '/guides/developing-antmedia-server/plugins-for-ant-media-server/'
+        },
+	{
+          from: '/guides/publish-live-stream/webrtc-peer-to-peer-communication/',
+          to: '/guides/publish-live-stream/webrtc/webrtc-peer-to-peer-communication/',
+        },
+	{
+          from: '/guides/advanced-usage/webrtc-codecs/',
+          to: '/guides/configuration-and-testing/video-codecs/',
+        },
+	{
+          from: [
+            '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/react-native-p2p-sample/',
+            '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/react-native-conference-sample/',
+            '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/react-native-play-sample/',
+	    '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/react-native-data-channel-sample/',
+            '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/react-native-publish-sample/'
+          ],
+          to: '/category/webrtc-samples/'
+        },
+	{
+          from: [
+	    '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/download-react-native-samples/',
+	    '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/react-native-pre-requisite/'
+	  ],
+          to: '/category/getting-started/'
+        },
+	{
+          from: '/guides/publish-live-stream/ip-cameras-and-external-resources/',
+          to: '/category/ip-camera--stream-sources/',
+        },
+	{
+          from: '/guides/advanced-usage/hls-aes-encryption/',
+          to: '/guides/playing-live-stream/hls-playing/',
+        },
+	{
+          from: '/guides/advanced-usage/stream-quality-filtering/',
+          to: '/guides/configuration-and-testing/ams-application-configuration/',
+        },
+	{
+          from: '/guides/configuration-and-testing/decreasing-boot-time/',
+          to: '/category/configuration--testing/',
+        },
       ],
     },
   ], /*
@@ -267,6 +486,12 @@ const config = {
           srcDark: 'img/Ant-Media-Logo-light.png',
         },
         items: [
+          {
+            type: 'docsVersionDropdown',
+            position: 'right',
+            dropdownActiveClassDisabled: false,
+          },
+
           {
             type: 'doc',
             docId: 'introduction',

@@ -5,28 +5,84 @@ keywords: [React Native SDK User Guide, Ant Media Server Documentation, Ant Medi
 sidebar_position: 2
 ---
 
-Ant Media WebRTC React Native samples are free to download. You can access them through this [link on Github](https://github.com/ant-media/WebRTC-React-Native-SDK).
+## Download React Native WebRTC Sample Project
+Ant Media WebRTC React Native samples are available for free download on GitHub. You can access the repository through the link below:
 
-After downloading the whole project, you can see all samples of the React Native project in the `example/src` folder.
- 
-### Install dependencies
+[React Native WebRTC Samples on GitHub](https://github.com/ant-media/WebRTC-React-Native-SDK)
 
-For installing dependencies, you can use **npm** or as an alternative method, you can also use **yarn**.
+To download the entire project and access the sample implementations, follow these steps:
 
-Install **yarn** by [following this link.](https://classic.yarnpkg.com/lang/en/docs/install/#windows-stable)
+1. Clone the GitHub repository:
 
-:::info
-If you want to use **npm**, then follow only npm commands, and if you want to use **yarn**, then follow only yarn commands.
-:::
+   ```bash
+   git clone https://github.com/ant-media/WebRTC-React-Native-SDK.git
+   ```
+2. Navigate to the examples/src folder where all sample implementations are stored:
 
-First, you need to open the root directory of the sample project in the terminal that you want to build.
+   ```bash
+   cd WebRTC-React-Native-SDK
+   ```
+   Once inside the src folder, you'll find all the sample implementations ready for use.
 
-To install dependencies, run 
 
-```npm install``` or  ```yarn install```
+---
 
-After dependencies are installed, you need to run the below commands in order to run the project.
+## Install Dependencies
 
-`npm run android` or ```yarn android```
+You can install the project dependencies using either **npm** or **yarn**. Follow the steps below based on your preferred package manager:
 
-After the project starts successfully, a sample app will appear on the device/emulator.
+### Using npm
+
+1. Open the root directory of the sample project in your terminal.
+2. Run the following command to install the dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Go to `example` directory and install dependencies again
+   ```bash
+   cd example
+   npm install
+   ```
+
+4. After installing dependencies, run this command in the `example` directory to build and start the project for Android:
+
+   ```bash
+   npm run android
+   ```
+
+### Using yarn
+
+1. Install yarn by following [this guide](https://classic.yarnpkg.com/en/docs/install).
+2. Open the root directory of the sample project in your terminal.
+3. Run the following command to install the dependencies:
+
+   ```bash
+   yarn install
+   ```
+
+4. Go to `example` directory and install dependencies again
+   ```bash
+   cd example
+   yarn install
+   ```
+
+5. After installing dependencies, run this command to build and start the project for Android:
+
+   ```bash
+   yarn android
+   ```
+
+---
+
+## Run the Project
+
+Once the project is successfully built, the sample app will launch on your connected device or emulator. Explore the app to view various React Native WebRTC examples implemented by Ant Media.
+
+You can proceed to the next document to learn more about the samples and how to run them.
+
+### Notes
+- Ensure your development environment is properly set up for React Native. Refer to the [React Native environment setup guide](https://reactnative.dev/docs/environment-setup).
+- Use only one package manager (npm or yarn) throughout the project to avoid conflicts.
+

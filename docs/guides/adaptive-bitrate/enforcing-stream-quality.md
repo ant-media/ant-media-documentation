@@ -1,32 +1,39 @@
 ---
-title: Enforcing Stream Quality
-description: You want to deliver Full-HD or 4K stream, or vice-versa enforce yours users to consume content at enforced stream quality like 480p or 360p. You may simply achieve it with Ant Media Server.
+title: Enforce Stream Quality
+description: Enforce the Stream Quality
 keywords: [Enforcing Stream Quality, Ant Media Server Documentation, Ant Media Server Tutorials]
+sidebar_position: 2
 ---
-# Enforcing the stream quality
 
-Ant Media Server (AMS) has the ability to force stream quality. In this guide, you'll learn what it is, how it works, and how to benefit from stream quality feature.
+# Enforce Stream Quality
+
+Ant Media Server (AMS) has the ability to force stream quality. In this guide, you'll learn what it is, how it works, and how to benefit from the stream quality feature.
+
+The client-side viewer can enforce a resolution it would like to get. Keep in mind that if you request a quality with a bitrate higher than the client's bandwidth, you may see some packet drops or pixelations.
 
 ## How does the adaptive bitrate work?
 
-AMS measures the viewers' internet speed and sends the best quality according to the internet speed of the viewer.
+Ant Media Server measures the viewers' internet speed and sends the best quality according to the internet speed of the viewer.
 
 Example:
 
-*   Assume that there are two bitrates on the server.
-    *   The first one is 360p and 800kbps.
-    *   The second one is 480p and 1500kbps.
-*   Assume that the viewer's internet speends are as follows:
-    *   Above 1500kbps: In this case, a resolution of 480p is sent.
-    *   Less than 800kbps: In this case, a resolution of 360p is sent.
+* Assume that there are two bitrates on the server.
+    * The first one is 360p and 800kbps.
+    * The second one is 480p and 1000kbps.
+ 
+* Assume that the viewer's internet speed is as follows:
+    * Above 1000kbps: In this case, a resolution of 480p is sent.
+    * Less than 800kbps: In this case, a resolution of 360p is sent.
 
 The adaptive bitrate feature makes sure that the end user only gets what the server is sending out.
 
-## Enforcing stream quality
+You can learn more about the adaptive bitrate in the previous document.
 
-The client side viewer can enforce a resolution it would like to get. Keep in mind that if you request a quality with a bitrate higher than the client's bitrate, you may see some packet drops or pixelations.
+## Enforce Quality in WebRTC
 
-While you play the stream, after you receive ```play_started``` notification in ```WebRTCAdaptor```, Call ```getStreamInfo``` with ```webRTCAdaptor.getStreamInfo({your_stream_Id})```
+Once the stream starts playing, the viewer receives the `play_started` notification. 
+
+In `WebRTCAdaptor`, call `getStreamInfo` with `webRTCAdaptor.getStreamInfo(streamId)`.
 
 ```js
 else if (info == "play_started") 
@@ -38,36 +45,89 @@ else if (info == "play_finished")
 {
 ```
 
-### How to get enforced resolution from getStreamInfo
+### Retrieve Stream Information
 
-Calling getStreamInfo method makes the server send stream information callback which returns stream information such as adaptive resolutions, audio bitrate and video bitrate.
-
-When server sends the ```streamInformation```, you can get stream details like following:
+Calling `getStreamInfo` triggers a response from the server containing stream details like adaptive resolutions, audio bitrate, and video bitrate.
 
 ```js
 else if (info == "streamInformation") {
 
-        var streamResolutions = new Array();
+				var streamResolutions = new Array();
 
-        obj["streamInfo"].forEach(function(entry) {
-        //It's needs to both of VP8 and H264. So it can be duplicate
-        if(!streamResolutions.includes(entry["streamHeight"])){
-            streamResolutions.push(entry["streamHeight"]);	
-
-        }// Got resolutions from server response and added to an array.
-
-        });
-        
-}// After getting stream information, forceStreamQuality can be used with the information we got.
-else if (info == "ice_connection_state_changed"){
+				obj["streamInfo"].forEach(function(entry) {
+					//It's needs to both of VP8 and H264. So it can be dublicate
+					if(!streamResolutions.includes(entry["streamHeight"])){
+						streamResolutions.push(entry["streamHeight"]);
+					}
+				});
 ```
 
-After getting stream info, you can call the following function to force the video quality you want to watch:
+After getting stream info, you can force a specific resolution using:
 
 ```js
 webRTCAdaptor.forceStreamQuality("{your_stream_Id}",  {the_resolution_to_be_forced});
 ```
 
-There is a working sample in player.html as shown below. When you choose a resolution, it'll force the quality. You can select the resolution, as you can see from the screenshot below.
+For more details, check out [this code snippet](https://github.com/ant-media/StreamApp/blob/c802e0e60641244935f2a1948f48ecfea1d1b44a/src/main/webapp/player.html#L544).
 
-![](@site/static/img/92497488-14bcdf00-f202-11ea-9790-b9afcbe0f456.png)In the example above, ```240p``` is selected, and the bitrate is ```500000```.
+### Enforce Quality on Client Side
+
+There is a working sample `player.html` below. When you choose a resolution, it'll force the quality. You can select the resolution, as you can see from the screenshot below. 
+
+![](@site/static/img/adaptive-streaming/stream-quality.webp)
+
+In the example above, **360p** resolution is selected.
+
+## Enforce Stream Quality in AMS Web player (play.html)
+
+AMS also allows enforcing quality in the Web Player (play.html), similar to `player.html`. Users can select a resolution, and the stream will be forced to that quality.
+
+To learn more about AMS Web Player, check **[here](https://antmedia.io/docs/guides/playing-live-stream/embedded-web-player/)**.
+
+Just change the playOrder to play stream with WebRTC, HLS, DASH, or LL-HLS. The stream quality can be selected in the same way.
+
+![](@site/static/img/adaptive-streaming/stream-quality-web-player.webp)
+
+### Enforcing Quality for M3U8 HLS URL
+
+Since some users play the HLS directly via M3U8, you can enforce stream quality by requesting a specific HLS variant. This can be achieved by selecting the appropriate `.m3u8` file that corresponds to the desired quality.
+
+For example, if your HLS playlist has multiple bit rates:
+
+* adaptive.m3u8
+    * 240p
+    * 360p
+    * 480p
+    * 720p
+
+Here is the HLS URL format for specific bitrate and resolution:
+
+```
+https://domain:port/AppName/streams/[streamid]_[quality].m3u8
+```
+For example:
+
+```
+https://domain:5443/live/streams/stream1_480p1000kbps.m3u8
+```
+
+This ensures the player loads only specified quality instead of relying on adaptive selection.
+
+To learn more about HLS playback, check out **[here](https://antmedia.io/docs/guides/playing-live-stream/hls-playing/)**.
+
+
+### Enforcing Quality for M3U8 Low Latency HLS URL
+
+Check out **[here](https://antmedia.io/docs/guides/playing-live-stream/ll-hls/)** to learn more about the low-latency HLS.
+
+Here is the LL-HLS URL format for specific bitrate and resolution:
+
+```
+https://domain:port/AppName/streams/ll-hls/streamId/resolution/streamId__lowlatency.m3u8
+```
+
+For example:
+
+```
+https://domain:5443/live/streams/ll-hls/stream1/480/stream1__lowlatency.m3u8
+```
