@@ -49,7 +49,7 @@ Modern ABR configuration is done directly through Ant Media Server’s REST API.
 
 You can enable ABR from your Ant Media application settings:
 
-![](@site/static/adaptive-streaming/dashboardABR.png)
+![](@site/static/img/adaptive-streaming/dashboardABR.png)
 
 ### Broadcast-Level ABR Configuration
 
