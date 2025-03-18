@@ -11,7 +11,7 @@ Adaptive Bitrate Streaming (ABR) enables Ant Media Server to automatically adjus
 
 ---
 
-## 🎯 Why Adaptive Bitrate Streaming Matters
+## Why Adaptive Bitrate Streaming Matters
 
 Internet users have varying connection speeds, from fast broadband to congested mobile networks. Without ABR, viewers with limited bandwidth may suffer from long buffering times, playback interruptions, or inability to watch your streams at all.
 
@@ -38,21 +38,21 @@ Ant Media Server supports ABR for both **WebRTC** and **HLS** streaming:
 
 ---
 
-## ⚙️ How to Enable Adaptive Bitrate Streaming
+## How to Enable Adaptive Bitrate Streaming
 
-### ✅ Recommended: Use REST API (No Restart Required)
+### Recommended: Use REST API (No Restart Required)
 
 Modern ABR configuration is done directly through Ant Media Server’s REST API. This eliminates the need for manual file edits or server restarts.
 
-### 🔄 Broadcast-Level ABR Configuration
+### Broadcast-Level ABR Configuration
 
 Since **Ant Media Server 2.8.3**, you can configure ABR settings at the **broadcast level**. This means each stream can have its own customized ABR profiles, offering more granular control.
 
-### 📌 API Endpoint
+### API Endpoint
 
 > [Update Broadcast API Reference](https://antmedia.io/rest/#/BroadcastRestService/updateBroadcast)
 
-### 📝 Example Request
+### Example Request
 
 The following example sets ABR profiles for a stream with ID `stream1`:
 
@@ -68,7 +68,7 @@ curl --location --request PUT 'http://<SERVER_ADDRESS>:5080/WebRTCAppEE/rest/v2/
 }'
 ```
 
-### 🔔 Notes:
+### Notes:
 - The `encoderSettingsList` array defines each ABR profile.
 - Each profile consists of:
   - `height`: The vertical resolution (e.g., 240 = 240p).
@@ -82,7 +82,7 @@ curl --location --request PUT 'http://<SERVER_ADDRESS>:5080/WebRTCAppEE/rest/v2/
 
 ---
 
-### 🌐 Full ABR Profile Template (240p to 2880p)
+### Full ABR Profile Template (240p to 2880p)
 
 If you'd like to offer a full range of resolutions, you can pass a JSON array like the one below. This example includes standard resolutions from **240p** up to **2880p**:
 
