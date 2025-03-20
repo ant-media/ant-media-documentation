@@ -459,11 +459,11 @@ scripts: [
         },
 	{
           from: '/guides/developer-sdk-and-api/sdk-integration/flutter-sdk/',
-          to: '/category/configuration--testing/',
+          to: '/category/flutter-sdk/',
         },
 	{
           from: '/guides/configuration-and-testing/decreasing-boot-time/',
-          to: '/category/flutter-sdk/',
+          to: '/category/configuration--testing/',
         },
 	{
           from: '/guides/clustering-and-scaling/aws/running-ams-container-at-ecs/',
