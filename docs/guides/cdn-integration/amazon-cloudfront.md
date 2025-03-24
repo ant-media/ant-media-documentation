@@ -50,10 +50,10 @@ Now that we have fulfilled the prerequisites, let's configure CloudFront to deli
 
 ##### Cache key and origin requests Configuration
 
-- Choose Cache policy and origin request policy.
+- Choose the Cache policy and origin request policy.
 - Click on Create Cache Policy & configure it as shown below.
-  ![cache-policy-01](https://github.com/user-attachments/assets/89ed69cd-4d7c-4f7b-a0e0-f5e02b4efb26)
-  ![cache-policy-02](https://github.com/user-attachments/assets/b11f53a9-85e9-4de6-b93c-40be361fb355)
+
+  ![cache-policy](https://github.com/user-attachments/assets/dbbc3bc8-2b63-457a-abf4-1cc32b42f66d)
 
 - After the policy is created, attach it to the `Cache policy`
 
@@ -80,7 +80,7 @@ Now, the distribution will be created and listed in the CloudFront console.
 
 Now that we have everything set, let’s publish a live stream in Ant Media Server following the [Publish Live Stream instructions](https://antmedia.io/docs/category/publish-live-stream/) and note the **Stream Id**.
 
-- For this demo, we are going to [publish a RTMP stream](https://antmedia.io/docs/guides/publish-live-stream/rtmp/publish-with-obs/).
+- For this demo, we will [publish a RTMP stream](https://antmedia.io/docs/guides/publish-live-stream/rtmp/publish-with-obs/).
 
 ## Play the Live Stream with HLS
 
