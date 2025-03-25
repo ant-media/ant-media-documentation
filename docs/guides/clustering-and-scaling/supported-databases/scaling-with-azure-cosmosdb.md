@@ -26,35 +26,40 @@ Follow below steps to create Cosmos DB cluster and connect AMS to the database.
 3. In the New page, search for Azure Cosmos DB and select it.
 4. On the **Which API best suits your workload?** page, choose **Azure Cosmos DB for MongoDB**, then click **Create**.
 
-![CosmosDB Scaling](https://github.com/ant-media/ant-media-documentation/blob/master/static/img/clustering-and-scaling/scale-with-azure-cosmosdb/1-create%20Azure%20cosmos%20DB1.webp)
+<img src="https://github.com/ant-media/ant-media-documentation/blob/master/static/img/clustering-and-scaling/scale-with-azure-cosmosdb/1-create%20Azure%20cosmos%20DB1.webp" width="600"/>
+
 
 5. On the **Which type of resource?** page, select the **Create** option within the **vCore cluster** section. 
 6. On the **Create Azure Cosmos DB for MongoDB cluster** page, select the **Configure** option within the **Cluster tier** section.
 
-![CosmosDB Scaling](https://github.com/ant-media/ant-media-documentation/blob/master/static/img/clustering-and-scaling/scale-with-azure-cosmosdb/2-Configure%20option.webp)
+<img src="https://github.com/ant-media/ant-media-documentation/blob/master/static/img/clustering-and-scaling/scale-with-azure-cosmosdb/2-Configure%20option.webp" width="600"/>
 
 7. On the **Scale** page, leave the options set to their default values:
 
-![Image3](https://github.com/ant-media/ant-media-documentation/blob/master/static/img/clustering-and-scaling/scale-with-azure-cosmosdb/3-scale.webp)
+<img src="https://github.com/ant-media/ant-media-documentation/blob/master/static/img/clustering-and-scaling/scale-with-azure-cosmosdb/3-scale.webp" width="600"/>
+
 
 8. Select the **High availability** option if this cluster will be used for production workloads. If not, in the high availability (HA) acknowledgment section, select **I understand**. Finally, select **Save** to persist your changes to the cluster tier.
 9. Back on the cluster page, enter the following information:
 
-![Image4](https://github.com/ant-media/ant-media-documentation/blob/master/static/img/clustering-and-scaling/scale-with-azure-cosmosdb/4-details.webp)
+<img src="https://github.com/ant-media/ant-media-documentation/blob/master/static/img/clustering-and-scaling/scale-with-azure-cosmosdb/4-details.webp" width="600"/>
 
-![Image 4a](https://github.com/ant-media/ant-media-documentation/blob/master/static/img/clustering-and-scaling/scale-with-azure-cosmosdb/4a-details.webp)
+
+<img src="https://github.com/ant-media/ant-media-documentation/blob/master/static/img/clustering-and-scaling/scale-with-azure-cosmosdb/4a-details.webp" width="600"/>
+
 
 10. Select Next: Global distribution.
 11. Select Next: Networking.
 12. In the Firewall rules section on the Networking tab, select Allow public access from Azure services and resources within Azure to this cluster. Additionally, add a firewall rule to give your client device or applications access to the cluster.
 
-![Image 5](https://github.com/ant-media/ant-media-documentation/blob/master/static/img/clustering-and-scaling/scale-with-azure-cosmosdb/5-network.webp)
+<img src="https://github.com/ant-media/ant-media-documentation/blob/master/static/img/clustering-and-scaling/scale-with-azure-cosmosdb/5-network.webp" width="700"/>
+
 
 13. Select Review + create.
 14. Review the settings you provide, and then select Create. It takes a few minutes to create the cluster. Wait for the portal page to display Your deployment is complete before moving on.
 15. Select Go to resource to go to the Azure Cosmos DB for MongoDB cluster page.
 
-![Image6](https://github.com/ant-media/ant-media-documentation/blob/master/static/img/clustering-and-scaling/scale-with-azure-cosmosdb/6-complete.webp)
+<img src="https://github.com/ant-media/ant-media-documentation/blob/master/static/img/clustering-and-scaling/scale-with-azure-cosmosdb/6-complete.webp" width="500"/>
 
 
 
