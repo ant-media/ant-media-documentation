@@ -458,8 +458,40 @@ scripts: [
           to: '/guides/configuration-and-testing/ams-application-configuration/',
         },
 	{
+          from: '/guides/developer-sdk-and-api/sdk-integration/flutter-sdk/',
+          to: '/category/flutter-sdk/',
+        },
+	{
           from: '/guides/configuration-and-testing/decreasing-boot-time/',
           to: '/category/configuration--testing/',
+        },
+	{
+          from: '/guides/clustering-and-scaling/aws/running-ams-container-at-ecs/',
+          to: '/guides/clustering-and-scaling/aws/aws-ecs/running-ams-container-at-ecs/',
+        },
+        {
+          from: [
+            '/guides/clustering-and-scaling/aws/aws-wavelength-standalone-deployment/',
+            '/guides/clustering-and-scaling/aws/aws-wavelength-cluster-deployment/',
+            '/guides/clustering-and-scaling/aws/deploying-ams-at-aws-wavelength/',
+          ],
+          to: '/category/aws-wavelength/'
+        },
+	{
+          from: '/guides/clustering-and-scaling/aws/configuring-rtmp-lb-in-aws/',
+          to: '/category/aws-load-balancer/',
+        },
+	{
+          from: [
+            '/guides/clustering-and-scaling/aws/scale-with-aws-cloudformation/',
+	    '/guides/clustering-and-scaling/aws/updating-ams-with-cloudformation/',
+	    '/guides/clustering-and-scaling/aws/ant-media-global-cluster-on-aws/',
+	  ],
+          to: '/category/aws-cloudformation/',
+        },
+	{
+          from: '/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/',
+          to: '/category/javascript-sdk/',
         },
       ],
     },
