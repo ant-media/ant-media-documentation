@@ -27,21 +27,26 @@ MP4 muxing(recording) finish process
 
 ### Define MP4 muxing run script location in App Settings
 
-Add script setting in ```[AMS-DIR]/webapps/applications(LiveApp or etc.)/WEB-INF/red5-web.properties```
+You can set up a custom post-processing script for MP4 recordings directly from the Advanced Settings in the Ant Media Web Panel. 
+To do this:
+1. Log into the Ant Media Server Web Panel (http://YOUR_SERVER_IP:5080)
+2. Navigate to Applications, select your app (LiveApp, WebRTCAppEE, etc.), go to Advanced Settings
+3. Locate the MP4 **muxerFinishScript** field, and enter the script path (e.g., /path/to/scriptFile.sh).
+4. Finally, save the settings.
 
 Usage:
-```shell
+```
 settings.muxerFinishScript
 ```
 
 Example Usage:
-```shell
+```
 settings.muxerFinishScript=/Script-DIR/scriptFile.sh
 ```
 
 Save the file and restart the server
 
-```shell
+```
 sudo service antmedia restart
 ```
 
@@ -83,7 +88,12 @@ It will work after the VoD upload process finishes. Let’s have a look at that 
 
 ### Define VoD upload run script location in App Settings
 
-Add script setting in ```[AMS-DIR]``` / ```webapps``` / ```applications(LiveApp or etc.)``` / ```WEB-INF``` / ```red5-web.properties```
+You can configure a custom post-processing script for VOD uploads directly from the Advanced Settings in the Ant Media Web Panel.
+To do this:
+1. Log in to the Ant Media Server Web Panel (http://YOUR_SERVER_IP:5080)
+2. Navigate to Applications, select your app (LiveApp, WebRTCAppEE, etc.), go to Advanced Settings
+3. Locate the **vodUploadFinishScript** field, and enter the script path (e.g., /path/to/scriptFile.sh).
+4. Finally, save the settings.
 
 Usage:
 
