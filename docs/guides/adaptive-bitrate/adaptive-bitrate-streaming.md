@@ -83,10 +83,6 @@ curl --location --request PUT 'http://<SERVER_ADDRESS>:5080/WebRTCAppEE/rest/v2/
   - `audioBitrate`: The target audio bitrate in bits per second.
   - `forceEncode`: Ensures transcoding happens even if the incoming stream matches the target resolution.
 
-- When you configure ABR via API:
-  - Changes are **applied instantly**—no need to restart the server.
-  - These settings **override application-level ABR** settings for this specific broadcast.
-
 ---
 
 ## Stats-Based Adaptive Bitrate Switching
