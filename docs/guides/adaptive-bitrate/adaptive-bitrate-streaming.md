@@ -41,15 +41,15 @@ Ant Media Server supports ABR for both **WebRTC** and **HLS** streaming:
 
 ## How to Enable Adaptive Bitrate Streaming
 
-### Recommended: Use REST API (No Restart Required)
-
-Modern ABR configuration is done directly through Ant Media Server’s REST API. This eliminates the need for manual file edits or server restarts.
-
-### From the dashboard
+### Recommended: From the dashboard
 
 You can enable ABR from your Ant Media application settings:
 
 ![](@site/static/img/adaptive-streaming/dashboardABR.png)
+
+###  Use REST API
+
+You can also enable ABR configuration directly through Ant Media Server’s REST API.
 
 ### Broadcast-Level ABR Configuration
 
@@ -86,18 +86,6 @@ curl --location --request PUT 'http://<SERVER_ADDRESS>:5080/WebRTCAppEE/rest/v2/
 - When you configure ABR via API:
   - Changes are **applied instantly**—no need to restart the server.
   - These settings **override application-level ABR** settings for this specific broadcast.
-
----
-
-### Full ABR Profile Template (240p to 2880p)
-
-If you'd like to offer a full range of resolutions, you can pass a JSON array like the one below. This example includes standard resolutions from **240p** up to **2880p**:
-
-```json
-"[{\"videoBitrate\":8000000,\"forceEncode\":true,\"audioBitrate\":320000,\"height\":2880},{\"videoBitrate\":6000000,\"forceEncode\":true,\"audioBitrate\":256000,\"height\":2160},{\"videoBitrate\":2500000,\"forceEncode\":true,\"audioBitrate\":256000,\"height\":1080},{\"videoBitrate\":2000000,\"forceEncode\":true,\"audioBitrate\":128000,\"height\":720},{\"videoBitrate\":1800000,\"forceEncode\":true,\"audioBitrate\":96000,\"height\":640},{\"videoBitrate\":1500000,\"forceEncode\":true,\"audioBitrate\":96000,\"height\":540},{\"videoBitrate\":1000000,\"forceEncode\":true,\"audioBitrate\":96000,\"height\":480},{\"videoBitrate\":800000,\"forceEncode\":true,\"audioBitrate\":64000,\"height\":360},{\"videoBitrate\":500000,\"forceEncode\":true,\"audioBitrate\":32000,\"height\":240}]"
-```
-
-> **Tip:** When sending this JSON via an API call or external tool like curl or Postman, ensure that the JSON string is properly escaped as shown above.
 
 ---
 
@@ -141,7 +129,7 @@ There is an additional setting that influences how the original WebRTC stream is
 
 ## Best Practices
 
-- When using **Stats-Based ABR**, it’s recommended to:
+- When using **ABR**, it’s recommended to:
   - Offer at least **2-3 ABR profiles** to provide fallback options for unstable networks.
   - Consider enabling **GPU acceleration** if you plan to transcode into multiple profiles (to reduce CPU load).
   - Regularly monitor your viewer bandwidth stats via Ant Media’s monitoring tools to fine-tune ABR settings.
@@ -149,5 +137,3 @@ There is an additional setting that influences how the original WebRTC stream is
 > Need GPU help? [Learn How to Enable GPU for Ant Media Server](/guides/advanced-usage/using-nvidia-gpu/)
 
 ---
-
-By configuring ABR through the API and enabling stats-based switching, you can provide a seamless streaming experience that adapts to your viewers’ bandwidth in real time!
