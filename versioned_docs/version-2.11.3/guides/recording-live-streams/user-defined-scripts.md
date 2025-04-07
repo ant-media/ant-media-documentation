@@ -35,28 +35,20 @@ To do this:
 4. Finally, save the settings.
 
 Usage:
-```
-settings.muxerFinishScript
-```
 
-Example Usage:
-```
-settings.muxerFinishScript=/Script-DIR/scriptFile.sh
-```
+- For example, if the script is located at /usr/local/antmedia then setting would be as follows:
 
-Save the file and restart the server
+  ```js
+  "muxerFinishScript": "/usr/local/antmedia/scriptFile.sh",
+  ```
 
-```
-sudo service antmedia restart
-```
+- The script should be able to executable permission
 
-The script should be able to executable permission
+  Mark the file as executable with below code:
 
-Mark the file as executable with below code:
-
-```shell
-chmod +x scriptFile.sh
-```
+  ```shell
+  chmod +x scriptFile.sh
+  ```
 
 Setting References: [settings.muxerFinishScript Setting](/guides/configuration-and-testing/ams-application-configuration)
 
@@ -79,6 +71,7 @@ When script is finished successfully, AMS writes in INFO log as a below:
 ```
 running muxer finish script: ~/test_script.sh /usr/local/antmedia/webapps/LiveApp/streams/test_stream.mp4
 ```
+
 ## VoD upload finish process
 
 It will work after the VoD upload process finishes. Let’s have a look at that step by step.
@@ -97,26 +90,19 @@ To do this:
 
 Usage:
 
-```
-settings.vodUploadFinishScript
+- For example, if the script is located at /usr/local/antmedia then setting would be as follows:
+
+```js
+"vodUploadFinishScript": "/usr/local/antmedia/scriptFile.sh",
 ```
 
-Example Usage:
-```
-settings.vodUploadFinishScript=/Script-DIR/scriptFile.sh
-```
+- The script should be able to executable permission
 
-Save the file and restart the server
-```
-sudo service antmedia restart
-```
+  Mark the file as executable with below code:
 
-**The script should be able to executable permission**
-
-Mark the file as executable with below code:
-```
-chmod +x scriptFile.sh
-```
+  ```shell
+  chmod +x scriptFile.sh
+  ```
 
 Setting References: [settings.vodUploadFinishScript Setting](/guides/configuration-and-testing/ams-application-configuration)
 
