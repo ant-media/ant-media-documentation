@@ -106,7 +106,7 @@ scripts: [
       redirects: [
         {
           to: '/guides/clustering-and-scaling/alibaba/scaling-with-alibaba/',
-          from: '/guides/clustering-and-scaling/scaling-with-alibaba/',
+          from: '/category/clustering-and-scaling/',
         },
         {
           to: '/guides/clustering-and-scaling/supported-databases/scaling-with-redis/',
