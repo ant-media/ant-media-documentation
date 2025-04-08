@@ -54,44 +54,8 @@ You can enable ABR from your Ant Media application settings:
 
 ###  Using configuration file
 
-To enable adaptive bitrate streaming in Ant Media Server from the [application configuration file](https://antmedia.io/docs/guides/configuration-and-testing/ams-application-configuration/), follow these steps:
+Adaptive bitrate streaming in the Ant Media Server can also be enabled from the [application configuration file](https://antmedia.io/docs/guides/configuration-and-testing/ams-application-configuration/).
 
-- Go to the application configuration file
-```js
-usr/local/antmedia/webapps/<AppName>/WEB-INF/red5-web.properties
-```
-- Edit the file using your favorite text editor
-```js
-sudo nano red5-web.properties
-```
-- Now, add this line to the file: 
-```js
-settings.encoderSettingsString=[
-  {
-    "videoBitrate":800000,
-    "forceEncode":true,
-    "audioBitrate":64000,
-    "height":360},
-    {
-      "videoBitrate":500000,
-      "forceEncode":true,
-      "audioBitrate":32000,
-      "height":240
-    }
-]
-```
-
-In the example above, we have added two adaptive bitrates:
-
-1.  360p, 800Kbps video bitrate, 64Kbps audio bitrate
-2.  240p, 500Kbps video bitrate, 32Kbps audio bitrate
-
-- Save the changes and close the file.
-  
-- Restart Ant Media Server by running the command:
-  ```js
-  sudo service antmedia restart
-  ```
 
 ## Broadcast-Level ABR Configuration
 
