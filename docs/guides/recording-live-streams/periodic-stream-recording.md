@@ -7,11 +7,11 @@ sidebar_position: 7
 
 # Periodic Stream Recording in Ant Media
 
-Ant Media Server now supports **Periodic Stream Recording**, a powerful feature that lets you **capture short MP4 clips** from your live streams or VODs—without interrupting the broadcast. It’s perfect for saving highlights, generating snippets, or sharing quick moments with your audience.
+Ant Media Server now supports **Periodic Stream Recording**, a powerful feature that lets you **capture short MP4 clips** from your live streams —without interrupting the broadcast. It’s perfect for saving highlights, generating snippets, or sharing quick moments with your audience.
 
 ### How Does the Periodic Stream Recording Function Work?
 
-Ant Media Server’s **Enterprise Edition** includes a range of flexible **plugins** that allow you to extend the platform’s capabilities with ease. One such plugin, the [**Clip Creator Plugin**](https://github.com/ant-media/Plugins/tree/master/ClipCreatorPlugin), enables Periodic Stream Recording, allowing you to easily extract and save short MP4 clips from ongoing live broadcasts or existing video-on-demand (VOD) content—without pausing or interrupting playback.
+Ant Media Server’s **Enterprise Edition** includes a range of flexible **plugins** that allow you to extend the platform’s capabilities with ease. One such plugin, the [**Clip Creator Plugin**](https://github.com/ant-media/Plugins/tree/master/ClipCreatorPlugin), enables Periodic Stream Recording, allowing you to easily extract and save short MP4 clips from ongoing live broadcasts without pausing or interrupting playback.
 
 ## What is Periodic Stream Recording?
 
@@ -154,7 +154,7 @@ To stop automatic periodic MP4 creation:
 
 ## Webhook Notification
 
-Each time a new MP4 clip is created, a `vodReady` webhook is triggered, letting you know the clip is ready to be used.
+Each time a new MP4 clip is created, a `vodReady` [**webhook**](https://antmedia.io/docs/guides/advanced-usage/webhooks/) is triggered, letting you know the clip is ready to be used.
 
 ## Summary
 
