@@ -45,9 +45,12 @@ Ant Media Server supports ABR for both **WebRTC** and **HLS** streaming:
 
 You can enable ABR from your Ant Media application settings:
 - Go to Applications > Settings > Adaptive Bitrate in the Ant Media Server dashboard
-- Enable adaptive streaming and add new streams.
+- Enable adaptive streaming and add the needed resolutions.
 
 ![](@site/static/img/adaptive-streaming/dashboardABR.png)
+
+- Save the settings.
+- Add new steams or restart the running streams.
 
 ###  Using configuration file
 
