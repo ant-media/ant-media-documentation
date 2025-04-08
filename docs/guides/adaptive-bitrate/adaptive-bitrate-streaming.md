@@ -7,13 +7,13 @@ sidebar_position: 1
 
 # Adaptive Bitrate Streaming (ABR)
 
-Adaptive Bitrate Streaming (ABR) enables Ant Media Server to automatically adjust video quality based on each viewer's network speed and device performance. By dynamically switching resolut`ions and bitrates, ABR ensures a seamless streaming experience with minimal buffering — whether your audience is on high-speed fiber or a weak mobile connection.
+Adaptive Bitrate Streaming (ABR) enables Ant Media Server to automatically adjust video quality based on each viewer's network speed and device performance. By dynamically switching resolutions and bitrates, ABR ensures a seamless streaming experience with minimal buffering — whether your audience is on high-speed fiber or a weak mobile connection.
 
 ---
 
 ## Why Adaptive Bitrate Streaming Matters
 
-Internet users have varying connection speeds, from fast broadband to congested mobile networks. Without ABR, viewers with limited bandwidth may suffer from long buffering times, playback interruptions, or inability to watch your streams at all.
+Internet users have varying connection speeds, from fast broadband to congested mobile networks. Without ABR, viewers with limited bandwidth may suffer from long buffering times, playback interruptions, or the inability to watch your streams at all.
 
 ![](@site/static/img/buffering.jpg)
 
@@ -44,14 +44,53 @@ Ant Media Server supports ABR for both **WebRTC** and **HLS** streaming:
 ### Recommended: From the dashboard
 
 You can enable ABR from your Ant Media application settings:
+- Go to Applications > Settings > Adaptive Bitrate in the Ant Media Server dashboard
+- Enable adaptive streaming and add new streams.
 
 ![](@site/static/img/adaptive-streaming/dashboardABR.png)
 
-###  Use REST API
+###  Using configuration file
 
-You can also enable ABR configuration directly through Ant Media Server’s REST API.
+To enable adaptive bitrate streaming in Ant Media Server from the [application configuration file](https://antmedia.io/docs/guides/configuration-and-testing/ams-application-configuration/), follow these steps:
 
-### Broadcast-Level ABR Configuration
+- Go to the application configuration file
+```js
+usr/local/antmedia/webapps/<AppName>/WEB-INF/red5-web.properties
+```
+- Edit the file using your favorite text editor
+```js
+sudo nano red5-web.properties
+```
+- Now, add this line to the file: 
+```js
+settings.encoderSettingsString=[
+  {
+    "videoBitrate":800000,
+    "forceEncode":true,
+    "audioBitrate":64000,
+    "height":360},
+    {
+      "videoBitrate":500000,
+      "forceEncode":true,
+      "audioBitrate":32000,
+      "height":240
+    }
+]
+```
+
+In the example above, we have added two adaptive bitrates:
+
+1.  360p, 800Kbps video bitrate, 64Kbps audio bitrate
+2.  240p, 500Kbps video bitrate, 32Kbps audio bitrate
+
+- Save the changes and close the file.
+  
+- Restart Ant Media Server by running the command:
+  ```js
+  sudo service antmedia restart
+  ```
+
+## Broadcast-Level ABR Configuration
 
 Since **Ant Media Server 2.8.3**, you can configure ABR settings at the **broadcast level**. This means each stream can have its own customized ABR profiles, offering more granular control.
 
