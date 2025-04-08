@@ -140,10 +140,29 @@ Trigger an MP4 clip generation instantly for a specific stream.
 
 ### 3. Stop Periodic Clip Creation
 
+To stop automatic periodic MP4 creation:
 
-  
+- **DELETE** request:
+  ```js
+  https://{SERVER}:{PORT}/{APP}/rest/clip-creator/periodic-recording
+  ```
 
+- **cURL** example:
+  ```js
+  curl -X POST "https://{YOUR_SERVER}:{PORT}/{APP}/rest/clip-creator/periodic-recording" -H "Content-Type: application/json"
+  ```
 
+## Webhook Notification
 
+Each time a new MP4 clip is created, a `vodReady` webhook is triggered, letting you know the clip is ready to be used.
 
+## Summary
 
+With **Periodic Stream Recording**, Ant Media Server simplifies the task of capturing MP4 clips from live streams:
+
+- Save clips automatically at fixed intervals.
+- Create highlight reels or on-demand clips.
+- Seamless integration with VoD playback.
+- Powered by an open-source plugin.
+
+Whether you’re archiving, sharing highlights, or generating content automatically, this feature is designed to keep your workflow smooth and efficient.
