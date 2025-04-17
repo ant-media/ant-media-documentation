@@ -170,7 +170,11 @@ scripts: [
         },
 	{
           from: '/guides/advanced-usage/monitoring/monitoring-ams-with-datadog/',
-          to: '/guides/monitoring/monitoring-ams-with-datadog/'
+          to: '/category/monitoring-solutions/'
+        },
+	{
+          from: '/guides/monitoring/monitoring-ams-with-datadog/',
+          to: '/category/monitoring-solutions/'
         },
 	{
           from: '/v1/docs/rest-api-guide/',
@@ -409,8 +413,8 @@ scripts: [
           to: '/guides/developing-antmedia-server/circle-component-usage/'
         },
 	{
-          from: '/Glossary/',
-          to: '/streaming-glossary/'
+          from: '/streaming-glossary/',
+          to: '/category/guides/'
         },
 	{
           from: '/guides/configuration-and-testing/AMS-application-configuration/',
