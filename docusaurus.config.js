@@ -130,7 +130,7 @@ scripts: [
         },
         {
           from: '/guides/developer-sdk-and-api/rest-api-guide/enabling-ip-filtering-behind-load-balancer-in-aws/',
-          to: '/guides/clustering-and-scaling/aws/aws-lb/enabling-ip-filtering-behind-load-balancer-in-aws/'
+          to: '/guides/developer-sdk-and-api/rest-api-guide/securing-rest-apis/'
         },
         {
           from: '/guides/clustering-and-scaling/aws/Configuring-RTMP-LB-in-AWS/',
@@ -170,7 +170,11 @@ scripts: [
         },
 	{
           from: '/guides/advanced-usage/monitoring/monitoring-ams-with-datadog/',
-          to: '/guides/monitoring/monitoring-ams-with-datadog/'
+          to: '/category/monitoring-solutions/'
+        },
+	{
+          from: '/guides/monitoring/monitoring-ams-with-datadog/',
+          to: '/category/monitoring-solutions/'
         },
 	{
           from: '/v1/docs/rest-api-guide/',
@@ -382,7 +386,7 @@ scripts: [
         },
 	{
           from: '/guides/advanced-usage/Using-Intel-Quick-Sync/',
-          to: '/guides/advanced-usage/using-intel-quick-sync/'
+          to: '/category/advanced-usage/'
         },
 	{
           from: '/guides/developer-sdk-and-api/rest-api-guide/REST-API-examples/',
@@ -409,8 +413,8 @@ scripts: [
           to: '/guides/developing-antmedia-server/circle-component-usage/'
         },
 	{
-          from: '/Glossary/',
-          to: '/streaming-glossary/'
+          from: '/streaming-glossary/',
+          to: '/category/guides/'
         },
 	{
           from: '/guides/configuration-and-testing/AMS-application-configuration/',
