@@ -105,10 +105,6 @@ scripts: [
     {
       redirects: [
         {
-          to: '/guides/clustering-and-scaling/alibaba/scaling-with-alibaba/',
-          from: '/guides/clustering-and-scaling/scaling-with-alibaba/',
-        },
-        {
           to: '/guides/clustering-and-scaling/supported-databases/scaling-with-redis/',
           from: '/guides/clustering-and-scaling/scaling-with-redis/',
         },
@@ -130,7 +126,7 @@ scripts: [
         },
         {
           from: '/guides/developer-sdk-and-api/rest-api-guide/enabling-ip-filtering-behind-load-balancer-in-aws/',
-          to: '/guides/clustering-and-scaling/aws/aws-lb/enabling-ip-filtering-behind-load-balancer-in-aws/'
+          to: '/guides/developer-sdk-and-api/rest-api-guide/securing-rest-apis/'
         },
         {
           from: '/guides/clustering-and-scaling/aws/Configuring-RTMP-LB-in-AWS/',
@@ -170,7 +166,11 @@ scripts: [
         },
 	{
           from: '/guides/advanced-usage/monitoring/monitoring-ams-with-datadog/',
-          to: '/guides/monitoring/monitoring-ams-with-datadog/'
+          to: '/category/monitoring-solutions/'
+        },
+	{
+          from: '/guides/monitoring/monitoring-ams-with-datadog/',
+          to: '/category/monitoring-solutions/'
         },
 	{
           from: '/v1/docs/rest-api-guide/',
@@ -382,7 +382,7 @@ scripts: [
         },
 	{
           from: '/guides/advanced-usage/Using-Intel-Quick-Sync/',
-          to: '/guides/advanced-usage/using-intel-quick-sync/'
+          to: '/category/advanced-usage/'
         },
 	{
           from: '/guides/developer-sdk-and-api/rest-api-guide/REST-API-examples/',
@@ -409,8 +409,8 @@ scripts: [
           to: '/guides/developing-antmedia-server/circle-component-usage/'
         },
 	{
-          from: '/Glossary/',
-          to: '/streaming-glossary/'
+          from: '/streaming-glossary/',
+          to: '/category/guides/'
         },
 	{
           from: '/guides/configuration-and-testing/AMS-application-configuration/',
@@ -458,8 +458,40 @@ scripts: [
           to: '/guides/configuration-and-testing/ams-application-configuration/',
         },
 	{
+          from: '/guides/developer-sdk-and-api/sdk-integration/flutter-sdk/',
+          to: '/category/flutter-sdk/',
+        },
+	{
           from: '/guides/configuration-and-testing/decreasing-boot-time/',
           to: '/category/configuration--testing/',
+        },
+	{
+          from: '/guides/clustering-and-scaling/aws/running-ams-container-at-ecs/',
+          to: '/guides/clustering-and-scaling/aws/aws-ecs/running-ams-container-at-ecs/',
+        },
+        {
+          from: [
+            '/guides/clustering-and-scaling/aws/aws-wavelength-standalone-deployment/',
+            '/guides/clustering-and-scaling/aws/aws-wavelength-cluster-deployment/',
+            '/guides/clustering-and-scaling/aws/deploying-ams-at-aws-wavelength/',
+          ],
+          to: '/category/aws-wavelength/'
+        },
+	{
+          from: '/guides/clustering-and-scaling/aws/configuring-rtmp-lb-in-aws/',
+          to: '/category/aws-load-balancer/',
+        },
+	{
+          from: [
+            '/guides/clustering-and-scaling/aws/scale-with-aws-cloudformation/',
+	    '/guides/clustering-and-scaling/aws/updating-ams-with-cloudformation/',
+	    '/guides/clustering-and-scaling/aws/ant-media-global-cluster-on-aws/',
+	  ],
+          to: '/category/aws-cloudformation/',
+        },
+	{
+          from: '/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/',
+          to: '/category/javascript-sdk/',
         },
       ],
     },

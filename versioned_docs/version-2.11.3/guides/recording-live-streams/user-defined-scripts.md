@@ -27,31 +27,28 @@ MP4 muxing(recording) finish process
 
 ### Define MP4 muxing run script location in App Settings
 
-Add script setting in ```[AMS-DIR]/webapps/applications(LiveApp or etc.)/WEB-INF/red5-web.properties```
+You can set up a custom post-processing script for MP4 recordings directly from the Advanced Settings in the Ant Media Web Panel. 
+To do this:
+1. Log into the Ant Media Server Web Panel (http://YOUR_SERVER_IP:5080)
+2. Navigate to Applications, select your app (LiveApp, WebRTCAppEE, etc.), go to Advanced Settings
+3. Locate the MP4 **muxerFinishScript** field, and enter the script path (e.g., /path/to/scriptFile.sh).
+4. Finally, save the settings.
 
 Usage:
-```shell
-settings.muxerFinishScript
-```
 
-Example Usage:
-```shell
-settings.muxerFinishScript=/Script-DIR/scriptFile.sh
-```
+- For example, if the script is located at /usr/local/antmedia then setting would be as follows:
 
-Save the file and restart the server
+  ```js
+  "muxerFinishScript": "/usr/local/antmedia/scriptFile.sh",
+  ```
 
-```shell
-sudo service antmedia restart
-```
+- The script should be able to executable permission
 
-The script should be able to executable permission
+  Mark the file as executable with below code:
 
-Mark the file as executable with below code:
-
-```shell
-chmod +x scriptFile.sh
-```
+  ```shell
+  chmod +x scriptFile.sh
+  ```
 
 Setting References: [settings.muxerFinishScript Setting](/guides/configuration-and-testing/ams-application-configuration)
 
@@ -74,6 +71,7 @@ When script is finished successfully, AMS writes in INFO log as a below:
 ```
 running muxer finish script: ~/test_script.sh /usr/local/antmedia/webapps/LiveApp/streams/test_stream.mp4
 ```
+
 ## VoD upload finish process
 
 It will work after the VoD upload process finishes. Let’s have a look at that step by step.
@@ -83,30 +81,28 @@ It will work after the VoD upload process finishes. Let’s have a look at that 
 
 ### Define VoD upload run script location in App Settings
 
-Add script setting in ```[AMS-DIR]``` / ```webapps``` / ```applications(LiveApp or etc.)``` / ```WEB-INF``` / ```red5-web.properties```
+You can configure a custom post-processing script for VOD uploads directly from the Advanced Settings in the Ant Media Web Panel.
+To do this:
+1. Log in to the Ant Media Server Web Panel (http://YOUR_SERVER_IP:5080)
+2. Navigate to Applications, select your app (LiveApp, WebRTCAppEE, etc.), go to Advanced Settings
+3. Locate the **vodUploadFinishScript** field, and enter the script path (e.g., /path/to/scriptFile.sh).
+4. Finally, save the settings.
 
 Usage:
 
-```
-settings.vodUploadFinishScript
+- For example, if the script is located at /usr/local/antmedia then setting would be as follows:
+
+```js
+"vodUploadFinishScript": "/usr/local/antmedia/scriptFile.sh",
 ```
 
-Example Usage:
-```
-settings.vodUploadFinishScript=/Script-DIR/scriptFile.sh
-```
+- The script should be able to executable permission
 
-Save the file and restart the server
-```
-sudo service antmedia restart
-```
+  Mark the file as executable with below code:
 
-**The script should be able to executable permission**
-
-Mark the file as executable with below code:
-```
-chmod +x scriptFile.sh
-```
+  ```shell
+  chmod +x scriptFile.sh
+  ```
 
 Setting References: [settings.vodUploadFinishScript Setting](/guides/configuration-and-testing/ams-application-configuration)
 
