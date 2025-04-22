@@ -7,17 +7,20 @@ sidebar_position: 7
 
 # Installing Ant Media Server on K8s by Digital Ocean
 
-In this article, I'm going to explain how to install Ant Media Server K8s on DigitalOcean with just one click.
+In this guide, we’ll walk through how to deploy **Ant Media Server Enterprise Edition** on a Kubernetes cluster using **DigitalOcean’s Marketplace** — all with just a few clicks.
 
 :::info
-You need to have the [Kubernetes command line tool](https://kubernetes.io/docs/tasks/tools/) installed on your computer.
+Before you begin, make sure you have the [Kubernetes command line tool (`kubectl`)](https://kubernetes.io/docs/tasks/tools/) installed on your local machine.
 :::
 
-## Step 1: Install Ant Media Server App
+## Step 1: Launch the Ant Media Server App on DigitalOcean
 
-Login to Digital Ocean, click on the Marketplace tab.
+1. Log into your [DigitalOcean Dashboard](https://cloud.digitalocean.com).
+2. From the left sidebar, click on **Marketplace**.
+3. In the search field, type **“Ant Media Server Enterprise”**.
+4. Select the application from the search results.
 
-![image.png](@site/static/img/kubernetes/ams-do-marketpace-1.png)
+![image.png](@site/static/img/kubernetes/digitalOceanImageFivew.webp)
 
 Then enter **"Ant Media Server Enterprise"** in the search field and select it as shown in the screenshot.
 
