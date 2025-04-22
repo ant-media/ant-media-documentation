@@ -95,6 +95,7 @@ If everything was setup correctly edge.yourdomain.com or origin.yourdomain.com w
 
 ![AMS registration page](@site/static/img/kubernetes/digitalOceanEightw.webp)
 
+
 ## Step 5: Setup SSL
 
 The Marketplace product comes with a self-signed certificate. If you want to use Let's Encrypt or your own certificate, follow the documentation to [install an SSL certificate via Helm](/guides/clustering-and-scaling/kubernetes/deploy-ams-with-helm/#install-ssl)
