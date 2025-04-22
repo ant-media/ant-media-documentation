@@ -1,21 +1,21 @@
 ---
 title: User Defined Scripts
-description: There are few scripts to help you to automate Ant Media Instance, like MP4 muxing(recording), MP4 Muxing script usage instructions, VoD upload finish process, VoD Upload script usage instructions.
+description: There are a few scripts to help you to automate Ant Media Instance, like MP4 muxing(recording), MP4 Muxing script usage instructions, VoD upload finish process, and VoD Upload script usage instructions.
 keywords: [MP4 muxing, MP4 recording, VoD Upload script, MP4 Muxing script usage instructions, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 7
+sidebar_position: 8
 ---
 
-# User defined Scripts
+# User Defined Scripts
 
-User defined scripts are run automatically by the Ant Media Server after the MP4 Muxing process (recording) finishes or VoD upload process finishes. It enables users to make some changes on the mp4 file. A few examples:
+User-defined scripts are run automatically by the Ant Media Server after the MP4 Muxing process (recording) finishes or the VoD upload process finishes. It enables users to make some changes on the mp4 file. A few examples:
 
-1) Creating different resolutions for VoD serving ( Using adaptive bitrate on the fly will spend more resources, you can just transcode once for each VoD with your own user defined script after every muxing operations )
+1) Creating different resolutions for VoD serving ( Using adaptive bitrate on the fly will spend more resources; you can transcode once for each VoD with your own user-defined script after every muxing operation)
 
 2) Merging VoDs with ffmpeg
 
 3) Adding some watermark to VoDs after the stream is saved.
 
-You can get creative with user-defined scripts, there are no limits. They are called after each streams recording process is finished or each VoD upload process is finished.
+You can get creative with user-defined scripts; there are no limits. They are called after each stream recording process or each VoD upload process is finished.
 
 MP4 muxing(recording) finish process
 ------------------------------------
@@ -31,20 +31,20 @@ You can set up a custom post-processing script for MP4 recordings directly from 
 To do this:
 1. Log into the Ant Media Server Web Panel (http://YOUR_SERVER_IP:5080)
 2. Navigate to Applications, select your app (LiveApp, WebRTCAppEE, etc.), go to Advanced Settings
-3. Locate the MP4 **muxerFinishScript** field, and enter the script path (e.g., /path/to/scriptFile.sh).
+3. Locate the MP4 **muxerFinishScript** field and enter the script path (e.g., /path/to/scriptFile.sh).
 4. Finally, save the settings.
 
 Usage:
 
-- For example, if the script is located at /usr/local/antmedia then setting would be as follows:
+- For example, if the script is located at /usr/local/antmedia, then the setting would be as follows:
 
   ```js
   "muxerFinishScript": "/usr/local/antmedia/scriptFile.sh",
   ```
 
-- The script should be able to executable permission
+- The script should have executable permission
 
-  Mark the file as executable with below code:
+  Mark the file as executable with code below:
 
   ```shell
   chmod +x scriptFile.sh
@@ -66,7 +66,7 @@ Example:
 ~/test_script.sh /usr/local/antmedia/webapps/LiveApp/streams/test_stream.mp4
 ```
 
-When script is finished successfully, AMS writes in INFO log as a below:
+When the script is successfully finished, AMS writes in the INFO log as below:
 
 ```
 running muxer finish script: ~/test_script.sh /usr/local/antmedia/webapps/LiveApp/streams/test_stream.mp4
@@ -86,20 +86,20 @@ You can configure a custom post-processing script for VOD uploads directly from 
 To do this:
 1. Log in to the Ant Media Server Web Panel (http://YOUR_SERVER_IP:5080)
 2. Navigate to Applications, select your app (LiveApp, WebRTCAppEE, etc.), go to Advanced Settings
-3. Locate the **vodUploadFinishScript** field, and enter the script path (e.g., /path/to/scriptFile.sh).
+3. Locate the **vodUploadFinishScript** field and enter the script path (e.g., /path/to/scriptFile.sh).
 4. Finally, save the settings.
 
 Usage:
 
-- For example, if the script is located at /usr/local/antmedia then setting would be as follows:
+- For example, if the script is located at /usr/local/antmedia, then the setting would be as follows:
 
 ```js
 "vodUploadFinishScript": "/usr/local/antmedia/scriptFile.sh",
 ```
 
-- The script should be able to executable permission
+- The script should have executable permission.
 
-  Mark the file as executable with below code:
+  Mark the file as executable with code below:
 
   ```shell
   chmod +x scriptFile.sh
@@ -120,7 +120,7 @@ Example:
 ~/test_script.sh /usr/local/antmedia/webapps/LiveApp/streams/test_stream.mp4
 ```
 
-When script finished successfully, AMS writes in INFO log as a below:
+When the script finishes successfully, AMS writes in the INFO log as below:
 ```
 running muxer finish script: ~/test_script.sh /usr/local/antmedia/webapps/LiveApp/streams/test_stream.mp4
 ```
@@ -200,7 +200,7 @@ sudo chmod +x /home/ubuntu/removevideo.sh
 ```
 
 ### 3. Configure Ant Media Server
-Access the AMS Web Management Console.Navigate to your application's Advanced Settings, locate the muxerFinishScript property.
+Access the AMS Web Management Console. Navigate to your application's Advanced Settings and locate the muxerFinishScript property.
 ```
 "muxerFinishScript": "/home/ubuntu/removevideo.sh"
 ```
