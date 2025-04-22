@@ -26,7 +26,7 @@ This feature is powered by a plugin that captures and converts HLS stream segmen
 
 ## Installation Steps
 
-### 1. Install FFmpeg
+#### 1. Install FFmpeg
 
 This is required for segment-to-MP4 conversion.
 
@@ -34,17 +34,17 @@ This is required for segment-to-MP4 conversion.
 sudo apt install ffmpeg
 ```
 
-### 2. Download the Plugin JAR File
+#### 2. Download the Plugin JAR File
 
 Download the latest `clip-creator.jar` file from [**Sonatype**](https://oss.sonatype.org/#nexus-search;gav~io.antmedia.plugin~clip-creator~~~).
 
-### 3. Place the Plugin in the Plugins Directory
+#### 3. Place the Plugin in the Plugins Directory
 
 ```js
 sudo cp clip-creator.jar /usr/local/antmedia/plugins/
 ```
 
-### 4. Restart Ant Media Server
+#### 4. Restart Ant Media Server
 
 ```js
 sudo service antmedia restart
@@ -52,13 +52,13 @@ sudo service antmedia restart
 
 ## Configuration Guide
 
-To make the Periodic Stream Recording work properly, you’ll need to adjust the app configuration:
+To make the Periodic Stream Recording work properly, you’ll need to adjust the App configuration:
 
-### 1. Enable HLS Streaming
+#### 1. Enable HLS Streaming
 
 Go to your app settings & make sure that [HLS is enabled](https://antmedia.io/docs/guides/playing-live-stream/hls-playing/#enable-hls) in your application's settings.
 
-### 2. Set Playlist Type to "event"
+#### 2. Set Playlist Type to "event"
 
 Go to the Advanced Settings and set:
 
@@ -66,7 +66,7 @@ Go to the Advanced Settings and set:
 "hlsPlayListType": "event",
 ```
 
-### 3. Set the Clip Recording Interval
+#### 3. Set the Clip Recording Interval
 
 Under **Advanced App Settings**, add the following in `customSettings`:
 
@@ -172,7 +172,7 @@ To stop automatic periodic MP4 creation:
 
 Webhooks can be used to get notified about the newly generated clips. Check out [this document](https://antmedia.io/docs/guides/advanced-usage/webhooks/) for Webhook.
 
-Each time a new MP4 clip is created, a `vodReady`webhook is triggered, letting you know the clip is ready to be used.
+Each time a new MP4 clip is created, a `vodReady` webhook is triggered, letting you know the clip is ready to be used.
 
 ## Summary
 
@@ -183,4 +183,4 @@ With Periodic Stream Recording, Ant Media Server simplifies the task of capturin
 - Seamless integration with VoD playback.
 - Powered by an open-source plugin.
 
-Whether you’re archiving, sharing highlights, or generating content automatically, this feature is designed to keep your workflow smooth and efficient.
+Whether you’re archiving, sharing highlights or generating content automatically, this feature is designed to keep your workflow smooth and efficient.
