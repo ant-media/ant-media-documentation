@@ -93,7 +93,7 @@ kubectl patch ingress ant-media-server-edge -n antmedia --type='json' -p='[{"op"
 ```
 If everything was setup correctly edge.yourdomain.com or origin.yourdomain.com will display the Ant Media Server Create Account Page:
 
-![AMS registration page](@site/static/img/kubernetes/digitalOceanEightw.webp)
+![AMS registration page](@site/static/img/kubernetes/digitalOceanImageEightw.webp)
 
 
 ## Step 5: Setup SSL
