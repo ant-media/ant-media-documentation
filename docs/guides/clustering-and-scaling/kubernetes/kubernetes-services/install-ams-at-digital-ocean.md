@@ -13,29 +13,32 @@ In this guide, we’ll walk through how to deploy **Ant Media Server Enterprise 
 Before you begin, make sure you have the [Kubernetes command line tool (`kubectl`)](https://kubernetes.io/docs/tasks/tools/) installed on your local machine.
 :::
 
+---
+
 ## Step 1: Launch the Ant Media Server App on DigitalOcean
 
 1. Log into your [DigitalOcean Dashboard](https://cloud.digitalocean.com).
-2. From the left sidebar, click on **Marketplace**.
-3. In the search field, type **“Ant Media Server Enterprise”**.
-4. Select the application from the search results.
+2. From the sidebar, navigate to **Marketplace**.
+3. In the search field, type **"Ant Media Server Enterprise"**.
+4. Click the app card when it appears.
 
-![image.png](@site/static/img/kubernetes/digitalOceanImageFivew.webp)
+![Ant Media Server Search](@site/static/img/kubernetes/digitalOceanImageOnew.webp)
 
-Then enter **"Ant Media Server Enterprise"** in the search field and select it as shown in the screenshot.
+Once selected, click **Install App**, then click **Install** to proceed with the deployment.
 
-![image.png](@site/static/img/kubernetes/ams-do-marketpace-2.png)
+![Install App Confirmation](@site/static/img/kubernetes/digitalOceanImageTwow.webp)
 
-Click **"Install App"** and then click **"Install"**.
-
-![image.png](@site/static/img/kubernetes/ams-do-marketpace-3.png)
+---
 
 ## Step 2: Install the Kubernetes Cluster
 
-Choose the location, NodePool, and other settings and start the cluster setup.
+1. Select your preferred **data center region**.
+2. Choose a **node pool** size suitable for your expected load (we recommend at least 3 nodes with `s-4vcpu-8gb` or better).
+3. Review other cluster settings as needed.
+4. Click **Create Cluster** to begin provisioning.
 
-![image.png](@site/static/img/kubernetes/ams-do-marketpace-4-1.png)
-![image.png](@site/static/img/kubernetes/ams-do-marketpace-4-2.png)
+![Cluster Region and Pool Setup](@site/static/img/kubernetes/digitalOceanImageThreew.webp)
+![Cluster Settings Confirmation](@site/static/img/kubernetes/digitalOceanImageFourw.webp)
 
 ## Step 3: Connect to Kubernetes
 
