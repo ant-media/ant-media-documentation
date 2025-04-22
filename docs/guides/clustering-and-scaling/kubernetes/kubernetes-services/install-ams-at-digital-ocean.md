@@ -43,12 +43,7 @@ Once your cluster is deployed, youâ€™ll be prompted to connect to it via the **â
 
 We recommend following the **Automated (recommended)** setup, which uses the `doctl` CLI to configure access to your cluster.
 
-If you haven't installed `doctl` yet, you can do so via:
-
-```bash
-sudo snap install doctl
-```
-Then, authenticate using:
+After installing `doctl` you can authenticate using:
 
 ```bash
 doctl auth init
