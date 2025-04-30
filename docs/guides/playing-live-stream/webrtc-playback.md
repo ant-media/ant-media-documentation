@@ -19,7 +19,7 @@ Before attempting playback, ensure that the stream is actively broadcasting on t
 3. Write the stream id in text box, ```stream1``` by default.
 
  ![](@site/static/img/playing-live-streams/webrtc-playing/webrtc-player.png)
-
+ 
 4. Press ```Start Playing``` button. After you press the button, the WebRTC stream starts playing
 
    ![image](https://github.com/user-attachments/assets/7fece4b7-754d-4978-9a64-a6177f80b2d6)
