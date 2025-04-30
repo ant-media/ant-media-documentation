@@ -5,14 +5,13 @@ keywords: [WebRTC playback, WebRTC playback with Ant Media Server, Ant Media Ser
 sidebar_position: 1
 ---
 
-WebRTC playback is only available in Ant Media Server Enterprise Edition (EE).
+WebRTC playback is supported only in the Ant Media Server Enterprise Edition (EE).
 
-**Note:** For WebRTC playing, please ensure that UDP ports  `50000-60000`  are open on your server's firewall.
+**Note:** To enable WebRTC playback, make sure that UDP ports 50000–60000 are open on your server's firewall.
 
-If a client is behind a corporate firewall or has network restrictions, you can utilize the TURN server to redirect WebRTC traffic. More details can be found [here](https://antmedia.io/docs/guides/advanced-usage/turn-instalation/coturn-quick-installation/).
+If the viewer is behind a corporate firewall or experiences restricted network conditions, you can route WebRTC traffic through a TURN server. [here](https://antmedia.io/docs/guides/advanced-usage/turn-instalation/coturn-quick-installation/).
 
-Before you play a stream with WebRTC, please ensure the stream is broadcasting on the server.
-
+Before attempting playback, ensure that the stream is actively broadcasting on the server.
 > Quick Link: [Learn How to Publish with WebRTC](https://antmedia.io/docs/guides/publish-live-stream/webrtc/)
 
 1. Visit ```https://AMS_domain_name:5443/live/player.html```.
