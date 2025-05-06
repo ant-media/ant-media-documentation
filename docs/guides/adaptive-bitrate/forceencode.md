@@ -5,8 +5,6 @@ keywords: [Adaptive Bitrate Streaming, ABR, multi-bitrate streaming, live stream
 sidebar_position: 4
 ---
 
-## Force Encode
-
 ForceEncode is a feature of Adaptive Bitrate Streaming that transcodes all resolutions on the server by default.
 
 By default, if two ABRs are enabled, such as 1080p and 720p, and the user publishes the RTMP stream in 1080p, the HLS will include all three resolutions, including the original one, resulting in two 1080p, including the transcoded one.
@@ -17,11 +15,11 @@ Force encoding can now be disabled for enabled ABRs starting with Ant Media Serv
 
 Let us go through this step by step:
 
-### Step-1:
+#### Step-1: Enable ABRs on the server
 
 Enable three ABRs in application settings: 1080p, 720p and 480p.
 
-### Step-2:
+### Step-2: Configure forceEncode
 
 Go to the advanced application settings, and make the **forceEncode** false for the 1080p in the below property:
 
@@ -48,7 +46,7 @@ Go to the advanced application settings, and make the **forceEncode** false for 
   ]
 ```
 
-### Step-3:
+### Step-3: Publish Stream
 
 Now publish the RTMP or SRT stream with 1080p to the server and play the stream with HLS.
 
