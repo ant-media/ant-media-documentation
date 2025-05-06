@@ -39,26 +39,26 @@ Now go to the Clusters tab and click the Create button to create a new cluster. 
 
 ![](@site/static/img/aws-documentdb/aws-documentdb-4.png)
 
-Their is no need to change any parameter. Define your username and password for authentication and then go to advanced settings.
+There is no need to change any parameter. Define your username and password for authentication and then go to advanced settings.
 
 ![](@site/static/img/aws-documentdb/aws-documentdb-5.png)
 
-In advance settings, choose the Cluster Parameter Group you created in previous step, and click Create to create your cluster.
+In advance settings, choose the Cluster Parameter Group you created in the previous step, and click Create to create your cluster.
 
 ![](@site/static/img/aws-documentdb/aws-documentdb-6.png)
 
 Once the DocumentDB setup is complete, select your cluster, go to the Connectivity & Security tab, and obtain the connection string. 
 
-You can now use this information in Ant Media Server.
+You can now use this information in the Ant Media Server.
 
 ![](@site/static/img/aws-documentdb/aws-documentdb-7.png)
 
 
 ### Connect AMS to Document DB cluster
 
-To connect AMS with Document DB, you need to use the `mongodb+srv` connection string copied from the cluster in above steps.
+To connect AMS with Document DB, you need to use the `mongodb+srv` connection string copied from the cluster in the above steps.
 
-Now go to `/usr/local/antmedia` directory and run below command:
+Now go to `/usr/local/antmedia` directory and run the below command:
 
 ```bash
 sudo ./change_server_mode.sh cluster mongodb+srv://username:password@url
