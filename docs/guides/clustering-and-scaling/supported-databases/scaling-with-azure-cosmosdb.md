@@ -26,12 +26,12 @@ Follow the below steps to create a Cosmos DB cluster and connect AMS to the data
 3. On the New page, search for Azure Cosmos DB and select it.
 4. On the **Which API best suits your workload?** page, choose **Azure Cosmos DB for MongoDB**, then click **Create**.
 
-![](@site/static/img/clustering-and-scaling/scale-with-azure-cosmosdb/1-create Azure cosmos DB1.webp)
+![](@site/static/img/clustering-and-scaling/scale-with-azure-cosmosdb/1-create-azure-cosmos-db1.webp)
 
 5. On the **Which type of resource?** page, select the **Create** option within the **vCore cluster** section. 
 6. On the **Create Azure Cosmos DB for MongoDB cluster** page, select the **Configure** option within the **Cluster tier** section.
 
-![](@site/static/img/clustering-and-scaling/scale-with-azure-cosmosdb/2-Configure option.webp)
+![](@site/static/img/clustering-and-scaling/scale-with-azure-cosmosdb/2-configure-option.webp)
 
 7. On the **Scale** page, leave the options set to their default values:
 
