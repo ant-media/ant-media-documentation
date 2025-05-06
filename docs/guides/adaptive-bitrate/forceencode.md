@@ -15,7 +15,7 @@ Force encoding can now be disabled for enabled ABRs starting with Ant Media Serv
 
 Let us go through this step by step:
 
-#### Step-1: Enable ABRs on the server
+### Step-1: Enable ABRs on the server
 
 Enable three ABRs in application settings: 1080p, 720p and 480p.
 
