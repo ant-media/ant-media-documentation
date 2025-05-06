@@ -111,7 +111,7 @@ This means that **WebRTC viewers** will automatically receive the best possible 
 - There is a setting that influences how the original HLS stream is handled when ABR profiles are configured:
 
   ```js
-    "addOriginalMuxerIntoHLSPlaylist": true,
+  "addOriginalMuxerIntoHLSPlaylist": true,
   ```
 
   By default, this setting is enabled so the original resolution is also added to the HLS output.
@@ -119,12 +119,12 @@ This means that **WebRTC viewers** will automatically receive the best possible 
 ### Behavior:
 
 - **`true`:**
-  - Both the original incoming stream and all transcoded ABR profiles are available for playback.
-  - Example: Incoming stream at 720p with ABR profiles for 480p and 240p → viewers can select between **720p**, **480p**, and **240p**.
+   - Both the original incoming stream and all transcoded ABR profiles are available for playback.
+   - Example: Incoming stream at 720p with ABR profiles for 480p and 240p → viewers can select between **720p**, **480p**, and **240p**.
   
 - **`false`:**
-  - Only the ABR transcoded streams are available (original resolution is excluded from playback).
-  - Example: Same as above → viewers will only see **480p** and **240p**.
+   - Only the ABR transcoded streams are available (original resolution is excluded from playback).
+   - Example: Same as above → viewers will only see **480p** and **240p**.
 
 ### Why does this matter?
 
