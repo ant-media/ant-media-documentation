@@ -165,7 +165,7 @@ This section walks you through securing a live stream with Widevine using PallyC
 Pay attention that we use `stream007` as the `streamid`. It will be used in getting a license from PallyCon. You can use any `streamId`.
 :::
 
-2. Verify stream directory creation:
+- Verify stream directory creation:
 
    ```bash
    sudo ls /usr/local/antmedia/webapps/live/streams/drm/stream007/
@@ -184,27 +184,28 @@ Pay attention that we use `stream007` as the `streamid`. It will be used in gett
 
 1. Visit [PallyCon Token Generator](https://devconsole.doverunner.com/drm-tools/license-token/#token-generator)
 2. Fill in the following:
+
 - **SITE ID, SITE Key, ACCESS Key** → Get from [DRM Settings on PallyCon](https://contentsecurity.doverunner.com/drm/setting).
 - **DRM Type** → `Widevine` because we used `Widevine` in this sample.
 - **CID** → Your streamId. `stream007` in this sample.
 - **USER ID** → any unique identifier.
 - Click **Refresh Timestamp**, and leave the other fields with default values.
-3. Click the`Generate Token` button and copy the token in `Result`.
 
+3. Click the`Generate Token` button and copy the token in `Result`.
 4. Open the below file:
 
    ```bash
    sudo nano /usr/local/antmedia/webapps/live/js/pallycon-sample-helper.js
    ```
    
-- **Replace**:
+   - **Replace**:
 
-  ```js
-  dashUri = "https://{YOUR_ANTMEDIA_SERVER}:5443/live/streams/drm/stream123/master.mpd";
-  widevineToken = '{PASTE_YOUR_GENERATED_TOKEN_HERE}';
-  ```
-  
-- Save the changes & exit the editor.
+       ```js
+     dashUri = "https://{YOUR_ANTMEDIA_SERVER}:5443/live/streams/drm/stream123/master.mpd";
+     widevineToken = '{PASTE_YOUR_GENERATED_TOKEN_HERE}';
+     ```
+
+   - Save the changes & exit the editor.
 
 ### Step 5: Play the Stream in Chrome
 
