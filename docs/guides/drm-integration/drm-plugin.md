@@ -30,7 +30,7 @@ Ensure the Ant Media Server is already running on your machine or instance.
   sudo cp DRM-Plugin-bundle.jar /usr/local/antmedia/plugins
   ```
 
-- Restart Ant Media Server to apply changes.
+- Restart the Ant Media Server to apply changes.
 
   ```bash
   sudo service antmedia restart
@@ -53,7 +53,7 @@ Ensure the Ant Media Server is already running on your machine or instance.
 
 ## Configuration
 
-The DRM plugin settings are added under the `customSettings`in application settings under Ant Media Server.
+The DRM plugin settings are added under the `customSettings` in the application settings under Ant Media Server.
 
 ### Step 1: Navigate to Custom Settings
 
@@ -101,21 +101,21 @@ JSON array of DRM systems: ["`Widevine`", "`FairPlay`", "`PlayReady`"].
 "`LIVE`" *(default)*, "`VOD`", or "`EVENT`".
 
 - **`segmentDurationSecs`**:
-Segment duration in seconds. Default is `2`.
+Segment duration in seconds. The default is `2`.
 
 - **`timeShiftBufferDepthSecs`**:
-Buffer duration for live streams. Default is `60` seconds.
+Buffer duration for live streams. The default is `60` seconds.
 
 - **`segmentsOutsideLiveWindow`**:
-Keeps extra segments outside the buffer window. Default is `5`.
+Keeps extra segments outside the buffer window. The default is `5`.
 
-## PallyCon Multi-DRM Integration (Widevine Example)
+## DoveRunner Multi-DRM Integration (Widevine Example)
 
-This section walks you through securing a live stream with Widevine using PallyCon.
+This section walks you through securing a live stream with Widevine using DoveRunner.
 
-### Step 1: Get KMS Token from PallyCon
+### Step 1: Get a KMS Token from DoveRunner
 
-- Log in to your [PallyCon Web Panel](https://doverunner.com/).
+- Log in to your [DoveRunner Web Panel](https://doverunner.com/).
 - Navigate to Multi-DRM > DRM Settings.
 - Copy your KMS Token.
 
@@ -140,10 +140,10 @@ This section walks you through securing a live stream with Widevine using PallyC
 
 ### Step 2: Add Video.js Player for Playback
 
-- Clone PallyCon's sample HTML5 player:
+- Clone DoveRunner's sample HTML5 player:
 
   ```bash
-  git clone https://github.com/inka-pallycon/html5-player-drm-samples
+  git clone https://github.com/doverunner/html5-player-drm-samples
   ```
 
 - Copy the files to your `live` app’s web directory:
@@ -162,7 +162,7 @@ This section walks you through securing a live stream with Widevine using PallyC
 - Check the [WebRTC Publish Section](https://antmedia.io/docs/guides/publish-live-stream/webrtc/)
 
 :::info
-Pay attention that we use `stream007` as the `streamid`. It will be used in getting a license from PallyCon. You can use any `streamId`.
+Pay attention that we use `stream007` as the `streamid`. It will be used to get a license from DoveRunner. You can use any `streamId`.
 :::
 
 - Verify stream directory creation:
@@ -182,16 +182,16 @@ Pay attention that we use `stream007` as the `streamid`. It will be used in gett
 
 ### Step 4: Generate Widevine Token
 
-1. Visit [PallyCon Token Generator](https://devconsole.doverunner.com/drm-tools/license-token/#token-generator)
+1. Visit [DoveRunner Token Generator](https://devconsole.doverunner.com/drm-tools/license-token/#token-generator)
 2. Fill in the following:
 
-- **SITE ID, SITE Key, ACCESS Key** → Get from [DRM Settings on PallyCon](https://contentsecurity.doverunner.com/drm/setting).
+- **SITE ID, SITE Key, ACCESS Key** → Get from [DRM Settings on DoveRunner](https://contentsecurity.doverunner.com/drm/setting).
 - **DRM Type** → `Widevine` because we used `Widevine` in this sample.
 - **CID** → Your streamId. `stream007` in this sample.
 - **USER ID** → any unique identifier.
 - Click **Refresh Timestamp**, and leave the other fields with default values.
 
-3. Click the`Generate Token` button and copy the token in `Result`.
+3. Click the `Generate Token` button and copy the token in `Result`.
 4. Open the below file:
 
    ```bash
@@ -201,7 +201,7 @@ Pay attention that we use `stream007` as the `streamid`. It will be used in gett
    - **Replace**:
 
        ```js
-     dashUri = "https://{YOUR_ANTMEDIA_SERVER}:5443/live/streams/drm/stream123/master.mpd";
+     dashUri = "https://{YOUR_ANTMEDIA_SERVER}:5443/live/streams/drm/stream007/master.mpd";
      widevineToken = '{PASTE_YOUR_GENERATED_TOKEN_HERE}';
      ```
 
