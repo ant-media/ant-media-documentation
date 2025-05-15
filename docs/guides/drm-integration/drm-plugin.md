@@ -21,7 +21,8 @@ Ensure the Ant Media Server is already running on your machine or instance.
 ### Step 1: Purchase and Install the DRM Plugin
 
 1. **Purchase the Plugin**
-- Email contact@antmedia.io to purchase the DRM plugin.
+- [Get the DRM Plugin](https://antmedia.io/product/drm-plugin/) on a monthly subscription basis.
+- Or write an email to contact@antmedia.io
 
 2. **Install the DRM Plugin**
 - Download and copy the plugin JAR file to your Ant Media's plugin directory.
