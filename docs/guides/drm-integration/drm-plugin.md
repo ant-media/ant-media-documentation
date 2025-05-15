@@ -111,9 +111,9 @@ Keeps extra segments outside the buffer window. The default is `5`.
 
 ## DoveRunner Multi-DRM Integration (Widevine Example)
 
-This section walks you through securing a live stream with Widevine using PallyCon.
+This section walks you through securing a live stream with Widevine using DoveRunner.
 
-### Step 1: Get KMS Token from PallyCon
+### Step 1: Get a KMS Token from DoveRunner
 
 - Log in to your [DoveRunner Web Panel](https://doverunner.com/).
 - Navigate to Multi-DRM > DRM Settings.
@@ -140,10 +140,10 @@ This section walks you through securing a live stream with Widevine using PallyC
 
 ### Step 2: Add Video.js Player for Playback
 
-- Clone PallyCon's sample HTML5 player:
+- Clone DoveRunner's sample HTML5 player:
 
   ```bash
-  git clone https://github.com/inka-pallycon/html5-player-drm-samples
+  git clone https://github.com/doverunner/html5-player-drm-samples
   ```
 
 - Copy the files to your `live` app’s web directory:
