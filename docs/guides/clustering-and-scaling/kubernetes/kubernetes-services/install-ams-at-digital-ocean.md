@@ -13,7 +13,6 @@ In this guide, we’ll walk through how to deploy **Ant Media Server Enterprise 
 Before you begin, make sure you have the [Kubernetes command line tool (`kubectl`)](https://kubernetes.io/docs/tasks/tools/) installed on your local machine.
 :::
 
----
 
 ## Step 1: Launch the Ant Media Server App on DigitalOcean
 
@@ -25,7 +24,6 @@ Before you begin, make sure you have the [Kubernetes command line tool (`kubectl
 
 ![Ant Media Server Search](@site/static/img/kubernetes/digitalOceanImageOnew.webp)
 
----
 
 ## Step 2: Install the Kubernetes Cluster
 
@@ -43,13 +41,13 @@ Once your cluster is deployed, you’ll be prompted to connect to it via the **�
 
 We recommend following the **Automated (recommended)** setup, which uses the `doctl` CLI to configure access to your cluster.
 
-After installing `doctl` you can authenticate using:
+After installing `doctl`, you can authenticate using
 
 ```bash
 doctl auth init
 ```
 
-Paste your DigitalOcean API token when prompted. (Which you can create in your Digital Ocean Controll panel by navigating to the API tab > Generate New Token Button):
+Paste your DigitalOcean API token when prompted. (which you can create in your Digital Ocean control panel by navigating to the `API tab` > `Generate New Token Button`):
 
 ![Cluster Settings Confirmation](@site/static/img/kubernetes/digitalOceanImageFivew.webp)
 
@@ -61,16 +59,16 @@ doctl kubernetes cluster kubeconfig save <your-cluster-id-or-name>
 
 You can finish the rest of the **“Getting Started with Kubernetes”** wizard.
 
-During the installation on DigitalOcean, default hostnames like edge.localhost or origin.localhost are set, but these need to be updated to match your own domain.
+During the installation on DigitalOcean, default hostnames like `edge.localhost` or `origin.localhost` are set, but this needs to be updated to match your own domain.
 
-Replace yourdomain.com with your actual domain name (or use a temporary test domain like localtest.me if you're still testing).
+Replace `yourdomain.com` with your actual domain name (or use a temporary test domain like localtest.me if you're still testing).
 
 :::info
 localtest.me automatically resolves to 127.0.0.1, which is not your cluster’s IP.
 
-To make origin.localtest.me and edge.localtest.me point to your actual cluster, you’ll need to override it locally:
+To make `origin.localtest.me` and `edge.localtest.me` point to your actual cluster, you’ll need to override it locally:
 
-On your local machine, open /etc/hosts as root and add the following line (replacing the load-balancer-ip with your own):
+On your local machine, open `/etc/hosts` as root and add the following line (replacing the load-balancer-ip with your own):
 
 ```bash
 load-balancer-ip   origin.localtest.me edge.localtest.me
@@ -86,13 +84,22 @@ kubectl patch ingress ant-media-server-origin -n antmedia --type='json' -p='[{"o
 # Set the hostname for the EDGE ingress
 kubectl patch ingress ant-media-server-edge -n antmedia --type='json' -p='[{"op": "replace", "path": "/spec/rules/0/host", "value": "edge.yourdomain.com"}]'
 ```
-If everything was setup correctly edge.yourdomain.com or origin.yourdomain.com will display the Ant Media Server Create Account Page:
+If everything was set up correctly, `edge.yourdomain.com` or `origin.yourdomain.com` will display the Ant Media Server Create Account Page:
 
 ![AMS registration page](@site/static/img/kubernetes/digitalOceanImageEightw.webp)
 
+:::info
+In case it does not work locally on the default HTTPS and HTTP ports, you need to do the port forwarding to run it locally.
+
+In this case, we forwarded port 8080 to port 80 and 8443 to port 443.
+
+```bash
+kubectl port-forward -n ingress-nginx svc/antmedia-ingress-nginx-controller 8080:80 8443:443
+```
+:::
+
+In order to access the cluster via public domains, set up the SSL certificate in the next step.
 
 ## Step 5: Setup SSL
 
 The Marketplace product comes with a self-signed certificate. If you want to use Let's Encrypt or your own certificate, follow the documentation to [install an SSL certificate via Helm](/guides/clustering-and-scaling/kubernetes/deploy-ams-with-helm/#install-ssl)
-
-
