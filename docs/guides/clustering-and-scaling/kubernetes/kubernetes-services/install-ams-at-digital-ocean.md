@@ -7,80 +7,99 @@ sidebar_position: 7
 
 # Installing Ant Media Server on K8s by Digital Ocean
 
-In this article, I'm going to explain how to install Ant Media Server K8s on DigitalOcean with just one click.
+In this guide, we’ll walk through how to deploy **Ant Media Server Enterprise Edition** on a Kubernetes cluster using **DigitalOcean’s Marketplace** — all with just a few clicks.
 
 :::info
-You need to have the [Kubernetes command line tool](https://kubernetes.io/docs/tasks/tools/) installed on your computer.
+Before you begin, make sure you have the [Kubernetes command line tool (`kubectl`)](https://kubernetes.io/docs/tasks/tools/) installed on your local machine.
 :::
 
-## Step 1: Install Ant Media Server App
 
-Login to Digital Ocean, click on the Marketplace tab.
+## Step 1: Launch the Ant Media Server App on DigitalOcean
 
-![image.png](@site/static/img/kubernetes/ams-do-marketpace-1.png)
+1. Log into your [DigitalOcean Dashboard](https://cloud.digitalocean.com).
+2. From the sidebar, navigate to **Marketplace**.
+3. In the search field, type **"Ant Media Server Enterprise"**.
+4. Click the app card when it appears.
+5. Once selected, click **Install App**, then click **Install** to proceed with the deployment.
 
-Then enter **"Ant Media Server Enterprise"** in the search field and select it as shown in the screenshot.
+![Ant Media Server Search](@site/static/img/kubernetes/digitalOceanImageOnew.webp)
 
-![image.png](@site/static/img/kubernetes/ams-do-marketpace-2.png)
-
-Click **"Install App"** and then click **"Install"**.
-
-![image.png](@site/static/img/kubernetes/ams-do-marketpace-3.png)
 
 ## Step 2: Install the Kubernetes Cluster
 
-Choose the location, NodePool, and other settings and start the cluster setup.
+1. Select your preferred **data center region**.
+2. Choose a **node pool** size suitable for your expected load (we recommend at least 3 nodes with `s-4vcpu-8gb` or better).
+3. Review other cluster settings as needed.
+4. Click **Create Cluster** to begin provisioning.
 
-![image.png](@site/static/img/kubernetes/ams-do-marketpace-4-1.png)
-![image.png](@site/static/img/kubernetes/ams-do-marketpace-4-2.png)
+![Cluster Region and Pool Setup](@site/static/img/kubernetes/digitalOceanImageThreew.webp)
+![Cluster Settings Confirmation](@site/static/img/kubernetes/digitalOceanImageFourw.webp)
 
 ## Step 3: Connect to Kubernetes
 
-After the installation is complete, download the kubernetes configuration file from the **Actions > Download Config** menu and export it as follows.
+Once your cluster is deployed, you’ll be prompted to connect to it via the **“Getting Started with Kubernetes”** wizard.
 
-```shell
-export KUBECONFIG=~/Downloads/ant-media-k8s-1-26-3-do-0-fra1-1679679927785-kubeconfig.yaml
-```
-Let's check everything is working.
+We recommend following the **Automated (recommended)** setup, which uses the `doctl` CLI to configure access to your cluster.
 
-```shell
-kubectl get pods -n antmedia
-```
-```shell
-NAME                                                 READY   STATUS    RESTARTS   AGE
-ant-media-server-edge-6bc98b95d7-hrdlj               1/1     Running   0          6m49s
-ant-media-server-origin-7d56c5f8d-sp2nl              1/1     Running   0          6m49s
-antmedia-ingress-nginx-controller-755b7f6fb8-kmwrm   1/1     Running   0          6m49s
-mongo-7946fc86ff-lzjnr                               1/1     Running   0          6m49s
+After installing `doctl`, you can authenticate using
+
+```bash
+doctl auth init
 ```
 
-```shell
-kubectl get ingress -n antmedia
+Paste your DigitalOcean API token when prompted. (which you can create in your Digital Ocean control panel by navigating to the `API tab` > `Generate New Token Button`):
+
+![Cluster Settings Confirmation](@site/static/img/kubernetes/digitalOceanImageFivew.webp)
+
+Once authenticated, run the command shown in the Getting Started tab to save your kubeconfig locally. It will look something like this:
+
+```bash
+doctl kubernetes cluster kubeconfig save <your-cluster-id-or-name>
 ```
 
-```shell
-NAME                      CLASS   HOSTS              ADDRESS         PORTS     AGE
-ant-media-server-edge     nginx   origin.localhost   x.x.x.x         80, 443   11m
-ant-media-server-origin   nginx   edge.localhost     x.x.x.x         80, 443   11m
-```
-## Step 4: Configure Hostnames
-Unfortunately, the domain/subdomain cannot be determined during the installation in DigitalOcean, so update your Edge and Origin HOSTS addresses as follows.
+You can finish the rest of the **“Getting Started with Kubernetes”** wizard.
 
-```shell
-kubectl patch ing/ant-media-server-origin --type=json -p='[{"op": "replace", "host": "edge.antmedia.cloud", "value":"test"}]' -n antmedia
-kubectl patch ing/ant-media-server-origin --type=json -p='[{"op": "replace", "host": "edge.antmedia.cloud", "value":"test"}]' -n antmedia
-```
-Make sure your own domains are updated when you run the `kubectl get ingress -n antmedia` command again,  then you can update your DNS.
+During the installation on DigitalOcean, default hostnames like `edge.localhost` or `origin.localhost` are set, but this needs to be updated to match your own domain.
 
-You can now access your Ant Media Cluster over Ingress.
+Replace `yourdomain.com` with your actual domain name (or use a temporary test domain like localtest.me if you're still testing).
 
+:::info
+localtest.me automatically resolves to 127.0.0.1, which is not your cluster’s IP.
+
+To make `origin.localtest.me` and `edge.localtest.me` point to your actual cluster, you’ll need to override it locally:
+
+On your local machine, open `/etc/hosts` as root and add the following line (replacing the load-balancer-ip with your own):
+
+```bash
+load-balancer-ip   origin.localtest.me edge.localtest.me
 ```
-https://edge.{yourdomain}.com
-http://origin.{yourdomain}.com
+:::
+
+```bash
+# Set the hostname for the ORIGIN ingress
+kubectl patch ingress ant-media-server-origin -n antmedia --type='json' -p='[{"op": "replace", "path": "/spec/rules/0/host", "value": "origin.yourdomain.com"}]'
 ```
+
+```bash
+# Set the hostname for the EDGE ingress
+kubectl patch ingress ant-media-server-edge -n antmedia --type='json' -p='[{"op": "replace", "path": "/spec/rules/0/host", "value": "edge.yourdomain.com"}]'
+```
+If everything was set up correctly, `edge.yourdomain.com` or `origin.yourdomain.com` will display the Ant Media Server Create Account Page:
+
+![AMS registration page](@site/static/img/kubernetes/digitalOceanImageEightw.webp)
+
+:::info
+In case it does not work locally on the default HTTPS and HTTP ports, you need to do the port forwarding to run it locally.
+
+In this case, we forwarded port 8080 to port 80 and 8443 to port 443.
+
+```bash
+kubectl port-forward -n ingress-nginx svc/antmedia-ingress-nginx-controller 8080:80 8443:443
+```
+:::
+
+In order to access the cluster via public domains, set up the SSL certificate in the next step.
 
 ## Step 5: Setup SSL
 
 The Marketplace product comes with a self-signed certificate. If you want to use Let's Encrypt or your own certificate, follow the documentation to [install an SSL certificate via Helm](/guides/clustering-and-scaling/kubernetes/deploy-ams-with-helm/#install-ssl)
-
-
