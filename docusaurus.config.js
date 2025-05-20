@@ -523,13 +523,14 @@ scripts: [
             position: 'right',
             dropdownActiveClassDisabled: false,
           },
-
+/*
           {
             type: 'doc',
             docId: 'introduction',
             label: 'Guides',
             position: 'right'
           },
+*/
           {
             label: 'SDK references',
             href: '/category/sdk-integration/',
@@ -544,6 +545,12 @@ scripts: [
             label: 'Ant Media',
             href: 'https://antmedia.io/',
             position: 'right'
+          },
+	  {
+            label: 'Free Trial',
+            href: 'https://antmedia.io/self-hosted-free-trial/',
+            position: 'right',
+            className: 'navbar-free-trial',
           },
           /*{to: '/blog', label: 'Blog', position: 'left'},
           {
