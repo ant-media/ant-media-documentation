@@ -40,6 +40,14 @@ Unity projects can be built for multiple platforms. Here I will tell for Windows
 
 3. Click Build and select the folder that you want to create the executable file
 
+4. After building we can navigate to the folder we configured in the previous menu and run it, we should see the following:
+
+![](@site/static/img/developer-guides/unity1.webp)
+
+5. We can play it from the dashboard:
+
+![](@site/static/img/developer-guides/unity2.webp)
+
 ### Android Build
 1. Navigate to File/Build settings
 2. Select Android as the platform and click the Switch Platform button
