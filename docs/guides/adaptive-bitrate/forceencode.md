@@ -11,7 +11,7 @@ By default, if two ABRs are enabled, such as 1080p and 720p, and the user publis
 
 This increases the server overhead by transcoding the 1080p resolution again, which consumes a significant amount of CPU resources.
 
-Force encoding can now be disabled for enabled ABRs starting with Ant Media Server v3.0. This will help to save the server resources and provide better flexibility.
+Force encoding can now be disabled for enabled ABRs starting with Ant Media Server v2.14.0. This will help to save the server resources and provide better flexibility.
 
 Let us go through this step by step:
 
@@ -64,7 +64,7 @@ test.m3u8
 test_1080p2500kbps.m3u8
 ```
 
-Since we disabled the forceEncode for the 1080p, it will not transcode the stream to 1080p again, and only the original resolution will be added to the HLS other than 720p and 480p.
+Since we disabled the forceEncode for 1080p, it will not transcode the stream to 1080p again, and only the original resolution will be added to the HLS other than 720p and 480p.
 
 ```bash
 #EXTM3U
