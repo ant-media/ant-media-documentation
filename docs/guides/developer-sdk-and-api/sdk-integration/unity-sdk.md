@@ -7,9 +7,9 @@ sidebar_position: 6
 
 # Ant Media Server Unity WebRTC SDK
 
-We have created a new Ant Media Server Unity WebRTC SDK on top of the WebRTC for Unity packages developed by the Unity team. In this post, I will try to tell you how to use it. The project also contains a sample application to show the SDK is used.
+We have created a new Ant Media Server Unity WebRTC SDK on top of the WebRTC for Unity packages developed by the Unity team. In this post, I will explain how to use it. The project also contains a sample application to demonstrate how the SDK is used.
 
-I assumed that you have already installed Unity on your computer.
+I assume that you have already installed Unity on your computer.
 
 ## Setup The Project
 1. Clone the Unity SDK project from github repository:
@@ -17,8 +17,10 @@ I assumed that you have already installed Unity on your computer.
    `git clone https://github.com/ant-media/WebRTC-Unity-SDK.git`
 
 2. Start Unity Hub
-3. To open the project, click the Open button then select the folder you cloned the Unity SDK. Wait until opens the project in Unity.
-4. Navigate the Project window and open AMSStreamingSample scene from Assets/AntMedia/Samples.
+
+3. To open the project, click the Open button, then select the folder where you cloned the Unity SDK. Wait until the project opens in Unity.
+
+4. Navigate to the Project window and open the AMSStreamingSample scene from Assets/AntMedia/Samples.
   ![Unity WebRTC SDK Assets](https://antmedia.io/wp-content/uploads/2023/02/AMSStreaming-Asset-1024x576.jpg)
 
 
@@ -31,14 +33,28 @@ I assumed that you have already installed Unity on your computer.
 
 ## Build The Project
 
-Unity projects can be built for multiple platforms. Here I will tell for Windows and Android platforms.
+Unity projects can be built for multiple platforms. Here, I will show how to build for Windows and Android platforms.
+
+The project is working with VP8 codec as of now, but h264 will be supported soon. Please change your AMS settings to work with VP8 from your dashboard's application:
+
+![](@site/static/img/developer-guides/unity3.webp)
+
 
 ### Windows Build
 1. Navigate to File/Build settings
+
 2. Select Windows as the platform
    ![Unity WebRTC SDK - Windows](https://antmedia.io/wp-content/uploads/2023/02/AMSUnitySDK-Windows-Build-1024x576.jpg)
 
 3. Click Build and select the folder that you want to create the executable file
+
+4. After building we can navigate to the folder we configured in the previous menu and run it, we should see the following:
+
+![](@site/static/img/developer-guides/unity1.webp)
+
+5. We can play it from the dashboard:
+
+![](@site/static/img/developer-guides/unity2.webp)
 
 ### Android Build
 1. Navigate to File/Build settings
@@ -67,8 +83,6 @@ Unity projects can be built for multiple platforms. Here I will tell for Windows
 After running the executable of the Ant Media Unity WebRTC Sample Application you will get the following screen.
 
 ## Unity WebRTC SDK Sample Application
-
-The project is working with VP8 codec as of now, but h264 will be supported soon. Please change your AMS settings to work with VP8 as told here.
 
 This Sample Application has 3 modes. You can select the mode you want to test from the Dropdown menu.
 
