@@ -238,4 +238,15 @@ h1, article h1, article header h1 {
   font-size: 14px;
 }
 
+.navbar-free-trial {
+  background-color: #DF0517; /* or your brand color */
+  color: #fff !important;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
 
+.navbar-free-trial:hover {
+  background-color: #e64a19;
+}

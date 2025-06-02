@@ -2,6 +2,7 @@
 title: Thumbnails
 description: Enable thumbnails (preview) on the fly with adaptive bitrate streaming.
 keywords: [Generating Thumbnails from streams, Generated Preview Images, Ant Media Server Documentation, Ant Media Server Tutorials]
+sidebar_position: 3
 ---
 
 # Thumbnails

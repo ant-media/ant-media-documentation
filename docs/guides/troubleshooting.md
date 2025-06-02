@@ -3,7 +3,7 @@ id: troubleshooting
 title: Troubleshooting Guide
 description: There may be plenty of new things at Ant Media Server. But, this troubleshooting guide will prove to be saviour for you.
 keywords: [Ant Media Server Troubleshooting Guide, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 13
+sidebar_position: 15
 ---
 
 # Troubleshooting
@@ -43,13 +43,29 @@ Please get the memory dump by using the following REST method: ```GET http://AMS
 
 Load the created **heapdump.hprof** file using the VisualVM tool and analyse the memory. Check for any leaks. You can also use [Eclipse Memory Analyzer Tool](https://www.eclipse.org/mat/) tool to find leaks automatically.
 
+### "Resource Usage is High" Error  
+
+This error is reported by Ant Media Server when CPU or memory usage exceeds the defined limits. By default, the limits for CPU and memory usage are set to 75%. You can modify these values by updating the following properties in the `/usr/local/antmedia/conf/red5.properties` file:  
+
+```properties
+server.cpu_limit=75  
+server.memory_limit_percentage=75  
+```
+
+After making the changes, restart Ant Media Server using:
+```
+sudo service antmedia restart
+```
+Warning: Setting CPU or memory usage above 75% may lead to system instability and is not recommended.
+
+
 ### I get notSetRemoteDescription error
 
 Your device may not have the necessary h264 codec. Check your device codec compatibility from: [https://mozilla.github.io/webrtc-landing/pc\_test\_no\_h264.html](https://mozilla.github.io/webrtc-landing/pc_test_no_h264.html)
 
 ### I cannot play the stream with WebRTC player
 
-This issue ( "NoStreamExist") happens when the sending stream resolution is not enough for configured adaptive bitrate values.
+This issue ( "NoStreamExist") happens when the sending stream resolution is insufficient for configured adaptive bitrate values.
 
 On the WebRTC side, you can check your camera resolution capacity at the following links:
 

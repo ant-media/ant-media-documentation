@@ -23,7 +23,7 @@ For example, play.html can be found in the LiveApp application at the following 
 
 The default player is as follows:
 
-![](@site/static/img/playing-live-streams/embedded-web-player/embedded-player.png)
+![image](https://github.com/user-attachments/assets/59589673-b589-4652-8690-7f78299933ad)
 
 ```play.html``` page uses our custom web player under the hood, which makes it possible to play with all playing protocols (WebRTC, HLS, or CMAF Dash).
 
@@ -43,13 +43,13 @@ The URL parameters listed below are accepted by the ```play.html``` page.
 The default WebRTC URL is as follows for play.html (when no token is enabled).
 
 ```
-https://AMS-domain-name:5443/LiveApp/play.html?name=streamId
+https://AMS-domain-name:5443/live/play.html?name=streamId
 ```
 
 When the token is enabled:
 
 ```
-https://AMS-domain-name:5443/LiveApp/play.html?name=streamId&token=generated-token
+https://AMS-domain-name:5443/live/play.html?name=streamId&token=generated-token
 ```
 
 For HLS, Dash, or VOD playback, you can use the ```playOrder``` parameter as defined above.
@@ -58,21 +58,21 @@ For HLS, Dash, or VOD playback, you can use the ```playOrder``` parameter as def
 
 You can copy the Embed code for a specific stream directly from the AMS dashboard, as shown in the screenshot below:
 
-![](@site/static/img/playing-live-streams/embedded-web-player/iframe-code.png)
+![image](https://github.com/user-attachments/assets/b63f62ad-fb38-4294-98f8-2b2ce145e0be)
 
 Here is the sample Embed code:
 
 ```html
-<iframe width="560" height="315" src="https://AMS-domain-name:5443/WebRTCAppEE/play.html?name=125214322064017559554903" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://AMS-domain-name:5443/live/play.html?name=stream1" frameborder="0" allowfullscreen></iframe>
 ```
 
-```src="https://AMS-domain-name:5443/WebRTCAppEE/play.html?name=125214322064017559554903"``` 
+```src="https://AMS-domain-name:5443/live/play.html?name=stream1"``` 
 
-In the above segment of the iframe code, we're passing a name parameter to define the `streamId`. You can include additional parameters in a similar manner as specified above.
+In the above segment of the iframe code, we're passing a name parameter to define the `streamId`. You can include additional parameters similarly as specified above.
 
 For example, `playOrder=webrtc`:
 
-```src="https://AMS-domain-name:5443/WebRTCAppEE/play.html?name=125214322064017559554903&playOrder=webrtc"```
+```src="https://AMS-domain-name:5443/live/play.html?name=stream1&playOrder=webrtc"```
 
 With this adjustment, your Iframe player will attempt to stream solely via WebRTC. If a WebRTC stream isn't available, it will refrain from playing the stream altogether. If you do not specify playOrder, then in that case, the player will switch to HLS playback as a fallback method if it is enabled.
 
@@ -143,7 +143,7 @@ Create a useEffect hook to initialize web player and start playback on component
 useEffect(() => {    
     embeddedPlayerRef.current = new WebPlayer({
       streamId: "teststream",
-      httpBaseURL: "http://localhost:5080/WebRTCAppEE/", 
+      httpBaseURL: "http://localhost:5080/live/", 
       videoHTMLContent: '<video id="video-player" class="video-js vjs-default-skin vjs-big-play-centered" controls playsinline style="width:100%;height:100%"></video>',
       playOrder : playOrderLocal
     }, videoRef.current, placeHolderRef.current);
@@ -158,7 +158,7 @@ useEffect(() => {
 
  - **```streamId```**: streamId for the stream your player will display.
  
- - **```httpBaseURL```**: The web player retrieves the application name (e.g., WebRTCAppEE in our example) and the URL of your server where the stream is located through this parameter. In a production environment, it should resemble: 
+ - **```httpBaseURL```**: The web player retrieves the application name (e.g., live in our example) and the URL of your server where the stream is located through this parameter. In a production environment, it should resemble: 
 
     https://your_ams_url:5443/AppName/
 
@@ -186,7 +186,7 @@ function App() {
   useEffect(() => {    
     embeddedPlayerRef.current = new WebPlayer({
       streamId: "teststream",
-      httpBaseURL: "http://localhost:5080/WebRTCAppEE/", 
+      httpBaseURL: "http://localhost:5080/live/", 
       videoHTMLContent: '<video id="video-player" class="video-js vjs-default-skin vjs-big-play-centered" controls playsinline style="width:100%;height:100%"></video>',
       playOrder : playOrderLocal
     }, videoRef.current, placeHolderRef.current);
@@ -232,7 +232,7 @@ const Token = "your-generated-token-value";
 useEffect(() => {
 embeddedPlayerRef.current = new WebPlayer({
 streamId: "test",
-httpBaseURL: "https://test.antmedia.io:5443/LiveApp/",
+httpBaseURL: "https://test.antmedia.io:5443/live/",
 videoHTMLContent: '<video id="video-player" class="video-js vjs-default-skin vjs-big-play-centered" controls playsinline style="width:100%;height:100%"></video>',
 playOrder : playOrderLocal,
 token : Token
