@@ -9,20 +9,33 @@ sidebar_position: 5
 
 Windows Subsystem for Linux (WSL) provides a lightweight virtualized environment to run Linux distributions directly on Windows. This guide shows you how to install Ant Media Server (AMS) on WSL, which can be useful for local development, testing, and demos.
 
-:::info **Important:** This guide assumes you are using **WSL2** and Ubuntu as your Linux distribution. For production setups, we strongly recommend using a dedicated Linux server or virtual machine.  
+:::info **Important:** This guide assumes you are using **WSL2** and Ubuntu as your Linux distribution. For production setups, we strongly recommend using a dedicated Linux server or virtual machine.
 
 We also **do not cover** every installation step of AMS here — please follow our [Installing Ant Media Server on Linux](https://antmedia.io/docs/installation/) documentation for the complete process. This guide supplements that with WSL-specific steps.
 :::
 
-## 1. Installing WSL and Ubuntu
+## 1. Install WSL and Ubuntu
 
-You can install WSL and Ubuntu using a single command in PowerShell (run as Administrator):
+:::info
+Before proceeding with the WSL installation, run the below commands to enable the Windows feature for virtualization and WSL.
+
+Run **PowerShell as Administrator** and execute:
+
+```
+dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+```
+
+After that, reboot the system.
+:::
+
+You can now install WSL and Ubuntu using a single command in PowerShell (run as Administrator):
 
 ```bash
 wsl --install
 ```
   
-
 Once the installation completes and the system reboots, you'll be greeted with a Linux shell asking you to create a username and password.
 
  ![](@site/static/img/wls-installation/screen1.webp)
@@ -31,7 +44,7 @@ Once the installation completes and the system reboots, you'll be greeted with a
 
 ---
 
-## 2. Updating the Ubuntu Environment
+## 2. Update the Ubuntu Environment
 
 After setting up Ubuntu, update the package lists and install system updates:
 
@@ -43,7 +56,7 @@ sudo apt update && sudo apt upgrade -y
 
 ---
 
-## 3. Installing Ant Media Server
+## 3. Install Ant Media Server
 
 Follow our official [Linux installation guide](https://antmedia.io/docs/guides/installing-on-linux/installing-ams-on-linux/) to install Ant Media Server inside the WSL environment.
 
@@ -55,7 +68,7 @@ sudo service antmedia status
 
 ---
 
-## 4. Accessing the Web Dashboard
+## 4. Access the Web Dashboard
 
 If you're running AMS on WSL2, it will typically be available at:
 
@@ -70,9 +83,9 @@ You can access this from any browser on your Windows machine.
 
 ---
 
-## 5. Publishing a Test Stream
+## 5. Publish a Test Stream
 
-We can now test publishing a hls stream from the browser with this url:
+We can now test publishing a WebRTC stream from the browser with this URL:
 
 ```bash
 http://localhost:5080/LiveApp/
@@ -81,16 +94,15 @@ http://localhost:5080/LiveApp/
 And play it with the following:
 
 ```bash
-http://localhost:5080/LiveApp/play.html?id=test&playOrder=hls
+http://localhost:5080/LiveApp/play.html?id=test
 ```
 
  ![](@site/static/img/wls-installation/screen4.webp)
 
+
+To publish and play WebRTC in a production environment, you need to enable SSL. For more info, check out the SSL document [**here**](https://antmedia.io/docs/guides/installing-on-linux/setting-up-ssl/).
+
 ---
-
-To play WebRTC you need to enable ssl, for more info, check out: 
-
-https://antmedia.io/docs/guides/installing-on-linux/setting-up-ssl/
 
 ## Notes and Considerations
 
@@ -102,5 +114,5 @@ https://antmedia.io/docs/guides/installing-on-linux/setting-up-ssl/
 
 ## Troubleshooting
 
-- If you can't access AMS at `localhost:5080`, check if the WSL instance is running and that AMS is started.
+- If you can't access AMS at `http://localhost:5080`, check if the WSL instance is running and that AMS is started.
 - Make sure ports are not blocked by your firewall or antivirus.
