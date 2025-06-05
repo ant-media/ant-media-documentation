@@ -1,100 +1,97 @@
 ---
-title: WebRTC conference call
-description: WebRTC conference call
+title: WebRTC Conference Call
+description: WebRTC Conference Call
 keywords: [Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 4
 ---
 
-Ant Media Server offers robust support for conference calls, in this tutorial we will see how to use the Basic Conference sample page. If you are looking for a ready-to-use Conference solution please checkout our in house [Circle Conference tool](https://antmedia.io/marketplace/circle-video-conferencing-tool).
+Ant Media Server offers robust support for conference calls. In this tutorial, we will see how to use the Basic Conference sample page. If you are looking for a ready-to-use conference solution, please check out our in-house [Circle Conference tool](https://antmedia.io/marketplace/circle-video-conferencing-tool) with all necessary features.
 
-## Navigate to the publish page
+## Conference Call Sample Page
 
-Go to ```https://your domain name:5443/WebRTCAppEE/conference.html```
+Go to ```https://your-domain-name:5443/live/conference.html``` for conference call sample page.
 
-WebRTC conference feature is only available in Enterprise Edition.
+The WebRTC conference feature is only available in the Enterprise Edition of Ant Media Server
 
-If you have Ant Media Server installed on your local machine, you can also go to ```http://localhost:5080/WebRTCAppEE/conference.html```
+If you have Ant Media Server installed on your local machine, you can also go to `http://localhost:5080/live/conference.html`.
 
-Click on ```Join Room``` button then, open the same web page on multiple tab or multiple systems and join from there.Now you will start to receive the streams of remote participants. 
+Click on ```Join Room``` the button, then open the same web page on multiple tabs or multiple systems and join from there. Now you will start to receive the streams of remote participants. 
 
 ![](@site/static/img/publish-live-stream/WebRTC/WebRTC-publishing/Conference-page.png)
 
 
-## Joining a room
+## Join Conference Room
 
 When WebRTCAdaptor is initialized successfully, it creates a websocket connection. After a successful connection, the client gets the ```initialized``` notification from the server. After receiving ```initialized``` notification, we can start publishing and playing to the conference room.
 
-Think of Conference room as this way , we will publish our video streams and we will play the videos of the remote participants, so essentially we will be using same publish and play functions , we normally use for publishing and plying streams.
+**Think of the conference room this way:** we will publish our video streams and we will play the videos of the remote participants, so essentially we will be using the same publish and play functions we normally use for publishing and playing streams.
 
 
-Just call publish method as follows.
+Just call the publish method as follows:
 
 ```js
-	publish(streamId, token, subscriberId, subscriberCode, streamName, mainTrack, metaData, role) 
+publish(streamId, token, subscriberId, subscriberCode, streamName, mainTrack, metaData, role) 
  ```
 
-*   ```streamId``` (mandatory): id of the stream.
+*   ```streamId``` (mandatory): ID of the stream.
 
-*   ```mainTrack``` (mandatory): id of the room that the stream will be published to.
+*   ```mainTrack``` (mandatory): ID of the room that the stream will be published to.
 
-
-## Playing a stream in a room**
-
-In order to play remote streams from the room, call the play method. In a conference call, the correct place to call method is when ```joinedTheRoom``` and ```roomInformation``` notifications are received.Play Method should be called with correct roomId that needs to be played.
-
-```js
-	play(streamId, token, roomId);
-```
-
-*   ```streamId``` (mandatory): id of the room that need to play.
-
-*   ```roomId``` (mandatory): id of the room that need to play.
+For example, if we are joining the`room1` conference room, then room1 is the mainTrack.
 
 
-## Turning the camera on/off**
+## Play Conference Room Stream
 
-To turn off the camera, call the ```turnOffLocalCamera``` method.
+In order to play remote streams from the room, call the play method. 
+
+In a conference call, the correct place to call the method is when ```joinedTheRoom``` and ```roomInformation``` notifications are received. Play Method should be called with the correct roomId that needs to be played.
 
 ```js
-webRTCAdaptor.turnOffLocalCamera(streamId);
+play(streamId, token, roomId);
 ```
 
-```turnOffLocalCamera``` gets one parameter.
+*   ```streamId``` (mandatory): ID of the stream that needs to play.
 
-*   ```streamId``` (mandatory): Stream id of the stream.
-
-If your camera is turned off, call ```turnOnLocalCamera``` to turn it on.
-
-```js
-webRTCAdaptor.turnOnLocalCamera(streamId);
-```
+*   ```roomId``` (mandatory): ID of the room that needs to play.
 
 
-```turnOnLocalCamera``` gets one parameter.
+## Turn Camera On/Off
 
-*   ```streamId``` (mandatory): Stream id of the stream.
+- To turn off the camera, call the ```turnOffLocalCamera``` method.
+
+  ```js
+  webRTCAdaptor.turnOffLocalCamera(streamId);
+  ```
+
+- If your camera is turned off, call ```turnOnLocalCamera``` to turn it on.
+
+  ```js
+  webRTCAdaptor.turnOnLocalCamera(streamId);
+  ```
 
 
-## Muting and unmuting the microphone
+## Mute and Unmute Microphone
 
-Call ```muteLocalMic``` to mute the microphone.
+- Call ```muteLocalMic``` to mute the microphone.
 
-```js
-webRTCAdaptor.muteLocalMic();
-```
+  ```js
+  webRTCAdaptor.muteLocalMic();
+  ```
 
-To unmute, call ```unmuteLocalMic```.
+- To unmute, call ```unmuteLocalMic```.
 
-```js
-webRTCAdaptor.unmuteLocalMic();
-```
+  ```js
+  webRTCAdaptor.unmuteLocalMic();
+  ```
 
 These methods don't take any parameters.
 
-## Server notifications
+## Server Notifications
 
-Here are the conference related notifications that callback is invoked for. Please check the [conference.html](https://github.com/ant-media/StreamApp/blob/master/src/main/webapp/conference.html) for proper usage.
+Here are the conference-related notifications that callback is invoked for. Please check the [conference.html](https://github.com/ant-media/StreamApp/blob/master/src/main/webapp/conference.html) for proper usage.
 
 *   ```newStreamAvailable```: Called when a previously joined stream is ready to play.
-*   ```publish_started```: called when our stream is published to the room.
-*   ```play_started```: called when we start playing the remote streams.
+*   ```publish_started```: Called when stream is published to the room.
+*   ```play_started```: Called when starting to play the remote streams.
+
+To learn more about the Ant Media Server Conference, visit [**here**](https://antmedia.io/docs/category/conference-room/).
