@@ -1,6 +1,6 @@
 ---
 title: Data Channel
-description: Data channel is another channel in WebRTC other than video and audio. In the data channel, you can send any kind of information to the other clients.
+description: WebRTC Data Channel
 keywords: [Using the data channel, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 3
 ---
