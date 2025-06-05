@@ -1,6 +1,6 @@
 ---
-title: WebRTC publishing
-description: WebRTC publishing
+title: WebRTC Publishing
+description: WebRTC Stream Publishing
 keywords: [WebRTC publishing, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 1
 ---
