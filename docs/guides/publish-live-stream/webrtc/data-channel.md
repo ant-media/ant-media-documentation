@@ -1,5 +1,5 @@
 ---
-title: Data Channel
+title: WebRTC Data Channel
 description: WebRTC Data Channel
 keywords: [Using the data channel, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 3
