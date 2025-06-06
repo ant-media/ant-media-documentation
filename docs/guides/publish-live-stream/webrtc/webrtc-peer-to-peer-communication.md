@@ -11,7 +11,7 @@ In this documentation, we're going to explain how to implement WebRTC peer-to-pe
 
 There is already a working demo for this in the `peer.html` file.
 
-Go to ⁣`https://your domain name:5443/live/peer.html` for a sample page.
+Go to ⁣`https://your-domain-name:5443/live/peer.html` for a sample page.
 
 If you have Ant Media Server installed on your local machine, you can also go to ```http://localhost:5080/live/peer.html```
 
