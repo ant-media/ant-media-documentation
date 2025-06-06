@@ -41,7 +41,7 @@ The URL parameters listed below are accepted by the ```play.html``` page.
 * **```is360```**: To play the 360-degree input stream. The default value is false.
 
 :::info
-When streams are organized in SubFolders, the SubFolder path should be included in the streamId (e.g., `mySubFolder/streamId`) for HLS, DASH and VOD playback. For more details, see [Playing streams from SubFolders](hls-playing.md#playing-streams-from-subfolders).
+When streams are configured with SubFolder option, the SubFolder path should be included in streamId (e.g., `?id=mySubFolder/streamId`). For more details, see [Playing streams from SubFolders](hls-playing.md#playing-streams-from-subfolders).
 :::
 
 The default WebRTC URL is as follows for play.html (when no token is enabled).
