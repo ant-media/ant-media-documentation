@@ -253,7 +253,7 @@ Think of Conference room as this way , we will publish our video streams and we 
 1. Participants connect to the Ant Media Server through WebSocket.
 
    ```
-   wss://SERVER_NAME:5443/live /websocket
+   wss://SERVER_NAME:5443/live/websocket
    ```
 
 2. The client publishes his stream with the `publish` command as we discussed in the publishing section above and these will be the same. mainTrack is the room name that client is publishing his stream to.
