@@ -5,46 +5,54 @@ keywords: [WebRTC WebSocket Messaging Reference, Ant Media Server Documentation,
 sidebar_position: 6
 ---
 
-This documentation is for developers who need to implement signaling between Ant Media Server and clients for publishing & playing streams. Let's make it step by step
+This documentation is for developers who need to implement signaling between Ant Media Server and clients for publishing & playing streams. 
 
-##  Publishing WebRTC Stream
+Let's understand it step by step:
 
-1. To connect to the Ant Media Server, the client can use WebSocket with a URL in the format:    
-```
-wss://SERVER_NAME:5443/WebRTCAppEE/websocket
-```
-`wss` indicates that it's a secure WebSocket connection using SSL/TLS.
-`/WebRTCAppEE/websocket` specifies the endpoint for the WebSocket connection in Ant Media Server. 
+##  Publish WebRTC Stream
+
+1. To connect to the Ant Media Server, client can use WebSocket with a URL in the format: 
+ 
+   ```
+   wss://SERVER_NAME:5443/live/websocket
+   ```
+
+- `wss` indicates that it's a secure WebSocket connection using SSL/TLS.
+
+- `/live/websocket` specifies the endpoint for the WebSocket connection in Ant Media Server. 
 
 2. To publish a stream, clients first send the `publish` command to the server to start the stream.
-```json
-{
-  command : "publish",
-  streamId : "stream1",
-  streamName : "streamName",
-  token : "token",
-  mainTrack : "mainTrack",
-  metaData : "metaData",
-  subscriberCode : "subscriberCode",
-  subscriberId : "subscriberId",
-  video : "true",
-  audio : "true",
-}
-```
 
-- ```token```: The ```token``` field is required if any stream security (token control) is enabled.
-If the user has enabled [stream-security](https://antmedia.io/docs/guides/advanced-usage/stream-security/), they need to fill in the ```token``` field with the correct token.
+   ```js
+   {
+   command : "publish",
+   streamId : "stream1",
+   streamName : "streamName",
+   token : "token",
+   mainTrack : "mainTrack",
+   metaData : "metaData",
+   subscriberCode : "subscriberCode",
+   subscriberId : "subscriberId",
+   video : "true",
+   audio : "true",
+   }
+    ```
 
-- ```subscriberId``` and ```subscriberCode```: These are the values for the Time-based One-time Password (TOTP). If the user is using the TOTP mechanism, they need to pass the ```subscriberId``` and ```subscriberCode```.
+- **```token```:** The ```token``` field is required if any stream security (token control) is enabled.
 
-- ```streamName```: Zombie streams are streams that aren't in the database. Therefore, users can give these "on the fly" streams a ```streamName```.
+  If the user has enabled [stream-security](https://antmedia.io/docs/guides/advanced-usage/stream-security/), they need to fill in the ```token``` field with the correct token.
 
-- ```mainTrack```: ```mainTrack``` is related to multitrack streaming and is required if the user wants to start the stream as a ```subtrack``` for this ```mainTrack```. For multitrack conferences, ```mainTrack``` is set as the room ID.
+- **```subscriberId``` and ```subscriberCode```:** These are the values for the Time-based One-time Password (TOTP). If the user is using the TOTP mechanism, they need to pass the ```subscriberId``` and ```subscriberCode```.
 
-- ```metaData```: The ```metaData``` is free text information for the stream to server.
+- **```streamName```:** Zombie streams are streams that aren't in the database. Therefore, users can give these "on the fly" streams a ```streamName```.
 
-- ```enableVideo``` and ```enableAudio```: These parameters define whether to enable video and audio for the stream.
-If ```enableVideo``` is true, then the video will be sent to the server. If ```enableAudio``` is true, then audio will be sent to the server.
+- **```mainTrack```:** ```mainTrack``` is related to multitrack streaming and is required if the user wants to start the stream as a ```subtrack``` for this ```mainTrack```. For multitrack conferences, ```mainTrack``` is set as the room ID.
+
+- **```metaData```:** The ```metaData``` is free text information for the stream to server.
+
+- **```enableVideo``` and ```enableAudio```:** These parameters define whether to enable video and audio for the stream.
+
+  If ```enableVideo``` is true, then the video will be sent to the server. If ```enableAudio``` is true, then audio will be sent to the server.
 If ```enableVideo``` is false and ```enbleAudio``` is true, then it means it's an audio-only stream.
 
 - Only ```command``` and ```streamId``` are mandatory. Audio and video are enabled by default. When the server receives the ```publish``` commands, it checks whether the license is suspended and whether the server has enough resources, and retrieves the token if necessary.
@@ -107,6 +115,7 @@ If ```enableVideo``` is false and ```enbleAudio``` is true, then it means it's a
 ```
 
 9. The server responds with a publish_finished message to indicate that the stream has stopped
+ 
 ```json
 {
   command : "notification",
@@ -116,14 +125,20 @@ If ```enableVideo``` is false and ```enbleAudio``` is true, then it means it's a
 }
 ```
 
-## Playing WebRTC Stream
+## Play WebRTC Stream
 
-1. To connect to the Ant Media Server, the client can use WebSocket with a URL in the format:
-```
-wss://SERVER_NAME:5443/WebRTCAppEE/websocket
-```
+1. To connect to the Ant Media Server, client can use WebSocket with a URL in the format: 
+ 
+   ```
+   wss://SERVER_NAME:5443/live/websocket
+   ```
+
+- `wss` indicates that it's a secure WebSocket connection using SSL/TLS.
+
+- `/live/websocket` specifies the endpoint for the WebSocket connection in Ant Media Server. 
 
 2. Client sends play ```command``` to the server with ```streamId``` parameter.
+
 ```json
 {
   command : "play",
@@ -136,11 +151,14 @@ wss://SERVER_NAME:5443/WebRTCAppEE/websocket
 }
 ```
 
-- Only ```command``` and ```streamId``` is mandatory, rest are situational, such as ```subscriber id```, ```code```, ```token``` and ```enabled tracks```.
+- Only ```command``` and ```streamId``` is mandatory, rest are situational, such as ```subscriberId```, ```subscriberCode```, ```token``` and ```enabled tracks```.
+
 - If a stream has sub-tracks, ```trackList``` is enabled by default. If there are 2 tracks on the stream, the user can specify both and both tracks will be played. To get all tracks in a stream you can take a look in ```getTrackList``` command that is in the [miscellaneous](#miscellaneous-websocket-methods) part.
+
 - ```viewerInfo``` is a kind of ```metaData``` used to collect informations.
 
-3. If the Server accepts the stream, it replies with the offer command
+3. If the Server accepts the stream, it replies with the offer command.
+
 ```json 
 {
   command : "takeConfiguration",
@@ -150,7 +168,8 @@ wss://SERVER_NAME:5443/WebRTCAppEE/websocket
 }
 ```    
 
-4. The client creates an answer SDP and sends the SDP configuration to the server with `takeConfiguration` command
+4. The client creates an answer SDP and sends the SDP configuration to the server with `takeConfiguration` command.
+
 ```json
 {
   command : "takeConfiguration",
@@ -160,7 +179,8 @@ wss://SERVER_NAME:5443/WebRTCAppEE/websocket
 }
 ```    
 
-5. Client and Server get ice candidates several times and send them to each other with `takeCandidate` command
+5. Client and Server get ice candidates several times and send them to each other with `takeCandidate` command.
+
 ```json 
 {
   command : "takeCandidate",
@@ -171,7 +191,8 @@ wss://SERVER_NAME:5443/WebRTCAppEE/websocket
 }
 ```
 
-6. Server notifies with `play_started` once the stream starts to play
+6. Server notifies with `play_started` once the stream starts to play.
+
 ```json
 {
   command : "notification",
@@ -182,6 +203,7 @@ wss://SERVER_NAME:5443/WebRTCAppEE/websocket
 ```
 
 7. Client sends toggle video to stop/start incoming video packets from a video track ( streamId = trackId for single track use ) Enabled is ```true``` as default. ```trackId``` and ```streamId``` is mandatory.
+
 ```json 
 {
   command : "toggleVideo",
@@ -192,6 +214,7 @@ wss://SERVER_NAME:5443/WebRTCAppEE/websocket
 ```  
 
 8. Client sends toggle audio to stop/start incoming audio packets from an audio track ( streamId = trackId for single track use ) Enabled is ```true``` as default. ```trackId``` and ```streamId``` is mandatory.
+
 ```json 
 {
   command : "toggleAudio",
@@ -200,9 +223,11 @@ wss://SERVER_NAME:5443/WebRTCAppEE/websocket
   enabled: boolean
 }
 ```
+
 - If there are multiple sub-tracks, the user can enable/disable any track using ```toggle``` so that the server does not send audio/video packets for that track.
 
-9. Clients sends `stop` JSON command to stop playing
+9. Clients sends `stop` JSON command to stop playing.
+ 
 ```json
 {
   command : "stop",
@@ -210,7 +235,8 @@ wss://SERVER_NAME:5443/WebRTCAppEE/websocket
 }
 ```
 
-10. Server notifies with `play_finished` to notify that play has stopped
+10. Server notifies with `play_finished` to notify that play has stopped.
+
 ```json
 {
   command : "notification",
@@ -221,12 +247,14 @@ wss://SERVER_NAME:5443/WebRTCAppEE/websocket
 ```
 
 ## Conference WebRTC Stream
+
 Think of Conference room as this way , we will publish our video streams and we will play the videos of the remote participants, so essentially we will be using same publish and play functions , we normally use for publishing and plying streams.
 
 1. Participants connect to the Ant Media Server through WebSocket.
-```
-wss://SERVER_NAME:5443/WebRTCAppEE/websocket
-```
+
+   ```
+   wss://SERVER_NAME:5443/live /websocket
+   ```
 
 2. The client publishes his stream with the `publish` command as we discussed in the publishing section above and these will be the same. mainTrack is the room name that client is publishing his stream to.
 
@@ -280,7 +308,7 @@ stop playing from room.
 }
 ```
 
-9. The server responds with a `play_finished` or `publish_finished` message.
+5. The server responds with a `play_finished` or `publish_finished` message.
 
 ```json
 {
@@ -304,9 +332,10 @@ When a new track, stream, or subTrack is dynamically added to the room during ru
 ## Peer-to-Peer WebRTC Stream
 
 1. Peers connect to the Ant Media Server through WebSocket.
-```
-wss://SERVER_NAME:5443/WebRTCAppEE/websocket
-```
+
+   ```
+   wss://SERVER_NAME:5443/live/websocket
+   ```
     
 2. The client sends a join JSON command to the server with the `streamId` parameter. If only want to `play`, `mode` can be set to `play`, if the user wants to publish and play at the same time, `both` can be set. As default, `mode` is set to `both`. Only `command` and `streamId` are mandatory.
 
@@ -404,343 +433,381 @@ wss://SERVER_NAME:5443/WebRTCAppEE/websocket
 
 ## WebSocket Error Callbacks
 
-- ```noStreamNameSpecified```: it is sent when the stream id is not specified in the message.
+- **```noStreamNameSpecified```:** it is sent when the stream id is not specified in the message.
 
-```json
-{
-  command : "error",
-  definition : "noStreamNameSpecified",
-}
-```  
+   ```json
+  {
+   command : "error",
+   definition : "noStreamNameSpecified",
+  }
+   ```  
  
-- ```not_allowed_unregistered_streams```: The `not_allowed_unregistered_streams` error message is returned to the user when they try to send a stream with an unregistered `streamId`, and the server is configured not to accept undefined streams.
-For conference, if it is not set then the room is created automatically and is removed once it finishes.
-```json
-{
-  command : "error",
-  definition : "not_allowed_unregistered_streams",
-  streamId : "stream1",
-}
-```   
+- **```not_allowed_unregistered_streams```:** The `not_allowed_unregistered_streams` error message is returned to the user when they try to send a stream with an unregistered `streamId`, and the server is configured not to accept undefined streams.
 
-- ```no_room_specified```: This is sent back to the user when there is no room specified in joining the video conference.
+  For conference, if it is not set then the room is created automatically and is removed once it finishes.
 
-```json
-{
-  command : "error",
-  definition : "no_room_specified",
-}
-```
+  ```json
+  {
+   command : "error",
+   definition : "not_allowed_unregistered_streams",
+   streamId : "stream1",
+  }
+  ```   
 
-- ```unauthorized_access```: When stream security is enabled but the token is either incorrect or not validated, or the subscriberId and/or subscriberCode are incorrect.
+- **```no_room_specified```:** This is sent back to the user when there is no room specified in joining the video conference.
 
-```json
-{
-  command : "error",
-  definition : "unauthorized_access",
-  streamId: "stream1",
-}
-```   
+  ```json
+  {
+   command : "error",
+   definition : "no_room_specified",
+  }
+  ```
 
-- ```no_encoder_settings```: This is sent back to the user when there are no encoder settings available in publishing the stream.
+- **```unauthorized_access```:** When stream security is enabled but the token is either incorrect or not validated, or the subscriberId and/or subscriberCode are incorrect.
 
-```json
-{
-  command : "error",
-  definition : "no_encoder_settings",
-}
-```   
+  ```json
+  {
+   command : "error",
+   definition : "unauthorized_access",
+   streamId: "stream1",
+  }
+  ```   
 
-- ```no_peer_associated_before```: This is peer to peer connection error definition. It is sent back to the user when there is no peer associated with the stream.
+- **```no_encoder_settings```:** This is sent back to the user when there are no encoder settings available in publishing the stream.
 
-```json
-{
-  command : "error",
-  definition : "no_peer_associated_before",
-}
-```
-- ```notSetRemoteDescription```: This is sent if there is a mismatch between the encoder and the decoders between the Ant Media Server and the client.
-```json
-{
-  command : "error",
-  definition : "notSetRemoteDescriptio",
-}
-```
+  ```json
+  {
+   command : "error",
+   definition : "no_encoder_settings",
+  }
+  ```   
 
-- ```notSetLocalDescription```: It is sent when the local description is not set successfully.
-```json
-{
-  command : "error",
-  definition : "notSetLocalDescription",
-}
-```   
+- **```no_peer_associated_before```:** This is peer to peer connection error definition. It is sent back to the user when there is no peer associated with the stream.
 
-- ```highResourceUsage```: It is sent when the server is overloaded. Server overload means over CPU usage or RAM usage. Over CPU usage means CPU load is more than the ```server.cpu_limit``` value in ```conf/red5.properties```. Its default value is %75. Over RAM usage means available memory in the system is less than ```server.min_free_ram``` value in conf/red5.properties. Its unit is MB and the default value is 10.
+  ```json
+  {
+   command : "error",
+   definition : "no_peer_associated_before",
+  }
+  ```
+  
+- **```notSetRemoteDescription```:** This is sent if there is a mismatch between the encoder and the decoders between the Ant Media Server and the client.
 
-```json
-{
-  command : "error",
-  definition : "highResourceUsage",
-}
-```   
+  ```json
+  {
+   command : "error",
+   definition : "notSetRemoteDescriptio",
+  }
+  ```
 
-- ```streamIdInUse```: This error message is returned by the server when a user tries to publish a stream with a `streamId` that is already in use by an active stream in either the preparing or publishing state.
+- **```notSetLocalDescription```:** It is sent when the local description is not set successfully.
+
+  ```json
+  {
+   command : "error",
+   definition : "notSetLocalDescription",
+  }
+  ```   
+
+- **```highResourceUsage```:** It is sent when the server is overloaded. Server overload means over CPU usage or RAM usage. 
+
+  Over CPU usage means CPU load is more than the ```server.cpu_limit``` value in ```conf/red5.properties```. Its default value is %75. Over RAM usage means available memory in the system is less than ```server.min_free_ram``` value in conf/red5.properties. Its unit is MB and the default value is 10.
+
+  ```json
+  {
+   command : "error",
+   definition : "highResourceUsage",
+  }
+  ```   
+
+- **```streamIdInUse```:** This error message is returned by the server when a user tries to publish a stream with a `streamId` that is already in use by an active stream in either the preparing or publishing state.
 This error can occur if a user attempts to re-publish a stream with the same `streamId` without first closing the previous WebRTC connection.
-```json     
-{
-  command : "error",
-  definition : "streamIdInUse",
-  streamId : "stream1",
-}
-```   
 
-- ```publishTimeoutError```: The server sends the `publishTimeoutError` message when WebRTC publishing fails to start within a specified time period.
+  ```json     
+  {
+   command : "error",
+   definition : "streamIdInUse",
+   streamId : "stream1",
+  }
+  ```   
 
-This may occur due to network issues, such as the lack of an established ICE connection or the failure to send video and audio streams to the server. The timeout value can be customized using the `settings.webrtc.client.start.timeoutMs` property in the [App-Configuration](https://antmedia.io/docs/guides/advanced-usage/turn-and-stun-installation/coturn-quick-installation/), with a default value of 5000 milliseconds.
+- **```publishTimeoutError```:** The server sends the `publishTimeoutError` message when WebRTC publishing fails to start within a specified time period.
 
-Using a [TURN-server](https://antmedia.io/docs/guides/advanced-usage/turn-instalation/coturn-quick-installation/) helps mitigate these network-related issues.
+  This may occur due to network issues, such as the lack of an established ICE connection or the failure to send video and audio streams to the server. The timeout value can be customized using the `settings.webrtc.client.start.timeoutMs` property in the [App-Configuration](https://antmedia.io/docs/guides/advanced-usage/turn-and-stun-installation/coturn-quick-installation/), with a default value of 5000 milliseconds.
 
-```json
-{
-  command : "error",
-  definition : "publishTimeoutError",
-  streamId : "stream1",
-}
-```
+  Using a [TURN-server](https://antmedia.io/docs/guides/advanced-usage/turn-instalation/coturn-quick-installation/) helps mitigate these network-related issues.
+
+  ```json
+  {
+   command : "error",
+   definition : "publishTimeoutError",
+   streamId : "stream1",
+  }
+  ```
    
-- ```invalidStreamName```: it is sent when the stream name contains special characters.
+- **```invalidStreamName```:** it is sent when the stream name contains special characters.
 
-```json
-{
-  command : "error",
-  definition : "invalidStreamName",
-}
-```    
+  ```json
+  {
+   command : "error",
+   definition : "invalidStreamName",
+  }
+  ```    
 
-- ```data_store_not_available```: It's sent when the data store is not available. It's not available if it's not initialized or closed.
-```json     
-{
-  command : "error",
-  definition : "data_store_not_available"
-}
-```
+- **```data_store_not_available```:** It's sent when the data store is not available. It's not available if it's not initialized or closed.
 
-- ```license_suspended_please_renew_license```: It's sent when the license is suspended.
-```json    
-{
-  command : "error",
-  definition : "license_suspended_please_renew_license"
-}
-```
+  ```json     
+  {
+   command : "error",
+   definition : "data_store_not_available"
+  }
+  ```
 
-- ```already_playing```: This is sent back to the user when a new play message is received while it is playing or it is about to play.
-```json     
-{
-  command : "error",
-  definition : "already_playing",
-  streamId: "stream1"
-}
-```  
+- **```license_suspended_please_renew_license```:** It's sent when the license is suspended.
 
-- ```already_publishing```: This message is sent when a new publish message is received while the server is either publishing or about to publish. The message indicates that publishing is already in progress.
-```json
-{
-  command : "error",
-  definition : "already_publishing",
-  streamId: "stream1",
-}
-```
+  ```json    
+  {
+   command : "error",
+   definition : "license_suspended_please_renew_license"
+  }
+  ```
 
-- ```encoderNotOpened```: If the encoder fails to open, the server sends this error message to the client indicating that the encoder could not be opened.
-```json
-{
-  command : "error",
-  definition : "encoderNotOpened",
-  streamId : "stream1", 
-}
-```
+- **```already_playing```:** This is sent back to the user when a new play message is received while it is playing or it is about to play.
 
-- ```encoderBlocked```: The server sends this error message if the encoder is blocked for some reason or not performing efficiently.
-```json
-{
-  command : "error",
-  definition : "encoderBlocked",
-  streamId : "stream1",
-}
-```
+  ```json     
+  {
+   command : "error",
+   definition : "already_playing",
+   streamId: "stream1"
+  }
+  ```  
 
-- ```no_codec_enabled_in_the_server```: This is sent back to the user when there is no codec enabled in the server and someone try to make a publish
-```json
-{
-  command : "error",
-  definition : "no_codec_enabled_in_the_server",
-  streamId: "stream1"
-}
-```
+- **```already_publishing```:** This message is sent when a new publish message is received while the server is either publishing or about to publish. The message indicates that publishing is already in progress.
 
-* ```stream_not_active_or_expired```: The message `stream_not_active_or_expired` is returned to the user when the `plannedStartDate` and `plannedEndDate` of a stream are either not in the specified interval or have expired.
-```json
-{
-  command : "error",
-  definition : "stream_not_active_or_expired",
-  streamId : "stream1",
-}
-```
+  ```json
+  {
+   command : "error",
+   definition : "already_publishing",
+   streamId: "stream1",
+  }
+  ```
 
-- ```viewerLimitReached```: This is sent when the viewer limit is reached. When a user is trying to watch a broadcast that already hit the limit, this error is sent to the client.
-```json
-{
-  command : "error",
-  definition : "viewerLimitReached",
-}
-```
+- **```encoderNotOpened```:** If the encoder fails to open, the server sends this error message to the client indicating that the encoder could not be opened.
 
-- ```no_room_specified```: if roomId is not specified for a conference, the server returns with a `no_room_speficified` error message.
-```json
-{
-  command : "error",
-  definition : "no_room_specified",
-}
-```
+  ```json
+  {
+   command : "error",
+   definition : "encoderNotOpened",
+   streamId : "stream1", 
+  }
+  ```
+
+- **```encoderBlocked```:** The server sends this error message if the encoder is blocked for some reason or not performing efficiently.
+
+  ```json
+  {
+   command : "error",
+   definition : "encoderBlocked",
+   streamId : "stream1",
+  }
+  ```
+
+- **```no_codec_enabled_in_the_server```:** This is sent back to the user when there is no codec enabled in the server and someone try to make a publish
+
+  ```json
+  {
+   command : "error",
+   definition : "no_codec_enabled_in_the_server",
+   streamId: "stream1"
+  }
+  ```
+
+* **```stream_not_active_or_expired```:** The message `stream_not_active_or_expired` is returned to the user when the `plannedStartDate` and `plannedEndDate` of a stream are either not in the specified interval or have expired.
+
+  ```json
+  {
+   command : "error",
+   definition : "stream_not_active_or_expired",
+   streamId : "stream1",
+  }
+  ```
+
+- **```viewerLimitReached```:** This is sent when the viewer limit is reached. When a user is trying to watch a broadcast that already hit the limit, this error is sent to the client.
+
+  ```json
+  {
+   command : "error",
+   definition : "viewerLimitReached",
+  }
+  ```
+
+- **```no_room_specified```:** if roomId is not specified for a conference, the server returns with a `no_room_speficified` error message.
+
+  ```json
+  {
+   command : "error",
+   definition : "no_room_specified",
+  }
+  ```
 
 ## Miscellaneous WebSocket Methods
 
-- ```ping``` & ```pong```
-Some load balancers may start to close connections after a certain amount of time to prevent idle connections from consuming resources.
+- **```ping``` & ```pong```:** Some load balancers may start to close connections after a certain amount of time to prevent idle connections from consuming resources.
 
-To prevent this from happening, the client sends `ping` messages to the server, and the server returns with a `pong` response. This keeps the connection active and prevents it from being closed by the load balancer.
-```json    
-{
-command : "ping",
-}
-```    
-    Pong Response from Server
-```json    
-{
-command : "pong",
-}
-```
+  To prevent this from happening, the client sends `ping` messages to the server, and the server returns with a `pong` response. This keeps the connection active and prevents it from being closed by the load balancer.
 
-- ```getStreamInfo```: Get Stream Information from Server. You may use this method to learn more about stream status and bitrates. The client should send the following message.
-```json     
-{
- command: "getStreamInfo",
- streamId: "stream_id_that_you_want_to_get_info",
-} 
-```    
-    Server returns in two ways. It may return stream information as follows
-```json     
-{
- command: "streamInformation",
- streamId: "stream_id_of_the_stream_information",
- streamInfo: [{
-     streamWidth: "resolution_width",
-     streamHeight: "resolution_height",
-     videoBitrate: "video_bitrate",
-     audioBitrate: "audio_bitrate",
-     videoCodec: "codec_of_the_video", 
-     },
-   ...
-   ]
-}
-```    
-    If the stream is not active, it will return no_stream_exist
-```json     
-{
-command : "error",
-definition : "no_stream_exist",
-streamId: "id_of_the_stream",
-}
-```
+  ```json    
+  {
+   command : "ping",
+  }
+  ```    
+ 
+  Pong Response from Server
 
-- ```getRoomInfo```: The function ```getRoomInfo``` is called when a new participant or track is added to the room to retrieve information about the current state of the room, including the active streams. The client should send the following message to get the response from the server.
-```json     
-{
- command: "getRoomInfo",
- room: "room_id_that_you_want_to_get_info",
- streamId: "server_returns_while_you_join_the_room",
-} 
- ```   
-    The server responds in the following format with the list of streams available in the room
- ```json    
-{
-  command: "roomInformation",
-  room: "room_id_that_this_information_belongs_to",
-  streams: [ stream_id_1, stream_id_2, ...]
-}
-```
+   ```json    
+  {
+    command : "pong",
+  }
+   ```
 
-- ```bitrateMeasurement```: Server periodically sends this information to the WebRTC viewers. It lets develop show a message to the user if it's internet bandwidth is not good enough. If the ```targetBitrate``` is bigger than the sum of ```videoBitrate``` and ```audioBitrate```, it means the internet bandwidth is good enough to play the video. If the ```targetBitrate``` is less than the sum of ```videoBitrate``` and ```audioBitrate```, it means some playback issues(pixelating, packet drop, etc.) may happen and disturb the user experience.
-```json     
-{
-  command : "notification",
-  definition : "bitrateMeasurement",
-  streamId: "unique_stream_id_returned_by_the_server"
-  targetBitrate: "measured_bandwidth_of_the_client",
-  videoBitrate: "video_bitrate_of_the_current_playing_video",
-  audioBitrate: "audio_bitrate_of_the_current_playing_audio",
-}
-```
+- **```getStreamInfo```:** Get Stream Information from Server. You may use this method to learn more about stream status and bitrates. The client should send the following message.
+
+  ```json     
+  {
+   command: "getStreamInfo",
+   streamId: "stream_id_that_you_want_to_get_info",
+  } 
+  ```    
     
-- ```forceStreamQuality```: If there are adaptive-bitrates(multi-bitrate) for that stream, you can get bitrates with the ```getStreamInfo``` method and then you can make the Ant Media Server force to send you a specific resolution. If you want to switch back to auto stream quality, you can give ```0``` for ```streamHeight``` and send the message below.
-```json    
-{
-command: "forceStreamQuality",
-streamId: "write_the_stream_id",
-streamHeight: "write_the_height_of_the_resolution_you_want_to_force",
-}
-```
+    Server returns in two ways. It may return stream information as follows:
+    
+  ```json     
+  {
+   command: "streamInformation",
+   streamId: "stream_id_of_the_stream_information",
+   streamInfo: [{
+       streamWidth: "resolution_width",
+       streamHeight: "resolution_height",
+       videoBitrate: "video_bitrate",
+       audioBitrate: "audio_bitrate",
+       videoCodec: "codec_of_the_video", 
+       },
+     ...
+     ]
+  }
+  ```    
+    If the stream is not active, it will return `no_stream_exist`.
 
-- ```server_will_stop```: When the server is about to stop and it receives a command from a service or the command line to initiate the shutdown process, it notifies the user with ```server_will_stop```
-```json    
-{ 
-command : "notification",
-definition : "server_will_stop",
-}
-```
+  ```json     
+  {
+   command : "error",
+   definition : "no_stream_exist",
+   streamId: "id_of_the_stream",
+  }
+  ```
 
-- ```leavedFromRoom```: It's sent after the stop command is received or if the client sends the `leaveFromRoom` command.
-```json    
-{        
-command : "notification",
-definition : "leavedFromRoom",
-ATTR_ROOM_NAME: "roomName",
-}
-```
+- **```getRoomInfo```:** The function ```getRoomInfo``` is called when a new participant or track is added to the room to retrieve information about the current state of the room, including the active streams. The client should send the following message to get the response from the server.
 
-- ```getTrackList```: Sends a request to the server to get a tracklist in a specified stream. The token is not mandatory. If the stream has a token, the token needs to be used, otherwise not needed.
-```json    
-{ 
-command : "getTrackList",
-streamId: "stream1",
-token: "token",
-}
-```
+  ```json     
+  {
+   command: "getRoomInfo",
+   room: "room_id_that_you_want_to_get_info",
+   streamId: "server_returns_while_you_join_the_room",
+  } 
+   ```   
+   
+    The server responds in the following format with the list of streams available in the room.
+    
+   ```json    
+  {
+    command: "roomInformation",
+    room: "room_id_that_this_information_belongs_to",
+    streams: [ stream_id_1, stream_id_2, ...]
+  }
+  ```
 
-- ```trackList```: The server returns the tracklist of the specified stream after receiving the `getTrackList` command.
-```json    
-{ 
-command : "trackList",
-streamId: "stream1",
-trackList: "tracks",
-}
-```
+- **```bitrateMeasurement```:** Server periodically sends this information to the WebRTC viewers. It lets show a message to the user if it's internet bandwidth is not good enough. 
+
+  If the ```targetBitrate``` is bigger than the sum of ```videoBitrate``` and ```audioBitrate```, it means the internet bandwidth is good enough to play the video. If the ```targetBitrate``` is less than the sum of ```videoBitrate``` and ```audioBitrate```, it means some playback issues(pixelating, packet drop, etc.) may happen and disturb the user experience.
+  
+  ```json     
+  {
+    command : "notification",
+    definition : "bitrateMeasurement",
+    streamId: "unique_stream_id_returned_by_the_server"
+    targetBitrate: "measured_bandwidth_of_the_client",
+    videoBitrate: "video_bitrate_of_the_current_playing_video",
+    audioBitrate: "audio_bitrate_of_the_current_playing_audio",
+  }
+  ```
+    
+- **```forceStreamQuality```:** If there are adaptive-bitrates(multi-bitrate) for that stream, you can get bitrates with the ```getStreamInfo``` method and then you can make the Ant Media Server force to send you a specific resolution. If you want to switch back to auto stream quality, you can give ```0``` for ```streamHeight``` and send the message below.
+
+  ```json    
+  {
+   command: "forceStreamQuality",
+   streamId: "write_the_stream_id",
+   streamHeight: "write_the_height_of_the_resolution_you_want_to_force",
+  }
+  ```
+
+- **```server_will_stop```:** When the server is about to stop and it receives a command from a service or the command line to initiate the shutdown process, it notifies the user with ```server_will_stop```.
+
+  ```json    
+  { 
+   command : "notification",
+   definition : "server_will_stop",
+  }
+  ```
+
+- **```leavedFromRoom```:** It's sent after the stop command is received or if the client sends the `leaveFromRoom` command.
+
+  ```json    
+  {        
+   command : "notification",
+   definition : "leavedFromRoom",
+   ATTR_ROOM_NAME: "roomName",
+  }
+  ```
+
+- **```getTrackList```:** Sends a request to the server to get a tracklist in a specified stream. The token is not mandatory. If the stream has a token, the token needs to be used, otherwise not needed.
+
+  ```json    
+  { 
+   command : "getTrackList",
+   streamId: "stream1",
+   token: "token",
+  }
+  ```
+
+- **```trackList```:** The server returns the tracklist of the specified stream after receiving the `getTrackList` command.
+
+  ```json    
+  { 
+   command : "trackList",
+   streamId: "stream1",
+   trackList: "tracks",
+  }
+  ```
 
 - ```enableTrack```: Player can enable or disable the tracks in the broadcast.
-```json    
-{
-command : "enableTrack",
-streamId: "stream1",
-trackId: "id of track",
-enabled: "boolean",
-}
-```
 
-- ```streaming_Session_Restored```: when a WebRTC publish stream is interrupted due to network issues but is restored within the timeout duration, the server sends this message to indicate that the streaming session has been restored.
-The viewer's connection remains active and is not dropped during the timeout duration. The timeout duration, `webRTCClientStartTimeout`is configurable and has a default value of 10 seconds.
-```json
-{
-  command : "notification",
-  description: "streaming_session_Restored",
-}
-```
+  ```json    
+  {
+   command : "enableTrack",
+   streamId: "stream1",
+   trackId: "id of track",
+   enabled: "boolean",
+  }
+  ```
+
+- **```streaming_Session_Restored```:** when a WebRTC publish stream is interrupted due to network issues but is restored within the timeout duration, the server sends this message to indicate that the streaming session has been restored.
+
+  The viewer's connection remains active and is not dropped during the timeout duration. The timeout duration, `webRTCClientStartTimeout`is configurable and has a default value of 10 seconds.
+  
+  ```json
+  {
+    command : "notification",
+    description: "streaming_session_Restored",
+  }
+  ```
