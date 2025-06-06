@@ -17,12 +17,11 @@ If you have Ant Media Server installed on your local machine, you can also go to
 
 ![](@site/static/img/publish-live-stream/WebRTC/WebRTC-publishing/WebRTC-peer.png)
 
-## Input Stream ID
+- Input the streamId and click the join button.
+- Now open the same page in a new browser tab or any other machine and click Join. Congratulations! You're now using WebRTC to connect in P2P mode from your browser!
 
-Input the streamId and click the join button. Now open the same page in a new browser tab or any other machine and click Join. Congratulations! You're now using WebRTC to connect in P2P mode from your browser!
 
-
-### Joining P2P Communication
+### Join P2P Communication
 
 When WebRTCAdaptor is successfully initialized, it establishes a web socket connection. Following a successful connection, the client receives an initialized notification from the server. After receiving ```initialized``` notification, call the```join``` method.
 
