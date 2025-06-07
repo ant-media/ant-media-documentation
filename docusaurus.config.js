@@ -68,13 +68,13 @@ scripts: [
           lastVersion: 'current',
           versions: {
             'current': {
-              label: '2.12', // Customize the label for the current (unversioned) docs
+              label: '2.14', // Customize the label for the current (unversioned) docs
               path: '', // Leave empty to use the root URL for the latest version
               banner: 'none',
             },
-            '2.11.3': {
-              label: '2.11', // Customize the label for the current (unversioned) docs
-              path: 'version-2.11.3', // Leave empty to use the root URL for the latest version
+            '2.13': {
+              label: '2.13', // Customize the label for the current (unversioned) docs
+              path: 'version-2.13', // Leave empty to use the root URL for the latest version
               banner: 'none',
               }
           },
