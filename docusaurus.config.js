@@ -65,7 +65,7 @@ scripts: [
           // Remove this to remove the "edit this page" links.
           // editUrl: 'https://github.com/facebook/docusaurus/edit/main/website/',
           editUrl: 'https://github.com/ant-media/ant-media-documentation/edit/master/',
-          lastVersion: 'current',
+          lastVersion: '2.14',
           versions: {
             'current': {
               label: '2.14', // Customize the label for the current (unversioned) docs
