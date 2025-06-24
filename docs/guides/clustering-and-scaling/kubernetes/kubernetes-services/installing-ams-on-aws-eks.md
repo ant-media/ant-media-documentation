@@ -13,25 +13,28 @@ You need to have the [AWS CLI software](https://docs.aws.amazon.com/cli/latest/u
 
 ## Step 1: Navigate to EKS Service
 
-After logging into AWS, search for the **EKS** service and find the **Elastic Kubernetes Service,** then click the **Add Cluster > Create** button.
+After logging into AWS, search for the **EKS** service and find the **Elastic Kubernetes Service,** then click the **Create Cluster** button and Select **Custom Configuration**.
 
-![image.png](@site/static/img/aws-eks/aws-eks-1.png)
+![image.png](https://github.com/user-attachments/assets/5100a760-00a0-41c0-899f-0eeadafd63bc)
 
 * * *
 
 ## Step 2: Name the Kubernetes Cluster
 
-After setting a name for the cluster, the Kubernetes version and Cluster Service Role should be selected. You can follow this link to create a [Cluster Service Role](https://docs.aws.amazon.com/eks/latest/userguide/service_IAM_role.html).
+After setting a name for the cluster, Cluster IAM Role should be selected. Then choose the Kubernetes version. You can follow this link to create a [Cluster Service Role](https://docs.aws.amazon.com/eks/latest/userguide/service_IAM_role.html).
 
-![image.png](@site/static/img/aws-eks/aws-eks-2.png)
+
+![image.png](https://github.com/user-attachments/assets/8d39835b-8ebf-4df4-ab69-ff88d19fdc1b)
+
 
 * * *
 
 ## Step 3: Configure Networking
 
-In this section, subnets under VPC and VPC should be selected and a security group should be created.
+In this section, subnets under VPC should be selected and a security group should be created.
 
-![image.png](@site/static/img/aws-eks/aws-eks-3.png)
+![image.png](https://github.com/user-attachments/assets/731ff942-e566-457c-95b7-de640f02fe09)
+
 
 * * *
 
@@ -39,7 +42,8 @@ In this section, subnets under VPC and VPC should be selected and a security gro
 
 You can activate the following options for logging.
 
-![image.png](@site/static/img/aws-eks/aws-eks-4.png)
+![image.png](https://github.com/user-attachments/assets/cc62d1d8-3cd1-4f2d-b9a3-eebcd1f87190)
+
 
 * * *
 
@@ -47,15 +51,17 @@ You can activate the following options for logging.
 
 Follow this step with default selections.
 
-![image.png](@site/static/img/aws-eks/aws-eks-5.png)
+![image.png](https://github.com/user-attachments/assets/f553f9bd-34f0-4455-8c4f-1e3c96481d49)
+
 
 * * * 
 
-## Step 6: Select add-ons
+## Step 6: Configure add-on Settings
 
 Follow this step with default selections.
 
-![image.png](@site/static/img/aws-eks/aws-eks-6.png)
+![image.png](https://github.com/user-attachments/assets/0e5b9c7b-3e0c-42e5-a2a5-3720936ea96e)
+
 
 * * *
 
@@ -63,7 +69,8 @@ Follow this step with default selections.
 
 Let’s confirm the configurations have been set correctly and create the cluster by clicking the **Create** button.
 
-![image.png](@site/static/img/aws-eks/aws-eks-7.png)
+
+
 
 * * *
 
@@ -71,13 +78,15 @@ Let’s confirm the configurations have been set correctly and create the cluste
 
 When your cluster’s status is changed from pending to active, click on the **Configuration > Compute** tab and click on the **Add Node Group** button.
 
-![image.png](@site/static/img/aws-eks/aws-eks-8-1.png)
+![image.png](https://github.com/user-attachments/assets/b650ca44-b77d-4568-975e-28cd2ee124f2)
+
 
 * * *
 
 Type your node name and create the [Node IAM Role](https://docs.aws.amazon.com/eks/latest/userguide/create-node-role.html).
 
-![image.png](@site/static/img/aws-eks/aws-eks-8-2.png)
+![image.png](https://github.com/user-attachments/assets/f0e20712-6e8f-4ed3-ae60-a07f626290ab)
+
 
 * * *
 
@@ -85,7 +94,8 @@ Type your node name and create the [Node IAM Role](https://docs.aws.amazon.com/e
 
 Click on the **Next** button after you configure the scaling of the **AMI type, Capacity type, Instance type, Disk and Node Group**.
 
-![image.png](@site/static/img/aws-eks/aws-eks-9.png)
+![image.png](https://github.com/user-attachments/assets/0d969172-ea61-4404-a1e4-7e1e37de7379)
+
 
 * * *
 
@@ -93,7 +103,8 @@ Click on the **Next** button after you configure the scaling of the **AMI type, 
 
 Select your subnets and click on the **Next** button.
 
-![image.png](@site/static/img/aws-eks/aws-eks-10.png)
+![image.png](https://github.com/user-attachments/assets/d3c3f032-9043-452f-81ac-9112670b849a)
+
 
 * * *
 
@@ -101,7 +112,6 @@ Select your subnets and click on the **Next** button.
 
 Finally, after checking the configurations, create the Node Pool by clicking on the **Create** button.
 
-![image.png](@site/static/img/aws-eks/aws-eks-11.png)
 
 * * *
 
