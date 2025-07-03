@@ -165,7 +165,7 @@ curl -X 'POST' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
   -d '{
-  "rtmpUrl": "rtmp://endpoint-URL/StreamKey",
+  "rtmpUrl": "rtmp://endpoint-URL/StreamKey"
       }
 ```
 After adding the endpoint, you will receive one random ```dataId``` that will be used to remove the added endpoint using the remove rtmp-endpoint Rest API described in next step.
