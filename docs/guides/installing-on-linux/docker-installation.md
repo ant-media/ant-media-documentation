@@ -13,7 +13,16 @@ To use the Ant Media Server Enterprise Edition [official Docker Hub image](https
 docker run --restart=always -d --name antmedia --network=host -it antmedia/enterprise:latest
 ```
 
-But in case you want to create your own AMS Docker image to run the container, follow the below procedure:
+OR
+
+```bash
+docker run --restart=always -d --name antmedia -p 5080:5080 -it antmedia/enterprise:latest
+```
+
+Once the container is running, reach out to the AMS dashboard and start streaming as explained below.
+
+
+**But in case you want to create your own AMS Docker image to run the container, follow the below procedure:**
 
 
 ## 1. Download Dockerfile
@@ -44,7 +53,7 @@ docker build --network=host -t antmediaserver --build-arg LicenseKey=<Your_Licen
 
 You can get the AMS Enterprise Edition Zip file from your [Ant Media account](https://antmedia.io) after purchasing the license.
 
-For example, if the zip file name is `ant-media-server-enterprise-2.14.0-20250513_1544.zip`.
+For example, if the zip file name is `ant-media-server-enterprise-2.14.0-20250513_1544.zip`
 
 ```bash
 docker build --network=host -t antmediaserver --build-arg AntMediaServer=ant-media-server-enterprise-2.14.0-20250513_1544.zip .
@@ -54,7 +63,7 @@ docker build --network=host -t antmediaserver --build-arg AntMediaServer=ant-med
 
 You can get the AMS Community Edition Zip file from the Ant Media Server [GitHub release page](https://github.com/ant-media/Ant-Media-Server/releases).
 
-For example, if the zip file name is `ant-media-server-community-2.14.0.zip`.
+For example, if the zip file name is `ant-media-server-community-2.14.0.zip`
 
 ```bash
 docker build --network=host -t antmediaserver --build-arg AntMediaServer=ant-media-server-community-2.14.0.zip .
@@ -76,6 +85,14 @@ By default, it uses the host network ports to reach but for example, in Mac OS, 
 docker run --restart=always -d --name antmedia -p 5080:5080 -it antmediaserver
 ```
 
+In the above example, we used only port 5080 for HTTP but for example, RTMP uses port 1935 so it needs to be added separately.
+
+```bash
+docker run --restart=always -d --name antmedia -p 5080:5080 -p 1935:1935 -it antmediaserver
+```
+
+Similarly, more ports can be allowed as per requirements.
+
 ## 4. Volume
 
 **Optional:** If you would like to use persistent volume, you can use it as follows. In this way, volume keeps even if your container is destroyed.
@@ -87,6 +104,9 @@ docker run -d --name antmedia --mount source=antmedia_volume,target=/usr/local/a
 
 ## AMS Dashboard
 
-After the Docker container starts, reach out to http://localhost:5080 or http://docker-container-IP:5080 to access the Ant Media Server dashboard.
+After the Docker container starts, reach out to `http://localhost:5080` or `http://host-IP:5080` to access the Ant Media Server dashboard.
 
 ![](@site/static/img/docker-installation.webp)
+
+
+Check out [here](https://antmedia.io/docs/guides/publish-live-stream/webrtc/) to publish a WebRTC stream for testing.
