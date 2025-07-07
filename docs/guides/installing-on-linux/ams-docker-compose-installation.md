@@ -2,7 +2,7 @@
 title: AMS Docker Compose Installation
 description: AMS Docker Compose Installation
 keywords: [Docker, Docker Compose, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 6
+sidebar_position: 7
 ---
 
 To install the Ant Media Server standalone server using Docker Compose, follow the below step-by-step process.
