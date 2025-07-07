@@ -44,7 +44,9 @@ docker build --network=host -t antmediaserver --build-arg LicenseKey=<Your_Licen
 
 #### Enterprise Edition:
 
-You can get the AMS Enterprise Edition Zip file from your Ant Media account after purchasing the license.
+You can get the AMS Enterprise Edition Zip file from your [Ant Media account](https://antmedia.io) after purchasing the license.
+
+For example, if the zip file name is `ant-media-server-enterprise-2.14.0-20250513_1544.zip`.
 
 ```bash
 docker build --network=host -t antmediaserver --build-arg AntMediaServer=ant-media-server-enterprise-2.14.0-20250513_1544.zip .
@@ -53,6 +55,8 @@ docker build --network=host -t antmediaserver --build-arg AntMediaServer=ant-med
 #### Community Edition:
 
 You can get the AMS Community Edition Zip file from the Ant Media Server [GitHub release page](https://github.com/ant-media/Ant-Media-Server/releases).
+
+For example, if the zip file name is `ant-media-server-community-2.14.0.zip`.
 
 ```bash
 docker build --network=host -t antmediaserver --build-arg AntMediaServer=ant-media-server-community-2.14.0.zip .
@@ -86,3 +90,5 @@ docker run -d --name antmedia --mount source=antmedia_volume,target=/usr/local/a
 ### AMS Dashboard
 
 After the Docker container starts, reach out to http://localhost:5080 or http://docker-container-IP:5080 to access the Ant Media Server dashboard.
+
+![](@site/static/img/docker-installation.webp)
