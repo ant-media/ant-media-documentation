@@ -5,7 +5,6 @@ keywords: [Docker, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 6
 ---
 
-# Docker Installation
 
 To use the Ant Media Server Enterprise Edition [official Docker Hub image](https://hub.docker.com/r/antmedia/enterprise/tags), you can execute the following command, which will pull the latest version directly from Docker Hub and run the container.
 
