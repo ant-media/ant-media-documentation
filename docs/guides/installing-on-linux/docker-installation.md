@@ -16,15 +16,13 @@ docker run --restart=always -d --name antmedia --network=host -it antmedia/enter
 But in case you want to create your own AMS Docker image to run the container, follow the below procedure:
 
 
-## Dockerfile
-
-### 1. Download Dockerfile
+## 1. Download Dockerfile
 
 ```bash
 wget https://raw.githubusercontent.com/ant-media/Scripts/master/docker/Dockerfile_Process -O Dockerfile
 ```
 
-### 2. Build Docker Image
+## 2. Build Docker Image
 
 You can perform the build process by entering your license key or having the zip file.
 
@@ -62,7 +60,7 @@ For example, if the zip file name is `ant-media-server-community-2.14.0.zip`.
 docker build --network=host -t antmediaserver --build-arg AntMediaServer=ant-media-server-community-2.14.0.zip .
 ``` 
     
-### 3. Run Docker Container
+## 3. Run Docker Container
 
 Now we have a Docker image with Ant Media Server. Run the Docker container with the below command:
 
@@ -78,7 +76,7 @@ By default, it uses the host network ports to reach but for example, in Mac OS, 
 docker run --restart=always -d --name antmedia -p 5080:5080 -it antmediaserver
 ```
 
-### 4. Volume
+## 4. Volume
 
 **Optional:** If you would like to use persistent volume, you can use it as follows. In this way, volume keeps even if your container is destroyed.
 
@@ -87,7 +85,7 @@ docker volume create antmedia_volume
 docker run -d --name antmedia --mount source=antmedia_volume,target=/usr/local/antmedia/ --network=host -it antmediaserver
 ```
 
-### AMS Dashboard
+## AMS Dashboard
 
 After the Docker container starts, reach out to http://localhost:5080 or http://docker-container-IP:5080 to access the Ant Media Server dashboard.
 
