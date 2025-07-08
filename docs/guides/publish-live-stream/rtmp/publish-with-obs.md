@@ -7,7 +7,7 @@ sidebar_position: 2
 
 # Publish RTMP stream using OBS
 
-OBS (Open Broadcaster Software) is a free and open source video recording and live streaming software. With OBS, you can use either your PC's embedded camera or an externally connected camera as a video source. Audio sources can also be set up.
+OBS (Open Broadcaster Software) is a free and open-source video recording and live streaming software. With OBS, you can use either your PC's embedded camera or an externally connected camera as a video source. Audio sources can also be set up.
 
 Let's go over how to use OBS for streaming step by step:
 
@@ -21,25 +21,25 @@ Launch OBS. By default, OBS begins capturing from your built-in camera if one is
 
 ## Configure OBS
 
-We assume that your Ant Media Server accepts all streams (e.g there is no security option enabled.)
+We assume that your Ant Media Server accepts all streams (e.g, there is no security option enabled).
 
 *   Click ```Settings``` in the OBS Window and then Select ```Stream``` on the left side menu.
 *   Choose ```Custom Streaming Server``` in the ```Stream Type``` dropdown menu.
-*   In the URL box, type your RTMP URL without stream id. It's like ```rtmp://IP-or-server-domain-name/LiveApp```
-*   In the Stream key, you can write any stream id because we assume that all stream Ids are allowed.
+*   In the URL box, type your RTMP URL without stream id. It's like ```rtmp://IP-or-server-domain-name/live```
+*   In the Stream key, you can write any stream ID because we assume that all stream IDs are allowed.
 
 :::warning
-The RTMP URL should not contain any port number. The RTMP protocol will automatically listen on port 1935 which should be open on your server.
+The RTMP URL should not contain any port number. The RTMP protocol will automatically listen on port 1935, which should be open on your server.
 
- - **Wrong**: rtmp://am.streamomedia.com:5443/WebRTCAppEE/
- - **Correct**:   rtmp://am.streamomedia.com/WebRTCAppEE/
+ - **Wrong**: rtmp://ams.domain.com:5443/live/
+ - **Correct**: rtmp://ams.domain.com/live/
 :::
 
-![](@site/static/img/obs-rtmp-image/OBS-Stream.png)
+![image](https://github.com/user-attachments/assets/3d9a7abc-294b-4878-897b-fa3040482623)
 
-**Note:** When you use tokens you need to generate a publish token and use it in this format inside the stream key : ```streamdid?token=tokenid```
+**Note:** When you use tokens, you need to generate a publish token and use it in this format inside the stream key: ```streamdid?token=tokenid```
 
-![](@site/static/img/obs-rtmp-image/OBS-Stream-Token.png)
+![image](https://github.com/user-attachments/assets/7c42eff1-fef1-4fd7-96f3-2eed493c808b)
 
 ## Tune for ultra-low latency streaming
 
@@ -51,7 +51,7 @@ Please keep in mind that if your network isn't stable enough to send the request
 
 ## Start streaming
 
-Close ```Settings``` window and just click the “Start Streaming” button in the main window of OBS.
+Close the ```Settings``` window and just click the “Start Streaming” button in the main window of OBS.
 
 ![](@site/static/img/obs-rtmp-image/OBS-Start-Stream.png)
 
@@ -66,8 +66,8 @@ If you are experiencing stream quality issues, you should check the following in
 Stream health parameters are located at the bottom right. There are 3 stream health parameters: ```Dropped Frames```, ```CPU``` and ```Stream health color.``` 
 
 *   **Dropped frames**: This value should be 0. If it increases, you may decrease your FPS or bitrate parameters in OBS settings.
-*   **CPU**: CPU value is important for streaming quality. We recommend that it never exceeds 70%.
-*   **Stream health color**: This color should be green. If it has a color between yellow and red you may have problems with your stream quality.
+*   **CPU**: CPU value is important for streaming quality. We recommend that it never exceed 70%.
+*   **Stream health color**: This color should be green. If it has a color between yellow and red, you may have problems with your stream quality.
 
 ![](@site/static/img/obs-rtmp-image/OBS-Status.png)
 
