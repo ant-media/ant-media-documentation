@@ -19,10 +19,11 @@ In previous versions, configuring SSL involved intricate steps, such as accessin
 
 However, with the release of Ant Media Server version 2.6.2, we have streamlined the SSL enablement process, allowing users to seamlessly secure their media server directly from the AMS Web Panel. This empowers users to enable SSL with utmost ease and convenience.
 
-- After [installaling the Ant Media Server](https://antmedia.io/docs/guides/installing-on-linux/installing-ams-on-linux/), login to the web panel and navigate to `SETTINGS > SSL`.
-![](@site/static/img/ssl-webpanel/ssl-settings.png)
+- After [installing the Ant Media Server](https://antmedia.io/docs/guides/installing-on-linux/installing-ams-on-linux/), log in to the web panel and navigate to `SETTINGS > SSL`.
 
-- In the drop-down select box named Type, choose among the various options to enable SSL, like [using your own domain](https://antmedia.io/docs/guides/installing-on-linux/setting-up-ssl/#create-lets-encrypt-certificate-with-http-01-challenge), [free subdomain of antmedia.cloud](https://antmedia.io/docs/guides/installing-on-linux/setting-up-ssl/#get-a-free-subdomain-and-install-ssl-with-lets-encrypt), or [import your own certificate](https://antmedia.io/docs/guides/installing-on-linux/setting-up-ssl/#import-your-custom-certificate) and then click Activate to enable the SSL and restart your server.
+![Screenshot 2025-07-08 115427](https://github.com/user-attachments/assets/0c3e85da-8e54-42be-8b8d-25ed908af1c4)
+
+- In the drop-down select box named Type, choose among the various options to enable SSL, like [using your domain](https://antmedia.io/docs/guides/installing-on-linux/setting-up-ssl/#create-lets-encrypt-certificate-with-http-01-challenge), [free subdomain of antmedia.cloud](https://antmedia.io/docs/guides/installing-on-linux/setting-up-ssl/#get-a-free-subdomain-and-install-ssl-with-lets-encrypt), or [import your certificate](https://antmedia.io/docs/guides/installing-on-linux/setting-up-ssl/#import-your-custom-certificate) and then click Activate to enable the SSL and restart your server.
 
 ![](@site/static/img/ssl-webpanel/ssl-options.png)
 
@@ -34,7 +35,7 @@ However, with the release of Ant Media Server version 2.6.2, we have streamlined
 
 ## Option 2: Installing SSL using the Terminal
 
-Apart from the web panel, SSL for the Ant Media Server can also be installed using the terminal and there are a number of ways to do it as per your specific use case and requirements.
+Apart from the web panel, SSL for the Ant Media Server can also be installed using the terminal, and there are a number of ways to do it as per your specific use case and requirements.
 
 ### Get a free subdomain and install SSL with Let's Encrypt
 
@@ -63,7 +64,7 @@ The script in this document installs **Let's Encrypt** SSL certificate.
 
 First, create an `A` record for your domain name in your DNS records. This way, your domain name will be resolved to your server's public IP address. Note that this guide is for Ubuntu systems, but there are several guides on the internet for other Linux distributions as well.
 
-- If there is a service that uses port 80, you need to disable it first. For example, if your system has Apache web server, you need to disable it using:
+- If there is a service that uses port 80, you need to disable it first. For example, if your system has an Apache web server, you need to disable it using:
 
   ```bash
   sudo service apache2 stop
@@ -83,7 +84,7 @@ First, create an `A` record for your domain name in your DNS records. This way, 
 
 ### Import your custom certificate
 
-The `enable_ssl.sh` script supports external `fullchain.pem`, `chain.pem` and `privkey.pem` files in the following format:.
+The `enable_ssl.sh` script supports external `fullchain.pem`, `chain.pem`, and `privkey.pem` files in the following format:.
 
 ```bash
 sudo ./enable_ssl.sh -f {FULL_CHAIN_FILE} -p {PRIVATE_KEY_FILE} -c {CHAIN_FILE} -d {DOMAIN_NAME} 
@@ -117,7 +118,7 @@ _acme-challenge.subdomain.yourdomain.com with the following value:
 
 ziB3UjMMSSO-La7jgqPXXXXeK-r2Ja80HluNJVvkg
 
-Before continuing, verify the record is deployed.
+Before continuing, verify that the record is deployed.
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ```
 
@@ -129,7 +130,7 @@ The process should be completed successfully if you set everything correctly.
 
 ### Create Let's Encrypt certificate with DNS-01 challenge and Route 53
 
-Let's Encrypt have some plugins to simplify the authorization. Route 53 plugin creates TXT records and deletes them after authorization is done. It's useful while creating instances in AWS Wavelength Zones, as the HTTP-01 challenge does not work in the AWS Wavelength zone due to its nature.
+Let's Encrypt has some plugins to simplify the authorization. The Route 53 plugin creates TXT records and deletes them after authorization is done. It's useful while creating instances in AWS Wavelength Zones, as the HTTP-01 challenge does not work in the AWS Wavelength zone due to its nature.
 
 - Create a policy (i.e., dns-challenge-policy) in the IAM service with the following content:. [Check this out if you don't know how to create a Policy](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-create-and-attach-iam-policy.html).
 
@@ -150,7 +151,7 @@ Let's Encrypt have some plugins to simplify the authorization. Route 53 plugin c
           ]
       },
       {
-          "Effect" : "Allow",
+          "Effect": "Allow",
           "Action" : [
               "route53:ChangeResourceRecordSets"
           ],
@@ -162,9 +163,9 @@ Let's Encrypt have some plugins to simplify the authorization. Route 53 plugin c
 }
 ```
 
-- Create a Role (i.e. dns-challenger) in IAM user for EC2 and attach the policy above to that role
+- Create a Role (i.e., dns-challenger) in IAM user for EC2 and attach the policy above to that role
 - Assign this role to the EC2 instance where you plan to install SSL
-- Create `A` record for your domain name in Route 53 that resolves to your IP address.
+- Createan  `A` record for your domain name in Route 53 that resolves to your IP address.
 - Run the `enable_ssl.sh` as follows:
 
     ```bash
