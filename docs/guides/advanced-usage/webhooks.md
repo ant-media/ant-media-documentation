@@ -88,61 +88,64 @@ Ant Media Server will send a POST request to your application server endpoint wi
 "webhookContentType": "application/x-www-form-urlencoded"
 ```
 
-### Available Webhooks
+### Available Webhooks: 
+#### NOTE- Fields wrapped in {} are placeholders. These will be replaced with actual values by Ant Media Server at runtime.
 
 1. **`liveStreamStarted`**
    - **Trigger**: Fired when a new live stream starts.
    - **Payload (JSON)**:
      ```json
      {
-       "id": "stream_id",
-       "action": "liveStreamStarted",
-       "streamName": "stream_name",
-       "category": "stream_category",
-	   "metadata":"metadata_of_broadcast",
-	   "timestamp": "1725578684839"
+     "id": "{streamId}",
+     "action": "liveStreamStarted",
+     "streamName": "{streamName}",
+     "category": "{category}",
+     "metadata": "{metadata}",
+     "timestamp": "{timestamp}"
      }
      ```
+
    - **Fields**:
      - `id`: The stream ID of the broadcast.
      - `action`: The action performed, in this case, "liveStreamStarted".
      - `streamName`: The name of the stream (can be null).
      - `category`: The category of the stream (can be null).
-	 - `metadata`: The metadata field of the broadcast object. If it's a JSON string metadata field will be a JSON object.
-	 - `timestamp`: The current server timestamp milliseconds as a string.
+     - `metadata`: The metadata field of the broadcast object. If it's a JSON string metadata field will be a JSON object.
+     - `timestamp`: The current server timestamp milliseconds as a string.
 
 2. **`liveStreamEnded`**
    - **Trigger**: Fired when a live stream ends.
    - **Payload (JSON)**:
-     ```json
-     {
-       "id": "stream_id",
-       "action": "liveStreamEnded",
-       "streamName": "stream_name",
-       "category": "stream_category",
-	   "metadata":"metadata_of_broadcast",
-	   "timestamp": "1725578684839"
-     }
-     ```
+ ```json
+	{
+	"id": "{streamId}",
+	"action": "liveStreamEnded",
+	"streamName": "{streamName}",
+	"category": "{category}",
+	"metadata": "{metadata}",
+	"timestamp": "{timestamp}"
+	}
+	```
+
    - **Fields**:
      - `id`: The stream ID of the broadcast.
      - `action`: The action performed, in this case, "liveStreamEnded".
      - `streamName`: The name of the stream (can be null).
      - `category`: The category of the stream (can be null).
-	 - `metadata`: The metadata field of the broadcast object. If it's a JSON string metadata field will be a JSON object.
-	 - `timestamp`: The current server timestamp milliseconds as a string.
+     - `metadata`: The metadata field of the broadcast object. If it's a JSON string metadata field will be a JSON object.
+     - `timestamp`: The current server timestamp milliseconds as a string.
 
 3. **`vodReady`**
    - **Trigger**: Fired when the recording of a live stream is completed.
    - **Payload (JSON)**:
      ```json
      {
-       "id": "stream_id",
+       "id": "{stream_id}",
        "action": "vodReady",
-       "vodName": "vod_file_name",
-       "vodId": "vod_id",
-	   "metadata":"metadata_of_broadcast",
-	   "timestamp": "1725578684839"
+       "vodName": "{vod_file_name}",
+       "vodId": "{vod_id}",
+       "metadata":"{metadata_of_broadcast}",
+       "timestamp": "{1725578684839}"
      }
      ```
    - **Fields**:
@@ -150,20 +153,20 @@ Ant Media Server will send a POST request to your application server endpoint wi
      - `action`: The action performed, in this case, "vodReady".
      - `vodName`: The name of the VOD file.
      - `vodId`: The ID of the VOD in the data store.
-	 - `metadata`: The metadata field of the broadcast object. If it's a JSON string metadata field will be a JSON object.
-	 - `timestamp`: The current server timestamp milliseconds as a string.
+     - `metadata`: The metadata field of the broadcast object. If it's a JSON string metadata field will be a JSON object.
+     - `timestamp`: The current server timestamp milliseconds as a string.
 
 4. **`endpointFailed`**
    - **Trigger**: Fired when an RTMP endpoint broadcast fails.
    - **Payload (JSON)**:
      ```json
      {
-       "id": "stream_id",
+       "id": "{stream_id}",
        "action": "endpointFailed",
-       "streamName": "stream_name",
-       "category": "stream_category",
-       "metadata": "rtmp_url",
-	   "timestamp": "1725578684839"
+       "streamName": "{stream_name}",
+       "category": "{stream_category}",
+       "metadata": "{rtmp_url}",
+       "timestamp": "{1725578684839}"
      }
      ```
    - **Fields**:
@@ -172,7 +175,7 @@ Ant Media Server will send a POST request to your application server endpoint wi
      - `streamName`: The name of the stream (can be null).
      - `category`: The category of the stream (can be null).
      - `metadata`: The RTMP URL of the endpoint.
-	 - `timestamp`: The current server timestamp milliseconds as a string.
+     - `timestamp`: The current server timestamp milliseconds as a string.
 
 
 5. **`publishTimeoutError`**
@@ -180,12 +183,12 @@ Ant Media Server will send a POST request to your application server endpoint wi
    - **Payload (JSON)**:
      ```json
      {
-       "id": "stream_id",
+       "id": "{stream_id}",
        "action": "publishTimeoutError",
-       "streamName": "stream_name",
-       "category": "stream_category",
-	   "metadata": "{subscriberId:'subscriber_id'}",
-	   "timestamp": "1725578684839"
+       "streamName": "{stream_name}",
+       "category": "{stream_category}",
+       "metadata": "{subscriberId:'subscriber_id'}",
+       "timestamp": "{1725578684839}"
      }
      ```
    - **Fields**:
@@ -193,8 +196,8 @@ Ant Media Server will send a POST request to your application server endpoint wi
      - `action`: The action performed, in this case, "publishTimeoutError".
      - `streamName`: The name of the stream (can be null).
      - `category`: The category of the stream (can be null).
-	 - `metadata`: JSON object which contains subscriber id.
-	 - `timestamp`: The current server timestamp milliseconds as a string.
+     - `metadata`: JSON object which contains subscriber id.
+     - `timestamp`: The current server timestamp milliseconds as a string.
 
 
 6. **`encoderNotOpenedError`**
@@ -202,19 +205,19 @@ Ant Media Server will send a POST request to your application server endpoint wi
    - **Payload (JSON)**:
      ```json
      {
-       "id": "stream_id",
+       "id": "{stream_id}",
        "action": "encoderNotOpenedError",
-       "streamName": "stream_name",
-       "category": "stream_category",
-	   "metadata":"metadata_of_broadcast",
-	   "timestamp": "1725578684839"
+       "streamName": "{stream_name}",
+       "category": "{stream_category}",
+	"metadata":"{metadata_of_broadcast}",
+        "timestamp": "{1725578684839}"
      }
      ```
    - **Fields**:
      - `id`: The stream ID of the broadcast.
      - `action`: The action performed, in this case, "encoderNotOpenedError".
      - `streamName`: The name of the stream (can be null).
-	 - `metadata`: The metadata field of the broadcast object. If it's a JSON string metadata field will be a JSON object.
+     - `metadata`: The metadata field of the broadcast object. If it's a JSON string metadata field will be a JSON object.
      - `timestamp`: The current server timestamp milliseconds as a string.
 
 7. **`playStopped`**
@@ -222,12 +225,12 @@ Ant Media Server will send a POST request to your application server endpoint wi
 	- **Payload (JSON)**:
 	```json
 	{
-	"id": "stream_id",
+	"id": "{stream_id}",
 	"action": "playStopped",
-	"streamName": "stream_name",
-	"category": "stream_category",
-	"subscriberId": "subscriber_id",
-    "timestamp": "1725578684839"
+	"streamName": "{stream_name}",
+	"category": "{stream_category}",
+	"subscriberId": "{subscriber_id}",
+        "timestamp": "{1725578684839}"
 	}
 	```
 	- **Fields**:
@@ -243,12 +246,12 @@ Ant Media Server will send a POST request to your application server endpoint wi
 	- **Payload (JSON)**:
 	```json
 	{
-	"id": "stream_id",
+	"id": "{stream_id}",
 	"action": "playStarted",
-	"streamName": "stream_name",
-	"category": "stream_category",
-	"subscriberId": "subscriber_id",
-	"timestamp": "1725578684839"
+	"streamName": "{stream_name}",
+	"category": "{stream_category}",
+	"subscriberId": "{subscriber_id}",
+	"timestamp": "{1725578684839}"
 	}
 	```
 	- **Fields**:
@@ -264,13 +267,13 @@ Ant Media Server will send a POST request to your application server endpoint wi
 	- **Payload (JSON)**:
 	```json
 	{
-	"id": "stream_id",
+	"id": "{stream_id}",
 	"action": "subtrackAddedInTheMainTrack",
-	"streamName": "stream_name",
-	"category": "stream_category",
-	"subscriberId": "subscriber_id",
-	"mainTrackId":"main_track_id",
-	"timestamp": "1725578684839"
+	"streamName": "{stream_name}",
+	"category": "{stream_category}",
+	"subscriberId": "{subscriber_id}",
+	"mainTrackId":"{main_track_id}",
+	"timestamp": "{1725578684839}"
 	}
 	```
 	- **Fields**:
@@ -287,13 +290,13 @@ Ant Media Server will send a POST request to your application server endpoint wi
 	- **Payload (JSON)**:
 	```json
 	{
-	"id": "stream_id",
+	"id": "{stream_id}",
 	"action": "subtrackLeftTheMainTrack",
-	"streamName": "stream_name",
-	"category": "stream_category",
-	"subscriberId": "subscriber_id",
-	"mainTrackId":"main_track_id",
-	"timestamp": "1725578684839"
+	"streamName": "{stream_name}",
+	"category": "{stream_category}",
+	"subscriberId": "{subscriber_id}",
+	"mainTrackId":"{main_track_id}",
+	"timestamp": "{1725578684839}"
 	}
 	```
 	- **Fields**:
@@ -310,13 +313,13 @@ Ant Media Server will send a POST request to your application server endpoint wi
 	- **Payload (JSON)**:
 	```json
 	{
-	"id": "stream_id",
+	"id": "{stream_id}",
 	"action": "firstActiveTrackAddedInMainTrack",
-	"streamName": "stream_name",
-	"category": "stream_category",
-	"subscriberId": "subscriber_id",
-	"mainTrackId":"main_track_id",
-	"timestamp": "1725578684839"
+	"streamName": "{stream_name}",
+	"category": "{stream_category}",
+	"subscriberId": "{subscriber_id}",
+	"mainTrackId":"{main_track_id}",
+	"timestamp": "{1725578684839}"
 	}
 	```
 	- **Fields**:
@@ -333,13 +336,13 @@ Ant Media Server will send a POST request to your application server endpoint wi
 	- **Payload (JSON)**:
 	```json
 	{
-	"id": "stream_id",
+	"id": "{stream_id}",
 	"action": "noActiveSubtracksLeftInMainTrack",
-	"streamName": "stream_name",
-	"category": "stream_category",
-	"subscriberId": "subscriber_id",
-	"mainTrackId":"main_track_id",
-	"timestamp": "1725578684839"
+	"streamName": "{stream_name}",
+	"category": "{stream_category}",
+	"subscriberId": "{subscriber_id}",
+	"mainTrackId":"{main_track_id}",
+	"timestamp": "{1725578684839}"
 	}
 	```
 	- **Fields**:
