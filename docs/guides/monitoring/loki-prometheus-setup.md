@@ -1,7 +1,7 @@
 ---
-title: Collecting logs from AMS cluster 
-description: Collecting logs from AMS cluster
-keywords: [Collecting logs from AMS cluster, Ant Media Server Documentation, Ant Media Server Tutorials]
+title: Collecting Logs and Metrics of Ant Media Server on Kubernetes
+description: Collecting Logs and Metrics of Ant Media Server on Kubernetes
+keywords: [Collecting Logs and Metrics of Ant Media Server on Kubernetes, Ant Media Server Documentation, Ant Media Server Tutorials]
 ---
 
 # Collecting Logs and Metrics of Ant Media Server on Kubernetes
@@ -77,7 +77,6 @@ A system used for collecting cluster health status and application metrics.
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 helm repo update
 
-```
 helm install prometheus prometheus-community/kube-prometheus-stack \
   --namespace monitoring \
   --create-namespace \
