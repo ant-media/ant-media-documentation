@@ -120,7 +120,7 @@ To view the logs, let's add a dashboard:
 3. Enter `15141` as the Dashboard ID and load it.
 4. You will see a screen like the one below.
 
-![](@site/static/img/ams-loki-1.png)
+![](@site/static/img/ams-loki-2.png)
 
 You will now be able to easily monitor Ant Media Server pod logs.
 
