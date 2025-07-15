@@ -99,7 +99,6 @@ Last but not least, when you make a fresh installation or upgrade over an older 
 
 To restore the previous installation, kindly follow the below commands:
 
-
 ```shell
 sudo systemctl stop antmedia
 sudo rm -rf /usr/local/antmedia
@@ -107,3 +106,7 @@ sudo cp -p -R /usr/local/antmedia-backup_folder/ /usr/local/antmedia
 sudo chown -R antmedia:antmedia /usr/local/antmedia/
 sudo systemctl start antmedia
 ```
+
+## **What happens to my previously installed plugins?**
+
+The installer removes any previously installed third party plugin and their configuration and license files. You need to manually copy these files from the backed up previous version.
