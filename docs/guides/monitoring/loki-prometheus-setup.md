@@ -107,6 +107,10 @@ Run the following command, note the IP address, and log in to Grafana using it:
 
 Example: http://IP_Address
 
+You will see the dashboards like the one below.
+
+![](@site/static/img/ams-loki-1.png)
+
 ```bash
 kubectl get svc -n monitoring prometheus-grafana
 ```
