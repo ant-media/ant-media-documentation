@@ -99,6 +99,7 @@ Once the installation is complete, run the following command and make a note of 
 
 ```bash
 kubectl --namespace monitoring get secrets prometheus-grafana -o jsonpath="{.data.admin-password}" | base64 -d ; echo
+```
 
 ### Retrieving Grafana Service IP Information
 
@@ -108,6 +109,7 @@ Example: http://IP_Address
 
 ```bash
 kubectl get svc -n monitoring prometheus-grafana
+```
 
 ## 4. Setting Up the Dashboard
 
