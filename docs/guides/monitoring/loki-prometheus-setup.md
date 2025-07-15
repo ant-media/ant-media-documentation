@@ -98,7 +98,7 @@ helm install prometheus prometheus-community/kube-prometheus-stack \
 Once the installation is complete, run the following command and make a note of the password for Grafana:
 
 ```bash
-kubectl --namespace monitoring get secrets prometheus-grafana -o jsonpath="{.data.admin-password}" | base64 -d ; echo```
+kubectl --namespace monitoring get secrets prometheus-grafana -o jsonpath="{.data.admin-password}" | base64 -d ; echo
 
 ### Retrieving Grafana Service IP Information
 
