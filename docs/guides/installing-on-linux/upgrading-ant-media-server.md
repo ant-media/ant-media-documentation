@@ -5,7 +5,8 @@ keywords: [Upgrade to latest version, Upgrade Ant Media Server, Ant Media Server
 sidebar_position: 3
 ---
 
-# Upgrading Ant Media Server
+# Upgrade Ant Media Server
+
 This guide explains how to upgrade the Ant Media Server from an earlier version to the latest version.
 
 - There are two ways to upgrade your Ant Media Server to the latest edition.
@@ -56,7 +57,7 @@ This command will show the version of the installed Ant Media Server.
 - To learn more about the `upgrade.sh` script, please check [here](https://github.com/ant-media/Ant-Media-Server/blob/master/src/main/server/upgrade.sh).
 
 
-## Upgrading with the Installation Script
+## Upgrade with the Installation Script
 
 Another way to upgrade the Ant Media Server is by using the ```install_ant-media-server.sh```
 
@@ -93,12 +94,11 @@ sudo ./install_ant-media-server.sh -i <ANT_MEDIA_SERVER_ZIP_FILE> -r true
 
 For change/release logs of the new version, please check [here](https://github.com/ant-media/Ant-Media-Server/releases).
 
-## **How do I restore the Ant Media Server if needed?**
+## How do I restore the Ant Media Server if needed?
 
 Last but not least, when you make a fresh installation or upgrade over an older version, the previous installation will be backed up in the **/usr/local** directory with a timestamp value like antmedia-backup-2022-11-18_15-42-54.
 
 To restore the previous installation, kindly follow the below commands:
-
 
 ```shell
 sudo systemctl stop antmedia
@@ -107,3 +107,9 @@ sudo cp -p -R /usr/local/antmedia-backup_folder/ /usr/local/antmedia
 sudo chown -R antmedia:antmedia /usr/local/antmedia/
 sudo systemctl start antmedia
 ```
+
+## **What happens to previously installed plugins after upgrade?**
+
+Currently, the upgrade process removes all previously installed plugins, as well as their configuration and license files. You must manually copy these files from the previous version that was backed up, or you must reinstall them.
+
+Our team is looking into ways to improve the process.
