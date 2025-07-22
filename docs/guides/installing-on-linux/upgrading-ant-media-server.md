@@ -109,4 +109,6 @@ sudo systemctl start antmedia
 
 ## **What happens to my previously installed plugins?**
 
-The installer removes any previously installed third party plugin and their configuration and license files. You need to manually copy these files from the backed up previous version.
+Currently, the upgrade process removes all previously installed plugins, as well as their configuration and license files. You must manually copy these files from the previous version that was backed up, or you must reinstall them.
+
+Our team is looking into ways to improve the process.
