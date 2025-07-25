@@ -91,7 +91,21 @@ If you want to use the m3u8 URL directly, then it will be as follows:
 ```
 http(s)://IP-address-or-domain:port/Application_Name/streams/stream_id.m3u8?token=tokenId
 ```
+**Note**
 
+ - If **Adaptive Bitrate (ABR)** is enabled, the original `.m3u8` file (e.g., `streamId.m3u8`) will **not be generated**. In such cases, use the adaptive or resolution-specific HLS playlists instead:
+   ```
+   https://<server>:5443/<AppName>/streams/<streamId>_adaptive.m3u8?token=<token>
+   ```
+   (or)
+   ```
+   https://<server>:5443/<AppName>/streams/<streamId>_480p1000kbps.m3u8?token=<token>
+   ```
+
+ - In some scenarios, playback might still fail — especially if the **segment or session ID changes** while loading, which can cause the **One-Time Token to expire**. In such cases, we recommend using **JWT token-based playback**, which provides more persistent and reliable access control for HLS.
+
+
+  
 **CMAF (DASH):**
 
 If using the embedded (play.html) player URL:
