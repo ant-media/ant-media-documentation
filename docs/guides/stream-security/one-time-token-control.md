@@ -92,7 +92,7 @@ If you want to use the m3u8 URL directly, then it will be as follows:
 http(s)://IP-address-or-domain:port/Application_Name/streams/stream_id.m3u8?token=tokenId
 ```
 
-::ℹ️
+:::info
 
 - If **Adaptive Bitrate (ABR)** is enabled and **WebRTC** stream is published, the original `.m3u8` file (e.g., `streamId.m3u8`) will **not be generated**. In such cases, use the adaptive or resolution-specific HLS playlists instead:
    
