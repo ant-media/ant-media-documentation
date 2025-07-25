@@ -138,13 +138,15 @@ Ant Media Server will send a POST request to your application server endpoint wi
 3. **`vodReady`**
    - **Trigger**: Fired when the recording of a live stream is completed.
    - **Payload (JSON)**:
-     ```json
+
+
+```json
      {
        "id": "{stream_id}",
        "action": "vodReady",
        "vodName": "{vod_file_name}",
        "vodId": "{vod_id}",
-       "metadata":"{metadata_of_broadcast}",
+       "metadata":"(metadata_of_broadcast)",
        "timestamp": "{1725578684839}"
      }
      ```
@@ -203,14 +205,16 @@ Ant Media Server will send a POST request to your application server endpoint wi
 6. **`encoderNotOpenedError`**
    - **Trigger**: Fired when the encoder cannot be opened.
    - **Payload (JSON)**:
-     ```json
+
+
+ ```json
      {
-       "id": "{stream_id}",
-       "action": "encoderNotOpenedError",
-       "streamName": "{stream_name}",
-       "category": "{stream_category}",
+        "id": "{stream_id}",
+        "action": "encoderNotOpenedError",
+        "streamName": "{stream_name}",
+        "category": "{stream_category}",
 	"metadata":"{metadata_of_broadcast}",
-        "timestamp": "{1725578684839}"
+ 	"timestamp": "{1725578684839}"
      }
      ```
    - **Fields**:
