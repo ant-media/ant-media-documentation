@@ -11,13 +11,13 @@ Windows Subsystem for Linux (WSL) provides a lightweight virtualized environment
 
 :::info **Important:** This guide assumes you are using **WSL2** and Ubuntu as your Linux distribution. For production setups, we strongly recommend using a dedicated Linux server or virtual machine.
 
-We also **do not cover** every installation step of AMS here — please follow our [Installing Ant Media Server on Linux](https://antmedia.io/docs/installation/) documentation for the complete process. This guide supplements that with WSL-specific steps.
+We also **do not cover** every installation step of AMS here — please follow our [Installing Ant Media Server on Linux](https://antmedia.io/docs/guides/installing-on-linux/installing-ams-on-linux/) documentation for the complete process. This guide supplements that with WSL-specific steps.
 :::
 
 ## 1. Install WSL and Ubuntu
 
 :::info
-Before proceeding with the WSL installation, run the below commands to enable the Windows feature for virtualization and WSL.
+Before proceeding with the WSL installation, run the following commands to enable the Windows feature for virtualization and WSL.
 
 Run **PowerShell as Administrator** and execute:
 
@@ -88,13 +88,13 @@ You can access this from any browser on your Windows machine.
 We can now test publishing a WebRTC stream from the browser with this URL:
 
 ```bash
-http://localhost:5080/LiveApp/
+http://localhost:5080/live/
 ```
 
 And play it with the following:
 
 ```bash
-http://localhost:5080/LiveApp/play.html?id=test
+http://localhost:5080/live/play.html?id=test
 ```
 
  ![](@site/static/img/wls-installation/screen4.webp)
