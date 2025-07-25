@@ -90,7 +90,8 @@ helm install prometheus prometheus-community/kube-prometheus-stack \
   --set prometheus.prometheusSpec.storageSpec.volumeClaimTemplate.spec.storageClassName=default \
   --set prometheus.prometheusSpec.storageSpec.volumeClaimTemplate.spec.resources.requests.storage=10Gi \
   --set alertmanager.alertmanagerSpec.storage.volumeClaimTemplate.spec.storageClassName=default \
-  --set alertmanager.alertmanagerSpec.storage.volumeClaimTemplate.spec.resources.requests.storage=5Gi
+  --set alertmanager.alertmanagerSpec.storage.volumeClaimTemplate.spec.resources.requests.storage=5Gi \
+  --set grafana.adminPassword='your-password'
 ```
 
 ### Retrieving Grafana Admin Password
