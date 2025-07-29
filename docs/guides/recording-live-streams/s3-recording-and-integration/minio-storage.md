@@ -47,22 +47,31 @@ To solve this, enable **HTTP Forwarding** so Ant Media Server can redirect playb
    **Application Settings → Advanced Settings**.  
 3. Set the following properties:
 
+```bash
 httpForwardingExtension: mp4,m3u8  
 httpForwardingBaseURL: http://{your-minio-domain}:{port}/{bucket-name}  
+```
 
 **Example:**  
+
+```bash
 httpForwardingExtension: mp4,m3u8  
 httpForwardingBaseURL: http://minio.example.com:9000/mybucket  
+```
 
 4. Save the settings and restart Ant Media Server.
 
 Now, when you access:
 
+```bash
 https://your-domain:5443/AppName/streams/recording.mp4  
+```
 
 Ant Media Server will forward the request to:
 
+```bash
 http://minio.example.com:9000/mybucket/streams/recording.mp4  
+```
 
 ---
 

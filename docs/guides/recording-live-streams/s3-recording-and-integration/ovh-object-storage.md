@@ -42,22 +42,30 @@ To resolve this, enable **HTTP Forwarding** so Ant Media Server automatically re
    **Application Settings → Advanced Settings**.  
 3. Set the following properties:
 
+```bash
 httpForwardingExtension: mp4,m3u8  
 httpForwardingBaseURL: https://{s3BucketName}.{region}.cloud.ovh.net  
+```
 
 Example:  
+```bash
 httpForwardingExtension: mp4,m3u8  
 httpForwardingBaseURL: https://mybucket.gra.cloud.ovh.net  
+```
 
 4. Save your settings and restart restart Ant Media Server.
 
 Now, when you access:
 
+```bash
 https://your-domain:5443/AppName/streams/recording.mp4  
+```
 
 Ant Media Server will forward the request to:
 
+```bash
 https://mybucket.gra.cloud.ovh.net/streams/recording.mp4  
+```
 
 ---
 

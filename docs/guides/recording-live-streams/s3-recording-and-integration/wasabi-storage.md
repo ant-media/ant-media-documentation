@@ -37,22 +37,31 @@ To fix this, enable **HTTP Forwarding** so Ant Media Server redirects playback r
    **Application Settings → Advanced Settings**.  
 3. Set the following properties:
 
+```bash
 httpForwardingExtension: mp4,m3u8  
 httpForwardingBaseURL: https://{bucket-name}.s3.{region}.wasabisys.com  
+```
 
 Example:  
+
+```bash
 httpForwardingExtension: mp4,m3u8  
 httpForwardingBaseURL: https://mybucket.s3.us-east-1.wasabisys.com  
+```
 
 4. Save your settings and restart Ant Media Server.
 
 Now, when you access:
 
+```bash
 https://your-domain:5443/AppName/streams/recording.mp4  
+```
 
 Ant Media Server will forward the request to:
 
+```bash
 https://mybucket.s3.us-east-1.wasabisys.com/streams/recording.mp4  
+```
 
 ---
 

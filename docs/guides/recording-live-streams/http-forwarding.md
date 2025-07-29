@@ -48,16 +48,26 @@ Do **not** include leading or trailing spaces in these fields.
 The format of your `httpForwardingBaseURL` depends on the storage provider:
 
 - **AWS S3**  
-  Pattern:  
-  `https://{s3BucketName}.s3.{awsRegion}.amazonaws.com`  
+  Pattern:
+  
+  ```bash 
+  https://{s3BucketName}.s3.{awsRegion}.amazonaws.com
+  ```  
   Example:  
-  `https://myvideos.s3.us-east-1.amazonaws.com`
+  
+  ```bash
+  https://myvideos.s3.us-east-1.amazonaws.com
+  ```
 
 - **DigitalOcean Spaces**  
   Pattern:  
-  `https://{s3BucketName}.{region}.digitaloceanspaces.com`  
+  ```bash
+  https://{s3BucketName}.{region}.digitaloceanspaces.com
+  ```  
   Example:  
-  `https://myvideos.nyc3.digitaloceanspaces.com`
+  ```bash
+  https://myvideos.nyc3.digitaloceanspaces.com
+  ```
 
 ---
 

@@ -45,22 +45,31 @@ To avoid this, enable **HTTP Forwarding** so Ant Media Server redirects playback
    **Application Settings → Advanced Settings**.  
 3. Set the following properties:
 
+```bash
 httpForwardingExtension: mp4,m3u8  
 httpForwardingBaseURL: https://storage.googleapis.com/{bucket-name}  
+```
 
 Example:  
+
+```bash
 httpForwardingExtension: mp4,m3u8  
 httpForwardingBaseURL: https://storage.googleapis.com/mybucket  
+```
 
 4. Save your settings and restart Ant Media Server.
 
 Now, when you access:
 
+```bash
 https://your-domain:5443/AppName/streams/recording.mp4  
+```
 
 Ant Media Server will forward the request to:
 
+```bash
 https://storage.googleapis.com/mybucket/streams/recording.mp4  
+```
 
 ---
 

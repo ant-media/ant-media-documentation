@@ -57,19 +57,25 @@ To fix this, configure **HTTP Forwarding** so that Ant Media Server automaticall
 httpForwardingExtension: mp4,m3u8  
 httpForwardingBaseURL: https://{s3BucketName}.s3.{awsRegion}.amazonaws.com  
 
-Example:  
+Example:
+```bash
 httpForwardingExtension: mp4,m3u8  
 httpForwardingBaseURL: https://myvideos.s3.us-east-1.amazonaws.com  
+```
 
 4. Save your settings and restart Ant Media Server.
 
 Now, when you access:
 
+```bash
 https://your-domain:5443/AppName/streams/recording.mp4  
+```
 
 Ant Media Server will forward the request to:
 
+```bash
 https://myvideos.s3.us-east-1.amazonaws.com/streams/recording.mp4  
+```
 
 ---
 

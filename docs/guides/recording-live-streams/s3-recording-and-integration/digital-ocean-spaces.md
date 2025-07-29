@@ -46,22 +46,31 @@ To resolve this, enable **HTTP Forwarding** so that AMS forwards requests to you
    **Application Settings → Advanced Settings**.  
 3. Set the following properties:
 
+```bash
 httpForwardingExtension: mp4,m3u8  
 httpForwardingBaseURL: https://{s3BucketName}.{region}.digitaloceanspaces.com  
+```
 
 Example:  
+
+```bash
 httpForwardingExtension: mp4,m3u8  
 httpForwardingBaseURL: https://mybucket.nyc3.digitaloceanspaces.com  
+```
 
 4. Save your settings and restart Ant Media Server.
 
 Now, when you access:
 
+```bash
 https://your-domain:5443/AppName/streams/recording.mp4  
+```
 
 Ant Media Server will forward the request to:
 
+```bash
 https://mybucket.nyc3.digitaloceanspaces.com/streams/recording.mp4  
+```
 
 ---
 
