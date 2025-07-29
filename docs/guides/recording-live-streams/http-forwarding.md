@@ -48,26 +48,32 @@ Do **not** include leading or trailing spaces in these fields.
 The format of your `httpForwardingBaseURL` depends on the storage provider:
 
 - **AWS S3**  
-  Pattern:
   
-  ```bash 
-  https://{s3BucketName}.s3.{awsRegion}.amazonaws.com
-  ```  
-  Example:  
+Pattern:
   
-  ```bash
-  https://myvideos.s3.us-east-1.amazonaws.com
-  ```
+```bash 
+  https://s3BucketName.s3.awsRegion.amazonaws.com
+```  
+
+Example:  
+  
+```bash
+https://myvideos.s3.us-east-1.amazonaws.com
+```
 
 - **DigitalOcean Spaces**  
-  Pattern:  
-  ```bash
-  https://{s3BucketName}.{region}.digitaloceanspaces.com
-  ```  
-  Example:  
-  ```bash
-  https://myvideos.nyc3.digitaloceanspaces.com
-  ```
+  
+Pattern:
+
+```bash
+https://s3BucketName.region.digitaloceanspaces.com
+```  
+  
+Example:
+
+```bash
+https://myvideos.nyc3.digitaloceanspaces.com
+```
 
 ---
 
@@ -84,11 +90,15 @@ After entering the details:
 
 Once configured, try accessing a file via Ant Media Server. For example:
 
+```bash
 https://your-domain:5443/AppName/streams/sample.mp4
+```
 
 If forwarding is working, AMS will automatically serve the file from your bucket:
 
-https://{s3BucketName}.s3.{awsRegion}.amazonaws.com/streams/sample.mp4  
+```bash
+https://s3BucketName.s3.awsRegion.amazonaws.com/streams/sample.mp4  
+```
 
 ---
 
