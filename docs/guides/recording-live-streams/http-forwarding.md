@@ -30,7 +30,7 @@ Without forwarding, trying to access a file that has already been uploaded to th
 4. Locate the HTTP Forwarding section and set the following properties depending on your settings:
 
 httpForwardingExtension: mp4,m3u8 
-httpForwardingBaseURL: https://{BUCKET_URL}
+httpForwardingBaseURL: https://BUCKET_URL
 
 :::info
 - **httpForwardingExtension**: A comma-separated list of file extensions to forward.  
