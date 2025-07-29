@@ -39,6 +39,40 @@ Then, log in to http://your_ams_server:5080, enable Record Live Streams as MP4 a
 
 Your MP4 files and Preview files will be uploaded to your S3 Storage automatically.
 
+---
+
+## Enable HTTP Forwarding for AWS S3 Playback
+
+When your MP4 or preview files are uploaded to AWS S3, they will no longer be available on the Ant Media Server local storage. If you try to play them directly from AMS using the usual URL, you may receive a **404 Not Found** error.
+
+To fix this, configure **HTTP Forwarding** so that Ant Media Server automatically forwards requests for uploaded files to your AWS S3 bucket.
+
+### Steps to Enable HTTP Forwarding
+
+1. Log in to the **Ant Media Server Management Panel**.  
+2. Navigate to your application and go to  
+   **Application Settings → Advanced Settings**.  
+3. Set the following properties:
+
+httpForwardingExtension: mp4,m3u8  
+httpForwardingBaseURL: https://{s3BucketName}.s3.{awsRegion}.amazonaws.com  
+
+Example:  
+httpForwardingExtension: mp4,m3u8  
+httpForwardingBaseURL: https://myvideos.s3.us-east-1.amazonaws.com  
+
+4. Save your settings and restart Ant Media Server.
+
+Now, when you access:
+
+https://your-domain:5443/AppName/streams/recording.mp4  
+
+Ant Media Server will forward the request to:
+
+https://myvideos.s3.us-east-1.amazonaws.com/streams/recording.mp4  
+
+---
+
 ## Play recorded VOD files from an AWS S3 bucket using the embedded web player
 
 If you would like to embed the VODs stored in an AWS S3 bucket, you need to configure CORS parameters on AWS S3 bucket Permissions.

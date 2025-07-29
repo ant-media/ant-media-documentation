@@ -30,3 +30,41 @@ Then, log in the http://your_ams_server:5080, enable the Record Live Streams as 
 ![image.png](@site/static/img/image-286029.png)
 
 Your MP4 files and Preview files will be uploaded to your Digital Ocean Spaces automatically.
+
+---
+
+## Enable HTTP Forwarding for DigitalOcean Spaces Playback
+
+When your MP4 or preview files are uploaded to DigitalOcean Spaces, they are removed from Ant Media Server local storage. If you try to access them using the AMS URL, you may encounter a **404 Not Found** error.
+
+To resolve this, enable **HTTP Forwarding** so that AMS forwards requests to your DigitalOcean Spaces endpoint.
+
+### Steps to Enable HTTP Forwarding
+
+1. Log in to the **Ant Media Server Management Panel**.  
+2. Navigate to your application (e.g., `LiveApp`) and go to  
+   **Application Settings → Advanced Settings**.  
+3. Set the following properties:
+
+httpForwardingExtension: mp4,m3u8  
+httpForwardingBaseURL: https://{s3BucketName}.{region}.digitaloceanspaces.com  
+
+Example:  
+httpForwardingExtension: mp4,m3u8  
+httpForwardingBaseURL: https://mybucket.nyc3.digitaloceanspaces.com  
+
+4. Save your settings and restart Ant Media Server.
+
+Now, when you access:
+
+https://your-domain:5443/AppName/streams/recording.mp4  
+
+Ant Media Server will forward the request to:
+
+https://mybucket.nyc3.digitaloceanspaces.com/streams/recording.mp4  
+
+---
+
+## Next Steps: Playback from DigitalOcean Spaces
+
+With forwarding enabled, your VOD files stored in DigitalOcean Spaces can be played directly from AMS URLs, while the files are actually served from your DigitalOcean Space.
