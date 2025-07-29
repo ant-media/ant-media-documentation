@@ -29,8 +29,10 @@ Without forwarding, trying to access a file that has already been uploaded to th
 3. Go to **Application Settings → Advanced Settings**.  
 4. Locate the HTTP Forwarding section and set the following properties depending on your settings:
 
+```bash
 httpForwardingExtension: mp4,m3u8 
 httpForwardingBaseURL: https://BUCKET_URL
+```
 
 :::info
 - **httpForwardingExtension**: A comma-separated list of file extensions to forward.  
