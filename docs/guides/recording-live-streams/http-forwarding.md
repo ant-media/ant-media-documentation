@@ -77,6 +77,22 @@ Example:
 https://myvideos.nyc3.digitaloceanspaces.com
 ```
 
+- **Google Cloud Storage (GCS)**
+
+Pattern:
+
+```bash
+https://storage.googleapis.com/s3BucketName
+```
+
+Example:
+
+```bash
+https://storage.googleapis.com/myvideos
+```
+
+
+
 ---
 
 ## Step 3: Save and Apply Changes
