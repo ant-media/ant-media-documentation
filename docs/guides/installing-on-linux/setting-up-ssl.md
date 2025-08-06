@@ -4,6 +4,7 @@ description: Setting up SSL for Ant Media Server using Let's Encrypt certificate
 keywords: [Setting up SSL for Ant Media Server, Lets Encrypt, Let's Encrypt Certificate, Ant Media Server Documentation, Ant Media Server Tutorials, SSL]
 sidebar_position: 2
 priority: 1
+version: 2.14
 ---
 
 # How to Enable SSL
