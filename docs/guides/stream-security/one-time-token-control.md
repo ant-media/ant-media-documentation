@@ -29,7 +29,7 @@ curl -X 'GET' 'https://IP-address-or-domain:5443/Application_Name/rest/v2/broadc
 curl -X 'GET' 'https://IP-address-or-domain:5443/Application_Name/rest/v2/broadcasts/streamId/token?expireDate=Expire_Date&type=play' -H 'accept: application/json'
 ```
 
-The Expire Date format is in Unix Timestamp. You can get the timestamp [here](https://www.epochconverter.com/).
+The expiration date should be provided as a Unix timestamp in seconds. You can convert dates to Unix timestamps using [epochconverter.com](https://www.epochconverter.com/).
 
 ## One-time token usage with streaming protocols
 
