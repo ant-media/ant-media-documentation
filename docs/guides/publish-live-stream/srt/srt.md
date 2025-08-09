@@ -18,10 +18,10 @@ Below is a guide on how to publish an SRT stream to the Ant Media Server.
 Assuming you have installed and launched Ant Media Server v2.4.3 or later, you can use FFmpeg to push the SRT stream. 
 
 ```bash
-ffmpeg -re -i {INPUT} -vcodec libx264 -profile:v baseline -g 60 -acodec aac -f mpegts srt://ant.media.server.address:4200?streamid=WebRTCAppEE/stream1
+ffmpeg -re -i {INPUT} -vcodec libx264 -profile:v baseline -g 60 -acodec aac -f mpegts srt://ant.media.server.address:4200?streamid=live/stream1
 ```
 
-Once the command is executed, the stream will be available in the `WebRTCAppEE` application with the `streamId` stream1.
+Once the command is executed, the stream will be available in the `live` application with the `streamId` stream1.
 
 :::info
  If you encounter a "**Protocol not found**" error, it means FFmpeg needs to be compiled with the [**--enable-libsrt**](https://srtlab.github.io/srt-cookbook/apps/ffmpeg/) to support the SRT protocol.
@@ -39,9 +39,9 @@ ffmpeg -protocols
 
 If you don’t have command-line experience and prefer a graphical interface, you can use OBS (Open Broadcaster Software) to push an SRT stream to Ant Media Server. If you are unfamiliar with OBS, you can look at this blog post [How to use OBS with Ant Media Server](https://antmedia.io/how-to-use-obs-with-ant-media-server/). 
 
-Just enter the SRT URL to the stream window as shown in the image below.
+Just enter the SRT URL into the stream window as shown in the image below.
 
-![](@site/static/img/Screen-Shot-2022-04-20-at-14.48.30-1024x811.png)
+<img width="1230" height="939" alt="image" src="https://github.com/user-attachments/assets/bd55a125-bf26-4abb-b771-83809f5b07a4" />
 
 If the publish type token is enabled, the SRT publishing URL will be in the following format:
 
@@ -49,7 +49,7 @@ If the publish type token is enabled, the SRT publishing URL will be in the foll
 srt://ant.media.server.address:4200?streamid=Application-Name/streamId,token=tokenId
 ```
 
-In order to generate the token, check out stream security [documentation](https://antmedia.io/docs/category/stream-security/).
+To generate the token, check out stream security [documentation](https://antmedia.io/docs/category/stream-security/).
 
 ### Publishing SRT stream with OBS Without streamId
 
@@ -59,7 +59,7 @@ Starting from version 2.8.0 and above, Ant Media Server supports SRT publishing 
 
 ![](@site/static/img/publish-live-stream/srt/srt-obs.png)
 
-In such cases, the system IP address is used as the streamId and it is published to the LiveApp application by default.
+In such cases, the system IP address is used as the `streamId` and it is published to the LiveApp application by default.
 
 ![](@site/static/img/publish-live-stream/srt/srt-stream.png)
 
