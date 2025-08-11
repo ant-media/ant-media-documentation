@@ -1,11 +1,11 @@
 ---
-title: Installing AMS on Linux
+title: Install on Linux
 description: Installing Ant Media Server on Linux. You may install AMS on Ubuntu, CentOS, Rocky Linux, Alma Linux.
 keywords: [Install Ant Media Server on Ubuntu, CentOS, Rocky Linux, Alma Linux, Install SSL on AMS, Cluster Installation, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 1
 ---
 
-# Installing AMS on Linux
+# Install AMS on Linux
 
 Ant Media can be installed on Linux, specifically Ubuntu (20.04, 22.04, and 24.04), CentOS 9, Rocky Linux 9 and Alma Linux 9. It is compatible with both the x86-64 and Arm64 architectures.
 
