@@ -1,5 +1,5 @@
 ---
-title: AMS Docker Installation 
+title: Install with Docker
 description: AMS Docker Installation
 keywords: [Docker, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 6
