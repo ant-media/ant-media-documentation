@@ -1,5 +1,5 @@
 ---
-title: Upgrading Ant Media Server
+title: Upgrade Version
 description: This guide will explain how to upgrade Ant Media Server from an earlier version to latest version.
 keywords: [Upgrade to latest version, Upgrade Ant Media Server, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 3
