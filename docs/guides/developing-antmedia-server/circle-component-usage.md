@@ -3,7 +3,6 @@ title: Circle App Component Usage
 description: Embedding Circle Conference Application into webpage
 keywords: [Conference Application, Circle App, component usage, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 5
-
 ---
 
 # Circle App Component Usage
