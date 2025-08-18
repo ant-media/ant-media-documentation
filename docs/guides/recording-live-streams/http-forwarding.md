@@ -16,8 +16,8 @@ Without forwarding, trying to access a file that has already been uploaded to th
 
 ## When to Use HTTP Forwarding
 
-- You are uploading recordings or assets directly from Ant Media Server to a storage bucket.  
-- You want users to access files using the same Ant Media Server URL, without needing to manually provide the bucket link.  
+- You are uploading recordings or assets directly from Ant Media Server to a storage bucket.
+- You want users to access files using the same Ant Media Server URL, without needing to manually provide the bucket link.
 - You need a smooth fallback mechanism to avoid 404 errors after uploads.
 
 ---
@@ -29,10 +29,10 @@ Without forwarding, trying to access a file that has already been uploaded to th
 3. Go to **Application Settings → Advanced Settings**.  
 4. Locate the HTTP Forwarding section and set the following properties depending on your settings:
 
-```bash
-httpForwardingExtension: mp4,m3u8 
-httpForwardingBaseURL: https://BUCKET_URL
-```
+   ```bash
+   httpForwardingExtension: mp4,m3u8 
+   httpForwardingBaseURL: https://BUCKET_URL
+   ```
 
 :::info
 - **httpForwardingExtension**: A comma-separated list of file extensions to forward.  
@@ -40,8 +40,9 @@ httpForwardingBaseURL: https://BUCKET_URL
 - **httpForwardingBaseURL**: The base URL of your bucket (without trailing slash).  
 :::
 
-**Important:**  
+:::important
 Do **not** include leading or trailing spaces in these fields.
+:::
 
 ---
 
@@ -91,8 +92,6 @@ Example:
 https://storage.googleapis.com/myvideos
 ```
 
-
-
 ---
 
 ## Step 3: Save and Apply Changes
@@ -100,7 +99,7 @@ https://storage.googleapis.com/myvideos
 After entering the details:
 
 1. Click **Save Settings**.  
-2. Restart the current streams for the changes to take effect.  
+2. Restart the current streams for the changes to take effect.
 
 ---
 
