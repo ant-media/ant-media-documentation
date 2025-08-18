@@ -30,34 +30,38 @@ Google Cloud is another cloud provider that is preferred by many Ant Media Serve
 
 Congratz, your MP4 files and preview files will be uploaded to your Google Cloud Storage Bucket automatically.
 
----
 
-## Enable HTTP Forwarding for Google Cloud Storage Playback
+## Enable HTTP Forwarding for Playback
 
 After uploading to Google Cloud Storage, your files will no longer be available in the Ant Media Server local storage. If you try to access them using an AMS URL, you may encounter a **404 Not Found** error.
 
-To avoid this, enable **HTTP Forwarding** so Ant Media Server redirects playback requests to your Google Cloud Storage bucket.
+To resolve this, enable **HTTP Forwarding** so Ant Media Server automatically redirects requests to your OVH Object Storage.
 
 ### Steps to Enable HTTP Forwarding
 
-1. Log in to the **Ant Media Server Management Panel**.  
-2. Navigate to your application (e.g., `LiveApp`) and go to  
-   **Application Settings → Advanced Settings**.  
+1. Log in to the Ant Media Server Management Panel
+2. Navigate to your application (e.g., `LiveApp`) and go to **Application Settings → Advanced Settings**.  
 3. Set the following properties:
 
-```bash
-httpForwardingExtension: mp4,m3u8  
-httpForwardingBaseURL: https://storage.googleapis.com/{bucket-name}  
-```
+   ```bash
+   httpForwardingExtension: mp4,m3u8  
+   httpForwardingBaseURL: https://storage.googleapis.com/{bucket-name}  
+   ```
 
-Example:  
+   Example:  
 
-```bash
-httpForwardingExtension: mp4,m3u8  
-httpForwardingBaseURL: https://storage.googleapis.com/mybucket  
-```
+   ```bash
+   httpForwardingExtension: mp4,m3u8  
+   httpForwardingBaseURL: https://storage.googleapis.com/mybucket  
+   ```
 
-4. Save your settings and restart Ant Media Server.
+4. Save your settings
+
+
+## Playback
+
+Once forwarding is configured, your VOD files stored in Google Cloud Storage can be played directly using AMS URLs.  
+The media will be served from Google Cloud, while viewers continue to use your Ant Media Server domain.
 
 Now, when you access:
 
@@ -70,10 +74,3 @@ Ant Media Server will forward the request to:
 ```bash
 https://storage.googleapis.com/mybucket/streams/recording.mp4  
 ```
-
----
-
-## Next Steps: Playback from Google Cloud Storage
-
-Once forwarding is configured, your VOD files stored in Google Cloud Storage can be played directly using AMS URLs.  
-The media will be served from Google Cloud, while viewers continue to use your Ant Media Server domain.
