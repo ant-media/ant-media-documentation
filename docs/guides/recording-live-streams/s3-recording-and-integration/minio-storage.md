@@ -32,34 +32,36 @@ Once the installation is done and you are able to access the MinIO console on yo
 
 ![](@site/static/img/recording-live-streams/s3-integration/minio-bucket-integration/minio-bucket-objects.png)
 
----
 
-## Enable HTTP Forwarding for MinIO Playback
+## Enable HTTP Forwarding for Playback
 
 After uploading to MinIO, your files will no longer be stored in the Ant Media Server local storage. If you try to access them via the AMS URL, you may encounter a **404 Not Found** error.
 
-To solve this, enable **HTTP Forwarding** so Ant Media Server can redirect playback requests directly to your MinIO bucket.
+To resolve this, enable **HTTP Forwarding** so Ant Media Server automatically redirects requests to your OVH Object Storage.
 
 ### Steps to Enable HTTP Forwarding
 
-1. Log in to the **Ant Media Server Management Panel**.  
-2. Navigate to your application (e.g., `LiveApp`) and go to:  
-   **Application Settings → Advanced Settings**.  
+1. Log in to the Ant Media Server Management Panel
+2. Navigate to your application (e.g., `LiveApp`) and go to **Application Settings → Advanced Settings**.  
 3. Set the following properties:
 
-```bash
-httpForwardingExtension: mp4,m3u8  
-httpForwardingBaseURL: http://{your-minio-domain}:{port}/{bucket-name}  
-```
+   ```bash
+   httpForwardingExtension: mp4,m3u8  
+   httpForwardingBaseURL: http://{your-minio-domain}:{port}/{bucket-name}  
+   ```
 
-**Example:**  
+   Example:  
 
-```bash
-httpForwardingExtension: mp4,m3u8  
-httpForwardingBaseURL: http://minio.example.com:9000/mybucket  
-```
+   ```bash
+   httpForwardingExtension: mp4,m3u8  
+   httpForwardingBaseURL: http://minio.example.com:9000/mybucket  
+   ```
 
-4. Save the settings and restart Ant Media Server.
+4. Save the settings
+
+## Playback
+
+With forwarding enabled, your recorded files stored in MinIO can be played using AMS URLs.  Your viewers continue to access media via Ant Media Server, while the actual content is served from MinIO.
 
 Now, when you access:
 
@@ -72,10 +74,3 @@ Ant Media Server will forward the request to:
 ```bash
 http://minio.example.com:9000/mybucket/streams/recording.mp4  
 ```
-
----
-
-## Next Steps: Playback from MinIO
-
-With forwarding enabled, your recorded files stored in MinIO can be played using AMS URLs.  
-Your viewers continue to access media via Ant Media Server, while the actual content is served from MinIO.
