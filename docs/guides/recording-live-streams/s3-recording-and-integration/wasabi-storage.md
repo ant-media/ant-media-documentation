@@ -24,32 +24,35 @@ Your MP4 files and Preview files will be uploaded to your Wasabi storage automat
 
 ---
 
-## Enable HTTP Forwarding for Wasabi Storage Playback
+## Enable HTTP Forwarding for Playback
 
-When your MP4 or preview files are uploaded to Wasabi Storage, they are no longer available on Ant Media Server local storage. If you try to play them directly from AMS URLs, you may encounter a **404 Not Found** error.
+When your stream (mp4, m3u8 or preview) files are uploaded to Wasabi Storage, they are no longer available on Ant Media Server local storage. If you try to play them directly from AMS URLs, you may encounter a **404 Not Found** error.
 
-To fix this, enable **HTTP Forwarding** so Ant Media Server redirects playback requests to your Wasabi bucket.
+To resolve this, enable **HTTP Forwarding** so Ant Media Server automatically redirects requests to your OVH Object Storage.
 
 ### Steps to Enable HTTP Forwarding
 
-1. Log in to the **Ant Media Server Management Panel**.  
-2. Navigate to your application (e.g., `LiveApp`) and go to  
-   **Application Settings → Advanced Settings**.  
+1. Log in to the Ant Media Server Management Panel
+2. Navigate to your application (e.g., `LiveApp`) and go to **Application Settings → Advanced Settings**.  
 3. Set the following properties:
 
-```bash
-httpForwardingExtension: mp4,m3u8  
-httpForwardingBaseURL: https://{bucket-name}.s3.{region}.wasabisys.com  
-```
+   ```bash
+   httpForwardingExtension: mp4,m3u8  
+   httpForwardingBaseURL: https://{bucket-name}.s3.{region}.wasabisys.com  
+   ```
 
-Example:  
+   Example:  
 
-```bash
-httpForwardingExtension: mp4,m3u8  
-httpForwardingBaseURL: https://mybucket.s3.us-east-1.wasabisys.com  
-```
+   ```bash
+   httpForwardingExtension: mp4,m3u8  
+   httpForwardingBaseURL: https://mybucket.s3.us-east-1.wasabisys.com  
+   ```
 
-4. Save your settings and restart Ant Media Server.
+4. Save your settings
+
+## Playback
+
+Once forwarding is configured, you can share or embed your AMS URLs as usual. The media will actually be served from Wasabi, while users continue to use your Ant Media Server domain.
 
 Now, when you access:
 
@@ -63,8 +66,3 @@ Ant Media Server will forward the request to:
 https://mybucket.s3.us-east-1.wasabisys.com/streams/recording.mp4  
 ```
 
----
-
-## Next Steps: Playback from Wasabi Storage
-
-Once forwarding is configured, you can share or embed your AMS URLs as usual. The media will actually be served from Wasabi, while users continue to use your Ant Media Server domain.
