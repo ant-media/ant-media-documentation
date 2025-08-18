@@ -266,9 +266,9 @@ In that file, copy the following contents. Please change the content in curl bra
         # proxy settings
         proxy_redirect off;
         proxy_http_version 1.1;
-        proxy_read_timeout 10s;
-        proxy_send_timeout 10s;
-        proxy_connect_timeout 10s;
+        proxy_read_timeout 3600s;
+        proxy_send_timeout 3600s;
+        proxy_connect_timeout 3600s;
          
         #redirect all http requests to https
         server {
@@ -308,9 +308,9 @@ In that file, copy the following contents. Please change the content in curl bra
      	        location / {
                     proxy_pass http://antmedia_edge;
                     proxy_http_version 1.1;
-                    proxy_connect_timeout 7d;
-                    proxy_send_timeout 7d;
-    		            proxy_read_timeout 7d;
+                    proxy_connect_timeout 3600s;
+                    proxy_send_timeout 3600s;
+    		            proxy_read_timeout 3600s;
                     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
                     proxy_set_header Host $host;
                     proxy_set_header Upgrade $http_upgrade;
