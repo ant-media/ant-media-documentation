@@ -177,8 +177,8 @@ Pay attention that we use `stream007` as the `streamid`. It will be used to get 
 - The HTTP endpoint templates will be like
 
   ```bash
-  DASH: https://{YOUR_ANTMEDIA_SERVER}:5443/live/streams/stream123/master.mpd  
-  HLS:  https://{YOUR_ANTMEDIA_SERVER}:5443/live/streams/stream123/master.m3u8
+  DASH: https://{YOUR_ANTMEDIA_SERVER}:5443/live/streams/drm/stream123/master.mpd
+  HLS:  https://{YOUR_ANTMEDIA_SERVER}:5443/live/streams/drm/stream123/master.m3u8
   ```
 
 ### Step 4: Generate Widevine Token
@@ -219,3 +219,9 @@ https://{YOUR_ANTMEDIA_SERVER}:5443/live/videojs-doverunner-sample.html
 - Click Play
 
 - If it works — congratulations! 🎉 You are successfully playing a DRM-protected video using Widevine with your Ant Media Server.
+
+- Try to get the screenshot of that page and it should be blank.
+
+  ![](@site/static/img/drm-test.webp)
+
+  If it is blank, means your content is protected using the DRM, and no one can capture it.
