@@ -208,7 +208,7 @@ Pay attention that we use `stream007` as the `streamid`. It will be used to get 
 
    - Save the changes & exit the editor.
 
-### Step 5: Play the Stream in Chrome
+### Step 5: Play Stream in Chrome
 
 Open the below URL with `Chrome` because Widevine is supported by Chrome:
 
