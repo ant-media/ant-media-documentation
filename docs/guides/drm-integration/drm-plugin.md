@@ -218,6 +218,10 @@ https://{YOUR_ANTMEDIA_SERVER}:5443/live/videojs-doverunner-sample.html
 
 - Click Play
 
+- If it works — congratulations! 🎉 You are successfully playing a DRM-protected video using Widevine with your Ant Media Server.
+
 - Try to get the screenshot of that page and it should be blank.
 
-- If it works — congratulations! 🎉 You are successfully playing a DRM-protected video using Widevine with your Ant Media Server.
+  ![](@site/static/img/drm-test.webp)
+
+  If it is blank, means your content is protected using the DRM, and no one can capture it.
