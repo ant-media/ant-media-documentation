@@ -151,9 +151,9 @@ This section walks you through securing a live stream with Widevine using DoveRu
 
   ```bash
   cd html5-player-drm-samples
-  sudo cp videojs-pallycon-sample.html /usr/local/antmedia/webapps/live/
+  sudo cp videojs-doverunner-sample.html /usr/local/antmedia/webapps/live/
   sudo cp js/videojs-sample.js /usr/local/antmedia/webapps/live/js/
-  sudo cp js/pallycon-sample-helper.js /usr/local/antmedia/webapps/live/js/
+  sudo cp js/doverunner-sample-helper.js /usr/local/antmedia/webapps/live/js/
   sudo cp css/* /usr/local/antmedia/webapps/live/css/
    ```
 
@@ -177,8 +177,8 @@ Pay attention that we use `stream007` as the `streamid`. It will be used to get 
 - The HTTP endpoint templates will be like
 
   ```bash
-  DASH: https://{YOUR_ANTMEDIA_SERVER}:5443/live/streams/stream123/master.mpd  
-  HLS:  https://{YOUR_ANTMEDIA_SERVER}:5443/live/streams/stream123/master.m3u8
+  DASH: https://{YOUR_ANTMEDIA_SERVER}:5443/live/streams/drm/stream123/master.mpd
+  HLS:  https://{YOUR_ANTMEDIA_SERVER}:5443/live/streams/drm/stream123/master.m3u8
   ```
 
 ### Step 4: Generate Widevine Token
@@ -196,7 +196,7 @@ Pay attention that we use `stream007` as the `streamid`. It will be used to get 
 4. Open the below file:
 
    ```bash
-   sudo nano /usr/local/antmedia/webapps/live/js/pallycon-sample-helper.js
+   sudo nano /usr/local/antmedia/webapps/live/js/doverunner-sample-helper.js
    ```
    
    - **Replace**:
@@ -213,9 +213,11 @@ Pay attention that we use `stream007` as the `streamid`. It will be used to get 
 Open the below URL with `Chrome` because Widevine is supported by Chrome:
 
 ```css
-https://{YOUR_ANTMEDIA_SERVER}:5443/live/videojs-pallycon-sample.html
+https://{YOUR_ANTMEDIA_SERVER}:5443/live/videojs-doverunner-sample.html
 ```
 
-- Click Play.
+- Click Play
+
+- Try to get the screenshot of that page and it should be blank.
 
 - If it works — congratulations! 🎉 You are successfully playing a DRM-protected video using Widevine with your Ant Media Server.
