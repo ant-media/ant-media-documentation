@@ -189,7 +189,7 @@ Pay attention that we use `stream007` as the `streamid`. It will be used to get 
 - **SITE ID, SITE Key, ACCESS Key** → Get from [DRM Settings on DoveRunner](https://contentsecurity.doverunner.com/drm/setting).
 - **DRM Type** → `Widevine` because we used `Widevine` in this sample.
 - **CID** → Your streamId. `stream007` in this sample.
-- **USER ID** → any unique identifier.
+- **USER ID** → any unique identifier (for example, 1234 etc).
 - Click **Refresh Timestamp**, and leave the other fields with default values.
 
 3. Click the `Generate Token` button and copy the token in `Result`.
