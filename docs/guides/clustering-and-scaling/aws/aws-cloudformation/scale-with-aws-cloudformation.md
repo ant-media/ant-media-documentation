@@ -14,7 +14,7 @@ Now let's start on to the CloudFormation setup and continue step by step.
 **1.** Firstly, let's subscribe to the Ant Media Server on the Amazon Marketplace.    
 Open the link: [https://aws.amazon.com/marketplace/pp/B07569Y9SJ/](https://aws.amazon.com/marketplace/pp/B07569Y9SJ/) then please proceed by clicking “View Purchase Options” button.
 
-![](/img/clustering-and-scaling/aws-cloudformation/1-View%20Purchase%20Options.webp)
+![](/img/clustering-and-scaling/aws-cloudformation/1-View-Purchase-Options.webp)
 
 
 **2.** Now review the settings as shown in below screenshots and Please proceed by clicking “Subscribe” button
@@ -45,7 +45,7 @@ Open the link: [https://aws.amazon.com/marketplace/pp/B07569Y9SJ/](https://aws.
 
 **7.** Select **Choose an Existing Template** > **Upload a Template File** and upload the downloaded YAML file. Click on "Next",
 
-![](/img/clustering-and-scaling/aws-cloudformation/5-Create%20Stack-Upload%20Template.webp)
+![](/img/clustering-and-scaling/aws-cloudformation/5-Create-Stack-Upload-Template.webp)
 
 **8.** The **Specify Stack Deatils** page is where we will adjust all our settings.
 
@@ -77,9 +77,9 @@ Open the link: [https://aws.amazon.com/marketplace/pp/B07569Y9SJ/](https://aws.
 
 **9.** On the **Configure Stack Options** page, select the relevant options. Since this stack uses AWS Lambda, you’ll need to check the box **"I acknowledge that AWS CloudFormation might create IAM resources"** (IAM permissions are required for Lambda to fetch the latest image). Once done, click **Next** to continue.
 
-![](/img/clustering-and-scaling/aws-cloudformation/6.1-Configure%20Stack%20Options.webp)
+![](/img/clustering-and-scaling/aws-cloudformation/6.1-Configure-Stack-Options.webp)
 
-![](/img/clustering-and-scaling/aws-cloudformation/6.2-%20Configure%20Stack%20Options.webp)
+![](/img/clustering-and-scaling/aws-cloudformation/6.2-Configure-Stack-Options.webp)
 
 **10.** On the **Review and Create page**, you can review the summary of all parameters you’ve entered. If needed, you can edit any of them before proceeding.
 
@@ -96,7 +96,7 @@ Open the link: [https://aws.amazon.com/marketplace/pp/B07569Y9SJ/](https://aws.
 <br/>
 <br/>
 
-![](/img/clustering-and-scaling/aws-cloudformation/create%20account%202.webp)
+![](/img/clustering-and-scaling/aws-cloudformation/create-account-2.webp)
 
  **14.** Once logged in, When you click on the **Cluster tab**, you can see the servers in Cluster.
 
