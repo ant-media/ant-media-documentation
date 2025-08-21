@@ -14,6 +14,8 @@ Now let's start on to the CloudFormation setup and continue step by step.
 **1.** Firstly, let's subscribe to the Ant Media Server on the Amazon Marketplace.    
 Open the link: [https://aws.amazon.com/marketplace/pp/B07569Y9SJ/](https://aws.amazon.com/marketplace/pp/B07569Y9SJ/) then please proceed by clicking “View Purchase Options” button.
 
+![](/img/clustering-and-scaling/aws-cloudformation/1-View%20Purchase%20Options.webp)
+
 <img width="1600" height="1200" alt="image" src="https://github.com/user-attachments/assets/b647b6ea-cd8c-49a2-865c-ec8070b8cbb6"/>
 <br/>
 <br/>
