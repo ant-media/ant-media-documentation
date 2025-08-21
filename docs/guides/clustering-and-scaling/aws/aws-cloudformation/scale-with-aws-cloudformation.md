@@ -16,27 +16,19 @@ Open the link: [https://aws.amazon.com/marketplace/pp/B07569Y9SJ/](https://aws.
 
 ![](/img/clustering-and-scaling/aws-cloudformation/1-View%20Purchase%20Options.webp)
 
-<img width="1600" height="1200" alt="image" src="https://github.com/user-attachments/assets/b647b6ea-cd8c-49a2-865c-ec8070b8cbb6"/>
-<br/>
-<br/>
-
 
 **2.** Now review the settings as shown in below screenshots and Please proceed by clicking “Subscribe” button
 
-<img width="1600" height="1200" alt="image" src="https://github.com/user-attachments/assets/41f9613b-8ab5-48a8-8c0a-38d9ae2b679c" />
+![](/img/clustering-and-scaling/aws-cloudformation/2.1-Subscribe.webp)
 
-<img width="1600" height="1200" alt="image" src="https://github.com/user-attachments/assets/4a6fa128-c328-41f1-b5c0-27a6d7cd50f0" />
+![](/img/clustering-and-scaling/aws-cloudformation/2.2-Subscribe.webp)
 
-<img width="1797" height="794" alt="image" src="https://github.com/user-attachments/assets/d70684ad-5c7b-49d3-af10-a0c8d6ece3d1" />
-<br/>
-<br/>
+![](/img/clustering-and-scaling/aws-cloudformation/2.3-Subscribe.webp)
 
 
 **3.** if everything goes well, you will see the screenshot below.
 
-<img width="2238" height="329" alt="image" src="https://github.com/user-attachments/assets/f3fbd09a-3bb0-4e5d-a5f4-70f7c0ce5672" />
-<br/>
-<br/>
+![](/img/clustering-and-scaling/aws-cloudformation/3.Launch.webp)
 
 **4.** Now, download the CloudFormation template from the below link to your computer.
 
@@ -47,18 +39,13 @@ Open the link: [https://aws.amazon.com/marketplace/pp/B07569Y9SJ/](https://aws.
 
 **5.** Log in to the AWS Dashboard and find **CloudFormation** in the search box.
 
-<img width="1600" height="695" alt="image" src="https://github.com/user-attachments/assets/da30d81e-d88d-4308-9c46-915543d49f35" />
-<br/>
-<br/>
+![](/img/clustering-and-scaling/aws-cloudformation/4-CloudFormation.webp)
 
 **6.** Click on **Create Stack** > **With New Resources** from the menu.
 
 **7.** Select **Choose an Existing Template** > **Upload a Template File** and upload the downloaded YAML file. Click on "Next",
 
-<img width="3326" height="1497" alt="image" src="https://github.com/user-attachments/assets/6f33533f-42ca-49f4-b9e2-4373994f56d0" />
-
-<br/>
-<br/>
+![](/img/clustering-and-scaling/aws-cloudformation/5-Create%20Stack-Upload%20Template.webp)
 
 **8.** The **Specify Stack Deatils** page is where we will adjust all our settings.
 
@@ -90,14 +77,9 @@ Open the link: [https://aws.amazon.com/marketplace/pp/B07569Y9SJ/](https://aws.
 
 **9.** On the **Configure Stack Options** page, select the relevant options. Since this stack uses AWS Lambda, you’ll need to check the box **"I acknowledge that AWS CloudFormation might create IAM resources"** (IAM permissions are required for Lambda to fetch the latest image). Once done, click **Next** to continue.
 
-<img width="2960" height="1499" alt="image" src="https://github.com/user-attachments/assets/8b7356a5-9fd2-446a-8f15-9cd4cae1e010" />
-<br/>
-<br/>
-<img width="2486" height="1616" alt="image" src="https://github.com/user-attachments/assets/82dc5037-ebf0-4d9d-a96c-2d08ef3d4d9b" />
+![](/img/clustering-and-scaling/aws-cloudformation/6.1-Configure%20Stack%20Options.webp)
 
-<br/>
-
-<br/>
+![](/img/clustering-and-scaling/aws-cloudformation/6.2-%20Configure%20Stack%20Options.webp)
 
 **10.** On the **Review and Create page**, you can review the summary of all parameters you’ve entered. If needed, you can edit any of them before proceeding.
 
@@ -114,10 +96,7 @@ Open the link: [https://aws.amazon.com/marketplace/pp/B07569Y9SJ/](https://aws.
 <br/>
 <br/>
 
-<img width="600" height="586" alt="image" src="https://github.com/user-attachments/assets/fb1c9d51-9b02-4cb9-a0b2-210416e3d640" />
-<br/>
-
-<br/>
+![](/img/clustering-and-scaling/aws-cloudformation/create%20account%202.webp)
 
  **14.** Once logged in, When you click on the **Cluster tab**, you can see the servers in Cluster.
 
