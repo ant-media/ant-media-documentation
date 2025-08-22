@@ -31,7 +31,7 @@ Example:
 Here’s an example of how to pass these parameters in a `POST` request to create a live stream with specific HLS settings:
 
 ```bash
-curl -X POST -H "Accept: Application/json" -H "Content-Type: application/json" http://<Your-Ant-Media-Server>/<App-Name>/rest/v2/broadcasts/create -d '{"streamId":"test1","name":"test1s","type":"liveStream","hlsParameters":{"hlsTime":"4","hlsListSize":"7","hlsPlayListType":"event"}}'
+curl -X POST -H "Accept: Application/json" -H "Content-Type: application/json" http://<Your-Ant-Media-Server>:5080/<App-Name>/rest/v2/broadcasts/create -d '{"streamId":"test1","name":"test1s","type":"liveStream","hlsParameters":{"hlsTime":"4","hlsListSize":"7","hlsPlayListType":"event"}}'
 ```
 -   `hlsTime` is set to `4`, meaning each segment will be 4 seconds long.
 -   `hlsListSize` is set to `7`, meaning the playlist will contain 7 segments.
@@ -140,11 +140,11 @@ Assume HLS muxing is enabled and a stream is published to Ant Media Server.
 
 The default HLS (.m3u8) URL will be as follows:
 
-```http(s)://AMS-domain-or-IP:Port/AppName/streams/StreamId.m3u8```
+```http(s)://AMS-domain-or-IP:5080(5443)/AppName/streams/StreamId.m3u8```
 
 If adaptive bit rates are enabled in the application (Enterprise Edition), the HLS (.m3u8) URL will be as follows:
 
-```http(s)://AMS-domain-or-IP:Port/AppName/streams/StreamId_adaptive.m3u8```
+```http(s)://AMS-domain-or-IP:5080(5443)/AppName/streams/StreamId_adaptive.m3u8```
 
 :::info
 Beginning with version 2.4.1, the filename structure included the bitrate in the name. For example, 480p ABR is enabled on the server and you want to play it.
