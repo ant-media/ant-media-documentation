@@ -33,20 +33,20 @@ While executing web panel commands through the REST API, it is not necessary to 
 
 ### Broadcast Service
 ```shell
-http(s)ant-media-server:port/{application}/rest/v2/broadcasts
+http(s)ant-media-server:5080(5443)/{application}/rest/v2/broadcasts
 ```
 ### VoD Service
 ```shell
-http(s)ant-media-server:port/{application}/rest/v2/vods
+http(s)ant-media-server:5080(5443)/{application}/rest/v2/vods
 ```
 
 ### Management Service
 ```shell
-http(s)ant-media-server:port/rest/v2
+http(s)ant-media-server:5080(5443)/rest/v2
 ```
 ### Cluster Service
 ```shell
-http(s)ant-media-server:port/rest/v2/cluster
+http(s)ant-media-server:5080(5443)/rest/v2/cluster
 ```
 
 ## API Security
