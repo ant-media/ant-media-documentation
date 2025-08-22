@@ -44,7 +44,7 @@ curl --location --request PUT 'http(s)://AMS_DOMAIN:5080(5443)/AppName/rest/v2/b
  - Open a new tab and start watching the live stream using the below URL.
 
    ```html
-   https://AMS_DOMAIN:Port/AppName/play.html?id=streamId&playOrder=webrtc
+   https://AMS_DOMAIN:5443/AppName/play.html?id=streamId&playOrder=webrtc
    ```
 
    Now the server will start fetching streams.
