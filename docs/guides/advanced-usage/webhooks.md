@@ -88,149 +88,164 @@ Ant Media Server will send a POST request to your application server endpoint wi
 "webhookContentType": "application/x-www-form-urlencoded"
 ```
 
-### Available Webhooks
+### Available Webhooks: 
+#### NOTE- Fields wrapped in {} are placeholders. These will be replaced with actual values by Ant Media Server at runtime.
 
 1. **`liveStreamStarted`**
    - **Trigger**: Fired when a new live stream starts.
    - **Payload (JSON)**:
      ```json
      {
-       "id": "stream_id",
-       "action": "liveStreamStarted",
-       "streamName": "stream_name",
-       "category": "stream_category",
-	   "metadata":"metadata_of_broadcast",
-	   "timestamp": "1725578684839"
+     "id": "{streamId}",
+     "action": "liveStreamStarted",
+     "streamName": "{streamName}",
+     "category": "{category}",
+     "metadata": "{metadata}",
+     "timestamp": "{timestamp}"
      }
      ```
+
    - **Fields**:
      - `id`: The stream ID of the broadcast.
      - `action`: The action performed, in this case, "liveStreamStarted".
      - `streamName`: The name of the stream (can be null).
      - `category`: The category of the stream (can be null).
-	 - `metadata`: The metadata field of the broadcast object. If it's a JSON string metadata field will be a JSON object.
-	 - `timestamp`: The current server timestamp milliseconds as a string.
+     - `metadata`: The metadata field of the broadcast object. If it's a JSON string metadata field will be a JSON object.
+     - `timestamp`: The current server timestamp milliseconds as a string.
 
 2. **`liveStreamEnded`**
    - **Trigger**: Fired when a live stream ends.
    - **Payload (JSON)**:
-     ```json
-     {
-       "id": "stream_id",
-       "action": "liveStreamEnded",
-       "streamName": "stream_name",
-       "category": "stream_category",
-	   "metadata":"metadata_of_broadcast",
-	   "timestamp": "1725578684839"
-     }
-     ```
-   - **Fields**:
+   ```json
+	{
+	"id": "{streamId}",
+	"action": "liveStreamEnded",
+	"streamName": "{streamName}",
+	"category": "{category}",
+	"metadata": "{metadata}",
+	"timestamp": "{timestamp}"
+	}
+	```
+
+- **Fields**:
      - `id`: The stream ID of the broadcast.
      - `action`: The action performed, in this case, "liveStreamEnded".
      - `streamName`: The name of the stream (can be null).
      - `category`: The category of the stream (can be null).
-	 - `metadata`: The metadata field of the broadcast object. If it's a JSON string metadata field will be a JSON object.
-	 - `timestamp`: The current server timestamp milliseconds as a string.
+     - `metadata`: The metadata field of the broadcast object. If it's a JSON string metadata field will be a JSON object.
+     - `timestamp`: The current server timestamp milliseconds as a string.
+
 
 3. **`vodReady`**
    - **Trigger**: Fired when the recording of a live stream is completed.
    - **Payload (JSON)**:
-     ```json
+    ```json
      {
-       "id": "stream_id",
+       "id": "{stream_id}",
        "action": "vodReady",
-       "vodName": "vod_file_name",
-       "vodId": "vod_id",
-	   "metadata":"metadata_of_broadcast",
-	   "timestamp": "1725578684839"
+       "vodName": "{vod_file_name}",
+       "vodId": "{vod_id}",
+       "metadata":"(metadata_of_broadcast)",
+       "timestamp": "{1725578684839}"
      }
      ```
+
+
    - **Fields**:
      - `id`: The stream ID of the broadcast.
      - `action`: The action performed, in this case, "vodReady".
      - `vodName`: The name of the VOD file.
      - `vodId`: The ID of the VOD in the data store.
-	 - `metadata`: The metadata field of the broadcast object. If it's a JSON string metadata field will be a JSON object.
-	 - `timestamp`: The current server timestamp milliseconds as a string.
+     - `metadata`: The metadata field of the broadcast object. If it's a JSON string metadata field will be a JSON object.
+     - `timestamp`: The current server timestamp milliseconds as a string.
+
 
 4. **`endpointFailed`**
    - **Trigger**: Fired when an RTMP endpoint broadcast fails.
    - **Payload (JSON)**:
+
+
      ```json
      {
-       "id": "stream_id",
+       "id": "{stream_id}",
        "action": "endpointFailed",
-       "streamName": "stream_name",
-       "category": "stream_category",
-       "metadata": "rtmp_url",
-	   "timestamp": "1725578684839"
+       "streamName": "{stream_name}",
+       "category": "{stream_category}",
+       "metadata": "{rtmp_url}",
+       "timestamp": "{1725578684839}"
      }
      ```
+
+
    - **Fields**:
      - `id`: The stream ID of the broadcast.
      - `action`: The action performed, in this case, "endpointFailed".
      - `streamName`: The name of the stream (can be null).
      - `category`: The category of the stream (can be null).
      - `metadata`: The RTMP URL of the endpoint.
-	 - `timestamp`: The current server timestamp milliseconds as a string.
+     - `timestamp`: The current server timestamp milliseconds as a string.
 
 
 5. **`publishTimeoutError`**
    - **Trigger**: Fired when there is a publish timeout error, indicating that the server is not receiving any frames.
    - **Payload (JSON)**:
-     ```json
+    ```json
      {
-       "id": "stream_id",
+       "id": "{stream_id}",
        "action": "publishTimeoutError",
-       "streamName": "stream_name",
-       "category": "stream_category",
-	   "metadata": "{subscriberId:'subscriber_id'}",
-	   "timestamp": "1725578684839"
+       "streamName": "{stream_name}",
+       "category": "{stream_category}",
+       "metadata": "{subscriberId:'subscriber_id'}",
+       "timestamp": "{1725578684839}"
      }
      ```
-   - **Fields**:
+
+- **Fields**:
      - `id`: The stream ID of the broadcast.
      - `action`: The action performed, in this case, "publishTimeoutError".
      - `streamName`: The name of the stream (can be null).
      - `category`: The category of the stream (can be null).
-	 - `metadata`: JSON object which contains subscriber id.
-	 - `timestamp`: The current server timestamp milliseconds as a string.
+     - `metadata`: JSON object which contains subscriber id.
+     - `timestamp`: The current server timestamp milliseconds as a string.
 
 
 6. **`encoderNotOpenedError`**
    - **Trigger**: Fired when the encoder cannot be opened.
    - **Payload (JSON)**:
-     ```json
+    ```json
      {
-       "id": "stream_id",
-       "action": "encoderNotOpenedError",
-       "streamName": "stream_name",
-       "category": "stream_category",
-	   "metadata":"metadata_of_broadcast",
-	   "timestamp": "1725578684839"
+	"id": "{stream_id}",
+	"action": "encoderNotOpenedError",
+	"streamName": "{stream_name}",
+	"category": "{stream_category}",
+	"metadata":"{metadata_of_broadcast}",
+	"timestamp": "{1725578684839}"
      }
      ```
+
    - **Fields**:
      - `id`: The stream ID of the broadcast.
      - `action`: The action performed, in this case, "encoderNotOpenedError".
      - `streamName`: The name of the stream (can be null).
-	 - `metadata`: The metadata field of the broadcast object. If it's a JSON string metadata field will be a JSON object.
+     - `metadata`: The metadata field of the broadcast object. If it's a JSON string metadata field will be a JSON object.
      - `timestamp`: The current server timestamp milliseconds as a string.
+
 
 7. **`playStopped`**
 	- **Trigger**: Fired when a webrtc player stops playing a stream.
 	- **Payload (JSON)**:
-	```json
+    ```json
 	{
-	"id": "stream_id",
+	"id": "{stream_id}",
 	"action": "playStopped",
-	"streamName": "stream_name",
-	"category": "stream_category",
-	"subscriberId": "subscriber_id",
-    "timestamp": "1725578684839"
+	"streamName": "{stream_name}",
+	"category": "{stream_category}",
+	"subscriberId": "{subscriber_id}",
+	"timestamp": "{1725578684839}"
 	}
 	```
-	- **Fields**:
+
+- **Fields**:
 	- `id`: The stream ID of the broadcast.
 	- `action`: The action performed, in this case, "playStopped".
 	- `streamName`: The name of the stream (can be null).
@@ -238,20 +253,22 @@ Ant Media Server will send a POST request to your application server endpoint wi
 	- `subscriberId`: Subscriber id of the webrtc player. You can pass subscriber id to .publish() and .play() methods in all SDKs.
 	- `timestamp`: The current server timestamp milliseconds as a string.
 
+
 8. **`playStarted`**
 	- **Trigger**: Fired when a webrtc player starts playing a stream.
 	- **Payload (JSON)**:
-	```json
+    ```json
 	{
-	"id": "stream_id",
+	"id": "{stream_id}",
 	"action": "playStarted",
-	"streamName": "stream_name",
-	"category": "stream_category",
-	"subscriberId": "subscriber_id",
-	"timestamp": "1725578684839"
+	"streamName": "{stream_name}",
+	"category": "{stream_category}",
+	"subscriberId": "{subscriber_id}",
+	"timestamp": "{1725578684839}"
 	}
 	```
-	- **Fields**:
+
+- **Fields**:
 	- `id`: The stream ID of the broadcast.
 	- `action`: The action performed, in this case, "playStarted".
 	- `streamName`: The name of the stream (can be null).
@@ -259,21 +276,23 @@ Ant Media Server will send a POST request to your application server endpoint wi
 	- `subscriberId`: Subscriber id of the webrtc player. You can pass subscriber id to .publish() and .play() methods in all SDKs.
 	- `timestamp`: The current server timestamp milliseconds as a string.
 
+
 9. **`subtrackAddedInTheMainTrack`**
 	- **Trigger**: Fired when a sub-track has been created within the main track. In video conferencing applications, this event signifies that a new stream has been started within the room. e.g., The participant joined to the room
 	- **Payload (JSON)**:
-	```json
+    ```json
 	{
-	"id": "stream_id",
+	"id": "{stream_id}",
 	"action": "subtrackAddedInTheMainTrack",
-	"streamName": "stream_name",
-	"category": "stream_category",
-	"subscriberId": "subscriber_id",
-	"mainTrackId":"main_track_id",
-	"timestamp": "1725578684839"
+	"streamName": "{stream_name}",
+	"category": "{stream_category}",
+	"subscriberId": "{subscriber_id}",
+	"mainTrackId":"{main_track_id}",
+	"timestamp": "{1725578684839}"
 	}
 	```
-	- **Fields**:
+
+- **Fields**:
 	- `id`: The stream ID of the subtrack broadcast.
 	- `action`: The action performed, in this case, "subtrackAddedInTheMainTrack".
 	- `streamName`: The name of the stream (can be null).
@@ -282,21 +301,23 @@ Ant Media Server will send a POST request to your application server endpoint wi
 	- `mainTrackId`: The stream ID of the main track broadcast. In a conference context, this will be the stream id of the room.
 	- `timestamp`: The current server timestamp milliseconds as a string.
 
+
 10. **`subtrackLeftTheMainTrack`**
 	- **Trigger**: Fired when a sub-track has left the main track. In video conferencing applications, this event signifies that a new stream has left the room. e.g., The participant left the room
 	- **Payload (JSON)**:
-	```json
+    ```json
 	{
-	"id": "stream_id",
+	"id": "{stream_id}",
 	"action": "subtrackLeftTheMainTrack",
-	"streamName": "stream_name",
-	"category": "stream_category",
-	"subscriberId": "subscriber_id",
-	"mainTrackId":"main_track_id",
-	"timestamp": "1725578684839"
+	"streamName": "{stream_name}",
+	"category": "{stream_category}",
+	"subscriberId": "{subscriber_id}",
+	"mainTrackId":"{main_track_id}",
+	"timestamp": "{1725578684839}"
 	}
 	```
-	- **Fields**:
+
+- **Fields**:
 	- `id`: The stream ID of the subtrack broadcast.
 	- `action`: The action performed, in this case, "subtrackLeftTheMainTrack".
 	- `streamName`: The name of the stream (can be null).
@@ -305,21 +326,23 @@ Ant Media Server will send a POST request to your application server endpoint wi
 	- `mainTrackId`: The stream ID of the main track broadcast. In a conference context, this will be the stream id of the room.
 	- `timestamp`: The current server timestamp milliseconds as a string.
 
+
 11. **`firstActiveTrackAddedInMainTrack`**
 	- **Trigger**: Fired when the first active sub-track has been created in the main track. In video conferencing applications, this event signifies that the first stream started in the room. e.g., the first participant joined the room.
 	- **Payload (JSON)**:
-	```json
+    ```json
 	{
-	"id": "stream_id",
+	"id": "{stream_id}",
 	"action": "firstActiveTrackAddedInMainTrack",
-	"streamName": "stream_name",
-	"category": "stream_category",
-	"subscriberId": "subscriber_id",
-	"mainTrackId":"main_track_id",
-	"timestamp": "1725578684839"
+	"streamName": "{stream_name}",
+	"category": "{stream_category}",
+	"subscriberId": "{subscriber_id}",
+	"mainTrackId":"{main_track_id}",
+	"timestamp": "{1725578684839}"
 	}
 	```
-	- **Fields**:
+
+- **Fields**:
 	- `id`: The stream ID of the subtrack broadcast.
 	- `action`: The action performed, in this case, "firstActiveTrackAddedInMainTrack".
 	- `streamName`: The name of the stream (can be null).
@@ -328,21 +351,23 @@ Ant Media Server will send a POST request to your application server endpoint wi
 	- `mainTrackId`: The stream ID of the main track broadcast. In a conference context, this will be the stream id of the room.
 	- `timestamp`: The current server timestamp milliseconds as a string.
 
+
 12. **`noActiveSubtracksLeftInMainTrack`**
 	- **Trigger**: Fired when there are no active sub-tracks left in the main track. In video conferencing applications, this event signifies that no stream is left in the room. e.g., Everybody left the room.
 	- **Payload (JSON)**:
-	```json
+    ```json
 	{
-	"id": "stream_id",
+	"id": "{stream_id}",
 	"action": "noActiveSubtracksLeftInMainTrack",
-	"streamName": "stream_name",
-	"category": "stream_category",
-	"subscriberId": "subscriber_id",
-	"mainTrackId":"main_track_id",
-	"timestamp": "1725578684839"
+	"streamName": "{stream_name}",
+	"category": "{stream_category}",
+	"subscriberId": "{subscriber_id}",
+	"mainTrackId":"{main_track_id}",
+	"timestamp": "{1725578684839}"
 	}
 	```
-	- **Fields**:
+
+- **Fields**:
 	- `id`: The stream ID of the subtrack broadcast.
 	- `action`: The action performed, in this case, "noActiveSubtracksLeftInMainTrack".
 	- `streamName`: The name of the stream (can be null).
@@ -350,6 +375,9 @@ Ant Media Server will send a POST request to your application server endpoint wi
 	- `subscriberId`: Subscriber id of the webrtc player. You can pass subscriber id to .publish() and .play() methods in all SDKs.
 	- `mainTrackId`: The stream ID of the main track broadcast. In a conference context, this will be the stream id of the room.
 	- `timestamp`: The current server timestamp milliseconds as a string.
+
+  
+
 
 That's it! You can read the `action` field from the POST request body and take appropriate actions on your application server. Be sure to respond with a 200 status code to acknowledge receipt of the POST request.
 
