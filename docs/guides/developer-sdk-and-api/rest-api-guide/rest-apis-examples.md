@@ -18,7 +18,7 @@ Create
 
 The following command creates a stream on the Ant Media Server
 ```
-    curl -X POST -H "Content-Type: application/json" "https://{domain:port}/{application}/rest/v2/broadcasts/create"
+    curl -X POST -H "Content-Type: application/json" "https://{domain:5443}/{application}/rest/v2/broadcasts/create"
 ```
 For quick testing when we run the following command in terminal ```curl -X POST -H "Content-Type: application/json" "http://localhost:5080/LiveApp/rest/v2/broadcasts/create"``` It returns a Broadcast Object in the response like this
 ```
@@ -30,7 +30,7 @@ You can take a look at the [Broadcast object in the REST Reference](https://antm
 
 You can determine your ```streamId``` in advance and make request with that ```streamId``` as follows
 ```
-    curl -X POST -H "Content-Type: application/json" "https://{domain:port}/{application}/rest/v2/broadcasts/create" -d '{"streamId":"{YOUR_STREAM_ID}"}'
+    curl -X POST -H "Content-Type: application/json" "https://{domain:5443}/{application}/rest/v2/broadcasts/create" -d '{"streamId":"{YOUR_STREAM_ID}"}'
 ```
 Running sample command in my localhost ```curl -X POST -H "Content-Type: application/json" "http://localhost:5080/LiveApp/rest/v2/broadcasts/create" -d '{"streamId":"1234567", "name":"Test Stream"}'```. It returns following response.
 ```
@@ -46,14 +46,14 @@ If you want it to start pulling stream immediately, you can set ```autoStart``` 
 
 ### Starting Stream Source
 ```
-    curl -X POST -H "Content-Type: application/json" "https://{domain:port}/{application}/rest/v2/broadcasts/{streamId}/start"
+    curl -X POST -H "Content-Type: application/json" "https://{domain:5443}/{application}/rest/v2/broadcasts/{streamId}/start"
 ```
 Read
 ----
 
 You can query Broadcasts with GET methods. Check this out
 ```
-    curl -X GET "https://{domain:port}/{application}/rest/v2/broadcasts/{streamid}"
+    curl -X GET "https://{domain:5443}/{application}/rest/v2/broadcasts/{streamid}"
 ```
 It returns the Broadcast object or 404 if there is no streamId specified in the URL.
 
@@ -61,7 +61,7 @@ It returns the Broadcast object or 404 if there is no streamId specified in the 
 
 The following methods return Broadcast Statistics for the specified stream Id
 ```
-    curl -X GET "https://{domain:port}/{application}/rest/v2/broadcasts/{streamid}/broadcast-statistics"
+    curl -X GET "https://{domain:5443}/{application}/rest/v2/broadcasts/{streamid}/broadcast-statistics"
 ```
 Broadcast Statistics contains the number of viewers for the broadcast.
 
@@ -70,7 +70,7 @@ Update
 
 The following method changes the name of the Broadcast.
 ```
-    curl -X PUT -H "Content-Type: application/json" "https://{domain:port}/{application}/rest/v2/broadcasts/{streamid}" -d '{"name":"
+    curl -X PUT -H "Content-Type: application/json" "https://{domain:5443}/{application}/rest/v2/broadcasts/{streamid}" -d '{"name":"
     {streamname}"}'
 ```
 The method above returns the result object that shows if the operation is successful or not
@@ -80,7 +80,7 @@ Delete
 
 Delete requests are straight-forward which means these methods aim to delete from the database 
 ```
-    curl -X DELETE https://{domain:port}/{application}/rest/v2/broadcasts/{streamId}
+    curl -X DELETE https://{domain:5443}/{application}/rest/v2/broadcasts/{streamId}
 ```
 The command above deletes the broadcast with the specified streamId
 
