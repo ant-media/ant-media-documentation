@@ -85,7 +85,7 @@ Ant Media Server provides LL-HLS endpoints for all ingested streams. You can che
 
    - Ensure two underscores (__) exist between the stream ID and `master.m3u8`.
 
-   - **URL pattern:** ```https://{YOUR_SERVER}:{PORT}/{APP}/streams/ll-hls/{STREAM_ID}/{STREAM_ID}__master.m3u8```
+   - **URL pattern:** ```https://{YOUR_SERVER}:{5443}/{APP}/streams/ll-hls/{STREAM_ID}/{STREAM_ID}__master.m3u8```
 
    - If you are using the Ant Media Server player, then the URL pattern would be as follows:
 
