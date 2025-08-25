@@ -103,7 +103,7 @@ For example, if your HLS playlist has multiple bit rates:
 Here is the HLS URL format for specific bitrate and resolution:
 
 ```
-https://domain:port/AppName/streams/[streamid]_[quality].m3u8
+https://domain:5443/AppName/streams/[streamid]_[quality].m3u8
 ```
 For example:
 

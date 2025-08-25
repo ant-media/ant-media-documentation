@@ -101,7 +101,7 @@ curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json
 Now that we have the merged stream, we can make the API call to start recording the stream with MP4.
 
 ```js
-curl -X PUT -H "Content-Type: application/json" "https://localhost:5080/live/rest/v2/broadcasts/JQzivjSFdVTJ1738919890828/recording/true"
+curl -X PUT -H "Content-Type: application/json" "http://localhost:5080/live/rest/v2/broadcasts/JQzivjSFdVTJ1738919890828/recording/true"
 ```
 
 Alternatively, the recording can also be started from the web panel.
@@ -113,7 +113,7 @@ Alternatively, the recording can also be started from the web panel.
 - To stop the MP4 recording, again you can make the REST call.
 
   ```js
-  curl -X PUT -H "Content-Type: application/json" "https://localhost:5080/live/rest/v2/broadcasts/JQzivjSFdVTJ1738919890828/recording/false"
+  curl -X PUT -H "Content-Type: application/json" "http://localhost:5080/live/rest/v2/broadcasts/JQzivjSFdVTJ1738919890828/recording/false"
   ```
 
 - To record the broadcast in addition to streaming, you can include the recordType option in your REST API call. This option specifies the format in which the broadcast should be recorded. Here's how you can modify the previous start broadcast command to include recording:

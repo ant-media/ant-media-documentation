@@ -177,7 +177,7 @@ const firebaseConfig = {
   });
   ```
 
-  - Go to https://<b>domain_name</b>:<b>port</b>/fcm.html url using any browser.
+  - Go to https://domain_name:5443/fcm.html url using any browser.
     
   - Open browser's developer console and you will see your FCM Registration Token
 

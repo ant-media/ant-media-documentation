@@ -59,7 +59,7 @@ You can use the [Get VOD list](https://antmedia.io/rest/#/default/getVodList) re
  You can access the uploaded VOD file through the below URL format:
 
 ```
-http(s)://domain_or_IP:Port/AppName/streams/VOD-ID.mp4
+http(s)://domain_or_IP:5080(5443)/AppName/streams/VOD-ID.mp4
 ```
 
 Example:
@@ -90,7 +90,7 @@ If you have the VoD URL handy or are adding external VoDs, you can use this opti
 
 #### Get the VoD URL
 
-- The sample path of a VoD file uploaded to the Ant Media Server VoD section is like `http(s)://ams-server-url:Port/LiveApp/streams/vod_id.mp4`
+- The sample path of a VoD file uploaded to the Ant Media Server VoD section is like `http(s)://ams-server-url:5080(5443)/LiveApp/streams/vod_id.mp4`
 
 - To get the VOD URL, click on the hamburger icon, which is located on the right side of the screen, and then click `Copy VoD URL`
 

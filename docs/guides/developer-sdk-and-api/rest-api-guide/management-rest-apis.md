@@ -43,7 +43,7 @@ Now restart the Ant Media Server
 sudo service antmedia restart
 ```
 
-REST API for the web panel is listed [Management REST Service](https://antmedia.io/rest/#/ManagementRestService). Web Panel REST methods are binded below `https://SERVER\_FQDN:PORT/rest/`
+REST API for the web panel is listed [Management REST Service](https://antmedia.io/rest/#/ManagementRestService). Web Panel REST methods are binded below `https://SERVER/FQDN:5443/rest/`
 
 
 ### Generate JWT Token

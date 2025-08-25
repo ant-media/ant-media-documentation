@@ -50,13 +50,13 @@ Here is the [Record stream API](https://antmedia.io/rest/#/default/enableRecordi
 Sample curl command to start MP4 recording for a particular stream;
 
 ```bash
-curl -X 'PUT' 'http(s)://domain-or-IP:Port/AppName/rest/v2/broadcasts/streamId/recording/true?recordType=mp4' -H 'accept: application/json'
+curl -X 'PUT' 'http(s)://domain-or-IP:5080(5443)/AppName/rest/v2/broadcasts/streamId/recording/true?recordType=mp4' -H 'accept: application/json'
 ```
 
 Once you call the above API, the server will start recording the stream. To stop the recording, you need to make the status false.
 
 ```bash
-curl -X 'PUT' 'http(s)://domain-or-IP:Port/AppName/rest/v2/broadcasts/streamId/recording/false?recordType=mp4' -H 'accept: application/json'
+curl -X 'PUT' 'http(s)://domain-or-IP:5080(5443)/AppName/rest/v2/broadcasts/streamId/recording/false?recordType=mp4' -H 'accept: application/json'
 ```
 
 ## WebM Recording
@@ -99,7 +99,7 @@ curl -X 'PUT' 'http(s)://domain-or-IP:Port/AppName/rest/v2/broadcasts/streamId/r
 Once you call the above API, the server will start recording the stream. To stop the recording, you need to make the status false.
 
 ```bash
-curl -X 'PUT' 'http(s)://domain-or-IP:Port/AppName/rest/v2/broadcasts/streamId/recording/false?recordType=webm' -H 'accept: application/json'
+curl -X 'PUT' 'http(s)://domain-or-IP:5080(5443)/AppName/rest/v2/broadcasts/streamId/recording/false?recordType=webm' -H 'accept: application/json'
 ```
 
 ## Additional entities of recording
@@ -183,7 +183,7 @@ In order to link another directory containing MP4 files as a VoD directory on We
 Sample curl command to import/link the VODs from another directory on the server.
 
 ```bash
-curl -X 'POST' 'https://IP:Port/AppName/rest/v2/vods/directory?directory=/home/recordings' -H 'accept: application/json' 
+curl -X 'POST' 'https://IP:5443/AppName/rest/v2/vods/directory?directory=/home/recordings' -H 'accept: application/json' 
 ```
 
 To remove/unlink the imported directory, check [this API](https://antmedia.io/rest/#/default/unlinksVoD).
