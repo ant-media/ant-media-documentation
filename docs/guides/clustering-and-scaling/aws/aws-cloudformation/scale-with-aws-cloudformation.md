@@ -11,35 +11,43 @@ Now let's start on to the CloudFormation setup and continue step by step.
 
 [Watch the YouTube Video: Setting up an Ant Media Server Scaling Solution with CloudFormation In 5 minutes](https://www.youtube.com/watch?v=y7bP0u0jQRQ)
 
-**1.** Firstly, let's subscribe to the Ant Media Server on the Amazon Marketplace. Open the link: [https://aws.amazon.com/marketplace/pp/B07569Y9SJ/](https://aws.amazon.com/marketplace/pp/B07569Y9SJ/) then please proceed by clicking “Continue to Subscribe” button.
+**1.** Firstly, let's subscribe to the Ant Media Server on the Amazon Marketplace.    
+Open the link: [https://aws.amazon.com/marketplace/pp/B07569Y9SJ/](https://aws.amazon.com/marketplace/pp/B07569Y9SJ/) then please proceed by clicking “View Purchase Options” button.
 
-![](@site/static/img/cloudformation-marketplace-1.png)
+![](/img/clustering-and-scaling/aws-cloudformation/1-View-Purchase-Options.webp)
 
-**2.** Please proceed by clicking “Accept Terms” button
 
-![](@site/static/img/cloudformation-marketplace-2.png)
+**2.** Now review the settings as shown in below screenshots and Please proceed by clicking “Subscribe” button
+
+![](/img/clustering-and-scaling/aws-cloudformation/2.1-Subscribe.webp)
+
+![](/img/clustering-and-scaling/aws-cloudformation/2.2-Subscribe.webp)
+
+![](/img/clustering-and-scaling/aws-cloudformation/2.3-Subscribe.webp)
+
 
 **3.** if everything goes well, you will see the screenshot below.
 
-![](@site/static/img/cloudformation-marketplace-3.png)
+![](/img/clustering-and-scaling/aws-cloudformation/3.Launch.webp)
 
 **4.** Now, download the CloudFormation template from the below link to your computer.
 
 [https://raw.githubusercontent.com/ant-media/Scripts/master/cloudformation/antmedia-aws-autoscale-template.yaml](https://raw.githubusercontent.com/ant-media/Scripts/master/cloudformation/antmedia-aws-autoscale-template.yaml)
 
-**5.** Log in to the AWS Dashboard and find CloudFormation in the search box.
+<br/>
+<br/>
 
-![](@site/static/img/AntMedia-CloudFormation-1.png)
+**5.** Log in to the AWS Dashboard and find **CloudFormation** in the search box.
 
-**6.** Click on "Create Stack" from the menu.
+![](/img/clustering-and-scaling/aws-cloudformation/4-CloudFormation.webp)
 
-![](@site/static/img/AntMedia-CloudFormation-2.png)
+**6.** Click on **Create Stack** > **With New Resources** from the menu.
 
-**7.** Select "Upload a Template File" and upload the downloaded file.
+**7.** Select **Choose an Existing Template** > **Upload a Template File** and upload the downloaded YAML file. Click on "Next",
 
-![](@site/static/img/AntMedia-CloudFormation-3.png)
+![](/img/clustering-and-scaling/aws-cloudformation/5-Create-Stack-Upload-Template.webp)
 
-**8.** The menu that below is where we will adjust all our settings.
+**8.** The **Specify Stack Deatils** page is where we will adjust all our settings.
 
 ![](@site/static/img/AntMedia-CloudFormation-4.png)
 
@@ -63,20 +71,20 @@ Now let's start on to the CloudFormation setup and continue step by step.
 -   **Subnets:** The list of SubnetIDs in your Virtual Private Cloud (VPC). You must choose at least 2 subnets from the same VPC network.
 -   **VpcCidrBlock:** Associates a CIDR block with your VPC. It should be the same as the VPC Network.
 -   **VpcId:** VpcId of your existing Virtual Private Cloud (VPC). The VpcId must be the same as the subnets you choose.
+  <br/>
 
-**9.** Please proceed by clicking “Next” button
+<br/>
 
-![](@site/static/img/AntMedia-CloudFormation-5.png)
+**9.** On the **Configure Stack Options** page, select the relevant options. Since this stack uses AWS Lambda, you’ll need to check the box **"I acknowledge that AWS CloudFormation might create IAM resources"** (IAM permissions are required for Lambda to fetch the latest image). Once done, click **Next** to continue.
 
-**10.** In this section, you can view and check the summary of the parameters you have entered and you can edit it here as below.
+![](/img/clustering-and-scaling/aws-cloudformation/6.1-Configure-Stack-Options.webp)
 
-![](@site/static/img/AntMedia-CloudFormation-6.png)
+![](/img/clustering-and-scaling/aws-cloudformation/6.2-Configure-Stack-Options.webp)
 
-We are using AWS Lambda, so IAM permissions are needed to get our latest image.
+**10.** On the **Review and Create page**, you can review the summary of all parameters you’ve entered. If needed, you can edit any of them before proceeding.
 
-![](@site/static/img/AntMedia-CloudFormation-6-1.png)
 
-**11.** If the template has been installed successfully, it says "Create Complete" in the red rectangle.
+**11.** If the template has been installed successfully, it says **Create Complete** in the red rectangle.
 
 ![](@site/static/img/AntMedia-CloudFormation-7.png)
 
@@ -84,25 +92,13 @@ We are using AWS Lambda, so IAM permissions are needed to get our latest image.
 
 ![](@site/static/img/AntMedia-CloudFormation-8.png)
 
-**13.** When you type the URL of the Loadbalancer, Ant Media Dashboard will be opened as below
+**13.** When you enter the Load Balancer URL in your browser, the Ant Media Dashboard will open. Here, you can create your account by providing the following details: **First Name, Last Name, Email Address, Password, and Confirm Password**.
+<br/>
+<br/>
 
-![](@site/static/img/antmedia-login.png)
+![](/img/clustering-and-scaling/aws-cloudformation/create-account-2.webp)
 
-You can login with “JamesBond” and the first instances instance-id in your origin group. If you don’t know the instance-id, please ssh to your mongodb instance and write the below commands via terminal
-
-ActionScript
-
-```actionscript
-$ mongo> use serverdb> db.User.find()
-```
-
-It gives you an output like this
-
-`{ "_id" : ObjectId("5d31612a4c79142df7c71914"), "className" : "io.antmedia.rest.model.User", "email" : "JamesBond", "password" : "i-1234567890abcdef0", "userType" : "ADMIN" }`
-
-Your password is the one in “password” field in the format “i-xxxxxxxx”
-
- **14.** When you click on the Cluster tab, you can see the servers in Cluster.
+ **14.** Once logged in, When you click on the **Cluster tab**, you can see the servers in Cluster.
 
 ![](@site/static/img/AntMedia-CloudFormation-9.png)
 
@@ -110,13 +106,18 @@ Your password is the one in “password” field in the format “i-xxxxxxxx”
 
 ![](@site/static/img/AntMedia-CloudFormation-10(1).png)
 
-I have covered most of the topics around Cloud Formation. Coming to the question of what we have gained by using CloudFormation and Ant Media Server template, the following steps will take place while sipping your coffee.
 
--   EC2 instance
--   Security group
--   Ant Media Server Installation
--   Ant Media Server Cluster Configuration
--   AutoScale
--   Load Balancer
+<br/>
+<br/>
 
-If you have any questions, please just drop your query at https://github.com/orgs/ant-media/discussions
+We have now covered most of the topics around CloudFormation. So, what do we actually gain by using the CloudFormation template for Ant Media Server?
+Well, while you’re sipping your coffee, the following steps are automatically handled for you:
+
+-  EC2 instance provisioning
+-  Security Group configuration
+-  Ant Media Server installation
+-  Ant Media Server Cluster setup
+-  Auto Scaling configuration
+-  Load Balancer setup
+
+If you have any questions, feel free to drop your query here: https://github.com/orgs/ant-media/discussions
