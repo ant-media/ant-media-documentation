@@ -88,13 +88,13 @@ You can access this from any browser on your Windows machine.
 We can now test publishing a WebRTC stream from the browser with this URL:
 
 ```bash
-http://localhost:5080/LiveApp/
+http://localhost:5080/live/
 ```
 
 And play it with the following:
 
 ```bash
-http://localhost:5080/LiveApp/play.html?id=test
+http://localhost:5080/live/play.html?id=test
 ```
 
  ![](@site/static/img/wls-installation/screen4.webp)

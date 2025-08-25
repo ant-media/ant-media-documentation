@@ -43,9 +43,9 @@ Here is a sample JSON for using _createBroadcast_ method with [Postman](https://
     	},
     	"item": [
     		{
-    			"name": "http://localhost:5080/LiveApp/rest/broadcast/create",
+    			"name": "http://localhost:5080/live/rest/broadcast/create",
     			"request": {
-    				"url": "http://localhost:5080/LiveApp/rest/broadcast/create",
+    				"url": "http://localhost:5080/live/rest/broadcast/create",
     				"method": "POST",
     				"header": [
     					{

@@ -24,7 +24,7 @@ Choppy streams are caused by different reasons like internet connection quality 
 
 If you experience a choppy stream, check the following:
 
-*   Make sure that your connection quality is good enough. To do that, Ant Media Server has a built-in test page. You can access it and start testing from ```https://{YOUR_DOMAIN_NAME}:5443/WebRTCAppEE/webrtc-test-tool.html```
+*   Make sure that your connection quality is good enough. To do that, Ant Media Server has a built-in test page. You can access it and start testing from ```https://{YOUR_DOMAIN_NAME}:5443/live/webrtc-test-tool.html```
 *   If your use case is RTMP to WebRTC streaming, check if your stream has B-Frames. WebRTC doesn't accept B-Frames and if your video has them the stream will be choppy. To avoid B-Frames h264 baseline should be main.
 
 ### I see a high CPU usage

@@ -26,7 +26,7 @@ Before attempting playback, ensure that the stream is actively broadcasting on t
 
    You can also use the URL format listed below to play the WebRTC stream using the Ant Media Server Embedded web player, play.html:
 
-   `https://AMS_domain_name:5443/WebRTCAppEE/play.html?id=streamId`
+   `https://AMS_domain_name:5443/live/play.html?id=streamId`
 
    ![play-bunny](https://github.com/user-attachments/assets/7b479b66-7c2c-45cf-8f63-311e47c58db1)
 

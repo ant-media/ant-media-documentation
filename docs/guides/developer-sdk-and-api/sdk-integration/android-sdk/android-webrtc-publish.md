@@ -50,7 +50,7 @@ public class WebRTCStreamingActivity extends Activity {
         IWebRTCClient webRTCClient = IWebRTCClient.builder()
                 .setActivity(this)
                 .setLocalVideoRenderer(findViewById(R.id.full_screen_renderer))
-                .setServerUrl("wss://test.antmedia.io:5443/WebRTCAppEE/websocket")
+                .setServerUrl("wss://test.antmedia.io:5443/live/websocket")
                 .build();
 
         webRTCClient.publish("stream1");
