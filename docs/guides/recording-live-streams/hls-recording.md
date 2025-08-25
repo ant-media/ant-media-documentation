@@ -11,10 +11,9 @@ HLS streaming is a more cost-effective and secure method of streaming than video
 
 To enable HLS recording for your live streams and store all the HLS `m3u8 and ts` files, just log in to your AMS Web Panel.
 
-Navigate to Application Setting -> Advanced, and configure the setting below:
+Navigate to `Applications` -> `live` -> `Setting` -> `Advanced`, and configure the setting below:
 
-
-![Screenshot 2023-09-25 153916](https://github.com/ant-media/ant-media-documentation/assets/86982446/10ca309d-c40f-4e74-b006-3dbc23e0dea8)
+![](@site/static/img/live-setting.png)
 
 By default, only a certain number of TS files corresponding to segments are retained in the streams directory at any given time. However, by configuring the HLS playlist type to `event`, the server continuously generates TS files, allowing for permanent storage if desired.
 
@@ -94,13 +93,13 @@ To be able to use the HLS Upload servlet first, you should enter S3 credentials 
 - Locate the setting `hlsHttpEndpoint` and set it to:
 
   ```js
-  hlsHttpEndpoint=http://Domain-or-IP:5080/LiveApp/hls-upload
+  hlsHttpEndpoint=http://Domain-or-IP:5080/live/hls-upload
   ```
 
-  Here, LiveApp is the application name and you can replace it with your preferred application.
+  Here, live is the application name and you can replace it with your preferred application.
 
 - It can also be set as:
 
   ```js
-  hlsHttpEndpoint=http://127.0.0.1:5080/AppName/hls-upload
+  hlsHttpEndpoint=http://127.0.0.1:5080/live/hls-upload
   ```

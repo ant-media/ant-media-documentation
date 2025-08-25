@@ -26,7 +26,7 @@ We're assuming that your Ant Media Server accepts all streams (There is no any s
     ![](@site/static/img/publish-live-stream/XSplit/XSplit-Custom-RTMP.png)
 
 *   You can write any name and description you want.
-*   In the RTMP URL box, type your RTMP URL without stream id. It's like ```rtmp://your-server-IP-or-domain/LiveApp``` 
+*   In the RTMP URL box, type your RTMP URL without stream id. It's like ```rtmp://your-server-IP-or-domain/live``` 
 *   In the stream key, you can write any ```stream Id``` because we assume that no security option is enabled.
 
 ![](@site/static/img/publish-live-stream/XSplit/XSplit-settings.png)
@@ -39,6 +39,6 @@ Close the ```Settings``` window and simply click the ```Stream``` button in the 
 
 You can view the stream in your browser by entering the following URL:
 
-```http://IP-address:5080/AppName/play.html?name=streamId```
+```http://IP-address:5080/live/play.html?name=streamId```
 
 Check [here](https://antmedia.io/docs/category/playing-live-streams/) for more information on playback.

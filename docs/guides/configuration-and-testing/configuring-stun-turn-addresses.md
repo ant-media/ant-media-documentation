@@ -74,7 +74,7 @@ And pass it to ```peerconnection_config``` field of WebRTCAdaptor, as specified 
 
 - If you are utilizing sample pages for publishing or playing, you can:
 
-1. Open the html files under ```/usr/local/antmedia/webapps/APP-NAME```
+1. Open the html files under ```/usr/local/antmedia/webapps/live```
 
 2. Find the lines below
    
@@ -156,7 +156,7 @@ Example:
 ```js
 new WebPlayer({
     streamId: "teststream",
-    httpBaseURL: "http://localhost:5080/WebRTCAppEE/",
+    httpBaseURL: "http://localhost:5080/live/",
     iceServers: '[
         { "urls": "stun:stun1.l.google.com:19302" },
         {
@@ -172,7 +172,7 @@ new WebPlayer({
 
 - If you are utilizing the Ant Media Server sample ```play.html``` page, please remember that it is also based on embedded web player.
 
-- You can find ```embedded-player.js``` in ```/usr/local/antmedia/webapps/APP-NAME/webapps/js/embedded-player.js```  location and directly edit the ice server list by modifying the embedded player source.
+- You can find ```embedded-player.js``` in ```/usr/local/antmedia/webapps/live/webapps/js/embedded-player.js```  location and directly edit the ice server list by modifying the embedded player source.
 
 - For more information about embedded web player, checkout this [Guide](https://antmedia.io/docs/guides/playing-live-stream/embedded-web-player/#ant-media-server-web-player)
 

@@ -18,15 +18,15 @@ Below is a guide on how to publish an SRT stream to the Ant Media Server.
 Assuming you have installed and launched Ant Media Server v2.4.3 or later, you can use FFmpeg to push the SRT stream. 
 
 ```bash
-ffmpeg -re -i {INPUT} -vcodec libx264 -profile:v baseline -g 60 -acodec aac -f mpegts srt://ant.media.server.address:4200?streamid=WebRTCAppEE/stream1
+ffmpeg -re -i {INPUT} -vcodec libx264 -profile:v baseline -g 60 -acodec aac -f mpegts srt://ant.media.server.address:4200?streamid=live/stream1
 ```
 
-Once the command is executed, the stream will be available in the `WebRTCAppEE` application with the `streamId` stream1.
+Once the command is executed, the stream will be available in the `live` application with the `streamId` stream1.
 
 :::info
  If you encounter a "**Protocol not found**" error, it means FFmpeg needs to be compiled with the [**--enable-libsrt**](https://srtlab.github.io/srt-cookbook/apps/ffmpeg/) to support the SRT protocol.
 
-srt://ant.media.server.address:4200?streamid\=WebRTCAppEE/stream1: Protocol not found
+srt://ant.media.server.address:4200?streamid\=live/stream1: Protocol not found
 :::
 
 In that case, you can verify if FFmpeg has SRT protocol support or not by running the following command:
@@ -46,7 +46,7 @@ Just enter the SRT URL to the stream window as shown in the image below.
 If the publish type token is enabled, the SRT publishing URL will be in the following format:
 
 ```
-srt://ant.media.server.address:4200?streamid=Application-Name/streamId,token=tokenId
+srt://ant.media.server.address:4200?streamid=live/streamId,token=tokenId
 ```
 
 In order to generate the token, check out stream security [documentation](https://antmedia.io/docs/category/stream-security/).

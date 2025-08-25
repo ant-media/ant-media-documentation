@@ -32,7 +32,7 @@ Open Broadcaster Software (OBS) is a popular open-source tool for live streaming
 - In OBS, go to  `Settings`  and then  `Stream`.
 - Select `WHIP` as the service.
 - In the  `Server`  field, enter the WHIP endpoint URL provided by your Ant Media Server. Here is the WHIP endpoint format: 
-`https://antmedia.example.com:5443/App_Name/whip/streamId`
+`https://antmedia.example.com:5443/live/whip/streamId`
 
  ![](@site/static/img/publish-live-stream/whip/whip-settings.png)
 
@@ -51,9 +51,9 @@ If you directly want to publish the WebRTC stream from your browser using WHIP p
 
 This sample page uses the [Eyevinn WHIP client](https://www.npmjs.com/package/@eyevinn/whip-endpoint) to publish the stream to the server using the WHIP protocol. You can also directly integrate it into your web application.
 
-Now, in order to publish the WHIP stream using the sample page, go to https://AMS-domain:5443/AppName/whip.html of your Ant Media Server and start publishing.
+Now, in order to publish the WHIP stream using the sample page, go to https://AMS-domain:5443/live/whip.html of your Ant Media Server and start publishing.
 
-For example, you can test via this [sample page](https://test.antmedia.io:5443/WebRTCAppEE/whip.html).
+For example, you can test via this [sample page](https://test.antmedia.io:5443/live/whip.html).
 
 
 ## Watch the quick demo of WHIP using both methods

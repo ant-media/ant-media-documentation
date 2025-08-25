@@ -30,13 +30,13 @@ The user can create a new subscriber (publisher or player) by using [Add Subscri
  - The sample API call to register a subscriber for publishing:
 
 ```bash
-curl -X POST -H "Accept: Application/json" -H "Content-Type: application/json" 'http://Ip-address-or-domain:5080/Application_Name/rest/v2/broadcasts/streamId/subscribers' -d '{"subscriberId":"publisherA", "b32Secret":"SecretKey", "type":"publish"}'
+curl -X POST -H "Accept: Application/json" -H "Content-Type: application/json" 'http://Ip-address-or-domain:5080/live/rest/v2/broadcasts/streamId/subscribers' -d '{"subscriberId":"publisherA", "b32Secret":"SecretKey", "type":"publish"}'
 ```
 
  - The sample API call to register a subscriber for playing:
 
 ```bash
-curl -X POST -H "Accept: Application/json" -H "Content-Type: application/json" 'http://Ip-address-or-domain:5080/Application_Name/rest/v2/broadcasts/streamId/subscribers' -d '{"subscriberId":"playerA", "b32Secret":"SecretKey", "type":"play"}'
+curl -X POST -H "Accept: Application/json" -H "Content-Type: application/json" 'http://Ip-address-or-domain:5080/live/rest/v2/broadcasts/streamId/subscribers' -d '{"subscriberId":"playerA", "b32Secret":"SecretKey", "type":"play"}'
 ```
 
 ### Other Subscriber APIs
@@ -45,14 +45,14 @@ curl -X POST -H "Accept: Application/json" -H "Content-Type: application/json" '
    API](https://antmedia.io/rest/#/default/listSubscriberV2):
 
 ```bash
-curl -X 'GET' 'http://IP-address-or-domain:5080/Application_Name/rest/v2/broadcasts/streamId/subscriber-stats/list/0/10' -H 'accept: application/json'
+curl -X 'GET' 'http://IP-address-or-domain:5080/live/rest/v2/broadcasts/streamId/subscriber-stats/list/0/10' -H 'accept: application/json'
 ```
 
  - Delete the subscribers using the [following
    API](https://antmedia.io/rest/#/default/revokeSubscribers):
 
 ```bash
-curl -X 'DELETE' 'https://IP-address-or-domain:5080/Application_Name/rest/v2/broadcasts/streamId/subscribers' -H 'accept: application/json'
+curl -X 'DELETE' 'https://IP-address-or-domain:5080/live/rest/v2/broadcasts/streamId/subscribers' -H 'accept: application/json'
 ```
 
  - Get the subscriber statistics using the [following
@@ -79,7 +79,7 @@ As mentioned in Subscribers Operations, you can also generate the TOTP token dir
 ### The sample TOTP token creation API in the Publish Scenario
 
 ```bash
-curl -X 'GET' 'http://IP-adddress-or-domain:5080/Application_Name/rest/v2/broadcasts/streamId/subscribers/SubscriberId/totp?type=publish'-H 'accept: application/json'
+curl -X 'GET' 'http://IP-adddress-or-domain:5080/live/rest/v2/broadcasts/streamId/subscribers/SubscriberId/totp?type=publish'-H 'accept: application/json'
 ```
 
 ![](@site/static/img/stream-security/subscriber_block_publish_totp_postman.png)
@@ -87,7 +87,7 @@ curl -X 'GET' 'http://IP-adddress-or-domain:5080/Application_Name/rest/v2/broadc
 ### The sample TOTP token creation API in the Player Scenario
 
 ```bash
-curl -X 'GET' 'http://IP-adddress-or-domain:5080/Application_Name/rest/v2/broadcasts/streamId/subscribers/SubscriberId/totp?type=play'-H 'accept: application/json'
+curl -X 'GET' 'http://IP-adddress-or-domain:5080/live/rest/v2/broadcasts/streamId/subscribers/SubscriberId/totp?type=play'-H 'accept: application/json'
 ```
 
 ![](@site/static/img/stream-security/subscriber_block_play_totp_postman.png)
@@ -125,7 +125,7 @@ webRTCAdaptor.publish("teststream", null, "lastpeony", "451222");
 After utilizing the TOTP token for publishing, you can block the subscriber from publishing using a block request. To prevent the user from publishing for 120 seconds, send a [subscriber block API request](https://antmedia.io/rest/#/default/blockSubscriber) as below.
 
 ```bash
-curl -X 'PUT' 'http://IP-address-or-domain:5080/Application_Name/rest/v2/broadcasts/streamId/subscribers/subscriberId/block/120/publish' -H 'accept: application/json'
+curl -X 'PUT' 'http://IP-address-or-domain:5080/live/rest/v2/broadcasts/streamId/subscribers/subscriberId/block/120/publish' -H 'accept: application/json'
 ```
 
 ![](@site/static/img/stream-security/subscriber_block_block_publish_postman.png)
@@ -135,7 +135,7 @@ Upon a successful return of this request, the subscriber's publishing will immed
 To remove the block, set the block duration to 0 seconds.
 
 ```bash
-curl -X 'PUT' 'http://IP-address-or-domain:5080/Application_Name/rest/v2/broadcasts/streamId/subscribers/subscriberId/block/0/publish' -H 'accept: application/json'
+curl -X 'PUT' 'http://IP-address-or-domain:5080/live/rest/v2/broadcasts/streamId/subscribers/subscriberId/block/0/publish' -H 'accept: application/json'
 ```
 
 Remember, if you previously blocked subscribers from publishing and then unblocked them, they might encounter an **unauthorized_access** error if their TOTP has expired. In such cases, generating a new TOTP becomes necessary for them to publish again.
@@ -163,7 +163,7 @@ webRTCAdaptor.play("teststream", null, "lastpeony", "451222");
 After utilizing the TOTP token for playing, you can block the subscriber from playing using a block request. To prevent the user from playing for 120 seconds, send a [subscriber block API request](https://antmedia.io/rest/#/default/blockSubscriber) as below.
 
 ```bash
-curl -X 'PUT' 'http://IP-address-or-domain:5080/Application_Name/rest/v2/broadcasts/streamId/subscribers/subscriberId/block/120/play' -H 'accept: application/json'
+curl -X 'PUT' 'http://IP-address-or-domain:5080/live/rest/v2/broadcasts/streamId/subscribers/subscriberId/block/120/play' -H 'accept: application/json'
 ```
 ![](@site/static/img/stream-security/subscriber_block_block_play_postman.png)
 
@@ -172,7 +172,7 @@ Upon a successful return of this request, the subscriber's playback will immedia
 To remove the block, set the block duration to 0 seconds.
 
 ```bash
-curl -X 'PUT' 'http://IP-address-or-domain:5080/Application_Name/rest/v2/broadcasts/streamId/subscribers/subscriberId/block/0/play' -H 'accept: application/json'
+curl -X 'PUT' 'http://IP-address-or-domain:5080/live/rest/v2/broadcasts/streamId/subscribers/subscriberId/block/0/play' -H 'accept: application/json'
 ```
 
 Please be aware that playback resumes immediately after this request returns successfully.
@@ -188,7 +188,7 @@ To block both at the same time, type should be `publish_play`
 Here is the Rest API sample.
 
 ```bash
-curl -X 'PUT' 'http://IP-address-or-domain:5080/Application_Name/rest/v2/broadcasts/streamId/subscribers/subscriberId/block/120/publish_play' -H 'accept: application/json'
+curl -X 'PUT' 'http://IP-address-or-domain:5080/live/rest/v2/broadcasts/streamId/subscribers/subscriberId/block/120/publish_play' -H 'accept: application/json'
 ```
 
 ## TOTP usage with streaming protocols
@@ -199,17 +199,17 @@ In this section, we will look at how to use the TOTP token with various streamin
 
 **RTMP:**
 ```
-rtmp://IP-address-or-domain/Application_Name/StreamId?subscriberId=your-subscriber&subscriberCode=totp-token
+rtmp://IP-address-or-domain/live/StreamId?subscriberId=your-subscriber&subscriberCode=totp-token
 ```
 
 **SRT:** 
 ```
-srt://IP-address-or-domain:4200?streamid=Application_Name/your-streamId,subscriberId=your-subscriber,subscriberCode=totp-token
+srt://IP-address-or-domain:4200?streamid=live/your-streamId,subscriberId=your-subscriber,subscriberCode=totp-token
 ```
 
 **WebRTC:**
 ```
-https://domain:5443/Application_Name?id=streamId&subscriberId=your-subscriber&subscriberCode=totp-token
+https://domain:5443/live?id=streamId&subscriberId=your-subscriber&subscriberCode=totp-token
 ```
 
 Above is the URL if you are using the [webrtc sample page](https://antmedia.io/docs/guides/publish-live-stream/webrtc/) for publishing.
@@ -218,10 +218,10 @@ If you are using the WebSocket URL to connect with the server, then token parame
 
 ```shell
 # Secure WebSocket: 
-wss://{ant-media-server}:5443/WebRTCAppEE/websocket
+wss://{ant-media-server}:5443/live/websocket
 
 # Non Secure WebSocket: 
-ws://{ant-media-server}:5080/WebRTCAppEE/websocket
+ws://{ant-media-server}:5080/live/websocket
 ```
 
 ```json
@@ -241,36 +241,36 @@ ws://{ant-media-server}:5080/WebRTCAppEE/websocket
 
 If using the embedded (play.html) player URL:
 ```
-http(s)://IP-address-or-domain:port/Application_Name/play.html?id=streams/stream_Id.mp4&playOrder=vod&subscriberId=your-subscriber&subscriberCode=totp-token
+http(s)://IP-address-or-domain:port/live/play.html?id=streams/stream_Id.mp4&playOrder=vod&subscriberId=your-subscriber&subscriberCode=totp-token
 ```
 If you directly want to use an MP4 URL, then it will be as follows:
 ```
-http(s)://IP-address-or-domain:port/Application_Name/streams/stream_Id.mp4?subscriberId=your-subscriber&subscriberCode=totp-token
+http(s)://IP-address-or-domain:port/live/streams/stream_Id.mp4?subscriberId=your-subscriber&subscriberCode=totp-token
 ```
 **HLS:**
 
 If using the embedded (play.html) player URL:
 ```
-http(s)://IP-address-or-domain:port/Application_Name/play.html?id=stream_Id&playOrder=hls&subscriberId=your-subscriber&subscriberCode=totp-token
+http(s)://IP-address-or-domain:port/live/play.html?id=stream_Id&playOrder=hls&subscriberId=your-subscriber&subscriberCode=totp-token
 ```
 
 If you directly want to use the m3u8 URL, then it will be as follows:
 
 ```
-http(s)://IP-address-or-domain:port/Application_Name/streams/stream_Id.m3u8?subscriberId=your-subscriber&subscriberCode=totp-token
+http(s)://IP-address-or-domain:port/live/streams/stream_Id.m3u8?subscriberId=your-subscriber&subscriberCode=totp-token
 ```
 
 **CMAF (DASH):**
 
 If using the embedded (play.html) player URL:
 ```
-http(s)://IP-address-or-domain:port/Application_Name/play.html?id=stream_Id&playOrder=dash&subscriberId=your-subscriber&subscriberCode=totp-token
+http(s)://IP-address-or-domain:port/live/play.html?id=stream_Id&playOrder=dash&subscriberId=your-subscriber&subscriberCode=totp-token
 ```
 
 If you directly want to use the mpd dash URL, then it will be as follows:
 
 ```
-http(s)://IP-address-or-domain:port/Application_Name/streams/streamId/streamId.mpd?subscriberId=your-subscriber&subscriberCode=totp-token
+http(s)://IP-address-or-domain:port/live/streams/streamId/streamId.mpd?subscriberId=your-subscriber&subscriberCode=totp-token
 ```
 
 **WebRTC:**
@@ -278,17 +278,17 @@ http(s)://IP-address-or-domain:port/Application_Name/streams/streamId/streamId.m
 If using the embedded (play.html) player URL:
 
 ```
-http(s)://IP-address-or-domain:port/Application_Name/play.html?id=streamId&subscriberId=your-subscriber&subscriberCode=totp-token
+http(s)://IP-address-or-domain:port/live/play.html?id=streamId&subscriberId=your-subscriber&subscriberCode=totp-token
 ```
 
 If you are using the WebSocket URL to connect with the server, then token parameter should be inserted to WebSocket message. Also please have a look at the principles described in the [WebRTC playing page](https://antmedia.io/docs/guides/publish-live-stream/webrtc/webrtc-websocket-messaging-reference/#playing-webrtc-stream).
 
 ```shell
 # Secure WebSocket: 
-wss://{ant-media-server}:5443/WebRTCAppEE/websocket
+wss://{ant-media-server}:5443/live/websocket
 
 # Non Secure WebSocket: 
-ws://{ant-media-server}:5080/WebRTCAppEE/websocket
+ws://{ant-media-server}:5080/live/websocket
 ```
 
 ```json

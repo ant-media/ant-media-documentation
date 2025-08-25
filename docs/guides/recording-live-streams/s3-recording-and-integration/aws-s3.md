@@ -33,7 +33,7 @@ You also need to know the region of your bucket. If you do not have any bucket, 
 
 Here you see the sample S3 credentials. You need to set to yours:
 
-Then, log in to http://your_ams_server:5080, enable Record Live Streams as MP4 and Enable S3 Recording, enter the S3 credentials you have created, and save the settings.
+Then, log in to https://your_ams_server:5443, Go to the `Applications` (`live`) > `Settings` > `Enable Record Live Streams as MP4` and `Enable S3 Recording`, enter the `S3` credentials you have created, and `save` the settings.
 
 ![image.png](@site/static/img/image-285229.png)
 

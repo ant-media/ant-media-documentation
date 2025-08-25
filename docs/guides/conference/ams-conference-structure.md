@@ -57,7 +57,7 @@ Observe that both broadcasts are created on a web panel.
 
 ```https://{ams-url}:5443/{app-name}/rest/v2/broadcasts/{room-streamId}```
 
-**Example:** ```https://test.antmedia.io:5443/LiveApp/rest/v2/broadcasts/room1```
+**Example:** ```https://test.antmedia.io:5443/live/rest/v2/broadcasts/room1```
 
 This will return the broadcast object.
 
@@ -72,7 +72,7 @@ Next, we will do the same for participant broadcast.
 ```https://{ams-url}:5443/{app-name}/rest/v2/broadcasts/{participant-stream-id}```
 
 **Example:**
-```https://test.antmedia.io:5443/LiveApp/rest/v2/broadcasts/idiTofPCrEx4```
+```https://test.antmedia.io:5443/live/rest/v2/broadcasts/idiTofPCrEx4```
 
 Observe that mainTrackId is set to our rooms id.
 
@@ -191,7 +191,7 @@ const mediaConstraints = useRef( {
     audio: true, // audio to true.
     }
 )
-const websocketUrl = useRef('wss://test.antmedia.io:5443/LiveApp/websocket')
+const websocketUrl = useRef('wss://test.antmedia.io:5443/live/websocket')
 const localParticipantVideoElementId = useRef('localParticipantVideo')
 const webrtcAdaptor = useRef(null)
 ```
@@ -265,7 +265,7 @@ export default function ConferenceComponent(){
         audio: true, // audio to true.
       }
     )
-    const websocketUrl = useRef('wss://test.antmedia.io:5443/LiveApp/websocket')
+    const websocketUrl = useRef('wss://test.antmedia.io:5443/live/websocket')
     const localParticipantVideoElementId = useRef('localParticipantVideo')
     const webrtcAdaptor = useRef(null)
 
@@ -518,7 +518,7 @@ export default function ConferenceComponent(){
         audio: true, // audio to true.
       }
     )
-    const websocketUrl = useRef('wss://test.antmedia.io:5443/LiveApp/websocket')
+    const websocketUrl = useRef('wss://test.antmedia.io:5443/live/websocket')
     const localParticipantVideoElementId = useRef('localParticipantVideo')
     const webrtcAdaptor = useRef(null)
     const allParticipants = useRef({})
@@ -1026,7 +1026,7 @@ export default function ConferenceComponent(){
         audio: true, 
       }
     )
-    const websocketUrl = useRef('wss://test.antmedia.io:5443/LiveApp/websocket')
+    const websocketUrl = useRef('wss://test.antmedia.io:5443/live/websocket')
     const localParticipantVideoElementId = useRef('localParticipantVideo')
     const webrtcAdaptor = useRef(null)
     const allParticipants = useRef({})
@@ -1513,7 +1513,7 @@ export default function ConferenceComponent(){
         audio: true, 
       }
     )
-    const websocketUrl = useRef('wss://test.antmedia.io:5443/LiveApp/websocket')
+    const websocketUrl = useRef('wss://test.antmedia.io:5443/live/websocket')
     const localParticipantVideoElementId = useRef('localParticipantVideo')
     const webrtcAdaptor = useRef(null)
     const allParticipants = useRef({})

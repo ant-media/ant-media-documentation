@@ -30,7 +30,7 @@ MP4 muxing(recording) finish process
 You can set up a custom post-processing script for MP4 recordings directly from the Advanced Settings in the Ant Media Web Panel. 
 To do this:
 1. Log into the Ant Media Server Web Panel (http://YOUR_SERVER_IP:5080)
-2. Navigate to Applications, select your app (LiveApp, WebRTCAppEE, etc.), go to Advanced Settings
+2. Navigate to Applications, select your app (`live`), go to Advanced Settings
 3. Locate the MP4 **muxerFinishScript** field and enter the script path (e.g., /path/to/scriptFile.sh).
 4. Finally, save the settings.
 
@@ -63,13 +63,13 @@ scriptFilePath fullPathOfMP4File
 Example:
 
 ```
-~/test_script.sh /usr/local/antmedia/webapps/LiveApp/streams/test_stream.mp4
+~/test_script.sh /usr/local/antmedia/webapps/live/streams/test_stream.mp4
 ```
 
 When the script is successfully finished, AMS writes in the INFO log as below:
 
 ```
-running muxer finish script: ~/test_script.sh /usr/local/antmedia/webapps/LiveApp/streams/test_stream.mp4
+running muxer finish script: ~/test_script.sh /usr/local/antmedia/webapps/live/streams/test_stream.mp4
 ```
 
 
@@ -85,7 +85,7 @@ It will work after the VoD upload process finishes. Let’s have a look at that 
 You can configure a custom post-processing script for VOD uploads directly from the Advanced Settings in the Ant Media Web Panel.
 To do this:
 1. Log in to the Ant Media Server Web Panel (http://YOUR_SERVER_IP:5080)
-2. Navigate to Applications, select your app (LiveApp, WebRTCAppEE, etc.), go to Advanced Settings
+2. Navigate to Applications, select your app (`live`), go to Advanced Settings
 3. Locate the **vodUploadFinishScript** field and enter the script path (e.g., /path/to/scriptFile.sh).
 4. Finally, save the settings.
 
@@ -117,12 +117,12 @@ scriptFilePath fullPathOfMP4File
 
 Example:
 ```
-~/test_script.sh /usr/local/antmedia/webapps/LiveApp/streams/test_stream.mp4
+~/test_script.sh /usr/local/antmedia/webapps/live/streams/test_stream.mp4
 ```
 
 When the script finishes successfully, AMS writes in the INFO log as below:
 ```
-running muxer finish script: ~/test_script.sh /usr/local/antmedia/webapps/LiveApp/streams/test_stream.mp4
+running muxer finish script: ~/test_script.sh /usr/local/antmedia/webapps/live/streams/test_stream.mp4
 ```
 
 
@@ -146,7 +146,7 @@ chmod +x vod_transcode.sh
 ### 3. Default Transcoding Settings
 By default, the script transcodes to 240p, 480p, and 720p resolutions, with the output stored in the following directory. You can adjust the resolutions and directory as needed:
 ```
-/usr/local/antmedia/webapps/WebRTCAppEE/streams/
+/usr/local/antmedia/webapps/liveEE/streams/
 ```
 
 ### 4. Configure VOD Upload Script
@@ -179,12 +179,12 @@ https://domain:5443/app-name/target-directory/Vod_Id.m3u8
 #create the bash script to remove video from the recorded file and save it with same id again
 
 # Don't forget to change the Ant Media Server App Name
-AMS_APP_NAME="LiveApp"
+AMS_APP_NAME="live"
 
 file="$1"
 temp_file="${file%.mp4}_temp.mp4"
 
-cd /usr/local/antmedia/$AMS_APP_NAME/LiveApp/streams/
+cd /usr/local/antmedia/$AMS_APP_NAME/live/streams/
 
 # Add metadata using ffmpeg
 ffmpeg -i "$file" -c copy -vn "$temp_file"
@@ -213,7 +213,7 @@ Access the AMS Web Management Console. Navigate to your application's Advanced S
 ### 5. Verify Script Execution:
 If successful, you should see a log entry similar to:
 ```
-2024-07-02 20:53:29,777 [vert.x-worker-thread-86] INFO i.a.AntMediaApplicationAdapter - completing script: /home/ubuntu/removevideo.sh  /usr/local/antmedia/webapps/LiveApp/streams/test.mp4 with return value 0
+2024-07-02 20:53:29,777 [vert.x-worker-thread-86] INFO i.a.AntMediaApplicationAdapter - completing script: /home/ubuntu/removevideo.sh  /usr/local/antmedia/webapps/live/streams/test.mp4 with return value 0
 Verify the File: The original MP4 file should now only contain audio.
 ```
 
@@ -234,7 +234,7 @@ Save the following script as `vod-upload-s3.sh` under `/usr/local/antmedia/`
 #!/bin/bash
 #Installation Instructions
 #apt-get update && apt-get install ffmpeg -y
-#vim [AMS-DIR]/webapps/applications(LiveApp or etc.)/WEB-INF/red5-web.properties
+#vim [AMS-DIR]/webapps/applications(live or etc.)/WEB-INF/red5-web.properties
 #settings.vodUploadFinishScript=/Script-DIR/vod-upload-s3.sh
 #sudo service antmedia restart
 

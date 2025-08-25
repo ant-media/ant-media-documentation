@@ -7,7 +7,7 @@ sidebar_position: 7
 
 The CORS (Cross-Origin Resource Sharing) filter is enabled and accepts requests from everywhere by default.
 
-If you want to customize the CORS filter at the application level, you can access the ```/usr/local/antmedia/webapps/AppName/WEB-INF/web.xml``` file.
+If you want to customize the CORS filter at the application level, you can access the ```/usr/local/antmedia/webapps/{AppName}/WEB-INF/web.xml``` file.
 
 ```xml
 	<filter>

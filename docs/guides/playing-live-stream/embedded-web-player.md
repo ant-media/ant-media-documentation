@@ -15,10 +15,10 @@ Using an `iframe` is a quick, but least customizable, way to integrate Ant Media
 
 This will just embed the `play.html` page on your website using an iframe element. The `play.html` page is in the application folder on Ant Media Server. 
 
-For example, play.html can be found in the LiveApp application at the following location:
+For example, play.html can be found in the live application at the following location:
 
 ```shell 
-/usr/local/antmedia/webapps/LiveApp/play.html
+/usr/local/antmedia/webapps/live/play.html
 ```
 
 The default player is as follows:
@@ -74,7 +74,7 @@ Here is the sample Embed code:
 
 In the above segment of the iframe code, we're passing a name parameter to define the `streamId`. You can include additional parameters similarly as specified above.
 
-For example, `playOrder=webrtc`:
+For example, `playOrder=webrtc`
 
 ```src="https://AMS-domain-name:5443/live/play.html?name=stream1&playOrder=webrtc"```
 

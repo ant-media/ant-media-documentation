@@ -56,7 +56,7 @@ To make the Periodic Stream Recording work properly, you’ll need to adjust the
 
 #### 1. Enable HLS Streaming
 
-Go to your app settings & make sure that [HLS is enabled](https://antmedia.io/docs/guides/playing-live-stream/hls-playing/#enable-hls) in your application's settings.
+Go to your application settings & make sure that [HLS is enabled](https://antmedia.io/docs/guides/playing-live-stream/hls-playing/#enable-hls).
 
 #### 2. Set Playlist Type to "event"
 

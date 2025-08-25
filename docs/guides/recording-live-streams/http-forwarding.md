@@ -25,7 +25,7 @@ Without forwarding, trying to access a file that has already been uploaded to th
 ## Step 1: Configure HTTP Forwarding in the AMS Management Panel
 
 1. Log in to the **Ant Media Server Management Panel**.  
-2. Navigate to **Applications** and select your application (e.g., `live`, `LiveApp`, `WebRTCAppEE`, or your custom app).  
+2. Navigate to **Applications** and select your application (e.g., `live`).  
 3. Go to **Application Settings → Advanced Settings**.  
 4. Locate the HTTP Forwarding section and set the following properties depending on your settings:
 
@@ -108,7 +108,7 @@ After entering the details:
 Once configured, try accessing a file via Ant Media Server. For example:
 
 ```bash
-https://your-domain:5443/AppName/streams/sample.mp4
+https://your-domain:5443/live/streams/sample.mp4
 ```
 
 If forwarding is working, AMS will automatically serve the file from your bucket:

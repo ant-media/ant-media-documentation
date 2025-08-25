@@ -22,7 +22,7 @@ Let’s have a look at how to pull a stream from an IP camera.
 
 ## Add IP Camera - ONVIF URL
 
-- Go to the management panel, select **LiveApp** from applications, then click on **New Live Stream** and select **IP Camera**.  
+- Go to the management panel, select **live** from applications, then click on **New Live Stream** and select **IP Camera**.  
 
     ![](@site/static/img/re-stream-add-ip-camera-1.png)
 
@@ -49,7 +49,7 @@ If the IP Camera is added directly using the RTSP URL, then the CRUD and PTZ ope
 
 To add an IP camera with an RTSP URL, follow these steps:
 
-*   First, log in to the management panel. Click on 
+*   First, log in to the management panel. select **live** from applications, and click on 
 **New Live Stream** > **Stream Source**. Define stream name, RTSP URL, and stream Id.
 *   AMS starts to pull the camera stream automatically
 *   As the stream starts to pull, you can watch it from the AMS panel.
@@ -91,6 +91,6 @@ Check out the [recording documentation](https://antmedia.io/docs/category/record
 This [Rest API](https://antmedia.io/rest/#/default/createBroadcast) can be used to create the live stream.
 
 ```bash
-curl -X POST -H "Content-Type: application/json" "https://IP-address-or-domain:Port/App-Name/rest/v2/broadcasts/create?autoStart=false" -d '{
+curl -X POST -H "Content-Type: application/json" "https://IP-address-or-domain:Port/live/rest/v2/broadcasts/create?autoStart=false" -d '{
 "type":"ipCamera","name":"test","streamId":"test","ipAddr":  "127.0.0.1:8080","username": "camera-username","password":"camera-password"}'
 ```

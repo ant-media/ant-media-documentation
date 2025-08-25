@@ -60,7 +60,7 @@ function sendPushNotification(sendNotificationToSubscriber) {
 }
 
 var webRTCAdaptor = new WebRTCAdaptor({
-    websocket_url: "ws://localhost:5080/WebRTCAppEE/websocket",
+    websocket_url: "ws://localhost:5080/live/websocket",
     isPlayMode: true,
     callback : function(info, obj) {
         console.log("info:", info, "obj:", obj);

@@ -69,7 +69,7 @@ The Media Push Plugin includes a REST API that allows you to control the plugin 
 To have the Ant Media Server broadcast a web page, use the REST method described below. You must provide the URL of the web page you wish to broadcast. Optionally, you can specify a streamId by including it as a query parameter.
 
 ```bash  
-curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "https://ant-media-server-domain:5443/AppName/rest/v1/media-push/start?streamId=mediapush" -d '{"url": "URL_TO_RECORD", "width": 1280, "height": 720}'  
+curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "https://ant-media-server-domain:5443/live/rest/v1/media-push/start?streamId=mediapush" -d '{"url": "URL_TO_RECORD", "width": 1280, "height": 720}'  
 ```  
   
 Expected Response Upon successful execution, the server should respond as follows. Note that the `dataId` field represents the generated streamId that we mentioned as a query parameter.
@@ -88,7 +88,7 @@ This output confirms that the broadcast has started, and provides the streamId (
 To stop a broadcast on the Ant Media Server using a specified streamId, use the REST method as outlined below. Ensure you have the streamId `(dataId)` from a previous broadcast session to correctly identify the stream you wish to stop.
 
 ```bash  
-curl -i -X POST -H "Accept: Application/json" "https://ant-media-server-domain:5443/AppName/rest/v1/media-push/stop/{streamId}"
+curl -i -X POST -H "Accept: Application/json" "https://ant-media-server-domain:5443/live/rest/v1/media-push/stop/{streamId}"
 ``` 
 
 This command will instruct the Ant Media Server to stop broadcasting the stream associated with the provided streamId. Make sure the STREAM_ID matches the one you obtained when initiating the broadcast.
@@ -98,7 +98,7 @@ This command will instruct the Ant Media Server to stop broadcasting the stream 
 To record the broadcast in addition to streaming, you can include the recordType option in your REST API call. This option specifies the format in which the broadcast should be recorded. Here's how you can modify the previous start broadcast command to include recording:
 
 ```bash
-curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "https://ant-media-server-domain:5443/APP_NAME/rest/v1/media-push/start" -d  '{"url": "URL_TO_RECORD", "width": 1280, "height": 720, "recordType":"mp4"}'
+curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "https://ant-media-server-domain:5443/live/rest/v1/media-push/start" -d  '{"url": "URL_TO_RECORD", "width": 1280, "height": 720, "recordType":"mp4"}'
 ```
 
 This command will initiate the broadcast of the specified URL and simultaneously record it in MP4 format. Ensure to replace `URL_TO_RECORD` with the actual URL you want to broadcast and record.
@@ -112,7 +112,7 @@ Please check out [**this blog post**](https://antmedia.io/conference-call-record
 To incorporate extra Chrome switches into your REST API request for broadcasting a web page with the Ant Media Server, specify them in the  `extraChromeSwitches`  field of your JSON payload. These should be listed in a comma-separated format. Here’s a refined version of your command that includes extra Chrome switches:
 
 ```bash
-curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "https://ant-media-server-domain:5443/APP_NAME/rest/v1/media-push/start" -d  '{"url": "URL_TO_RECORD", "width": 1280, "height": 720, "recordType":"mp4", "extraChromeSwitches":"--start-fullscreen,--disable-gpu"}'
+curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "https://ant-media-server-domain:5443/live/rest/v1/media-push/start" -d  '{"url": "URL_TO_RECORD", "width": 1280, "height": 720, "recordType":"mp4", "extraChromeSwitches":"--start-fullscreen,--disable-gpu"}'
 ```
 
 This command configures the Chrome instance that captures the web page with the following switches:
@@ -129,13 +129,13 @@ Additionally, a comprehensive list of all available Chrome command-line switches
 To send a JavaScript command to a specific stream on the Ant Media Server using the stream ID provided in the start method, use the following REST API call. Replace placeholders with your actual server domain, web application name, stream ID, and the JavaScript command you wish to execute.
 
 ```bash
-curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "https://ant-media-server-domain:5443/AppName/rest/v1/media-push/send-command?streamId={streamId}"  -d '{"jsCommand": "{javascript_command_which_is_executed}"}'  
+curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "https://ant-media-server-domain:5443/live/rest/v1/media-push/send-command?streamId={streamId}"  -d '{"jsCommand": "{javascript_command_which_is_executed}"}'  
 ```  
 
 In the below example, we are using ` document.write(\" hello how are you this is the text which is displayed on the browser  \") ` which will overwrite the content of the browser window with the message.  
 
 ```bash
-curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "http://localhost:5080/LiveApp/rest/v1/media-push/send-command?streamId=stream111"  -d '{"jsCommand": "document.write(\" hello how are you this is the text which is displayed on the browser  \")"}'  
+curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "http://localhost:5080/live/rest/v1/media-push/send-command?streamId=stream111"  -d '{"jsCommand": "document.write(\" hello how are you this is the text which is displayed on the browser  \")"}'  
 ```
   
 
@@ -163,7 +163,7 @@ The composite layout page contains a canvas on which streams can be added; by de
  - Copy the composite_layout.html file into the application folder  
 
    ```bash
-   sudo cp media_push.html /usr/local/antmedia/webapps/<your-webapp-name>/composite_layout.html
+   sudo cp media_push.html /usr/local/antmedia/webapps/live/composite_layout.html
    ```
   
  
@@ -176,7 +176,7 @@ The composite layout page contains a canvas on which streams can be added; by de
   **composite-layout-publisher-id:**  It can be any random Id like  `test`
 
   ```bash
-  curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "https://ant-media-server-domain:5443/AppName/rest/v1/media-push/start"  -d '{"url": "https://ant-media-server-domain:5443/AppName/composite_layout.html?roomId=<room-name>&publisherId=<composite-layout-publisher-id>", "width": 1280, "height": 720}'
+  curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "https://ant-media-server-domain:5443/live/rest/v1/media-push/start"  -d '{"url": "https://ant-media-server-domain:5443/live/composite_layout.html?roomId=<room-name>&publisherId=<composite-layout-publisher-id>", "width": 1280, "height": 720}'
   ```
 
 - Stop the Composite Layout
@@ -184,7 +184,7 @@ The composite layout page contains a canvas on which streams can be added; by de
   Call the REST method below to let Ant Media Server with the streamId you specified in the stop method.
 
    ```bash
-   curl -i -X POST -H "Accept: Application/json" "https://ant-media-server-domain:5443/AppName/rest/v1/media-push/stop/{composite-layout-publisher-id}"
+   curl -i -X POST -H "Accept: Application/json" "https://ant-media-server-domain:5443/live/rest/v1/media-push/stop/{composite-layout-publisher-id}"
    ```
 
 - Update the Composite Layout UI
@@ -194,7 +194,7 @@ The composite layout page contains a canvas on which streams can be added; by de
   For updating the layout and adding streams to the canvas, call the below REST API by specifying the stream id of the participants in the room.
 
    ```bash
-   curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "https://ant-media-server-domain:5443/<your-webapp-name>/rest/v2/broadcasts/<composite-layout-publisher-id>/data" -d '{"streamId":"streamId1","layoutOptions": {"canvas": {"width": 640,"height": 640},"layout": [{"streamId": "<room-participant-id>","region": {"xPos": 20,"yPos": 0,"zIndex": 1,"width": 200,"height": 200},"fillMode": "fill","placeholderImageUrl": "https://cdn-icons-png.flaticon.com/512/149/149071.png"}]}}'
+   curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "https://ant-media-server-domain:5443/live/rest/v2/broadcasts/<composite-layout-publisher-id>/data" -d '{"streamId":"streamId1","layoutOptions": {"canvas": {"width": 640,"height": 640},"layout": [{"streamId": "<room-participant-id>","region": {"xPos": 20,"yPos": 0,"zIndex": 1,"width": 200,"height": 200},"fillMode": "fill","placeholderImageUrl": "https://cdn-icons-png.flaticon.com/512/149/149071.png"}]}}'
    ```
   
   

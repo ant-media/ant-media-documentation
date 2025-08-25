@@ -23,7 +23,7 @@ Dash playback is turned off by default, so you must enable it before playing a s
 
 Dash playback can be enabled from the application settings.
 
-- Navigate to your application (LiveApp, WebRTCAppEE, or any other).
+- Navigate to your application (live or any other).
 
 - Go to `Settings` and under `Dash & CMAF Streaming` check `Create DASH Streaming` to enable it.
 
@@ -37,7 +37,7 @@ In Ant Media Server versions 2.4.3 and earlier, you need to enable DASH by editi
 1. Open the following file with your preferred editor.
 
    ```bash
-   sudo nano /usr/local/antmedia/webapps/WebRTCAppEE/WEB-INF/red5-web.properties
+   sudo nano /usr/local/antmedia/webapps/live/WEB-INF/red5-web.properties
    ```
 
 2. Enable DASH by adding the following property:.
@@ -75,7 +75,7 @@ You can use the embedded player `play.html` to play the streams with dash.
 - To play a stream with Dash, provide ```streamId``` as the id and ```dash``` as the playOrder parameter in the URL shown below.
 
    ```
-   https://AMS-domain-name:5443/WebRTCAppEE/play.html?id=test&playOrder=dash
+   https://AMS-domain-name:5443/live/play.html?id=test&playOrder=dash
    ```
 
 - The dash playback will start automatically when the stream is live.
@@ -89,7 +89,7 @@ Assume Dash muxing is enabled and a stream is published to the Ant Media Server.
 The default MPEG-Dash (.mpd) URL will be as follows:
 
 ```
-https://AMS-domain-name:5443/WebRTCAppEE/streams/streamId/streamId.mpd
+https://AMS-domain-name:5443/live/streams/streamId/streamId.mpd
 ```
   
 :::info

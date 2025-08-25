@@ -13,11 +13,11 @@ Wirecast is a live video streaming production tool by Telestream. It allows user
 
 To publish with WireCast, we must first create a live stream in Ant Media Server, as this live stream id will be used to publish the stream in Wirecast.
 
-In Ant Media Server, create a live stream with the name ```WireCast1``` as in the screen:
+In Ant Media Server, Go to the **live** application, and create a live stream with the name ```WireCast1``` as in the screen:
 
 ![](@site/static/img/publish-live-stream/wirecast/Wirecast-dashboard.png)
 
-A live stream will be added to the LiveApp application dashboard. Take note of the ```WireCast1``` stream Id as we will need it later. The server generates a random stream Id by default, but a custom stream Id can also be specified.
+A live stream will be added to the live application dashboard. Take note of the ```WireCast1``` stream Id as we will need it later. The server generates a random stream Id by default, but a custom stream Id can also be specified.
 
 Once the stream has been created, we can copy the RTMP Url by selecting ```Copy Publish URL``` from the Actions menu, as shown in the image below.
 
@@ -39,7 +39,7 @@ We are going to publish stream to an RTMP URL in Ant Media Server. Click **Outpu
 
 ![](@site/static/img/image8.png)
 
-Put in the RTMP URL and Stream Id that we copied earlier from the Ant Media Server LiveApp application's dashboard.
+Put in the RTMP URL and Stream Id that we copied earlier from the Ant Media Server live application's dashboard.
 
 ![](@site/static/img/image1.png)
 

@@ -142,7 +142,7 @@ In this example, we show the incoming text in a toast message.
 Ant Media Server and WebRTC iOS SDK can use data channels in WebRTC. In order to use the data channel, make sure that it’s enabled both server-side and mobile. In order to enable it for the iOS SDK, you can just set the ```enableDataChannel``` parameter to true in ```setOptions``` method.
 
 ```swift
-webRTCClient.setOptions(url: "ws://your_server_url:5080/WebRTCAppEE/websocket", streamId: "stream123", token: "", mode: .play, enableDataChannel: true)
+webRTCClient.setOptions(url: "ws://your_server_url:5080/live/websocket", streamId: "stream123", token: "", mode: .play, enableDataChannel: true)
 ```
 
 The WebRTC iOS SDK also provides sample code for sending and receiving messages via a data channel.
@@ -180,7 +180,7 @@ You can also programmatically send a data channel message with REST API. Here is
 
 ```bash
 curl -X POST
-http://localhost:5080/WebRTCAppEE/rest/v2/broadcasts/{STREAM_ID}/data
+http://localhost:5080/live/rest/v2/broadcasts/{STREAM_ID}/data
 -H 'content-type: application/json'
 -d '{message: "test"}'
 ```

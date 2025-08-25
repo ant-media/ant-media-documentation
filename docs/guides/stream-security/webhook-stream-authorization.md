@@ -78,7 +78,7 @@ The POST request sent by Ant Media Server will contain the following payload:
 {
   "streamId": "teststream",
   "mode": "play",
-  "appName": "WebRTCAppEE",
+  "appName": "live",
   "origin":"[domain_of_request_origin]",
   "token": "token_if_passed",
   "subscriberCode": "subscriber_code_if_passed",
@@ -149,7 +149,7 @@ With this flag, Tomcat will allow us to fetch the user's IP address through thei
 {
   "streamId": "teststream",
   "mode": "play",
-  "appName": "WebRTCAppEE",
+  "appName": "live",
   "origin":"[domain_of_request_origin]",
   "token": "token_if_passed",
   "subscriberCode": "subscriber_code_if_passed",

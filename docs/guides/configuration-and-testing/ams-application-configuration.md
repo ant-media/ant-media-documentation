@@ -9,7 +9,7 @@ sidebar_position: 1
 
 Ant Media Server can be configured either by editing a configuration file or through the application settings tab in the management console. 
 
-The configuration is set on the application level and is stored in a file located at ```<AMS_DIR>/webapps/<AppName>/WEB-INF/red5-web.properties```. 
+The configuration is set on the application level and is stored in a file located at ```<AMS_DIR>/webapps/{AppName}/WEB-INF/red5-web.properties```. 
 
 The management panel allows changing all the application settings however, the file is much more extensive. See the [Application Settings Javadoc](https://antmedia.io/javadoc/io/antmedia/AppSettings.html) to find a complete list of all available settings.
 
@@ -28,7 +28,7 @@ Starting from Ant Media Server version 2.6.2, all the application settings for b
 
 ## Application properties file
 
-The application settings can also be modified by editing the configuration file directly. Navigate to the file located at ```<AMS_DIR>/webapps/<AppName>/WEB-INF/red5-web.properties``` and open it using your preferred editor.
+The application settings can also be modified by editing the configuration file directly. Navigate to the file located at ```<AMS_DIR>/webapps/{AppName}/WEB-INF/red5-web.properties``` and open it using your preferred editor.
 
 Highlighted below is how to enable VP8 encoding by editing the configuration file.
 
@@ -63,7 +63,7 @@ To confirm the function of the setting, additional information is provided in th
 
 ### 3 Update the configuration file
 
-To add an additional setting to the configuration file, open the application settings, navigate to Advanced Settings on the management panel, or go to ```red5-web.properties``` file located at ```<AMS_DIR>/webapps/<AppName>/WEB-INF/red5-web.properties```.
+To add an additional setting to the configuration file, open the application settings, navigate to Advanced Settings on the management panel, or go to ```red5-web.properties``` file located at ```<AMS_DIR>/webapps/{AppName}/WEB-INF/red5-web.properties```.
 
 Following the example of ```aacEncodingEnabled``` setting, the below can be appended to the file:
 
