@@ -5,27 +5,41 @@ keywords: [Flutter SDK User Guide, Ant Media Server Documentation, Ant Media Ser
 sidebar_position: 5
 ---
 
-### Step 1. Set the Server Address.
-Once the app is installed and running on your device, enter the server IP address. To enter the IP address, please follow the below steps.
+This guide shows how to establish peer-to-peer (P2P) communication using the Flutter SDK sample app.
 
-- Tap on the Setting icon in the top right corner of the application.
+### Step 1: Set the Server Address
+
+Once the sample app is installed and running on your device:
+
+1. Tap the Settings icon in the top-right corner.
   
   ![1000131640](https://github.com/user-attachments/assets/0ee23ed3-62eb-4bd8-a2cd-55ffb5615e82)
 
-- Enter the Server details as ```wss://ant_media_server_address:Port/live/websocket```
+2. Enter the server details in the following format: ```wss://<ant_media_server_address>:<port>/application_name/websocket```
 
-  ![Screenshot_20250204-210520](https://github.com/user-attachments/assets/acbc2006-746c-49a0-97b7-2803bb0129da)
+![](@site/static/img/flutter-sdk/Screenshot_2025-08-26_12-27-10.webp)
  
-- Click **Set Server Ip** button to save it.
+3. Tap  **Set Server Ip**  to save the configuration.
 
-### Step 2. Start a P2P stream.
+### Step 2: Start a P2P Session
 
-- Select P2P from the list item & enter the streamId that you want to join in P2P mode.
+1. Select P2P from the main menu.
 
-  ![1000131648](https://github.com/user-attachments/assets/eb6c1e68-9ffa-4d47-9d88-4aae28f112a2)
+2. Enter the Stream ID you want to use for the P2P session.
 
-- When another peer is connected to the same streamId via Android, iOS, or the web, P2P communication will be established, and you can talk to each other.
+![1000131648](https://github.com/user-attachments/assets/eb6c1e68-9ffa-4d47-9d88-4aae28f112a2)
 
-- You can quickly join as a peer to the same streamId via the peer-to-peer sample page.
+3. When another peer (via Android, iOS, or Web) connects to the same Stream ID, a P2P communication session will be established.
 
+- You will then be able to talk to each other in real time.
+
+
+### Step 3: Join from Another Peer
+
+To test the connection, you can quickly join the same Stream ID using a web browser:
+  
   ```https://your_domain:5443/live/peer.html```
+
+Open this page in a browser and enter the same Stream ID. The P2P connection will be established between your Flutter app and the web peer.
+
+You have successfully set up and tested P2P communication using the Flutter SDK sample app.
