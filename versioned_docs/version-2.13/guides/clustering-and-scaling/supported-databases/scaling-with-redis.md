@@ -49,6 +49,12 @@ For cluster mode:
 sudo ./change_server_mode.sh cluster redis://[username:password@]host:port
 ```
 
+Note on TLS support:
+If your Redis server is configured with TLS, simply use the rediss:// scheme instead of redis://:
+```
+sudo ./change_server_mode.sh standalone rediss://[username:password@]host:port
+```
+
 When deploying Ant Media Server (AMS) with Kubernetes, you can use Redis by passing your specific database parameters in the [Kubernetes deployment](https://github.com/ant-media/Scripts/blob/master/kubernetes/ams-k8s-deployment-origin.yaml#L46) file. By modifying the deployment configuration, you can configure the host, port, and optional username/password credentials for Redis.
 ```
 -h
