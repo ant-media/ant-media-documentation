@@ -32,9 +32,9 @@ This section requires basic knowledge of terminal usage and Linux. You can also 
 - To create the playlist, we will use the same VoD URLs that we uploaded in the last section under `Get the VoD URL`
 
 ```
-http://13.201.79.224:5080/LiveApp/streams/111716684850426702820750.mp4
-http://13.201.79.224:5080/LiveApp/streams/618712696735204930650663.mp4
-http://13.201.79.224:5080/LiveApp/streams/716674157649310868227159.mp4
+http://13.201.79.224:5080/live/streams/111716684850426702820750.mp4
+http://13.201.79.224:5080/live/streams/618712696735204930650663.mp4
+http://13.201.79.224:5080/live/streams/716674157649310868227159.mp4
 ```
 
 ### Passing the Variables
@@ -46,11 +46,10 @@ http://13.201.79.224:5080/LiveApp/streams/716674157649310868227159.mp4
 ```
 export MY_ANT_MEDIA_SERVER=localhost
 export MY_PLAYLIST_ID=myPlaylistId
-export ITEM1=http://13.201.79.224:5080/LiveApp/streams/111716684850426702820750.mp4
-export ITEM2=http://13.201.79.224:5080/LiveApp/streams/618712696735204930650663.mp4
-export ITEM3=http://13.201.79.224:5080/LiveApp/streams/716674157649310868227159.mp4
+export ITEM1=http://13.201.79.224:5080/live/streams/111716684850426702820750.mp4
+export ITEM2=http://13.201.79.224:5080/live/streams/618712696735204930650663.mp4
+export ITEM3=http://13.201.79.224:5080/live/streams/716674157649310868227159.mp4
 ```
-![image.png](@site/static/img/publish-live-stream/playlist/items.png)
 
 ### Creating the Playlist
 
@@ -58,7 +57,7 @@ Create a Playlist with the items above. Just Copy and Paste the below command.
 
 ```bash
 curl -X 'POST' \
-"http://${MY_ANT_MEDIA_SERVER}:5080/LiveApp/rest/v2/broadcasts/create" \
+"http://${MY_ANT_MEDIA_SERVER}:5080/live/rest/v2/broadcasts/create" \
   -H 'Content-Type: application/json' \
   -d '{ 
           "streamId": "'"${MY_PLAYLIST_ID}"'", 
@@ -91,7 +90,7 @@ curl -X 'POST' \
 ### Starting the Playlist
 
 ```bash
-curl -X 'POST' "http://${MY_ANT_MEDIA_SERVER}:5080/LiveApp/rest/v2/broadcasts/${MY_PLAYLIST_ID}/start" 
+curl -X 'POST' "http://${MY_ANT_MEDIA_SERVER}:5080/live/rest/v2/broadcasts/${MY_PLAYLIST_ID}/start" 
 ```
 
 ![image.png](@site/static/img/publish-live-stream/playlist/playlist-start.png)
@@ -102,7 +101,7 @@ curl -X 'POST' "http://${MY_ANT_MEDIA_SERVER}:5080/LiveApp/rest/v2/broadcasts/${
 
 ### Watching the Playlist
 
-- Open a new tab in your browser and visit `http://{MY_ANT_MEDIA_SERVER}:5080/LiveApp/play.html?id={MY_PLAYLIST_ID}&playOrder=hls`
+- Open a new tab in your browser and visit `http://{MY_ANT_MEDIA_SERVER}:5080/live/play.html?id={MY_PLAYLIST_ID}&playOrder=hls`
 
 - Pay attention to the fact that we use HLS for playback because it provides better experience in playlists and there is no need to have ultra-low latency when playing with WebRTC as it is VoD streaming.
 
@@ -113,7 +112,7 @@ curl -X 'POST' "http://${MY_ANT_MEDIA_SERVER}:5080/LiveApp/rest/v2/broadcasts/${
 To skip item in playback, you can make the below REST call.
 
 ```bash
-curl -X 'POST' "http://${MY_ANT_MEDIA_SERVER}:5080/LiveApp/rest/v2/broadcasts/playlists/${MY_PLAYLIST_ID}/next" 
+curl -X 'POST' "http://${MY_ANT_MEDIA_SERVER}:5080/live/rest/v2/broadcasts/playlists/${MY_PLAYLIST_ID}/next" 
 ```
 
 If you give index query parameter when skipping an item in the PlayList, it will skip to that item directly in the playlist.
@@ -121,7 +120,7 @@ If you give index query parameter when skipping an item in the PlayList, it will
 You can add index query parameters by just appending a question mark to the URL as follows:
 
 ```bash
-curl -X 'POST' "http://${MY_ANT_MEDIA_SERVER}:5080/LiveApp/rest/v2/broadcasts/playlists/${MY_PLAYLIST_ID}/next" ?index=0
+curl -X 'POST' "http://${MY_ANT_MEDIA_SERVER}:5080/live/rest/v2/broadcasts/playlists/${MY_PLAYLIST_ID}/next" ?index=0
 ```
 
 - Check that the player has skipped the item. It may take about 10-15 seconds to see that the effect because HLS playback has this latency.
@@ -129,7 +128,7 @@ curl -X 'POST' "http://${MY_ANT_MEDIA_SERVER}:5080/LiveApp/rest/v2/broadcasts/pl
 ### Stop the Playlist
 
 ```bash
-curl -X 'POST' "http://${MY_ANT_MEDIA_SERVER}:5080/LiveApp/rest/v2/broadcasts/${MY_PLAYLIST_ID}/stop"
+curl -X 'POST' "http://${MY_ANT_MEDIA_SERVER}:5080/live/rest/v2/broadcasts/${MY_PLAYLIST_ID}/stop"
 ```
 
 Stay tuned for more new features to enhance the Playlist experience with Ant Media Server.

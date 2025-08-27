@@ -41,7 +41,7 @@ To resolve this, enable **HTTP Forwarding** so Ant Media Server automatically re
 ### Steps to Enable HTTP Forwarding
 
 1. Log in to the Ant Media Server Management Panel
-2. Navigate to your application (e.g., `LiveApp`) and go to **Application Settings → Advanced Settings**.  
+2. Navigate to your application (e.g., `live`) and go to **Application Settings → Advanced Settings**.  
 3. Set the following properties:
 
    ```bash
@@ -65,7 +65,7 @@ With forwarding enabled, your VOD files stored in DigitalOcean Spaces can be pla
 Now when you access:
 
 ```bash
-https://your-domain:5443/AppName/streams/recording.mp4  
+https://your-domain:5443/live/streams/recording.mp4  
 ```
 
 Ant Media Server will forward the request to:
