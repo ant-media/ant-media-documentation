@@ -86,17 +86,32 @@ Open the link: [https://aws.amazon.com/marketplace/pp/B07569Y9SJ/](https://aws.
 
 **11.** If the template has been installed successfully, it says **Create Complete** in the red rectangle.
 
-![](@site/static/img/AntMedia-CloudFormation-7.png)
+**12.** You can now access the URL addresses for **Dashboard / Origin / Edge** in the **Outputs** tab.  
 
-**12.** You can access the URL addresses for LoadBalancer HTTP and HTTPS in the Outputs tab. If you define the CNAME record for the domain you have defined on Certificate Manager to the Load Balancer address below, you can access Ant Media Server without a certificate error on the domain you have defined.
+![](/img/clustering-and-scaling/aws-cloudformation/Outputs.webp)
 
-![](@site/static/img/AntMedia-CloudFormation-8.png)
+:::info
+
+To avoid browser warnings and certificate errors, you must associate your Load Balancer with a valid domain and certificate.  
+
+Here’s how it works:  
+- By default, the Outputs tab will show you the **Load Balancer DNS names** (e.g., `cloudf-appli-xxxx.elb.eu-west-2.amazonaws.com`).  
+- These DNS names are functional, but they use an AWS-issued certificate that does **not** match your custom domain.  
+- If you try to open them directly over HTTPS, most browsers will mark them as **insecure** or show a **certificate mismatch error**.  
+
+To fix this:
+- Define a **CNAME record** in your DNS (e.g., `stream.example.com`) that points to your Load Balancer DNS name.
+- Then, request or import an SSL/TLS certificate in **AWS Certificate Manager** for your chosen domain.
+- Attach that certificate to your Load Balancer’s HTTPS listener.  
+
+After this setup, you’ll be able to access Ant Media Server securely on your own domain (e.g., `https://stream.example.com`) without any certificate errors.  
+:::
 
 **13.** When you enter the Load Balancer URL in your browser, the Ant Media Dashboard will open. Here, you can create your account by providing the following details: **First Name, Last Name, Email Address, Password, and Confirm Password**.
 <br/>
 <br/>
 
-![](/img/clustering-and-scaling/aws-cloudformation/create-account-2.webp)
+![](/img/clustering-and-scaling/aws-cloudformation/create-account.webp)
 
  **14.** Once logged in, When you click on the **Cluster tab**, you can see the servers in Cluster.
 
@@ -110,14 +125,29 @@ Open the link: [https://aws.amazon.com/marketplace/pp/B07569Y9SJ/](https://aws.
 <br/>
 <br/>
 
-We have now covered most of the topics around CloudFormation. So, what do we actually gain by using the CloudFormation template for Ant Media Server?
-Well, while you’re sipping your coffee, the following steps are automatically handled for you:
+### Tada!! Congratulations! 
 
--  EC2 instance provisioning
--  Security Group configuration
--  Ant Media Server installation
--  Ant Media Server Cluster setup
--  Auto Scaling configuration
--  Load Balancer setup
+By now, you’ve successfully deployed **Ant Media Server using CloudFormation**. While you were sipping your coffee, the template automatically took care of:
 
-If you have any questions, feel free to drop your query here: https://github.com/orgs/ant-media/discussions
+- EC2 instance provisioning
+- Security Group configuration
+- Ant Media Server installation
+- Ant Media Server cluster setup (Origin + Edge)
+- Auto Scaling configuration
+- Load Balancer setup with HTTPS support
+- Ready to Publish and Play your desired streams. 
+
+**The best part?**   
+
+You don’t have to manually install, configure, or connect anything. With just a few clicks, you now have a fully functional cluster that’s ready to publish and play streams within minutes. You can refer to the below screenshots for reference. 
+
+![](/img/clustering-and-scaling/aws-cloudformation/publish-cloudformation.webp)
+
+<br/>
+<br/>
+
+![](/img/clustering-and-scaling/aws-cloudformation/play-cloudformation.webp)
+
+This means you can move straight to testing your live workflows — WebRTC, RTMP ingest (You will have to create a seperate domain for RTMP), HLS/LL-HLS playback — without worrying about infrastructure details.
+
+If you have any questions or run into issues, feel free to reach out here: [GitHub Discussions](https://github.com/orgs/ant-media/discussions).
