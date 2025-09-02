@@ -96,7 +96,7 @@ curl -X GET -H "Content-Type: application/json" -H "Authorization: eyJhbGciOiJIU
 The response should be something like
 
 ```
-{"applications":["LiveApp","WebRTCAppEE"]}
+{"applications":["live"]}
 ```
 
 Then, you can use all [Web panel REST methods](https://antmedia.io/rest/#/ManagementRestService) using the header as shown in the sample above.

@@ -37,7 +37,7 @@ To resolve this, enable **HTTP Forwarding** so Ant Media Server automatically re
 ### Steps to Enable HTTP Forwarding
 
 1. Log in to the Ant Media Server Management Panel
-2. Navigate to your application (e.g., `LiveApp`) and go to **Application Settings → Advanced Settings**.  
+2. Navigate to your application (e.g., `live`) and go to **Application Settings → Advanced Settings**.  
 3. Set the following properties:
 
    ```bash
@@ -59,7 +59,7 @@ To resolve this, enable **HTTP Forwarding** so Ant Media Server automatically re
 Once forwarding is set up, you can embed or share the playback URLs directly from AMS, and behind the scenes, the requests will be served from your OVH Object Storage.
 
 ```bash
-https://your-domain:5443/AppName/streams/recording.mp4  
+https://your-domain:5443/live/streams/recording.mp4  
 ```
 
 Ant Media Server will forward the request to:

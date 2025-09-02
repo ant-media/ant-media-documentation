@@ -13,7 +13,7 @@ Thumbnails are small, lightweight versions of images or videos, used as previews
 
 Ant Media Server can generate thumbnails (previews) of the incoming streams on the fly. This guide will help you learn configuration parameters for generating and using thumnails.
 
-- In order to activate thumbail generation, you just need to add at least one adaptive bitrate. You can do that in the dashboard using ```Application > Your App > Settings > Add New Bitrate```
+- In order to activate thumbail generation, you just need to add at least one adaptive bitrate. You can do that in the dashboard using ```Application > live > Settings > Add New Bitrate```
 
 ![](@site/static/img/preview_1.png)
 
@@ -89,27 +89,27 @@ As an alternative, you can also enable this feature on the web panel by enabling
 The generated thumbnails will be available in this URL template:
 
 ```html
-http://<SERVER_NAME>:5080/<APP_NAME>/previews/<STREAM_ID>.png
+http://<SERVER_NAME>:5080/live/previews/<STREAM_ID>.png
 
-http://<SERVER_NAME>:5080/<APP_NAME>/previews/<STREAM_ID>.jpg
+http://<SERVER_NAME>:5080/live/previews/<STREAM_ID>.jpg
 
-http://<SERVER_NAME>:5080/<APP_NAME>/previews/<STREAM_ID>.webp
+http://<SERVER_NAME>:5080/live/previews/<STREAM_ID>.webp
 ```
 
 **With v2.4.3** and later, the `_finished` suffix is added to the PNG file after streaming has finished. So that it will be in the following template
 
 ```html
-http://<SERVER_NAME>:5080/<APP_NAME>/previews/<STREAM_ID>_finished.png
+http://<SERVER_NAME>:5080/live/previews/<STREAM_ID>_finished.png
 
-http://<SERVER_NAME>:5080/<APP_NAME>/previews/<STREAM_ID>_finished.jpg
+http://<SERVER_NAME>:5080/live/previews/<STREAM_ID>_finished.jpg
 
-http://<SERVER_NAME>:5080/<APP_NAME>/previews/<STREAM_ID>_finished.webp
+http://<SERVER_NAME>:5080/live/previews/<STREAM_ID>_finished.webp
 ```
 
 The absolute path of the preview image is as follows:
 
 ```bash
-/usr/local/antmedia/webapps/<APP_NAME>/previews/
+/usr/local/antmedia/webapps/live/previews/
 ```
 
 In addition to this, you can also upload thumbnail images to the S3 buckets. Please [check out the instructions for S3 Integration](https://antmedia.io/docs/category/s3-recording-and-integration/).

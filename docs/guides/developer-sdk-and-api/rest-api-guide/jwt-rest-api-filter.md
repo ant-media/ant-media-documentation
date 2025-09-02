@@ -47,7 +47,7 @@ curl -X POST -H "Content-Type: application/json" -H "Authorization: {JWTToken}" 
 
 ## Step 6: Enable JWKS (Optional)
 
-If you want to use the JSON Web Key Set (JWKS) feature, you need to have an OAuth server like auth0.com. You can also build your own OAuth server system with [Hydra](https://www.ory.sh/hydra/docs/install). For JWKS configurations, add parameters to the `/usr/local/antmedia/webapps/<App-Name>/WEB-INF/red5-web.properties` file:
+If you want to use the JSON Web Key Set (JWKS) feature, you need to have an OAuth server like auth0.com. You can also build your own OAuth server system with [Hydra](https://www.ory.sh/hydra/docs/install). For JWKS configurations, add parameters to the `/usr/local/antmedia/webapps/{App-Name}/WEB-INF/red5-web.properties` file:
 
 ```
 settings.jwtControlEnabled=true
