@@ -148,6 +148,6 @@ You don’t have to manually install, configure, or connect anything. With just 
 
 ![](/img/clustering-and-scaling/aws-cloudformation/play-cloudformation.png)
 
-This means you can move straight to testing your live workflows — WebRTC, RTMP ingest (You will have to create a seperate domain for RTMP), HLS/LL-HLS playback — without worrying about infrastructure details.
+This means you can move straight to testing your live workflows — WebRTC, RTMP ingest (You will have to create a seperate domain for RTMP streaming), HLS/LL-HLS playback — without worrying about infrastructure details.
 
 If you have any questions or run into issues, feel free to reach out here: [GitHub Discussions](https://github.com/orgs/ant-media/discussions).
