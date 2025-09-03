@@ -141,12 +141,12 @@ By now, you’ve successfully deployed **Ant Media Server using CloudFormation**
 
 You don’t have to manually install, configure, or connect anything. With just a few clicks, you now have a fully functional cluster that’s ready to publish and play streams within minutes. You can refer to the below screenshots for reference. 
 
-![](/img/clustering-and-scaling/aws-cloudformation/publish-cloudformation.webp)
+![](/img/clustering-and-scaling/aws-cloudformation/publish-cloudformation.png)
 
 <br/>
 <br/>
 
-![](/img/clustering-and-scaling/aws-cloudformation/play-cloudformation.webp)
+![](/img/clustering-and-scaling/aws-cloudformation/play-cloudformation.png)
 
 This means you can move straight to testing your live workflows — WebRTC, RTMP ingest (You will have to create a seperate domain for RTMP), HLS/LL-HLS playback — without worrying about infrastructure details.
 
