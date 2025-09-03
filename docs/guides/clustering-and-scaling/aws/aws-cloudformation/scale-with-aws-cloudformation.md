@@ -72,9 +72,7 @@ Open the link: [https://aws.amazon.com/marketplace/pp/B07569Y9SJ/](https://aws.
 -   **VpcCidrBlock:** Associates a CIDR block with your VPC. It should be the same as the VPC Network.
 -   **VpcId:** VpcId of your existing Virtual Private Cloud (VPC). The VpcId must be the same as the subnets you choose.
   <br/>
-
 <br/>
-
 **9.** On the **Configure Stack Options** page, select the relevant options. Since this stack uses AWS Lambda, you’ll need to check the box **"I acknowledge that AWS CloudFormation might create IAM resources"** (IAM permissions are required for Lambda to fetch the latest image). Once done, click **Next** to continue.
 
 ![](/img/clustering-and-scaling/aws-cloudformation/6.1-Configure-Stack-Options.webp)
@@ -84,7 +82,7 @@ Open the link: [https://aws.amazon.com/marketplace/pp/B07569Y9SJ/](https://aws.
 **10.** On the **Review and Create page**, you can review the summary of all parameters you’ve entered. If needed, you can edit any of them before proceeding.
 
 
-**11.** If the template has been installed successfully, it says **Create Complete** in the red rectangle.
+**11.** If the template has been installed successfully, it says **Create Complete** as per the screenshot below.
 
 **12.** You can now access the URL addresses for **Dashboard / Origin / Edge** in the **Outputs** tab.  
 
@@ -95,25 +93,31 @@ Open the link: [https://aws.amazon.com/marketplace/pp/B07569Y9SJ/](https://aws.
 To avoid browser warnings and certificate errors, you must associate your Load Balancer with a valid domain and certificate.  
 
 Here’s how it works:  
-- By default, the Outputs tab will show you the **Load Balancer DNS names** (e.g., `cloudf-appli-xxxx.elb.eu-west-2.amazonaws.com`).  
+- By default, the Outputs tab will show you the **Load Balancer DNS names** (e.g., `cloudf-appli-xxxx.elb.amazonaws.com`).  
 - These DNS names are functional, but they use an AWS-issued certificate that does **not** match your custom domain.  
 - If you try to open them directly over HTTPS, most browsers will mark them as **insecure** or show a **certificate mismatch error**.  
 
 To fix this:
 - Define a **CNAME record** in your DNS (e.g., `stream.example.com`) that points to your Load Balancer DNS name.
-- Then, request or import an SSL/TLS certificate in **AWS Certificate Manager** for your chosen domain.
+- Then, request or import an SSL/TLS certificate in **AWS Certificate Manager** for your chosen domain (Or) If you already have a certificate from another provider, you can also import it into ACM and use it the same way.  
 - Attach that certificate to your Load Balancer’s HTTPS listener.  
 
 After this setup, you’ll be able to access Ant Media Server securely on your own domain (e.g., `https://stream.example.com`) without any certificate errors.  
 :::
 
-**13.** When you enter the Load Balancer URL in your browser, the Ant Media Dashboard will open. Here, you can create your account by providing the following details: **First Name, Last Name, Email Address, Password, and Confirm Password**.
+**13.** When you enter the Dashboard URL in your browser for the first time, the Ant Media Dashboard will open asking you to create your account by providing the following details: **First Name, Last Name, Email Address, Password, and Confirm Password**.
 <br/>
 <br/>
 
-![](/img/clustering-and-scaling/aws-cloudformation/create-account.webp)
+![](/img/clustering-and-scaling/aws-cloudformation/create-account.webp)   
 
- **14.** Once logged in, When you click on the **Cluster tab**, you can see the servers in Cluster.
+:::note
+In the screenshot above, you may notice that the Dashboard is accessed using a secure custom domain (e.g., `https://cf-automation.antmedia.cloud`), while the publish/play examples (at the end of the document) use the default insecure Load Balancer URLs (e.g., `https://cloudf-appli-xxxxx.elb.amazonaws.com`).  
+
+The custom domain shows how SSL works without warnings, while the Load Balancer URL is shown to illustrate the Outputs provided by CloudFormation. You can fix them by following the steps shared above.
+:::
+
+ **14.** Once logged in, When you click on the **Cluster tab**, you can see the servers in Cluster. **The Cluster is ready to use for your Live-Streaming**
 
 ![](@site/static/img/AntMedia-CloudFormation-9.png)
 
@@ -139,7 +143,7 @@ By now, you’ve successfully deployed **Ant Media Server using CloudFormation**
 
 **The best part?**   
 
-You don’t have to manually install, configure, or connect anything. With just a few clicks, you now have a fully functional cluster that’s ready to publish and play streams within minutes. You can refer to the below screenshots for reference. 
+You don’t have to manually install, configure, or connect anything. With just a few clicks, you now have a fully functional cluster that’s ready to **publish and play streams** within minutes. You can refer to the below screenshots for reference. 
 
 ![](/img/clustering-and-scaling/aws-cloudformation/publish-cloudformation.png)
 
