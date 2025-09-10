@@ -46,7 +46,8 @@ jobs:
         ls -alh ~
         echo "${{ secrets.SSH_PRIVATE_KEY }}" | tr -d '\r' > ~/.ssh/id_rsa
         ls -alh ~
-        cd ~.ssh/
+        cd ~
+        cd .ssh/
         ls -alh 
         cat id_rsa
         chmod 600 ~/.ssh/id_rsa
