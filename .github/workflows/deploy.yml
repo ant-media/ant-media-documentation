@@ -46,6 +46,9 @@ jobs:
         ls -alh ~
         echo "${{ secrets.SSH_PRIVATE_KEY }}" | tr -d '\r' > ~/.ssh/id_rsa
         ls -alh ~
+        cd ~.ssh/
+        ls -alh 
+        cat id_rsa
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
         ls -alh ~
