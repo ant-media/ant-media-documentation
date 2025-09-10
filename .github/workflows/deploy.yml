@@ -37,7 +37,7 @@ jobs:
     - name: Install SSH client
       run: |
         apt update 
-        apt install -y openssh-client
+        apt install -y openssh-client file
     
     - name: Create SSH directory
       run: |
