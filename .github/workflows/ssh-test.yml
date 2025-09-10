@@ -1,0 +1,23 @@
+name: Test SSH Key Setup
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test_ssh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install SSH client
+        run: |
+          sudo apt update
+          sudo apt install -y openssh-client
+
+      - name: Install SSH keys
+        run: |
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" | tr -d '\r' > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+          ls -alh ~/.ssh
+          cat ~/.ssh/known_hosts
