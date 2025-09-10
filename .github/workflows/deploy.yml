@@ -43,10 +43,10 @@ jobs:
       run: |         
         mkdir -p ~/.ssh
         chmod 700 ~/.ssh
-        ls -alh
+        ls -alh ~
         echo "${{ secrets.SSH_PRIVATE_KEY }}" | tr -d '\r' > ~/.ssh/id_rsa
-        ls -alh
+        ls -alh ~
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
-        ls -alh
+        ls -alh ~
 
