@@ -199,5 +199,13 @@ sudo sh -c "iptables-save >` /etc/iptables/rules.v4"
 ## Please watch the quick installation of Ant Media Server.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/0m27oDIb95s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<br>
+</br>
+
+<div align="center">
+<h2> Well done 👏 </h2>
+</div>
+
+You have installed **AntMedia Server on Linux** (both Community and Enterprise), started the **service**, **set up SSL**, accessed the **web panel** and also understood the **server ports** used by AntMedia Server (all while sipping your ☕). You now have a solid foundation for live streaming and can build on this setup with confidence.
 
 
