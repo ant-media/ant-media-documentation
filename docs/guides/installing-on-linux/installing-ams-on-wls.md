@@ -9,7 +9,7 @@ sidebar_position: 5
 
 Windows Subsystem for Linux (WSL) provides a lightweight virtualized environment to run Linux distributions directly on Windows. This guide shows you how to install Ant Media Server (AMS) on WSL, which can be useful for local development, testing, and demos.
 
-:::info **Important:** This guide assumes you are using **WSL2** and Ubuntu as your Linux distribution. For production setups, we strongly recommend using a dedicated Linux server or virtual machine.
+:::info **Important:** This guide assumes you are using **WSL2** and Ubuntu (>20.04) as your Linux distribution. For production setups, we strongly recommend using a dedicated Linux server or virtual machine.
 
 We also **do not cover** every installation step of AMS here — please follow our [Installing Ant Media Server on Linux](https://antmedia.io/docs/installation/) documentation for the complete process. This guide supplements that with WSL-specific steps.
 :::
@@ -116,3 +116,18 @@ To publish and play WebRTC in a production environment, you need to enable SSL. 
 
 - If you can't access AMS at `http://localhost:5080`, check if the WSL instance is running and that AMS is started.
 - Make sure ports are not blocked by your firewall or antivirus.
+
+
+<br /><br />
+---
+
+<div align="center">
+<h2> Nice Work 🙌 </h2>
+</div>
+
+You have successfully **installed Ant Media Server inside WSL2** on your **Windows machine**, updated your Ubuntu environment, ran AMS, and **Published and Played the streams via the Web Dashboard**. You now have a working local environment for testing, development, or demos — all from Windows. 
+
+Who said Linux and Windows can’t get along? 😉 Your streaming dev setup is primed and ready! 🎯
+
+
+
