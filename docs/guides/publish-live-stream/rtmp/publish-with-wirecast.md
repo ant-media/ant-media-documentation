@@ -11,7 +11,7 @@ Wirecast is a live video streaming production tool by Telestream. It allows user
 
 ## Create a live stream in AMS
 
-To publish with WireCast, we must first create a live stream in Ant Media Server, as this live stream id will be used to publish the stream in Wirecast.
+To publish with Wirecast, we must first create a live stream in Ant Media Server, as this live stream id will be used to publish the stream in Wirecast.
 
 In Ant Media Server, Go to the **live** application, and create a live stream with the name ```WireCast1``` as in the screen:
 
@@ -45,7 +45,11 @@ Put in the RTMP URL and Stream Id that we copied earlier from the Ant Media Serv
 
 ## Tune for ultra-low latency streaming
 
-Wirecast by default is not optimized for ultra low latency streaming. If you push RTMP stream with Wirecast and play with WebRTC, please open ```Output``` > ```Output Settings```> Edit ```Encoding configuration``` and make **Baseline** for profile. Also you can configure the bitrate according to your quality and internet bandwidth requirements.
+By default, Wirecast is not optimized for ultra-low latency streaming. If you are pushing an RTMP stream from Wirecast and playing it via WebRTC:  
+
+- Go to **Output > Output Settings > Edit Encoding Configuration**.  
+- Set the **Profile** to **Baseline**.  
+- Adjust the **bitrate** according to your desired quality and available internet bandwidth.  
 
 ![](@site/static/img/wirecast-encoding-settings.png) Click the right arrow to select the source of the video stream as in the screenshot:
 
@@ -58,3 +62,15 @@ Start broadcasting the live stream by clicking the Start/Stop Broadcasting in th
 Now the live stream is published to Ant Media Server. You will see the status of live stream in Ant Media Server is changed to Broadcasting status.
 
 You can now click the Play button and watch the live stream.
+
+
+<br /><br />
+---
+
+<div align="center">
+<h2> Ant Media X Wirecast 🎙️ </h2>
+</div>
+
+You’ve created a live stream in AMS, configured **Wirecast** with the **RTMP URL** & **Stream ID**, tuned for **ultra-low latency** (Profile = Baseline, matched bitrate), and started broadcasting.  
+
+Tap on your back— your stream is **live, optimized, and ready to engage your audience!** 🔥
