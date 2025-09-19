@@ -7,13 +7,13 @@ sidebar_position: 1
 
 # Load testing
 
-In this tutorial, we'll explain how to do WebRTC load testing on your Ant Media Server. The test environment has two parts: the test server and the SUT (system under test). We have two different setups for two different SUTs.
+In this tutorial, we explain how to perform WebRTC load testing on your Ant Media Server. The test environment has two parts: the test server and the SUT (system under test). There are two different setups depending on whether the SUT is a standalone server or a cluster.
 
 ## Preparation of SUT
 
 ### Standalone server setup
 
-In this option, we have only one Ant Media Server instance as SUT.
+In this option, there is only one Ant Media Server instance as the SUT.
 
 ```
     +-------------------+                  +----------------------+
@@ -26,11 +26,11 @@ In this option, we have only one Ant Media Server instance as SUT.
     |                   |    rest          |                      |
     +-------------------+                  +----------------------+
 ```
-To set up the Ant Media Server, please check [here](https://antmedia.io/docs/guides/installing-on-linux/installing-ams-on-linux/).
+To set up the Ant Media Server, see the installation guide:(https://antmedia.io/docs/guides/installing-on-linux/installing-ams-on-linux/).
 
 ### Cluster setup
 
-Here we have a cluster structure as SUT which contains one origin and N edge servers.
+In this option, the SUT is a cluster with one origin server and N edge servers.
 
 ```
                                            +--------------------+
@@ -64,31 +64,34 @@ Here we have a cluster structure as SUT which contains one origin and N edge ser
                +----------------+  +----------------+     +----------------+
     
 ```
-To deploy an Ant Media Server cluster, please see [here](https://antmedia.io/docs/guides/clustering-and-scaling/scaling-ant-media-server/).
+To deploy an Ant Media Server cluster, see the scaling guide: (https://antmedia.io/docs/guides/clustering-and-scaling/scaling-ant-media-server/).
 
 ## Ant Media WebRTC test tool
 
-You can download the WebRTC load test tool from your account at [antmedia.io](https://antmedia.io/). The test tool is listed for Enterprise Edition under the Download section of your account.
+You can download the WebRTC Load Test Tool from your account at [antmedia.io](https://antmedia.io/). The test tool is available under the Download section for Enterprise Edition users.
 
-Ant Media WebRTC Test Tool is a Java project for testing Ant Media Server WebRTC capabilities and has the following features:.
+The Ant Media WebRTC Test Tool is a Java project for testing Ant Media Server’s WebRTC capabilities. It has the following features:
 
-* This tool is compatible with the Ant Media Server signaling protocol.
-* It has two modes: publisher and player (-m flag determines the mode)
-* It has two options: with UI or without UI (-u flag determines the UI on/off)
-* You can also save received (in player mode) video.
-* You can create a load with the `-n` flag.
+* Compatible with the Ant Media Server signaling protocol
+* Two modes: publisher and player (controlled with the -m flag)
+* Two options: with UI or without UI (controlled with the -u flag)
+* Ability to save received video in player mode
+* Ability to create load with the -n flag
 
 ## Running Ant Media WebRTC Test Tool
 
 ### Installation
+
+Run the following commands to install Java and unpack the tool:
 
 ```bash
 sudo apt-get install openjdk-17-jre -y
 unzip webrtc-load-test-tool-*.zip
 cd webrtc-load-test/
 ```
+### Runningthe Test Tool
 
-This tool can be run from the terminal with the following options:.
+The tool can be run from the terminal with the following options:
 
 ```bash
 #publishes output.mp4 to the server with default name myStream
@@ -98,7 +101,7 @@ This tool can be run from the terminal with the following options:.
 ./run.sh -m player -n 100 -s 10.10.175.53 -p 5080 -u false
 ```
 
-If you are doing load testing on a cluster via a load balancer, and if your origin server is running behind port 443 and your Edge server behind port 5443, then the command should be as follows:.
+If you are load testing on a cluster via a load balancer, and your origin server is running behind port 443 and your edge servers behind port 5443, the commands are as follows:
 
 ```bash
 ./run.sh -f test.mp4 -m publisher -s server-domain-name -n 1 -p 443 -q true -u false
@@ -129,5 +132,19 @@ a        App Name       WebRTCAppEE  application name
 ```
 
 :::imp
-The file in mp4 format should have h264 encoded video and Opus encoded audio.
+The MP4 file should contain H.264-encoded video and Opus-encoded audio.
 :::
+
+### Conclusion
+
+Once you run the WebRTC Load Test Tool, you will see logs in the terminal showing the progress of publishers and players.
+
+* In publisher mode, the logs confirm that your media file is being published to the Ant Media Server, along with details about the connection.
+
+* In player mode, the logs show multiple WebRTC connections being established and video streams being received.
+
+Below is an example of what successful test output looks like in the terminal.
+
+#ADD SCREENSHOT**
+
+This confirms that the load test is running correctly and that the desired number of connections have been created.

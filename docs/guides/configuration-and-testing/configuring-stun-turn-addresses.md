@@ -8,15 +8,15 @@ sidebar_position: 6
 # Configuring STUN/TURN addresses
 
 ## Custom STUN servers for AWS Wavelength Zones
-Typically, the default Google STUN server suffices for WebRTC connectivity, eliminating the need to alter default STUN configurations.
+In most cases, the default Google STUN server is sufficient for WebRTC connectivity, so you don’t need to change the default settings.
 
-However, in AWS Wavelength Zones, there are limitations concerning obtaining ICE candidates. To address this challenge, Ant Media offers freely accessible STUN servers specifically tailored for AWS Wavelength Zones.
+However, in AWS Wavelength Zones, there are limitations when obtaining ICE candidates. To address this, Ant Media provides freely accessible STUN servers specifically designed for Wavelength Zones.
 
-These servers can be accessed via the ```stun.wavelength.antmedia.cloud``` address, where multiple instances are actively running.
+You can use them via: ```stun.wavelength.antmedia.cloud``` where multiple instances are actively running.
 
 ### Custom STUN Server Configuration in Ant Media Server
 
-1. Go to your Ant Media Server Web Panel application `Advanced Settings` section.
+1. Open the Ant Media Server Web Panel and navigate to `Application` →`Advanced Settings`.
 
 2. Change the following property
 
@@ -34,13 +34,14 @@ to
 
 ### Configure Custom STUN Server on the Client Side
 
-If you set up STUN/TURN on the Ant Media Server side, client-side STUN configuration becomes unnecessary. However, if STUN/TURN isn't configured on the server, you must include your custom STUN/TURN server as an ICE server on the client side.
+If you configure STUN/TURN on the server, you don’t need to configure it again on the client.
+If not, you must add your custom STUN/TURN server as an ICE server on the client side.
 
 #### Javascript SDK
 
 For custom STUN/TURN server to work you need to pass it to WebRTCAdaptor object as an element in iceServers list.
 
-WebRTCAdaptor object of javascript SDK has a ```peerconnection_config``` field which accepts an object of iceServers array.
+WebRTCAdaptor has a ```peerconnection_config``` field that accepts ```iceServers``` array.
 
 - Example:
 
@@ -101,14 +102,14 @@ Replace them with the following
   
 ## Custom TURN servers
 
-If WebRTC connectivity fails even though all your required ports are open, its highly possible that you must configure a TURN server in Ant Media Server. To learn more about TURN server check this [Guide](https://antmedia.io/docs/guides/advanced-usage/turn-instalation/coturn-quick-installation/)
+If WebRTC connectivity fails even with all ports open, you may need to configure a TURN server. To learn more about TURN server check this [Guide](https://antmedia.io/docs/guides/advanced-usage/turn-instalation/coturn-quick-installation/)
 
-TURN is an extension of STUN. So configuring it is very similar. 
+TURN is an extension of STUN, so configuration is very similar.
 
 ### Custom TURN server Configuration in Ant Media Server
 You can configure TURN server directly through ant media server application settings. This way, you won't need to configure TURN server seperately in each client SDK.
 
-- To do this, go to your Ant Media Server Web Panel > Application > Settings > Advanved settings. 
+- Goo to your Ant Media Server Dashboard  → `Application` → `Settings` → `Advanced Settings`.
 
 - Set below settings as follows:
   
@@ -118,11 +119,8 @@ You can configure TURN server directly through ant media server application sett
 "turnServerCredential"="TYPE_YOUR_TURN_SERVER_PASSWORD",
 ```
 
-- Save the settings. 
+- Save the settings. Ant Media Server will automatically use your TURN server.
 
-Now Ant Media Server will automaticly utilize your TURN server.
-
-If you still want to configure TURN server in client side, check below headlines.
 
 ### Configure custom TURN server in the JavaScript SDK.
 
@@ -248,3 +246,15 @@ Replace this function with:
         widget.iceServers
     );
 ```
+
+### Conclusion
+
+Configuring STUN/TURN servers ensures reliable WebRTC connectivity, especially in restricted environments such as AWS Wavelength Zones.
+
+* For most cases, Google’s default STUN server is enough.
+
+* In Wavelength Zones, use Ant Media’s STUN servers.
+
+* When NAT traversal or firewall restrictions block WebRTC, configure a TURN server for guaranteed connectivity.
+
+With these steps, you can set up STUN/TURN servers on both server-side and client-side SDKs (JavaScript, Embedded Player, Android, iOS, and Flutter) for seamless streaming performance.
