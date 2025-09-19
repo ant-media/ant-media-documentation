@@ -7,11 +7,11 @@ sidebar_position: 3
 
 # WebRTC Data Channel
 
-Data channel is another channel in WebRTC other than video and audio. Using a data channel, you can send any kind of information to the other clients. Data channels can be utilized in various use cases, including chat, control messages or file sharing. Ant Media Server provides a generic data channel mechanism that can be used in all use cases.
+Data channel is another channel in WebRTC besides video and audio. Using a data channel, you can send any kind of data to the other clients. Data channels can be utilized in various use cases, including chat, control messages or file sharing. Ant Media Server provides a generic data channel mechanism that can be used in all use cases.
 
 ## Enable Data Channel
 
-To use data channel functionality, first enable it from the AMS dashboard. This will allow you to send and receive anything via data channel with SDKs.
+To use data channel functionality, first enable it from the AMS dashboard. This will allow you to send and receive data via data channel with SDKs.
 
 ![](@site/static/img/image-1645113575789.png)
 
@@ -24,9 +24,9 @@ There are some data delivery options for data channels you can choose:
 ## Data Channel Sample Page
 
 Go to 
-```https://your domain name:5443/live/datachannel.html``` to use the data channel sample.
+```https://your-domain-name:5443/live/datachannel.html``` to use the data channel sample.
 
-If you have Ant Media Server installed on your local machine, you can also go to ```http://localhost:5080/live/datachannel.html```.
+If you have AntMedia Server installed on your local machine, you can also go to ```http://localhost:5080/live/datachannel.html```.
 
 Open the same page on another tab or another system and join with the same streamId there. Once you join from two or more tabs, you can send messages between peers.
 
@@ -226,3 +226,17 @@ Refer to the [Circle Conference Application](https://github.com/ant-media/confer
 *   ```MESSAGE_RECEIVED```: Used to notify when a chat message is received during the conference.
     ```UPDATE_AUDIO_LEVEL```: Used to receive participants audio level through data channel. Audio Level between 0 and 127. 0 means max, and 127 means min. Contains audioLevel and streamId of the participant. You can use this to show a speaking indicator on client side.
 *   ```UPDATE_PARTICIPANT_ROLE```: Used to update the role of a participant in the conference (e.g., from attendee to moderator).
+
+
+
+<br /><br />
+---
+
+<div align="center">
+<h2> Connection Established 🔗 </h2>
+</div>
+
+You’ve now **enabled Data Channel** support in AMS and in your SDK, tried out the **sample page**, and seen messages **flow peer-to-peer**. Your setup can handle chat, control messages, or file sharing right alongside your WebRTC stream.  
+
+PS: It’s real-time, flexible, and works **without extra plugins** — your app just got smarter! 💬
+
