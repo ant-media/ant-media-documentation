@@ -83,3 +83,15 @@ Now that, everything is set, let's proceed to push the SRT stream.
 - Ant Media Server supports various play protocols like WebRTC, CMAF (Dash), and HLS.
 
 - To learn how to play a stream, check the [Playing Live Streams](https://antmedia.io/docs/category/playing-live-streams/) guide.
+
+
+<br /><br />
+---
+
+<div align="center">
+<h2> 🎬 Stream On with Wirecast & AMS </h2>
+</div>
+
+You’ve now configured **Wirecast to stream via SRT to Ant Media Server**. With your source set, encoding parameters tuned, and stream initiated, your content is live and ready for viewing.
+
+You should be proud— your broadcast is now **secure, resilient, and optimized for modern streaming!** 🚀
