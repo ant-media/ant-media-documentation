@@ -7,7 +7,7 @@ sidebar_position: 1
 
 # SRT Ingest Guide
 
-SRT (Secure Reliable Transport) allows you to push streams to Ant Media Server and play them using various formats, including WebRTC, HLS, and CMAF, and record them as MP4. The SRT ingest feature, which also supports adaptive streaming, is available from version 2.4.3 onwards.
+SRT (Secure Reliable Transport) allows you to push streams to Ant Media Server and play them using various formats, including WebRTC, HLS, and CMAF, and record them as MP4. The SRT ingest feature, which also supports adaptive streaming, is available from version 2.4.3 EE onwards. 
 
 To enable this feature, we utilized Haivision's official [SRT library](https://github.com/Haivision/srt) and created an SRT preset for [JavaCPP-Presets](https://github.com/bytedeco/javacpp-presets). We intend to submit a pull request for the JavaCPP-Presets repository.
 
@@ -89,3 +89,15 @@ SRT is enabled by default in Ant Media Server and communicates via UDP port 4200
 :::info
 SRT support is available for both x86_64 and ARM architectures, starting with Ant Media Server version 2.6.0. For versions below 2.6.0 (till v2.5.3), SRT support is available for the x86_64 architecture only.
 :::
+
+
+<br /><br />
+---
+
+<div align="center">
+<h2> Stream Seamlessly with SRT 🔁 </h2>
+</div>
+
+You’ve now pushed streams using **FFmpeg (or OBS)**, optionally without specifying the **streamId**, and configured SRT ingest on Ant Media Server. If needed, you’ve also **updated the ingest port** and verified compatibility for your architecture.  
+
+Bonus: SRT gives you both **reliability** (over unreliable networks) and **flexibility** — your stream is resilient and ready for real-world conditions! 📶
