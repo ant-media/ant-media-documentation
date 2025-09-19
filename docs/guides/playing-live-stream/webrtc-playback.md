@@ -5,14 +5,13 @@ keywords: [WebRTC playback, WebRTC playback with Ant Media Server, Ant Media Ser
 sidebar_position: 1
 ---
 
-WebRTC playback is supported only in the Ant Media Server Enterprise Edition (EE).
+Ant Media Server (AMS) offers ultra-low latency WebRTC playback, enabling real-time streaming experiences.
 
-**Note:** To enable WebRTC playback, make sure that UDP ports 50000–60000 are open on your server's firewall.
-
-If the viewer is behind a corporate firewall or experiences restricted network conditions, you can route WebRTC traffic through a TURN server. [here](https://antmedia.io/docs/guides/advanced-usage/turn-instalation/coturn-quick-installation/).
-
-Before attempting playback, ensure that the stream is actively broadcasting on the server.
-> Quick Link: [Learn How to Publish with WebRTC](https://antmedia.io/docs/guides/publish-live-stream/webrtc/)
+### Prerequisites
+- **Ant Media Server Enterprise Edition (EE):** WebRTC playback is supported only in the Enterprise Edition.
+- **Open UDP Ports:** Ensure that UDP ports 50000–60000 are open on your server's firewall to facilitate WebRTC traffic.
+- **Active Stream:** Verify that the stream is actively broadcasting on the server before attempting playback. Quick Link: [Learn How to Publish with WebRTC](https://antmedia.io/docs/guides/publish-live-stream/webrtc/)
+- **TURN Server (Optional):** If viewers are behind corporate firewalls or experience restricted network conditions, consider routing WebRTC traffic through a TURN server [here](https://antmedia.io/docs/guides/advanced-usage/turn-instalation/coturn-quick-installation/). 
 
 1. Visit ```https://AMS_domain_name:5443/live/player.html```.
 2. If you're running Ant Media Server on your local computer, you can also visit ```http://localhost:5080/live/player.html```
@@ -34,3 +33,14 @@ Before attempting playback, ensure that the stream is actively broadcasting on t
 Check [Embedded Web Player](https://antmedia.io/docs/guides/playing-live-stream/embedded-web-player/) document for more information.
 
 Congrats. You're playing your stream with WebRTC having ultra-low latency.
+
+<br /><br />
+---
+
+<div align="center">
+<h2> WebRTC Playback- Slice of cake! 🍰 </h2>
+</div>
+
+Congratulations! You've successfully set up **WebRTC playback with Ant Media Server**. Your viewers can now enjoy **real-time streaming with minimal latency**, enhancing their viewing experience.
+With WebRTC, you've embraced a modern, efficient streaming protocol that ensures high-quality delivery and responsiveness. Your content is now more accessible and engaging than ever before.
+
