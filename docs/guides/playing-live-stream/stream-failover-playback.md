@@ -85,7 +85,7 @@ To learn more about Web Player, check [this document](https://antmedia.io/docs/g
 ---
 
 <div align="center">
-<h2> Interruptions free Streaming 🎥 </h2>
+<h2> Interruption free Streaming 🎥 </h2>
 </div>
 
 **Congratulations!** You've successfully configured **stream failover playback** with Ant Media Server. Your viewers can now enjoy **uninterrupted live streaming experiences**, even in the event of stream failures. By implementing primary and backup streams, you've enhanced the reliability of your live broadcasts, ensuring a seamless viewing experience for your audience.
