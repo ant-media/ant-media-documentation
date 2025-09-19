@@ -52,5 +52,5 @@ Check [here](https://antmedia.io/docs/category/playing-live-streams/) for more i
 
 You’ve now configured **XSplit with your RTMP URL** and Stream Key (plus token if needed), provided **sources**, set up the **output**, and hit “**Stream**.” You can view your live stream in the **browser** via the **play URL**.  
 
-Nice work — your broadcast is **live, flexible, and ready for whatever content you throw at it!** 🎤
+Nice work— your broadcast is **live, flexible, and ready for whatever content you throw at it!** 🎤
 
