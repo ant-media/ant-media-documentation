@@ -7,13 +7,19 @@ sidebar_position: 3
 
 # Introduction
 
-A low-latency HLS (LL-HLS) playback feature has been introduced in Ant Media Server version 2.11 and above. It allows you to stream with minimal latency (around 2–5 seconds), making it ideal for near-real-time streaming applications.
+A low-latency HLS (LL-HLS) playback feature has been introduced in Ant Media Server version 2.11 and above. It reduces traditional HLS latency from 8–12 seconds to approximately 2–5 seconds, making it ideal for near-real-time streaming applications.
 
 ## What is LL-HLS?
 
 **Low Latency HLS (LL-HLS)** is a streaming protocol designed to minimize latency in live streaming. Traditional HLS can have latency ranging from 8 to 12 seconds, while LL-HLS reduces this to around **2-5 seconds**.
 
 LL-HLS achieves this by using smaller video segments (called **parts**) that allow the video player to start playback before an entire segment is completed.
+
+### Prerequisites
+
+- **Ant Media Server Enterprise Edition v2.11 or later:** LL-HLS plugin compatible from this version.
+- **LL-HLS Plugin:** Purchase the plugin by emailing ```sales@antmedia.io``` or via the ```Ant Media website```
+- **Supported Player:** Use a player that supports LL-HLS, such as **THEO Player** or the **Ant Media Server Embedded Player**.
 
 ### Key Differences: HLS vs. LL-HLS
 
@@ -201,3 +207,14 @@ To apply the above settings, add them under the **customSettings** section in th
 ```
 
 You can easily enable Low-Latency HLS (LL-HLS) on Ant Media Server with this guide. For a more detailed explanation of the LL-HLS and its related properties, check the [Low-latency HLS blogpost](https://antmedia.io/low-latency-hls-or-ll-hls/).
+
+<br /><br />
+---
+
+<div align="center">
+<h2> ⏩ LL-HLS – Streaming in the Fast Lane! 🏎️💨 </h2>
+</div>
+
+Congratulations! You've successfully **set up LL-HLS with Ant Media Server**. Your viewers can now enjoy live streams with **significantly reduced latency**, enhancing their real-time viewing experience. 
+With LL-HLS, you've embraced a **modern streaming protocol** that balances performance and compatibility. Your content is now delivered faster, keeping your audience engaged and satisfied.
+
