@@ -94,3 +94,15 @@ This [Rest API](https://antmedia.io/rest/#/default/createBroadcast) can be used 
 curl -X POST -H "Content-Type: application/json" "https://IP-address-or-domain:Port/live/rest/v2/broadcasts/create?autoStart=false" -d '{
 "type":"ipCamera","name":"test","streamId":"test","ipAddr":  "127.0.0.1:8080","username": "camera-username","password":"camera-password"}'
 ```
+
+<br /><br />
+---
+
+<div align="center">
+<h2> Your Camera is Now Online 📷 </h2>
+</div>
+
+You’ve successfully connected your **IP camera to Ant Media Server**, entered the **URL and Stream ID**, and started streaming. Whether using **RTSP** or **ONVIF**, your feed is now live and accessible via WebRTC, HLS, DASH, or LL-HLS.  
+
+Great job 👏 — your camera stream is now securely flowing into AMS and ready for your audience! 🎥
+
