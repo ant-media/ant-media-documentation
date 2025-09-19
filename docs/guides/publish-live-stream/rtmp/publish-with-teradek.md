@@ -63,5 +63,5 @@ Congrats! You're publishing with Teradek Vidiu Pro to Ant Media Server.
 
 You’ve powered up your **Teradek Vidiu Pro**, configured **WiFi client mode**, set the **RTMP Server URL and Stream ID**, and started the broadcast. The stream is flowing from your HDMI source through Teradek into AMS.  
 
-Tada 👏 — you now have reliable hardware-encoded output and a **smooth RTMP pipeline via Teradek!** 🎥
+Tada 👏  you now have reliable hardware-encoded output and a **smooth RTMP pipeline via Teradek!** 🎥
 
