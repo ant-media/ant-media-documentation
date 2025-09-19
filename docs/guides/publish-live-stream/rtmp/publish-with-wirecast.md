@@ -67,7 +67,7 @@ You can now click the Play button and watch the live stream.
 ---
 
 <div align="center">
-<h2> Ant Media <> Wirecast 🎙️ </h2>
+<h2> Ant Media X Wirecast 🎙️ </h2>
 </div>
 
 You’ve created a live stream in AMS, configured **Wirecast** with the **RTMP URL** & **Stream ID**, tuned for **ultra-low latency** (Profile = Baseline, matched bitrate), and started broadcasting.  
