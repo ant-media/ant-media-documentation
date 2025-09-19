@@ -5,29 +5,45 @@ keywords: [Flutter SDK User Guide, Ant Media Server Documentation, Ant Media Ser
 sidebar_position: 3
 ---
 
-### Step 1. Set the Server Address.
-Once the app is installed and running on your device, enter the server IP address. To enter the IP address, please follow the below steps.
+This guide shows how to join a WebRTC conference room using the Flutter SDK sample app.
 
-- Tap on the Setting icon in the top right corner of the application.
+### Step 1: Set the Server Address
+
+Once the sample app is installed and running on your device:
+
+1. Tap the Settings icon in the top-right corner.  
   
   ![1000131640](https://github.com/user-attachments/assets/0ee23ed3-62eb-4bd8-a2cd-55ffb5615e82)
 
-- Enter the Server details as ```wss://ant_media_server_address:Port/live/websocket```
+2. Enter the server details in the following format: ```wss://<ant_media_server_address>:<port>/application_name/websocket```
 
-  ![Screenshot_20250204-210520](https://github.com/user-attachments/assets/b2c5bf00-e90e-401e-a379-9efc47154311)
+![](@site/static/img/flutter-sdk/Screenshot_2025-08-26_12-27-10.webp)
 
-- Click **Set Server Ip** button to save it.
+3. Tap  **Set Server Ip**  to save the configuration.
 
-### Step 2. Setting the Conference
 
-- Select the Conference option from the list.
+### Step 2: Join a Conference
 
-- Enter the streamId, and roomId of the conference room that you want to join.
+1. Select Conference from the main menu.
+
+2.  Enter:
+
+- Stream ID → a unique identifier for your stream.
+
+- Room ID → the conference room you want to join.
 
   ![1000131650](https://github.com/user-attachments/assets/0df6251d-17a4-4f82-8d65-60dcb5260a36)
+
+3. When other participants connect with the same Room ID (via Android, iOS, or Web), a conference room will be established.
+
+- All connected users will be able to communicate with each other in real time.
   
+### Step 3: Join from the Web
 
-- When there are other streams connected to the same roomId via Android, iOS, or the Web, then a conference room will be established and users can communicate with each other. 
+- To test, you can quickly join the same Room ID from a web browser:
 
-- You can quickly join the conference room via the conference sample page.
-  ```https://your-domain:5443/live/conference.html```
+```https://<your_domain>:5443/<application_name>/<roomid>```
+
+This allows you to connect multiple peers (Flutter + Web) in the same conference session.
+
+You have successfully joined a WebRTC conference using the Flutter SDK sample app.
