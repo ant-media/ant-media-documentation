@@ -94,7 +94,7 @@ http(s)://IP-address-or-domain:port/live/streams/stream_id.m3u8?token=tokenId
 
 :::info
 
-- If **Adaptive Bitrate (ABR)** is enabled and **WebRTC** stream is published, the original `.m3u8` file (e.g., `streamId.m3u8`) will **not be generated**. In such cases, use the adaptive or resolution-specific HLS playlists instead:
+- If **Adaptive Bitrate (ABR)** is enabled and **WebRTC** stream is published, the original `.m3u8` file (e.g., `streamId.m3u8`) will **not be generated**. In such cases, use the `adaptive` or `resolution-specific` HLS playlists instead:
    
 ```
 https://<server>:5443/live/streams/<streamId>_adaptive.m3u8?token=<token>
@@ -145,3 +145,15 @@ ws://{ant-media-server}:5080/live/websocket
   token : "token",
 }
 ```
+
+<br /><br />
+---
+
+<div align="center">
+<h2> 🔐 Access Denied Until Further Notice: Only Authorized Streams Pass! 🎥 </h2>
+</div>
+
+By enabling **One-Time Token Control**, you've ensured that only **authorized tokens can publish or play streams.** This enhances security by preventing unauthorized access and ensuring that only intended content goes live.
+
+Your streaming setup is **now more secure and streamlined**, focusing solely on authorized streams. Keep up the great work! 🚀
+
