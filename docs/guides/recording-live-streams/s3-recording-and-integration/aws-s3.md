@@ -31,13 +31,19 @@ You also need to know the region of your bucket. If you do not have any bucket, 
 
 ![image.png](@site/static/img/image-285129.png)
 
-Here you see the sample S3 credentials. You need to set to yours:
+Here you see the sample S3 credentials. You need to replace the placeholders with your actual S3 credentials. Then follow the below
 
-Then, log in to https://your_ams_server:5443, Go to the `Applications` (`live`) > `Settings` > `Enable Record Live Streams as MP4` and `Enable S3 Recording`, enter the `S3` credentials you have created, and `save` the settings.
+1. Log in to your Ant Media Server panel at `https://your_ams_server:5443`.
+2. Navigate to **Applications** and select your app (e.g., `live`).
+3. Go to **Settings**.
+4. Enable **Record Live Streams as MP4**.
+5. Enable **S3 Recording**.
+6. Enter the **S3 credentials** you created (Access Key, Secret Key, Bucket Name).
+7. Click **Save** to apply the settings.
 
 ![image.png](@site/static/img/image-285229.png)
 
-Your MP4 files and Preview files will be uploaded to your S3 Storage automatically.
+Your MP4 and Preview files will be uploaded to your **S3 Storage** automatically.
 
 
 ## Enable HTTP Forwarding for Playback
@@ -114,3 +120,15 @@ You need to put your AMS domain address in the allowed origins field.
 ```
 
 `*` on the origin field, as it accepts requests from all origins, can be used for quick testing. However, it can be changed to allow permissions for exact origins, such as `http://www.your-domain.com` since you only want to accept requests that are coming from your end.
+
+
+<br /><br />
+---
+
+<div align="center">
+<h2> Your Streams on Cloud9 ☁️ </h2>
+</div>
+
+You’ve successfully **enabled MP4 recording and connected your Ant Media Server to AWS S3**. Now, all your live streams are **automatically uploaded** to the cloud, safely stored, and ready for on-demand playback.  
+
+**Fantástico!** 🌩️ — your streams are now floating on Cloud9, **accessible anytime, anywhere!** 🚀
