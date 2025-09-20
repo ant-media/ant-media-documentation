@@ -186,6 +186,7 @@ You've successfully configured **Periodic Stream Recording in Ant Media Server**
 - Allowing you to save highlights
 - Generate snippets
 - Share quick moments with your audience
+
 With seamless integration into your workflow, this feature enhances your content creation process without interrupting the broadcast. 
 
 
