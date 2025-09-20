@@ -18,7 +18,7 @@ In this document, we will go through `MP4` and `WebM` recordings and REST API ca
 
 ## MP4 recording
 
-To record live streams as MP4, we must first have the appropriate codecs compatible with the MP4 container. The most famous codec for this purpose is H.264, which is enabled as the default codec in Ant Media Server. If H.264 is disabled, MP4 recording will not be available. 
+To record live streams as MP4, we must first have the appropriate codecs compatible with the MP4 container. The most famous codec for this purpose is H.264, which is enabled as the default codec in Ant Media Server. If H.264 is disabled, any streams using other codecs won’t be recorded in MP4 until enabled.
 
 You can set the H264 codec in the application settings via the web panel.
 
@@ -61,7 +61,7 @@ curl -X 'PUT' 'http(s)://domain-or-IP:Port/AppName/rest/v2/broadcasts/streamId/r
 
 ## WebM Recording
 
-To record webm-formatted files, we need to enable the VP8 codec in the Ant Media Server application. WebRTC supports WebM recording because it also supports VP8.
+To record in WebM format, you’ll need to enable the VP8 codec in your Ant Media Server application. Since WebRTC supports VP8, WebM recording is naturally supported as well.
 
 You can set the VP8 codec in the application settings via the web panel.
 
@@ -191,3 +191,14 @@ To remove/unlink the imported directory, check [this API](https://antmedia.io/re
 ```bash
 curl -X 'DELETE' 'https://test.antmedia.io:5443/Sandbox/rest/v2/vods/directory?directory=/home/recordings' -H 'accept: application/json'
 ```
+
+<br /><br />
+---
+
+<div align="center">
+<h2> Lights, Camera, Record! 🎬 🎙️ </h2>
+</div>
+
+You’ve enabled **MP4 and WebM recording**, verified H.264 and VP8 codec settings, and optionally set up adaptive bitrate and custom filename formats. Your live streams are now being captured in the formats you choose.
+Way to go! — your content is now preserved for **later viewing, distribution, or archival!** 📼
+
