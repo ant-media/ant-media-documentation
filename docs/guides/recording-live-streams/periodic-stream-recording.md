@@ -174,13 +174,19 @@ Webhooks can be used to get notified about the newly generated clips. Check out 
 
 Each time a new MP4 clip is created, a `vodReady` webhook is triggered, letting you know the clip is ready to be used.
 
-## Summary
+<br /><br />
+---
 
-With Periodic Stream Recording, Ant Media Server simplifies the task of capturing MP4 clips from live streams:
+<div align="center">
+<h2> 🎬 Periodic Clips: Highlights Captured! ⏱️ </h2>
+</div>
 
-- Save clips automatically at fixed intervals.
-- Create highlight reels or on-demand clips.
-- Seamless integration with VoD playback.
-- Powered by an open-source plugin.
+You've successfully configured **Periodic Stream Recording in Ant Media Server**. Now, your live streams are 
+- Automatically capturing short MP4 clips at regular intervals
+- Allowing you to save highlights
+- Generate snippets
+- Share quick moments with your audience
+With seamless integration into your workflow, this feature enhances your content creation process without interrupting the broadcast. 
 
-Whether you’re archiving, sharing highlights or generating content automatically, this feature is designed to keep your workflow smooth and efficient.
+
+
