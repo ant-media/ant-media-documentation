@@ -9,7 +9,7 @@ sidebar_position: 2
 
 Ant Media Server (AMS) has the ability to force stream quality. In this guide, you'll learn what it is, how it works, and how to benefit from the stream quality feature.
 
-The client-side viewer can enforce a resolution it would like to get. Keep in mind that if you request a quality with a bitrate higher than the client's bandwidth, you may see some packet drops or pixelations.
+Viewers can enforce a resolution they would like to get. Keep in mind: if you request a quality with bitrate higher than the viewer’s bandwidth, you might see packet drops or pixelation.
 
 ## How does the adaptive bitrate work?
 
@@ -25,7 +25,7 @@ Example:
     * Above 1000kbps: In this case, a resolution of 480p is sent.
     * Less than 800kbps: In this case, a resolution of 360p is sent.
 
-The adaptive bitrate feature makes sure that the end user only gets what the server is sending out.
+The adaptive bitrate feature ensures viewers receive only which qualities the server is publishing.
 
 You can learn more about the adaptive bitrate in the previous document.
 
@@ -55,7 +55,7 @@ else if (info == "streamInformation") {
 				var streamResolutions = new Array();
 
 				obj["streamInfo"].forEach(function(entry) {
-					//It's needs to both of VP8 and H264. So it can be dublicate
+					// This supports both VP8 and H264; resolution entries might appear duplicate.
 					if(!streamResolutions.includes(entry["streamHeight"])){
 						streamResolutions.push(entry["streamHeight"]);
 					}
@@ -72,7 +72,7 @@ For more details, check out [this code snippet](https://github.com/ant-media/Str
 
 ### Enforce Quality on Client Side
 
-There is a working sample `player.html` below. When you choose a resolution, it'll force the quality. You can select the resolution, as you can see from the screenshot below. 
+There is a working sample `player.html` below. When you choose a resolution, it will force the quality. You can select the resolution, as you can see from the screenshot below. 
 
 ![](@site/static/img/adaptive-streaming/stream-quality.webp)
 
@@ -84,15 +84,15 @@ AMS also allows enforcing quality in the Web Player (play.html), similar to `pla
 
 To learn more about AMS Web Player, check **[here](https://antmedia.io/docs/guides/playing-live-stream/embedded-web-player/)**.
 
-Just change the playOrder to play stream with WebRTC, HLS, DASH, or LL-HLS. The stream quality can be selected in the same way.
+Adjust the playOrder setting to choose among WebRTC, HLS, DASH, or LL-HLS. Users can then select quality similarly via the Web Player.
 
 ![](@site/static/img/adaptive-streaming/stream-quality-web-player.webp)
 
 ### Enforcing Quality for M3U8 HLS URL
 
-Since some users play the HLS directly via M3U8, you can enforce stream quality by requesting a specific HLS variant. This can be achieved by selecting the appropriate `.m3u8` file that corresponds to the desired quality.
+Since some users access HLS by specifying a particular `.m3u8` URL, you can enforce stream quality by selecting the variant corresponding to that quality.”
 
-For example, if your HLS playlist has multiple bit rates:
+For example, if your HLS playlist has multiple bitrates:
 
 * adaptive.m3u8
     * 240p
@@ -131,3 +131,14 @@ For example:
 ```
 https://domain:5443/live/streams/ll-hls/stream1/480/stream1__lowlatency.m3u8
 ```
+
+<br /><br />
+---
+
+<div align="center">
+<h2> 🎯 Your Stream, Your Quality, Your Way! 📺 </h2>
+</div>
+
+You’ve enabled **Enforced Stream Quality**, meaning viewers can pick (or you can push) exact resolutions via WebRTC, HLS, DASH, or LL-HLS. No guesswork: **what’s requested is what’s played.**
+
+Now your streams aren’t **just adaptive** — they **follow the quality rules you set.** ✅
