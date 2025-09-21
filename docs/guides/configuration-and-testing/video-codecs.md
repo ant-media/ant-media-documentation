@@ -110,7 +110,12 @@ Most browsers do not yet support H.265 playback. Check [H.265 supported browsers
 
 ![h265andh264](https://github.com/user-attachments/assets/366e921c-8ab1-4235-a9d9-5062b8c109a3)
 
-## Wrap-Up
+
+<div align="center">
+
+### Wrap-Up
+
+</div>
 
 By configuring H.264, VP8, and H.265, you can optimize video streams for both compatibility and quality.
 

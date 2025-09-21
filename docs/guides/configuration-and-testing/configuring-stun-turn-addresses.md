@@ -246,8 +246,11 @@ Replace this function with:
         widget.iceServers
     );
 ```
+<div align="center">
 
 ### STUN & TURN for you
+
+</div>
 
 You’ve swapped out the default STUN server, added your custom Ant Media STUN for Wavelength Zones, and configured a TURN server for those tough NAT/firewall cases.
 

@@ -90,8 +90,11 @@ Finally, access the control panel.
 
 ![](@site/static/img/cloudflare/antmedia-cloudflare-5.png)
 
+<div align="center">
 
 ### AMS Cloudflare Integration for you 
+
+</div>
 
 You’ve configured Cloudflare, generated and installed your origin certificates, set up Nginx, and verified the proxy settings. With SSL termination handled by Cloudflare and requests passed through to Ant Media Server, your streams are now secured and accessible.
 

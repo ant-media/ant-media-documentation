@@ -135,7 +135,12 @@ a        App Name       WebRTCAppEE  application name
 The MP4 file should contain H.264-encoded video and Opus-encoded audio.
 :::
 
+
+<div align="center">
+
 ### WebRTC load testing for you
+
+</div>
 
 You’ve configured your test server, deployed the WebRTC Load Test Tool, and launched publishers and players against your Ant Media Server. The terminal confirms that streams are being published and connections are established, and the dashboard reflects the increase in activity.
 

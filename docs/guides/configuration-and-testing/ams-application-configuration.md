@@ -68,8 +68,11 @@ Following the example of the ```aacEncodingEnabled``` setting, the below can be 
 ```java  
 settings.aacEncodingEnabled=false
 ```
+<div align="center">
 
 ### AMS configuration for you
+
+</div>
 
 You’ve logged into the Management Panel, explored both Basic and Advanced settings, and even learned how to tweak the `red5-web.properties` file directly for fine-grained control.
 

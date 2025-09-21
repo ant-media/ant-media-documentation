@@ -59,7 +59,12 @@ The script simulates a specified number of RTMP live streams published to the An
 
 Similarly, you can increase the number of RTMP streams to simulate higher loads.
 
+
+<div align="center">
+
 ### RTMP load testing for you
+
+</div>
 
 You’ve downloaded the script, started publishing with FFmpeg, and simulated multiple RTMP streams flowing into your Ant Media Server. The dashboard shows the active streams increasing in line with the number you set, confirming that the load test is working.
 

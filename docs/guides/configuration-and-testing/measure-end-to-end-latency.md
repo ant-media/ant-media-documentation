@@ -83,7 +83,11 @@ There are a few things that affect the accuracy when measuring the time.
 2.  **Canvas FPS:** Adds ~30 ms delay to the calculation.
 3.  **Time Offset:** Even with NTP sync, devices can differ by tens of milliseconds, resulting in up to ~20 ms of error.
 
+<div align="center">
+
 ### End-to-end latency for you
+
+</div>
 
 You’ve synced your devices, embedded timestamps into your streams, and hooked up OCR with AWS Rekognition or Google Vision API to capture and compare publish/play times.
 
