@@ -130,7 +130,7 @@ Multiple applications can be created in Ant Media to which streams can be publis
 
 #### Remote Video Element
 
-`remoteVideoElement` points to the **<video>** element that will display the remote stream.
+`remoteVideoElement` points to the ```html<video>``` element that will display the remote stream.
 
 #### Callback
 

@@ -147,7 +147,7 @@ protocol://IP_ADDRESS:PORT/APPLICATION_NAME/websocket
 
 #### `localVideoElement`
 
-Points to the **<video>** element containing the local stream that will be published.
+Points to the ```html<video>``` element containing the local stream that will be published.
 
 #### `Callback`
 

@@ -115,7 +115,7 @@ var webRTCAdaptor = new WebRTCAdaptor(prams....)
 | Parameter           | Description                                                                                          |
 |--------------------|------------------------------------------------------------------------------------------------------|
 | websocket_url       | WebSocket URL of your Ant Media Server (`ws://` for HTTP, `wss://` for HTTPS). Example: `wss://test.antmedia.io:5443/live/websocket` `ws://test.antmedia.io:5080/live/websocket` |
-| localVideoElement   | The **<video>** element that displays your local stream.                                               |
+| localVideoElement   | The ```html<video>``` element that displays your local stream.                                               |
 | callback            | Function called on server events like `publish_started`, `publish_finished`, or data channel messages. |
 
 
