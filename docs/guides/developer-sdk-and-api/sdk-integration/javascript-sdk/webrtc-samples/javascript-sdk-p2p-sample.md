@@ -144,11 +144,11 @@ Multiple applications can be created in Ant Media to which streams can be played
 
 #### `remoteVideoElement`
 
-The <video> element that displays the incoming remote stream.
+The **<video>** element that displays the incoming remote stream.
 
 #### `localVideoElement`
 
-The <video> element that displays your local stream, which will be sent to the other peer.
+The **<video>** element that displays your local stream, which will be sent to the other peer.
 
 #### `Callback`
 

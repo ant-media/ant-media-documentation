@@ -188,7 +188,7 @@ Example: `wss://test.antmedia.io:5443/live/websocket`
 
 #### `localVideoId`
 
-Specifies the ID of the <video> element where the local video stream will be displayed.
+Specifies the ID of the **<video>** element where the local video stream will be displayed.
 
 #### `Callback`
 
