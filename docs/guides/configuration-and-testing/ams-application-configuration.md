@@ -69,12 +69,8 @@ Following the example of the ```aacEncodingEnabled``` setting, the below can be 
 settings.aacEncodingEnabled=false
 ```
 
-### 4. Conclusion
+### AMS configuration for you
 
-Once you’ve updated the configuration (via the Management Panel or the `red5-web.properties` file), the application will use the new settings.  
+You’ve logged into the Management Panel, explored both Basic and Advanced settings, and even learned how to tweak the `red5-web.properties` file directly for fine-grained control.
 
-You can verify the changes by going back to the **Application Settings** tab in the Management Panel, where the updated values will be reflected:
-
-![](@site/static/img/configuration-and-testing/conclusion.png)
-
-If the configuration impacts media processing (for example, enabling or disabling `aacEncodingEnabled`), you will notice the effect when you start a new stream (Or restart the already running ones).
+Tada, you now have full mastery over your Ant Media Server application settings, whether through the dashboard or configuration files, ensuring it runs exactly the way you need.

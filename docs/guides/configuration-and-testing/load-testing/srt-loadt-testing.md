@@ -59,16 +59,8 @@ The script simulates a specified number of SRT live streams published to the Ant
 Similarly, you can increase the number of SRT streams to simulate higher loads.
 
 
-## Conclusion
+### SRT load testing for you
 
-When you run the SRT load test, the script launches multiple FFmpeg processes to publish streams simultaneously.
+You’ve downloaded the script, launched FFmpeg, and started publishing multiple SRT streams into your Ant Media Server. The terminal confirms each stream is active, and the dashboard reflects the increase in stream count.
 
-* In the terminal, you will see FFmpeg logs showing that each stream is being published to the Ant Media Server over SRT.
-
-* On the Ant Media Server dashboard, the Stream Count will increase according to the number of simulated SRT publishers.
-
-For example, if you publish 10 SRT streams, the dashboard will show around 10 active streams under the LiveApp application.
-
-#ADD SCREENSHOT**
-
-This confirms that the SRT load test is running correctly and that your server is handling the expected number of publishing clients.
+Now you have a reliable way to validate SRT publishing performance and ensure your server can handle the expected stream load.

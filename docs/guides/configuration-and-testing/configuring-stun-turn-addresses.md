@@ -247,14 +247,8 @@ Replace this function with:
     );
 ```
 
-### Conclusion
+### STUN & TURN for you
 
-Configuring STUN/TURN servers ensures reliable WebRTC connectivity, especially in restricted environments such as AWS Wavelength Zones.
+You’ve swapped out the default STUN server, added your custom Ant Media STUN for Wavelength Zones, and configured a TURN server for those tough NAT/firewall cases.
 
-* For most cases, Google’s default STUN server is enough.
-
-* In Wavelength Zones, use Ant Media’s STUN servers.
-
-* When NAT traversal or firewall restrictions block WebRTC, configure a TURN server for guaranteed connectivity.
-
-With these steps, you can set up STUN/TURN servers on both server-side and client-side SDKs (JavaScript, Embedded Player, Android, iOS, and Flutter) for seamless streaming performance.
+Tada, you now have rock-solid WebRTC connectivity with custom STUN/TURN servers in Ant Media Server, ready for smooth, reliable streaming everywhere.

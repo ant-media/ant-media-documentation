@@ -55,16 +55,8 @@ The script simulates a specified number of HLS viewers accessing a live stream.
 
 Similarly, you can increase the number of simulated HLS viewers as needed.
 
-## Conclusion
+### HLS load testing for you
 
-When the HLS load test runs, the script launches multiple FFmpeg processes to simulate the specified number of viewers.
+You’ve downloaded the script, launched FFmpeg processes, and simulated hundreds of HLS viewers pulling your `.m3u8` stream. The Ant Media Server dashboard reflects the increased viewer count, confirming that your load test is running as expected.
 
-* In the terminal, you will see FFmpeg logs showing that each viewer is pulling the .m3u8 stream.
-
-* On the Ant Media Server dashboard, the Viewer Count for your stream will increase according to the number of simulated viewers.
-
-For example, if you run the script with 100 viewers, the stream statistics should show around 100 active HLS viewers.
-
-#ADD SCREENSHOT**
-
-This confirms that the load test is running successfully and that your server is handling the expected viewer load.
+Tada — you now have a reliable way to validate HLS performance under real-world viewer loads in Ant Media Server.

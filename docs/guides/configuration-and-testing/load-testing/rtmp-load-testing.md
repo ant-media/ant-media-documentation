@@ -59,16 +59,8 @@ The script simulates a specified number of RTMP live streams published to the An
 
 Similarly, you can increase the number of RTMP streams to simulate higher loads.
 
-## Conclusion
+### RTMP load testing for you
 
-When you run the RTMP load test, the script launches multiple FFmpeg processes to publish streams simultaneously.
+You’ve downloaded the script, started publishing with FFmpeg, and simulated multiple RTMP streams flowing into your Ant Media Server. The dashboard shows the active streams increasing in line with the number you set, confirming that the load test is working.
 
-* In the terminal, you will see FFmpeg logs showing that each stream is being published to the Ant Media Server.
-
-* On the Ant Media Server dashboard, the Stream Count will increase according to the number of simulated RTMP publishers.
-
-For example, if you publish 10 RTMP streams, the dashboard will show around 10 active streams under the LiveApp application.
-
-#ADD SCREENSHOT**
-
-This confirms that the RTMP load test is running correctly and that your server is handling the desired number of publishing clients.
+Now you have a dependable way to validate RTMP publishing performance and ensure your server can handle the desired stream load.

@@ -83,6 +83,8 @@ There are a few things that affect the accuracy when measuring the time.
 2.  **Canvas FPS:** Adds ~30 ms delay to the calculation.
 3.  **Time Offset:** Even with NTP sync, devices can differ by tens of milliseconds, resulting in up to ~20 ms of error.
 
-### Conclusion
+### End-to-end latency for you
 
-By synchronizing devices, embedding timestamps, and using OCR with either AWS Rekognition or Google Vision API, you can measure end-to-end latency accurately within a margin of a few milliseconds. While minor delays from rendering and device offsets are unavoidable, this approach provides a reliable way to understand and evaluate the streaming performance of Ant Media Server.
+You’ve synced your devices, embedded timestamps into your streams, and hooked up OCR with AWS Rekognition or Google Vision API to capture and compare publish/play times.
+
+Tada, you now have a clear, reliable way to measure and understand end-to-end latency in Ant Media Server, giving you confidence in your streaming performance.

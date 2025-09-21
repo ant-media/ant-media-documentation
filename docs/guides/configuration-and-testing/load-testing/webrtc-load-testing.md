@@ -135,16 +135,8 @@ a        App Name       WebRTCAppEE  application name
 The MP4 file should contain H.264-encoded video and Opus-encoded audio.
 :::
 
-### Conclusion
+### WebRTC load testing for you
 
-Once you run the WebRTC Load Test Tool, you will see logs in the terminal showing the progress of publishers and players.
+You’ve configured your test server, deployed the WebRTC Load Test Tool, and launched publishers and players against your Ant Media Server. The terminal confirms that streams are being published and connections are established, and the dashboard reflects the increase in activity.
 
-* In publisher mode, the logs confirm that your media file is being published to the Ant Media Server, along with details about the connection.
-
-* In player mode, the logs show multiple WebRTC connections being established and video streams being received.
-
-Below is an example of what successful test output looks like in the terminal.
-
-#ADD SCREENSHOT**
-
-This confirms that the load test is running correctly and that the desired number of connections have been created.
+Now you have a dependable way to verify WebRTC performance and confirm that your server can handle the expected load.
