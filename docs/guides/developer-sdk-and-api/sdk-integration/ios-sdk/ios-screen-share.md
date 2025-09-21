@@ -109,7 +109,7 @@ Once you’ve added the provided code, the `RPSystemBroadcastPickerView` will be
 - You can now stream your device screen with audio.
 ![](@site/static/img/ios-screen-share/ios-be25.png)
 
-Congratulations!
+## Congratulations!
 
 You have successfully implemented iOS screen sharing using the Ant Media iOS SDK and WebRTC via Broadcast Extension. Your app can now stream the device screen in real-time, opening possibilities for collaboration, live presentations, and interactive sessions.
 

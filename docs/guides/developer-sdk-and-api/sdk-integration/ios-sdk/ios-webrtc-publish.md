@@ -75,9 +75,9 @@ class ViewController: UIViewController {
 
 ![](@site/static/img/ios-SDK/mobile-premissions.png)
 
-### 6. Success!
+### 6. Congratulations!
 
-* Congratulations! You are now publishing a live WebRTC stream from your iOS device.
+* You are now publishing a live WebRTC stream from your iOS device.
 
 ![](@site/static/img/ios-SDK/publish.png)
 

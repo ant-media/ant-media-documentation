@@ -9,10 +9,10 @@ sidebar_position: 1
 
 Ant Media Server's REST API is thoughtfully designed, providing you with full control over your Ant Media Server's management. The REST API is organized into the following services:
 
-* [***Broadcast Rest Service:***] Management of live streams and stream sources. [API Reference](https://antmedia.io/rest/#/ManagementRestService)
-* [***VOD Rest Service:***] Management of video-on-demand assets and recordings. [API Reference](https://antmedia.io/rest/#/VoD%20Rest%20Service)
-* [***Management Rest Service:***] Non-application-specific commands such as user management and creating apps. [API Reference](https://antmedia.io/rest/#/ManagementRestService)
-* [***Cluster Service:***] Cluster management service. [API Reference](https://antmedia.io/rest/#/default) 
+* ***Broadcast Rest Service:*** Management of live streams and stream sources. [API Reference](https://antmedia.io/rest/#/ManagementRestService)
+* ***VOD Rest Service:*** Management of video-on-demand assets and recordings. [API Reference](https://antmedia.io/rest/#/VoD%20Rest%20Service)
+* ***Management Rest Service:*** Non-application-specific commands such as user management and creating apps. [API Reference](https://antmedia.io/rest/#/ManagementRestService)
+* ***Cluster Service:*** Cluster management service. [API Reference](https://antmedia.io/rest/#/default) 
 
 :::tip
 
@@ -72,4 +72,6 @@ All REST methods and services are listed on the REST API reference page at [http
 
 Once you’ve set up your REST API access, authenticated, and made your first requests, you can start managing your Ant Media Server programmatically. You can create broadcasts, manage VoD content, control applications, and monitor clusters—all directly through the API.
 
-Tada! You now have full control over your server through the REST API, enabling automated workflows and seamless management of your streaming infrastructure.
+## Congratulations!
+
+You now have full control over your server through the REST API, enabling automated workflows and seamless management of your streaming infrastructure.

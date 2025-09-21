@@ -61,4 +61,6 @@ Now only IPs within the specified CIDR blocks can access the Web Panel.
 
 For more details, check this demonstration:[IP Filter Gif](https://raw.githubusercontent.com/wiki/ant-media/Ant-Media-Server/images/ip-filter.gif)
 
-Tada! With the IP Filter configured, your Ant Media Server is now more secure. Only trusted IPs can access the REST API and Web Panel, protecting your server from unauthorized access while still allowing legitimate management and control. Your setup is now safe, flexible, and ready for production use.
+## Congratulations!
+
+With the IP Filter configured, your Ant Media Server is now more secure. Only trusted IPs can access the REST API and Web Panel, protecting your server from unauthorized access while still allowing legitimate management and control. Your setup is now safe, flexible, and ready for production use.

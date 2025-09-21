@@ -130,7 +130,7 @@ To view the live stream from your Android app:
 
 ![](@site/static/img/sdk-integration/android-sdk/webrtc-android-publish-application-test-1.png)
 
-## Congratulations
+## Congratulations!
 
 Your WebRTC Android Publish Application is now live.
 

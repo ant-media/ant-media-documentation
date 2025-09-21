@@ -67,7 +67,7 @@ By following this guide, you have successfully learned how to publish and play W
 For additional features and sample implementations, check out the [WebRTC-Android-SDK-Repository](https://github.com/ant-media/WebRTC-Android-SDK/tree/master/webrtc-android-sample-app/src/main/java/io/antmedia/webrtc_android_sample_app).
 
 
-## Congratulations 
+## Congratulations!
 
 Your Android app can now both publish and play live WebRTC streams.
 

@@ -31,7 +31,7 @@ This guide walks you through creating a new Android app project in Android Studi
 
 2. Click Finish to create the project.
 
-## Congratulations
+## Congratulations!
 
 You have successfully created your WebRTC Android SDK application project!
 

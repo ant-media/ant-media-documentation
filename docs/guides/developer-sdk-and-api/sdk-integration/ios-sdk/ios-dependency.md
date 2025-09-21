@@ -29,7 +29,9 @@ Click Add Package, then on the next screen, click Add Package again to confirm.
 
 4. Success
 
-Congratulations! You have successfully added the WebRTC-iOS-SDK dependency to your project.
+## Congratulations!
+
+ You have successfully added the WebRTC-iOS-SDK dependency to your project.
 
 ![](@site/static/img/ios-SDK/repo-added.png)
 

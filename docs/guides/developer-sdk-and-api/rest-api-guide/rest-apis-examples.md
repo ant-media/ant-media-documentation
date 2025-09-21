@@ -118,6 +118,6 @@ On Windows Command Prompt, the body of requests should be escaped like this:
 ```-d "{""name"":""{streamname}""}"```
 
 
-## Congratulations
+## Congratulations!
 
 You’ve successfully learned how to create, read, update, and delete broadcasts using the Ant Media Server REST API. By using these examples as a starting point, you can automate stream management, integrate with custom applications, and fully control your live streaming environment. Keep experimenting with the API, and soon you’ll be orchestrating multiple streams like a pro!

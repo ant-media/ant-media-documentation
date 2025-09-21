@@ -95,5 +95,6 @@ You can now use all [Web panel REST methods](https://antmedia.io/rest/#/Manageme
 
 [](https://antmedia.io/rest/#/ManagementRestService/getApplications)
 
+## Congratulations!
 
-Tada! With JWT tokens or username/password authentication in place, you can securely automate all Web Panel REST API calls. This allows you to manage applications, users, and system resources programmatically without manually logging into the web panel every time, giving you full control and flexibility over your Ant Media Server setup.
+With JWT tokens or username/password authentication in place, you can securely automate all Web Panel REST API calls. This allows you to manage applications, users, and system resources programmatically without manually logging into the web panel every time, giving you full control and flexibility over your Ant Media Server setup.

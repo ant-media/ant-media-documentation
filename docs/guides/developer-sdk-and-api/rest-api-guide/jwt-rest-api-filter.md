@@ -71,4 +71,6 @@ sudo service antmedia restart
 ```
 After these configurations are applied, you can start taking advantage of the JWKS feature in your structure, just like with JWT Filter.
 
-Tada! You now have a fully secured REST API using JWT or JWKS, allowing flexible and safe access to your Ant Media Server from multiple endpoints. Your tokens are in place, and your API calls are protected — you’re ready to manage broadcasts, VODs, and server configurations with confidence!
+## Congratulations!
+
+You now have a fully secured REST API using JWT or JWKS, allowing flexible and safe access to your Ant Media Server from multiple endpoints. Your tokens are in place, and your API calls are protected — you’re ready to manage broadcasts, VODs, and server configurations with confidence!

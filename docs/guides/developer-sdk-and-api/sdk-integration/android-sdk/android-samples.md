@@ -149,7 +149,7 @@ Includes **Play Only mode** and allows enabling/disabling audio and video.
 Additional samples include USB Camera, MP3, MP4, MP4 with Surface, and Multi-Track activities.
 :::
 
-## Congratulations
+## Congratulations!
 
 You now have access to the full set of WebRTC Android SDK samples.
 
