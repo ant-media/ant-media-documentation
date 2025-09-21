@@ -7,24 +7,23 @@ sidebar_position: 10
 
 # Introduction to plug-in structure
 
-Ant Media plug-in architecture allows developers to customize the video feed while keeping the server source codes untouched. Plug-in structure have various scenarios to address the needs of the developers, for example MCU usage is developed as a plug-in by the Ant Media dev team for emphasizing the wide-range use cases for plug-in architecture.
+Ant Media plug-in architecture allows developers to customize the video feed while keeping the server source code untouched. The plug-in structure addresses various use cases; for example, the MCU functionality is implemented as a plug-in by the Ant Media development team to demonstrate the versatility of the plug-in architecture.
 
-In the most basic explanation, a plug-in is added into the regular flow of AMS in ways that we will examine.  
-Here is what a plugin data flow looks like;
+At its core, a plug-in integrates into the regular flow of AMS. Here’s an example of a plug-in data flow:
 
 ![](@site/static/img/developer-guides/plugin-data-flow.png)
 
-You can either get the decoded video frames( IFrameListener interface )or encoded video packets ( IPacketListener interface ) from Ant Media Server, then you can do whatever customization you require to do with them.
+You can either access decoded video frames through the IFrameListener interface or encoded video packets via the IPacketListener interface, then perform any customizations you need.
 
-Custom Broadcasts
+### Custom Broadcasts
 
-You can implement other streaming protocols for publishing to your Ant Media Server with custom broadcast plug-ins, already implemented protocols are WebRTC, RTMP, SRT and stream source pulling. [More information.](/v1/docs/custom-broadcasting)
+You can implement other streaming protocols for publishing to your Ant Media Server using custom broadcast plug-ins. The already implemented protocols include WebRTC, RTMP, SRT, and stream source pulling. [More information.](/v1/docs/custom-broadcasting)
 
 ### IFrameListener interface
 
-Encoded packets and stream properties are sent to the plugin by this interface. In other words, you should implement this interface and register your concrete object to capture stream properties and also packets from AMS.
+Encoded packets and stream properties are sent to the plug-in by this interface. Implement this interface and register your concrete object to capture stream properties and packets from AMS.
 
-Methods of IPacketListener:
+#### Methods of IPacketListener:
 
 *   **AVPacket onPacket(String streamId, AVPacket packet)**
     
@@ -49,9 +48,9 @@ Methods of IPacketListener:
 
 ### IPacketListener Interface
 
-Encoded packets and stream properties are sent to the plugin by this interface. In other words, you should implement this interface and register your concrete object to capture stream properties and also packets from AMS.
+Encoded packets and stream properties are sent to the plug-in by this interface. Implement this interface and register your concrete object to capture stream properties and packets from AMS.
 
-Methods of IPacketListener:
+#### Methods of IPacketListener:
 
 *   **AVPacket onPacket(String streamId, AVPacket packet)**
     
@@ -71,3 +70,7 @@ Methods of IPacketListener:
 *   **void setAudioStreamInfo(String streamId, StreamParametersInfo audioStreamInfo)**
     
           audio stream properties are sent to the plugin with this method.
+
+### Congratulations!
+
+You now have a clear understanding of the Ant Media plug-in structure and its two main interfaces, IFrameListener and IPacketListener. By implementing these interfaces, you can customize video processing, add new protocols, or extend streaming functionality—all without modifying the core AMS code. Your plug-in development environment is now ready to handle custom video streaming workflows.
