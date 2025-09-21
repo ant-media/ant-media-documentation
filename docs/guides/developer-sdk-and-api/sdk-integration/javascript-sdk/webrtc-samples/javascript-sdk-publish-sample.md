@@ -5,33 +5,33 @@ keywords: [JavaScript SDK User Guide, Ant Media Server Documentation, Ant Media 
 sidebar_position: 1
 ---
 
-Let's start with a simple example for publishing a live stream to Ant Media using the JavaScript SDK.
+Let’s start with a simple example to **publish a live stream** to Ant Media Server using the JavaScript SDK.
 
 ## WebRTC Publish Live Sample
 
-- Navigate to the Publish sample [here](https://codepen.io/USAMAWIZARD/embed/KwPEZKE?default-tab=js&editable=true) at Codepen.
+1. Navigate to the **Publish sample** on [Codepen](https://codepen.io/USAMAWIZARD/embed/KwPEZKE?default-tab=js&editable=true) at Codepen.
 
-- Comment import from directory and uncomment import from URL. It should look something like this.
+2. Comment out the local import and uncomment the URL import. It should look like this:
 
   ```
   import  {WebRTCAdaptor} from  "https://esm.sh/@antmedia/webrtc_adaptor";
   //import { WebRTCAdaptor } from './node_modules/@antmedia/webrtc_adaptor/src/main/js/webrtc_adaptor.js';
   ```
  
-- Click on the Result button; it will show a small webpage where you can see the output.
+3. Click the **Result** button to see the live demo page.
 
 
-## Create Publish Sample For Deployment
+## Create a Publish Sample for Deployment
 
-- Create a new file , name it `publish.html`
+1. Create a new file called `publish.html`
 
-- make sure HTTP server is running in same directory
+2. Make sure your HTTP server is running in the same directory:
 
   ```
   python3 -m http.server
   ```
 
-- Copy the above code from the HTML and JS sections in the `publish.html` file as below:
+3. Copy the following HTML and JS into `publish.html`:
 
 ```html
 <!DOCTYPE html>
@@ -83,76 +83,52 @@ document.getElementById("publish_stop").addEventListener("click",()=> {
 </html>
 ```
    
- Open the publish.html page in the browser `http://localhost:8000/publish.html`  (make sure python server is up and running)
+Open `http://localhost:8000/publish.html` in your browser.
 
- - Accept microphone and camera usage permissions.
+Allow microphone and camera access.
 
-- Click the publish button.
+Click **Start Publishing** to begin streaming.
 
-To verify whether the stream is published successfully or not, open the web panel of your Ant Media Server and view the stream there. If it does not work, open the developer console on the HTML page and check for any errors.
+## Verify Stream
+
+To confirm your stream is live:
+
+* Open the **Ant Media Server web panel** and check the broadcast.
+
+* If there are issues, check the **developer console** in your browser for errors.
 
 
-## WebRTCAdaptor
+## Understanding `WebRTCAdaptor`
 
-`WebRTCAdaptor` Class is responsible for handling WebSocket Messages and WebRTC Connections with the server.
-One `WebRTCAdaptor` can be used to publish one stream; multiple `WebRTCAdaptor` can be created to publish multiple streams to the server.
+`WebRTCAdaptor` handles WebSocket communication and WebRTC connections with the server.
+
+* One `WebRTCAdaptor` instance can publish one stream.
+
+* To publish multiple streams, create multiple WebRTCAdaptor instances.
 
 ```
 var webRTCAdaptor = new WebRTCAdaptor(prams....)
 ```
 
-The `WebRTCAdaptor` takes various parameters; all parameters are listed here. 
+### Key Parameters
 
-### WebRTCAdaptor Parameters
+| Parameter           | Description                                                                                          |
+|--------------------|------------------------------------------------------------------------------------------------------|
+| websocket_url       | WebSocket URL of your Ant Media Server (`ws://` for HTTP, `wss://` for HTTPS). Example: `wss://test.antmedia.io:5443/live/websocket` `ws://test.antmedia.io:5080/live/websocket` |
+| localVideoElement   | The `<video>` element that displays your local stream.                                               |
+| callback            | Function called on server events like `publish_started`, `publish_finished`, or data channel messages. |
 
-#### WebSocket URL
 
-- `WebSocket URL` is the server URL of your Ant Media Server. Check out this page to install Ant Media Server, or for testing purposes, this URL can be used. 
+### Key Methods
 
-  ```
-  websocket_url
-  ```
+| Method                       | Description                                                   |
+|-------------------------------|---------------------------------------------------------------|
+| `webRTCAdaptor.publish(streamId)` | Initiates a WebRTC connection with Ant Media Server and starts publishing the stream. |
+| `webRTCAdaptor.stop(streamId)`    | Stops publishing the WebRTC stream.                          |
 
-- Web socket URL format.
 
-  ```
-  protocol://IP_ADDRESS:PORT/APPLICATION_NAME/websocket
-  ```
+## Congratulations!
 
-    For example, `wss://test.antmedia.io:5443/live/websocket`
+You have successfully set up a **JavaScript SDK publisher**, streamed your first WebRTC live broadcast, and verified it on Ant Media Server.
 
-- If HTTP,  `protocol = ws` or if HTTPS `protocol = wss`
-
-If Ant Media is running on HTTP, the websocket url should connect to the port `5080` instead of `5443`.
-
-Multiple applications can be created in Ant Media to which streams can be published; use the correct application name `WebSocket URL` to publish to that application.
-
-#### localVideoElement
-
-```
-localVideoElement
-```
-
-This should point to the video element, which contains the video that will be streamed to the server.
-
-#### Callback
-
-```
-callback
-```
-
-Messages & notifications sent from the server will be received in this callback. This includes notifications like `publish_started`, `play_started`, `publish_timeout` , `data channel messages`, etc.
-
-#### WebRTC Adaptor
-
-- The `WebRTCAdaptor` publish function initiates a WebRTC connection with Ant Media Server and starts to publish the stream.
-
-  ```
-  webRTCAdaptor.publish(streamid)
-  ```
-
-- Stops publishing WebRTC streams.
-
-  ```
-  webRTCAdaptor.stop(streamid)
-  ```
+You can now experiment with **different stream IDs**, multiple streams, or integrate the SDK into your web applications for **interactive live streaming**.

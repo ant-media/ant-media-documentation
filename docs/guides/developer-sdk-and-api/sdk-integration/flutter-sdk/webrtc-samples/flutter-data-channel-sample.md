@@ -28,3 +28,7 @@ Once the app is installed and running on your device, enter the server IP addres
 
 - You can quickly play the stream via the sample page and send and receive the data channel messages.
   ```https://your-domain:5443/live/player.html```
+
+## Congratulations!
+
+You have successfully set up the Data Channel sample using the Flutter SDK. Your app can now send and receive real-time messages through the data channel while streaming, enabling interactive communication between multiple clients.
