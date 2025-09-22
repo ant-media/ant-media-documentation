@@ -393,10 +393,6 @@ scripts: [
           to: '/guides/configuration-and-testing/video-codecs/'
         },
 	{
-          from: '/guides/advanced-usage/webrtc-play-page-creation-tutorial/',
-          to: '/guides/developing-antmedia-server/webrtc-play-page-creation-tutorial/'
-        },
-	{
           from: '/get-started/User-Management/',
           to: '/get-started/user-management/'
         },

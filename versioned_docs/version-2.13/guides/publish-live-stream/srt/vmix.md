@@ -33,7 +33,7 @@ As you can see, my input has been added successfully, and its preview can be see
 *   In the Port box, type your Ant Media Server SRT port number. It's like ```4200```
 *   In the Stream ID box, type your App name and stream ID. It's like ```WebRTCAppEE/stream1```
 
-![vmix-output-settings.JPG](@site/static/img/vmix-output-settings.JPG)
+![](@site/static/img/vmix-output-settings.png)
 
 ## Tuning
 

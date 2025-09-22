@@ -25,19 +25,19 @@ We assume that your Ant Media Server accepts all streams (e.g there is no securi
 
 *   Click ```Settings``` in the OBS Window and then Select ```Stream``` on the left side menu.
 *   Choose ```Custom Streaming Server``` in the ```Stream Type``` dropdown menu.
-*   In the URL box, type your RTMP URL without stream id. It's like ```rtmp://IP-or-server-domain-name/LiveApp```
+*   In the URL box, type your RTMP URL without stream id. It's like ```rtmp://IP-or-server-domain-name/live```
 *   In the Stream key, you can write any stream id because we assume that all stream Ids are allowed.
 
 :::warning
 The RTMP URL should not contain any port number. The RTMP protocol will automatically listen on port 1935 which should be open on your server.
 
- - **Wrong**: rtmp://am.streamomedia.com:5443/WebRTCAppEE/
- - **Correct**:   rtmp://am.streamomedia.com/WebRTCAppEE/
+ - **Wrong**: rtmp://AMS-Domain-Name:5443/live/
+ - **Correct**:   rtmp://IP-or-AMS-Domain-Name/live/
 :::
 
 ![](@site/static/img/obs-rtmp-image/OBS-Stream.png)
 
-**Note:** When you use tokens you need to generate a publish token and use it in this format inside the stream key : ```streamdid?token=tokenid```
+**Note:** When you use tokens you need to generate a publish token and use it in this format inside the stream key : ```streamId?token=tokenid```
 
 ![](@site/static/img/obs-rtmp-image/OBS-Stream-Token.png)
 
