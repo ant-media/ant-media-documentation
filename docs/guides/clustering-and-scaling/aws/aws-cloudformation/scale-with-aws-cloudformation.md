@@ -116,10 +116,6 @@ The custom domain shows how SSL works without warnings, while the Load Balancer 
 
 ![](@site/static/img/AntMedia-CloudFormation-9.png)
 
-**15.** When you delete a stack, AWS CloudFormation deletes all resources in that stack.
-
-![](@site/static/img/AntMedia-CloudFormation-10(1).png)
-
 ---
 
 **Tada!! Congratulations!** 
@@ -143,5 +139,11 @@ You don’t have to manually install, configure, or connect anything. With just 
 ![](/img/clustering-and-scaling/aws-cloudformation/play-cloudformation.png)
 
 This means you can move straight to testing your live workflows—WebRTC, RTMP ingest (you will have to map a separate domain to the RTMP load balancer for RTMP streaming), HLS/LL-HLS playback — without worrying about infrastructure details.
+
+#### Delete Stack
+
+When you delete a stack, AWS CloudFormation deletes all resources in that stack.
+
+![](@site/static/img/AntMedia-CloudFormation-10(1).png)
 
 If you have any questions or run into issues, feel free to reach out here: [GitHub Discussions](https://github.com/orgs/ant-media/discussions).
