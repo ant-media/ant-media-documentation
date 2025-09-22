@@ -7,7 +7,7 @@ sidebar_position: 1
 
 # Scale AMS with AWS CloudFormation
 
-Now let's start on to the CloudFormation setup and continue step by step.
+Now let's begin the CloudFormation setup and continue step by step.
 
 [Watch the YouTube Video: Setting up an Ant Media Server Scaling Solution with CloudFormation In 5 minutes](https://www.youtube.com/watch?v=y7bP0u0jQRQ)
 
@@ -23,7 +23,7 @@ Now let's start on to the CloudFormation setup and continue step by step.
 
 ![](@site/static/img/cloudformation-marketplace-3.png)
 
-**4.** Now, download the CloudFormation template from the below link to your computer.
+**4.** Now, download the CloudFormation template from the link below.
 
 [https://raw.githubusercontent.com/ant-media/Scripts/master/cloudformation/antmedia-aws-autoscale-template.yaml](https://raw.githubusercontent.com/ant-media/Scripts/master/cloudformation/antmedia-aws-autoscale-template.yaml)
 
@@ -48,7 +48,7 @@ Now let's start on to the CloudFormation setup and continue step by step.
 -   **AntMediaEdgeCapacityMax:** Edge Server where Auto Scale will reach maximum
 -   **AntMediaOriginCapacity:** How many Origin servers will be created.
 -   **AntMediaOriginCapacityMax:** Origin Server where Auto Scale will reach maximum
--   **CPUPolicyTargetValue:** Average CPU utilization of the Auto Scaling group. When the server reaches %60 CPU utilization average, new servers will be added
+-   **CPUPolicyTargetValue:** Average CPU utilization of the Auto Scaling group. When the server reaches 60% CPU utilization average, new servers will be added
 -   **EdgeInstanceType:** Edge Instance Type
 
 ![](@site/static/img/AntMedia-CloudFormation-4-1.png)
@@ -110,13 +110,15 @@ Your password is the one in “password” field in the format “i-xxxxxxxx”
 
 ![](@site/static/img/AntMedia-CloudFormation-10(1).png)
 
-I have covered most of the topics around Cloud Formation. Coming to the question of what we have gained by using CloudFormation and Ant Media Server template, the following steps will take place while sipping your coffee.
+<br /><br />
+---
 
--   EC2 instance
--   Security group
--   Ant Media Server Installation
--   Ant Media Server Cluster Configuration
--   AutoScale
--   Load Balancer
+<div align="center">
+<h2> 🌍 AMS Scaling Simplified — CloudFormation at Work! ⚙️ </h2>
+</div>
+
+You’ve launched AMS on AWS with CloudFormation: **auto-scaling Edges and Origins**, **load balancing**, **secure certs**, and everything deployed as infrastructure code. As CPU ramps up, new instances spin up; when load drops, resources scale in — all without manual hustle.
+
+Your cluster is now **agile, resilient, and built to scale with you** — from zero to many, effortlessly! 🚀
 
 If you have any questions, please just drop your query at https://github.com/orgs/ant-media/discussions
