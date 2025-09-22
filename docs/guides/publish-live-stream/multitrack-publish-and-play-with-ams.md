@@ -7,9 +7,13 @@ sidebar_position: 6
 
 # Multitrack publish and play with AMS
 
-WebRTC multitrack lets us stream multiple audio and video tracks through a single WebRTC connection. In order to use the Multitrack feature, the SDP semantic should be set to **Unified Plan** which is also set by default in AMS v2.4.3 and above.
+Ant Media Server (AMS) supports WebRTC multitrack streaming, enabling the transmission of multiple audio and video tracks through a single WebRTC connection. This feature is particularly useful for applications like video conferencing and live events, where multiple streams need to be managed efficiently.
 
-With multitrack streams, you can play different groups of streams with a single broadcast ID. Then, you can start playing those groups of streams with one play request and, most importantly, through a single WebRTC connection, which decreases resource usage as well.
+### Prerequisites
+- **AMS Version**: Ensure you're using **AMS version 2.4.3 or above**, as the Unified Plan SDP semantic is set by default in these versions.
+- **Unified Plan**: The Unified Plan SDP semantic must be used for multitrack support.
+
+With multitrack streams, you can play different groups of streams with a single broadcast ID. Then, you can start playing those groups of streams with one play request and most importantly, through a single WebRTC connection, which decreases resource usage as well.
 
 ### Terminologies related to multitrack
 
@@ -155,3 +159,15 @@ curl -X 'DELETE' 'http(s)://AMS-domain:port/live/rest/v2/broadcasts/RoomName/sub
 ```
 
 As soon as you receive success, you should observe that the external stream is removed from the conference room.
+
+<br /><br />
+---
+
+<div align="center">
+<h2> You're a Multitrack Maestro! 🎶 </h2>
+</div>
+
+Congratulations! You've successfully configured Ant Media Server to handle **multitrack streaming**. Whether it's a **live event** with multiple audio and video feeds or a **dynamic conference room**, your setup is now optimized for seamless, unified playback.
+
+Your audience is in for an **immersive experience,** with synchronized streams delivered efficiently through a single WebRTC connection. Well done — your multitrack streams are live and ready to impress!
+

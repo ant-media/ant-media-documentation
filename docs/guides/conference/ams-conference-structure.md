@@ -31,7 +31,7 @@ In video conferencing context, this object represents the **conference participa
 
 Now that we've covered the fundamental concepts of conferencing, let's take a look at video conferencing in action via sample Conference application on AMS.
 
-By default, their is a sample conference applictaion page available in all applications of AMS. Here is the URL format:
+By default, there is a sample conference applictaion page available in all applications of AMS. Here is the URL format:
 
 ```https://{ams-url}:5443/{appName}/conference.html```
 
@@ -43,7 +43,7 @@ Example:
 
 ![](@site/static/img/conference/video-conference/video-conference-1.png)
 
-After joining the room, 2 broadcasts will be created on the server.
+After joining the room, two broadcasts will be created on the server.
 
 1- Room Broadcast (Main track)
 
@@ -427,7 +427,7 @@ return(
 
 ### Step 7: Retrieve Main Track Broadcast Object
 
-After you call ```.play()``` with ```roomId``` if it is succesfull you will receive ```play_started``` event from webrtc adaptor.
+After you call ```.play()``` with ```roomId```, if it is succesful, you will receive ```play_started``` event from WebRTC adaptor.
 
 Catch the ```play_started``` message on webrtc adaptor callback and call.
 
@@ -1891,3 +1891,15 @@ The 15 steps should give you a strong foundation to start building a production-
 
 
 For further development and examples dont forget to take a look at [Circle](https://github.com/ant-media/conference-call-application)
+
+<br /><br />
+---
+
+<div align="center">
+<h2> Mastering Conference 🥇 </h2>
+</div>
+
+You now understand how Ant Media Server treats the **conference room as a main track broadcast**, with **participants** represented as **sub-track broadcasts**. You know how to check the **subTrackStreamIds** and **mainTrackIDs** via the REST API, and how sample conference app ties it all together.  
+
+Congrats — with this foundation, your conferencing app can now manage **participants and rooms clearly and reliably!** 🎯
+

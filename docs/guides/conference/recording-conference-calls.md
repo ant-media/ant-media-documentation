@@ -15,7 +15,7 @@ Unlike regular broadcast streams, conference calls have multiple participants, e
 
 The [Media Push plugin](https://github.com/ant-media/Plugins/tree/master/MediaPushPlugin) is an open-source plugin that is built on top of Ant Media Server that can load any web URL and stream it in real-time.
 
-- Media Push opens up a [Headless chrome](https://developer.chrome.com/docs/chromium/headless#:~:text=Back%20in%202017%2C%20Chrome%2059,projects%20like%20Puppeteer%20or%20ChromeDriver) on the server side. A user can send a REST request with the URL of the page that is desired to be recorded. When the request is received on the server side, a new Chrome tab is opened with the URL. As soon as the page gets loaded, the screen is recorded using Media Stream APIs and re-streamed back to Ant Media Server.
+- Media Push opens up a [Headless Chrome](https://developer.chrome.com/docs/chromium/headless#:~:text=Back%20in%202017%2C%20Chrome%2059,projects%20like%20Puppeteer%20or%20ChromeDriver) on the server side. A user can send a REST request with the URL of the page that is desired to be recorded. When the request is received on the server side, a new Chrome tab is opened with the URL. As soon as the page gets loaded, the screen is recorded using Media Stream APIs and re-streamed back to Ant Media Server.
 
 ### Installing Media Push Plugin
 
@@ -157,3 +157,14 @@ With the [Circle](https://github.com/ant-media/conference-call-application) conf
   ![image](https://github.com/user-attachments/assets/59b1555f-f2a7-43a5-a955-5e0b704537e7)
 
 This is how you can record the conference call on the Ant Media Server with the help of the Media Push Plugin.
+
+<br /><br />
+---
+
+<div align="center">
+<h2> Recording, Rolled Out! 🎙️ </h2>
+</div>
+
+You’ve installed the Media Push plugin, merged all participants via `multitrack-play.html` (or `merge_streams.html`), and recorded the conference room stream using MP4 (or HLS if needed). Your merged stream is now available in VoD for review or archive.
+Kudos 👏 — you can now keep **every conversation, every presentation, every meeting on record, effortlessly!** 📁
+

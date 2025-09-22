@@ -55,7 +55,7 @@ We always prefer to install the Database Server on a separate server and we choo
     
         apt-get update && apt-get install mariadb-server -y
     
-*   Edit the following file ```/etc/mysql/mariadb.conf.d/50-server.cnf``` with your favorite editor such as ```vim``` or ```nano``` Please add the following lines then save and exit:
+*   Edit the following file ```/etc/mysql/mariadb.conf.d/50-server.cnf``` with your favorite editor, such as ```vim``` or ```nano``` Please add the following lines then save and exit:
     
         bind-address            = 0.0.0.0
         innodb_file_format=Barracuda
@@ -109,7 +109,7 @@ In this section, we will install and configure CoTurn on Coturn1 and Coturn2 ser
     
     ```vim /etc/turnserver.conf```
     
-*   Add below lines then save and exit. Keep in mind that we did set the password ```coturn123``` and we use them below. If you change the password, use your own instead of ```coturn123```below.
+*   Add the lines below, then save and exit. Keep in mind that we did set the password ```coturn123``` and we use them below. If you change the password, use your own instead       of ```coturn123```below.
     
         fingerprint
         lt-cred-mech
@@ -121,7 +121,7 @@ In this section, we will install and configure CoTurn on Coturn1 and Coturn2 ser
     
     ![](@site/static/img/coturn-2.png)
     
-*   Import SQL schema(```/usr/share/coturn/schema.sql```) to the database server. The file /usr/share/coturn/schema.sql is in one of the turn servers. Upload to the database server and ```schema.sql```is imported.
+*   Import SQL schema(```/usr/share/coturn/schema.sql```) to the database server. The file /usr/share/coturn/schema.sql is in one of the turn servers. Upload to the database        server and ```schema.sql```is imported.
     
     ```scp -r /usr/share/coturn/schema.sql root@192.168.1.200:```
     
@@ -154,3 +154,14 @@ You can use the following command to check that DNS Round-Robin is working corre
 ![](@site/static/img/coturn-nslookup.png)
 
 If you have any questions, please just drop a line to contact (at) antmedia.io
+
+<br /><br />
+---
+
+<div align="center">
+<h2> ⚙️ TURN, The Traffic Manager 🌐 </h2>
+</div>
+
+You’ve set up **CoTurn** with DNS **Round Robin** and shared **MySQL userdb** — now multiple TURN servers handle your traffic evenly. Requests get distributed, auth stays consistent, and there's no single chokepoint.
+
+Your TURN setup is now resilient, **balanced**, and ready to scale! 🚀

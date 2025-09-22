@@ -5,7 +5,7 @@ keywords: [Enable or Disable Undefined Streams, Accept Undefined Streams, One Ti
 sidebar_position: 5
 ---
 
-You can enable Hash-based token for publishing and playing from the application's advance settings via the AMS web panel. You have the option to use both the publish and playback tokens simultaneously or just one at a time.
+You can enable Hash-based token for publishing and playing from the application's Advanced settings via the AMS web panel. You have the option to use both the publish and playback tokens simultaneously or just one at a time.
 
 Now, all application settings can be changed from the AMS web panel itself. Please check [here](https://antmedia.io/docs/guides/configuration-and-testing/ams-application-configuration/#management-panel-settings) for more information.
 
@@ -159,3 +159,17 @@ ws://{ant-media-server}:5080/live/websocket
   token : "token",
 }
 ```
+
+
+<br /><br />
+---
+
+<div align="center">
+<h2> 🔐 Trending Hash-Tags, Secure Hash-Tokens 🎯 </h2>
+</div>
+
+By implementing **Hash-Based Token authentication**, you've fortified your streaming setup with an **additional layer of security**. Only clients presenting the correct hash, derived from the **stream ID, role, and secret key**, are granted access to publish or play streams.
+
+This method ensures that **unauthorized users cannot easily guess or forge access credentials**, providing a robust mechanism to protect your live streams.
+
+Your streaming environment is **topping the charts in Security!!** 🚀

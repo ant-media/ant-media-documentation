@@ -7,11 +7,11 @@ sidebar_position: 7
 
 # Using Nvidia GPUs
 
-Ant Media Server can take advantage of a hardware-based encoder found in NVIDIA GPUs. If you have an NVIDIA GPU, you can see if it has a hardware-based encoder in the [Video Encode and Decode GPU Support Matrix](https://developer.nvidia.com/video-encode-decode-gpu-support-matrix).
+Ant Media Server can use NVIDIA GPU’s hardware encoder (NVENC/NVDEC) for high-performance streaming.. If you have an NVIDIA GPU, you can see if it has a hardware-based encoder in the [Video Encode and Decode GPU Support Matrix](https://developer.nvidia.com/video-encode-decode-gpu-support-matrix).
 
 ## Why use the NVIDIA GPU encoder?
 
-The primary reason is performance. In certain scenarios, encoding performance can improve up to 5 times when compared to CPU-optimized encoders such as ```x264``` or ```openh264```. In the absence of a GPU on the system, Ant Media Server by default uses the ```openh264``` encoder from version 2.5.1 onwards. Prior to that, the x264 encoder was the default choice for AMS.
+The primary reason is performance. In demanding scenarios such as multiple ABRs or high resolutions, GPU encoding can be up to 5× faster than CPU encoders like `x264` or `openh264`. In the absence of a GPU on the system, Ant Media Server by default uses the ```openh264``` encoder from version 2.5.1 onwards. Prior to that, the x264 encoder was the default choice for AMS.
 
 The utilization of a GPU is advised for demanding transcoding tasks. If you want to publish numerous streams featuring multiple ABRs, using a GPU-optimized server rather than a CPU-optimized one would be a good decision. For instance, a single 4-core CPU-optimized server would struggle to manage a single stream with four ABRs (1080, 720, 480, and 360), and this approach is not recommended. However, a single 4-core GPU-optimized server can effortlessly handle 5–6 streams that have the same ABRs enabled.
 
@@ -107,3 +107,15 @@ sudo apt-get install cuda-compat-12-6
 After installing packages, reboot the server once.
 
 If you need more information for installing on other systems, please check [NVIDIA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html) docs and [CUDA downloads](https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=1604&target_type=debnetwork) pages.
+
+<br /><br />
+---
+
+<div align="center">
+<h2> 🚀 GPU Mode On: Streams Accelerated, Latency Reduced! ⚡️ </h2>
+</div>
+
+With NVIDIA GPU support enabled via CUDA 12.6, your server now offloads **heavy encoding work to the GPU** — smoother ABRs, lower CPU usage, and better performance under load.
+
+Your streaming infrastructure is now **battle-tested, fast, and ready for many high-quality streams!** 🎯
+

@@ -95,3 +95,14 @@ The appName should be the same as the application name we are configuring. Also,
   ![](@site/static/img/stream-security/keycloak-login.png)
 
   Once you authenticate, you will be able to publish the stream via sample page.
+
+<br /><br />
+---
+
+<div align="center">
+<h2> 🔍 Who's Behind the Cloak? Only Authorized Users!㊙️ </h2>
+</div>
+
+By integrating **Keycloak with your Ant Media Server**, you've implemented **Single Sign-On (SSO) authentication** for your WebRTC streams. Only users authenticated through Keycloak are permitted to publish or play streams, enhancing security and control.
+
+Your streaming environment is now **fully protected with Keycloak-managed access!** 🚀

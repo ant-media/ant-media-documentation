@@ -5,6 +5,15 @@ keywords: [Docker, Docker Compose, Ant Media Server Documentation, Ant Media Ser
 sidebar_position: 7
 ---
 
+Docker Compose offers a simpler way to manage Ant Media Server compared to running a single container with `docker run`. With Compose, you can:
+
+- Define all configurations (ports, volumes, environment variables) in a single `docker-compose.yml` file.  
+- Start, stop, or restart your setup with a single command.  
+- Reuse the same configuration across different machines or environments.  
+
+This makes your setup more organized, portable, and easier to maintain.
+
+
 To install the Ant Media Server standalone server using Docker Compose, follow the below step-by-step process.
 
 ## 1. Download Docker File and Docker Compose File
@@ -49,7 +58,7 @@ docker-compose up -d
 ```
 
 :::info
-By default, it uses the host network ports to reach but for example, in Mac OS, the⁣ `network=host` does not work so you can define the ports in the YML file.
+By default, it uses the host network ports to reach but for example, in MacOS, the⁣ `network=host` does not work so you can define the ports in the YML file.
 :::
 
 ```yml
@@ -95,3 +104,13 @@ After the Docker container starts, reach out to `http://localhost:5080` or `http
 ![](@site/static/img/docker-installation.webp)
 
 Check out [here](https://antmedia.io/docs/guides/publish-live-stream/webrtc/) to publish a WebRTC stream for testing.
+
+<br /><br />
+---
+
+<div align="center">
+<h2> Compose‑Done ✅ </h2>
+</div>
+
+You’ve now set up Ant Media Server using **Docker Compose**. Compared to a single-container Docker setup, this method keeps your configuration organized, makes port/volume management easier, and lets you start or stop the entire stack with a single command. 🚀
+

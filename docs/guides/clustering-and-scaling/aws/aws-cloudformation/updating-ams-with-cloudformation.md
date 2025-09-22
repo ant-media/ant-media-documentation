@@ -11,11 +11,11 @@ If you have installed Ant Media Server with Cloudformation and then want to upda
 
 By following these instructions, you can upgrade your Ant Media Server AWS cluster and also retain all your existing settings without affecting the MongoDB configuration.
 
-**NOTE: Please note that your old Instances will be terminated after this update.**
+**NOTE: Your old instances will be terminated when you perform this update. Be sure you have backups and understand the downtime.**
 
 **1.** Login to your AWS console and Navigate to EC2 > Launch Templates.
 
-**2.** Select the Launch templates for the **your-stack-AntMedia-LaunchTemplateOrigin** template and click on Actions > Modify template (Create a new version)
+**2.** Select the Launch templates for **your-stack-AntMedia-LaunchTemplateOrigin** template and click on Actions > Modify template (Create a new version)
 
 ![](@site/static/img/aws-cf-update/aws-cf-update-1.png)
 
@@ -35,7 +35,7 @@ And Subscribe to Ant Media Server Enterprise from here.
 
 **Make all these settings for the Edge template as well.**
 
-**5.** Now go to EC2 > Auto Scaling groups and select OriginGroup. In this section, set Desired and Minimum Capacity to 0 in Groups details.
+**5.** In EC2 > Auto Scaling groups and select `OriginGroup`. Set `Desired` and `Minimum Capacity` to 0 in Groups details.
 
  ![](@site/static/img/aws-cf-update/aws-cf-update-5.png)
 
@@ -59,3 +59,16 @@ That's it. Your Instances will now run with the latest version of Ant Media Serv
 
 
 If you have any questions, please just drop a line to [contact@antmedia.io](mailto:contact@antmedia.io).
+
+
+<br /><br />
+---
+
+<div align="center">
+<h2> 🔄 CloudFormation — Even the Best Need an Upgrade!⚙️ </h2>
+</div>
+
+You **upgraded your CloudFormation stack**: new launch templates, updated AMIs, then scaled groups back up — all while retaining your MongoDB data and settings. Old instances terminated, new ones online.
+
+Your **cluster is now running the latest version**, with minimal fuss and maximum continuity! 🚀
+

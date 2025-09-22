@@ -307,3 +307,15 @@ sudo systemctl restart antmedia
 Upload any VoD file to your application. The file will be automatically transcoded and uploaded to the specified S3 bucket.
 
 
+<br /><br />
+---
+
+<div align="center">
+<h2> 🎬 You just streamlined- The World's Best Script ⚙️ </h2>
+</div>
+
+You've successfully configured **User Defined Scripts in Ant Media Server**. Now, your live stream recordings and **VoD uploads trigger custom scripts automatically**, enabling seamless post-processing tasks such as transcoding, merging, or watermarking. This automation enhances your workflow, saving time and resources.
+
+**Mission Accomplished** 🤝 - With these scripts, your workflow is now faster, smarter, and unbeatable! 🫰
+
+

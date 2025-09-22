@@ -117,3 +117,15 @@ After your certificate is created, you can edit the nginx.conf file like the one
     ssl_certificate_key /etc/letsencrypt/live/{YOUR_DOMAIN}/privkey.pem;
 ```
 Then restart the service using the systemctl restart nginx command.
+
+<br /><br />
+---
+
+<div align="center">
+<h2> 🌐 AMS Edge Cluster — Scaling Seamlessly Across the Network 🚀 </h2>
+</div>
+
+Your Ant Media Server cluster is now running on AWS Wavelength, automatically **scaling Edge and Origin nodes based on demand**. Streams are efficiently routed, resources adjust dynamically, and your viewers enjoy **uninterrupted**, **high-performance** streaming no matter where they connect from. Truly, your network is ready for anything! 🎯
+
+
+

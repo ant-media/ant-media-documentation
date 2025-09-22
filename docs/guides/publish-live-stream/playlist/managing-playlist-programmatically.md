@@ -5,16 +5,16 @@ keywords: [Managing the Playlist Programmatically, Ant Media Server Documentatio
 sidebar_position: 3
 ---
 
-In the previous sections, we learned how to create and manage playlists via the management panel/dashboard. The playlist can also be managed programmatically with the help of the Ant Media Server REST APIs.
+In the previous sections, we learned how to create and manage playlists via the management panel/dashboard. The playlist can also be managed programmatically with the help of the Ant Media Server REST APIs offering flexibility for automation and integration.
 
 ## Make Ant Media Server Respond to REST API calls
 
-By default, only localhost can make REST calls to the Ant Media Server and for any other IPs to be able to make the API call, we need to enable that IP in the application settings under `REST API Security`.
+By default, Ant Media Server only allows REST API calls from ```localhost```. To enable access from other IP addresses, add the desired IPs in the application settings under ```REST API Security```.
 
 For this demonstration to test the playlist programmatically, I will open the REST API for everyone.
 
 :::important 
-I have opened Ant Media Server to respond to all REST methods for testing purposes. It's not something recommended for production environments. So, you should only open the REST calls to specific IPs by [securing the REST APIs](https://antmedia.io/docs/guides/developer-sdk-and-api/rest-api-guide/securing-rest-apis/).
+This configuration is suitable for testing purposes. For production environments, restrict access ONLY to trusted IPs. So, you should only open the REST calls to Truested IPs by [securing the REST APIs](https://antmedia.io/docs/guides/developer-sdk-and-api/rest-api-guide/securing-rest-apis/).
 :::
 
 - Find `REST API Security` section under settings and add `0.0.0.0/0` to the text area within the `Enable IP Filter for RESTful API`.
@@ -132,3 +132,15 @@ curl -X 'POST' "http://${MY_ANT_MEDIA_SERVER}:5080/live/rest/v2/broadcasts/${MY_
 ```
 
 Stay tuned for more new features to enhance the Playlist experience with Ant Media Server.
+
+<br /><br />
+---
+
+<div align="center">
+<h2> Managing the Playlist like a Techie! 🎉 </h2>
+</div>
+
+Congratulations! You've successfully **managed playlists programmatically** using Ant Media Server's REST APIs. This capability empowers you to **automate** and **integrate** playlist management into your workflows, enhancing the flexibility and efficiency of your streaming operations.
+
+Your content is now dynamically controlled, providing a seamless and engaging experience for your audience. Well done — your playlists are live and ready to impress!
+

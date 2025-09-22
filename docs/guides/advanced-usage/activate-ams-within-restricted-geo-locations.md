@@ -5,9 +5,9 @@ keywords: [Activate AMS within self-hosted proxy server, restricted geo location
 sidebar_position: 12
 ---
 
-# Activate Ant Media Server from within restricted geo locations
+# Activate Ant Media Server in Restricted Geographies
 
-Ant Media uses Google services to verify the license key and those services are banned in China and Hong Kong. 
+Ant Media uses Google services to verify the license key, which are banned in China and Hong Kong. 
 
 For this reason, it’s not possible to verify the Ant Media license key using Google services.
 
@@ -17,14 +17,14 @@ In this article, I'll provide two options to get around these restrictions and e
 
 The two options are:
 
-- A proxy service that is provided free for Ant Media Enterprise users.
+- A proxy service, provided free for Ant Media Enterprise users.
 - A self-hosted proxy server
 
 ## 1. Free Proxy service for Enterprise Users
 
 Ant Media offers this to Enterprise users for free. To access the free service, simply send an email to support@antmedia.io to receive a username and password.
 
-After receiving a username and password, run the following command then restart the Ant Media Server.
+After receiving a username and password, run the following command, then restart the Ant Media Server.
 
 ```
 echo "proxy.address=username:password@license-verification.antmedia.io:80" >> /usr/local/antmedia/conf/red5.properties
@@ -113,4 +113,16 @@ Finally, restart the Ant Media Server.
 systemctl restart antmedia
 ```
 You can now go to the Dashboard and enter your license key in the settings. 
+
+<br /><br />
+---
+
+<div align="center">
+<h2> 🔓 License Verified, Barriers Bypassed! 🌍 </h2>
+</div>
+
+You’ve enabled **proxy support** (either free or self-hosted) so your Ant Media Server can verify its **license—even from within restricted regions**. No more blocked verification, no more frustration.
+
+Your setup is now licensed, connected, and unstoppable — wherever you are! 🚀
+
 

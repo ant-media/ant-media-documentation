@@ -13,15 +13,16 @@ Thumbnails are small, lightweight versions of images or videos, used as previews
 
 Ant Media Server can generate thumbnails (previews) of the incoming streams on the fly. This guide will help you learn configuration parameters for generating and using thumnails.
 
-- In order to activate thumbail generation, you just need to add at least one adaptive bitrate. You can do that in the dashboard using ```Application > live > Settings > Add New Bitrate```
+- To activate thumbnail generation, add at least one adaptive bitrate. You can do that in the dashboard using ```Application > live > Settings > Add New Bitrate```
 
 ![](@site/static/img/preview_1.png)
 
-- You can enable the thumbnail feature from the web panel settings by enabling the `Generate Preview` checkbox:
+- Enable the thumbnail feature from the web panel settings by checking the 'Generate Preview' checkbox:
 
  ![](@site/static/img/enable-preview.png)
 
-- You can also enable it via Advance application settings as well. Go to the ```Application > Your App > Settings  > click on    basic > switch to Advance``` and search for `generatePreview` and set it to true.
+- You can also enable it via Advanced application settings as well.
+- Go to the ```Application > Your App > Settings > click on basic > Switch to Advanced``` and search for `generatePreview` and set it to true.
 
   ```js
   "generatePreview": true,
@@ -86,7 +87,7 @@ As an alternative, you can also enable this feature on the web panel by enabling
 
 ## Preview Thumbnail
 
-The generated thumbnails will be available in this URL template:
+Access the generated thumbnails via the following URL template:
 
 ```html
 http://<SERVER_NAME>:5080/live/previews/<STREAM_ID>.png
@@ -113,3 +114,16 @@ The absolute path of the preview image is as follows:
 ```
 
 In addition to this, you can also upload thumbnail images to the S3 buckets. Please [check out the instructions for S3 Integration](https://antmedia.io/docs/category/s3-recording-and-integration/).
+
+
+<br /><br />
+---
+
+<div align="center">
+<h2> 📸 Thumbnails delivered 🎯 </h2>
+</div>
+
+With **thumbnail previews enabled**, your viewers get a sneak peek before they dive in. Whether it's a **snapshot** of the action or a glimpse of the content, these **previews** enhance the browsing experience.
+
+Your streams are now not just watched; **they're previewed, engaged with, and remembered!** 🚀
+

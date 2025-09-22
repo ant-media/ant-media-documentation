@@ -217,3 +217,15 @@ Request m3u8 by adding the `start` and `end` date and time in the Unix timestamp
 ```https://domain:5443/live/streams/streamId.m3u8?start=1668454888&end=1668454999```
 
 You can get the time stamp as per the ts file date and time via [Epoch Converter](https://www.epochconverter.com/).
+
+
+<br /><br />
+---
+
+<div align="center">
+<h2> Playback Made Easy!🚢 </h2>
+</div>
+
+Congratulations! You've successfully set up **HLS playback with Ant Media Server**. Your viewers can now enjoy **seamless streaming** across various **devices** and **platforms**.
+With HLS, you've embraced a **widely supported streaming protocol** that ensures broad **compatibility** and **scalability**. Your content is now more accessible than ever before.
+

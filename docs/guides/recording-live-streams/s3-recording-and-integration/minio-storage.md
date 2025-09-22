@@ -69,6 +69,18 @@ Now, when you access:
 https://your-domain:5443/live/streams/recording.mp4  
 ```
 
+<br /><br />
+---
+
+<div align="center">
+<h2> Your Streams are Now Min-ified! 🧱☁️ </h2>
+</div>
+
+**Congratulations!** You've successfully configured Ant Media Server to record live streams directly to your **MinIO bucket.** Your MP4 and preview files are now securely uploaded and ready for on-demand playback.
+
+Meraki! — your streams are now **safely stored in your MinIO fortress!** 🏰🎬
+
+
 Ant Media Server will forward the request to:
 
 ```bash

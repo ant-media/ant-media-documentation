@@ -72,3 +72,13 @@ Since a new load balancer has been installed, your RTMP URL will be the Load Bal
 
 rtmp://Antmedia-RTMP-LB-962025612.eu-west-2.elb.amazonaws.com/WebRTCAppEE/
 ![](@site/static/img/aws-rtmp-url.png)
+
+<br /><br />
+---
+
+<div align="center">
+<h2> 🚀 RTMP Streaming, Load Balanced and Scalable! 🌐 </h2>
+</div>
+
+With your **RTMP Load Balancer configured in AWS**, Ant Media Server now efficiently distributes incoming RTMP streams across multiple instances. This setup ensures **high availability, scalability, and optimal performance** for your live streaming applications. Whether you're broadcasting events or delivering content to a global audience, your infrastructure is ready to handle the load.
+

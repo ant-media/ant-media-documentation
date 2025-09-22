@@ -74,3 +74,14 @@ Here are the information about fields.
 7\. Visit the Web panel, create and login to your account
 
 ![](@site/static/img/wavelength-standalone-6.png)
+
+<br /><br />
+---
+
+<div align="center">
+<h2> 🚀 Ultra-Low Latency Streaming at the Edge 🔥 </h2>
+</div>
+
+With Ant Media Server deployed on AWS Wavelength, your streaming infrastructure is positioned at the **edge of the network**, **closer to end-users**. This setup ensures ultra-**low latency, high availability, and scalability,** providing an optimal streaming experience for your audience..
+
+

@@ -7,7 +7,9 @@ sidebar_position: 3
 
 # Ant Media Server Global Cluster
 
-Ant Media Server Global Cluster is like a team of servers spread across different regions of AWS, all working together to make sure you can watch videos without any interruptions. With Ant Media Server Global Cluster, each region hosts its own streaming origin, forming a network that leverages AWS's global infrastructure to ensure high availability and scalability. This document provides insights into the architecture and how to easily create an Ant Media Server Global Cluster on AWS.
+Ant Media Server Global Cluster enables seamless streaming across multiple AWS regions, ensuring high availability and low latency by distributing content delivery. It is like a team of servers spread across different regions of AWS, all working together to make sure you can watch videos without any interruptions. 
+
+With Ant Media Server Global Cluster, each region hosts its own streaming origin, forming a network that leverages AWS's global infrastructure to ensure high availability and scalability. This document provides insights into the architecture and how to easily create an Ant Media Server Global Cluster on AWS.
 
 ## Defining Regions for Global Cluster
 
@@ -158,4 +160,15 @@ AWS Global Accelerator is a service in which you create accelerators to improve 
 
   You can also map this DNS name with a domain of your choice.
 
-- Congratulations, your multi region Ant Media Server Global Cluster is now ready. 
+- Congratulations, your multi region Ant Media Server Global Cluster is now ready.
+
+<br /><br />
+---
+
+<div align="center">
+<h2> 🌐 Global Streaming, Local Excellence </h2>
+</div>
+
+With your global cluster spanning Frankfurt and Mumbai, you've harnessed the power of AWS's infrastructure to **deliver uninterrupted**, **low-latency streaming** experiences **worldwide**. From **seamless VPC peering to synchronized MongoDB setups**, your configuration ensures high availability and scalability. Whether it's live events or on-demand content, your viewers are in for a smooth, high-quality experience — no matter where they are.
+
+

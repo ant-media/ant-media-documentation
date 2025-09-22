@@ -43,7 +43,15 @@ The RTMP URL should not contain any port number. The RTMP protocol will automati
 
 ## Tune for ultra-low latency streaming
 
-OBS is not optimised for ultra-low latency streaming by default. If you use OBS to push an RTMP stream and play it with WebRTC, please go to ```Settings > Output``` and make the rate control ```CBR (Constant Bitrate)``` and tune for ```zerolatency```. You can also adjust the bitrate to meet your quality and internet bandwidth requirements. Furthermore, the ```keyframe interval``` should be set to 1.  Please see the screenshot below for reference:
+OBS is not optimized for ultra-low latency streaming by default. If you are pushing an RTMP stream from OBS and playing it with WebRTC, adjust the following settings:
+
+- Go to **Settings > Output** in OBS.  
+- Set **Rate Control** to ```CBR (Constant Bitrate)```
+- Set **Tune** to ```zerolatency```
+- Adjust the **Bitrate** according to your desired quality and available internet bandwidth.  
+- Set the **Keyframe Interval** to ```1```  
+
+Refer to the screenshot below for guidance.
 
 ![](@site/static/img/obs-rtmp-image/OBS-Output.png)
 
@@ -76,3 +84,15 @@ Stream health parameters are located at the bottom right. There are 3 stream hea
 If your PC cannot handle the stream with the parameters you set, this warning appears. In this case, you may want to decrease the resolution, bitrate, or change the encoder preset value to one with high speed and low quality.
 
 ![](@site/static/img/obs-rtmp-image/OBS-Warning.png)
+
+<br /><br />
+---
+
+<div align="center">
+<h2> Stream Live with OBS ✅ </h2>
+</div>
+
+You’ve configured **OBS**, connected your video/audio sources, set the **RTMP URL & stream key**, tuned for **low-latency (CBR + keyframe interval = 1)**, and hit “Start Streaming.” Compared to **browser streaming**, this method gives you **more control over bitrate, quality, and encoding settings**.  
+
+Nice work — your **live stream** is now broadcasting from **OBS to your Ant Media Server**! 🎬
+

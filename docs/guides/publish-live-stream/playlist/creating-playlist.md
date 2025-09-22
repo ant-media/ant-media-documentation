@@ -5,7 +5,7 @@ keywords: [Creating a playlist, Ant Media Server Documentation, Ant Media Server
 sidebar_position: 2
 ---
 
-It is very simple to create a playlist from the Ant Media Server dashboard by following a set of steps. So let's get started 🙂
+Ant Media Server (AMS) allows you to create and manage playlists, enabling seamless playback of multiple Video on Demand (VoD) files in a specified order. This feature is available in both the Community and Enterprise editions of AMS.
 
 ## VoD files
 
@@ -196,3 +196,16 @@ Now that we have learned how to create a playlist, let's make some configuration
 ![image.png](@site/static/img/publish-live-stream/playlist/hls-flags.png)
 
 - Save the changes and start/restart the playlist to apply the changes.
+
+
+<br /><br />
+---
+
+<div align="center">
+<h2> BOOM! You're a Playlist Pro! 🎉 </h2>
+</div>
+
+Congratulations! You've successfully **created and streamed a playlist** in Ant Media Server. Whether it's for continuous content delivery, event broadcasting, or creating a dynamic viewing experience, your playlist is now live and ready to engage your audience.
+
+Your content is now **seamlessly delivered**, keeping your viewers **entertained and engaged**. Well done — your playlist is live and ready to shine!
+

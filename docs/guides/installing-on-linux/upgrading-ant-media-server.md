@@ -9,7 +9,7 @@ sidebar_position: 3
 
 This guide explains how to upgrade the Ant Media Server from an earlier version to the latest version.
 
-- There are two ways to upgrade your Ant Media Server to the latest edition.
+- There are two ways to upgrade your Ant Media Server to the latest version.
 1. Using the ```upgrade.sh``` script that automatically gets the latest version of the Ant Media Server and makes the upgrade. This script is available under the ```usr/local/antmedia``` directory by default for Ant Media Server version 2.9.0 and above.
 
 
@@ -24,7 +24,7 @@ This script is available under the installation directory for Ant Media Server v
 
 **1. SSH into your Ant Media Server instance.**
 
-**2. Navigate to the installation Directory.**
+**2. Navigate to the installation directory.**
 
 ```
 cd /usr/local/antmedia
@@ -66,7 +66,7 @@ To use this approach, it is important to have the Ant Media Server installation 
 - If you have purchased a license from Ant Media, then in the downloads section of your [antmedia.io](https://antmedia.io/my-account/downloads/) account, you can download the most recent version zip file.
 
 
-- In the case of Ant Media Server's Marketplace image on AWS, Azure, GCP, and Oracle Cloud, you can send an email to contact@antmedia.io and ask for the new version zip file.
+- In the case of Ant Media Server's Marketplace image on AWS, Azure, GCP, and Oracle Cloud, you can send an email to [contact@antmedia.io] and ask for the new version zip file.
 
 
 - In the case of Ant Media Server Community Edition, you can download the latest version zip file from [h](https://github.com/ant-media/Ant-Media-Server/releases)[ere](https://github.com/ant-media/Ant-Media-Server/releases).
@@ -86,7 +86,7 @@ wget -O install_ant-media-server.sh https://raw.githubusercontent.com/ant-media/
   
 **3. Run the installation script to upgrade the server**
 
-If you want to keep the settings from the previous installation, you must add the **"-r true"** flag at the end of the command.
+If you want to keep the settings from the previous installation, you must add the **-r true** flag at the end of the command.
 
 ```shell
 sudo ./install_ant-media-server.sh -i <ANT_MEDIA_SERVER_ZIP_FILE> -r true
@@ -96,7 +96,7 @@ For change/release logs of the new version, please check [here](https://github.
 
 ## How do I restore the Ant Media Server if needed?
 
-Last but not least, when you make a fresh installation or upgrade over an older version, the previous installation will be backed up in the **/usr/local** directory with a timestamp value like antmedia-backup-2022-11-18_15-42-54.
+Finally, whenever you perform a fresh installation or upgrade over an existing version, Ant Media Server automatically creates a backup of the previous installation in the ```/usr/local``` directory. You can find it in a timestamped folder — for example, **antmedia-backup-2022-11-18_15-42-54**
 
 To restore the previous installation, kindly follow the below commands:
 
@@ -110,6 +110,16 @@ sudo systemctl start antmedia
 
 ## **What happens to previously installed plugins after upgrade?**
 
-Currently, the upgrade process removes all previously installed plugins, as well as their configuration and license files. You must manually copy these files from the previous version that was backed up, or you must reinstall them.
+During the upgrade, all previously installed plugins — along with their configurations and license files — are removed. To continue using them, you’ll need to either copy the files from your backup or reinstall the plugins. Our team is actively working on improving this process for future releases.
 
-Our team is looking into ways to improve the process.
+<br /><br />
+---
+
+<div align="center">
+<h2> Success ✅ </h2>
+</div>
+
+You have now **upgraded Ant Media Server** to the latest version — either by using the **upgrade.sh script** or by running the **installation script** with your downloaded zip file. You also learned how to **restore a previous installation** if needed and how to handle **plugins after an upgrade**.  
+
+Your server is now **up-to-date, backed up, and ready** to deliver the latest features and improvements. 🚀
+

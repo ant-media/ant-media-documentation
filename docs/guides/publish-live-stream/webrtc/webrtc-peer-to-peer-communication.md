@@ -18,7 +18,7 @@ If you have Ant Media Server installed on your local machine, you can also go to
 ![](@site/static/img/publish-live-stream/WebRTC/WebRTC-publishing/WebRTC-peer.png)
 
 - Input the streamId and click the join button.
-- Now open the same page in a new browser tab or any other machine and click Join. Congratulations! You're now using WebRTC to connect in P2P mode from your browser!
+- Now open the same page in a new browser tab or any other machine and click join. Congratulations! You're now using WebRTC to connect in P2P mode from your browser!
 
 
 ### Join P2P Communication
@@ -88,3 +88,14 @@ var pc_config =
       } ]
 };
 ```
+
+<br /><br />
+---
+
+<div align="center">
+<h2> P2P Success ✅ </h2>
+</div>
+
+You’ve now used **Ant Media’s WebRTC Peer-to-Peer mode**: connected via the sample page, joined with **WebRTCAdaptor**, **exchanged streams** directly **between peers**, and (if needed) configured **TURN server** fallback.  
+
+Your connection is now **lean, fast, and minimizes lag** — pure peer-to-peer streaming magic! 🎯

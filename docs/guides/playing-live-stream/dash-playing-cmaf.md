@@ -11,7 +11,7 @@ sidebar_position: 4
 
 - The Common Media Application Format (CMAF) is a standard designed to reduce HTTP delivery latency, typically to around 3-5 seconds. It aims to lower the cost, complexity, and latency of streaming. CMAF can be utilized with both DASH (Dynamic Adaptive Streaming over HTTP) and HLS (HTTP Live Streaming).
 
-- Ant Media Server fully supports LL-DASH (Low Latency DASH) through CMAF and LL-HLS (Low Latency HLS) is an experimental feature for now.
+- Ant Media Server fully supports LL-DASH (Low Latency DASH) through CMAF and LL-HLS (Low Latency HLS).
 
 ![](@site/static/img/126611-CMAF-Fig1-ORG.jpg)
 
@@ -24,7 +24,6 @@ Dash playback is turned off by default, so you must enable it before playing a s
 Dash playback can be enabled from the application settings.
 
 - Navigate to your application (live or any other).
-
 - Go to `Settings` and under `Dash & CMAF Streaming` check `Create DASH Streaming` to enable it.
 
  ![Screenshot 2024-06-01 000744](https://github.com/ant-media/ant-media-documentation/assets/86982446/32c0cb27-ca3f-4629-93e1-eae51ebfe04b)
@@ -134,7 +133,20 @@ There are a few more options for CMAF and their default values. You can assume t
 If you're using Dash streaming with ABR enabled, make sure the following property is enabled in your application's advanced settings:.
 
 ```js
+
 "forceAspectRatioInTranscoding": true,
 ```
 
 The value is false by default. Check [here](https://antmedia.io/javadoc/io/antmedia/AppSettings.html#forceAspectRatioInTranscoding) for more information on this property.
+
+<br /><br />
+---
+
+<div align="center">
+<h2> The DASHing Playback 🎯 </h2>
+</div>
+
+Congratulations! You've successfully set up **DASH playback with CMAF on Ant Media Server.** Your viewers can now enjoy **low-latency streaming** experiences with **enhanced compatibility** across various devices.
+
+With DASH and CMAF, you've embraced a modern streaming protocol that balances **performance** and **scalability**. Your content is now delivered efficiently, ensuring a seamless viewing experience for your audience.
+

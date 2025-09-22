@@ -24,11 +24,19 @@ Google Cloud is another cloud provider that is preferred by many Ant Media Serve
 4. Create an access key for the user account  
 ![](@site/static/img/image-1665067947615.png )
 
-5. Log in to the Ant media server, enable the `Record Live Streams as MP4` and `Enable S3 Recording` options, enter your S3 credentials, and save the changes. Pay attention that enter `auto` for `Region Name` and `https://storage.googleapis.com` for `Endpoint`
+5. **Configure Ant Media Server**
+   - Log in to your Ant Media Server panel at `http://your_ams_server:5080`.
+   - Navigate to **Applications** > **live** > **Settings**.
+   - Enable **Record Live Streams as MP4** and **Enable S3 Recording**.
+   - Enter the following **S3** credentials:
+     - **Access Key**: `your_access_key`
+     - **Secret Key**: `your_secret_key`
+     - **Bucket Name**: `your_space_name`
+   - **Save** the settings.
 
 ![](@site/static/img/image-1665068031722.png )
 
-Congratz, your MP4 files and preview files will be uploaded to your Google Cloud Storage Bucket automatically.
+Congrats, your MP4 and preview files will be uploaded to your **Google Cloud Storage Bucket** automatically.
 
 
 ## Enable HTTP Forwarding for Playback
@@ -74,3 +82,15 @@ Ant Media Server will forward the request to:
 ```bash
 https://storage.googleapis.com/mybucket/streams/recording.mp4  
 ```
+
+<br /><br />
+---
+
+<div align="center">
+<h2> Your Streams, Your Cloud! ☁️🚀 </h2>
+</div>
+
+Congratulations! You've successfully configured Ant Media Server to record live streams directly to **Google Cloud Storage**. Your MP4 and preview files are now automatically **uploaded and ready for on-demand playback.**
+
+Tada!! — your streams have officially taken rest in the cloud! 🎬✨
+

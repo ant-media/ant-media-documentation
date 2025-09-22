@@ -17,10 +17,17 @@ After generating Access keys and Secret keys, you need to create a bucket. Just 
 
 ![image.png](@site/static/img/image-286229.png)
 
-Then, log in to http://your_ams_server:5080, enable Record Live Streams as MP4 and Enable S3 Recording, enter the S3 credentials you have created, and save the settings.  
+Then Log in to your Ant Media Server panel at `http://your_ams_server:5080`.
+   - Navigate to **Applications** > **live** > **Settings**.
+   - Enable **Record Live Streams as MP4** and **Enable S3 Recording**.
+   - Enter the following S3 credentials:
+     - **Access Key**: `your_access_key`
+     - **Secret Key**: `your_secret_key`
+     - **Bucket Name**: `your_space_name`
+   - **Save** the settings.
 ![](@site/static/img/image-1648581984499.png )
 
-Your MP4 files and Preview files will be uploaded to your Wasabi storage automatically.
+Your MP4 and Preview files will be uploaded to your **Wasabi storage** automatically.
 
 ---
 
@@ -65,4 +72,15 @@ Ant Media Server will forward the request to:
 ```bash
 https://mybucket.s3.us-east-1.wasabisys.com/streams/recording.mp4  
 ```
+
+<br /><br />
+---
+
+<div align="center">
+<h2> Your Streams have reached the destination 🔥 </h2>
+</div>
+
+You’ve successfully set up Ant Media Server to record live streams **directly to Wasabi Storage**. Now, every MP4 you capture is **automatically uploaded, safely stored, and ready for on-demand playback.**  
+
+**Fantastic job** — your streams are now living large in the Wasabi cloud! 🚀🎬
 

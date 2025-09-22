@@ -19,6 +19,8 @@ sudo service antmedia stop
 
 Delete the directory where Ant Media Server is installed. This removes all application files and data.
 
+**Note**- Ensure you have a backup if you want any data or config preserved, because this is destructive.
+
 ```bash
 sudo rm -rf /usr/local/antmedia
 ```
@@ -37,3 +39,13 @@ sudo userdel antmedia
 sudo rm -rf /etc/systemd/system/antmedia.service
 sudo systemctl daemon-reload
 ```
+
+<br /><br />
+---
+
+<div align="center">
+<h2> All set 🔧 </h2>
+</div>
+
+You have successfully **uninstalled Ant Media Server** from your system. Your server is now clean and ready for a fresh start.  
+

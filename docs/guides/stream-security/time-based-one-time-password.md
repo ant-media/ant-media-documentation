@@ -79,7 +79,7 @@ As mentioned in Subscribers Operations, you can also generate the TOTP token dir
 ### The sample TOTP token creation API in the Publish Scenario
 
 ```bash
-curl -X 'GET' 'http://IP-adddress-or-domain:5080/live/rest/v2/broadcasts/streamId/subscribers/SubscriberId/totp?type=publish'-H 'accept: application/json'
+curl -X 'GET' 'http://IP-address-or-domain:5080/live/rest/v2/broadcasts/streamId/subscribers/SubscriberId/totp?type=publish'-H 'accept: application/json'
 ```
 
 ![](@site/static/img/stream-security/subscriber_block_publish_totp_postman.png)
@@ -87,7 +87,7 @@ curl -X 'GET' 'http://IP-adddress-or-domain:5080/live/rest/v2/broadcasts/streamI
 ### The sample TOTP token creation API in the Player Scenario
 
 ```bash
-curl -X 'GET' 'http://IP-adddress-or-domain:5080/live/rest/v2/broadcasts/streamId/subscribers/SubscriberId/totp?type=play'-H 'accept: application/json'
+curl -X 'GET' 'http://IP-address-or-domain:5080/live/rest/v2/broadcasts/streamId/subscribers/SubscriberId/totp?type=play'-H 'accept: application/json'
 ```
 
 ![](@site/static/img/stream-security/subscriber_block_play_totp_postman.png)
@@ -107,7 +107,7 @@ Please save the settings after making any changes.
 
 ### Block Publish
 
-After obtaining the TOTP token using the above process, you will get one 6 bytes `subscriberCode` in response that will be used to publish the stream with `subscriberId`.
+After obtaining the TOTP token using the above process, you will get a 6 byte `subscriberCode` in response that will be used to publish the stream with `subscriberId`.
 
 For instance, when using the JavaScript SDK, the publish command should be called as shown below:
 
@@ -145,7 +145,7 @@ Remember, if you previously blocked subscribers from publishing and then unblock
 
 As an illustration, suppose you are associating your users with `userIds` in your application. When users initiate playback on your application, you can transmit their `userId` as the `subscriberId` and issue a TOTP generation request to AMS (Ant Media Server). Once you receive the token, pass it to the Ant Media Server SDK to commence the user's playback.
 
-After obtaining the TOTP token, you will get one 6 bytes `subscriberCode` in response that will be used to play the stream with `subscriberId`.
+After obtaining the TOTP token, you will get a 6 byte `subscriberCode` in response that will be used to play the stream with `subscriberId`.
 
 For instance, when using the JavaScript SDK, the play command should be called as shown below:
 
@@ -301,3 +301,17 @@ ws://{ant-media-server}:5080/live/websocket
   subscriberId :  "subscriberId",
 }
 ```
+
+<br /><br />
+---
+
+<div align="center">
+<h2> ⏱️ Only the Timely Token Grants Entry! 🔐 </h2>
+</div>
+
+With the **Time-Based One-Time Password (TOTP)** mechanism enabled, your streams are protected by tokens that are **valid only for a short duration**, typically **60 seconds**. This ensures that only authorized users with the correct, time-sensitive credentials can publish or play streams.
+
+Unlike JWT tokens, which can be reused within their validity period, TOTP tokens are single-use and expire quickly, offering an added layer of security. This makes TOTP ideal for scenarios where you want to **grant temporary access** to trusted users without the risk of token reuse.
+
+Your streaming setup is now **fortified with time-sensitive security** — ensuring that only the **right users have access at the right time!** ⏳🚀
+

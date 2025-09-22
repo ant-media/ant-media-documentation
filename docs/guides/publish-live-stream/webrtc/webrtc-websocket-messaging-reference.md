@@ -33,8 +33,8 @@ Let's understand it step by step:
    metaData : "metaData",
    subscriberCode : "subscriberCode",
    subscriberId : "subscriberId",
-   video : "true",
-   audio : "true",
+   enablevideo : "true",
+   enableaudio : "true",
    }
     ```
 
@@ -44,7 +44,7 @@ Let's understand it step by step:
 
 - **```subscriberId``` and ```subscriberCode```:** These are the values for the Time-based One-time Password (TOTP). If the user is using the TOTP mechanism, they need to pass the ```subscriberId``` and ```subscriberCode```.
 
-- **```streamName```:** Zombie streams are streams that aren't in the database. Therefore, users can give these "on the fly" streams a ```streamName```.
+- **```streamName```:** Zombie streams are streams that don’t have entries in the AMS database. Therefore, users can give these "on the fly" streams a ```streamName```.
 
 - **```mainTrack```:** ```mainTrack``` is related to multitrack streaming and is required if the user wants to start the stream as a ```subtrack``` for this ```mainTrack```. For multitrack conferences, ```mainTrack``` is set as the room ID.
 
@@ -52,10 +52,10 @@ Let's understand it step by step:
 
 - **```enableVideo``` and ```enableAudio```:** These parameters define whether to enable video and audio for the stream.
 
-  If ```enableVideo``` is true, then the video will be sent to the server. If ```enableAudio``` is true, then audio will be sent to the server.
+If ```enableVideo``` is true, then the video will be sent to the server. If ```enableAudio``` is true, then audio will be sent to the server.
 If ```enableVideo``` is false and ```enbleAudio``` is true, then it means it's an audio-only stream.
 
-- Only ```command``` and ```streamId``` are mandatory. Audio and video are enabled by default. When the server receives the ```publish``` commands, it checks whether the license is suspended and whether the server has enough resources, and retrieves the token if necessary.
+- Only ```command``` and ```streamId``` are mandatory. Audio and video are enabled by default. When the server receives the ```publish``` commands, it checks whether the license is active vs suspended and whether the server has enough resources, and retrieves the token if necessary.
 
 3. If the Server accepts the stream, it replies with the `start` command
 ```json
@@ -811,3 +811,17 @@ This error can occur if a user attempts to re-publish a stream with the same `st
     description: "streaming_session_Restored",
   }
   ```
+
+
+
+<br /><br />
+---
+
+<div align="center">
+<h2> WSS-Messaging Ready 🔔 </h2>
+</div>
+
+You’ve now explored how **WebSocket signaling works in AMS**: connected via `wss://…/live/websocket`, sent the `**publish**` command, included **metadata**, managed **TOTP** or **token** fields if required, and understood the **optional** vs **mandatory** fields.  
+
+Your signaling layer is fully setup — **smooth**, **secure**, and ready to handle stream **control messages and status notifications**. Your WebRTC stack is talking properly now! 📡
+
