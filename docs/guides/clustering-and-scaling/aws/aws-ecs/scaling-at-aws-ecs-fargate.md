@@ -233,6 +233,15 @@ Repeat Step 6 with:
 - You can create DNS record to access the cluster securily over HTTPS.
 
 
+<br /><br />
+---
+
+<div align="center">
+<h2> ⚡ AMS Scales Automatically — Fargate Takes the Load! 🌐 </h2>
+</div>
+
+Your Ant Media Server is now running on **AWS Fargate with auto-scaling enabled**. As traffic surges, new AMS tasks spin up seamlessly; when demand drops, resources scale down automatically. **No servers to manage, no manual scaling** — just smooth, resilient streaming for your viewers worldwide. 🚀
+
 
 
 
