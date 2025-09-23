@@ -38,7 +38,7 @@ To do that, send a  `PUT` request using
 **Here is the curl sample:**
 
 ```bash
-curl --location --request PUT 'http(s)://AMS_DOMAIN:5080(5443)/AppName/rest/v2/broadcasts/streamId' --header 'Content-Type: application/json' --data '{"autoStartStopEnabled":true}'
+curl --location --request PUT 'https://AMS_DOMAIN:5443/AppName/rest/v2/broadcasts/streamId' --header 'Content-Type: application/json' --data '{"autoStartStopEnabled":true}'
 ```
 
  - Open a new tab and start watching the live stream using the below URL.
