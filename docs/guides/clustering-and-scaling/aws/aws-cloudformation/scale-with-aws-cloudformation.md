@@ -7,116 +7,143 @@ sidebar_position: 1
 
 # Scale AMS with AWS CloudFormation
 
-Now let's start on to the CloudFormation setup and continue step by step.
+Now let's start on the CloudFormation setup and continue step by step.
 
 [Watch the YouTube Video: Setting up an Ant Media Server Scaling Solution with CloudFormation In 5 minutes](https://www.youtube.com/watch?v=y7bP0u0jQRQ)
 
-**1.** Firstly, let's subscribe to the Ant Media Server on the Amazon Marketplace. Open the link: [https://aws.amazon.com/marketplace/pp/B07569Y9SJ/](https://aws.amazon.com/marketplace/pp/B07569Y9SJ/) then please proceed by clicking “Continue to Subscribe” button.
+**1.** Firstly, let's subscribe to the Ant Media Server on the Amazon Marketplace.
 
-![](@site/static/img/cloudformation-marketplace-1.png)
+Open the link: [https://aws.amazon.com/marketplace/pp/B07569Y9SJ/](https://aws.amazon.com/marketplace/pp/B07569Y9SJ/) then please proceed by clicking “View Purchase Options” button.
 
-**2.** Please proceed by clicking “Accept Terms” button
+![](/img/clustering-and-scaling/aws-cloudformation/1-View-Purchase-Options.webp)
 
-![](@site/static/img/cloudformation-marketplace-2.png)
 
-**3.** if everything goes well, you will see the screenshot below.
+**2.** Now review the settings as shown in below screenshots and Please proceed by clicking “Subscribe” button
 
-![](@site/static/img/cloudformation-marketplace-3.png)
+![](/img/clustering-and-scaling/aws-cloudformation/2.1-Subscribe.webp)
 
-**4.** Now, download the CloudFormation template from the below link to your computer.
+![](/img/clustering-and-scaling/aws-cloudformation/2.2-Subscribe.webp)
+
+![](/img/clustering-and-scaling/aws-cloudformation/2.3-Subscribe.webp)
+
+
+**3.** If everything goes well, you will see the screenshot below.
+
+![](/img/clustering-and-scaling/aws-cloudformation/3.Launch.webp)
+
+**4.** Now, download the CloudFormation template from the below link to your computer.
 
 [https://raw.githubusercontent.com/ant-media/Scripts/master/cloudformation/antmedia-aws-autoscale-template.yaml](https://raw.githubusercontent.com/ant-media/Scripts/master/cloudformation/antmedia-aws-autoscale-template.yaml)
 
-**5.** Log in to the AWS Dashboard and find CloudFormation in the search box.
+**5.** Log in to the AWS Dashboard and find **CloudFormation** in the search box.
 
-![](@site/static/img/AntMedia-CloudFormation-1.png)
+![](/img/clustering-and-scaling/aws-cloudformation/4-CloudFormation.webp)
 
-**6.** Click on "Create Stack" from the menu.
+**6.** Click on **Create Stack** > **With New Resources** from the menu.
 
-![](@site/static/img/AntMedia-CloudFormation-2.png)
+**7.** Select **Choose an Existing Template** > **Upload a Template File** and upload the downloaded YAML file. Click on "Next",
 
-**7.** Select "Upload a Template File" and upload the downloaded file.
+![](/img/clustering-and-scaling/aws-cloudformation/5-Create-Stack-Upload-Template.webp)
 
-![](@site/static/img/AntMedia-CloudFormation-3.png)
-
-**8.** The menu that below is where we will adjust all our settings.
+**8.** The **Specify Stack Deatils** page is where we will adjust all our settings.
 
 ![](@site/static/img/AntMedia-CloudFormation-4.png)
 
--   **Stack Name:** it will describe your stacks, it will be like a skeleton
--   **AntMediaEdgeCapacity:** How many Edge servers will be created.
--   **AntMediaEdgeCapacityMax:** Edge Server where Auto Scale will reach maximum
--   **AntMediaOriginCapacity:** How many Origin servers will be created.
--   **AntMediaOriginCapacityMax:** Origin Server where Auto Scale will reach maximum
--   **CPUPolicyTargetValue:** Average CPU utilization of the Auto Scaling group. When the server reaches %60 CPU utilization average, new servers will be added
--   **EdgeInstanceType:** Edge Instance Type
+-   **Stack Name:** it will describe your stacks, it will be like a skeleton
+-   **AntMediaEdgeCapacity:** How many Edge servers will be created.
+-   **AntMediaEdgeCapacityMax:** Edge Server where Auto Scale will reach maximum
+-   **AntMediaOriginCapacity:** How many Origin servers will be created.
+-   **AntMediaOriginCapacityMax:** Origin Server where Auto Scale will reach maximum
+-   **CPUPolicyTargetValue:** Average CPU utilization of the Auto Scaling group. When the server reaches %60 CPU utilization average, new servers will be added
+-   **EdgeInstanceType:** Edge Instance Type
 
 ![](@site/static/img/AntMedia-CloudFormation-4-1.png)
 
--   **Email:** Subscription Email
--   **KeyName:** An Amazon EC2 key pair name.If there is no value here, you must create an ssh key (EC2 > Key Pairs).
--   **LoadBalancerCertificateArn:** Amazon Resource Name (ARN) of the certificate to associate with the load balancer. Please check this guide: [https://antmedia.io/ssl-from-aws-certificate-manager-for-domain-name/](https://antmedia.io/ssl-from-aws-certificate-manager-for-domain-name/)
--   **MongoDBInstanceType:** MongoDB Instance Type
--   **OriginInstanceType:** Origin Server Instance Type
--   **RTMP:** If you want to install RTMP Load balancer, please select True
--   **SSHLocation:** The IP address range that can be used to SSH to the EC2 instances
--   **Subnets:** The list of SubnetIDs in your Virtual Private Cloud (VPC). You must choose at least 2 subnets from the same VPC network.
--   **VpcCidrBlock:** Associates a CIDR block with your VPC. It should be the same as the VPC Network.
--   **VpcId:** VpcId of your existing Virtual Private Cloud (VPC). The VpcId must be the same as the subnets you choose.
+-   **Email:** Subscription Email
+-   **GPUImage:** By default it is false. Select "true" to use GPU Image for Origin Group if heavy transcoding is required. You must select one of the g and p instance types.
+-   **KeyName:** An Amazon EC2 key pair name.If there is no value here, you must create an ssh key (EC2 > Key Pairs).
+-   **LoadBalancerCertificateArn:** Amazon Resource Name (ARN) of the certificate to associate with the load balancer. Please check this guide: [https://antmedia.io/ssl-from-aws-certificate-manager-for-domain-name/](https://antmedia.io/ssl-from-aws-certificate-manager-for-domain-name/)
+-   **MongoDBInstanceType:** MongoDB Instance Type
+-   **OriginInstanceType:** Origin Server Instance Type
+-   **SSHLocation:** The IP address range that can be used to SSH to the EC2 instances
+-   **Subnets:** The list of SubnetIDs in your Virtual Private Cloud (VPC). You must choose at least 2 subnets from the same VPC network.
+-   **VpcCidrBlock:** Associates a CIDR block with your VPC. It should be the same as the VPC network.
+-   **VpcId:** VpcId of your existing Virtual Private Cloud (VPC). The VpcId must be the same as the subnets you choose.
+  
 
-**9.** Please proceed by clicking “Next” button
+**9.** On the **Configure Stack Options** page, select the relevant options. Since this stack uses AWS Lambda, you’ll need to check the box **"I acknowledge that AWS CloudFormation might create IAM resources"** (IAM permissions are required for Lambda to fetch the latest image). Once done, click **Next** to continue.
 
-![](@site/static/img/AntMedia-CloudFormation-5.png)
+![](/img/clustering-and-scaling/aws-cloudformation/6.1-Configure-Stack-Options.webp)
 
-**10.** In this section, you can view and check the summary of the parameters you have entered and you can edit it here as below.
+![](/img/clustering-and-scaling/aws-cloudformation/6.2-Configure-Stack-Options.webp)
 
-![](@site/static/img/AntMedia-CloudFormation-6.png)
+**10.** On the **Review and Create page**, you can review the summary of all parameters you’ve entered. If needed, you can edit any of them before proceeding.
 
-We are using AWS Lambda, so IAM permissions are needed to get our latest image.
+**11.** If the template has been installed successfully, it says **Create Complete** as per the screenshot below.
 
-![](@site/static/img/AntMedia-CloudFormation-6-1.png)
+**12.** You can now access the URL addresses for **Dashboard / Origin / Edge and RTMP ** in the **Outputs** tab.
 
-**11.** If the template has been installed successfully, it says "Create Complete" in the red rectangle.
+![](/img/clustering-and-scaling/aws-cloudformation/Outputs.webp)
 
-![](@site/static/img/AntMedia-CloudFormation-7.png)
+:::info
 
-**12.** You can access the URL addresses for LoadBalancer HTTP and HTTPS in the Outputs tab. If you define the CNAME record for the domain you have defined on Certificate Manager to the Load Balancer address below, you can access Ant Media Server without a certificate error on the domain you have defined.
+To avoid browser warnings and certificate errors, you must associate your Load Balancer with a valid domain and certificate.
 
-![](@site/static/img/AntMedia-CloudFormation-8.png)
+Here’s how it works:
+- By default, the Outputs tab will show you the **Load Balancer DNS names** (e.g., `cloudf-appli-xxxx.elb.amazonaws.com`).
+- These DNS names are functional, but they use an AWS-issued certificate that does **not** match your custom domain.
+- If you try to open them directly over HTTPS, most browsers will mark them as **insecure** or show a **certificate mismatch error**.
 
-**13.** When you type the URL of the Loadbalancer, Ant Media Dashboard will be opened as below
+To fix this:
+- Define a **CNAME record** in your DNS (e.g., `stream.example.com`) that points to your Load Balancer DNS name.
+- Then, request or import an SSL/TLS certificate in **AWS Certificate Manager** for your chosen domain (Or) If you already have a certificate from another provider, you can also import it into ACM and use it the same way.
+- Attach that certificate to your Load Balancer’s HTTPS listener.  
 
-![](@site/static/img/antmedia-login.png)
+After this setup, you’ll be able to access Ant Media Server securely on your own domain (e.g., `https://stream.example.com`) without any certificate errors.
+:::
 
-You can login with “JamesBond” and the first instances instance-id in your origin group. If you don’t know the instance-id, please ssh to your mongodb instance and write the below commands via terminal
+**13.** When you enter the Dashboard URL in your browser for the first time, the Ant Media Dashboard will open, asking you to create your account by providing the following details: **First Name, Last Name, Email Address, Password, and Confirm Password**.
 
-ActionScript
+![](/img/clustering-and-scaling/aws-cloudformation/create-account.webp)   
 
-```actionscript
-$ mongo> use serverdb> db.User.find()
-```
+:::note
+In the screenshot above, you may notice that the Dashboard is accessed using a secure custom domain (e.g., `https://cf-automation.antmedia.cloud`), while the publish/play examples (at the end of the document) use the default insecure Load Balancer URLs (e.g., `https://cloudf-appli-xxxxx.elb.amazonaws.com`).
 
-It gives you an output like this
+The custom domain shows how SSL works without warnings, while the Load Balancer URL is shown to illustrate the Outputs provided by CloudFormation. You can fix them by following the steps shared above in point number 12.
+:::
 
-`{ "_id" : ObjectId("5d31612a4c79142df7c71914"), "className" : "io.antmedia.rest.model.User", "email" : "JamesBond", "password" : "i-1234567890abcdef0", "userType" : "ADMIN" }`
-
-Your password is the one in “password” field in the format “i-xxxxxxxx”
-
- **14.** When you click on the Cluster tab, you can see the servers in Cluster.
+ **14.** Once logged in, When you click on the **Cluster tab**, you can see the servers in Cluster. **The Cluster is ready to use for your Live-Streaming**
 
 ![](@site/static/img/AntMedia-CloudFormation-9.png)
 
-**15.** When you delete a stack, the AWS CloudFormation deletes all resources in that stack.
+---
+
+**Tada!! Congratulations!** 
+
+By now, you’ve successfully deployed **Ant Media Server using CloudFormation**. While you were sipping your coffee, the template automatically took care of:
+
+- EC2 instance provisioning
+- Security Group configuration
+- Ant Media Server installation
+- Ant Media Server cluster setup (Origin + Edge)
+- Auto Scaling configuration
+- Load Balancer setup with HTTPS support
+- Ready to Publish and Play your desired streams. 
+
+**The best part?**   
+
+You don’t have to manually install, configure, or connect anything. With just a few clicks, you now have a fully functional cluster that’s ready to **publish and play streams** within minutes. You can refer to the below screenshots for reference. 
+
+![](/img/clustering-and-scaling/aws-cloudformation/publish-cloudformation.png)
+
+![](/img/clustering-and-scaling/aws-cloudformation/play-cloudformation.png)
+
+This means you can move straight to testing your live workflows—WebRTC, RTMP ingest (you will have to map a separate domain to the RTMP load balancer for RTMP streaming), HLS/LL-HLS playback — without worrying about infrastructure details.
+
+#### Delete Stack
+
+When you delete a stack, AWS CloudFormation deletes all resources in that stack.
 
 ![](@site/static/img/AntMedia-CloudFormation-10(1).png)
 
-I have covered most of the topics around Cloud Formation. Coming to the question of what we have gained by using CloudFormation and Ant Media Server template, the following steps will take place while sipping your coffee.
-
--   EC2 instance
--   Security group
--   Ant Media Server Installation
--   Ant Media Server Cluster Configuration
--   AutoScale
--   Load Balancer
-
-If you have any questions, please just drop your query at https://github.com/orgs/ant-media/discussions
+If you have any questions or run into issues, feel free to reach out here: [GitHub Discussions](https://github.com/orgs/ant-media/discussions).
