@@ -7,12 +7,9 @@ sidebar_position: 5
 
 # Circle App Component Usage
 
-[Circle](https://github.com/ant-media/conference-call-application) is a self-hosted, open source video conferencing solution built by Ant Media that can be deployed anywhere.
-
-Locally or in the cloud. It delivers high quality video with ultra-low latency and supports up to 200 participants per room. If you're concerned about **privacy** or operating behind a **firewall**, this is the ideal solution.
+[Circle](https://github.com/ant-media/conference-call-application) is a self-hosted, open source video conferencing solution built by Ant Media that can be deployed anywhere—locally or in the cloud. It delivers high-quality video with ultra-low latency and supports up to 200 participants per room. If you're concerned about **privacy** or operating behind a **firewall**, this is the ideal solution.
 
 This guide shows you how to integrate Circle's frontend component into your existing web application, allowing you to embed a complete video conferencing interface directly into your webpage so users can join conferences without leaving your app.
-
 
 ## Prerequisites
 
@@ -23,11 +20,13 @@ This guide shows you how to integrate Circle's frontend component into your exis
 ## Integration Steps
 
 1. Clone the [conference-call-application](https://github.com/ant-media/conference-call-application) repository:
+   
    ```bash
    git clone https://github.com/ant-media/conference-call-application.git
    ```
 
 2. Navigate to the react directory and install dependencies:
+
    ```bash
    cd conference-call-application/react
    npm install --legacy-peer-deps
@@ -64,4 +63,6 @@ This guide shows you how to integrate Circle's frontend component into your exis
    - Replace `<port>` with your server port (typically 5443 for HTTPS)
    - Replace `<application_name>` with your application name
 
-That's it! The Circle conference component will now render within your application, allowing users to join video conferences directly from your webpage.
+### Congratulations!
+
+The Circle conference component is now successfully embedded in your web application. Users can join video conferences directly from your webpage, and you can customize the component’s appearance and behavior as needed. Your application is now ready for seamless, low-latency video collaboration.

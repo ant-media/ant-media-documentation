@@ -10,21 +10,21 @@ sidebar_position: 1
 
 Ant Media Server supports dynamic application development, effectively addressing the multi-tenancy challenges of online video platforms. With three built-in applications, the server allows users to configure distinct settings for each application and customize application names.
 
-To accommodate this, customers can create or delete applications as needed. There are multiple methods available for managing applications, which we will outline below.
+Customers can create or delete applications as needed. There are multiple methods available for managing applications, outlined below.
 
 ### Web Panel
 
-The fastest and easiest way to create new applications on the web panel.
+The fastest and easiest way to create new applications is via the web panel.
 
 #### Step 1
 
-Login to the web panel, on the Dashboard & Click the New Application button
+Login to the web panel, navigate to the Dashboard, and click the New Application button.
 
 ![image](https://github.com/user-attachments/assets/4df34b28-ff9d-429b-a061-8dd5b6938d5f)
 
 #### Step 2
 
-Enter application name and click the ```Create``` button
+Enter the application name and click the ```Create``` button.
 
 ![image](https://github.com/user-attachments/assets/546a3581-0dbb-494f-8600-0248fc0eaa8b)
 
@@ -32,48 +32,49 @@ Note- In cluster mode, the server automatically creates the new application acro
 
 ### Shell Script
 
-There is a script that creates new applications in Ant Media Server easily. You just need to type a few simple commands.
-
-Let’s have a look at the steps:
+You can also use a script to create new applications easily. Follow these steps:
 
 #### Step 1
 
-Go to the folder where Ant-Media-Server is installed. Default directory is ```/usr/local/antmedia```
-```
+Go to the folder where Ant Media Server is installed. The default directory is ```/usr/local/antmedia```
+```bash
 cd /usr/local/antmedia
 ```
 
 #### Step 2
 
-create\_app.sh usage in below.
-```
+Use the ` create_app.sh` script as follows:
+
+```bash
 sudo ./create_app.sh -n applicationName -p AMS-Installation-Directory
 ```
 
 For example:
-```
+
+```bash
 sudo ./create_app.sh -n streamHive -p /usr/local/antmedia
 ```
 
-You can add some parameters in **create_app** script. Here are the options:
+Available parameters in the **create_app** script:
 
--n:  Name of the application that you want to have. It's mandatory  
--p: (Optional) Path is the install location of Ant Media Server which is /usr/local/antmedia by default.  
--w: (Optional) The flag to deploy application as war file. Default value is false  
--c: (Optional) The flag to deploy application in cluster mode. Default value is false  
--m:  Mongo DB host. If it's a cluster, it's mandatory. Otherwise optional  
--u:  Mongo DB user. If it's a cluster, it's mandatory. Otherwise optional  
--s:  Mongo DB password. If it's a cluster, it's mandatory. Otherwise optional  
--h: print this usage  
+-n:  Name of the application (mandatory) 
+-p:  Installation path of Ant Media Server (Optional, default `/usr/local/antmedia` by default).  
+-w:  Deploy application as WAR file (Optional, default `false`)  
+-c:  Deploy application in cluster mode (optional, default `false`) 
+-m:  MongoDB host (mandatory for cluster mode)
+-u:  MongoDB user (mandatory for cluster mode) 
+-s:  MongoDB password (mandatory for cluster mode)  
+-h:  Print usage 
 
-Please check it for more detail: [Create App Script](https://github.com/ant-media/Ant-Media-Server/blob/master/src/main/server/create_app.sh#L5)
+For more details, see the [Create App Script](https://github.com/ant-media/Ant-Media-Server/blob/master/src/main/server/create_app.sh#L5)
 
 ![](@site/static/img/image-1645437714786.png)
 
 #### Step 3
 
 Restart Ant Media Service
-```
+
+```bash
 sudo service antmedia restart
 ```
 \*This feature is available in Ant Media Server 1.9.0+ versions.
@@ -83,25 +84,29 @@ sudo service antmedia restart
 
 #### Create Application
 
-Web panel has the following REST method to create application.
+The web panel provides a REST method to create an application:
 ```
     @POST
     @Path("/applications/{appName}")
     @Produces(MediaType.APPLICATION_JSON)
 ```
-It means that you can call the following method to create an application with curl. Please take a look at the answer here to learn [how to access web panel REST methods programmatically](https://stackoverflow.com/questions/64444673/ant-media-dashboard-settings-through-rest-api/64458222#64458222)
+You can call this method programmatically using `curl`. Example:
 ```
     curl -X POST -H "Content-Type: application/json" "https://{YOUR_SERVER_ADDRESS}:5443/rest/v2/applications/myapp"
 ```
+
 ### Delete Application
 
-Web panel has the following REST Method to delete the application.
+To delete an application via REST:
 ```
     @DELETE
     @Path("/applications/{appName}")
     @Produces(MediaType.APPLICATION_JSON)
 ```
-Call the following method to delete an application(apptest) with curl.
+Example using `curl` to delete an application:
 ```
     curl -X DELETE -H "https://{YOUR_SERVER_ADDRESS}:5443/rest/v2/applications/myapp"
 ```
+## Congratulations!
+
+You now know how to create and manage applications in Ant Media Server using the web panel, shell scripts, or REST methods. You are ready to organize multiple streaming applications efficiently and deploy them across clusters with ease.
