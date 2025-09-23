@@ -11,7 +11,7 @@ To enable Firebase Cloud Messaging (FCM) in your Android application, you need t
 
 ## Add the Service Declaration
 
-Open your AndroidManifest.xml file and add the following inside the <application> tag:
+Open your AndroidManifest.xml file and add the following inside the ```html <application>``` tag:
 
 ```xml
 <service
@@ -29,7 +29,7 @@ Make sure your custom service class (**AntMediaFirebaseMessagingService**) exten
 
 The `.java` extension should not be included in the `android:name` attribute.
 
-Place this service inside the `<application>` tag, not outside of it.
+Place this service inside the ```html <application>``` tag, not outside of it.
 
 
 ## Congratulations!
