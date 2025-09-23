@@ -139,7 +139,7 @@ Send a POST request with the streamId of the conference room broadcast `(room1)`
 **Here is the Curl Sample:**
 
 ```bash
-curl -X 'POST' 'http(s)://AMS-domain:5080(5443)/AppName/rest/v2/broadcasts/RoomName/subtrack?id=external-streamId' -H 'accept: application/json'
+curl -X 'POST' 'https://AMS-domain:5443/AppName/rest/v2/broadcasts/RoomName/subtrack?id=external-streamId' -H 'accept: application/json'
 ```
 
 As soon as you receive success, you should observe that an external stream is added to the conference room.
