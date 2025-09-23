@@ -6,7 +6,7 @@ keywords: [Collecting logs from AMS cluster, Ant Media Server Documentation, Ant
 
 # Collecting logs from AMS cluster
 
-Graylog is an open source centeralized log collection and analysis software which uses elastic-search and MongoDB in its architecture. This guide will be about Graylog setup, configuration and how to send Ant Media Server logs to it.
+Graylog is an open source centralized log collection and analysis software which uses Elasticsearch and MongoDB in its architecture. This guide will be about Graylog setup, configuration, and how to send Ant Media Server logs to it.
 
 If you are using the cluster structure and want to keep track of all logs from one place, this article is for you.
 
@@ -282,3 +282,18 @@ If you have made the correct log settings on Ant Media servers, the logs as belo
     "stream1" AND NOT source:192.168.1.251
     source:192.168.1.252
     "stream*" NOT source:192.168.1.2
+
+
+If everything has been configured correctly, you should now see your Ant Media Server logs streaming into Graylog in real time.
+
+## Congratulations!
+
+You now have centralized logging for your Ant Media Server cluster.
+
+From here, you can:
+
+Filter and search logs using queries (e.g., by stream name or source server).
+
+Create dashboards to monitor AMS activity across your cluster.
+
+Set up alerts for important events.

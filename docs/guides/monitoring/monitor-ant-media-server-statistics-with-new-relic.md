@@ -7,11 +7,12 @@ sidebar_position: 1
 
 # Monitor Ant Media Server statistics with New Relic
 
-Since v2.10.0 of AMS, analytics logs have been provided to monitor important statistics for users. These logs are located at `/var/log/antmedia/` in JSON format, named `ant-media-server-analytics.log`. This structure allows you to transfer your logs to any log management server and process them in various ways. 
+Starting with v2.10.0, Ant Media Server (AMS) provides analytics logs to monitor important usage and performance statistics.
+These logs are stored in JSON format at: `ant-media-server-analytics.log`. 
 
-In this article, we'll examine how to process this data using New Relic. 
+This makes it possible to forward logs to external platforms such as New Relic for visualization and monitoring.
 
-For now, analytics logs provide the following important statistics:
+## Metrics Available in Analytics Logs
 
 * Total data transfer per user
 * Publisher statistics (streamId, application name, codecs, height, width, resolution, etc)
@@ -22,7 +23,7 @@ For now, analytics logs provide the following important statistics:
 * Stream duration
 * Key Frame Interval per stream
 
-With this information, you can thoroughly analyse your streaming performance and improve the user experience.
+These metrics help analyze performance, monitor usage, and improve the streaming experience.
 
 ## Installation and Use of New Relic
 
@@ -150,4 +151,18 @@ Please do not forget to change the account ID of your New Relic account in the j
 
 If you wish, you can customize the dashboard according to your preferences by using [NRQL](https://docs.newrelic.com/docs/nrql/get-started/introduction-nrql-new-relics-query-language/) queries.
 
-This is the first iteration of this analytics tool using New Relic. We will keep working on it to make it better.
+## Congratulations!
+
+You’ve successfully integrated Ant Media Server with New Relic 🎉
+
+Now you can:
+
+* Monitor publishing and viewing trends in real time.
+
+* Track data transfer and keyframe performance.
+
+* Detect anomalies or playback issues before your users notice.
+
+* Build custom dashboards tailored to your workflow.
+
+This is just the first iteration — you can expand parsing rules, enhance dashboards, and fine-tune monitoring as your streaming projects grow. 🚀
