@@ -140,11 +140,11 @@ Assume HLS muxing is enabled and a stream is published to Ant Media Server.
 
 The default HLS (.m3u8) URL will be as follows:
 
-```http(s)://AMS-domain-or-IP:5080(5443)/AppName/streams/StreamId.m3u8```
+```https://AMS-domain-or-IP:5443/AppName/streams/StreamId.m3u8```
 
 If adaptive bit rates are enabled in the application (Enterprise Edition), the HLS (.m3u8) URL will be as follows:
 
-```http(s)://AMS-domain-or-IP:5080(5443)/AppName/streams/StreamId_adaptive.m3u8```
+```https://AMS-domain-or-IP:5443/AppName/streams/StreamId_adaptive.m3u8```
 
 :::info
 Beginning with version 2.4.1, the filename structure included the bitrate in the name. For example, 480p ABR is enabled on the server and you want to play it.
