@@ -153,7 +153,7 @@ To remove the external stream from the conference room, we will use [remove SubT
 **Here is the Curl Sample:**
 
 ```bash
-curl -X 'DELETE' 'http(s)://AMS-domain:5080(5443)/AppName/rest/v2/broadcasts/RoomName/subtrack?id=external-streamId' -H 'accept: application/json'
+curl -X 'DELETE' 'https://AMS-domain:5443/AppName/rest/v2/broadcasts/RoomName/subtrack?id=external-streamId' -H 'accept: application/json'
 ```
 
 As soon as you receive success, you should observe that the external stream is removed from the conference room.
