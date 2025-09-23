@@ -40,7 +40,7 @@ Running sample command in my localhost ```curl -X POST -H "Content-Type: applica
 
 Stream Sources are external and you can make Ant Media Server pull RTSP, IP Camera or any other Stream Sources. Here is the sample command for that.
 ```
-    curl -X POST -H "Content-Type: application/json" "https://{domain:port}/{application}/rest/v2/broadcasts/create?autoStart=false" -d '{ "type":"streamSource", "streamUrl":"YOUR_STREAM_SOURCE_URL"}'
+    curl -X POST -H "Content-Type: application/json" "https://{domain:5443}/{application}/rest/v2/broadcasts/create?autoStart=false" -d '{ "type":"streamSource", "streamUrl":"YOUR_STREAM_SOURCE_URL"}'
 ```
 If you want it to start pulling stream immediately, you can set ```autoStart``` value to ```true``` in the query above. You can also start/stop stream sources with following commands.
 
