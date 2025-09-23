@@ -324,8 +324,11 @@ You now have a complete monitoring solution for your Ant Media Server cluster.
 If you’ve followed all the steps, your Ant Media Server metrics should now be flowing into Grafana. You’ll be able to visualize CPU usage, memory stats, stream counts, and more in real time.  
 
 From here, you can:
-- Build custom dashboards for deeper insights into AMS performance.  
-- Use queries and visualizations to monitor system health and streaming metrics.  
-- Set up alerts (for example, via Telegram) to get notified when thresholds are exceeded.  
+
+* Build custom dashboards for deeper insights into AMS performance.  
+
+* Use queries and visualizations to monitor system health and streaming metrics.  
+
+* Set up alerts (for example, via Telegram) to get notified when thresholds are exceeded.  
 
 

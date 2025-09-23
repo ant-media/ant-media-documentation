@@ -153,7 +153,7 @@ If you wish, you can customize the dashboard according to your preferences by us
 
 ## Congratulations!
 
-You’ve successfully integrated Ant Media Server with New Relic 🎉
+You’ve successfully integrated Ant Media Server with New Relic
 
 Now you can:
 
@@ -165,4 +165,4 @@ Now you can:
 
 * Build custom dashboards tailored to your workflow.
 
-This is just the first iteration — you can expand parsing rules, enhance dashboards, and fine-tune monitoring as your streaming projects grow. 🚀
+This is just the first iteration you can expand parsing rules, enhance dashboards, and fine-tune monitoring as your streaming projects grow.

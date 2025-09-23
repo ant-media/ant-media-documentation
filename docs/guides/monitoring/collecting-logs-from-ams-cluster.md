@@ -292,8 +292,8 @@ You now have centralized logging for your Ant Media Server cluster.
 
 From here, you can:
 
-Filter and search logs using queries (e.g., by stream name or source server).
+* Filter and search logs using queries (e.g., by stream name or source server).
 
-Create dashboards to monitor AMS activity across your cluster.
+* Create dashboards to monitor AMS activity across your cluster.
 
-Set up alerts for important events.
+* Set up alerts for important events.
