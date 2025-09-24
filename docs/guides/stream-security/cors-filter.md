@@ -49,7 +49,7 @@ In case, when trying to play the stream via any other domain or integrating the 
 		<filter-class>io.antmedia.filter.CorsHeaderFilter</filter-class>
 		<init-param>
 		    <param-name>cors.allowed.origins</param-name>
-		    <param-value>https://domain:5443</param-value>
+		    <param-value>https://domain:port</param-value>
 		 </init-param>
 		 <init-param>
 		 	<param-name>cors.allowed.methods</param-name>
