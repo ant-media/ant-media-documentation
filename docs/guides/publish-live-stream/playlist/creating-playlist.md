@@ -49,7 +49,7 @@ curl -X POST -F "file=@<YOUR-FILE-PATH>;type=video/*" https://AMS_URL:5443/APP-N
 Here is the curl sample:
 
 ```bash
-curl -X POST -F "file=@test.mp4;type=video/*" http://localhost:5080/WebRTCAppEE/rest/v2/vods/create?name=test.mp4
+curl -X POST -F "file=@test.mp4;type=video/*" https://AMS_URL:5443/WebRTCAppEE/rest/v2/vods/create?name=test.mp4
 ```
 
 The uploaded file will be located in `antmedia/webapps/APP-NAME/streams` directory. The MP4 file name will be changed to a random VOD ID, which you can find in the VOD section of the web panel application page.
@@ -59,13 +59,13 @@ You can use the [Get VOD list](https://antmedia.io/rest/#/default/getVodList) re
  You can access the uploaded VOD file through the below URL format:
 
 ```
-http(s)://domain_or_IP:5080(5443)/AppName/streams/VOD-ID.mp4
+https://domain_or_IP:5443/AppName/streams/VOD-ID.mp4
 ```
 
 Example:
 
 ```
-http://localhost:5080/WebRTCAppEE/streams/722484094956241856650105.mp4
+https://AMS_URL:5443/WebRTCAppEE/streams/722484094956241856650105.mp4
 ```
 
 ## Creating the Playlist
@@ -99,8 +99,8 @@ If you have the VoD URL handy or are adding external VoDs, you can use this opti
 - Now we have the VoDs accessible through the links below.
 
 ```
-http://localhost:5080/LiveApp/streams/044283659243035008593467.mp4
-http://localhost:5080/LiveApp/streams/127700726123231884567831.mp4
+https://AMS_URL:5443/LiveApp/streams/044283659243035008593467.mp4
+https://AMS_URL:5443/LiveApp/streams/127700726123231884567831.mp4
 ```
 
 - Add all the playlist items and then click `Create`.
