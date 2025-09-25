@@ -1,5 +1,5 @@
 ---
-title: Unity WebRTC SDK 
+title: Ant Media Server Unity WebRTC SDK
 description: Ant Media Server Unity WebRTC SDK
 keywords: [Ant Media Server Unity WebRTC SDK, Unity WebRTC SDK, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 6
@@ -7,11 +7,12 @@ sidebar_position: 6
 
 # Ant Media Server Unity WebRTC SDK
 
-We have created a new Ant Media Server Unity WebRTC SDK on top of the WebRTC for Unity packages developed by the Unity team. In this post, I will explain how to use it. The project also contains a sample application to demonstrate how the SDK is used.
+Ant Media Server Unity WebRTC SDK is built on top of the WebRTC for Unity packages. The project includes a sample application demonstrating its use. This guide assumes Unity is already installed on your computer.
 
 I assume that you have already installed Unity on your computer.
 
 ## Setup The Project
+
 1. Clone the Unity SDK project from github repository:
 
    `git clone https://github.com/ant-media/WebRTC-Unity-SDK.git`
@@ -20,7 +21,7 @@ I assume that you have already installed Unity on your computer.
 
 3. To open the project, click the Open button, then select the folder where you cloned the Unity SDK. Wait until the project opens in Unity.
 
-4. Navigate to the Project window and open the AMSStreamingSample scene from Assets/AntMedia/Samples.
+4. Navigate to the Project window and open the **AMSStreamingSample** scene from `Assets/AntMedia/Samples`.
   ![Unity WebRTC SDK Assets](https://antmedia.io/wp-content/uploads/2023/02/AMSStreaming-Asset-1024x576.jpg)
 
 
@@ -33,9 +34,7 @@ I assume that you have already installed Unity on your computer.
 
 ## Build The Project
 
-Unity projects can be built for multiple platforms. Here, I will show how to build for Windows and Android platforms.
-
-The project is working with VP8 codec as of now, but h264 will be supported soon. Please change your AMS settings to work with VP8 from your dashboard's application:
+Unity projects can be built for multiple platforms. Currently, **VP8** codec is supported (H.264 support will be added later). Ensure your AMS application is configured to use **VP8**.
 
 ![](@site/static/img/developer-guides/unity3.webp)
 
@@ -88,9 +87,9 @@ This Sample Application has 3 modes. You can select the mode you want to test fr
 
 ### Publish Mode
 
-In this mode, Sample Application opens the camera in the first player and publishes it to AMS as a WebRTC stream.
+Opens the camera and publishes it as a WebRTC stream to AMS.
 
-You can play it from:
+You can play the stream at:
 `https://{AMS_URL}:5443/WebRTCAppEE/play.html?streamId={STREAM_ID_YOU_SET}`
 
 ### Play Mode
@@ -102,3 +101,6 @@ In this mode, Sample Application starts to play a stream on the AMS with WebRTC.
 In this mode, Sample Application publishes the camera as a WebRTC stream and plays the other peer's WebRTC stream at the same time. After clicking the start button your camera will appear in the first player. Then you can add the second peer from:
 `https://{AMS_URL}:5443/WebRTCAppEE/peer.html` by setting the stream id as you set. Then Sample Application will play the other peer's stream in the second player.
 
+## Congratulations!
+
+You have successfully set up the Ant Media Unity WebRTC SDK, built the sample application, and tested publishing, playing, and peer-to-peer WebRTC streams. You can now explore all three modes, interact with other peers, and integrate WebRTC streaming into your own Unity projects. Enjoy real-time streaming and communication in your Unity applications!

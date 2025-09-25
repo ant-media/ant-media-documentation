@@ -5,19 +5,19 @@ keywords: [React Native SDK User Guide, Ant Media Server Documentation, Ant Medi
 sidebar_position: 1
 ---
 
-To build the publishing sample project, follow the below steps.
+To build the publishing sample project, follow the steps below:
 
-* Open the **/example/src/App.tsx** file and update the **defaultStreamName** variable for streamId and the **webSocketUrl** variable with your server domain or IP address.
+1. Open the **/example/src/App.tsx** file and update the **defaultStreamName** variable for streamId and the **webSocketUrl** variable with your server domain or IP address.
 
 ![](@site/static/img/image-1654599250441.png)
 
-* Open the **/examples/android** folder and provide read, write, and execute permissions to the **gradlew** file.
+2. Open the **/examples/android** folder and provide read, write, and execute permissions to the **gradlew** file.
 
 ```bash
 chmod 750 gradlew
 ```
 
-* Move to the **examples** folder, edit the below **index.js** file as below:
+3. Move to the **examples** folder, edit the below **index.js** file as below:
 
 ```bash
 import { AppRegistry } from 'react-native';
@@ -30,17 +30,22 @@ import { name as appName } from './app.json';
 AppRegistry.registerComponent(appName, () => App);
 ```
 
-and run the below commands to run the **Publish** sample React native app.
+4. Run the following commands to install dependencies and run the **Publish** sample React native app:
 
 ```bash
 npm install
 npm run android
 ```
 
-* Click the `Start Publishing` button on the screen to publish the stream on the server.
+5. Click the `Start Publishing` button on the screen to publish your stream on the server.
 
 ![](@site/static/img/image-1654599372613.png)
 
-* You can now go to the web panel of Ant Media Server (e.g., http://serverIP:5080) and watch the stream there. 
+6. You can now go to the web panel of Ant Media Server (e.g., http://serverIP:5080) to watch the stream.
 
-You can also quickly play the stream via an embedded player. Check [this document](https://antmedia.io/docs/guides/playing-live-stream/embedded-web-player/) for more details.
+7. You can also play the stream via an embedded player. For more details, check [this document](https://antmedia.io/docs/guides/playing-live-stream/embedded-web-player/)
+
+
+## Congratulations!
+
+You’ve successfully published your first WebRTC stream from a React Native application! Now your stream is live on the server, and you can watch it on multiple devices. Enjoy experimenting with your live streaming setup and explore all the possibilities of Ant Media’s WebRTC features. Happy streaming!

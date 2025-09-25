@@ -45,3 +45,8 @@ Add the Dart language plugins and Flutter extensions to Android Studio. Please f
 ### Verify Installation
 
 To verify the Flutter installation, please create a sample app and build it by following the instructions provided here [Create a Flutter project](https://docs.flutter.dev/get-started/codelab).
+
+
+## Congratulations!
+
+You now have Flutter and Dart installed and your development environment set up with Android Studio or XCode. You are ready to start building and running Flutter applications with ease. Happy coding and may your first Flutter app run perfectly on both Android and iOS!

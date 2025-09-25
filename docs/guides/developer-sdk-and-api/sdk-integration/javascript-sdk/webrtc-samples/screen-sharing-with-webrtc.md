@@ -2,155 +2,144 @@
 title: Sharing screen with WebRTC
 description: Sharing screen with WebRTC
 keywords: [Sharing screen with WebRTC, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 # Sharing screen with WebRTC
 
-Seamless switch between WebRTC screen sharing and streaming using a camera is available on both Community Edition and and Enterprise Edition. This means that you can switch between screen and camera within the same session.
+Seamless switching between WebRTC screen sharing and camera streaming is available on both Community and Enterprise Editions. This allows you to switch between screen and camera within the same session.
 
-Note that this process doesn't require any extra plugins or additional software to be installed on the browser side.
+> Note: No extra plugins or software are required on the browser side.
 
-## Try WebRTC screen sharing without plugin
+## Try WebRTC Screen Sharing Without Plugin
 
-First of all, you should have a ```getDisplayMedia``` supported browser. You can see a list of ```getDisplayMedia``` supported browsers in [this link](https://caniuse.com/#search=getDisplayMedia).
+Ensure your browser supports `getDisplayMedia`. Check the list of supported browsers [here](https://caniuse.com/#search=getDisplayMedia).
 
-Visit the WebRTC publishing web page which is ```https://domainAddress:5443/WebRTCApp``` (Community Edition) or ```https://domainAddress:5443/WebRTCAppEE``` (Enterprise Edition). Before this, you need to assign a domain name to your server and [install SSL](/v1/docs/ssl-setup). Otherwise, your browser won't let you access the camera or screen.
+Visit the WebRTC publishing page:
 
-> Quick Link: [Learn How to Install SSL to your Ant Media Server](/guides/installing-on-linux/setting-up-ssl/)
+- Community Edition: `https://domainAddress:5443/WebRTCApp`
+- Enterprise Edition: `https://domainAddress:5443/WebRTCAppEE`
 
-## Using WebRTC Screen Sharing 
+> Quick Link: [Install SSL on Ant Media Server](/guides/installing-on-linux/setting-up-ssl/)
 
-You can see simple functions in [js/webrtc\_adaptor.js](https://github.com/ant-media/StreamApp/blob/master/src/main/webapp/js/webrtc_adaptor.js) file for a seamless switch between screen sharing and camera. You can take a look at the source code of [WebRTCApp/index.html](https://github.com/ant-media/StreamApp/blob/master/src/main/webapp/index.html)  to see a full implementation.
+---
 
-First of all, there is a new callback with ```browser_screen_share_supported```. If the callback method is called with this parameter, your browser screen share functionality is ready to use.
+## Using WebRTC Screen Sharing
 
-```js
+The WebRTC adaptor provides functions for seamless switching between screen sharing and camera:
+
+- Source code for switching: [js/webrtc_adaptor.js](https://github.com/ant-media/StreamApp/blob/master/src/main/webapp/js/webrtc_adaptor.js)
+- Full implementation example: [WebRTCApp/index.html](https://github.com/ant-media/StreamApp/blob/master/src/main/webapp/index.html)
+
+### Browser Screen Share Support Callback
+
+```javascript
 var webRTCAdaptor = new WebRTCAdaptor({
-	websocket_url : websocketURL,
-	mediaConstraints : mediaConstraints,
-	localVideoId : "localVideo",
-	callback : function(info, obj) {
-		if (info == "initialized") {
-			console.log("initialized");
-			start_publish_button.disabled = false;
-			stop_publish_button.disabled = true;
-		} else if (info == "publish_started") {
-			//stream is being published
-			console.log("publish started");
-			start_publish_button.disabled = true;
-			stop_publish_button.disabled = false;
-			startAnimation();
-		} else if (info == "publish_finished") {
-			//stream is being finished
-			console.log("publish finished");
-			start_publish_button.disabled = false;
-			stop_publish_button.disabled = true;
-		}
-		else if (info == "browser_screen_share_supported") {
-			screen_share_checkbox.disabled = false;
-			console.log("browser screen share supported");
-			browser_screen_share_doesnt_support.style.display = "none";
-		}
-		else if (info == "screen_share_stopped") {
-			console.log("screen share stopped");
-		}
-		else if (info == "closed") {
-			//console.log("Connection closed");
-			if (typeof obj != "undefined") {
-				console.log("Connecton closed: " + JSON.stringify(obj));
-			}
-		}
-		else if (info == "pong") {
-			//ping/pong message are sent to and received from server to make the connection alive all the time
-			//It's especially useful when load balancer or firewalls close the websocket connection due to inactivity
-		}
-		else if (info == "refreshConnection") {
-			startPublishing();
-		}
-		else if (info == "ice_connection_state_changed") {
-			console.log("iceConnectionState Changed: ",JSON.stringify(obj));
-		}
-		else if (info == "updated_stats") {
-			//obj is the PeerStats which has fields
-				//averageOutgoingBitrate - kbits/sec
-			//currentOutgoingBitrate - kbits/sec
-			console.log("Average outgoing bitrate " + obj.averageOutgoingBitrate + " kbits/sec"
-					+ " Current outgoing bitrate: " + obj.currentOutgoingBitrate + " kbits/sec");
-				
-		}
-	},
-	callbackError : function(error, message) {
-		//some of the possible errors, NotFoundError, SecurityError,PermissionDeniedError
-		
-		console.log("error callback: " +  JSON.stringify(error));
-		var errorMessage = JSON.stringify(error);
-		if (typeof message != "undefined") {
-			errorMessage = message;
-		}
-		var errorMessage = JSON.stringify(error);
-		if (error.indexOf("NotFoundError") != -1) {
-			errorMessage = "Camera or Mic are not found or not allowed in your device";
-		}
-		else if (error.indexOf("NotReadableError") != -1 || error.indexOf("TrackStartError") != -1) {
-			errorMessage = "Camera or Mic is being used by some other process that does not let read the devices";
-		}
-		else if(error.indexOf("OverconstrainedError") != -1 || error.indexOf("ConstraintNotSatisfiedError") != -1) {
-			errorMessage = "There is no device found that fits your video and audio constraints. You may change video and audio constraints"
-		}
-		else if (error.indexOf("NotAllowedError") != -1 || error.indexOf("PermissionDeniedError") != -1) {
-			errorMessage = "You are not allowed to access camera and mic.";
-		}
-		else if (error.indexOf("TypeError") != -1) {
-			errorMessage = "Video/Audio is required";
-		}
-		else if (error.indexOf("ScreenSharePermissionDenied") != -1) {
-			errorMessage = "You are not allowed to access screen share";
-			screen_share_checkbox.checked = false;
-		}
-		else if (error.indexOf("WebSocketNotConnected") != -1) {
-			errorMessage = "WebSocket Connection is disconnected.";
-		}
-		alert(errorMessage);
-	}
+    websocket_url: websocketURL,
+    mediaConstraints: mediaConstraints,
+    localVideoId: "localVideo",
+    callback: function(info, obj) {
+        if (info == "initialized") {
+            console.log("initialized");
+            start_publish_button.disabled = false;
+            stop_publish_button.disabled = true;
+        } else if (info == "publish_started") {
+            console.log("publish started");
+            start_publish_button.disabled = true;
+            stop_publish_button.disabled = false;
+            startAnimation();
+        } else if (info == "publish_finished") {
+            console.log("publish finished");
+            start_publish_button.disabled = false;
+            stop_publish_button.disabled = true;
+        } else if (info == "browser_screen_share_supported") {
+            screen_share_checkbox.disabled = false;
+            console.log("browser screen share supported");
+            browser_screen_share_doesnt_support.style.display = "none";
+        } else if (info == "screen_share_stopped") {
+            console.log("screen share stopped");
+        } else if (info == "closed" && obj) {
+            console.log("Connection closed: " + JSON.stringify(obj));
+        } else if (info == "pong") {
+            // Keep WebSocket alive
+        } else if (info == "refreshConnection") {
+            startPublishing();
+        } else if (info == "ice_connection_state_changed") {
+            console.log("iceConnectionState Changed: ", JSON.stringify(obj));
+        } else if (info == "updated_stats") {
+            console.log("Average outgoing bitrate " + obj.averageOutgoingBitrate + " kbits/sec"
+                    + " Current outgoing bitrate: " + obj.currentOutgoingBitrate + " kbits/sec");
+        }
+    },
+    callbackError: function(error, message) {
+        console.log("error callback: " + JSON.stringify(error));
+        var errorMessage = message || JSON.stringify(error);
+        if (error.indexOf("NotFoundError") != -1) errorMessage = "Camera or Mic not found or denied.";
+        else if (error.indexOf("NotReadableError") != -1 || error.indexOf("TrackStartError") != -1)
+            errorMessage = "Camera or Mic is in use by another process.";
+        else if (error.indexOf("OverconstrainedError") != -1 || error.indexOf("ConstraintNotSatisfiedError") != -1)
+            errorMessage = "No device fits your video/audio constraints.";
+        else if (error.indexOf("NotAllowedError") != -1 || error.indexOf("PermissionDeniedError") != -1)
+            errorMessage = "Access to camera/mic denied.";
+        else if (error.indexOf("TypeError") != -1) errorMessage = "Video/Audio required.";
+        else if (error.indexOf("ScreenSharePermissionDenied") != -1) {
+            errorMessage = "Screen share not allowed.";
+            screen_share_checkbox.checked = false;
+        } else if (error.indexOf("WebSocketNotConnected") != -1)
+            errorMessage = "WebSocket connection disconnected.";
+        alert(errorMessage);
+    }
 });
+
 ```
 
-## Switching to desktop screen share
+## Switching Between Sources
 
-If your browser supports ```getDisplayMedia```, you only need to call ```webRTCAdaptor.switchDesktopCapture(streamId)``` function to switch to screen sharing
+### 1. Switch to Desktop Screen Share
 
-```js
+If your browser supports `getDisplayMedia`, you can switch from camera to screen sharing using:
+
+```javascript
 webRTCAdaptor.switchDesktopCapture(streamId);
 ```
 
-Please take a look at the sample page code at [index.html](https://github.com/ant-media/StreamApp/blob/master/src/main/webapp/index.html) file on Github.
+## 2. Switch to Screen Share with Camera
 
-## Switching to screen share with camera
-
-You only need to call ```webRTCAdaptor.switchDesktopCaptureWithCamera(streamId)``` function to switch to screen sharing with camera.
+To share both your screen and camera simultaneously, use:
 
 ```js
 webRTCAdaptor.switchDesktopCaptureWithCamera(streamId);
 ```
 
-## Switching back to the camera
+## 3. Switch Back to Camera
 
-To switch back to the camera, just call ```webRTCAdaptor.switchVideoCameraCapture(streamId, deviceId)```.
+To revert back to the camera feed from screen sharing, use:
 
 ```js
 webRTCAdaptor.switchVideoCameraCapture(streamId, deviceId);
 ```
+`deviceId` should be the ID of the camera you want to use.
 
-## Share desktop audio with Chrome's screen share with audio option
+## Sharing Desktop Audio (Chrome)
 
-Click on Chrome's share audio option while sharing screen. This way, the adaptor will start sharing the audio muting the microphone. If you want to mix the desktop and microphone voice, follow the instructions:
+When sharing your screen in Chrome:
 
-*   Go to webrtc\_adaptor.js , find ```captureScreenSound(stream, micStream,streamId)```
-*   Under the method adjust the gains which are;
+* Click the Share Audio option to send desktop audio.
+
+* If you want to mix desktop and microphone audio:
+
+1. Open `webrtc_adaptor.js` and locate the function:
+
+```captureScreenSound(stream, micStream,streamId)```
+
+2. Adjust the gain levels as needed:
 
 ```desktopSoundGainNode.gain.value = (Some value between 0 and 1);```
 
 ```micGainNode.gain.value = (Some value between 0 and 1);```
 
-Please take a look at sample code at [index.html](https://github.com/ant-media/StreamApp/blob/master/src/main/webapp/index.html) in Github.
+Full example of screen sharing with audio is available in the [index.html sample](https://github.com/ant-media/StreamApp/blob/master/src/main/webapp/index.html) in Github.
+
+## Congratulations!
+
+You now have full control over switching between camera and screen sharing in your WebRTC session. You can share your screen alone, combine it with your camera, switch back effortlessly, and even include desktop audio. Your WebRTC streaming experience is now seamless and professional—ready for presentations, tutorials, or live collaboration.

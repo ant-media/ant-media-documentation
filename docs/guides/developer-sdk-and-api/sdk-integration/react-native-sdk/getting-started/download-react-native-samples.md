@@ -6,6 +6,7 @@ sidebar_position: 2
 ---
 
 ## Download React Native WebRTC Sample Project
+
 Ant Media WebRTC React Native samples are available for free download on GitHub. You can access the repository through the link below:
 
 [React Native WebRTC Samples on GitHub](https://github.com/ant-media/WebRTC-React-Native-SDK)
@@ -22,7 +23,7 @@ To download the entire project and access the sample implementations, follow the
    ```bash
    cd WebRTC-React-Native-SDK
    ```
-   Once inside the src folder, you'll find all the sample implementations ready for use.
+Once inside the src folder, you'll find all the sample implementations ready for use.
 
 
 ---
@@ -86,3 +87,6 @@ You can proceed to the next document to learn more about the samples and how to 
 - Ensure your development environment is properly set up for React Native. Refer to the [React Native environment setup guide](https://reactnative.dev/docs/environment-setup).
 - Use only one package manager (npm or yarn) throughout the project to avoid conflicts.
 
+## Congratulations!
+
+You’ve successfully downloaded, installed, and run the React Native WebRTC sample project! Now you’re ready to explore the powerful features of Ant Media WebRTC in your own React Native applications. Enjoy building, experimenting, and seeing your live streams come to life. Happy coding!

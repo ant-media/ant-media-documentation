@@ -5,39 +5,39 @@ keywords: [JavaScript SDK User Guide, Ant Media Server Documentation, Ant Media 
 sidebar_position: 4
 ---
 
-In Peer-to-Peer Mode, two or more peers can connect with each other without relaying the audio or video from the server; there will be a direct peer-to-peer connection from one peer to another. 
+In Peer-to-Peer (P2P) mode, two or more peers can connect with each other directly, without relaying audio or video through the server. Instead, there will be a direct WebRTC connection from one peer to another.
 
-In this case, Ant Media Server will only act as a Signaling server, which will help peers establish a WebRTC connection by exchanging some messages.
+In this setup, Ant Media Server only acts as a signaling server. Its role is to help peers exchange the necessary information (signaling messages) to establish the connection, after which all media flows directly between peers.
 
-Let's see a simple example for joining a peer-to-peer live stream call with Ant Media using the JavaScript SDK.
+This greatly reduces latency and server load, making it ideal for real-time communication scenarios like video calls or group chats.
 
 ## WebRTC P2P Live Sample
 
-- Navigate to the P2P sample page [here](https://codepen.io/USAMAWIZARD/embed/azoMqdq?default-tab=js&editable=true) at Code Pen.
+1. Navigate to the P2P sample page [here](https://codepen.io/USAMAWIZARD/embed/azoMqdq?default-tab=js&editable=true) at Code Pen.
 
-- Comment import from directory and uncomment import from URL. It should look something like this.
+2. Comment out the import from the local directory and uncomment the import from the URL:
 
-  ```
+  ```js
   import  {WebRTCAdaptor} from  "https://esm.sh/@antmedia/webrtc_adaptor";
   //import { WebRTCAdaptor } from './node_modules/@antmedia/webrtc_adaptor/src/main/js/webrtc_adaptor.js';
   ```
 
-- Click the join button.
+3. Click the **Join** button.
 
-- Open this page on a new tab and join from there. 
+4. Open the same page in a new browser tab and join again — now you should see the peer-to-peer connection in action.
 
 
 ## Create P2P Sample For Deployment
 
-- Create a new file , name it `peer.html`
+1. Create a new file called `peer.html`
 
-- make sure HTTP server is running in same directory
+2. Start a local HTTP server in the same directory:
 
   ```
   python3 -m http.server
   ```
 
-- Copy the above code from the HTML and JS sections in the `peer.html` file as below:
+3. Copy the example code into peer.html.
 
 ```html
 <!DOCTYPE html>
@@ -95,20 +95,21 @@ document.getElementById("joinroom").addEventListener("click",()=> {
 </html>
 ```
 
-Open the peer.html page in the browser `http://localhost:8000/peer.html`  (make sure python server is up and running)
+4. Open the file in your browser: `http://localhost:8000/peer.html`.
 
-- Accept microphone and camera usage permissions.
+5. Accept microphone and camera permissions.
 
-- Click the join button.
+6. Enter a room ID and click **Join**.
 
-- Open the same page on a new tab and join from there. 
+7. Open the same page in another tab and join with the same room ID.
 
-If the stream does not start publishing / playing, open the developer console on the HTML page and check for any errors.
+If the stream does not start publishing/playing, check the browser developer console for errors.
 
 ## WebRTCAdaptor
 
-`WebRTCAdaptor` Class is responsible for handling WebSocket Messages and WebRTC Connections with the server.
-One `WebRTCAdapter` can be used to join a peer room.
+The `WebRTCAdaptor` class is responsible for handling WebSocket messages and WebRTC connections with the server. In P2P mode, one `WebRTCAdaptor` can be used to join a peer room.
+
+Example initialization:
 
 ```
 var webRTCAdaptor = new WebRTCAdaptor(prams....)
@@ -133,31 +134,23 @@ The `WebRTCAdaptor` takes various parameters; all parameters are listed here.
   protocol://IP_ADDRESS:PORT/APPLICATION_NAME/websocket
   ```
 
-    For example, `wss://test.antmedia.io:5443/live/websocket`
+-  Example: `wss://test.antmedia.io:5443/live/websocket`
 
-- If HTTP,  `protocol = ws` or if HTTPS `protocol = wss`
+- Use `ws://` for HTTP or `wss://` for HTTPS.
 
-If Ant Media is running on HTTP, the websocket URL should connect to the port `5080` instead of `5443`.
+- If Ant Media is running on HTTP, use port 5080 instead of 5443.
 
 Multiple applications can be created in Ant Media to which streams can be played / published; use the correct application name in `WebSocket URL` to played / published to that application.
 
-#### remoteVideoElement
+#### `remoteVideoElement`
 
-```
-remoteVideoElement
-```
+The ```html<video>``` element that displays the incoming remote stream.
 
-This should point to the video element that will show this stream.
+#### `localVideoElement`
 
-#### localVideoElement
+The ```html<video>``` element that displays your local stream, which will be sent to the other peer.
 
-```
-localVideoElement
-```
-
-This should point to the video element that will have the video, which will be streamed to other peer.
-
-#### Callback
+#### `Callback`
 
 ```
 callback
@@ -165,16 +158,24 @@ callback
 
 Messages & notifications sent from the server will be received in this callback. This includes notifications like `publish_started`, `play_started`, `publish_timeout` , `data channel messages`, etc.
 
-#### WebRTC Adaptor
+#### WebRTC Adaptor Methods
 
-- `WebRTCAdaptor` join function joins a room of peers and keeps waiting for another peer to connect; once the other peer connects, it starts to establish direct P2P connections with the other peers.
+- Join a room (waits for peers and establishes P2P connections):
 
 ```
 webRTCAdaptor.join(streamid)
 ```
 
-- Stops Playing / Publishing WebRTC Streams.
+- Stop playing/publishing streams:
 
 ```
 webRTCAdaptor.stop(streamid)
 ```
+
+## Congratulations!
+
+You’ve now learned how to establish a peer-to-peer WebRTC connection using the Ant Media JavaScript SDK.
+
+In this mode, Ant Media Server works only as a signaling server, while all the actual audio and video traffic flows directly between peers — delivering ultra-low latency communication.
+
+With this foundation, you can build advanced use cases like one-on-one video calls, group chat rooms, or collaborative real-time applications, all leveraging the power of WebRTC and Ant Media Server.

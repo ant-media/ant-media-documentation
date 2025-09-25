@@ -30,3 +30,6 @@ Once the app is installed and running on your device, enter the server IP addres
 
   ![1000131649](https://github.com/user-attachments/assets/8c034b6f-1e3d-4fa6-b816-b7ce8194a8b8)
 
+## Congratulations!
+
+You have successfully played a WebRTC stream using the Flutter SDK. Your app is now receiving live streams from the Ant Media Server, allowing you to view real-time video on your device. Enjoy exploring and interacting with live WebRTC content!

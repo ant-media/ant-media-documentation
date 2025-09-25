@@ -5,13 +5,13 @@ keywords: [JavaScript SDK User Guide, Ant Media Server Documentation, Ant Media 
 sidebar_position: 2
 ---
 
-Let's start with a simple example for playing a live stream to Ant Media using the JavaScript SDK.
+This guide demonstrates how to play a live stream from Ant Media Server using the JavaScript SDK.
 
 ## WebRTC Playback Live Sample
 
 - Navigate to the Play sample [here](https://codepen.io/USAMAWIZARD/embed/myboqYB?default-tab=js&editable=true) at Codepen.
 
-- Comment import from directory and uncomment import from URL. It should look something like this.
+- Comment the import from local directory and uncomment the import from URL:
 
   ```
   import  {WebRTCAdaptor} from  "https://esm.sh/@antmedia/webrtc_adaptor";
@@ -24,15 +24,15 @@ Let's start with a simple example for playing a live stream to Ant Media using t
 
 ## Create Play Sample For Deployment
 
-- Create a new file , name it `play.html`
+1. Create a new file , name it `play.html`
 
-- Make sure HTTP server is running in same directory
+2. Ensure your HTTP server is running in the same directory:
 
   ```
   python3 -m http.server
   ```
 
-- Copy the above code from the HTML and JS sections in the `play.html` file as below:
+3. Copy the following content into `play.html`:
 
 ```html
 <!DOCTYPE html>
@@ -82,19 +82,22 @@ document.getElementById("play_stop").addEventListener("click",()=> {
 </html>
 ```
 
-open the play.html page in the browser `http://localhost:8000/play.html`  (make sure python server is up and running)
+4. Open the page in the browser: `http://localhost:8000/play.html` (make sure python server is up and running)
 
- - Accept microphone and camera usage permissions.
+5. Accept microphone and camera permissions if prompted.
 
-- Click the play button.
+6. Click **Start Playing** to play the stream.
 
-If stream does not play, open the developer console on the HTML page and check for any errors.
+If the stream does not play, check the browser developer console for errors.
 
 
 ## WebRTCAdaptor
 
-`WebRTCAdaptor` Class is responsible for handling WebSocket Messages and WebRTC Connections with the server.
-One `WebRTCAdaptor` can be used to publish one stream; multiple `WebRTCAdaptor` can be created to publish multiple streams to the server.
+The `WebRTCAdaptor` class manages WebSocket messages and WebRTC connections with the server.
+
+* One `WebRTCAdaptor` can publish/play one stream. Multiple adaptors can be used for multiple streams.
+
+* Create an instance:
 
 ```
 var webRTCAdaptor = new WebRTCAdaptor(prams....)
@@ -102,57 +105,51 @@ var webRTCAdaptor = new WebRTCAdaptor(prams....)
 
 The `WebRTCAdaptor` takes various parameters; all parameters are listed here. 
 
-### WebRTCAdaptor Parameters
+## Parameters
 
-#### WebSocket URL
+### WebSocket URL
 
-- `WebSocket URL` is the server URL of your Ant Media Server. Check out this page to install Ant Media Server, or for testing purposes, this URL can be used. 
+- `WebSocket URL` is the server URL of your Ant Media Server. Example:
 
-  ```
-  websocket_url
-  ```
+```bash
+wss://test.antmedia.io:5443/live/websocket
+```
 
-- Web socket URL format.
+- Format: 
 
-  ```
-  protocol://IP_ADDRESS:PORT/APPLICATION_NAME/websocket
-  ```
+```bash
+protocol://IP_ADDRESS:PORT/APPLICATION_NAME/websocket
+```
 
-  `wss://test.antmedia.io:5443/live/websocket`
-
-- If HTTP,  `protocol = ws` or if HTTPS `protocol = wss`
+- Use `ws://` for HTTP, `wss://` for HTTPS.
 
 
-If Ant Media is running on HTTP, the websocket url should connect to the port `5080` instead of `5443`.
+- If Ant Media is running on HTTP, connect to port `5080`. Otherwise, use `5443`.
 
 Multiple applications can be created in Ant Media to which streams can be published; use the correct application name `WebSocket URL` to publish to that application.
 
-#### localVideoElement
+#### Remote Video Element
 
-```
-remoteVideoElement
-```
-
-This should point to the video element that will show this stream.
+`remoteVideoElement` points to the ```html<video>``` element that will display the remote stream.
 
 #### Callback
 
-```
-callback
-```
+`callback` receives messages and notifications from the server, including `play_started`, `play_finished`, `data channel messages`, etc.
 
-Messages & notifications sent from the server will be received in this callback. This includes notifications like `play_started`, `play_timeout` , `data channel messages`, etc.
+#### Play and Stop
 
-#### WebRTC Adaptor
-
--  `WebRTCAdaptor` play function initiate a WebRTC connection with Ant Media Server and starts to play the stream. Specify the correct stream ID and make sure the stream is currently publishing, which you are trying to play.
+-  Start playing a stream:
 
    ```
    webRTCAdaptor.play(streamid)
    ```
 
-- Stops playing WebRTC streams.
+- Stop playing a stream:
 
   ```
   webRTCAdaptor.stop(streamid)
   ```
+
+## Congratulations!
+
+You’ve successfully set up WebRTC playback using the Ant Media JavaScript SDK. From here, you can expand by handling multiple streams, adding custom UI controls, or combining playback with publishing to build interactive live applications.

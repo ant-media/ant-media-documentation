@@ -5,7 +5,7 @@ keywords: [JavaScript SDK User Guide, Ant Media Server Documentation, Ant Media 
 sidebar_position: 3
 ---
 
-Before moving forward with using WebRTC JavaScript SDK, we highly recommend using the sample project to get started with your application. It's good to know the dependencies and how it works in general.
+Before moving forward with using the WebRTC JavaScript SDK, we highly recommend starting with the sample project. It’s useful to understand the dependencies and how the SDK works in general.
 
 ### Install @antmedia/webrtc_adaptor package from **[npm.js](https://www.npmjs.com/package/@antmedia/webrtc_adaptor)**
 
@@ -15,7 +15,7 @@ Before moving forward with using WebRTC JavaScript SDK, we highly recommend usin
 
     ```yarn add @antmedia/webrtc_adaptor```
 
-**Imports and initialise the WebRTCAdaptor from JavaScript-SDK**
+**Import and initialize the WebRTCAdaptor from JavaScript SDK**
 
 ```
     import { WebRTCAdaptor } from '@antmedia/webrtc_adaptor';
@@ -59,9 +59,9 @@ In another part of your script:
 
 ### Tutorial for Creating Publish and Play Page using JS SDK
 
-- [publish page creation using JS SDK](https://antmedia.io/docs/guides/developing-antmedia-server/webrtc-publish-page-creation-tutorial/)
+- [Publish page creation using JS SDK](https://antmedia.io/docs/guides/developing-antmedia-server/webrtc-publish-page-creation-tutorial/)
 
-- [play page creation using JS SDK](https://antmedia.io/docs/guides/developing-antmedia-server/webrtc-play-page-creation-tutorial/)
+- [Play page creation using JS SDK](https://antmedia.io/docs/guides/developing-antmedia-server/webrtc-play-page-creation-tutorial/)
 
 ## WebRTCAdaptor methods
 

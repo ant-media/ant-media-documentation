@@ -31,3 +31,7 @@ Once the app is installed and running on your device, enter the server IP addres
 
 - You can quickly join the conference room via the conference sample page.
   ```https://your-domain:5443/live/conference.html```
+
+## Congratulations!
+
+You have successfully set up the WebRTC Conference sample using the Flutter SDK. Your app can now connect multiple participants to the same room, enabling real-time video and audio communication across Android, iOS, and web clients.

@@ -6,8 +6,13 @@ sidebar_position: 5
 ---
 
 ## Step 4: Play WebRTC Live Stream in iOS
-- Playing a WebRTC live stream in your iOS application is easier once you've created the project and published the stream.
-- Edit the `ViewController.swift` file with the below code snippet
+
+Playing a WebRTC live stream in your iOS application is straightforward once you have created the project and published a stream. Follow these steps:
+
+### 1. Edit `ViewController.swift`
+
+Replace your current code with the following snippet to configure the client to play a remote stream:
+
 ```
 import UIKit
 import WebRTCiOSSDK
@@ -25,15 +30,28 @@ class ViewController: UIViewController {
     }
 }
 ```
+
 ![](@site/static/img/ios-SDK/view-play.png)
 
-- Visit the [WebRTC Publish page](https://antmedia.io/webrtc-samples/webrtc-publish-webrtc-play/), enter "stream123456" in the box, and click "Start Publishing" to make the stream available.
+### 2. Start Publishing the Stream
 
-- Run your WebRTC iOS application to play the stream.
+* Visit the [WebRTC Publish page](https://antmedia.io/webrtc-samples/webrtc-publish-webrtc-play/)
+
+* Enter `"stream123456"` in the input box and click Start Publishing to make the stream available.
+
+### 3. Run Your iOS Application
+
+* Launch your app on a real iOS device. The client will connect to the WebRTC server and play the published stream.
+
 ![](@site/static/img/ios-SDK/play-ios.png)
 
-- Congratulations! You have successfully played a WebRTC live stream in iOS.
+### 4. Congratulations!
 
-By following this guide, you have learned how to publish and play WebRTC live streams in your iOS application. If you're eager to explore more features and samples, visit the [WebRTC-iOS-SDK repository](https://github.com/ant-media/WebRTC-iOS-SDK) and try the sample WebRTC iOS Application.
+You have successfully played a WebRTC live stream on your iOS device.
 
-In the next consequent updates to this document, we’re going to show you how to share screens in iOS and how to make a conferencing application in iOS.
+
+### 5. Next Steps
+
+* Explore additional features and samples from the [WebRTC-iOS-SDK repository](https://github.com/ant-media/WebRTC-iOS-SDK)
+
+* In the next guides, you will learn how to implement screen sharing in your iOS applications using the same SDK.
