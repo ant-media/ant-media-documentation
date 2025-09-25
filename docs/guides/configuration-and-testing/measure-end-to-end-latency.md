@@ -5,31 +5,33 @@ keywords: [Measure latency, Measure end-to-end latency, TimeServer, OCR, AWS Rek
 sidebar_position: 5
 ---
 
-# How to measure end to end latency
+# How to Measure End-to-End Latency
 
-Sometimes you may want to calculate the time it takes for a stream to be transmitted from one point to another. In this guide, we'll guide you on how to calculate the duration between the publisher and the player this step by step.
+Sometimes you may need to calculate the time it takes for a stream to be transmitted from one point to another. In this guide, we’ll show you step by step how to calculate the duration between the publisher and the player.
 
-This is the methodology used for this purpose:
+## Methodology
 
-1.  Draw the timestamp (publish time) onto the stream canvas while broadcasting the stream.
-2.  Draw the timestamp (play time) onto the stream canvas while playing the stream.
-3.  Extract publish and play time text using OCR (Optical Character Recognition).
-4.  Calculate the E2E latency by subtracting the publish time from play time.
+1. Draw the timestamp (publish time) onto the stream canvas while broadcasting.
+2. Draw the timestamp (play time) onto the stream canvas while playing the stream.
+3. Extract both timestamps using OCR (Optical Character Recognition).
+4. Calculate the end-to-end (E2E) latency by subtracting the publish time from the play time.
 
-### Guide to measuring end to end latency
+### Guide to Measuring End-to-End Latency
 
 We'll use **Amazon Rekognition** or **Google's Vision API** to calculate the E2E latency. 
 
-Below you can find the required pages source code for web SDK.
+You’ll need two example pages from the Web SDK:
 
-*   [publish\_with\_timestamp.html](https://github.com/ant-media/StreamApp/blob/master/src/main/webapp/publish_with_timestamp.html): This is the page that draws the timestamp (publish time) on the stream canvas while broadcasting the stream. This page is already available in Ant Media Server v2.3.0+ with other samples.
-*   [player\_with\_timestamp.html](https://github.com/ant-media/StreamApp/blob/master/src/main/webapp/player_with_timestamp.html): This is the page that draws the timestamp (play time) on the stream canvas while playing the stream. It also calls OCR API and calculates the latency. This page is already available in Ant Media Server v2.3.0+ with other samples.
+*   [publish\_with\_timestamp.html](https://github.com/ant-media/StreamApp/blob/master/src/main/webapp/publish_with_timestamp.html): Draws the publish time on the canvas while broadcasting. (Available in Ant Media Server v2.3.0+.)
+*   [player\_with\_timestamp.html](https://github.com/ant-media/StreamApp/blob/master/src/main/webapp/player_with_timestamp.html): Draws the play time on the canvas, calls the OCR API, and calculates latency. (Also available in v2.3.0+.)
 
-#### 1\. Sync device with a TimeServer
+### 1. Sync Devices with a Time Server
 
-It is required that both the publisher and the player devices be in sync in terms of time to calculate the time difference. We use the NTP time provider for the tests. If the time servers can't be used - mostly the case in mobile devices, you can manually synchronize the devices via player\_with\_timestamp.html. This is explained below.
+Both the publisher and the player devices must be in sync to ensure accurate time difference calculation. For testing, we use an NTP time provider.
 
-#### Manual sync
+If time servers can’t be used (common on mobile devices), you can manually synchronize the devices using player_with_timestamp.html.
+
+#### Manual Sync
 
 Find the offset in publisher and player devices. We've used [AtomicClock](https://play.google.com/store/apps/details?id=partl.atomicclock&hl=en_US&gl=US) to find the offset.
 
@@ -41,7 +43,7 @@ After you check the time difference manually from a time server, you can enter t
 
 ![](@site/static/img/image-1645445342702.png)
 
-### 2\. Setup OCR: Choose AWS Rekognition or Google's Vision API
+## 2. Setup OCR: Choose AWS Rekognition or Google's Vision API
 
 **AWS Rekognition:** To enable the AWS SDK for using Rekognition, you need to get your AWS Access Key ID and AWS secret key. [Check this link](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys) for AWS authentication.
 
@@ -55,11 +57,11 @@ After the authentication is done, enter the following command on the terminal:
 
 ```gcloud auth application-default print-access-token```
 
-The response will be the token that should be given to the player\_with\_timetamp.html in the Vision Token box. Enter your token.
+The returned token must be entered into player_with_timestamp.html under the Vision Token field.
 
 ![](@site/static/img/image-1645445480526.png)
 
-If **gcloud** can't be run from the terminal, you can set it to the path by downloading the SDK [manually to your home directory](https://cloud.google.com/sdk/docs/install).
+If **gcloud** can't be run from the terminal, you can add it to the path by downloading the SDK [manually to your home directory](https://cloud.google.com/sdk/docs/install).
 
      Run the following commands on Ubuntu:
 
@@ -67,7 +69,7 @@ If **gcloud** can't be run from the terminal, you can set it to the path by down
     $~/google-cloud-sdk/bin$ source '/home/karinca/google-cloud-sdk/completion.bash.inc'
     $~/google-cloud-sdk/bin$ gcloud
 
-### 3\. Measure latency
+## 3. Measure latency
 
 After you give the required parameters, latency will be measured every second programmatically.
 
@@ -77,6 +79,16 @@ After you give the required parameters, latency will be measured every second pr
 
 There are a few things that affect the accuracy when measuring the time.
 
-1.  **Canvas rendering:** Since we draw the current time on top of a canvas with the stream, we have a delay from canvas rendering time of javaScript. It adds 10 milliseconds of more latency to the calculation, which can be ignored.
-2.  **Canvas FPS:** Canvas FPS adds 30 milliseconds of delay to measured delay.
-3.  **Time Offset:** Even if the device is synced with a time server automatically, there will be tens of milliseconds of error rate for each device, which makes a total of around 20 seconds of milliseconds of error when we measure latency.
+1.  **Canvas rendering:** Drawing the time onto the canvas introduces ~10 ms delay (can usually be ignored).
+2.  **Canvas FPS:** Adds ~30 ms delay to the calculation.
+3.  **Time Offset:** Even with NTP sync, devices can differ by tens of milliseconds, resulting in up to ~20 ms of error.
+
+<div align="center">
+
+### End-to-end latency for you
+
+</div>
+
+You’ve synced your devices, embedded timestamps into your streams, and hooked up OCR with AWS Rekognition or Google Vision API to capture and compare publish/play times.
+
+Tada, you now have a clear, reliable way to measure and understand end-to-end latency in Ant Media Server, giving you confidence in your streaming performance.
