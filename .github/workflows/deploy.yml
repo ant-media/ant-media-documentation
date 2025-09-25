@@ -40,7 +40,7 @@ jobs:
         apt install -y openssh-client -y
     - name: Make changes
       run: |
-        sed -i "s^baseUrl:.*^baseUrl:'/docs',^" docusaurus.config.js
+#        sed -i "s^baseUrl:.*^baseUrl:'/docs',^" docusaurus.config.js
         sed -i "s^appId.*^appId: '${{ secrets.ALGOLIA_APP_ID }}',^" docusaurus.config.js
         sed -i "s^apiKey.*^apiKey: '${{ secrets.ALGOLIA_API_KEY }}',^" docusaurus.config.js
 
