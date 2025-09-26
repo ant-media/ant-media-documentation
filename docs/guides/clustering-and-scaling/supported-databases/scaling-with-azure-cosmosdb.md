@@ -17,7 +17,7 @@ In this document, we'll explain how to use Azure Cosmos DB with Ant Media Server
 
 ## Creating Azure CosmosDB
 
-Follow the below steps to create a Cosmos DB cluster and connect AMS to the database.
+Follow the below steps to create a Cosmos DB cluster and connect AMS to the database
 
 ### Create a Cluster
 
