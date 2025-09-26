@@ -5,7 +5,7 @@ keywords: [AMS Cluster Deployment on GCP, Ant Media Server Documentation, Ant Me
 sidebar_position: 2
 ---
 
-In this guide, we’ll dive into how to use Jinja Templates and Google Cloud Deployment Manager to streamline the deployment of Ant Media Server clusters on Google Cloud Platform (GCP). We’ll cover the essentials of both Jinja Templates and Deployment Manager, explore how these tools integrate seamlessly, and provide a step-by-step walkthrough to help you deploy an Ant Media Server cluster with confidence and ease.
+This guide demonstrates how to use Jinja Templates and Google Cloud Deployment Manager to streamline the deployment of Ant Media Server clusters on Google Cloud Platform (GCP). We’ll cover the essentials of both Jinja Templates and Deployment Manager, explore how these tools integrate seamlessly, and provide a step-by-step walkthrough to help you deploy an Ant Media Server cluster with confidence and ease.
 
 ## What is Google Deployment Manager and Jinja Template?
 
@@ -20,9 +20,9 @@ It is a templating engine for Python that allows for the creation of dynamic con
 ## Prerequisites
 Before you begin the deployment process, ensure you have the following prerequisites in place:
 
-* **Google Cloud Platform Account:** Ensure that you have access to a Google Cloud Platform account with the necessary permissions to create and manage resources. If you don’t have an account yet, you can sign up for a free trial or a paid subscription on the Google Cloud Platform website.
+* **Google Cloud Platform Account:** Ensure you have access to a Google Cloud Platform account with the necessary permissions to create and manage resources. If you don’t have an account yet, you can sign up for a free trial or a paid subscription on the Google Cloud Platform website.
 
-* **Google Cloud SDK (gcloud CLI):** Install the [Google Cloud SDK](https://cloud.google.com/sdk/docs/install) and ensure that the gcloud command-line tool is available in your environment. This tool will be used to interact with Google Cloud Platform (GCP) resources and services.
+* **Google Cloud SDK (gcloud CLI):** Install the [Google Cloud SDK](https://cloud.google.com/sdk/docs/install) and ensure the gcloud command-line tool is available in your environment. This tool will be used to interact with Google Cloud Platform (GCP) resources and services.
 
 * **Enable Compute Engine API:** Make sure to enable the [Compute Engine API](https://cloud.google.com/compute/docs/reference/rest/v1) in your GCP project. This API is required to create and manage virtual machine instances, which are essential for hosting Ant Media Server clusters.
 
@@ -48,7 +48,7 @@ Now that we have all the prerequisites covered, let’s access the GCP account t
   
   ![image](https://github.com/user-attachments/assets/4f209dc6-d2ac-47cf-ad73-e7d474d4b585)
   
-* Go to the above-displayed URL in your browser, follow the prompts, and enter the verification code, and you will be logged in to your gCloud environment.
+* Visit the displayed URL in your browser, follow the prompts, and enter the verification code to log in to your gCloud environment.
 
 * You can create a new project for the deployment or if you already have a project created, you can switch to the existing project with
   
@@ -161,3 +161,11 @@ Webrtc sample publish page
 
 Webrtc player page
 ![image](https://github.com/user-attachments/assets/476d44e4-12ff-4694-b3e5-c701e59d42b6)
+
+<div align="center">
+  <h2> 🧙‍♂️ Jinja Template on GCP — Your Streaming Spellbook! 📜✨ </h2>
+</div>
+
+Congratulations, wizard of the cloud! 🧙‍♂️ Your Ant Media Server cluster is now live on Google Cloud Platform, conjured effortlessly using **Jinja Templates and Google Deployment Manager**. With Origin and Edge nodes, a MongoDB backend, and a Load Balancer to route traffic, your streaming infrastructure is as scalable as your imagination.
+
+Take a moment to enjoy the setup — your viewers are about to experience smooth, reliable streaming! 🎬✨
