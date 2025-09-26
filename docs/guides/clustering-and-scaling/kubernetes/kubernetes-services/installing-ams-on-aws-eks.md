@@ -8,12 +8,12 @@ sidebar_position: 6
 # Installing Ant Media Server on Amazon Elastic Kubernetes Service (EKS)
 
 :::info
-You need to have the [AWS CLI software](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)  and the [Kubernetes command line tool](https://kubernetes.io/docs/tasks/tools/) installed on your computer.
+Ensure you have the [AWS CLI software](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)  and the [Kubernetes command line tool](https://kubernetes.io/docs/tasks/tools/) installed on your computer.
 :::
 
 ## Step 1: Navigate to EKS Service
 
-After logging into AWS, search for the **EKS** service and find the **Elastic Kubernetes Service,** then click the **Create Cluster** button and Select **Custom Configuration**.
+After logging into AWS, search for the **EKS** service, select **Elastic Kubernetes Service**, then click the 'Create Cluster' button and choose 'Custom Configuration'.
 
 ![image.png](https://github.com/user-attachments/assets/5100a760-00a0-41c0-899f-0eeadafd63bc)
 
@@ -179,3 +179,13 @@ When we check the Ant Media Server dashboard, we can see that 2 nodes have joine
 If you don't want to deal with any of this then I suggest you look at helm deployment.
 
 https://github.com/ant-media/helm
+
+
+<div align="center">
+  <h2> 🎊 Kubernetes Conquered — AMS on AWS EKS! ☁️🚀 </h2>
+</div>
+
+Congratulations! Your Ant Media Server cluster is now running on **AWS EKS** — fully **containerized, clustered, and ready to scale like a pro.** Origin and Edge nodes are humming, MongoDB is in place, and your Load Balancer is directing traffic flawlessly.
+
+Take a deep breath, celebrate this milestone, and **get ready to stream like never before!** 🎬🎉
+
