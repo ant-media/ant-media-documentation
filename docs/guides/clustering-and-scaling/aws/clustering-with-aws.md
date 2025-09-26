@@ -7,17 +7,17 @@ sidebar_position: 5
 
 # Clustering with AWS
 
-In this document, we’re going to explain how to setup a Scalable Ant Media Server Cluster in Amazon Web Services. Scaling is required when a single server cannot meet the required demand. You can also estimate your cost and server requirement through our [cost calculator](https://antmedia.io/cost-calculator/) and down the page you can see the table for supported values as per server CPU resources.
+In this document, we’re going to explain how to setup a Scalable Ant Media Server Cluster in Amazon Web Services. Scaling is required when a single server cannot meet the required demand. You can also estimate your cost and server requirement through our [cost calculator](https://antmedia.io/cost-calculator/). Further down the page, you’ll find a table showing the supported values based on your server’s CPU resources.
 
-Here below is the diagram about how Ant Media Server is architecturized within AWS.
+Below is the diagram about how Ant Media Server is architecturized within AWS.
 
 ![](@site/static/img/68747470733a2f2f616e746d656469612e696f2f77702d636f6e74656e742f75706c6f6164732f323032312f30342f4157532d636c75737465722d312e706e67.png)
 
 Lets start with brief definitions
 
-* **MongoDB Database Server:** Ant Media Server uses MongoDB in clustering. Streams information are saved to MongoDB so that edge instances can learn any stream’s origin node.
+* **MongoDB Database Server:** Ant Media Server uses MongoDB in clustering. Streams information are saved to MongoDB so that edge instances can learn any streams origin node.
 * **Load Balancer:** LB is the entrance point for the publishers and players. Load Balancer accepts the requests from publishers or players and forwards the requests to the available node in the cluster.
-* **Origin Auto-Scalable Group:** Nodes (Instances) in the origin group accepts the publish requests and ingest the incoming WebRTC stream. When an origin instance accepts a WebRTC stream, it saves the related information to the MongoDB Database Server. There may be one node or multiple node in origin group. It may even be manually or auto scalable. In our deployment, it’s auto-scalable in AWS.
+* **Origin Auto-Scalable Group:** Nodes (Instances) in the origin group accepts the publish requests and ingest the incoming WebRTC stream. When an origin instance accepts a WebRTC stream, it saves the related information to the MongoDB Server. There may be one node or multiple nodes in origin group. It may even be manual or auto scalable. In our deployment, it’s auto-scalable in AWS.
 * **Edge Auto-Scalable Group:** Node (Instances) in the edge group accepts the play requests. Then it learns from MongoDB which origin node has the related stream. After that it gets the stream from related origin node and sends the stream to the player.
 
 Then continue with installing MongoDB Server.
@@ -39,8 +39,8 @@ The procedure below shows how to start an instance in AWS EC2 service as well. I
 ![](@site/static/img/152640816-06bcfe6e-35ed-4efe-9fda-bacb60826a82(1).png)
 
 * Choose Instance Type like m4.xlarge or m5.xlarge series. There are two points here.
-* First one is you may optionally choose a bigger instance according to your streaming load.
-* Second one don’t use any m5a instances because they have ARM architecture.
+* Firstly, is you may optionally choose a bigger instance according to your streaming load.
+* Secondly, avoid m5a instance types, as they have ARM architecture.
 
 Then click “Review and Launch”.
 
@@ -228,3 +228,15 @@ Please visit: [How to enable IP filter behind a load balancer for Ant Media Serv
 For publishing please visit the `https://your-domain-name/WebRTCAppEE/` and click the `Start Publishing` button. The default stream id is `stream1` For playing please visit the `https://your-domain-name:5443/WebRTCAppEE/player.html` and click the `Start Playing` button. The default stream will be played.
 
 As you figure out, we connect default https port(443) for publishing and 5443 port for playing. Because we configure load balancer to forward default port(443) to origin group and 5443 to edge group.
+
+<br /><br />
+---
+
+<div align="center">
+<h2> 🔄 AWS Clustering — Multiply Capacity, Not Complexity! ⚙️ </h2>
+</div>
+
+You’ve set up a clustered AMS on AWS with **Origin & Edge auto-scaling, shared MongoDB for stream metadata, and a Load Balancer** routing publish & play requests properly. When traffic spikes, new nodes spin up; when it drops, resources scale back without you lifting a finger.
+
+Your streaming infrastructure now **grows with your audience** — resilient, reliable, and ready for anything! 🚀
+
