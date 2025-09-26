@@ -94,5 +94,5 @@ In this document we discussed Redis integration with AMS, covering use cases, im
 
 Your Ant Media Server is now integrated with **Redis**, leveraging its **speed, caching, and Pub/Sub capabilities to optimize streaming workflows**
 
-Your audience will enjoy **smooth, reliable viewing, and you can relax knowing your infrastructure scales effortlessly.** Go ahead — let the streaming magic happen! 🎥✨</p>
+Your audience will enjoy **smooth, reliable viewing, and you can relax knowing your infrastructure scales effortlessly.** Go ahead — let the streaming magic happen! 🎥✨
 
