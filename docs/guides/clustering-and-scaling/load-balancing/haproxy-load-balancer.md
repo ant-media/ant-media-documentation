@@ -9,13 +9,13 @@ sidebar_position: 2
 
 The load balancer is the main part of the cluster. If you make Ant Media Server instances run in cluster mode, then a load balancer will be required to balance the load.
 
-In this documentation, we will learn how to install HAProxy Load Balancer with SSL termination.
+This guide walks you through setting up HAProxy as a load balancer for Ant Media Server, complete with SSL termination."
 
 ![](@site/static/img/haproxyssltermination.png)
 
 ## HAProxy Installation
 
-Run the below commands to install HAProxy.
+Install HAProxy by executing the following commands:
 
 ```bash
 sudo apt-get update
@@ -36,7 +36,7 @@ sudo apt-get install certbot
 
 ### Get the Certificate
 
-Please change `example.com` with your domain name:
+Replace `example.com` with your domain name:
 
 ```bash
 sudo certbot certonly --standalone -d example.com -d www.example.com
@@ -57,7 +57,7 @@ A valid pem file is now available under `/etc/haproxy/certs`, ready for use by H
 
 ## Configure HAProxy
 
-In this step, HAProxy will be set up as a load balancer.
+Now, HAProxy will be set up as a load balancer.
 
 ### Backup default configuration file
 
@@ -188,3 +188,12 @@ You can view status of the Ant Media Server backend through
 You need to use the username and password as defined in the configuration above.
 
  ![](@site/static/img/haproxy_monitoring.png)
+
+ <div align="center">
+  <h2> ⚡ HAProxy Load Balancer — Secure, Scalable, and Stream-Ready! 🛠️ </h2>
+</div>
+
+Success! Your Ant Media Server cluster is now **fronted by HAProxy**, handling traffic efficiently with SSL termination and optimized routing.
+
+This setup **ensures your streams are distributed reliably across origins and edges.** Your infrastructure is now ready for high-traffic scenarios, failover, and smooth streaming experiences. 🚀📡
+
