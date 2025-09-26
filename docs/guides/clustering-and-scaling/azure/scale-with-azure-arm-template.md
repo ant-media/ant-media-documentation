@@ -13,16 +13,16 @@ Azure Resource Manager (ARM) is a service provided by Microsoft as part of its A
 
 Let's now dive into setting up the ARM template and proceed step by step.
 
- - Sign in to Azure Portal Sign in to your Azure account and navigate to portal.azure.com
+ - Sign in to the Azure portal (portal.azure.com) and sign in to your Azure account.
  
- - Search `Resource groups` from the search bar, then click the **New** button to create a new resource group. Specify the resource group name and location.
+ - Search for "Resource groups" in the search bar, then click **New** to create a resource group. Specify the name and location.
 
 ![](@site/static/img/azure/ams-cluster-in-azure-with-arm-1.png)
 
 
 ## Azure Resource Manager Custom Deployment Template
 
- - Search "Deploy a custom template" from the search bar, then click the **Build your own template in the editor** button to upload the template that you download from [here](https://raw.githubusercontent.com/ant-media/Scripts/master/azure-arm-template/antmedia-azure-autoscale.yaml) and then upload the template by using **Load file**.
+ - Search for "Deploy a custom template" in the search bar, then click **Build your own template in the editor**. Download the template from [here](https://raw.githubusercontent.com/ant-media/Scripts/master/azure-arm-template/antmedia-azure-autoscale.yaml) and then upload the template using **Load file**.
 
 ![](@site/static/img/azure/ams-cluster-in-azure-with-arm-2.png)
 
@@ -104,3 +104,13 @@ Now that the cluster is created and ready, let’s connect to it.
 Congratulations! Your Ant Media Cluster has been deployed.
 
 If you have any questions, please just drop your query at [GitHub discussions](https://github.com/orgs/ant-media/discussions).
+
+
+
+<div align="center">
+  <h2> 🧩 A³ — Azure, Ant Media, ARM! 🚀 </h2>
+</div>
+
+Your Ant Media Server cluster has been deployed using the **Azure ARM template**. With your **certificate, Application Gateway, and autoscaling parameters** in place, the cluster is ready to serve resilient, scalable streaming workloads.
+
+All set — your streaming infrastructure is automated, repeatable, and under control. **Go stream confidently!** 🎬
