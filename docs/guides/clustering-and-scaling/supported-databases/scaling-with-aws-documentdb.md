@@ -69,3 +69,11 @@ Here is the sample command to connect with Document DB.
 ```bash
 sudo ./change_server_mode.sh cluster "mongodb://testadmin:password@docdb-2024-08-25-19-28-55.cluster-crg1b1lxnbdb.ap-south-1.docdb.amazonaws.com:27017/?replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false"
 ```
+
+<div align="center">
+  <h2> 🎉 AWS DocumentDB Integration — Your Streams Are Now Scalable and Resilient! 🚀 </h2>
+</div>
+
+Congratulations! You've successfully integrated **AWS DocumentDB with Ant Media Server,** enhancing your streaming infrastructure with scalability, high availability, and MongoDB compatibility.
+
+With DocumentDB handling your **data layer, your system is now optimized for high-performance streaming**. Whether you're scaling up for a **major event or ensuring smooth delivery for a global audience,** your setup is ready to deliver exceptional experiences. 🎬✨
