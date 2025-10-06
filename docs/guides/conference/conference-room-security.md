@@ -67,7 +67,7 @@ In this step, we will use a conference sample to do a simple conference room sec
 
 **Example:**
 
-```https://test.antmedia.io:5443/LiveApp/conference.html?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoicHVibGlzaCIsInN0cmVhbUlkIjoidGVzdHJvb20iLCJleHAiOjk1MTYyMzkwMjJ9.Ipl8ev_jkZUfE_nPceOdj977V09qgRKu8Fc_jDCqvlA```
+```https://test.antmedia.io:5443/live/conference.html?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoicHVibGlzaCIsInN0cmVhbUlkIjoidGVzdHJvb20iLCJleHAiOjk1MTYyMzkwMjJ9.Ipl8ev_jkZUfE_nPceOdj977V09qgRKu8Fc_jDCqvlA```
 
 Conference.html sample will get the token from query parameter and pass it to ```.publish()``` and ```.play()``` functions.
 

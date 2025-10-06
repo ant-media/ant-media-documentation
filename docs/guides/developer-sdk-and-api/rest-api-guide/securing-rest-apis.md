@@ -17,7 +17,7 @@ If you want only some IP addresses to be able to access REST APIs, you should ad
 
 **If 127.0.0.1 is deleted, requests on the server (localhost) are disabled. Devices in the same network can access but other devices that are not, cannot access the REST API when 127.0.0.1 is on the list.**
 
-If you want to remove the REST Filter in AMS, you should delete the below codes in `/usr/local/antmedia/webapps/Application-Name/WEB-INF/web.xml`
+If you want to remove the REST Filter in AMS, you should delete the below codes in `/usr/local/antmedia/webapps/{Application-Name}/WEB-INF/web.xml`
 
 ```
 <filter>

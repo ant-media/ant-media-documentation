@@ -42,12 +42,12 @@ It is also possible to generate a JWT token with an expiration time. For this, y
 To use the JWT token, simply add it to the `Authorization` header as shown below:
 
 ```bash
-curl -X POST -H "Content-Type: application/json" -H "Authorization: {JWTToken}" "https://{domain:port}/{application}/rest/v2/broadcasts/create" -d '{"name":"streamName"}'
+curl -X POST -H "Content-Type: application/json" -H "Authorization: {JWTToken}" "https://{domain:5443}/{application}/rest/v2/broadcasts/create" -d '{"name":"streamName"}'
 ```
 
 ## Step 6: Enable JWKS (Optional)
 
-If you want to use the JSON Web Key Set (JWKS) feature, you need to have an OAuth server like auth0.com. You can also build your own OAuth server system with [Hydra](https://www.ory.sh/hydra/docs/install). For JWKS configurations, add parameters to the `/usr/local/antmedia/webapps/<App-Name>/WEB-INF/red5-web.properties` file:
+If you want to use the JSON Web Key Set (JWKS) feature, you need to have an OAuth server like auth0.com. You can also build your own OAuth server system with [Hydra](https://www.ory.sh/hydra/docs/install). For JWKS configurations, add parameters to the `/usr/local/antmedia/webapps/{App-Name}/WEB-INF/red5-web.properties` file:
 
 ```
 settings.jwtControlEnabled=true

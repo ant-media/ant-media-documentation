@@ -20,13 +20,13 @@ It is important that the ```streamId``` and ```type``` parameters are properly d
  - The sample token creation service URL in the Publish Scenario:
 
 ```bash
-curl -X 'GET' 'https://IP-address-or-domain:5443/Application_Name/rest/v2/broadcasts/streamId/token?expireDate=Expire_Date&type=publish' -H 'accept: application/json'
+curl -X 'GET' 'https://IP-address-or-domain:5443/live/rest/v2/broadcasts/streamId/token?expireDate=Expire_Date&type=publish' -H 'accept: application/json'
 ```
 
  - The sample token creation service URL in Play Scenario:
 
 ```bash
-curl -X 'GET' 'https://IP-address-or-domain:5443/Application_Name/rest/v2/broadcasts/streamId/token?expireDate=Expire_Date&type=play' -H 'accept: application/json'
+curl -X 'GET' 'https://IP-address-or-domain:5443/live/rest/v2/broadcasts/streamId/token?expireDate=Expire_Date&type=play' -H 'accept: application/json'
 ```
 
 The expiration date should be provided as a Unix timestamp in seconds. You can convert dates to Unix timestamps using [epochconverter.com](https://www.epochconverter.com/).
@@ -38,13 +38,13 @@ This section will look at how to use the One Time token with various streaming p
 ### RTMP, SRT, and WebRTC Publish URL usage
 
 **RTMP:**
-`rtmp://IP-address-or-domain/Application_Name/StreamId?token=tokenId`
+`rtmp://IP-address-or-domain/live/StreamId?token=tokenId`
 
 **SRT:** 
-`srt://IP-address-or-domain:4200?streamid=Application_Name/your-streamId,token=tokenId`
+`srt://IP-address-or-domain:4200?streamid=live/your-streamId,token=tokenId`
 
 **WebRTC:**
-`https://domain:5443/Application_Name?id=streamId&token=tokenId`
+`https://domain:5443/live?id=streamId&token=tokenId`
 
 Above is the URL if you are using the [webrtc sample page](https://antmedia.io/docs/guides/publish-live-stream/webrtc/) for publishing.
 
@@ -52,10 +52,10 @@ If you are using the WebSocket URL to connect with the server, then the token pa
 
 ```shell
 # Secure WebSocket: 
-wss://{ant-media-server}:5443/WebRTCAppEE/websocket
+wss://{ant-media-server}:5443/live/websocket
 
 # Non Secure WebSocket: 
-ws://{ant-media-server}:5080/WebRTCAppEE/websocket
+ws://{ant-media-server}:5080/live/websocket
 ```
 
 ```json
@@ -73,23 +73,23 @@ ws://{ant-media-server}:5080/WebRTCAppEE/websocket
 
 If using the embedded (play.html) player URL:
 ```
-http(s)://IP-address-or-domain:port/Application_Name/play.html?id=streams/stream_id.mp4&playOrder=vod&token=tokenId
+https://IP-address-or-domain:5443/Application_Name/play.html?id=streams/stream_id.mp4&playOrder=vod&token=tokenId
 ```
 If you directly want to use the mp4 URL, then it will be as follows:
 ```
-http(s)://IP-address-or-domain:port/Application_Name/streams/stream_id.mp4?token=tokenId
+https://IP-address-or-domain:5443/Application_Name/streams/stream_id.mp4?token=tokenId
 ```
 **HLS:**
 
 If using the embedded (play.html) player URL:
 ```
-http(s)://IP-address-or-domain:port/Application_Name/play.html?id=stream_id&playOrder=hls&token=tokenId
+https://IP-address-or-domain:5443/Application_Name/play.html?id=stream_id&playOrder=hls&token=tokenId
 ```
 
 If you want to use the m3u8 URL directly, then it will be as follows:
 
 ```
-http(s)://IP-address-or-domain:port/Application_Name/streams/stream_id.m3u8?token=tokenId
+https://IP-address-or-domain:5443/Application_Name/streams/stream_id.m3u8?token=tokenId
 ```
 
 :::info
@@ -97,12 +97,12 @@ http(s)://IP-address-or-domain:port/Application_Name/streams/stream_id.m3u8?toke
 - If **Adaptive Bitrate (ABR)** is enabled and **WebRTC** stream is published, the original `.m3u8` file (e.g., `streamId.m3u8`) will **not be generated**. In such cases, use the adaptive or resolution-specific HLS playlists instead:
    
 ```
-https://<server>:5443/<AppName>/streams/<streamId>_adaptive.m3u8?token=<token>
+https://<server>:5443/live/streams/<streamId>_adaptive.m3u8?token=<token>
 ```
 (or)
 
 ```
-https://<server>:5443/<AppName>/streams/<streamId>_480p1000kbps.m3u8?token=<token>
+https://<server>:5443/live/streams/<streamId>_480p1000kbps.m3u8?token=<token>
 ```
 
 - In some scenarios, playback might still fail — especially if the **session ID changes** while loading, which can cause the **One-Time Token to expire**. In such cases, we recommend using **JWT token-based playback**, which provides more persistent and reliable access control for HLS
@@ -112,29 +112,29 @@ https://<server>:5443/<AppName>/streams/<streamId>_480p1000kbps.m3u8?token=<toke
 
 If using the embedded (play.html) player URL:
 ```
-http(s)://IP-address-or-domain:port/Application_Name/play.html?id=stream_id&playOrder=dash&token=tokenId
+https://IP-address-or-domain:5443/Application_Name/play.html?id=stream_id&playOrder=dash&token=tokenId
 ```
 
 If you directly want to use the mpd URL, then it will be as follows:
 
 ```
-http(s)://IP-address-or-domain:port/Application_Name/streams/streamId/streamId.mpd?token=tokenId
+https://IP-address-or-domain:5443/Application_Name/streams/streamId/streamId.mpd?token=tokenId
 ```
 
 **WebRTC:**
 
 If using the embedded (play.html) player URL:
 
-`http(s)://IP-address-or-domain:port/Application_Name/play.html?id=streamId&token=tokenId`
+`https://IP-address-or-domain:5443/Application_Name/play.html?id=streamId&token=tokenId`
 
 If you are using the WebSocket URL to connect with the server, then the token parameter should be inserted into WebSocket message. Also, please have a look at the principles described in the [WebRTC playing page](https://antmedia.io/docs/guides/publish-live-stream/webrtc/webrtc-websocket-messaging-reference/#playing-webrtc-stream).
 
 ```shell
 # Secure WebSocket: 
-wss://{ant-media-server}:5443/WebRTCAppEE/websocket
+wss://{ant-media-server}:5443/live/websocket
 
 # Non Secure WebSocket: 
-ws://{ant-media-server}:5080/WebRTCAppEE/websocket
+ws://{ant-media-server}:5080/live/websocket
 ```
 
 ```json
