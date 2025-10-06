@@ -13,7 +13,7 @@ The stream sources that Ant Media Server can fetch are: **RTSP, RTMP, HLS, SRT, 
 
 To restream from an external source, follow these steps:
 
-- First, log in to the management panel. Click on 
+- First, log in to the management panel. Select **live** from applications, and click on 
 **New Live Stream** > **Stream Source**. Define stream name, stream URL, and stream ID.
 - AMS starts to pull streams.
 - As the stream starts to pull, you can watch it from the AMS panel.

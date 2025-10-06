@@ -68,13 +68,13 @@ In this section, we will look at how to use the Hash-based token with various st
 ### RTMP, SRT and WebRTC Publish URL usage
 
 **RTMP:**
-`rtmp://IP-address-or-domain/Application_Name/StreamId?token=tokenId`
+`rtmp://IP-address-or-domain/live/StreamId?token=tokenId`
 
 **SRT:** 
-`srt://IP-address-or-domain:4200?streamid=Application_Name/your-streamId,token=tokenId`
+`srt://IP-address-or-domain:4200?streamid=live/your-streamId,token=tokenId`
 
 **WebRTC:**
-`https://domain:5443/Application_Name?id=streamId&token=tokenId`
+`https://domain:5443/live?id=streamId&token=tokenId`
 
 Above is the URL if you are using the [webrtc sample page](https://antmedia.io/docs/guides/publish-live-stream/webrtc/) for publishing.
 
@@ -82,10 +82,10 @@ If you are using the WebSocket URL to connect with the server, then token parame
 
 ```shell
 # Secure WebSocket: 
-wss://{ant-media-server}:5443/WebRTCAppEE/websocket
+wss://{ant-media-server}:5443/live/websocket
 
 # Non Secure WebSocket: 
-ws://{ant-media-server}:5080/WebRTCAppEE/websocket
+ws://{ant-media-server}:5080/live/websocket
 ```
 
 ```json
@@ -139,16 +139,16 @@ https://ant-media-server:5443/Application_Name/streams/streamId/streamId.mpd?tok
 
 If using the embedded (play.html) player URL:
 
-`https://domain:5443/Application_Name/play.html?id=streamId&token=tokenId`
+`https://domain:5443/live/play.html?id=streamId&token=tokenId`
 
 If you are using the WebSocket URL to connect with the server, then token parameter should be inserted to WebSocket message. Also please have a look at the principles described in the [WebRTC playing page](https://antmedia.io/docs/guides/publish-live-stream/webrtc/webrtc-websocket-messaging-reference/#playing-webrtc-stream).
 
 ```shell
 # Secure WebSocket: 
-wss://{ant-media-server}:5443/WebRTCAppEE/websocket
+wss://{ant-media-server}:5443/live/websocket
 
 # Non Secure WebSocket: 
-ws://{ant-media-server}:5080/WebRTCAppEE/websocket
+ws://{ant-media-server}:5080/live/websocket
 ```
 
 ```json

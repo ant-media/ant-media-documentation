@@ -20,17 +20,17 @@ To combine the broadcasts into a single broadcast (main track), publish the stre
 
 * When calling the publish method of the webrtcAdaptor in the SDK, pass the group ID as ```mainTrack```. The URL for the WebRTC sample page will be as follows:
 
-`https://AMS-domain:5443/AppName/?mainTrack=groupID`
+`https://AMS-domain:5443/live/?mainTrack=groupID`
 
 * You must use the following URL for RTMP streams:
 
-```rtmp:/AMS-domain:1935/AppName/streamId?mainTrack=groupID```
+```rtmp:/AMS-domain:1935/live/streamId?mainTrack=groupID```
 
 ### Publishing multitrack streams
 
-Let's publish a stream to the sample WebRTCAppEE application with **streamId=video** and group ID (mainTrack) as **main**.
+Let's publish a stream to the sample live application with **streamId=video** and group ID (mainTrack) as **main**.
 
-`rtmp:/AMS-domain:1935/WebRTCAppEE/video?mainTrack=main`
+`rtmp:/AMS-domain:1935/live/video?mainTrack=main`
 
 Now, as needed, publish streams with different audio subtracks.
 
@@ -47,7 +47,7 @@ Ant Media Server supports two distinct methods for playing multitrack streams. U
 The multitrackplayer.html page is designed for scenarios where multiple streams are published as individual tracks, allowing precise control over each track.
 
 ```
-https://AMS-domain:5443/AppName/multitrackplayer.html
+https://AMS-domain:5443/live/multitrackplayer.html
 ```
 ![sample.png](@site/static/img/sample(1).png)
 
@@ -76,11 +76,11 @@ https://<your-server-domain>:<5443
 
 The ```mainTrack``` (group ID) will be the same as the room Id. For example, in the above-described case, the mainTrack is **main**, so it will be the room Id.
 
-`https://AMS-domain:5443/AppName/conference.html`
+`https://AMS-domain:5443/live/conference.html`
 
 You can also join the room in ```playOnly``` mode using the following URL:.
 
-`https://AMS-domain:5443/AppName/conference.html?playOnly=true`
+`https://AMS-domain:5443/live/conference.html?playOnly=true`
 
 The play request for the room Id is only called once in a Multitrack conference.
 
@@ -102,7 +102,7 @@ To test the media pull feature, first create a conference room and join it as a 
 
 Go to the conference sample page and join the conference room.
 
-`https://AMS-domain:5443/AppName/conference.html`
+`https://AMS-domain:5443/live/conference.html`
 
 Type a room name and note it because we will use it while adding/removing external streams. Click the join room button.
 
@@ -118,7 +118,7 @@ Observe that both broadcasts are created on a web panel.
 
 Now go to the WebRTC publish sample page to publish the individual stream.
 
-`https://AMS-domain:5443/AppName`
+`https://AMS-domain:5443/live`
 
 ![mediapull-external-stream.png](@site/static/img/mediapull-external-stream.png)
 

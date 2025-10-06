@@ -11,7 +11,7 @@ In previous section, you have already gone through recording of live streams. In
 
 First, confirm that your application has MP4 recording enabled. It can be enabled in the application settings on the Web panel.
 
-Assume that there is a live stream with streamId `stream1` publishing to the `LiveApp` application of the Ant Media Server. After publishing is finished, the MP4 file will be created.
+Assume that there is a live stream with streamId `stream1` publishing to the `live` application of the Ant Media Server. After publishing is finished, the MP4 file will be created.
 
  * In the Community Edition or Enterprise Edition of AMS, the default MP4 URL will be available at this URL:
  
@@ -27,7 +27,7 @@ Assume that there is a live stream with streamId `stream1` publishing to the `Li
 
 First, confirm that your application has WEBM recording enabled. It can be enabled in the application settings on the Web panel. WEBM can be recorded if the VP8 codec is enabled in the application's settings.
 
-Assume that there is a live stream with streamId `stream1` publishing to the `LiveApp` application of the Ant Media Server. After publishing is finished, the WEBM file will be created.
+Assume that there is a live stream with streamId `stream1` publishing to the `live` application of the Ant Media Server. After publishing is finished, the WEBM file will be created.
 
  * In the Community Edition, the VP8 codec is not available so WEBM cannot be recorded.
 

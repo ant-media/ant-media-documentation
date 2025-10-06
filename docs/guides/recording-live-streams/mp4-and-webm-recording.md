@@ -154,18 +154,18 @@ Result: "stream2-2023-10-15_12-05-30.123_1500kbps720p.mp4"
 
 AMS stores the recordings in the streams directory by default. The streams directory is located under `usr/local/antmedia/webapps/AppName/streams`.
 
-For example, if you are using the LiveApp application, the streams directory will be `usr/local/antmedia/webapps/LiveApp/streams`.
+For example, if you are using the `live` application, the streams directory will be `usr/local/antmedia/webapps/live/streams`.
 
 If you would like to store the recordings (VoDs) in another directory/location, it is recommended to create a symbolic link.
 
 For live streams, create a symbolic link:
 
 ```bash
-sudo cp -p -r /usr/local/antmedia/webapps/appname/streams/ /backup/
+sudo cp -p -r /usr/local/antmedia/webapps/live/streams/ /backup/
     
-sudo rm -rf /usr/local/antmedia/webapps/appname/streams/
+sudo rm -rf /usr/local/antmedia/webapps/live/streams/
     
-sudo ln -s /mnt/vod_storage/folder/ /usr/local/antmedia/webapps/appname/streams
+sudo ln -s /mnt/vod_storage/folder/ /usr/local/antmedia/live/appname/streams
 ```
 
 After creating the symbolic link, you need to change the permissions of both the base directory and target directory using the below commands.

@@ -8,7 +8,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 const config = {
   title: 'Ant Media Documentation',
   tagline: 'Ant Media Documentation',
-  url: 'https://antmedia.io',
+  url: 'https://docs.antmedia.io',
   baseUrl: '/',
   trailingSlash: true,
   onBrokenLinks: 'warn', // replace with 'throw' to stop building if broken links
@@ -391,10 +391,6 @@ scripts: [
 	{
           from: '/guides/advanced-usage/WebRTC-codecs/',
           to: '/guides/configuration-and-testing/video-codecs/'
-        },
-	{
-          from: '/guides/advanced-usage/webrtc-play-page-creation-tutorial/',
-          to: '/guides/developing-antmedia-server/webrtc-play-page-creation-tutorial/'
         },
 	{
           from: '/get-started/User-Management/',

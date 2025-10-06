@@ -19,8 +19,8 @@ Login to your Ant Media Server Web Panel/dashboard. The URL is like this: `https
 
 ### Accessing the Application
 
-- Navigate to your preferred application from the left side. For this demonstration, we are using the LiveApp application.
-- Once you are in the LiveApp application, go to the VoD section.
+- Navigate to your preferred application from the left side. For this demonstration, we are using the live application.
+- Once you are in the live application, go to the VoD section.
 
 ![image.png](@site/static/img/publish-live-stream/playlist/vod-section.png)
 
@@ -43,7 +43,7 @@ Furthermore, uploading MP4 files to your Ant Media Server is optional. Ant Media
 You can upload MP4 files to Ant Media Server using the REST API with the following API call:
 
 ```bash
-curl -X POST -F "file=@<YOUR-FILE-PATH>;type=video/*" https://AMS_URL:5443/APP-NAME/rest/v2/vods/create?name=YOUR-FILE-NAME.mp4
+curl -X POST -F "file=@<YOUR-FILE-PATH>;type=video/*" https://AMS_URL:5443/live/rest/v2/vods/create?name=YOUR-FILE-NAME.mp4
 ```
 
 Here is the curl sample:
@@ -52,7 +52,7 @@ Here is the curl sample:
 curl -X POST -F "file=@test.mp4;type=video/*" https://AMS_URL:5443/WebRTCAppEE/rest/v2/vods/create?name=test.mp4
 ```
 
-The uploaded file will be located in `antmedia/webapps/APP-NAME/streams` directory. The MP4 file name will be changed to a random VOD ID, which you can find in the VOD section of the web panel application page.
+The uploaded file will be located in `antmedia/webapps/live/streams` directory. The MP4 file name will be changed to a random VOD ID, which you can find in the VOD section of the web panel application page.
 
 You can use the [Get VOD list](https://antmedia.io/rest/#/default/getVodList) rest API call to get the VOD file list from the database.
 
