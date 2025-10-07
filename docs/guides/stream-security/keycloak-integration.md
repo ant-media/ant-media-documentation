@@ -84,11 +84,11 @@ The appName should be the same as the application name we are configuring. Also,
 
 - Try to publish a WebRTC stream through a sample publish page.
 
-  `https://{AMS-URL}/live/samples/publish_webrtc.html`
+  `https://{AMS-URL}:5443/{APP-NAME}/samples/publish_webrtc.html`
 
 - Try to play a stream through the sample play page:
 
-  `https://{AMS-URL}/live/player.html`
+  `https://{AMS-URL}:5443/{APP-NAME}/player.html`
 
 - When you try to publish or play, it will first ask you to authenticate with the keycloak user that we created.
 

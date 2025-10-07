@@ -63,7 +63,9 @@ You can enable or disable the video/audio feed for a sub-track with the ```enabl
 #### Unified Multitrack Playback with multitrack-play.html sample page
 For a simpler experience, the multitrack-play.html page consolidates multiple subtracks under one main track ID, providing a unified stream for playback. This is ideal for users who prefer not to manage individual subtracks but want all streams merged automatically.
 ```
-https://<your-server-domain>:<port>/live/multitrack-play.html?id=<main-stream-id>
+https://<your-server-domain>:<5443
+
+>/<application-name>/multitrack-play.html?id=<main-stream-id>
 ```
 ![image](https://github.com/user-attachments/assets/9aa86c6a-7fde-4488-996d-f332367bec5a)
 
@@ -137,7 +139,7 @@ Send a POST request with the streamId of the conference room broadcast `(room1)`
 **Here is the Curl Sample:**
 
 ```bash
-curl -X 'POST' 'http(s)://AMS-domain:port/live/rest/v2/broadcasts/RoomName/subtrack?id=external-streamId' -H 'accept: application/json'
+curl -X 'POST' 'https://AMS-domain:5443/AppName/rest/v2/broadcasts/RoomName/subtrack?id=external-streamId' -H 'accept: application/json'
 ```
 
 As soon as you receive success, you should observe that an external stream is added to the conference room.
@@ -151,7 +153,7 @@ To remove the external stream from the conference room, we will use [remove SubT
 **Here is the Curl Sample:**
 
 ```bash
-curl -X 'DELETE' 'http(s)://AMS-domain:port/live/rest/v2/broadcasts/RoomName/subtrack?id=external-streamId' -H 'accept: application/json'
+curl -X 'DELETE' 'https://AMS-domain:5443/AppName/rest/v2/broadcasts/RoomName/subtrack?id=external-streamId' -H 'accept: application/json'
 ```
 
 As soon as you receive success, you should observe that the external stream is removed from the conference room.
