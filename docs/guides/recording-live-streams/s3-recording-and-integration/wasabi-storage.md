@@ -21,3 +21,48 @@ Then, log in to http://your_ams_server:5080, enable Record Live Streams as MP4 a
 ![](@site/static/img/image-1648581984499.png )
 
 Your MP4 files and Preview files will be uploaded to your Wasabi storage automatically.
+
+---
+
+## Enable HTTP Forwarding for Playback
+
+When your stream (mp4, m3u8 or preview) files are uploaded to Wasabi Storage, they are no longer available on Ant Media Server local storage. If you try to play them directly from AMS URLs, you may encounter a **404 Not Found** error.
+
+To resolve this, enable **HTTP Forwarding** so Ant Media Server automatically redirects requests to your OVH Object Storage.
+
+### Steps to Enable HTTP Forwarding
+
+1. Log in to the Ant Media Server Management Panel
+2. Navigate to your application (e.g., `live`) and go to **Application Settings → Advanced Settings**.  
+3. Set the following properties:
+
+   ```bash
+   httpForwardingExtension: mp4,m3u8  
+   httpForwardingBaseURL: https://{bucket-name}.s3.{region}.wasabisys.com  
+   ```
+
+   Example:  
+
+   ```bash
+   httpForwardingExtension: mp4,m3u8  
+   httpForwardingBaseURL: https://mybucket.s3.us-east-1.wasabisys.com  
+   ```
+
+4. Save your settings
+
+## Playback
+
+Once forwarding is configured, you can share or embed your AMS URLs as usual. The media will actually be served from Wasabi, while users continue to use your Ant Media Server domain.
+
+Now, when you access:
+
+```bash
+https://your-domain:5443/live/streams/recording.mp4  
+```
+
+Ant Media Server will forward the request to:
+
+```bash
+https://mybucket.s3.us-east-1.wasabisys.com/streams/recording.mp4  
+```
+

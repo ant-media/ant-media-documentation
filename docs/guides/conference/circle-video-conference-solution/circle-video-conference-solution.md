@@ -51,11 +51,11 @@ First, log in to the Ant Media Server Management Panel.
 * **Step 3:** Give a name to the application.
 * **Step 4:** Click the Create button. That's all.
 
-![Circla App Installation](@site/static/img/conference/circle/circle-app-installation.png)
+![Circle App Installation](@site/static/img/conference/circle/circle-app-installation.png)
 
 ### Usage
 
-* Visit `https://antmediaserver-domain/Application_Name`
+* Visit `https://antmediaserver-domain:5443/Application_Name`
 
 * Click **Create Meeting**
   ![](@site/static/img/conference/circle/circle-room-creation.png)

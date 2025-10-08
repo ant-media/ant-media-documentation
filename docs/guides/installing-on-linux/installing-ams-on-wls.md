@@ -1,11 +1,11 @@
 ---
-title: Installing Ant Media Server on WSL
-description: Installing Ant Media Server on WSL (Windows Subsystem for Linux)
+title: Install on WSL
+description: Install Ant Media Server on WSL (Windows Subsystem for Linux)
 keywords: [Install Ant Media Server on Windows, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 5
 ---
 
-# Installing Ant Media Server on WSL (Windows Subsystem for Linux)
+# Install AMS on WSL (Windows Subsystem for Linux)
 
 Windows Subsystem for Linux (WSL) provides a lightweight virtualized environment to run Linux distributions directly on Windows. This guide shows you how to install Ant Media Server (AMS) on WSL, which can be useful for local development, testing, and demos.
 
@@ -88,13 +88,13 @@ You can access this from any browser on your Windows machine.
 We can now test publishing a WebRTC stream from the browser with this URL:
 
 ```bash
-http://localhost:5080/LiveApp/
+http://localhost:5080/live/
 ```
 
 And play it with the following:
 
 ```bash
-http://localhost:5080/LiveApp/play.html?id=test
+http://localhost:5080/live/play.html?id=test
 ```
 
  ![](@site/static/img/wls-installation/screen4.webp)

@@ -15,10 +15,10 @@ Using an `iframe` is a quick, but least customizable, way to integrate Ant Media
 
 This will just embed the `play.html` page on your website using an iframe element. The `play.html` page is in the application folder on Ant Media Server. 
 
-For example, play.html can be found in the LiveApp application at the following location:
+For example, play.html can be found in the live application at the following location:
 
 ```shell 
-/usr/local/antmedia/webapps/LiveApp/play.html
+/usr/local/antmedia/webapps/live/play.html
 ```
 
 The default player is as follows:
@@ -39,6 +39,10 @@ The URL parameters listed below are accepted by the ```play.html``` page.
 * **```playType```**: PlayType is required to play the recording. ```mp4``` is the default value. ```webm,mp4``` are possible values.
 * **```targetLatency```**: To specify the DASH player's target latency. Optional. The default value is ''3''.
 * **```is360```**: To play the 360-degree input stream. The default value is false.
+
+:::info
+When streams are configured with SubFolder option, the SubFolder path should be included in streamId (e.g., `?id=mySubFolder/streamId`). For more details, see [Playing streams from SubFolders](hls-playing.md#playing-streams-from-subfolders).
+:::
 
 The default WebRTC URL is as follows for play.html (when no token is enabled).
 
@@ -70,7 +74,7 @@ Here is the sample Embed code:
 
 In the above segment of the iframe code, we're passing a name parameter to define the `streamId`. You can include additional parameters similarly as specified above.
 
-For example, `playOrder=webrtc`:
+For example, `playOrder=webrtc`
 
 ```src="https://AMS-domain-name:5443/live/play.html?name=stream1&playOrder=webrtc"```
 
