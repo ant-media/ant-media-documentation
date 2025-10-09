@@ -25,6 +25,9 @@ sed -i -e 's/^User=.*/User=root/' -e 's/^Group=.*/Group=root/' /etc/systemd/syst
 
 systemctl daemon-reload
 ```
+```
+sudo setcap 'cap_net_bind_service=+ep' /usr/bin/turnserver
+```
 
 3. Get a certificate for your domain. (TLS/TCP does not work in Let's Encrpyt Coturn due to socket buffer operation error) 
 
