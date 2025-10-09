@@ -3,6 +3,6 @@
   "position": 15,
   "link": {
     "type": "generated-index",
-    "description": "Introduction to the plugin architecture, and development of plugins for Ant Media Server"
+    "description": "Introduction to the plugin system, and development of plugins for Ant Media Server"
   }
 }
