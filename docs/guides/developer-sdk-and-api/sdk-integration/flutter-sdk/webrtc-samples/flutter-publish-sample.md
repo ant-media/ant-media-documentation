@@ -1,39 +1,51 @@
 ---
-title: Publishing WebRTC stream Sample in Flutter
+title: Publishing WebRTC Stream in Flutter
 description: Publishing WebRTC Live stream Using Flutter SDK 
 keywords: [Flutter SDK User Guide, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 1
 ---
 
-### Step 1. Set the Server Address.
-Once the app is installed and running on your device, enter the server IP address. To enter the IP address, please follow the below steps.
+This guide shows how to publish a WebRTC stream using the Flutter SDK sample app.
 
-- Tap on the Setting icon in the top right corner of the application.
+### Step 1. Set the Server Address.
+Once the sample app is installed and running on your device:
+
+- Tap the Settings icon in the top-right corner.
   
   ![1000131640](https://github.com/user-attachments/assets/0ee23ed3-62eb-4bd8-a2cd-55ffb5615e82)
 
-- Enter the Server details as ```wss://ant_media_server_address:Port/live/websocket```
+- Enter the Server details as ```wss://<ant_media_server_address>:<port>/<applicaiton_name>/websocket```
 
-  ![Screenshot_20250204-210520](https://github.com/user-attachments/assets/9eb4d8aa-a96c-469f-9caf-87176e1f8136)
-
+ ![](@site/static/img/flutter-sdk/Screenshot_2025-08-26_12-27-10.webp)
 
 - Click **Set Server Ip** button to save it.
 
- ### Step 2. Publish WebRTC stream.
+ ### Step 2: Publish a WebRTC Stream
 
-- Select the Publish option from the list & enter the streamId.
+- Select Publish from the main menu.
+
+- Enter a Stream ID for your broadcast.
 
    ![1000131642](https://github.com/user-attachments/assets/ab6657b2-fcac-41f5-ba48-6ea726207699)
 
-- Choose the publishing source. Please note, that for the iOS, the app screen recording option records the app's UI only, while the Android app records the complete device screen.
+- Choose the publishing source:
+
+* On iOS, the app records the app’s UI only (screen recording).
+
+* On Android, the app records the entire device screen.
 
   ![1000131643](https://github.com/user-attachments/assets/0b5a37b3-c108-42ca-a102-7f495b03b3dc)
 
-- The WebRTC publish will be started. You can switch between the front & back cameras as well.
+
+- The WebRTC stream will start publishing.
+
+* You can switch between front and rear cameras while streaming.
 
   ![1000131647](https://github.com/user-attachments/assets/0b1a8b32-5937-4d66-ab49-7e8c1632f2e2)
 
 
-- To verify whether the stream was published successfully, open the web panel of your Ant Media Server (e.g., http://server_ip:5080) and view the stream there.
+### Step 3: Verify the Published Stream
+
+- Open the Ant Media Server web panel in a browser:(e.g., http://server_ip:5080) and view the stream there.
 
 You can also quickly play the stream via an embedded player. For more details, check [this document](https://antmedia.io/docs/guides/playing-live-stream/embedded-web-player/).

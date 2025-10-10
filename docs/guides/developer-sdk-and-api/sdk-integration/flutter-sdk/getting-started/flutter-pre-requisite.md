@@ -13,18 +13,18 @@ sidebar_position: 1
 *   XCode (For iOS)
 
 :::info
-You can also run the projects through the terminal or command line; however, for better debugging, consider using Android Studio or XCode. This document considers the use of Android Studio for building and running applications.
+You can also build and run projects from the terminal/command line. However, for better debugging and productivity, we recommend using Android Studio (for Android) or Xcode (for iOS). This guide uses Android Studio for setup and examples.
 :::
 
 ### Flutter & Dart Installation
 
-You can follow [Flutter official documentation](https://docs.flutter.dev/get-started/install?gclid=Cj0KCQjwg_iTBhDrARIsAD3Ib5jaxKUnDo7Vc2XMY1sZSPRPkt1CRsb-ALyYuUMFrrnalhPkrIlTLaIaAvcbEALw_wcB&gclsrc=aw.ds) to be able to install Flutter Software Development Kit and Dart Programming Language.
+Follow the official Flutter documentation to install both the Flutter SDK and Dart SDK: [Flutter official documentation](https://docs.flutter.dev/get-started/install?gclid=Cj0KCQjwg_iTBhDrARIsAD3Ib5jaxKUnDo7Vc2XMY1sZSPRPkt1CRsb-ALyYuUMFrrnalhPkrIlTLaIaAvcbEALw_wcB&gclsrc=aw.ds)
 
 ### Android Studio
 
-Install the Android Studio, please follow the installation steps mentioned here [Install Android Studio](https://developer.android.com/studio/install.html). 
+Download and install Android Studio by following the official guide: [Install Android Studio](https://developer.android.com/studio/install.html). 
 
-Add the Dart language plugins and Flutter extensions to Android Studio. Please follow below operating system specific installation instructions.
+After installation, add the Flutter and Dart plugins to Android Studio.
 
 1. For macOS, use the following instructions:
 
