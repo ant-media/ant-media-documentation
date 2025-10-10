@@ -5,6 +5,11 @@ keywords: [Plugins for Ant Media Server, Ant Media Server Documentation, Ant Med
 sidebar_position: 11
 ---
 
+## TODO:
+- This document is to be reworked into multiple different documents
+
+---
+
 # Plugins for Ant Media Server
 
 Community and our team contributed Ant Media with some plugins listed below that can be used with the Ant Media Server. You may extend Ant Media Server as we tried with plugins, you may refer and inspire from the referenced repositories.

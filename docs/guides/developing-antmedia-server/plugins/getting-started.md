@@ -5,10 +5,9 @@ keywords: [Ant Media Server plug-in, Ant Media plug-in getting started, Ant Medi
 sidebar_position: 1
 ---
 
-#### ***This document covers plugin basics***
----
-
-
+:::info What you'll learn
+This document covers plugin basics: what plugins are, how to install them, and where to go next for development.
+:::
 
 ### What are plugins?
 
