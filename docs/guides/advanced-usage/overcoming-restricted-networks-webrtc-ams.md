@@ -38,7 +38,7 @@ lt-cred-mech
 user=your-username:your-password
 realm=your-server-host-name
 listening-port=80
-listening-tls-port=443
+tls-listening-port=443
 alt-listening-port=3478
 alt-tls-listening-port=5349
 proto=tcp
