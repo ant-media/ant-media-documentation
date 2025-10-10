@@ -57,8 +57,8 @@ The plugin architecture is versatile enough to address various developer needs. 
 
 Now that you understand the basics of using plugins, you're ready to dive deeper:
 
-* **Plugin Architecture:** To understand how the plugin system works under the hood, read our [Plugin Architecture Guide](../architecture-guide-todo.md).
+* **Plugin Architecture:** To understand how the plugin system works under the hood, read our [Plugin Architecture page](./plugin-structure.md).
 
-* **Developing Your First Plugin:** Ready to build your own custom functionality? Follow our [Plugin Development Tutorial](../development-tutorial-todo.md).
+* **Developing Your First Plugin:** Ready to build your own custom functionality? Follow our [Plugin Development Tutorial](./developing-plugins.md).
 
-* **Community Support:** Have questions or want to share what you've built? Join the discussion on our [GitHub Community](../community-todo.md).
+* **Community Support:** Have questions or want to share what you've built? Join the discussion on our [GitHub Community](https://github.com/ant-media/Ant-Media-Server/discussions).
