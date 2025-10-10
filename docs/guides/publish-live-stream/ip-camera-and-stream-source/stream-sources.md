@@ -13,7 +13,7 @@ The stream sources that Ant Media Server can fetch are: **RTSP, RTMP, HLS, SRT, 
 
 To restream from an external source, follow these steps:
 
-- First, log in to the management panel. Click on 
+- First, log in to the management panel. Select **live** from applications, and click on 
 **New Live Stream** > **Stream Source**. Define stream name, stream URL, and stream ID.
 - AMS starts to pull streams.
 - As the stream starts to pull, you can watch it from the AMS panel.
@@ -55,6 +55,6 @@ You can pull the UDP stream on a server as a stream source by following the belo
 This [Rest API](https://antmedia.io/rest/#/default/createBroadcast) can be used to create the live stream.
 
 ```bash
-curl -X POST -H "Content-Type: application/json" "https://IP-address-or-domain:Port/App-Name/rest/v2/broadcasts/create?autoStart=false" -d '{ "type":"streamSource","name":"test",
+curl -X POST -H "Content-Type: application/json" "https://IP-address-or-domain:5443/App-Name/rest/v2/broadcasts/create?autoStart=false" -d '{ "type":"streamSource","name":"test",
 "streamId":"test","streamUrl":"YOUR_STREAM_SOURCE_URL"}'
 ```
