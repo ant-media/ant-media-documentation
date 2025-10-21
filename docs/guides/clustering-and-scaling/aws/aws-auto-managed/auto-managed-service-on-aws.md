@@ -111,9 +111,13 @@ var webRTCAdaptor = new WebRTCAdaptor({
 }
 ```
 
+Check out the AMS [Javascript SDK](https://docs.antmedia.io/category/javascript-sdk/) guide for the integration.
+
 #### Option 2: Direct URL (Browser)
 
-Open the Lambda URL in a browser to access the Web Panel and start streaming.
+Open the Lambda URL in a browser to access the Web Panel and start streaming. 
+
+Check out the [stream publishing section](https://docs.antmedia.io/category/publish-live-stream/) to publish streams using different protocols and ways.
 
 ### Step 4: Configure Persistence & Recording
 
@@ -141,4 +145,3 @@ Open the Lambda URL in a browser to access the Web Panel and start streaming.
 | Content Control    | Limited, vendor-controlled          | Full ownership & encryption            |
 | Flexibility        | Locked workflows                    | Customizable SDKs, APIs, and pipelines |
 | Operational Burden | High                                | Minimal, backend fully managed         |
-
