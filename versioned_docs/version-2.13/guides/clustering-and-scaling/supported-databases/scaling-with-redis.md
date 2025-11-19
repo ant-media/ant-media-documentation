@@ -27,7 +27,7 @@ Therefore, by incorporating Redis with AMS, users can optimize their live video 
 There are various Redis deployment options:
 
 1. **Self-Managed Deployment:**
-You can manually install and configure Redis on local machine or dedicated cloud servers for complete control. Please Refer to the [Redis documentation](https://redis.io/docs/getting-started/) for guidance on self-managed Redis deployments on your preferred OS.
+You can manually install and configure Redis on local machine or dedicated cloud servers for complete control. Please Refer to the [Redis documentation](https://redis.io/docs/latest/) for guidance on self-managed Redis deployments on your preferred OS.
 
 2. **Cloud-Based Deployment:**
 We can Utilize managed Redis services provided by cloud platforms for simplified deployment and management. AWS offers [MemoryDB for Redis](https://aws.amazon.com/memorydb/) and [ElasticCache for Redis](https://aws.amazon.com/elasticache/redis/), Microsoft Azure has [Azure Cache for Redis](https://azure.microsoft.com/en-in/products/cache/), and GCP offers [Google Cloud Memorystore](https://cloud.google.com/memorystore).
