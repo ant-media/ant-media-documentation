@@ -25,9 +25,9 @@ The script simulates a specified number of HLS viewers accessing a live stream.
 
 3. Use the following command to download the `hls_players.sh` script and give it executable permission:
 
-     ```bash
-     sudo wget https://raw.githubusercontent.com/ant-media/Scripts/master/load-testing/hls_players.sh && sudo chmod +x hls_players.sh
-     ```
+   ```bash
+   sudo wget https://raw.githubusercontent.com/ant-media/Scripts/master/load-testing/hls_players.sh && sudo chmod +x hls_players.sh
+   ```
 
 ### Step 2: Running the HLS Load Test
 
@@ -37,21 +37,22 @@ The script simulates a specified number of HLS viewers accessing a live stream.
 
 3. Run the following command to start the HLS load test:
 
-     ```bash
-     sudo ./hls_players.sh https://AMS-Domain:5443/LiveApp/streams/stream1.m3u8 100
-     ```
+   ```bash
+   sudo ./hls_players.sh https://AMS-Domain:5443/LiveApp/streams/stream1.m3u8 100
+   ```
      
-  This command creates 100 HLS viewers for the stream ID stream1 in the LiveApp application of your Ant Media Server.
+   This command creates 100 HLS viewers for the stream ID stream1 in the LiveApp application of your Ant Media Server.
 
-  Replace the URL with the actual URL of your live stream and 100 with the number of HLS viewers you want to simulate.
+   Replace the URL with the actual URL of your live stream and 100 with the number of HLS viewers you want to simulate.
 
 4. Wait for the test to complete.
 
 5. To stop the HLS load test, use the following command:
 
-     ```bash
-     sudo pkill ffmpeg
-     ```
+   ```bash
+   sudo pkill ffmpeg
+   ```
+
 
 Similarly, you can increase the number of simulated HLS viewers as needed.
 
