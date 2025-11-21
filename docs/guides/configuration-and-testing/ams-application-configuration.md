@@ -13,6 +13,7 @@ The configuration is set on the application level and is stored in a file locate
 
 The Management Panel allows changing all the application settings; however, the file is much more extensive. See the [Application Settings Javadoc](https://antmedia.io/javadoc/io/antmedia/AppSettings.html) to find a complete list of all available settings.
 
+
 ## Management Panel settings
 
 Log in to the Ant Media Server dashboard and click on the application you want to configure from the left-hand menu. Then click on the **Settings** tab.
@@ -24,7 +25,11 @@ Basic settings include the most commonly used application settings, while the ot
 Starting from Ant Media Server version 2.6.2, all the application settings for both Standalone mode and Cluster mode of Ant Media Server can be changed from the Management Panel itself.
 
 ![](@site/static/img/configuration-and-testing/application-settings.png)
-  
+
+
+:::ℹ️
+If you change the application settings via Web Management Panel so there is no need to change from the backend via properties file.
+:::
 
 ## Application properties file
 
@@ -39,7 +44,7 @@ Highlighted below is how to enable VP8 encoding by editing the configuration fil
 
 If a configuration setting has not been added to the ```red5-web.properties``` file or under *Advanced* settings, simply append the setting to the configuration file or add it from the Management Panel.
 
-Follow the steps below to add an additional setting:
+Follow the steps below to find and add an additional setting:
 
 ### 1. Find the setting
 
