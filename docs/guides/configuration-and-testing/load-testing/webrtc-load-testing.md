@@ -131,8 +131,10 @@ d    	 Data Channel.  false        true or false
 a        App Name       WebRTCAppEE  application name
 ```
 
-:::imp
+:::info
+
 The MP4 file should contain H.264-encoded video and Opus-encoded audio.
+
 :::
 
 
