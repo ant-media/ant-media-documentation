@@ -25,9 +25,9 @@ The script simulates a specified number of RTMP live streams published to the An
 
 3. Run the following command to download the rtmp_publisher.sh script and give it executable permission:
 
-     ```bash
-     sudo wget https://raw.githubusercontent.com/ant-media/Scripts/master/load-testing/rtmp_publisher.sh && sudo chmod +x rtmp_publisher.sh
-     ```
+   ```bash
+   sudo wget https://raw.githubusercontent.com/ant-media/Scripts/master/load-testing/rtmp_publisher.sh && sudo chmod +x rtmp_publisher.sh
+   ```
 
 ### Step 2: Running the RTMP Load Test
 
@@ -35,27 +35,27 @@ The script simulates a specified number of RTMP live streams published to the An
 
 2. Run the following command to start the RTMP load test:
 
-     ```bash
-     sudo ./rtmp_publisher.sh /path/to/file.mp4 rtmp://domain-or-Ip/AppName/streamId 10
-     ```
+   ```bash
+   sudo ./rtmp_publisher.sh /path/to/file.mp4 rtmp://domain-or-Ip/AppName/streamId 10
+   ```
 
-  Example command:
+   Example command:
 
-  ```bash
-  sudo ./rtmp_publisher.sh /home/ubuntu/test.mp4 rtmp://rtmp.antmedia.io/LiveApp/test 10
-  ```
+   ```bash
+   sudo ./rtmp_publisher.sh /home/ubuntu/test.mp4 rtmp://rtmp.antmedia.io/LiveApp/test 10
+   ```
      
-  This command publishes 10 RTMP streams with stream IDs `test_1`, `test_2`, and so on in the LiveApp application of your Ant Media Server.
+   This command publishes 10 RTMP streams with stream IDs `test_1`, `test_2`, and so on in the LiveApp application of your Ant Media Server.
 
-  Replace `file.mp4`with the actual MP4 file, update the URL with your Ant Media Server address, and change `10` to the number of RTMP streams you want to simulate.
+   Replace `file.mp4`with the actual MP4 file, update the URL with your Ant Media Server address, and change `10` to the number of RTMP streams you want to simulate.
 
 3. Wait for the test to complete.
 
 4. To stop the RTMP load test, run the following command:
 
-     ```bash
-     sudo pkill ffmpeg
-     ```
+   ```bash
+   sudo pkill ffmpeg
+   ```
 
 Similarly, you can increase the number of RTMP streams to simulate higher loads.
 
