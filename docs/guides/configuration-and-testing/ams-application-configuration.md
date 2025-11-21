@@ -27,8 +27,10 @@ Starting from Ant Media Server version 2.6.2, all the application settings for b
 ![](@site/static/img/configuration-and-testing/application-settings.png)
 
 
-:::ℹ️
+:::info
+
 If you change the application settings via Web Management Panel so there is no need to change from the backend via properties file.
+
 :::
 
 ## Application properties file
