@@ -48,15 +48,19 @@ https://ant-media-server:5443/rest/v2/cluster
 
 ## API Security
 
-Ant Media Server offers two methods to secure your API requests. By default, the IP filter is enabled and bound to localhost at 127.0.0.1. In addition to IP filtering, you can enable JWT tokens and make secure API requests by passing the token in the request header.
+Ant Media Server offers two methods to secure your API requests. By default, the IP filter is enabled and bound to localhost at 127.0.0.1. In addition to IP filter, you can enable JWT Filter and make secure API requests by passing the JWT token in the request header.
 
-> ***Please Note:*** You cannot enable both at the same time. Ant Media Server will give preference to IP filtering, which will result in failed API requests using JWT tokens.
+:::info
 
-### IP Filtering
+You cannot enable both at the same time. Ant Media Server will give preference to IP filter, which will result in failed API requests using JWT Filter.
+
+:::
+
+### IP Filter
 
 The REST interface only responds to calls from 127.0.0.1 by default. If you call from any other IP address, it does not return anything. However, you can add more trusted IP addresses to make API requests from other machines. Please refer to the [API security (IP)](/guides/developer-sdk-and-api/rest-api-guide/securing-rest-apis/) document for details.
 
-### JWT Tokens
+### JWT Filter
 
 If preferred, you can generate JWT tokens and pass them in the header of API requests. You can generate a permanent token or one with an expiry date for an additional security layer. Please refer to the [API security (JWT)](/guides/developer-sdk-and-api/rest-api-guide/jwt-rest-api-filter/) ocument for details on configuration.
 
