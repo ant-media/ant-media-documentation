@@ -42,7 +42,7 @@ It is also possible to generate a JWT token with an expiration time. For this, y
 To use the JWT token, simply add it to the `Authorization` header as shown below:
 
 ```bash
-curl -X POST -H "Content-Type: application/json" -H "Authorization: {JWTToken}" "https://{domain:port}/{application}/rest/v2/broadcasts/create" -d '{"name":"streamName"}'
+curl -X POST -H "Content-Type: application/json" -H "Authorization: {JWTToken}" "https://{domain:5443}/{application}/rest/v2/broadcasts/create" -d '{"name":"streamName"}'
 ```
 Replace `{JWTToken}` with your actual JWT token when making requests.
 
