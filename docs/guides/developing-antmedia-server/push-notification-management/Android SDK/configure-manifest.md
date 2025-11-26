@@ -5,10 +5,13 @@ keywords: [Push Notification Management Tutorial, Push Notification Management, 
 sidebar_position: 4
 ---
 
-# Configure AndroidManifest.xml:
+# Step 4: Configure AndroidManifest.xml
 
-- Open your AndroidManifest.xml file.
-- Add the necessary permissions and service declarations:
+To enable Firebase Cloud Messaging (FCM) in your Android application, you need to declare the messaging service in your AndroidManifest.xml file.
+
+## Add the Service Declaration
+
+Open your AndroidManifest.xml file and add the following inside the ```html <application>``` tag:
 
 ```xml
 <service
@@ -19,3 +22,16 @@ sidebar_position: 4
     </intent-filter>
 </service>
 ```
+
+## Notes
+
+Make sure your custom service class (**AntMediaFirebaseMessagingService**) extends FirebaseMessagingService.
+
+The `.java` extension should not be included in the `android:name` attribute.
+
+Place this service inside the ```html <application>``` tag, not outside of it.
+
+
+## Congratulations!
+
+You’ve successfully configured your AndroidManifest.xml to support Firebase Cloud Messaging. Your app is now ready to receive push notifications and process them using your custom `AntMediaFirebaseMessagingService`.

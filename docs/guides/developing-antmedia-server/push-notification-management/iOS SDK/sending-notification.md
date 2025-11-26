@@ -5,7 +5,9 @@ keywords: [Push Notification Management Tutorial, Push Notification Management, 
 sidebar_position: 5
 ---
 
-# Sending Notifications to Web and Mobile Clients:
+# Step 5: Sending Notifications to Web and Mobile Clients
+
+Once your iOS app and Ant Media Server are configured, you can send test and production-ready push notifications using Firebase Console or directly via Ant Media Server.
 
 ## Send Test Notification from Firebase Console
 
@@ -80,3 +82,13 @@ var webRTCAdaptor = new WebRTCAdaptor({
 </body>
 </html>
 ```
+
+## Congratulations!
+
+You’ve successfully set up push notifications for iOS with Ant Media Server.
+
+* Firebase Console lets you test quickly.
+
+* Ant Media Server provides a secure and scalable way to notify subscribers directly.
+
+Your iOS clients are now ready to receive instant notifications—whether they come from Firebase or directly from Ant Media Server.

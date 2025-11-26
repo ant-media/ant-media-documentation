@@ -6,15 +6,21 @@ sidebar_position: 6
 ---
 
 ## Screen Sharing in iOS
-Screen sharing functionality allows users to broadcast their device screens in real-time, enabling various use cases like remote collaboration, live presentations, and interactive streaming.
-Through this document, you will leverage the power of the Ant Media Server’s iOS SDK and WebRTC to build an iOS application capable of seamless screen sharing with minimal effort.
 
-To begin, it is first needed to create a project and include the necessary dependencies. These steps mirror those documented for publishing and playing.
-### Step 1: [Creating an iOS app project in Xcode](/guides/developer-sdk-and-api/sdk-integration/ios-sdk/xcode-project/)
+Screen sharing functionality allows users to broadcast their device screens in real-time, enabling use cases like remote collaboration, live presentations, and interactive streaming. Using Ant Media Server’s iOS SDK and WebRTC, you can build an iOS application capable of seamless screen sharing with minimal effort.
 
-### Step 2: [Adding the WebRTC-iOS-SDK dependency](/guides/developer-sdk-and-api/sdk-integration/ios-sdk/ios-dependency/)
+To begin, ensure you have already created a project and added the WebRTC-iOS-SDK dependency, as documented in the publishing and playing guides.
+
+### Step 1: Create an iOS App Project
+
+Follow the guide: [Creating an iOS app project in Xcode](/guides/developer-sdk-and-api/sdk-integration/ios-sdk/xcode-project/)
+
+### Step 2: Add WebRTC-iOS-SDK Dependency
+
+Follow the guide: [Adding the WebRTC-iOS-SDK dependency](/guides/developer-sdk-and-api/sdk-integration/ios-sdk/ios-dependency/)
 
 ### Step 3: Implementing Screen Sharing
+
 - Add a new Target.
 ![](@site/static/img/ios-screen-share/ios-be08.png)
 
@@ -103,6 +109,7 @@ Once you’ve added the provided code, the `RPSystemBroadcastPickerView` will be
 - You can now stream your device screen with audio.
 ![](@site/static/img/ios-screen-share/ios-be25.png)
 
-Congratulations!
-You have successfully implemented iOS screen sharing with the Ant Media iOS SDK and WebRTC using Broadcast extension.
+## Congratulations!
+
+You have successfully implemented iOS screen sharing using the Ant Media iOS SDK and WebRTC via Broadcast Extension. Your app can now stream the device screen in real-time, opening possibilities for collaboration, live presentations, and interactive sessions.
 
