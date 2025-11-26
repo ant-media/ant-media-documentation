@@ -62,7 +62,9 @@ curl -X POST -H "Content-Type: application/json" "https://{domain:port}/live/res
 
 Example:
 
-```curl -X POST -H "Content-Type: application/json" "http://localhost:5080/live/rest/v2/broadcasts/create" -d '{"streamId":"1234567", "name":"Test Stream"}'```. 
+```bash
+curl -X POST -H "Content-Type: application/json" "http://localhost:5080/live/rest/v2/broadcasts/create" -d '{"streamId":"1234567", "name":"Test Stream"}'
+```
 
 Response:
 
@@ -134,7 +136,7 @@ This document provides examples of common REST API calls. For a complete list of
 
 On Windows Command Prompt, the body of requests should be escaped like this: ```-d "{""name"":""{streamname}""}"```
 
-info
+:::info
 
 
 ## Congratulations!
