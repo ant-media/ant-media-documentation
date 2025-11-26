@@ -42,7 +42,7 @@ sidebar_position: 4
 To protect the send push notification WebSocket message, you need to generate two subscriber authentication tokens with the sender’s Subscriber ID and the receiver’s Subscriber ID. You can call the [getSubscriberAuthenticationToken](https://antmedia.io/rest/#/default/getSubscriberAuthenticationToken) Rest API endpoint. 
 
 ```bash
-curl -X 'GET' 'https://your-antmedia-server-address:5080/live/rest/v2/push-notification/subscriber-auth-token?subscriberId=<your-subscriber-id>'
+curl -X 'GET' 'https://your-antmedia-server-address:5443/WebRTCAppEE/rest/v2/push-notification/subscriber-auth-token?subscriberId=<your-subscriber-id>'
 ```
 
 We will call the sender’s token as authToken in the rest of the documentation. We will call the sender’s Subscriber ID as subscriberId and we will call the receiver’s Subscriber ID as sendNotificationToSubscriber.

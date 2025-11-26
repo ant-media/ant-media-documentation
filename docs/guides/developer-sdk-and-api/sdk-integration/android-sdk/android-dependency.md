@@ -5,17 +5,15 @@ keywords: [Android SDK User Guide, Download the WebRTC Android SDK, Android SDK 
 sidebar_position: 2
 ---
 
-## Step 2: Add WebRTC-Android-SDK Dependency
+In this step, we will add the WebRTC Android SDK dependency to your Android project. There are two ways to integrate the Android SDK: via the Maven repository or as a local module.
 
-There are two methods for integrating the Android SDK into our Android app project. The first, and simpler, approach involves importing it via the Sonatype Maven repository. The advantage of this method lies in its ease of implementation. However, it's crucial to note that opting for this method means you won't have the flexibility to modify WebRTC Android SDK files to suit your application requirements.
+* **Maven Repository (Easy Method)**: Quick and easy, but you cannot modify SDK files.
 
-Alternatively, the second method entails importing the Android SDK as a module. Opting for this approach grants you the ability to edit Android SDK class files as per your specific needs.
+* **Local Module (Advanced Method)**: Allows editing of SDK files, useful if you need custom modifications.
 
 ### Add WebRTC-Android-SDK From Maven Repo (Easy)
 
-- At this point, we should add the dependency on the WebRTC Android SDK module to our newly created project. Since the module is hosted in the Sonatype Maven repository, we will add that repository to the dependency manager. The related setting is in the `settings.gradle` file. 
-
-  Add the following lines to the `dependencyResolutionManagement/repositories section`:
+1. Add the Sonatype Maven repository to your project. Open your `settings.gradle` file and add the following lines inside the `dependencyResolutionManagement/repositories` section:
 
   ```java
     maven {
@@ -24,13 +22,13 @@ Alternatively, the second method entails importing the Android SDK as a module. 
 
 ![](@site/static/img/sdk-integration/android-sdk/settings.gradle.png)
 
-- After adding the repository, we will add the following lines to the dependencies session in the app `build.gradle` file.
+2. Add the dependency in your app module’s `build.gradle` file under `dependencies`:
 
 ```java
     implementation "io.antmedia:webrtc-android-framework:{version}"
 ```
 
-- Replace version with the latest android sdk version released on maven. You can see all released versions [here](https://mvnrepository.com/artifact/io.antmedia/webrtc-android-framework).
+3. Replace `{version}` with the latest Android SDK version released on Maven. You can find all versions [here](https://mvnrepository.com/artifact/io.antmedia/webrtc-android-framework).
 
   For Example:
 
@@ -40,41 +38,51 @@ Alternatively, the second method entails importing the Android SDK as a module. 
 
 ![](@site/static/img/sdk-integration/android-sdk/build.gradle.png)
 
-That is all. We have added the dependency and we are ready to create our WebRTC streaming application.
+You are now ready to create your WebRTC streaming application using the pre-built SDK.
 
 
 ### Add WebRTC-Android-SDK As a Module (Advanced)
 
-- Clone WebRTC-Android-SDK repository to your local.
+1. Clone the SDK repository locally:
 
   ```
   git clone https://github.com/ant-media/WebRTC-Android-SDK.git
   ```
 
-- Open your android project with Android Studio. From left top corner, click `File > New > Import Module` to import.
-
-- Open WebRTC-Android-SDK and choose `webrtc-android-framework` from your file system.
+2. Open your Android project in Android Studio. Navigate to `File > New > Import Module` and select `webrtc-android-framework` from the cloned repository.
 
 ![](@site/static/img/sdk-integration/android-sdk/android-sdk-as-module-1.png)
 
-- After clicking Finish, you will face with 2 errors as below:
+3. After importing, you may see two errors:
 
 ![](@site/static/img/sdk-integration/android-sdk/android-sdk-as-module-2.png)
 
-- To fix those errors, remove `publish-remote.gradle` file from `webrtc-android-framework module`.
+4. Fix the errors:
 
-  After removing,  go to `build.gradle` file of `webrtc-android-framework` module and remove  below line.
+ * Delete `publish-remote.gradle` from the `webrtc-android-framework` module.
+
+ * Open the `build.gradle` file of `webrtc-android-framework` and remove this line:
 
   ```java
   apply from: 'publish-remote.gradle'
   ```
 
-  Then, go to your app project's `build.gradle` file and add below line to the dependencies.
+5. Add the module dependency to your app’s `build.gradle` file:
 
   ```java
   api project(":webrtc-android-framework")
   ```
 
-- Finally, sync gradle and it should be all done.
+6. Sync Gradle. Your project is now ready to use the WebRTC Android SDK module. You can make edits to SDK files if needed, and the changes will apply to your project.
 
 You can now navigate to your application module and begin developing your streaming application. If needed, you can edit any of the Android SDK files within the `webrtc-android-framework`, and your changes will be applied.
+
+## Congratulations
+
+You have successfully added the WebRTC Android SDK to your project.
+
+If you used Maven, you are ready to call SDK methods and start streaming right away.
+
+If you used the module import method, you also have full control over the SDK source code, allowing customizations.
+
+You can now move forward to implementing streaming features in your Android app and enjoy live WebRTC broadcasting with Ant Media Server.

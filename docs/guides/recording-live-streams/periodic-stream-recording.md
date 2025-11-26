@@ -112,13 +112,13 @@ Use this to **manually start periodic recording** with a custom interval.
 - **POST** request:
 
   ```js
-  https://{SERVER}:{PORT}/{APP}/rest/clip-creator/periodic-recording/{periodSeconds}
+  https://{SERVER}:{5443}/{APP}/rest/clip-creator/periodic-recording/{periodSeconds}
   ```
 
 - **CURL** Example:
 
   ```js
-  curl -X POST "https://{YOUR_SERVER}:{PORT}/{APP}/rest/clip-creator/periodic-recording/{periodSeconds}" -H "Content-Type: application/json"
+  curl -X POST "https://{YOUR_SERVER}:{5443}/{APP}/rest/clip-creator/periodic-recording/{periodSeconds}" -H "Content-Type: application/json"
   ```
 
 ### 2. Create MP4 Clip On-Demand
@@ -128,13 +128,13 @@ Trigger an MP4 clip generation instantly for a specific stream.
 - **POST** request:
 
   ```js
-  https://{SERVER}:{PORT}/{APP}/rest/clip-creator/mp4/{STREAM_ID}?returnFile=true
+  https://{SERVER}:{5443}/{APP}/rest/clip-creator/mp4/{STREAM_ID}?returnFile=true
   ```
 
 - **CURL** Example:
 
   ```js
-  curl -X POST "https://{YOUR_SERVER}:{PORT}/{APP}/rest/clip-creator/mp4/{STREAM_ID}?returnFile=true" -H "Content-Type: application/json"
+  curl -X POST "https://{YOUR_SERVER}:{5443}/{APP}/rest/clip-creator/mp4/{STREAM_ID}?returnFile=true" -H "Content-Type: application/json"
   ```
 
   If a periodic MP4 has already been created, this captures the clip from the last MP4 creation time to now.
@@ -159,13 +159,13 @@ To stop automatic periodic MP4 creation:
 - **DELETE** request:
 
   ```js
-  https://{SERVER}:{PORT}/{APP}/rest/clip-creator/periodic-recording
+  https://{SERVER}:{5443}/{APP}/rest/clip-creator/periodic-recording
   ```
 
 - **CURL** example:
 
   ```js
-  curl -X DELETE "https://{YOUR_SERVER}:{PORT}/{APP}/rest/clip-creator/periodic-recording" -H "Content-Type: application/json"
+  curl -X DELETE "https://{YOUR_SERVER}:{5443}/{APP}/rest/clip-creator/periodic-recording" -H "Content-Type: application/json"
   ```
 
 ## Webhook Notification

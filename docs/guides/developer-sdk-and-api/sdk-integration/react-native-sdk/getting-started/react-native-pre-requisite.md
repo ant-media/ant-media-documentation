@@ -14,13 +14,13 @@ sidebar_position: 1
 *   NPM
 *   React Native CLI
 
-First of all, you’re required to install the node on your system. If your machine already has Node.js installed, then skip this step.
+First, you need Node.js installed on your system. If Node.js is already installed, you can skip this step.
 
 ### Node JS Installation
 
 ![](@site/static/img/image(83).png)
 
-Download the latest Node.js from here: [nodejs.org/en](http://nodejs.org/en).
+Download the latest Node.js from: [nodejs.org/en](http://nodejs.org/en).
 
 Once the setup is downloaded on your system, run the .msi downloaded file and follow the prompt instructions to install the application.
 
@@ -72,3 +72,8 @@ react-native run-android
 Make sure you’ve started the emulator on your machine. This is what the sample project will look like in the emulator:
 
 ![](@site/static/img/image(85).png)
+
+
+### Congratulations!
+
+At this point, your development environment for the React Native SDK is fully set up.
