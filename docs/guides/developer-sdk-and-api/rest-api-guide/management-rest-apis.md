@@ -46,7 +46,11 @@ The REST API for the web panel is listed under [Management REST Service](https:/
 
 ### Generate JWT Token
 
-Assume the secret key is (`cizvvh7f6ys0w3x0s1gzg6c2qzpk0gb9`). Generate the JWT Token at [JWT Debugger](https://jwt.io/#debugger-io). using the secret key and leaving the payload empty. The resulting token can be used to access the REST API: ```eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.e30.tA6sZwz_MvD9Nocf3Xv_DXhJaeTNgfsHPlg3RHEoZRk```
+Assume the secret key is (`cizvvh7f6ys0w3x0s1gzg6c2qzpk0gb9`). Generate the JWT Token at [JWT Debugger](https://jwt.io/#debugger-io). using the secret key and leaving the payload empty. 
+
+The resulting token can be used to access the REST API: 
+
+```eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.e30.tA6sZwz_MvD9Nocf3Xv_DXhJaeTNgfsHPlg3RHEoZRk```
 
 ![](@site/static/img/JWT_debugger_sample_for_web_panel_ant_media_server.png)
 
@@ -75,14 +79,23 @@ The password must be encrypted using MD5. You can use [MD5 encryption](https://
 The request body should include your email and MD5 password:
 
 ```
-{ "email": "your-username", "password": "05a671c66aefea124cc08b76ea6d30bb" }
+{ "email": "your-email", "password": "05a671c66aefea124cc08b76ea6d30bb" }
 ```
 
-### Make curl Request
-Once authenticated, you can access Dashboard REST Services. For example, to get the list of [Applications](https://antmedia.io/rest/#/ManagementRestService/getApplications):
+Here is the Curl Sample to Authenicate the user:
+
+```bash
+curl -X POST 'https://example.com:5443/rest/v2/users/authenticate' -H 'Content-Type: application/json' -d '{"email":"test@example.com", "password":"05a671c66aefea124cc08b76ea6d30bb"}' --cookie-jar cookies.txt
+```
+
+We save the JESSIONID into the cookie file and use the same to call the further APIs to not encounter any issue.
+
+### Curl Sample for Management API
+
+Once authenticated using username and password, you can access Dashboard REST Services. For example, to get the list of [Applications](https://antmedia.io/rest/#/ManagementRestService/getApplications):
 
 ```
-curl -X GET -H "Content-Type: application/json" -H "Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.e30.tA6sZwz_MvD9Nocf3Xv_DXhJaeTNgfsHPlg3RHEoZRk" "https://SERVER_FQDN:5443/rest/v2/applications"
+curl -X GET -H "Content-Type: application/json" "https://example.com:5443/rest/v2/applications" --cookie cookies.txt
 ```
 
 The response should be something like
