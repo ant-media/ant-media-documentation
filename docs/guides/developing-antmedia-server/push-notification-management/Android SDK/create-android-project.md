@@ -18,4 +18,6 @@ sidebar_position: 2
 - Give your application a name, and then click Finish. We will call it
   `MyWebRTCStreamingApp`.
 
-Congratulations! You have successfully created your WebRTC Android SDK application project.
+## Congratulations!
+
+ You have successfully created your WebRTC Android SDK application project.
