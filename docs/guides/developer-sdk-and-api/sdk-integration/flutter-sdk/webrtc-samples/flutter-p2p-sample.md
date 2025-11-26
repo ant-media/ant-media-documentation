@@ -29,3 +29,8 @@ Once the app is installed and running on your device, enter the server IP addres
 - You can quickly join as a peer to the same streamId via the peer-to-peer sample page.
 
   ```https://your_domain:5443/live/peer.html```
+
+
+## Congratulations!
+
+You have successfully established a P2P communication stream using the Flutter SDK. Your app is now capable of connecting with other peers in real-time, allowing seamless two-way communication across devices.

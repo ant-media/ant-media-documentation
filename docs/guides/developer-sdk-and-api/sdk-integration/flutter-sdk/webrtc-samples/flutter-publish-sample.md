@@ -37,3 +37,8 @@ Once the app is installed and running on your device, enter the server IP addres
 - To verify whether the stream was published successfully, open the web panel of your Ant Media Server (e.g., http://server_ip:5080) and view the stream there.
 
 You can also quickly play the stream via an embedded player. For more details, check [this document](https://antmedia.io/docs/guides/playing-live-stream/embedded-web-player/).
+
+
+## Congratulations!
+
+You have successfully published a WebRTC stream using the Flutter SDK. Your app is now streaming live to the Ant Media Server, and you can switch cameras, verify the stream on the server, and even play it through an embedded player. Enjoy exploring real-time streaming with Flutter WebRTC!

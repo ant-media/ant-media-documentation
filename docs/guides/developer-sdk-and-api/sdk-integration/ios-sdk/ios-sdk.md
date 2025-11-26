@@ -5,15 +5,17 @@ keywords: [iOS SDK User Guide, Publish Stream from your iPhone, Using the WebRTC
 sidebar_position: 1
 ---
 
-# iOS SDK
-Ant Media's WebRTC iOS SDK lets you build your own iOS application that can publish and play WebRTC broadcasts.
-It also supports sharing screen in iOS with the help of broadcast extension.
+# iOS SDK User Guide
 
-In this document we aim to keep it beginner-friendly and walk through the process of:
+Ant Media's WebRTC iOS SDK allows you to build your own iOS applications that can publish and play WebRTC broadcasts. It also supports screen sharing on iOS using a broadcast extension.
+
+This guide is designed to be beginner-friendly and walks you through the following key steps:
 - [Creating an iOS app project in Xcode](/guides/developer-sdk-and-api/sdk-integration/ios-sdk/xcode-project/)
 - [Adding the WebRTC-iOS-SDK dependency](/guides/developer-sdk-and-api/sdk-integration/ios-sdk/ios-dependency/)
 - [Publishing WebRTC live streams](/guides/developer-sdk-and-api/sdk-integration/ios-sdk/ios-webrtc-publish/)
-- [Playing WebRTC Live streams](/guides/developer-sdk-and-api/sdk-integration/ios-sdk/ios-webrtc-play/)
-- [Screen Sharing using Broadcast extension](/guides/developer-sdk-and-api/sdk-integration/ios-sdk/ios-screen-share/)
+- [Playing WebRTC live streams](/guides/developer-sdk-and-api/sdk-integration/ios-sdk/ios-webrtc-play/)
+- [Screen Sharing using a broadcast extension](/guides/developer-sdk-and-api/sdk-integration/ios-sdk/ios-screen-share/)
 
-Additionally, in the consequent updates, we will explore video conferencing for developers. So, let's get started with publishing, playing live streams, and also implementing screen share using this step-by-step guide!
+In future updates, we will also explore video conferencing capabilities for iOS developers.
+
+This guide provides step-by-step instructions to help you quickly implement publishing, playing, and screen sharing in your iOS WebRTC application.
