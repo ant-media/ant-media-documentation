@@ -4,17 +4,15 @@ description: Publishing WebRTC Live stream Using Android SDK
 keywords: [Android SDK User Guide, Android SDK Publish, Publish Stream from your Android device, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 3
 ---
-## Step 3: Publish a WebRTC Live Stream in Android
+## Publish a WebRTC Live Stream in Android
 
-In this step, we will start coding. We will create our layout for the UI part, create an Activity and set the manifest file. Then we will be able to run our application.
+In this step, we will implement the core functionality of publishing a live WebRTC stream from your Android app. This involves creating the UI, coding an Activity, and updating the manifest file.
 
- - **Create the UI part.**
+## Create the UI
 
-First we need to create a `layout` folder under `res` directory and then we will create a xml file. For this application, a simple UI with only a `SurfaceViewRenderer` is enough. `SurfaceViewRenderer` is a `View` that is provided by the WebRTC Android SDK. We will use it to render our camera locally in our app.
+1. Create a `layout` folder under `res` if it does not exist.
 
-![](@site/static/img/sdk-integration/android-sdk/layout.png)
-
-You can create the UI by Android Studio UI Designer or you can just copy the following lines into your xml file, say `webrtc_streaming.xml`.
+2. Create an XML layout file, e.g., `webrtc_streaming.xml`. For this app, a simple UI with a single `SurfaceViewRenderer` is sufficient. This view is provided by the WebRTC Android SDK and will render the camera feed locally.
 
 ```
 <?xml version="1.0" encoding="utf-8"?>
@@ -29,10 +27,14 @@ You can create the UI by Android Studio UI Designer or you can just copy the fol
 </RelativeLayout>
 ```
 
- - **Create the sample Activity Now.**
+![](@site/static/img/sdk-integration/android-sdk/layout.png)
+
+You can either use the Android Studio UI Designer or copy the above XML directly.
+
+
+ ## Create the Activity
  
-We will create a Java class that extends `Activity` class. Let's name it `WebRTCStreamingActivity`. In `onCreate` method, we will build an `IWebRTCClient`  
-object by configuring it and calling its `publish` method. That is all. Here is the necessary code for our activity.
+Create a Java class named `WebRTCStreamingActivity` that extends `Activity`. In the `onCreate` method, build an `IWebRTCClient` object and call its publish method.
 
 ```
 package io.antmedia.mywebrtcstreamingapp;
@@ -50,7 +52,7 @@ public class WebRTCStreamingActivity extends Activity {
         IWebRTCClient webRTCClient = IWebRTCClient.builder()
                 .setActivity(this)
                 .setLocalVideoRenderer(findViewById(R.id.full_screen_renderer))
-                .setServerUrl("wss://test.antmedia.io:5443/WebRTCAppEE/websocket")
+                .setServerUrl("wss://test.antmedia.io:5443/live/websocket")
                 .build();
 
         webRTCClient.publish("stream1");
@@ -58,14 +60,13 @@ public class WebRTCStreamingActivity extends Activity {
 }
 ```
 
- - **Edit Android manifest file.**
- 
-We will edit two things in the `AndroidManifest.xml` file.
+## Edit Android Manifest
 
- - First, we will set our WebRTCStreamingActivity as the default
-   activity for our application.
- - Second, we will add required permissions for our streaming
-   application. Here is the edited manifest file.
+Update `AndroidManifest.xml` to:
+
+1. Set `WebRTCStreamingActivity` as the default launcher activity.
+
+2. Add required permissions for camera, audio, and network access.
 
 ```
 <?xml version="1.0" encoding="utf-8"?>
@@ -107,18 +108,34 @@ We will edit two things in the `AndroidManifest.xml` file.
 </manifest>
 ```
 
-Congratulations! Our WebRTC Android Publish Application is ready now. The project structure should be as shown in the following image, where the files we created and edited are pointed with arrows.
+## Project Structure and Running the App
+
+The project structure should look like this, highlighting the files we created and modified:
 
 ![](@site/static/img/sdk-integration/android-sdk/webrtc-android-streaming-application-structure.png)
 
-We can run it on an Android emulator or a real Android device after connecting to the computer. Click the Run button on Android Studio and wait for installation.
-
-In the first run, our application asks you to grant access. Accept them, and it will start streaming. On the Android emulator, it will be like this:
+Run the app on an Android emulator or a physical device. Grant permissions when prompted. The app will start streaming automatically:
 
 ![](@site/static/img/sdk-integration/android-sdk/webrtc-android-publish-application.png)
+ 
+## Verify Stream Playback
 
-Congratulations! You are now publishing your live stream.
+To view the live stream from your Android app:
 
-To play the stream we created from our WebRTC Android Publish Application, visit [Ant Media’s Test WebRTC Player](https://antmedia.io/webrtc-samples/webrtc-player), write the `stream1` to the box, and click the Start Playing button.
+1. Open [Ant Media’s Test WebRTC Player](https://antmedia.io/webrtc-samples/webrtc-player)
+
+2. Enter 'stream1' in the input box.
+
+3. click **Start Playing**
 
 ![](@site/static/img/sdk-integration/android-sdk/webrtc-android-publish-application-test-1.png)
+
+## Congratulations!
+
+Your WebRTC Android Publish Application is now live.
+
+- You successfully created the UI, implemented the publishing logic, and configured your manifest.
+
+- You can now stream live video directly from your Android device to Ant Media Server.
+
+On the next page we will explore playing a webrtc stream in a bit more detail.

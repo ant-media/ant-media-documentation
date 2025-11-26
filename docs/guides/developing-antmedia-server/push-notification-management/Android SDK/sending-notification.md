@@ -5,22 +5,26 @@ keywords: [Push Notification Management Tutorial, Push Notification Management, 
 sidebar_position: 7
 ---
 
-# Sending Notifications to Web and Mobile Clients:
+# Step 7: Sending Notifications to Web and Mobile Clients
 
-## Send Test Notification from Firebase Console
+Push notifications can be sent to both mobile devices and web clients once your project and Ant Media Server are properly configured.
 
-Once the Android app is set up, you can send a test push notification from the Firebase console to ensure everything is working properly.
+## Send a Test Notification from Firebase Console
+
+To quickly verify that Firebase Cloud Messaging (FCM) is integrated correctly with your app:
 
 - Go to Firebase Console and navigate to the Cloud Messaging tab.
 - Click on "Send your first message."
 - Input the title and body of the notification.
 - Select your Android app and click "Send."
 
-You should receive the notification on your device if everything is correctly configured.
+If everything is set up correctly, you should see the notification on your mobile device.
 
 ## Send Notification from Ant Media Server
 
-We are ready to send push notifications. You can send your push notifications through the Ant Media Server in a secure way. All you need to do is call the sendPushNotification function. You can use the HTML page below to be able to send push notification:
+Once your app is ready, Ant Media Server allows you to send secure push notifications programmatically. This ensures notifications are tied to your streaming logic (calls, events, messages).
+
+Here’s an example using a simple HTML page that integrates with Ant Media’s WebRTC adaptor:
 
 ```html
 <!DOCTYPE html>
@@ -60,7 +64,7 @@ function sendPushNotification(sendNotificationToSubscriber) {
 }
 
 var webRTCAdaptor = new WebRTCAdaptor({
-    websocket_url: "ws://localhost:5080/WebRTCAppEE/websocket",
+    websocket_url: "ws://localhost:5080/live/websocket",
     isPlayMode: true,
     callback : function(info, obj) {
         console.log("info:", info, "obj:", obj);
@@ -80,3 +84,7 @@ var webRTCAdaptor = new WebRTCAdaptor({
 </body>
 </html>
 ```
+
+## Congratulations!
+
+You’ve successfully set up push notifications for web and mobile clients. With Firebase handling delivery and Ant Media Server managing authentication, you can now send real-time call invitations, alerts, or streaming notifications directly to your users across platforms. This ensures that your apps are not just interactive, but also responsive and engaging.

@@ -33,7 +33,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0b2tlbiIsImlhdCI6MTUxNjIzOTAyMn0
 
 ## Step 4: Generate JWT Token with Expiration Time(Optional)
 
-It is also possible to generate a JWT token with an expiration time. For this, you can use the `exp` option in JWT. The token's expiration time is a Unix timestamp, and the token will become invalid once it expires.
+It is also possible to generate a JWT token with an expiration time. For this, you can use the exp option in JWT. The token's expiration time is a Unix timestamp, and the token will become invalid once it expires.
 
 ![](@site/static/img/rest-api/generate-jwt-expire-time.png)
 
@@ -42,12 +42,14 @@ It is also possible to generate a JWT token with an expiration time. For this, y
 To use the JWT token, simply add it to the `Authorization` header as shown below:
 
 ```bash
-curl -X POST -H "Content-Type: application/json" -H "Authorization: {JWTToken}" "https://{domain:port}/{application}/rest/v2/broadcasts/create" -d '{"name":"streamName"}'
+curl -X POST -H "accept: application/json" -H "Content-Type: application/json" -H "Authorization: Bearer {JWTToken}" "https://{domain:5443}/{application}/rest/v2/broadcasts/create" -d '{"name":"streamName"}'
 ```
+
+Replace `{JWTToken}` with your actual JWT token when making requests.
 
 ## Step 6: Enable JWKS (Optional)
 
-If you want to use the JSON Web Key Set (JWKS) feature, you need to have an OAuth server like auth0.com. You can also build your own OAuth server system with [Hydra](https://www.ory.sh/hydra/docs/install). For JWKS configurations, add parameters to the `/usr/local/antmedia/webapps/<App-Name>/WEB-INF/red5-web.properties` file:
+If you want to use the JSON Web Key Set (JWKS) feature, you need to have an OAuth server like auth0.com. You can also build your own OAuth server system with [Hydra](https://www.ory.sh/hydra/docs/install). For JWKS configurations, add parameters to the `/usr/local/antmedia/webapps/{App-Name}/WEB-INF/red5-web.properties` file:
 
 ```
 settings.jwtControlEnabled=true
@@ -70,3 +72,6 @@ sudo service antmedia restart
 ```
 After these configurations are applied, you can start taking advantage of the JWKS feature in your structure, just like with JWT Filter.
 
+## Congratulations!
+
+You now have a fully secured REST API using JWT or JWKS, allowing flexible and safe access to your Ant Media Server from multiple endpoints. Your tokens are in place, and your API calls are protected — you’re ready to manage broadcasts, VODs, and server configurations with confidence!

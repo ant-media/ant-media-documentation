@@ -7,13 +7,13 @@ sidebar_position: 5
 
 # Publish RTMP stream using Teradek
 
-Teradek Vidiu Pro is fully compatible with Ant Media Server. Before starting, you need to create a live stream in Ant Media Server web panel. You can create a stream in LiveApp or WebRTCAppEE, as there are differences between them. However, your RTMP URL changes depending on which one to choose. When you create a live stream, your RTMP URL will be in the following format:
+Teradek Vidiu Pro is fully compatible with Ant Media Server. Before starting, you need to create a live stream in Ant Media Server web panel. You can create a stream in any application as there are no differences between them by default. However, your RTMP URL changes depending on which one you choose. When you create a live stream, your RTMP URL will be in the following format. If you choose **live** application, the RTMP URL will be:
 
-```rtmp://YOUR_SERVER_IP_OR_URL/LiveApp/YOUR_STREAM_ID``` or ```rtmp://YOUR_SERVER_IP_OR_URL/WebRTCAppEE/YOUR_STREAM_ID```
+```rtmp://YOUR_SERVER_IP_OR_URL/live/YOUR_STREAM_ID```
 
-depending on which app you use. You will use parts of these URLs in Teradek's settings.
+Depending on which app you use, you will use parts of these URLs in Teradek's settings.
 
-Let’s have a look at step by step how to use Teradek Vidiu Pro for streaming, firstly start by powering the Teradek Vidiu Pro.
+Let’s have a step-by-step look on how to use Teradek Vidiu Pro for streaming. Firstly, start by powering the Teradek Vidiu Pro.
 
 ## Connect to Teradek Vidiu Pro WiFi Network.
 

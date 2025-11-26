@@ -7,49 +7,49 @@ sidebar_position: 2
 
 # Securing the REST API
 
-This guide explains how to control REST API security on Ant Media Server. You could secure your REST services with the IP Filter feature.
+This guide explains how to control REST API security on Ant Media Server. You can secure your REST services using the IP Filter feature.
 
 ## IP Filter for the REST API
 
-If you want only some IP addresses to be able to access REST APIs, you should add IP’s or IP Ranges in `Dashboard > {Application} > Settings > IP Filtering Settings` panel.
+If you want only certain IP addresses to access REST APIs, add IPs or IP ranges in the `Dashboard > {Application} > Settings > IP Filter Settings` panel.
 
 ![](@site/static/img/rest-api/rest-api-ip-filter.png)
 
-**If 127.0.0.1 is deleted, requests on the server (localhost) are disabled. Devices in the same network can access but other devices that are not, cannot access the REST API when 127.0.0.1 is on the list.**
+**If `127.0.0.1` is removed, requests from the server (localhost) will be blocked. Devices on the same network can still access the REST API, but external devices cannot unless explicitly added.**
 
-If you want to remove the REST Filter in AMS, you should delete the below codes in `/usr/local/antmedia/webapps/Application-Name/WEB-INF/web.xml`
-
-```
-<filter>
-<filter-name>AuthenticationFilter</filter-name>
-<filter-class>io.antmedia.console.rest.AuthenticationFilter</filter-class>
-</filter>
-
-<filter-mapping>
-<filter-name>AuthenticationFilter</filter-name>`
-<url-pattern>/rest/*</url-pattern>
-</filter-mapping>
-```
-
-If you delete the AuthenticationFilter code block in the application, everyone can access the REST API.
 
 **Here is a demo of how to configure the IP filter**
 
 ![](@site/static/img/rest-api/rest-api-ip-filtering-demo.gif)
 
-## IP Filter for the Web Panel
 
-* Open ```/usr/local/antmedia/conf/red5.properties``` file.
-* The default configuration lets all IPs access the Web panel.
+## IP Filter for the Web Panel Access
 
-  `server.allowed_dashboard_CIDR=0.0.0.0/0`
-* Change the configuration according to your CIDR notation. You can add comma-separated CIDR notations as well.
+To control which IPs can access the Web Panel:
 
-  `server.allowed_dashboard_CIDR=13.197.23.11/16,87.22.34.66/8`
+1. Open `/usr/local/antmedia/conf/red5.properties` file using SSH.
 
-Save the file and restart the server.
+2. By default, all IPs have access:
 
-Now only the IPs that are in the CIDR block can access the Web panel.
+   ```js
+   server.allowed_dashboard_CIDR=0.0.0.0/0
+   ```
+
+3. Update the configuration according to your CIDR notation. You can also use multiple comma-separated CIDRs:
+
+   ```js
+   server.allowed_dashboard_CIDR=13.197.23.11/16,87.22.34.66/8
+   ```
+
+4. Save the file and restart the Ant Media Server:
+
+   ```
+   sudo service antmedia restart
+   ```
+
+Now only IPs within the specified CIDR blocks can access the Web Panel.
 
 
-For more details, you can check this link [IP Filter Gif](https://raw.githubusercontent.com/wiki/ant-media/Ant-Media-Server/images/ip-filter.gif)
+## Congratulations!
+
+With the IP Filter configured, your Ant Media Server is now more secure. Only trusted IPs can access the REST API and Web Panel, protecting your server from unauthorized access while still allowing legitimate management and control. Your setup is now safe, flexible, and ready for production use.

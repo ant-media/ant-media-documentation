@@ -95,10 +95,10 @@ azstorage:
 
 The following command will mount the streams directory of any Ant Media Server application to Azure blob storage.
 
-For example, link the LiveApp streams directory to the storage account.
+For example, link the `live` application's streams directory to the storage account.
 
 ```bash
-sudo blobfuse2 mount /usr/local/antmedia/webapps/LiveApp/streams --config-file ~/blobfuse_config/fuse_connection.yaml -o allow_other
+sudo blobfuse2 mount /usr/local/antmedia/webapps/live/streams --config-file ~/blobfuse_config/fuse_connection.yaml -o allow_other
 ```
 
-After mounting, all the recordings or files of the LiveApp application will be stored in the Azure Storage account container.
+After mounting, all the recordings or files of the `live` application will be stored in the Azure Storage account container.

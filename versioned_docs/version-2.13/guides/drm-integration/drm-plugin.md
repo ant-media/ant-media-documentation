@@ -177,8 +177,8 @@ Pay attention that we use `stream007` as the `streamid`. It will be used to get 
 - The HTTP endpoint templates will be like
 
   ```bash
-  DASH: https://{YOUR_ANTMEDIA_SERVER}:5443/live/streams/stream123/master.mpd  
-  HLS:  https://{YOUR_ANTMEDIA_SERVER}:5443/live/streams/stream123/master.m3u8
+  DASH: https://{YOUR_ANTMEDIA_SERVER}:5443/live/streams/drm/stream123/master.mpd
+  HLS:  https://{YOUR_ANTMEDIA_SERVER}:5443/live/streams/drm/stream123/master.m3u8
   ```
 
 ### Step 4: Generate Widevine Token
@@ -189,7 +189,7 @@ Pay attention that we use `stream007` as the `streamid`. It will be used to get 
 - **SITE ID, SITE Key, ACCESS Key** → Get from [DRM Settings on DoveRunner](https://contentsecurity.doverunner.com/drm/setting).
 - **DRM Type** → `Widevine` because we used `Widevine` in this sample.
 - **CID** → Your streamId. `stream007` in this sample.
-- **USER ID** → any unique identifier.
+- **USER ID** → any unique identifier (for example, 1234 etc).
 - Click **Refresh Timestamp**, and leave the other fields with default values.
 
 3. Click the `Generate Token` button and copy the token in `Result`.
@@ -208,7 +208,7 @@ Pay attention that we use `stream007` as the `streamid`. It will be used to get 
 
    - Save the changes & exit the editor.
 
-### Step 5: Play the Stream in Chrome
+### Step 5: Play Stream in Chrome
 
 Open the below URL with `Chrome` because Widevine is supported by Chrome:
 
@@ -218,4 +218,10 @@ https://{YOUR_ANTMEDIA_SERVER}:5443/live/videojs-doverunner-sample.html
 
 - Click Play
 
-- If it works — congratulations! 🎉 You are successfully playing a DRM-protected video using Widevine with your Ant Media Server.
+- If it works, you are successfully playing a DRM-protected video using Widevine with your Ant Media Server.
+
+- Try to get the screenshot of that page and it should be blank.
+
+  ![](@site/static/img/drm-test.webp)
+
+  If it is blank, congratulations! 🎉 Your content is protected using the DRM, and no one can capture it.
