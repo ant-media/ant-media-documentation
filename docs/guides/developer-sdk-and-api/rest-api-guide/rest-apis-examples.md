@@ -13,24 +13,29 @@ Here are some practical examples of how to consume the REST API on Ant Media Ser
 * `{port}`: 5080 for HTTP, 5443 for HTTPS  
 * `{applications}`: the name of your application in this guide, we use `live`
 
-**Note:**
+:::info
 
 This guide assumes that your IP is included in the IP Filter as [mentioned here](https://antmedia.io/docs/guides/developer-sdk-and-api/rest-api-guide/securing-rest-apis/#ip-filter-for-the-web-panel).
 
-Create Broadcast
-------
+:::
+
+## Create Broadcast
 
 Create a new live stream on the Ant Media Server:
 
-```curl -X POST -H "Content-Type: application/json" "https://{domain:port}/live/rest/v2/broadcasts/create"```
+```bash
+curl -X POST -H "Content-Type: application/json" "https://{domain:port}/live/rest/v2/broadcasts/create"
+```
 
 For example, on localhost: 
 
-```curl -X POST -H "Content-Type: application/json" "http://localhost:5080/live/rest/v2/broadcasts/create"``` 
+```bash
+curl -X POST -H "Content-Type: application/json" "http://localhost:5080/live/rest/v2/broadcasts/create"
+``` 
 
 Response:
 
-```
+```js
 {
   "streamId":"247807894779015096249123",
   "status":"created",
@@ -44,13 +49,16 @@ Response:
   "rtmpViewerCount":0
 }
 ```
-You can see the full [Broadcast object in the REST Reference](https://antmedia.io/rest/)
 
-### Create Broadcast with Pre-defined ```streamId```
+You can see the full [Broadcast object in the REST Reference](https://antmedia.io/rest/#/default/createBroadcast).
 
-Specify your own `streamId`:
+### Create Broadcast with Pre-defined StreamId
 
-```curl -X POST -H "Content-Type: application/json" "https://{domain:port}/live/rest/v2/broadcasts/create" -d '{"streamId":"{YOUR_STREAM_ID}"}'```
+Specify your own `streamId` in the payload:
+
+```bash
+curl -X POST -H "Content-Type: application/json" "https://{domain:port}/live/rest/v2/broadcasts/create" -d '{"streamId":"{YOUR_STREAM_ID}"}'
+```
 
 Example:
 
@@ -58,28 +66,35 @@ Example:
 
 Response:
 
-```
+```js
 {"streamId":"1234567","status":"created","type":"liveStream","name":"Test Stream","description":null,"publish":true,"date":1605776884508,"plannedStartDate":0,"plannedEndDate":0,"duration":0,"endPointList":null,"publicStream":true,"is360":false,"listenerHookURL":null,"category":null,"ipAddr":null,"username":null,"password":null,"quality":null,"speed":0.0,"streamUrl":null,"originAdress":"127.0.0.1","mp4Enabled":0,"webMEnabled":0,"expireDurationMS":0,"rtmpURL":"rtmp://127.0.0.1/live/1234567","zombi":false,"pendingPacketSize":0,"hlsViewerCount":0,"webRTCViewerCount":0,"rtmpViewerCount":0,"startTime":0,"receivedBytes":0,"bitrate":0,"userAgent":"N/A","latitude":null,"longitude":null,"altitude":null,"mainTrackStreamId":null,"subTrackStreamIds":null,"absoluteStartTimeMs":0,"webRTCViewerLimit":-1,"hlsViewerLimit":-1}
 ```
 
 ### Create Stream Source Broadcasts
 
-Stream sources allow Ant Media Server to pull external streams (RTSP, IP Camera, etc.):
+Stream sources allow Ant Media Server to pull external streams (RTSP, HLS, etc.):
 
-```curl -X POST -H "Content-Type: application/json" "https://{domain:port}/live/rest/v2/broadcasts/create?autoStart=false" -d '{ "type":"streamSource", "streamUrl":"YOUR_STREAM_SOURCE_URL"}'```
+```bash
+curl -X POST -H "Content-Type: application/json" "https://{domain:port}/live/rest/v2/broadcasts/create?autoStart=false" -d '{ "type":"streamSource", "streamUrl":"YOUR_STREAM_SOURCE_URL"}'
+```
 
 Set `autoStart=true` to begin pulling immediately.
 
 ### Starting Stream Source
 
-```curl -X POST -H "Content-Type: application/json" "https://{domain:port}/live/rest/v2/broadcasts/{streamId}/start"```
+In case you want to start the Stream Source using API, check out the [Start API](https://antmedia.io/rest/#/default/startStreamSourceV2) call.
 
-Read Broadcast
-----
+```bash
+curl -X POST -H "Content-Type: application/json" "https://{domain:port}/live/rest/v2/broadcasts/{streamId}/start"
+```
 
-Query a broadcast by its streamId:
+## Read Broadcast
 
-```curl -X GET "https://{domain:port}/live/rest/v2/broadcasts/{streamid}"```
+Query a broadcast by its streamId to check the stream data:
+
+```bash
+curl -X GET "https://{domain:port}/live/rest/v2/broadcasts/{streamid}"
+```
 
 Returns the broadcast object, or `404` if the streamId does not exist.
 
@@ -87,35 +102,39 @@ Returns the broadcast object, or `404` if the streamId does not exist.
 
 Get viewer statistics for a broadcast:
 
-```curl -X GET "https://{domain:port}/live/rest/v2/broadcasts/{streamid}/broadcast-statistics"```
+```bash
+curl -X GET "https://{domain:port}/live/rest/v2/broadcasts/{streamid}/broadcast-statistics"
+```
 
-Update Broadcast
-------
+## Update Broadcast
 
-Change the name of a broadcast:
+Change the name of a broadcast or any parameter of the existing stream:
 
-```curl -X PUT -H "Content-Type: application/json" "https://{domain:port}/live/rest/v2/broadcasts/{streamid}" -d '{"name":"{streamname}"}'```
+```bash
+curl -X PUT -H "Content-Type: application/json" "https://{domain:port}/live/rest/v2/broadcasts/{streamid}" -d '{"name":"{streamname}"}'
+```
 
 Response will indicate if the operation was successful.
 
-Delete Broadcast
-------
+## Delete Broadcast
 
 Delete a broadcast:
 
-```curl -X DELETE https://{domain:port}/live/rest/v2/broadcasts/{streamId}```
+```bash
+curl -X DELETE https://{domain:port}/live/rest/v2/broadcasts/{streamId}
+```
 
 This removes the broadcast from the server.
 
-### REST API Reference
+## REST API Reference
 
-This document provides examples of common REST API calls. For a complete list of all REST methods, visit the [https://antmedia.io/rest/](https://antmedia.io/rest/)
+This document provides examples of common REST API calls. For a complete list of all REST methods, visit the [https://antmedia.io/rest/](https://antmedia.io/rest/).
 
-Note:
+:::info
 
-On Windows Command Prompt, the body of requests should be escaped like this: 
+On Windows Command Prompt, the body of requests should be escaped like this: ```-d "{""name"":""{streamname}""}"```
 
-```-d "{""name"":""{streamname}""}"```
+info
 
 
 ## Congratulations!
