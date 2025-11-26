@@ -7,15 +7,15 @@ sidebar_position: 3
 
 ## Step 3: Add WebRTC-Android-SDK Dependency
 
-There are two methods for integrating the Android SDK into our Android app project. The first, and simpler, approach involves importing it via the Sonatype Maven repository. The advantage of this method lies in its ease of implementation. However, it's crucial to note that opting for this method means you won't have the flexibility to modify WebRTC Android SDK files to suit your application requirements.
+There are two methods for integrating the Android SDK into your Android app project:
 
-Alternatively, the second method entails importing the Android SDK as a module. Opting for this approach grants you the ability to edit Android SDK class files as per your specific needs.
+1. Via Maven Repository (Easy) – Quick and simple, but you won’t be able to modify the SDK files.
+
+2. As a Module (Advanced) – Gives you the ability to edit the SDK source code if needed.
 
 ### Add WebRTC-Android-SDK From Maven Repo (Easy)
 
-- At this point, we should add the dependency on the WebRTC Android SDK module to our newly created project. Since the module is hosted in the Sonatype Maven repository, we will add that repository to the dependency manager. The related setting is in the `settings.gradle` file.
-
-  Add the following lines to the `dependencyResolutionManagement/repositories section`:
+- Add the Maven repository to your `settings.gradle` file under `dependencyResolutionManagement/repositories` section:
 
   ```java
     maven {
@@ -87,3 +87,7 @@ You can now navigate to your application module and begin developing your stream
   ```java
   implementation 'com.google.firebase:firebase-messaging:23.0.0'
   ```
+
+## Congratulations!
+
+You’ve successfully added the WebRTC-Android-SDK dependency and configured Firebase Cloud Messaging in your project. With this setup, your application is now ready to handle real-time WebRTC streaming and push notifications seamlessly.

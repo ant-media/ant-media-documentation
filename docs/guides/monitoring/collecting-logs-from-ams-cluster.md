@@ -1,7 +1,7 @@
 ---
 title: Collecting logs from AMS cluster 
 description: Collecting logs from AMS cluster
-keywords: [Collecting logs from AMS cluster, Ant Media Server Documentation, Ant Media Server Tutorials]
+keywords: [Collecting logs from AMS cluster, Ant Media Server Documentation, Ant Media Server Tutorials] 
 ---
 
 # Collecting logs from AMS cluster

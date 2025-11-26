@@ -5,38 +5,40 @@ keywords: [JavaScript SDK User Guide, Ant Media Server Documentation, Ant Media 
 sidebar_position: 3
 ---
 
-Let's see a very simple example of WebRTC Conference with the JS SDK.
+A WebRTC Conference is essentially a room where multiple participants can join, publish their streams, and simultaneously receive the streams of other users in the same room.
 
-In simple terms, a conference is a room where a user can join and publish his streams, and he will receive the streams of other users who join the same room. So to put it simply, we will use the publish and play function as we did in previous examples to implement a conference.
+In simple terms, the publish and play functions are combined to enable multi-user conferencing. Each participant publishes their own video and audio stream while playing the streams of others.
+
+This guide demonstrates how to set up a conference using the Ant Media JavaScript SDK.
 
 ## WebRTC Conference Live Sample
 
-- Navigate to the Conference sample [here](https://codepen.io/USAMAWIZARD/embed/JoPzLgX?default-tab=js&editable=true) at Codepen.
+1. Navigate to the [Conference Sample](https://codepen.io/USAMAWIZARD/embed/JoPzLgX?default-tab=js&editable=true) at Codepen.
 
-- Comment import from directory and uncomment import from URL. It should look something like this.
+2. Comment out the local import and uncomment the URL import. It should look like this:
 
-  ```
+  ```js
   import  {WebRTCAdaptor} from  "https://esm.sh/@antmedia/webrtc_adaptor";
   //import { WebRTCAdaptor } from './node_modules/@antmedia/webrtc_adaptor/src/main/js/webrtc_adaptor.js';
   ```
 
-- Click on Result button It will show small webpage where you can see the output.
+3. Click the Result button to open the demo webpage.
 
-- Enter a room ID and join the room.
+4. Enter a room ID and join the room.
 
-- Open this page in another tab and join with the same room ID.
+5. Open the same page in another browser tab, join with the same room ID, and observe the video conferencing in action.
 
-## Create Conference Sample For Deployment
+## Create Conference Sample for Deployment
 
-- Create a new file , name it `conference.html`
+1. Create a new file named `conference.htm`l.
 
-- Make sure HTTP server is running in same directory
+2. Start a local HTTP server in the same directory:
 
   ```
   python3 -m http.server
   ```
 
-- Copy the above code from the HTML and JS sections in the `conference.html` file as below:
+3. Copy the provided HTML and JavaScript code into `conference.html`.
 
 ```html
 <!DOCTYPE html>
@@ -140,19 +142,23 @@ function createRemoteVideo(trackLabel, kind) {
 </html>
 ```
 
-Open the conference.html page in the browser `http://localhost:8000/conference.html`  (make sure python server is up and running)
+4. Open the page in your browser at: `http://localhost:8000/conference.html` (make sure python server is up and running)
 
- - Accept microphone and camera usage permissions.
+5. Accept microphone and camera permissions.
 
- - Click the join button.
+6. Enter a room ID and click Join.
 
-Join the room in a new tab as a second user and verify if you can receive remote video and remote participants can see your video.
+7. Open the same page in another tab as a second user to verify bidirectional streaming.
 
 ## WebRTCAdaptor
 
-`WebRTCAdapter` Class is responsible for handling WebSocket Messages and WebRTC Connections with the server. The `WebRTCAdaptor` takes various parameters; all parameters are listed here.
+The `WebRTCAdaptor` class manages WebSocket signaling and WebRTC connections with Ant Media Server.
 
-```
+Each participant uses one `WebRTCAdaptor` instance to publish their own stream and play others’ streams in the same room.
+
+Example initialization:
+
+```js
 var webRTCAdaptor = new WebRTCAdaptor(prams....)
 ```
 
@@ -160,7 +166,7 @@ var webRTCAdaptor = new WebRTCAdaptor(prams....)
 
 #### WebSocket URL
 
-- `WebSocket URL` is the server URL of your Ant Media Server. Check out this page to install Ant Media Server, or for testing purposes, this URL can be used. 
+- `WebSocket URL` This is the signaling server URL of your Ant Media Server.
 
   ```
   websocket_url
@@ -168,58 +174,62 @@ var webRTCAdaptor = new WebRTCAdaptor(prams....)
 
 - Web socket URL format.
 
-  ```
-  protocol://IP_ADDRESS:PORT/APPLICATION_NAME/websocket
-  ```
-
-  For example, `wss://test.antmedia.io:5443/live/websocket`
-
-- If HTTP,  `protocol = ws` or if HTTPS `protocol = wss`
-
-
-If Ant Media is running on HTTP, the websocket url should connect to the port `5080` instead of `5443`.
-
-Multiple applications can be created in Ant Media to which streams can be published; use the correct application name `WebSocket URL` to publish to that application.
-
-#### localVideoId
-
-```
-localVideoId
+```bash
+protocol://IP_ADDRESS:PORT/APPLICATION_NAME/websocket
 ```
 
-This is the ID of the Video Element where the local video stream will be displayed.
+Example: `wss://test.antmedia.io:5443/live/websocket`
 
-#### Callback
+- Use `ws://` for HTTP or `wss://` for HTTPS.
 
+- For HTTP servers, use port `5080` instead of `5443`.
+
+- Ensure you use the correct application name in the URL to match your Ant Media configuration.
+
+#### `localVideoId`
+
+Specifies the ID of the ```html<video>``` element where the local video stream will be displayed.
+
+#### `Callback`
+
+The callback receives messages and notifications from the server, such as:
+
+- `publish_started`
+
+- `play_started`
+
+- `publish_timeout`
+
+- `data channel messages`
+
+- `newTrackAvailable`: triggered when new remote streams are available in the room.
+
+Developers can use this callback to dynamically create video elements for each participant.
+
+#### WebRTCAdaptor Methods
+
+Publish a stream to a room:
+
+```js
+webRTCAdaptor.publish(our_publish_id, "", "", "", "", roomid, JSON.stringify(""), "");
 ```
-callback
+
+Play all streams from a room:
+
+```js
+webRTCAdaptor.play(roomid, "", roomid, [], "", "", null, "");
 ```
 
-Messages & notifications sent from the server will be received in this callback. This includes notifications like `publish_started`, `play_started`, `publish_timeout` , `data channel messages`, etc.
+Stop publishing/playing a stream:
 
-`if (info == "newTrackAvailable")` 
+```js
+webRTCAdaptor.stop(streamid)
+```
 
-We will get `newTrackAvailable` callback here where all the remote video streams will be received. We can play these remote streams by creating a video element and appending it to the DOM.
+## Congratulations!
 
-#### WebRTC Adaptor
+With just a few lines of code, you can build a real-time video conferencing application using the Ant Media JavaScript SDK.
 
-- `WebRTCAdaptor` publish function initiates a WebRTC connection with Ant Media Server and starts to publish the stream.
-When publishing for a conference room, your own stream ID and the room to which the stream needs to be published must be specified. 
+By combining the publish and play functions inside a conference room, participants can broadcast their own streams while instantly receiving others’ streams.
 
-  ```
-  webRTCAdaptor.publish(our_publish_id, "", "", "", "",roomid, JSON.stringify(""), "");
-  ```
-
-- `WebRTCAdapter` play function initiate  WebRTC Connection with Ant Media Server and starts to play the stream. Specify the correct stream ID and make sure the stream is currently publishing, which you are trying to play. 
-
-  When playing the streams from a room, the room ID should be specified.
-
-  ```
-  webRTCAdaptor.play(roomid, "", roomid, [], "", "", null, "");
-  ```
-
-- Stops publishing & playing WebRTC streams.
-
-  ```
-  webRTCAdaptor.stop(streamid)
-  ```
+This flexible setup allows you to scale from simple two-person calls to multi-participant video conferences, all with ultra-low latency powered by WebRTC.

@@ -5,9 +5,9 @@ keywords: [Push Notification Management Tutorial, Push Notification Management, 
 sidebar_position: 4
 ---
 
-# Configure Ant Media Server:
+## Step 4: Configure Ant Media Server
 
-To obtain the APN private key for iOS push notifications, follow these steps:
+### 1) Generate the APN Private Key
 
 1. Log in to the Apple Developer Portal: Visit Apple Developer and sign in with your Apple ID.
 2. Go to Certificates, Identifiers & Profiles: Navigate to “Certificates, Identifiers & Profiles” from the dashboard.
@@ -15,6 +15,8 @@ To obtain the APN private key for iOS push notifications, follow these steps:
 4. Create a New Key for Push Notifications:
   - Enter a name for the key, then enable “Apple Push Notifications service (APNs).”
   - Click “Continue” and then “Register” to create the key.
+
+### 2) Configure Firebase (Optional for iOS + FCM Integration)
 
 1. Go to the Firebase Console: Visit Firebase Console and log in with your Google account.
 2. Create or Select a Project: Choose your existing project or create a new one for your app.
@@ -26,7 +28,7 @@ To obtain the APN private key for iOS push notifications, follow these steps:
   - Click “Continue” and then “Register” to create the key.
   - Download the Private Key: Once the key is created, download the .p8 file containing the APNs private key and keep note of the Key ID shown. You will also need your Team ID, which is found in the “Membership” section of the Apple Developer portal.
 
-After obtaining the .p8 private key file for APNs, save it to your Ant Media Server:
+### 3) Upload the APNs Key to Ant Media Server
 
 1. Open the Management Panel: Log in to the Ant Media Server management console.
 2. Select an Application: Choose the application where you want to enable push notifications.
@@ -35,10 +37,17 @@ After obtaining the .p8 private key file for APNs, save it to your Ant Media Ser
 
 ![](@site/static/img/push-notification-settings.jpg)
 
+### 4) Secure Push Notification Requests
+
 To protect the send push notification WebSocket message, you need to generate two subscriber authentication tokens with the sender’s Subscriber ID and the receiver’s Subscriber ID. You can call the [getSubscriberAuthenticationToken](https://antmedia.io/rest/#/default/getSubscriberAuthenticationToken) Rest API endpoint. 
 
 ```bash
-curl -X 'GET' 'https://your-antmedia-server-address:5080/live/rest/v2/push-notification/subscriber-auth-token?subscriberId=<your-subscriber-id>'
+curl -X 'GET' 'https://your-antmedia-server-address:5443/WebRTCAppEE/rest/v2/push-notification/subscriber-auth-token?subscriberId=<your-subscriber-id>'
 ```
 
 We will call the sender’s token as authToken in the rest of the documentation. We will call the sender’s Subscriber ID as subscriberId and we will call the receiver’s Subscriber ID as sendNotificationToSubscriber.
+
+
+## Congratulations!
+
+You’ve now successfully configured Ant Media Server for iOS push notifications using APNs. Your iOS app can securely receive notifications from Ant Media Server, ensuring real-time communication between clients and the server.

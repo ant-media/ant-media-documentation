@@ -5,12 +5,36 @@ keywords: [Push Notification Management Tutorial, Push Notification Management, 
 sidebar_position: 1
 ---
 
-## Pre-Requirements
+## Step 1: Pre-Requirements
 
-Before diving into the integration process, make sure you have the following:
+Before starting the integration of push notifications in iOS with Ant Media Server and Firebase Cloud Messaging (FCM), make sure you have the following prerequisites in place:
 
-- An Apple Developer Account to configure APN.
-- An iOS project created in Xcode.
-- A Firebase account with a project already set up.
-- Xcode 12 or later with Swift 5.0.
-- A real iOS device for testing (simulators do not support push notifications).
+### Apple Developer Setup
+
+- An active Apple Developer Account (required to configure APNs – Apple Push Notification service).
+
+- Access to Certificates, Identifiers & Profiles in the Apple Developer Console.
+
+
+### iOS Project
+
+- A working iOS project created in Xcode.
+
+- Xcode 12 or later with support for Swift 5.0.
+
+### Firebase Setup
+
+- A Firebase account with a project already configured.
+
+- iOS app registered inside Firebase with the proper Bundle Identifier.
+
+
+### Testing Device
+
+- A real iOS device for testing.
+
+- Note: Push notifications are not supported on iOS simulators.
+
+## Congratulations!
+
+You now have everything you need to start implementing push notifications in iOS with Ant Media Server. With these requirements in place, you are fully prepared to move on to configuring Firebase, setting up APNs, and writing your notification handling logic in Swift. This preparation ensures your integration will be smooth and successful.
