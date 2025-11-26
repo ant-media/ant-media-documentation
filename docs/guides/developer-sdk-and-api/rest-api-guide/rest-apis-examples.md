@@ -136,7 +136,7 @@ This document provides examples of common REST API calls. For a complete list of
 
 On Windows Command Prompt, the body of requests should be escaped like this: ```-d "{""name"":""{streamname}""}"```
 
-:::info
+:::
 
 
 ## Congratulations!
