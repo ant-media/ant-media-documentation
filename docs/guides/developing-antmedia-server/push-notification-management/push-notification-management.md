@@ -38,22 +38,22 @@ To secure the sendPushNotification WebSocket message:
 
 - Generate two subscriber authentication tokens:
   
-  One for the sender’s Subscriber ID.
+  - One for the sender’s Subscriber ID.
 
-  One for the receiver’s Subscriber ID.
+  - One for the receiver’s Subscriber ID.
 
- Use the [getSubscriberAuthenticationToken](https://antmedia.io/rest/#/default/getSubscriberAuthenticationToken) Rest API endpoint.
+  Use the [getSubscriberAuthenticationToken](https://antmedia.io/rest/#/default/getSubscriberAuthenticationToken) Rest API endpoint.
  
-```bash
-curl -X 'GET' \
-'https://your-antmedia-server-address:port/live/rest/v2/push-notification/subscriber-auth-token?subscriberId=<your-subscriber-id>'
-```
+  ```bash
+  curl -X 'GET' \
+  'https://your-antmedia-server-address:port/live/rest/v2/push-notification/subscriber-auth-token?subscriberId=<your-subscriber-id>'
+  ```
 
-We’ll call the sender’s token authToken.
+- We’ll call the sender’s token authToken.
 
-The sender’s ID will be subscriberId.
+- The sender’s ID will be subscriberId.
 
-The receiver’s ID will be sendNotificationToSubscriber.
+- The receiver’s ID will be sendNotificationToSubscriber.
 
 ## FCM/APN Device/Registration Token
 
