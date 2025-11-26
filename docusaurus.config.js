@@ -41,11 +41,11 @@ const config = {
 
 scripts: [
     {
-      src: "/docs/zfEmbed.js", // Ensure this loads first
+      src: "/zfEmbed.js", // Ensure this loads first
       async: false, // Load it synchronously	    
     },
     {
-      src: "/docs/zonka.js", // Load after zfEmbed.js
+      src: "/zonka.js", // Load after zfEmbed.js
       async: true,
       defer: true,
     },

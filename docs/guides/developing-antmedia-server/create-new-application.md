@@ -10,31 +10,33 @@ sidebar_position: 1
 
 Ant Media Server supports dynamic application development, effectively addressing the multi-tenancy challenges of online video platforms. With three built-in applications, the server allows users to configure distinct settings for each application and customize application names.
 
-To accommodate this, customers can create or delete applications as needed. There are multiple methods available for managing applications, which we will outline below.
+Customers can create or delete applications as needed. There are multiple methods available for managing applications, outlined below.
 
 ## Web Panel
 
-The fastest and easiest way to create new applications on the web panel.
+The fastest and easiest way to create new applications is via the web panel.
 
 ### Step 1
 
-Login to the web panel, on the Dashboard & Click the New Application button
+Login to the web panel, navigate to the Dashboard, and click the New Application button.
 
 ![image](https://github.com/user-attachments/assets/4df34b28-ff9d-429b-a061-8dd5b6938d5f)
 
 ### Step 2
 
-Enter application name and click the ```Create``` button
+Enter the application name and click the ```Create``` button.
 
 ![image](https://github.com/user-attachments/assets/546a3581-0dbb-494f-8600-0248fc0eaa8b)
 
-Note- In cluster mode, the server automatically creates the new application across all nodes in the cluster. Similarly, if an application is deleted, it will be removed from all nodes as well.
+:::info
+
+In cluster mode, the server automatically creates the new application across all nodes in the cluster. Similarly, if an application is deleted, it will be removed from all nodes as well.
+
+:::
 
 ## Shell Script
 
-There is a script that creates new applications in Ant Media Server easily. You just need to type a few simple commands.
-
-Let’s have a look at the steps:
+You can also use a script to create new applications easily. Follow these steps:
 
 ### Step 1
 
@@ -46,7 +48,7 @@ cd /usr/local/antmedia
 
 ### Step 2
 
-create\_app.sh usage in below.
+The `create\_app.sh` usage in below.
 
 
 ```bash
@@ -59,20 +61,18 @@ For example:
 sudo ./create_app.sh -n livestream -p /usr/local/antmedia
 ```
 
-You can add some parameters in **create_app** script. Here are the options:
+Available parameters in the **create_app** script:
 
 **-n:**  Name of the application that you want to have. It's mandatory  
-**-p:** (Optional) Path is the install location of Ant Media Server which is /usr/local/antmedia by default.  
-**-w:** (Optional) The flag to deploy application as war file. Default value is false  
-**-c:** (Optional) The flag to deploy application in cluster mode. Default value is false  
+**-p:**  (Optional) Path is the install location of Ant Media Server which is /usr/local/antmedia by default.  
+**-w:**  (Optional) The flag to deploy application as war file. Default value is false  
+**-c:**  (Optional) The flag to deploy application in cluster mode. Default value is false  
 **-m:**  Mongo DB host. If it's a cluster, it's mandatory. Otherwise optional  
 **-u:**  Mongo DB user. If it's a cluster, it's mandatory. Otherwise optional  
 **-s:**  Mongo DB password. If it's a cluster, it's mandatory. Otherwise optional  
-**-h:** print this usage  
+**-h:**  print this usage  
 
-Please check it for more detail: [Create App Script](https://github.com/ant-media/Ant-Media-Server/blob/master/src/main/server/create_app.sh#L5)
-
-![](@site/static/img/image-1645437714786.png)
+For more details, check the [Create App Script](https://github.com/ant-media/Ant-Media-Server/blob/master/src/main/server/create_app.sh#L5).
 
 ### Step 3
 
@@ -101,3 +101,6 @@ Call the following method to delete an application with curl.
 ```
 curl -X DELETE -H "https://{YOUR_SERVER_ADDRESS}:5443/rest/v2/applications/App_Name"
 ```
+## Congratulations!
+
+You now know how to create and manage applications in Ant Media Server using the web panel, shell scripts, or REST methods. You are ready to organize multiple streaming applications efficiently and deploy them across clusters with ease.
