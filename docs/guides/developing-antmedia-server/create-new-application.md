@@ -28,7 +28,11 @@ Enter the application name and click the ```Create``` button.
 
 ![image](https://github.com/user-attachments/assets/546a3581-0dbb-494f-8600-0248fc0eaa8b)
 
-Note- In cluster mode, the server automatically creates the new application across all nodes in the cluster. Similarly, if an application is deleted, it will be removed from all nodes as well.
+:::info
+
+In cluster mode, the server automatically creates the new application across all nodes in the cluster. Similarly, if an application is deleted, it will be removed from all nodes as well.
+
+:::
 
 ## Shell Script
 
@@ -44,7 +48,7 @@ cd /usr/local/antmedia
 
 ### Step 2
 
-create\_app.sh usage in below.
+The `create\_app.sh` usage in below.
 
 
 ```bash
@@ -60,17 +64,15 @@ sudo ./create_app.sh -n livestream -p /usr/local/antmedia
 Available parameters in the **create_app** script:
 
 **-n:**  Name of the application that you want to have. It's mandatory  
-**-p:** (Optional) Path is the install location of Ant Media Server which is /usr/local/antmedia by default.  
-**-w:** (Optional) The flag to deploy application as war file. Default value is false  
-**-c:** (Optional) The flag to deploy application in cluster mode. Default value is false  
+**-p:**  (Optional) Path is the install location of Ant Media Server which is /usr/local/antmedia by default.  
+**-w:**  (Optional) The flag to deploy application as war file. Default value is false  
+**-c:**  (Optional) The flag to deploy application in cluster mode. Default value is false  
 **-m:**  Mongo DB host. If it's a cluster, it's mandatory. Otherwise optional  
 **-u:**  Mongo DB user. If it's a cluster, it's mandatory. Otherwise optional  
 **-s:**  Mongo DB password. If it's a cluster, it's mandatory. Otherwise optional  
-**-h:** print this usage  
+**-h:**  print this usage  
 
-For more details, see the [Create App Script](https://github.com/ant-media/Ant-Media-Server/blob/master/src/main/server/create_app.sh#L5)
-
-![](@site/static/img/image-1645437714786.png)
+For more details, check the [Create App Script](https://github.com/ant-media/Ant-Media-Server/blob/master/src/main/server/create_app.sh#L5).
 
 ### Step 3
 
