@@ -41,7 +41,7 @@ Restart the Ant Media Server:
 sudo service antmedia restart
 ```
 
-The REST API for the web panel is listed under [Management REST Service](https://antmedia.io/rest/#/ManagementRestService). Web Panel REST methods are available at: `https://SERVER\_FQDN:PORT/rest/`
+The REST API for the web panel is listed under [Management REST Service](https://antmedia.io/rest/#/ManagementRestService).
 
 
 ### Generate JWT Token
@@ -62,7 +62,7 @@ Use the JWT Token in the `ProxyAuthorization` header:
 curl -X GET -H "Content-Type: application/json" -H "ProxyAuthorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.e30.tA6sZwz_MvD9Nocf3Xv_DXhJaeTNgfsHPlg3RHEoZRk" "https://example.com:5443/rest/v2/system-resources"
 ```
 
-This will return system resource information such as CPU load and memory usage. For all REST methods, refer to the [Management REST Service Reference](https://antmedia.io/rest/#/ManagementRestService) 
+This will return system resource information such as CPU load and memory usage.
 
 
 
@@ -105,8 +105,6 @@ The response should be something like
 ```
 
 You can now use all [Web panel REST methods](https://antmedia.io/rest/#/ManagementRestService) with the appropriate headers.
-
-[](https://antmedia.io/rest/#/ManagementRestService/getApplications)
 
 ## Congratulations!
 
