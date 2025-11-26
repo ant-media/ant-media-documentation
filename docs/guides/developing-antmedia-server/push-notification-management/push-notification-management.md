@@ -11,25 +11,62 @@ Push notifications enable you to send announcements or video/audio call notifica
 
 ## Prerequirements
 
-- If you want to use Firebase Cloud Messaging (FCM), you need to create a Firebase account and you need to install the Firebase SDK into your client applications. You can follow [the official documentation](https://firebase.google.com/docs/cloud-messaging).
-- If you want to use Apple Push Notifications (APN), you need to create an Apple Developer  account and you need to follow [the official documentation](https://developer.apple.com/documentation/usernotifications).
+- Firebase Cloud Messaging (FCM):
+Create a Firebase account and integrate the Firebase SDK into your client applications. [Official documentation](https://firebase.google.com/docs/cloud-messaging).
+
+- Apple Push Notification service (APNs):
+
+Create an Apple Developer account and configure APNs for your iOS applications. [Official Documentation](https://developer.apple.com/documentation/usernotifications).
 
 ## Registering Services
 
-After you register FCM or APN, you will have the private key. You need to save it into the Ant Media Server. Open the management panel, select an application, and go to the application-level settings. You will see it in the push notification section.
+After registering with FCM or APNs, you will obtain a private key.
+
+1. Open the Ant Media Server Management Panel.
+
+2. Select the application where you want to enable push notifications.
+
+3. Go to the Application Settings → Push Notification section.
+
+4. Upload your FCM JSON file or APNs .p8 key file.
 
 ![](@site/static/img/push-notification-settings.jpg)
 
 ## Authorization
 
-To protect the send push notification WebSocket message, you need to generate two subscriber authentication tokens with the sender's Subscriber ID and the receiver's Subscriber ID. You can call the [getSubscriberAuthenticationToken](https://antmedia.io/rest/#/default/getSubscriberAuthenticationToken) Rest API endpoint. We will call the sender's token as <b>authToken</b> in the rest of the documentation. We will call the sender's Subscriber ID as <b>subscriberId</b> and we will call the receiver's Subscriber ID as <b>sendNotificationToSubscriber</b>.
+To secure the sendPushNotification WebSocket message:
+
+- Generate two subscriber authentication tokens:
+  
+  - One for the sender’s Subscriber ID.
+
+  - One for the receiver’s Subscriber ID.
+
+  Use the [getSubscriberAuthenticationToken](https://antmedia.io/rest/#/default/getSubscriberAuthenticationToken) Rest API endpoint.
+ 
+  ```bash
+  curl -X 'GET' \
+  'https://your-antmedia-server-address:port/live/rest/v2/push-notification/subscriber-auth-token?subscriberId=<your-subscriber-id>'
+  ```
+
+- We’ll call the sender’s token authToken.
+
+- The sender’s ID will be subscriberId.
+
+- The receiver’s ID will be sendNotificationToSubscriber.
 
 ## FCM/APN Device/Registration Token
 
-You need to get a device/registration token for each client and store them in a secure place. We strongly recommend implementing a token timestamp in your code and your servers and updating this timestamp at regular intervals. You can check the [Firebase Cloud Message documentation](https://firebase.google.com/docs/cloud-messaging/manage-tokens#retrieve-and-store-registration-tokens) and [Apple Push Notification](https://developer.apple.com/documentation/usernotifications/registering-your-app-with-apns#Register-your-app-and-retrieve-your-apps-device-token) documentation to see how you can get a device/registration token for each client. We will call this token as <b>pushNotificationToken</b> in the rest of the documentation.
+Each client device must have a registration token.
+
+For Firebase, follow the [Firebase Cloud Message documentation](https://firebase.google.com/docs/cloud-messaging/manage-tokens#retrieve-and-store-registration-tokens)
+
+For APNs, follow the [Apple Push Notification](https://developer.apple.com/documentation/usernotifications/registering-your-app-with-apns#Register-your-app-and-retrieve-your-apps-device-token) 
+
+We’ll refer to this as pushNotificationToken throughout the documentation.
 
 <details>
-  <summary>Getting FCM Registration Token Sample</summary>
+  <summary>Getting FCM Registration Token Example</summary>
 
   - Connect your server and go to the <b>/usr/local/antmedia/webapps</b> path.
   
@@ -177,7 +214,7 @@ const firebaseConfig = {
   });
   ```
 
-  - Go to https://<b>domain_name</b>:<b>port</b>/fcm.html url using any browser.
+  - Go to https://domain_name:5443/fcm.html url using any browser.
     
   - Open browser's developer console and you will see your FCM Registration Token
 
@@ -186,7 +223,7 @@ const firebaseConfig = {
 
 ## Register Push Notification Token
 
-We need to register our push notification token into the Ant Media Server. You need to call the <b>registerPushNotificationToken</b> function. You have 2 options for the <b>pushNotificationService</b> which are "apn" or "fcm".
+Call the following function in your client code to register a token with Ant Media Server:
 
 ```js
 webRTCAdaptor.registerPushNotificationToken(subscriberId, authToken, pushNotificationToken, pushNotificationService);
@@ -194,10 +231,25 @@ webRTCAdaptor.registerPushNotificationToken(subscriberId, authToken, pushNotific
 
 ## Send a push notification
 
-We are ready to send push notifications. You can send your push notifications through the Ant Media Server in a secure way. All you need to do is call the <b>sendPushNotification</b> function.
+Finally, you can send push notifications securely via Ant Media Server:
 
 ```js
 webRTCAdaptor.sendPushNotification(subscriberId, authToken, {"title":"This is a test message", "apn-topic":"io.antmedia.ios.webrtc.sample"}, [sendNotificationToSubscriber]);
 ```
 
 ![](@site/static/img/push-notification-received.jpg)
+
+
+## Congratulations!
+
+You’ve completed the Push Notification Management setup in Ant Media Server:
+
+* Configured FCM/APNs services
+
+* Registered device tokens
+
+* Secured communication with subscriber tokens
+
+* Sent test push notifications
+
+Your applications are now ready to send real-time alerts, calls, and announcements directly to web and mobile clients

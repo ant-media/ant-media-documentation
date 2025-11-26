@@ -40,7 +40,6 @@ jobs:
         apt install -y openssh-client -y
     - name: Make changes
       run: |
-        sed -i "s^baseUrl:.*^baseUrl:'/docs',^" docusaurus.config.js
         sed -i "s^appId.*^appId: '${{ secrets.ALGOLIA_APP_ID }}',^" docusaurus.config.js
         sed -i "s^apiKey.*^apiKey: '${{ secrets.ALGOLIA_API_KEY }}',^" docusaurus.config.js
 
@@ -68,8 +67,8 @@ jobs:
 
     - name: Connect and upload
       run: |
-        ssh -o StrictHostKeyChecking=no -i /root/.ssh/id_rsa ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "find /home/antmedia.io/public_html/docs/ -type f -not -name "*.tar" -not -path "/home/antmedia.io/public_html/docs/.ssh/*" -exec rm {} \;" 
-        ssh -o StrictHostKeyChecking=no -i /root/.ssh/id_rsa ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "find /home/antmedia.io/public_html/docs/ -type d -empty -not -path "/home/antmedia.io/public_html/docs/.ssh*" -delete"
+        ssh -o StrictHostKeyChecking=no -i /root/.ssh/id_rsa ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "find /home/docs.antmedia.io/public_html/ -type f -not -name "*.tar" -not -path "/home/docs.antmedia.io/public_html/.ssh/*" -exec rm {} \;" 
+        ssh -o StrictHostKeyChecking=no -i /root/.ssh/id_rsa ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "find /home/docs.antmedia.io/public_html/ -type d -empty -not -path "/home/docs.antmedia.io/public_html/.ssh*" -delete"
         scp -o StrictHostKeyChecking=no -i /root/.ssh/id_rsa -r docs.tar ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}":"
         ssh -o StrictHostKeyChecking=no -i /root/.ssh/id_rsa ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "tar -zxvf docs.tar && rm -rf docs.tar"
 

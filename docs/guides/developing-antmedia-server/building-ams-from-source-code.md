@@ -12,7 +12,7 @@ sidebar_position: 12
 A couple of common repos should be cloned and built with Maven.
 
 *   Go to a directory where you will clone repos
-*   Clone and build ant-media-server-parent
+*   Clone and build `ant-media-server-parent`
     
     ```bash
     $ git clone https://github.com/ant-media/ant-media-server-parent.git
@@ -53,7 +53,7 @@ A couple of common repos should be cloned and built with Maven.
         
 ### Building Enterprise Edition
 
-*   Clone, build Ant-Media-Server
+*   Clone and build Ant-Media-Server
     ```bash   
     $ git clone https://github.com/ant-media/Ant-Media-Server.git
     $ cd Ant-Media-Server
@@ -96,4 +96,6 @@ A couple of common repos should be cloned and built with Maven.
         $ ./repackage_enterprise.sh
         ```
 
-If everything goes well, a new packaged Ant Media Server (ant-media-server-x.x.x.zip) file will be created in the Ant-Media-Server/target directory.
+## Congratulations!
+
+If all steps are completed successfully, a new packaged Ant Media Server (ant-media-server-x.x.x.zip) will be available in the `Ant-Media-Server/target` directory. You can now deploy, test, or contribute to the server, explore the source code, and extend its functionality. Your development environment is ready, and you’re all set to dive into AMS customization and feature enhancements!

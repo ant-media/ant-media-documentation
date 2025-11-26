@@ -5,13 +5,13 @@ keywords: [Push Notification Management Tutorial, Push Notification Management, 
 sidebar_position: 5
 ---
 
-# Create Required Classes:
+# Step 5: Create Required Classes
 
-Create the following classes in your Android project:
+In this step, we will implement the classes needed for handling push notifications, call events, and WebRTC interactions.
 
 ## Ant Media Firebase Messaging Service
 
-Create AntMediaFirebaseMessagingService to handle incoming messages and registration token updates using FirebaseMessagingService:
+This service extends `FirebaseMessagingService` and is responsible for handling incoming push notifications and updates to the FCM token.
 
 ```java
 public class AntMediaFirebaseMessagingService extends FirebaseMessagingService {
@@ -54,7 +54,7 @@ public class AntMediaFirebaseMessagingService extends FirebaseMessagingService {
 
 ## Accept Call Receiver
 
-The AcceptCallReceiver class extends BroadcastReceiver and is responsible for handling the user’s action when they accept an incoming call from the notification. When the “Accept” button is tapped on the notification, this receiver is triggered to manage the acceptance of the call and transition the user to the appropriate in-call activity.
+Handles the "Accept" button action from the incoming call notification.
 
 ```java
 public class AcceptCallReceiver extends BroadcastReceiver {
@@ -83,7 +83,7 @@ public class AcceptCallReceiver extends BroadcastReceiver {
 
 ## Decline Call Receiver
 
-The DeclineCallReceiver class extends BroadcastReceiver and is responsible for managing the user’s action when they choose to decline an incoming call from the notification. This class listens for the broadcast triggered by the “Decline” button in the notification and performs the necessary operations to handle the declined call.
+Handles the "Decline" button action from the incoming call notification.
 
 ```java
 public class DeclineCallReceiver extends BroadcastReceiver {
@@ -103,7 +103,7 @@ public class DeclineCallReceiver extends BroadcastReceiver {
 
 ## Notification Helper
 
-The NotificationHelper class is a utility designed to display and manage incoming call notifications in a WebRTC-based application. It leverages the Android Notification API to create a highly interactive and user-friendly call notification with actions like accepting or declining the call.
+Utility class for managing call notifications with Accept and Decline actions.
 
 ```java
 
@@ -163,7 +163,7 @@ public class NotificationHelper {
 
 ## Call Notification Activity
 
-The CallNotificationActivity class demonstrates how to integrate WebRTC functionality with push notifications using Firebase Cloud Messaging (FCM). It manages WebRTC calls while ensuring that both the caller and receiver are notified about call events through push notifications. The use of permissions for Android Tiramisu (API level 33) ensures compatibility with newer Android versions, making the application ready for broader device support.
+Manages push notifications with WebRTC, ensuring compatibility with modern Android versions (API level 33+).
 
 ```java
 public class CallNotificationActivity extends ComponentActivity {
@@ -287,7 +287,7 @@ public class CallNotificationActivity extends ComponentActivity {
 
 ## Peer For Notification Activity
 
-The PeerForNotificationActivity class handles both video streaming and peer-to-peer communication via WebRTC. It also demonstrates how to manage real-time notifications using data channels, providing a complete solution for WebRTC applications with user interaction.
+Handles WebRTC peer-to-peer calls and messaging via data channels.
 
 ```java
 public class PeerForNotificationActivity extends TestableActivity {
@@ -382,3 +382,6 @@ public void showSendDataChannelMessageDialog(View view) {
     }
 }
 ```
+## Congratulations!
+
+You’ve now created all the core classes required to handle push notifications, call events, and WebRTC interactions in your Android app. With these components in place, your app is fully capable of managing incoming calls, interactive notifications, and peer-to-peer communication, giving users a complete real-time communication experience.
