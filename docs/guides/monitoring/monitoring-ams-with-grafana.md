@@ -50,9 +50,17 @@ If you would like automatic installation instead of dealing with the steps above
 
 **Usage:**
 
-```sh
-wget https://raw.githubusercontent.com/ant-media/Scripts/master/install-monitoring-tools.sh && chmod +x install-monitoring-tools.sh
-```
+- Download the Installation Script
+
+  ```bash
+  wget https://raw.githubusercontent.com/ant-media/Scripts/master/install-monitoring-tools.sh && chmod +x install-monitoring-tools.sh
+  ```
+  
+- Run the Installation Script
+
+  ```bash
+  sudo ./install-monitoring-tools.sh
+  ```
 
 After the installation is completed successfully, log in to the Web panel `http://your_ip_address:3000/` through your web browser. The default username and password is `admin/admin`.
 
@@ -61,19 +69,20 @@ After the installation is completed successfully, log in to the Web panel `http:
 Kafka is useful for building real-time streaming data pipelines to get data between the systems or applications.
 
 1. Install Java because Apache Kafka requires Java.
-```sh
+   
+```bash
 apt-get update && apt-get install openjdk-8-jdk -y
 ```
 
 2. Download Apache Kafka and extract the archive file:
-```sh
+```bash
 wget https://archive.apache.org/dist/kafka/2.2.0/kafka_2.12-2.2.0.tgz
 tar -zxvf kafka_2.12-2.2.0.tgz
 sudo mv kafka_2.12-2.2.0 /opt/kafka
 ```
 
 3. Edit **server.properties**:
-```sh
+```bash
 vim /opt/kafka/config/server.properties
 ```
 Add:
@@ -82,14 +91,14 @@ listeners=PLAINTEXT://your_server_ip:9092
 ```
 
 4. Start Apache Kafka:
-```sh
+```bash
 sudo /opt/kafka/bin/zookeeper-server-start.sh /opt/kafka/config/zookeeper.properties &
 sudo /opt/kafka/bin/kafka-server-start.sh /opt/kafka/config/server.properties &
 ```
 First, ZooKeeper is started because Kafka needs ZooKeeper, then Kafka.
 
 5. Check if it's working:
-```sh
+```bash
 netstat -tpln | egrep "9092|2181"
 ```
 If the ports (`9092` and `2181`) are in listening mode, it’s working.
@@ -99,7 +108,7 @@ If the ports (`9092` and `2181`) are in listening mode, it’s working.
 Running Apache Kafka as a `systemd` service lets us manage Kafka services with `systemctl`.
 
 - Create a unit file for Apache Kafka:
-```sh
+```bash
 vim /lib/systemd/system/kafka.service
 ```
 
@@ -121,7 +130,7 @@ WantedBy=multi-user.target
 ```
 
 - Create a unit file for Zookeeper:
-```sh
+```bash
 vim /lib/systemd/system/kafka-zookeeper.service
 ```
 
@@ -143,13 +152,13 @@ WantedBy=multi-user.target
 ```
 
 - Enable and reload systemd daemon:
-```sh
+```bash
 systemctl enable kafka-zookeeper.service
 systemctl enable kafka.service
 ```
 
 - Start services:
-```sh
+```bash
 systemctl start kafka-zookeeper.service
 systemctl start kafka.service
 ```
@@ -157,7 +166,7 @@ systemctl start kafka.service
 ### Kafka settings for Ant Media Server
 
 Edit the Kafka broker settings in AMS config:
-```sh
+```bash
 vim /usr/local/antmedia/conf/red5.properties
 ```
 
@@ -171,12 +180,12 @@ server.kafka_brokers=192.168.1.230:9092
 ```
 
 Restart Ant Media Server:
-```sh
+```bash
 service antmedia restart
 ```
 
 Check if it’s working:
-```sh
+```bash
 /opt/kafka/bin/kafka-console-consumer.sh --bootstrap-server 192.168.1.230:9092 --topic ams-instance-stats --from-beginning
 ```
 
@@ -188,12 +197,12 @@ Output:
 ### Some Useful Apache Kafka commands
 
 - List all topics:
-```sh
+```bash
 /opt/kafka/bin/kafka-topics.sh --list --bootstrap-server your_kafka_server:9092
 ```
 
 - Monitor messages for a specific topic:
-```sh
+```bash
 /opt/kafka/bin/kafka-console-consumer.sh --bootstrap-server 192.168.1.230:9092 --topic ams-instance-stats --from-beginning
 ```
 
@@ -202,19 +211,19 @@ Output:
 ### Install Elasticsearch
 
 1. Import GPG key and Repo:
-```sh
+```bash
 wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
 sudo apt-get install apt-transport-https
 echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list
 ```
 
 2. Update package lists and install:
-```sh
+```bash
 sudo apt-get update && sudo apt-get install elasticsearch
 ```
 
 3. Enable and start Elasticsearch service:
-```sh
+```bash
 sudo systemctl enable elasticsearch.service
 sudo systemctl start elasticsearch.service
 ```
@@ -222,17 +231,17 @@ sudo systemctl start elasticsearch.service
 ### Install Logstash
 
 1. Install Logstash:
-```sh
+```bash
 sudo apt-get update && sudo apt-get install logstash
 ```
 
 2. Enable Logstash:
-```sh
+```bash
 sudo systemctl enable logstash.service
 ```
 
 3. Configure Logstash:
-```sh
+```bash
 vim /etc/logstash/conf.d/logstash.conf
 ```
 
@@ -261,19 +270,19 @@ output {
 ```
 
 4. Restart Logstash:
-```sh
+```bash
 sudo systemctl restart logstash
 ```
 
 #### Test Elasticsearch and Logstash
-```sh
+```bash
 curl -XGET 'localhost:9200/_cat/indices?v&pretty'
 ```
 
 ## Install Grafana
 
 1. Install Grafana:
-```sh
+```bash
 sudo apt-get install -y software-properties-common wget apt-transport-https
 wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add -
 sudo add-apt-repository "deb https://packages.grafana.com/oss/deb stable main"
@@ -281,7 +290,7 @@ sudo apt-get update && sudo apt-get install grafana
 ```
 
 2. Enable and start Grafana:
-```sh
+```bash
 sudo systemctl enable grafana-server
 sudo systemctl start grafana-server
 ```
