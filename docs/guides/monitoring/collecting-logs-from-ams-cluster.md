@@ -14,73 +14,91 @@ The following example is for Ubuntu with a 4Gb RAM (minimum), however the same s
 
 **Test environment:**
 
-    Graylog Server: 192.168.1.250
-    Ant Media Server 1: 192.168.1.251
-    Ant Media Server 2: 192.168.1.252
+Graylog Server: 192.168.1.250
+Ant Media Server 1: 192.168.1.251
+Ant Media Server 2: 192.168.1.252
 
 #### Prerequisites
 
 - In order to run Elasticsearch, you must install Java. Run the following commands to install.
-```sh
-    sudo apt-get update
-    sudo apt-get install apt-transport-https openjdk-11-jre openjdk-11-jre-headless uuid-runtime pwgen
-``
+  
+  ```bash
+  sudo apt-get update
+  sudo apt-get install apt-transport-https openjdk-11-jre openjdk-11-jre-headless uuid-runtime pwgen
+  ```
+  
 ### Step 1: Install MongoDB
 
 - MongoDB stores the configurations and meta information. Install MongoDB using the following commands.
-```sh
-    sudo apt-get install gnupg
-    wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
-    echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu `lsb_release -cs`/mongodb-org/4.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
-    sudo apt-get update && sudo apt-get install -y mongodb-org
-```
+
+  ```bash
+  sudo apt-get install gnupg
+  wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
+  echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu `lsb_release -cs`/mongodb-org/4.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
+  sudo apt-get update && sudo apt-get install -y mongodb-org
+  ```
+  
 - Enable and restart MongoDB service by running the commands below.
-```sh
-    sudo systemctl enable mongod.service & sudo systemctl restart mongod.service
-```
+
+  ```bash
+  sudo systemctl enable mongod.service & sudo systemctl restart mongod.service
+  ```
+
 - Make sure the service is running:
-```sh
-    sudo systemctl status mongod.service
-```
+
+  ```bash
+  sudo systemctl status mongod.service
+  ```
 
 ### Step 2: Install Elasticsearch
 
 Graylog can be used with Elasticsearch 7.x. Elasticsearch acts as a search server, requiring Graylog to work.
 
 Install Elasticsearch using the following commands.
-```sh
-    wget -O - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add
-    echo "deb https://artifacts.elastic.co/packages/oss-7.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list
-    sudo apt-get update && sudo apt-get install elasticsearch-oss
+
+```bash
+wget -O - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add
+echo "deb https://artifacts.elastic.co/packages/oss-7.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list
+sudo apt-get update && sudo apt-get install elasticsearch-oss
 ```
 Once the installation of Elasticsearch 7.x is complete, set the cluster name for Graylog.
 
 Edit the following file:
-```sh
-    vim /etc/elasticsearch/elasticsearch.yml
+
+```bash
+vim /etc/elasticsearch/elasticsearch.yml
 ```
+
 and then add the 2 lines below.
+
 ```echo
-    cluster.name: graylog
-    action.auto_create_index: false
+cluster.name: graylog
+action.auto_create_index: false
 ```
+
 Save the file and exit.
 
 Enable and restart Elasticsearch service by running the commands below:
-```sh
-    sudo systemctl enable elasticsearch.service
-    sudo systemctl restart elasticsearch.service
+
+```bash
+sudo systemctl enable elasticsearch.service
+sudo systemctl restart elasticsearch.service
 ```
+
 Make sure the service is running. To check the status of Elasticsearch, run the command below:
-```sh
-    sudo systemctl status elasticsearch.service
+
+```bash
+sudo systemctl status elasticsearch.service
 ```
+
 Make sure everything is correct by running the following command:
-```sh
-    curl -X GET http://localhost:9200
+
+```bash
+curl -X GET http://localhost:9200
 ```
 
 Output:
+
 ```echo
     root@graylog:~# curl -X GET http://localhost:9200
     {
@@ -101,7 +119,9 @@ Output:
       "tagline" : "You Know, for Search"
     }
 ```
+
 Make sure the output status is green.
+
 ```echo
     curl -XGET 'http://localhost:9200/_cluster/health?pretty=true'
 
@@ -123,78 +143,100 @@ Make sure the output status is green.
       "active_shards_percent_as_number" : 100.0
     }
 ```
+
 ### Step 3: Install Graylog
 
 Graylog is a log parser. It collects logs from various inputs. Now that we have installed MongoDB and Elasticsearch, it is time to install Graylog.
 
 Install Graylog using the following commands:
-```sh
-    wget https://packages.graylog2.org/repo/packages/graylog-4.3-repository_latest.deb
-    sudo dpkg -i graylog-4.3-repository_latest.deb
-    sudo apt-get update && sudo apt-get install graylog-server -y
+
+```bash
+wget https://packages.graylog2.org/repo/packages/graylog-4.3-repository_latest.deb
+sudo dpkg -i graylog-4.3-repository_latest.deb
+sudo apt-get update && sudo apt-get install graylog-server -y
 ```
 To create your **root\_password\_sha2** run the following command. You will need this password to login to the Graylog web interface.
-```sh
-    echo -n "Enter Password: " && head -1 `</dev/stdin | tr -d '\n' | sha256sum | cut -d" " -f1
+
+```bash
+echo -n "Enter Password: " && head -1 `</dev/stdin | tr -d '\n' | sha256sum | cut -d" " -f1
 ```
+
 Output: ```8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92```
 
 You will need to generate a secret to secure the user passwords. To generate the password\_secret, you can use the pwgen tool to do.
-```sh
-    pwgen -N 1 -s 96
+
+```bash
+pwgen -N 1 -s 96
 ```
+
 Output: ```jyOQ188lAq1ssEMvCndsj2ImEOuWkC4v3aL4AQg9Dj4wvavkk3BAkSzMXFyH8aN8GiMoIJl2xmT4T5aGwS1r06Cz38SMsgDK```
 
 Edit the **/etc/graylog/server/server.conf** file then add **root\_password\_sha2** and **password\_secret** outputs.
+
 ```
-    password_secret = jyOQ188lAq1ssEMvCndsj2ImEOuWkC4v3aL4AQg9Dj4wvavkk3BAkSzMXFyH8aN8GiMoIJl2xmT4T5aGwS1r06Cz38SMsgDK
-    root_password_sha2 = 8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92
+password_secret = jyOQ188lAq1ssEMvCndsj2ImEOuWkC4v3aL4AQg9Dj4wvavkk3BAkSzMXFyH8aN8GiMoIJl2xmT4T5aGwS1r06Cz38SMsgDK
+root_password_sha2 = 8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92
 ```
+
 If you don't want to use reverse proxy with SSL termination, uncomment the following line then change according to your server ip address.
+
 ```
-    http_bind_address = 127.0.0.1:9000`
+http_bind_address = 127.0.0.1:9000`
 ```
 to
 ```
-    http_bind_address = your_server_public_ip:9000
+http_bind_address = your_server_public_ip:9000
 ```
->` If you want to use the reverse proxy with SSL termination, please go to [this step](/v1/docs/getting-started-with-ant-media-server).
+
+> If you want to use the reverse proxy with SSL termination, please go to [this step](/v1/docs/getting-started-with-ant-media-server).
 
 Save the file and exit.
 
 Enable and restart Graylog Server service by running the commands below.
-```sh
-    sudo systemctl enable graylog-server.service
-    sudo systemctl restart graylog-server.service
+
+```bash
+sudo systemctl enable graylog-server.service
+sudo systemctl restart graylog-server.service
 ```
- Make sure the service is running.
-```sh
-    sudo systemctl status graylog-server.service
+
+Make sure the service is running.
+
+```bash
+sudo systemctl status graylog-server.service
 ```
+
 #### Optional: Configuring Nginx reverse proxy with SSL termination
 
 Run the following commands to install Nginx and certbot:
-```sh
-    sudo apt install curl ca-certificates lsb-release -y
-    echo "deb http://nginx.org/packages/`lsb_release -d | awk '{print $2}' | tr '[:upper:]' '[:lower:]'` `lsb_release -cs` nginx" \
-        | sudo tee /etc/apt/sources.list.d/nginx.list
-    curl -fsSL https://nginx.org/keys/nginx_signing.key | sudo apt-key add -
-    sudo apt-get update 
-    sudo apt-get install nginx certbot python-certbot-nginx -y
+
+```bash
+sudo apt install curl ca-certificates lsb-release -y
+echo "deb http://nginx.org/packages/`lsb_release -d | awk '{print $2}' | tr '[:upper:]' '[:lower:]'` `lsb_release -cs` nginx" | sudo tee /etc/apt/sources.list.d/nginx.list
+curl -fsSL https://nginx.org/keys/nginx_signing.key | sudo apt-key add -
+sudo apt-get update 
+sudo apt-get install nginx certbot python-certbot-nginx -y
 ```
- Run the following commands to create a certificate:
-```sh
-    certbot --nginx -d yourdomain.com -d www.yourdomain.com
+
+Run the following commands to create a certificate:
+
+```bash
+certbot --nginx -d yourdomain.com -d www.yourdomain.com
 ```
+
 Edit crontab file crontab -e add below line to renew certificate each 80 days:
-```sh
-    0 0 */80 * * root certbot -q renew --nginx
+
+```bash
+0 0 */80 * * root certbot -q renew --nginx
 ```
+
 Backup default Nginx configuration.
-```sh
-    mv /etc/nginx/conf.d/default.conf{,_bck}
+
+```bash
+mv /etc/nginx/conf.d/default.conf{,_bck}
 ```
+
 Create a new file called **graylog.conf** and edit and save the following lines according to you.
+
 ```echo
     vim /etc/nginx/conf.d/graylog.conf
 
@@ -220,27 +262,37 @@ Create a new file called **graylog.conf** and edit and save the following lines 
                 }
     }
 ```
+
 Save and exit the file then restart nginx service as follows:
-```sh
-    systemctl restart nginx
+
+```bash
+systemctl restart nginx
 ```
+
 Now you can reach to Graylog server as follows.
+
+```html
+https://yourdomain.com
 ```
-    https://yourdomain.com
-```
+
 ### Step 4: Access Graylog web interface
 
 Access Graylog web interface using its IP Address and port 9000
+
+```html
+http://serverip_or_hostname:9000
 ```
-    http://serverip_or_hostname:9000
-```
+
 or
+
+```html
+https://yourdomain.com
 ```
-    https://yourdomain.com
-```
+
 ### Step 5: AMS log settings for Graylog
 
 Login to your servers where Ant Media is installed with ssh and create **/etc/rsyslog.d/25-antmedia.conf** file then add the below lines:
+
 ```echo
     $ModLoad imfile
     $InputFileName /usr/local/antmedia/log/ant-media-server.log
@@ -249,10 +301,13 @@ Login to your servers where Ant Media is installed with ssh and create **/etc/rs
     $InputRunFileMonitor
     *.* @192.168.1.250:5144;RSYSLOG_SyslogProtocol23Format
 ```
+
 Save and exit the file then restart rsyslog service.
-```sh
-    sytemctl restart rsyslog
+
+```bash
+sytemctl restart rsyslog
 ```
+
 ### Step 6: Configuring Graylog
 
 Open the dashboard and log in.
