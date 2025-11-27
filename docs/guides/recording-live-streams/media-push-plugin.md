@@ -107,9 +107,9 @@ This command will initiate the broadcast of the specified URL and simultaneously
 Please check out [**this blog post**](https://antmedia.io/conference-call-recording/) to learn how to use Media Push to record the conference rooms.
 :::
 
-### Media Push Quick Demo
+## Media Push Quick Demo
 
-<iframe width="560" height="315" src="https://youtu.be/gyog1t9cQNs?si=7zJRaock6H79yvdK" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/gyog1t9cQNs?si=uiXqrbpsn81pjzrW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ### Add Chrome Switches
 
