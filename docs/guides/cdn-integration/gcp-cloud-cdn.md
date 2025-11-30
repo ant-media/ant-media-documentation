@@ -28,23 +28,45 @@ Before beginning, make sure the following services are enabled in your Google Cl
 Ant Media Server Enterprise Edition is available on Google Cloud Marketplace.
 
 1. Open [Google Cloud Marketplace](https://console.cloud.google.com/marketplace) and locate **Ant Media Server Enterprise Edition**.
+
+![ams-gcp-marketplace](@site/static/img/cdn-integration/ams-gcp-marketplace.webp)
+
 2. Click **Launch** to start the installation.
+
+![ams-gcp-launch](@site/static/img/cdn-integration/ams-gcp-launch.webp)
+
 3. After deployment, note the **External IP address** of the instance. This will be required in later steps.
+
+![ams-gcp-instance](@site/static/img/cdn-integration/ams-gcp-instance.webp)
+
 
 ## Configure Google Cloud CDN
 
 After launching Ant Media Server on Google Cloud, configure Cloud CDN:
 
 1. Navigate to the **Cloud CDN** service and select **Add Origin**.
+
+![gcp-cloud-cdn](@site/static/img/cdn-integration/gcp-cloud-cdn.webp)
+
 2. Choose **Custom Origin** and enter the **External IP address** of the Ant Media Server Enterprise instance with port **5080**. Provide an origin name and continue.
+
+![cloud-cdn-origin-configuration](@site/static/img/cdn-integration/cloud-cdn-origin-configuration.webp)
+
 3. Select **Create new load balancer**, enter a name for it, and continue.
+
+![cloud-cdn-load-balancer](@site/static/img/cdn-integration/cloud-cdn-load-balancer.webp)
+
 4. Configure **TTL settings** as needed. Leave other settings at default and complete the setup.
+
+![cloud-cdn-cache-configuration](@site/static/img/cdn-integration/cloud-cdn-cache-configuration.webp)
+
 
 ## Publish Live Stream with Ant Media Server
 
 Once the Cloud CDN is configured, you can broadcast a live stream with Ant Media Server:
 
 1. Follow the [Publish Live Stream](https://antmedia.io/docs/category/publish-live-stream/) guide to broadcast. For this example, publish an RTMP stream using [OBS](https://antmedia.io/docs/guides/publish-live-stream/rtmp/publish-with-obs/).
+
 2. Create an HLS playback URL using the Cloud CDN load balancer IP address:
 
 ```html
