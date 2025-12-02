@@ -91,7 +91,7 @@ Check out the [recording documentation](https://antmedia.io/docs/category/record
 This [Rest API](https://antmedia.io/rest/#/default/createBroadcast) can be used to create the live stream.
 
 ```bash
-curl -X POST -H "Content-Type: application/json" "https://IP-address-or-domain:Port/live/rest/v2/broadcasts/create?autoStart=false" -d '{
+curl -X POST -H "Content-Type: application/json" "https://IP-address-or-domain:5443/App-Name/rest/v2/broadcasts/create?autoStart=false" -d '{
 "type":"ipCamera","name":"test","streamId":"test","ipAddr":  "127.0.0.1:8080","username": "camera-username","password":"camera-password"}'
 ```
 

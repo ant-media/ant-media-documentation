@@ -8,7 +8,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 const config = {
   title: 'Ant Media Documentation',
   tagline: 'Ant Media Documentation',
-  url: 'https://antmedia.io',
+  url: 'https://docs.antmedia.io',
   baseUrl: '/',
   trailingSlash: true,
   onBrokenLinks: 'warn', // replace with 'throw' to stop building if broken links
@@ -41,13 +41,17 @@ const config = {
 
 scripts: [
     {
-      src: "/docs/zfEmbed.js", // Ensure this loads first
+      src: "/zfEmbed.js", // Ensure this loads first
       async: false, // Load it synchronously	    
     },
     {
-      src: "/docs/zonka.js", // Load after zfEmbed.js
+      src: "/zonka.js", // Load after zfEmbed.js
       async: true,
       defer: true,
+    },
+    {
+      src: "//code.tidio.co/rk0jjyc0mwbxjgimchdsnl4cwitetyvi.js",
+      async: true,
     },
 ],
 

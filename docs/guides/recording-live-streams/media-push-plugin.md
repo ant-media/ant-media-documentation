@@ -107,6 +107,10 @@ This command will initiate the broadcast of the specified URL and simultaneously
 Please check out [**this blog post**](https://antmedia.io/conference-call-recording/) to learn how to use Media Push to record the conference rooms.
 :::
 
+## Media Push Quick Demo
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/gyog1t9cQNs?si=uiXqrbpsn81pjzrW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 ### Add Chrome Switches
 
 To incorporate extra Chrome switches into your REST API request for broadcasting a web page with the Ant Media Server, specify them in the  `extraChromeSwitches`  field of your JSON payload. These should be listed in a comma-separated format. Here’s a refined version of your command that includes extra Chrome switches:

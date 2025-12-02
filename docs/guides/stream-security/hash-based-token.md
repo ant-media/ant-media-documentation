@@ -103,36 +103,36 @@ ws://{ant-media-server}:5080/live/websocket
 
 If using the embedded (play.html) player URL:
 ```
-http(s)://IP-address-or-domain:port/live/play.html?id=streams/stream_id.mp4&playOrder=vod&token=tokenId
+https://IP-address-or-domain:5443/Application_Name/play.html?id=streams/stream_id.mp4&playOrder=vod&token=tokenId
 ```
 If you directly want to use mp4 URL then it will be as follows:
 ```
-http(s)://IP-address-or-domain:port/live/streams/stream_id.mp4?token=tokenId
+https://IP-address-or-domain:5443/Application_Name/streams/stream_id.mp4?token=tokenId
 ```
 **HLS:**
 
 If using the embedded (play.html) player URL:
 ```
-http(s)://IP-address-or-domain:port/live/play.html?id=stream_id&playOrder=hls&token=tokenId
+https://IP-address-or-domain:5443/Application_Name/play.html?id=stream_id&playOrder=hls&token=tokenId
 ```
 
 If you directly want to use m3u8 URL then it will be as follows:
 
 ```
-http(s)://IP-address-or-domain:port/live/streams/stream_id.m3u8?token=tokenId
+https://IP-address-or-domain:5443/Application_Name/streams/stream_id.m3u8?token=tokenId
 ```
 
 **CMAF (DASH):**
 
 If using the embedded (play.html) player URL:
 ```
-http(s)://IP-address-or-domain:port/live/play.html?id=stream_id&playOrder=dash&token=tokenId
+https://IP-address-or-domain:5443/Application_Name/play.html?id=stream_id&playOrder=dash&token=tokenId
 ```
 
 If you directly want to use mpd URL then it will be as follows:
 
 ```
-http(s)://ant-media-server:port/live/streams/streamId/streamId.mpd?token=tokenId
+https://ant-media-server:5443/Application_Name/streams/streamId/streamId.mpd?token=tokenId
 ```
 
 **WebRTC:**

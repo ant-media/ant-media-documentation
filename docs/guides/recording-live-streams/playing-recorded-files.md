@@ -15,13 +15,13 @@ For example, if a live stream with streamId ```stream1``` is published to the ``
 
  * In both the Community and Enterprise Editions of AMS, the default MP4 file can be accessed at the following URL:
  
-    `http(s)://domain-or-IP:Port/live/streams/Stream_Id.mp4`
+   * `https://domain-or-IP:5443/LiveApp/streams/Stream_Id.mp4`
 
  * In Enterprise Edition, if Adaptive streaming is enabled in the application, then MP4 recording for different bitrates will be generated. Assuming you have 480p and 240p resolution enabled in adaptive streaming settings, you will have two MP4 files with the following format:
 
-    `http(s)://domain-or-IP:Port/live/streams/stream1_240p500kbps.mp4`
+    *  `https://domain-or-IP:5443/LiveApp/streams/stream1_240p500kbps.mp4`
 
-    `http(s)://domain-or-IP:Port/live/streams/stream1_480p1000kbps.mp4`
+    *   ```https://domain-or-IP:5443/LiveApp/streams/stream1_480p1000kbps.mp4```
 
 ## Play VOD files with WEBM
 
@@ -33,9 +33,9 @@ Assume that there is a live stream with streamId `stream1` publishing to the `li
 
  * In Enterprise Edition, if adaptive streaming is enabled in the application, then WEBM recording for different bitrates will be generated. Assuming you have 480p and 240p resolution enabled in adaptive streaming settings, you will have two WEBM files with the following format:
 
-   `http(s)://domain-or-IP:Port/live/streams/stream1_240p500kbps.webm`
+    *  `https://domain-or-IP:5443/LiveApp/streams/stream1_240p500kbps.webm`
 
-   `http(s)://domain-or-IP:Port/live/streams/stream1_480p1000kbps.webm`
+    *   ```https://domain-or-IP:5443/LiveApp/streams/stream1_480p1000kbps.webm```
 
 ## Play VoD streams with an embedded player
 
@@ -43,20 +43,8 @@ There is embedded player (play.html) in both the Community and Enterprise Editio
 
 When the live stream is over, the recorded MP4 file with an embedded player can be viewed at the URL below.
 
-`http(s)://domain-or-IP:Port/live/play.html?name=streamId&playOrder=vod`
+`https://domain-or-IP:5443/LiveApp/play.html?name=streamId&playOrder=vod`
 
 If the VOD is uploaded, then below will be the URL.
 
-`http(s)://domain-or-IP:Port/live/play.html?name=vod-Id&playOrder=vod`
-
-<br /><br />
----
-
-<div align="center">
-<h2> Seamless Playback, Anytime 🎉 </h2>
-</div>
-
-You've successfully enabled recording for your live streams in MP4 and WEBM formats. Whether you're using the **embedded player** or accessing the files directly via **URL**, your recorded content is now **ready for on-demand viewing**. Enjoy seamless playback and enhanced user experience!
-
-**Keep streaming, keep recording, and keep sharing your moments with Ant Media Server!** 🎬
-
+`https://domain-or-IP:5443/LiveApp/play.html?name=vod-Id&playOrder=vod`

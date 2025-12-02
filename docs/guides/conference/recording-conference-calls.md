@@ -83,7 +83,7 @@ You do not need to explicitly open this sample page in the browser to merge the 
 The Media Push plugin can be called with a REST API to capture the sample page `multitrack-play.html` & stream it back to the Ant Media Server.
 
 ```js
-curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "http://localhost:5080/live/rest/v1/media-push/start"  -d '{"url": "http://localhost:5080/live/multitrack-play.html?id=room1", "width": 1280, "height": 720}'
+curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "https://server-url:5443/live/rest/v1/media-push/start"  -d '{"url": "https://server-url:5443/live/multitrack-play.html?id=room1", "width": 1280, "height": 720}'
 ```
 
 ![media-push-call](https://github.com/user-attachments/assets/423e232d-1c07-409d-98fb-5a590d42a21f)
@@ -101,7 +101,7 @@ curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json
 Now that we have the merged stream, we can make the API call to start recording the stream with MP4.
 
 ```js
-curl -X PUT -H "Content-Type: application/json" "https://localhost:5080/live/rest/v2/broadcasts/JQzivjSFdVTJ1738919890828/recording/true"
+curl -X PUT -H "Content-Type: application/json" "https://server-url:5443/live/rest/v2/broadcasts/JQzivjSFdVTJ1738919890828/recording/true"
 ```
 
 Alternatively, the recording can also be started from the web panel.
@@ -113,7 +113,7 @@ Alternatively, the recording can also be started from the web panel.
 - To stop the MP4 recording, again you can make the REST call.
 
   ```js
-  curl -X PUT -H "Content-Type: application/json" "https://localhost:5080/live/rest/v2/broadcasts/JQzivjSFdVTJ1738919890828/recording/false"
+  curl -X PUT -H "Content-Type: application/json" "https://server-url:5443/live/rest/v2/broadcasts/JQzivjSFdVTJ1738919890828/recording/false"
   ```
 
 - To record the broadcast in addition to streaming, you can include the recordType option in your REST API call. This option specifies the format in which the broadcast should be recorded. Here's how you can modify the previous start broadcast command to include recording:
@@ -130,7 +130,7 @@ Alternatively, the recording can also be started from the web panel.
 Once the conference ends, to stop the media push created broadcast on the Ant Media Server, you can call the REST method as outlined below.
 
 ```js
-curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "http://localhost:5080/live/rest/v1/media-push/stop/JQzivjSFdVTJ1738919890828"
+curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "https://server-url:5443/live/rest/v1/media-push/stop/JQzivjSFdVTJ1738919890828"
 ```
 
 - Make sure the streamId matches the one you obtained when initiating the broadcast.

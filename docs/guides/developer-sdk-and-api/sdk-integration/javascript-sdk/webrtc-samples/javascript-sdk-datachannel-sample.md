@@ -5,26 +5,30 @@ keywords: [JavaScript SDK User Guide, Ant Media Server Documentation, Ant Media 
 sidebar_position: 6
 ---
 
-Let's write a simple example for sending and receiving data channel messages with a live stream to Ant Media using the JavaScript SDK.
+The Ant Media JavaScript SDK allows you to not only publish and play WebRTC streams but also send and receive Data Channel messages in real time.
+
+This feature is useful for building chat systems, collaborative applications, or sending metadata alongside live video streams.
 
 ## WebRTC DataChannel Live Sample
 
-- Navigate to the DataChannel sample [here](https://codepen.io/USAMAWIZARD/embed/YPzEXaj?default-tab=html&editable=true) at Codepen.
+1. Navigate to the [DataChannel sample](https://codepen.io/USAMAWIZARD/embed/YPzEXaj?default-tab=html&editable=true) at Codepen.
 
-- Click on the Result button; it will show a small webpage where you can see the output.
+2. Click the Result button to view the demo webpage.
+
+3. Use the UI to publish your stream and test message sending.
 
 
-## Create DataChannel Sample For Deployment
+## Create DataChannel Sample for Deployment
 
-- Create a new file , name it `datachannel.html`
+1. Create a new file named datachannel.html.
 
-- make sure HTTP server is running in same directory
+2. Start a local HTTP server in the same directory:
 
-  ```
-  python3 -m http.server
-  ```
+```bash
+python3 -m http.server
+```
 
-- Copy the above code from the HTML and JS sections in the `datachannel.html` file as below:
+3. Copy the provided HTML/JavaScript code into `datachannel.html`.
 
 ```html
 <!DOCTYPE html>
@@ -88,28 +92,29 @@ document.getElementById("publish_stop").addEventListener("click",()=> {
 })
 ```
    
- Open the datachannel.html page in the browser `http://localhost:8000/datachannel.html`  (make sure python server is up and running)
+4. Open the page in your browser: `http://localhost:8000/datachannel.html` (make sure python server is up and running)
 
- - Accept microphone and camera usage permissions.
+5. Accept microphone and camera permissions.
 
- - Click the publish button.
+6. Click Start Publishing.
 
-To verify whether the stream is published successfully or not, open the web panel of your Ant Media Server and view the stream there. If it does not work, open the developer console on the HTML page and check for any errors.
+7. Send messages using the input field and Send Message button. Messages will appear in the chat area and be broadcast to all connected players.
 
- - You are now publishing your video streams to the server, Data Channel messages can be send with the send messages button , it will be received to all the player client for this stream.
+8. Open the Ant Media Server web panel or the sample player page: `http://ANT_MEDIA_SERVER_IP:5080/WebRTCAppEE/player.html` 
 
- - Navigate to http://ANT_MEDIA_SERVER_IP:5080/WebRTCAppEE/player.html 
+* Enter the same stream ID.
 
- - play with the same stream id
+* Start playing the stream.
 
- - once the stream is playing, then click on options.You will see options to send and receive messages here.
-
- - sending messages from publishing side should display the messages here.
+* Open the Options menu to send and receive messages.
 
 ## WebRTCAdaptor
 
-`WebRTCAdaptor` Class is responsible for handling WebSocket Messages and WebRTC Connections with the server.
-One `WebRTCAdaptor` can be used to publish one stream; multiple `WebRTCAdaptor` can be created to publish multiple streams to the server.
+The `WebRTCAdaptor` class is responsible for managing **WebSocket signaling**, **WebRTC connections**, and **Data Channel communication** with Ant Media Server.
+
+Each instance can publish one stream. You can create multiple adaptors for multiple simultaneous streams.
+
+Example initialization:
 
 ```
 var webRTCAdaptor = new WebRTCAdaptor(prams....)
@@ -119,69 +124,76 @@ The `WebRTCAdaptor` takes various parameters; all parameters are listed here.
 
 ### WebRTCAdaptor Parameters
 
-#### WebSocket URL
+#### `WebSocket URL`
 
-- `WebSocket URL` is the server URL of your Ant Media Server. Check out this page to install Ant Media Server, or for testing purposes, this URL can be used. 
+- The WebSocket URL connects to your Ant Media Server’s signaling service. 
 
   ```
   websocket_url
   ```
 
-- Web socket URL format.
+- Format:
 
-  ```
-  protocol://IP_ADDRESS:PORT/APPLICATION_NAME/websocket
-  ```
-
-    For example, `wss://test.antmedia.io:5443/live/websocket`
-
-- If HTTP,  `protocol = ws` or if HTTPS `protocol = wss`
-
-If Ant Media is running on HTTP, the websocket url should connect to the port `5080` instead of `5443`.
-
-Multiple applications can be created in Ant Media to which streams can be published; use the correct application name `WebSocket URL` to publish to that application.
-
-#### localVideoElement
-
+```bash
+protocol://IP_ADDRESS:PORT/APPLICATION_NAME/websocket
 ```
-localVideoElement
-```
+- Example:  `wss://test.antmedia.io:5443/live/websocket`
 
-This should point to the video element, which contains the video that will be streamed to the server.
+- Use ws:// for HTTP or wss:// for HTTPS.
 
-#### Callback
+- If running on HTTP, use port 5080 instead of 5443.
 
-```
-callback
-```
+- Ensure you use the correct application name to match your Ant Media deployment.
 
-Messages & notifications sent from the server will be received in this callback. This includes notifications like `publish_started`, `play_started`, `publish_timeout` , `data_received`, etc.
+#### `localVideoElement`
 
-```html
-  callback: (info, obj) => {
-    if (info == "data_received") {
-      var data = obj.data;
-      chat_area.append("\n" + obj.data);
-      }
+Points to the ```html<video>``` element containing the local stream that will be published.
+
+#### `Callback`
+
+Handles notifications and messages from the server, including:
+
+* `publish_started`
+
+* `publish_finished`
+
+* `play_started`
+
+* `data_received`
+
+Example handling data messages:
+
+```js
+callback: (info, obj) => {
+  if (info == "data_received") {
+    var data = obj.data;
+    chat_area.append("\n" + obj.data);
   }
+}
 ```
 
-#### WebRTC Adaptor
+### WebRTCAdaptor Methods
 
-- The `WebRTCAdaptor` publish function initiates a WebRTC connection with Ant Media Server and starts to publish the stream.
+* Publish a stream
 
-  ```
-  webRTCAdaptor.publish(streamid)
-  ```
+```js
+webRTCAdaptor.publish(streamid)
+```
 
-- Sends Data Channel Messages
+* Send Data Channel messages
 
-  ```
-  webRTCAdaptor.sendData(streamid,data)
-  ```
+```js
+webRTCAdaptor.sendData(streamid, data)
+```
 
-- Stops publishing WebRTC streams.
+* Stop publishing
 
-  ```
-  webRTCAdaptor.stop(streamid)
-  ```
+```js
+webRTCAdaptor.stop(streamid)
+```
+
+## Congratulations!
+
+Using the Data Channel feature of the Ant Media JavaScript SDK, you can send and receive messages in real time alongside your live WebRTC streams.
+
+This makes it possible to enrich live experiences with interactive features like chat, polls, reactions, or synchronized data feeds. Whether you’re building a live classroom, a gaming app, or a social streaming platform, Data Channels open the door to true interactivity with ultra-low latency. 

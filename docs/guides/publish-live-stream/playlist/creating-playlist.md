@@ -49,7 +49,7 @@ curl -X POST -F "file=@<YOUR-FILE-PATH>;type=video/*" https://AMS_URL:5443/live/
 Here is the curl sample:
 
 ```bash
-curl -X POST -F "file=@test.mp4;type=video/*" http://localhost:5080/live/rest/v2/vods/create?name=test.mp4
+curl -X POST -F "file=@test.mp4;type=video/*" https://AMS_URL:5443/WebRTCAppEE/rest/v2/vods/create?name=test.mp4
 ```
 
 The uploaded file will be located in `antmedia/webapps/live/streams` directory. The MP4 file name will be changed to a random VOD ID, which you can find in the VOD section of the web panel application page.
@@ -59,13 +59,13 @@ You can use the [Get VOD list](https://antmedia.io/rest/#/default/getVodList) re
  You can access the uploaded VOD file through the below URL format:
 
 ```
-http(s)://domain_or_IP:Port/live/streams/VOD-ID.mp4
+https://domain_or_IP:5443/AppName/streams/VOD-ID.mp4
 ```
 
 Example:
 
 ```
-http://localhost:5080/live/streams/722484094956241856650105.mp4
+https://AMS_URL:5443/WebRTCAppEE/streams/722484094956241856650105.mp4
 ```
 
 ## Creating the Playlist
@@ -90,7 +90,7 @@ If you have the VoD URL handy or are adding external VoDs, you can use this opti
 
 #### Get the VoD URL
 
-- The sample path of a VoD file uploaded to the Ant Media Server VoD section is like `http(s)://ams-server-url:Port/live/streams/vod_id.mp4`
+- The sample path of a VoD file uploaded to the Ant Media Server VoD section is like `http(s)://ams-server-url:5080(5443)/LiveApp/streams/vod_id.mp4`
 
 - To get the VOD URL, click on the hamburger icon, which is located on the right side of the screen, and then click `Copy VoD URL`
 
@@ -99,8 +99,8 @@ If you have the VoD URL handy or are adding external VoDs, you can use this opti
 - Now we have the VoDs accessible through the links below.
 
 ```
-http://localhost:5080/live/streams/044283659243035008593467.mp4
-http://localhost:5080/live/streams/127700726123231884567831.mp4
+https://AMS_URL:5443/LiveApp/streams/044283659243035008593467.mp4
+https://AMS_URL:5443/LiveApp/streams/127700726123231884567831.mp4
 ```
 
 - Add all the playlist items and then click `Create`.

@@ -55,7 +55,7 @@ First, log in to the Ant Media Server Management Panel.
 
 ### Usage
 
-* Visit `https://antmediaserver-domain/Application_Name`
+* Visit `https://antmediaserver-domain:5443/Application_Name`
 
 * Click the **Create Meeting** button
   ![](@site/static/img/conference/circle/circle-room-creation.png)

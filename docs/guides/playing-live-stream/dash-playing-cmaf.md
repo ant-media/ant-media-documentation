@@ -1,5 +1,5 @@
 ---
-title: Dash playing (CMAF) 
+title: CMAF (DASH) Playback
 description: Common Media Application Format (CMAF) is essentially a new format to reduce HTTP delivery latency, as it aims to reduce the cost, complexity, and latency of streaming.
 keywords: [Dash playing, Common Media Application Format, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 4
@@ -15,11 +15,11 @@ sidebar_position: 4
 
 ![](@site/static/img/126611-CMAF-Fig1-ORG.jpg)
 
-## Dash Play
+## DASH Playback
 
 Dash playback is turned off by default, so you must enable it before playing a stream over the Dash protocol.
 
-### Enable Dash & CMAF Streaming
+### Enable DASH & CMAF Streaming
 
 Dash playback can be enabled from the application settings.
 
@@ -28,50 +28,13 @@ Dash playback can be enabled from the application settings.
 
  ![Screenshot 2024-06-01 000744](https://github.com/ant-media/ant-media-documentation/assets/86982446/32c0cb27-ca3f-4629-93e1-eae51ebfe04b)
 
+### Play CMAF (DASH) with Embedded Player
 
-#### Enable Dash programmatically
-
-In Ant Media Server versions 2.4.3 and earlier, you need to enable DASH by editing the application's configuration file.
-
-1. Open the following file with your preferred editor.
-
-   ```bash
-   sudo nano /usr/local/antmedia/webapps/live/WEB-INF/red5-web.properties
-   ```
-
-2. Enable DASH by adding the following property:.
-
-   ```bash
-   settings.dashMuxingEnabled=true
-   ```
-
-- To enable LL-Dash, set the following:
-
-   ```bash
-   settings.dash.llEnabled=true
-   ```
-
-- To enable LL-HLS (experimental feature), you can set
-
-   ```bash
-   settings.dash.llHlsEnabled=true
-   ```
-
-3. Restart the Ant Media Server to apply the settings
-
-   ```bash
-   sudo service antmedia restart
-   ```
-
-For more information about application settings, please check [AMS application Configuration](https://antmedia.io/docs/guides/configuration-and-testing/ams-application-configuration/)
-
-### Playing Dash with Embedded Player
-
-You can use the embedded player `play.html` to play the streams with dash.
+You can use the embedded player `play.html` to play the streams with DASH.
 
 - Make sure that your stream is publishing on the server.
 
-- To play a stream with Dash, provide ```streamId``` as the id and ```dash``` as the playOrder parameter in the URL shown below.
+- To play a stream with DASH, provide `streamId` as the id and `dash` as the playOrder parameter in the URL shown below.
 
    ```
    https://AMS-domain-name:5443/live/play.html?id=test&playOrder=dash
@@ -81,25 +44,25 @@ You can use the embedded player `play.html` to play the streams with dash.
 
 ![image](https://github.com/ant-media/ant-media-documentation/assets/86982446/a6ec69fe-c71e-4bd8-82c5-2b1676458751)
 
-### Playing MPEG-Dash stream directly via MPD
+### Play MPEG-DASH stream directly via MPD
 
 Assume Dash muxing is enabled and a stream is published to the Ant Media Server.
 
-The default MPEG-Dash (.mpd) URL will be as follows:
+The default MPEG-DASH (.mpd) URL will be as follows:
 
 ```
 https://AMS-domain-name:5443/live/streams/streamId/streamId.mpd
 ```
   
 :::info
-If you play the **.mpd** file directly, the stream latency will be native to MPEG-Dash, which is about 15 seconds.
+If you play the **.mpd** file directly, the stream latency will be native to MPEG-DASH, which is about 15 seconds.
 :::
 
 ## More Details About Dash
 
 There are a few more options for CMAF and their default values. You can assume that the following values are in use if they are not specified in the properties file:
 
-- Duration of segments in mpd files.
+- Duration of segments in MPD files.
 
    ```js
    settings.dashSegDuration=6
@@ -130,6 +93,7 @@ There are a few more options for CMAF and their default values. You can assume t
   ```    
 
 
+:::info
 If you're using Dash streaming with ABR enabled, make sure the following property is enabled in your application's advanced settings:.
 
 ```js
@@ -138,15 +102,4 @@ If you're using Dash streaming with ABR enabled, make sure the following propert
 ```
 
 The value is false by default. Check [here](https://antmedia.io/javadoc/io/antmedia/AppSettings.html#forceAspectRatioInTranscoding) for more information on this property.
-
-<br /><br />
----
-
-<div align="center">
-<h2> The DASHing Playback 🎯 </h2>
-</div>
-
-Congratulations! You've successfully set up **DASH playback with CMAF on Ant Media Server.** Your viewers can now enjoy **low-latency streaming** experiences with **enhanced compatibility** across various devices.
-
-With DASH and CMAF, you've embraced a modern streaming protocol that balances **performance** and **scalability**. Your content is now delivered efficiently, ensuring a seamless viewing experience for your audience.
-
+:::

@@ -36,14 +36,14 @@ This feature is beneficial for bandwidth optimization, especially when continuou
 **Here is the curl sample:**
 
 ```bash
-curl --location --request PUT 'http(s)://AMS_DOMAIN:(Port)/live/rest/v2/broadcasts/streamId' --header 'Content-Type: application/json' --data '{"autoStartStopEnabled":true}'
+curl --location --request PUT 'https://AMS_DOMAIN:5443/AppName/rest/v2/broadcasts/streamId' --header 'Content-Type: application/json' --data '{"autoStartStopEnabled":true}'
 ```
 Replace AMS_DOMAIN, Port, and streamId with your server's domain, port, and the specific stream ID, respectively.
    
 - Open a new tab and start watching the live stream using the below URL.
 
    ```html
-   https://AMS_DOMAIN:Port/live/play.html?id=streamId&playOrder=webrtc
+   https://AMS_DOMAIN:5443/AppName/play.html?id=streamId&playOrder=webrtc
    ```
    Now the server will start fetching streams.
 
