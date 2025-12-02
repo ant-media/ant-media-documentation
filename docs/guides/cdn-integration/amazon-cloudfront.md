@@ -31,7 +31,7 @@ Before configuring CloudFront, ensure you have:
 1. Log in to your AWS account and open the Amazon CloudFront console.
 2. Click **Create Distribution**.
 
-  ![cloudFront-console](https://github.com/user-attachments/assets/d31380e5-fd0d-4776-96c4-f66be4e7212d)
+   ![cloudFront-console](https://github.com/user-attachments/assets/d31380e5-fd0d-4776-96c4-f66be4e7212d)
 
 4. Configure the origin:
 
@@ -40,6 +40,7 @@ Before configuring CloudFront, ensure you have:
    - **Origin domain**: Enter the domain name of your Ant Media Server instance.
    - **Protocol**: Choose HTTP (5080) or HTTPS (5443). If you select HTTPS, ensure [SSL is enabled](https://antmedia.io/docs/guides/installing-on-linux/setting-up-ssl/).
    - **Origin path**: Enter the name of your Ant Media Server [application](https://antmedia.io/docs/guides/developing-antmedia-server/create-new-application/) (e.g., `live`).
+   
 5. Configure the default cache behavior:
    - Set cache behavior settings and policies as needed.
 
@@ -67,9 +68,9 @@ Before configuring CloudFront, ensure you have:
      ![custom-error-response](https://github.com/user-attachments/assets/0d2641b8-3e0c-4f16-b722-f5c0307367ac)
 
 
-Once deployed, note your CloudFront domain name.
+3. Once deployed, note your CloudFront domain name.
 
-![cloudfront](https://github.com/user-attachments/assets/424dfb36-02ca-4e39-871a-979bb938ce0d)
+   ![cloudfront](https://github.com/user-attachments/assets/424dfb36-02ca-4e39-871a-979bb938ce0d)
 
 
 ## Publish a Live Stream with Ant Media Server
