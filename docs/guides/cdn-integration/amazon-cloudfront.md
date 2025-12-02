@@ -30,23 +30,47 @@ Before configuring CloudFront, ensure you have:
 
 1. Log in to your AWS account and open the Amazon CloudFront console.
 2. Click **Create Distribution**.
-3. Configure the origin:
+
+  ![cloudFront-console](https://github.com/user-attachments/assets/d31380e5-fd0d-4776-96c4-f66be4e7212d)
+
+4. Configure the origin:
+
+   ![origin](https://github.com/user-attachments/assets/4483bda9-207e-4dd9-824e-7f696376ebf6)
+
    - **Origin domain**: Enter the domain name of your Ant Media Server instance.
    - **Protocol**: Choose HTTP (5080) or HTTPS (5443). If you select HTTPS, ensure [SSL is enabled](https://antmedia.io/docs/guides/installing-on-linux/setting-up-ssl/).
    - **Origin path**: Enter the name of your Ant Media Server [application](https://antmedia.io/docs/guides/developing-antmedia-server/create-new-application/) (e.g., `live`).
-4. Configure the default cache behavior:
+5. Configure the default cache behavior:
    - Set cache behavior settings and policies as needed.
+
+     ![default-cache](https://github.com/user-attachments/assets/21018812-c11d-4920-a6e9-7682689b3068)
+
    - Attach a cache policy and origin request policy.
-5. Disable the Web Application Firewall (WAF) protection for this distribution if not required.
-6. Complete creation of the distribution and wait for it to deploy.
+
+     ![cache-policy](https://github.com/user-attachments/assets/dbbc3bc8-2b63-457a-abf4-1cc32b42f66d)
+
+6. Disable the Web Application Firewall (WAF) protection for this distribution if not required.
+
+   ![disable-waf](https://github.com/user-attachments/assets/a89e8863-27af-4630-b3ab-fed24c876393)
+
+7. Complete creation of the distribution and wait for it to deploy.
 
 ### Configuring Error Pages
 
 1. In the CloudFront console, open your distribution and go to the **Error Pages** tab.
+
+   ![error-pages](https://github.com/user-attachments/assets/533c17e0-4a72-4b1a-8f6b-43dd0d1ea402)
+
 2. Create a custom error response for **404: Not Found**.
    - Set **Error Caching Minimum TTL** to **3 seconds**.
 
+     ![custom-error-response](https://github.com/user-attachments/assets/0d2641b8-3e0c-4f16-b722-f5c0307367ac)
+
+
 Once deployed, note your CloudFront domain name.
+
+![cloudfront](https://github.com/user-attachments/assets/424dfb36-02ca-4e39-871a-979bb938ce0d)
+
 
 ## Publish a Live Stream with Ant Media Server
 
@@ -66,6 +90,9 @@ Example:
 http://d3m1pdd4lln4vj.cloudfront.net/play.html?id=stream01&playOrder=hls
 ```
 
+![cloudfront-play](https://github.com/user-attachments/assets/c48f610b-e974-4d48-8746-4aefed6944e2)
+
+
 ## Play the Live Stream with LL-HLS
 
 Use the following format for LL-HLS playback:
@@ -78,6 +105,8 @@ Example:
 ```html
 http://d3m1pdd4lln4vj.cloudfront.net/play.html?id=stream001&playOrder=ll-hls
 ```
+
+![ll-hls-play](https://github.com/user-attachments/assets/d6b637ea-b2cd-4e21-bfc3-632da88aaf1e)
 
 ---
 
