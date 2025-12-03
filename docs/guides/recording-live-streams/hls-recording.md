@@ -7,11 +7,11 @@ sidebar_position: 2
 
 # HLS Recording
 
-HLS streaming is a more cost-effective and secure method of streaming than video-on-demand assets. Furthermore, you can also record your live streams with HLS.
+HLS streaming is a more cost-effective and secure method of streaming than video-on-demand (VOD). Furthermore, you can also record your live streams with HLS.
 
 To enable HLS recording for your live streams and store all the HLS `m3u8 and ts` files, just log in to your AMS Web Panel.
 
-Navigate to `Applications` -> `live` -> `Setting` -> `Advanced`, and configure the setting below:
+Navigate to `Applications` -> `live` -> `Settings` -> `Advanced`, and configure the setting below:
 
 ![](@site/static/img/live-setting.png)
 
@@ -26,18 +26,17 @@ To store HLS files permanently after the stream is ended:
 ```js
 "deleteHLSFilesOnEnded":false
 ```
-    
-To prevent overwriting of old HLS files in case the same streamId is used again, use the `append_list` attribute in `hlsflags` property.
+To avoid overwriting old HLS files when reusing the same streamId, set the ```append_list``` attribute in the ```hlsflags``` property.   
 
-Imagine you've completed streaming with an ID `teststream` and your last generated TS file is `teststream000001013.ts.` Without adding `append_list` to the HLS flags, restarting the `teststream` will initiate TS file generation from 0, overwriting existing `.ts` files. 
+For example, if you streamed with ID ```teststream``` and the last generated file was ```teststream000001013.ts```, restarting the same stream without append_list would reset numbering from ```0``` and overwrite existing ```.ts``` files.
 
-However, by setting it to `append_list` the first generated .ts file will be named `teststream000001014.ts` ensuring that your .ts files remain intact without being overridden.
+When you set it to ```append_list```, the first generated .ts file will be named ```teststream000001014.ts```, ensuring that your existing .ts files stay intact and are not overwritten.
 
 ```js
 "hlsflags":"+append_list",
 ```
 
-If you don't want the TS files to be appended to the previous recording, you may also enable date and timestamp for HLS files by adding the following property:.
+If you don't want the TS files to be appended to the previous recording, you may also enable date and timestamp for HLS files by adding the following property which adds date/time to TS file names, so you can distinguish recordings even when using the same stream ID again:
 
 ```js
  "addDateTimeToHlsFileName":true,
@@ -103,3 +102,15 @@ To be able to use the HLS Upload servlet first, you should enter S3 credentials 
   ```js
   hlsHttpEndpoint=http://127.0.0.1:5080/live/hls-upload
   ```
+
+  <br /><br />
+---
+
+<div align="center">
+<h2> Streams Preserved, Playback Secured! 💾 </h2>
+</div>
+
+You’ve enabled **HLS recording**, configured **hlsPlayListType** to `event`, set the TS retention flags like `append_list`, and optionally enabled date-time in file names. Your HLS **`.m3u8` and `.ts`** files are now stored permanently (or pushed to your **HTTP/S3 endpoints** as configured).  
+
+**Excellent work** — your live streams are now archived for on-demand play, audits, or future reuse. 🎞️
+

@@ -7,11 +7,11 @@ sidebar_position: 3
 
 # Room Security
 
-In Ant Media Server, each participant and the conference room itself are treated as individual broadcasts. This means that all [Stream Security](https://antmedia.io/docs/category/stream-security/) features apply to conferencing as well.
+In Ant Media Server, each participant and the conference room itself are treated as individual broadcasts. This means that all [Stream Security](https://antmedia.io/docs/category/stream-security/) features apply to both on the conferencing as well.
 
 ## Secure Rooms With Tokens
 
-To secure a conference room, enable related token security for both publishing and playing through the web panel, then generate a publish token using the room's (main track) broadcast ID.
+To secure a conference room, enable token security settings for both publishing and playing through the web panel, then generate a publish token using the room's (main track) broadcast ID.
 
 The generated publish token must be passed to both ```.publish()``` and ```.play()``` functions in conferencing. Otherwise, the participant won't be able to join the room.
 
@@ -98,3 +98,15 @@ In case, you are using the Circle Conference application, the token generation s
 **Example:**
 
 ```https://test.antmedia.io:5443/Conference/test?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdHJlYW1JZCI6InRlc3QiLCJ0eXBlIjoicHVibGlzaCIsImV4cCI6OTk5OTk5OTk5OX0.AE9DiAxsA4N1tGbg08NC4ISnXlnPaybF84psMOoDDus```
+
+
+<br /><br />
+---
+
+<div align="center">
+<h2> Secure Rooms, Secure Voices! 🔐 </h2>
+</div>
+
+You’ve now enabled **token security for your conference room**, generated a JWT tied to your room’s broadcast, and used it to join via `.publish()` and `.play()`. Unauthorized attempts without a valid token are denied.
+Nice job — your conference space is now locked down, **users only get in with tokens**, and your **stream room is as safe as it gets**! 🛡️
+

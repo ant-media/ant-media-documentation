@@ -9,15 +9,15 @@ In previous section, you have already gone through recording of live streams. In
 
 ## Play VOD files with MP4
 
-First, confirm that your application has MP4 recording enabled. It can be enabled in the application settings on the Web panel.
+First, make sure that MP4 recording is enabled in your application settings on the Web panel.
 
-Assume that there is a live stream with streamId `stream1` publishing to the `live` application of the Ant Media Server. After publishing is finished, the MP4 file will be created.
+For example, if a live stream with streamId ```stream1``` is published to the ```live``` application on Ant Media Server, the MP4 file will be generated automatically once the stream finishes publishing.
 
- * In the Community Edition or Enterprise Edition of AMS, the default MP4 URL will be available at this URL:
+ * In both the Community and Enterprise Editions of AMS, the default MP4 file can be accessed at the following URL:
  
    * `https://domain-or-IP:5443/LiveApp/streams/Stream_Id.mp4`
 
- * In Enterprise Edition, if adaptive streaming is enabled in the application, then MP4 recording for different bitrates will be generated. Assuming you have 480p and 240p resolution enabled in adaptive streaming settings, you will have two MP4 files with the following format:
+ * In Enterprise Edition, if Adaptive streaming is enabled in the application, then MP4 recording for different bitrates will be generated. Assuming you have 480p and 240p resolution enabled in adaptive streaming settings, you will have two MP4 files with the following format:
 
     *  `https://domain-or-IP:5443/LiveApp/streams/stream1_240p500kbps.mp4`
 

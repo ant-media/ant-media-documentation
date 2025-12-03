@@ -195,3 +195,15 @@ You can get more information in the following [REST API](https://antmedia.io/res
 Click for more detail about [REST API Guide](https://antmedia.io/docs/category/rest-api-guide/).
 
 **PS:** To use the Rest APIs, please add your IP address to the ```Enable IP Filter for RESTful API``` option in the application Settings.
+
+<br /><br />
+---
+
+<div align="center">
+<h2> Simulcasting Time! 🌟 </h2>
+</div>
+
+Congratulations! You've successfully set up **simulcasting** with Ant Media Server. Your live stream is now reaching audiences across multiple platforms simultaneously, expanding your reach and engagement.
+
+Your content is now accessible to a **wider audience, enhancing visibility and interaction**. Well done — your simulcasting setup is live and ready to shine!
+

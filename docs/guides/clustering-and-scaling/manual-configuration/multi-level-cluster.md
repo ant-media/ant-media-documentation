@@ -12,7 +12,7 @@ A cluster which has different regions is called Multi-Level Cluster where each r
 
 ### How does it work?
 
-Let's clarify the the case with an example scenario. We have two scenarios
+Let's clarify the case with an example scenario. We have two scenarios
 
 1.  Publisher & Players in the same cluster
 2.  Publisher & Players in the different clusters
@@ -40,10 +40,18 @@ Let's remember the traditional scenario
 5.  ```Player3``` is assigned to ```Edge22``` in ```Region2```.
 6.  ```Edge22``` checks the origin of the stream. Since ```Edge21``` is a secondary origin for the stream in the ```Region2```, it pulls the stream from ```Edge21``` and serves to ```Player3```.
 
-In short, each stream is distributed from single node in each region even if they are in different regions.
+In short: each stream is served via a single origin node per region, even across geolocations.
 
 ### How to configure Multi-Level Cluster?
 
 You can set the node group (or region) of a server by adding ```nodeGroup=GROUP_NAME``` in ```conf/red5.properties``` file. Make sure that the instances running in the same region should have the same ```nodeGroup``` value
 
 Keep in mind that you should configure the Load Balancer to forward Publish and Play requests to the best region. If you have a global cluster in different geolocations, you should have a Load Balancer like Route53.
+
+<div align="center">
+  <h2> 🧠 Multi-Level Cluster — One Platform, Global Reach! ⚙️ </h2>
+</div>
+
+Success! Your Ant Media Server is now configured with a **multi-level architecture** — intelligent node grouping, regional origins, and seamless edge fallback are all working together.
+
+With this setup, your infrastructure adapts dynamically to u**ser location, minimizes latency, and scales globally without complexity.** This is how world-class streaming platforms are built. 🚀📡

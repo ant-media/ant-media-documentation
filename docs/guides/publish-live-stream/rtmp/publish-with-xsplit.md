@@ -39,6 +39,18 @@ Close the ```Settings``` window and simply click the ```Stream``` button in the 
 
 You can view the stream in your browser by entering the following URL:
 
-```http://IP-address:5080/live/play.html?name=streamId```
+```http(s)://IP-address:5080(5443)/live/play.html?name=streamId```
 
 Check [here](https://antmedia.io/docs/category/playing-live-streams/) for more information on playback.
+
+<br /><br />
+---
+
+<div align="center">
+<h2> Stream On! 🎮 </h2>
+</div>
+
+You’ve now configured **XSplit with your RTMP URL** and Stream Key (plus token if needed), provided **sources**, set up the **output**, and hit “**Stream**.” You can view your live stream in the **browser** via the **play URL**.  
+
+Nice work— your broadcast is **live, flexible, and ready for whatever content you throw at it!** 🎤
+

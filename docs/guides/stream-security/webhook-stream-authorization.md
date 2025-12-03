@@ -7,15 +7,15 @@ sidebar_position: 8
 
 # Webhook Authorization
 
-There are plenty of [Security options for Publishing and Playing Streams](https://antmedia.io/docs/category/stream-security/) available in Ant Media Server. However, if these are not suitable for your use case and you want to control which stream to publish or play directly from your end, then you can use your webhook structure for stream authentication.
+If the built-in [Security options for Publishing and Playing Streams](https://antmedia.io/docs/category/stream-security/) available in Ant Media Server don’t meet your needs and you want full control, you can use webhooks to authorize publishing or playback. 
 
 ## Webhook Publish Authorization
 
-If you enable this feature, whenever a stream is initiated to publish, the server will send an HTTP request to your given webhook address. This request has information regarding the stream like stream name, app name, streamId, etc.
+If you enable this feature, whenever a client attempts to publish a stream, the server sends an HTTP request to your configured webhook address. This request has information regarding the stream like stream name, app name, streamId, etc.
 
 Based on this request, you can parse and process that information on your end and send a response. If the response code is 200, the server will authorize the stream and allow it to begin publishing. If the response code is different from 200, the server will refuse to publish the stream.
 
-To enable the publish webhook authentication feature, go to your web panel application settings advanced settings section and set this setting:
+To enable publish webhook auth, go to the Web Panel → Application Settings → Advanced Settings, and set the webhookAuthenticateURL property.
 
 ```js
   "webhookAuthenticateURL": "",
@@ -158,3 +158,16 @@ With this flag, Tomcat will allow us to fetch the user's IP address through thei
   "ipAddress":"127.0.0.1"
 }
 ```
+
+<br /><br />
+---
+
+<div align="center">
+<h2>  🎯 Your Streams Tend the Webhook's Way! 🔗 </h2>
+</div>
+
+With **Webhook stream authorization enabled**, your server now asks your own endpoint for **permission** before any stream is published or played. Respond with 200 → go live; anything else → access blocked.
+
+Your streaming setup is now completely under your control. **You decide who gets in.** 🔒🚀
+
+

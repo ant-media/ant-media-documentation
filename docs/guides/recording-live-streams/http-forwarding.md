@@ -10,7 +10,7 @@ sidebar_position: 6
 HTTP Forwarding allows Ant Media Server (AMS) to forward incoming HTTP requests to an external storage system.  
 This is typically used when recordings or VOD files are automatically uploaded to a bucket (e.g., **Amazon S3**, **DigitalOcean Spaces**, or another S3-compatible storage).
 
-Without forwarding, trying to access a file that has already been uploaded to the bucket from Ant Media Server will result in a **404 Not Found** error. HTTP Forwarding ensures those requests are redirected seamlessly.
+Without forwarding, accessing a file uploaded to the bucket from Ant Media Server may result in a **404 Not Found error**. HTTP Forwarding ensures seamless redirection of those requests.
 
 ---
 
@@ -133,3 +133,15 @@ https://s3BucketName.s3.awsRegion.amazonaws.com/streams/sample.mp4
 ---
 
 With HTTP Forwarding enabled, Ant Media Server seamlessly redirects requests to your storage bucket, ensuring uninterrupted playback and access for your users.
+
+<br /><br />
+---
+
+<div align="center">
+<h2> 🔄 Seamless Playback at your service 🌐 </h2>
+</div>
+
+You've successfully configured **HTTP Forwarding in Ant Media Server.** Now, when users request files like MP4 or M3U8, AMS will seamlessly **redirect them to your storage bucket**, ensuring uninterrupted playback. Whether you're using AWS S3, DigitalOcean Spaces, or another S3-compatible service, your setup is optimized for smooth delivery.
+
+Keep it up 🫡 — your live streaming setup is now more **seamless than ever!** 🚀
+

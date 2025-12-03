@@ -7,7 +7,7 @@ sidebar_position: 1
 
 # Circle: Free Video Conferencing Solution
 
-Circle is a ready-to-use open-source, online video conferencing application built on top of Ant Media Server that can be deployed on-premises or on a private/public cloud. If you are concerned about privacy or being behind a firewall, this is the best solution for you.
+Circle is a ready-to-use, open-source online video conferencing application built on top of Ant Media Server that can be deployed on-premises or on a private/public cloud. If you are concerned about privacy or being behind a network firewall, this is the best solution for you.
 
 ## Key Features
 
@@ -57,7 +57,7 @@ First, log in to the Ant Media Server Management Panel.
 
 * Visit `https://antmediaserver-domain:5443/Application_Name`
 
-* Click **Create Meeting**
+* Click the **Create Meeting** button
   ![](@site/static/img/conference/circle/circle-room-creation.png)
   
 * Enter your name for yourself and join the meeting
@@ -85,3 +85,14 @@ If you want to embed Circle into your website as a component, please follow [thi
 ----------
 
 In the next document, we will learn in more detail about the Ant Media Server Conferece solution structure.
+
+<br /><br />
+---
+
+<div align="center">
+<h2> Circle 🔴 Ready! 🏛️ </h2>
+</div>
+
+You’ve successfully deployed the **Circle video conferencing app** on your Ant Media Server, given it your **custom app name**, and **joined a meeting** — your conferencing setup is **now live** and under your control.  
+Nice move — full control, privacy, and scalability are locked in. **Your virtual meeting space is ready to host real conversation!** 🎙️
+

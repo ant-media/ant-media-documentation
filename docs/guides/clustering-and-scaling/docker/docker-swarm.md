@@ -11,7 +11,7 @@ Docker Swarm is a container orchestration tool. It is a cluster management tool 
 
 ![](@site/static/img/image-1648753338859.png)
 
-### Prerequestiment
+### Prerequisites:
 
 First, let’s create a total of 3 instances, one Manager and 2 worker nodes.
 
@@ -23,9 +23,9 @@ First, let’s create a total of 3 instances, one Manager and 2 worker nodes.
 
 Docker Swarm is easy to install. You can divide it into two parts as Manager Node and Worker Node.
 
-1- Manager: The node that has the manager role manages the docker swarm.
+1- Manager Nodes: This node manages the Docker Swarm..
 
-2- The nodes that have a worker role are generally responsible for running the services.
+2- Worker Nodes: These nodes run the services/tasks assigned to them..
 
 Install the Docker CE on all of the nodes by following the steps below.
 
@@ -112,14 +112,23 @@ networks:
     external: true
 ``` 
 
-Now, deploy the stack by running the command below.
+Then deploy the stack by running the command below.
 
 ```shell
 docker stack deploy -c stack.yml ant-media-server
 ```   
 
-You can control the running containers with the **docker ps** command.
+You can monitor running services/containers using `docker service ls` or `docker ps`
 
 Now, you can access your cluster via the master URL.
 
 ![](@site/static/img/image-1648753399871.png)
+
+<div align="center">
+  <h2> 🐳 AMS + Docker Swarm — Streaming at Scale, the Easy Way! 🚀 </h2>
+</div>
+
+And there it is — your Ant Media Server cluster is **alive and thriving inside Docker Swarm!** Services are humming, containers are collaborating, and scaling is just a heartbeat away.
+
+You’ve built a streaming powerhouse from simple containers. **Now go ahead — launch those live events**, grow your audience, and let Swarm keep everything in perfect sync. 🎥🌊
+

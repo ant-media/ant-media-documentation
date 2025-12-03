@@ -111,7 +111,7 @@ Similarly for Edge Group
 
 ## Step 3: Deploy the AMS Cluster using the CloudFormation Template
 
-Now, in order to deploy the Ant Media Cluster with CloudFormation, follow this [CloudFormation document](https://antmedia.io/docs/guides/clustering-and-scaling/aws/scale-with-aws-cloudformation/) step-by-step from step/point 5. All the steps will remain same for further deployment.
+Now, in order to deploy the Ant Media Cluster with CloudFormation, follow this [CloudFormation document](https://antmedia.io/docs/guides/clustering-and-scaling/aws/scale-with-aws-cloudformation/) step-by-step from step 5. All the steps will remain same for further deployment.
 
 Once the installation is done, your servers will be launched using your own Ant Media Server Image with the pre-configured self-hosted license that you have purchased from Ant Media.
 
@@ -120,3 +120,14 @@ The above steps in this document were to instruct on how to create the AWS AMI o
 
 Please feel free to reach out to [Github discussions](https://github.com/orgs/ant-media/discussions) if you have any query.
 :::
+
+<br /><br />
+---
+
+<div align="center">
+<h2> 🔐 Scaled & Licensed — Your AMS, Your Rules! 🎯 </h2>
+</div>
+
+You’ve created **your own AMS AMI** with your **self-hosted license**, plugged it into the **CloudFormation template**, and spun up a full cluster using your licensed image — **no marketplace image required**. Your cluster runs on your terms, with the license baked right in.
+
+Your deployment now scales with power — fully yours, end to end! 🚀

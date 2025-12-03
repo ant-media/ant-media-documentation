@@ -61,3 +61,13 @@ The final edited version of the file will look like the following.
     <property name="requestAttributesEnabled" value="true" />
 ```
 Now, You can use the IP filter.
+
+<br /><br />
+---
+
+<div align="center">
+<h2> 🔐 Secure Streaming with IP Filtering Behind AWS Load Balancer </h2>
+</div>
+
+By enabling **IP filtering behind your AWS Load Balancer**, you've added an extra layer of security to your Ant Media Server deployment. This configuration ensures that only **trusted IP addresses can access your streaming services**, protecting your infrastructure from unauthorized access and potential threats.
+

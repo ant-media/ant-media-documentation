@@ -17,7 +17,7 @@ Internet users have varying connection speeds, from fast broadband to congested 
 
 With ABR:
 
-- Viewers always get the best possible quality for their network.
+- Viewers get best possible quality based on available bandwidth.
 - Automatic switching happens behind the scenes, improving engagement and reducing viewer drop-off.
 - Smooth playback is ensured even during network fluctuations.
 
@@ -26,7 +26,7 @@ With ABR:
 
 ## How ABR Works in Ant Media Server
 
-Ant Media Server supports ABR for all playback protocols like **WebRTC** and **HLS** streaming.
+Ant Media Server supports ABR for all playback protocols such as **WebRTC** and **HLS** streaming.
 
 | Protocol | ABR Behavior |
 |----------|--------------|
@@ -41,7 +41,7 @@ Ant Media Server supports ABR for all playback protocols like **WebRTC** and **H
 You can enable ABR from your Ant Media application settings:
 
 - Go to Applications **>** Settings **>** Adaptive Bitrate in the Ant Media Server dashboard
-- Enable adaptive streaming and add the needed resolutions.
+- Enable adaptive streaming and add the desired resolutions and bitrates. 
 
 ![](@site/static/img/adaptive-streaming/dashboardABR.png)
 
@@ -51,7 +51,7 @@ You can enable ABR from your Ant Media application settings:
 
 ## Broadcast-Level ABR Configuration
 
-Since **Ant Media Server 2.8.3**, you can configure ABR settings at the **broadcast level**. This means each stream can have its own customized ABR profiles, offering more granular control.
+As of **Ant Media Server 2.8.3**, you can configure ABR settings at the **broadcast level**. This means each stream can have its own customized ABR profiles, offering more granular control.
 
 ### Rest API Endpoint
 
@@ -80,7 +80,7 @@ curl --location 'https://domainName:5443/live/rest/v2/broadcasts/create' \
   - `height`: The vertical resolution (e.g., 240 = 240p).
   - `videoBitrate`: The target video bitrate in bits per second.
   - `audioBitrate`: The target audio bitrate in bits per second.
-  - `forceEncode`: Ensures transcoding happens even if the incoming stream matches the target resolution.
+  - `forceEncode`: Forces transcoding even when the source stream resolution matches the profile.
 :::
 
 ## Stats-Based Adaptive Bitrate Switching
@@ -100,21 +100,19 @@ This means that **WebRTC viewers** will automatically receive the best possible 
 
 ## Original WebRTC or HLS Stream Behavior with ABR
 
-- There is an additional setting that influences how the original WebRTC stream is handled when ABR profiles are configured:
+- These settings decide whether the original incoming stream should be included among the ABR renditions: `useOriginalWebRTCEnabled` for **WebRTC**, and `addOriginalMuxerIntoHLSPlaylist` for **HLS**.
+- By default,
+   - **WebRTC original is excluded (false)**,
+   - **HLS original is included (true)**.
+     
 
   ```js
   "useOriginalWebRTCEnabled": false,
   ```
 
-  By default, this setting is disabled and set to false.
-
-- There is a setting that influences how the original HLS stream is handled when ABR profiles are configured:
-
   ```js
   "addOriginalMuxerIntoHLSPlaylist": true,
   ```
-
-  By default, this setting is enabled so the original resolution is also added to the HLS output.
 
 ### Behavior:
 
@@ -140,3 +138,15 @@ When using **ABR**, it’s recommended to:
 - Regularly monitor your viewer bandwidth stats via Ant Media’s monitoring tools to fine-tune ABR settings.
 
 In order to use GPU for heavy ABR streaming, [Learn How to Enable GPU for Ant Media Server](/guides/advanced-usage/using-nvidia-gpu/).
+
+<br /><br />
+---
+
+<div align="center">
+<h2> 📶 Smooth Streams, Smart Switching — Welcome to ABR Season! 🔄 </h2>
+</div>
+
+You’ve enabled **Adaptive Bitrate Streaming**, so your viewers now get the best resolution possible for their connection — no more buffering nightmares. Custom ABR profiles + stats-based switching = streams that adapt on the fly.
+
+Your streaming game is now polished, resilient, and **ready for any network curveball!** 🚀
+

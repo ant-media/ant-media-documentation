@@ -7,7 +7,7 @@ sidebar_position: 6
 
 # Media Push Plugin
   
-Explore the simplicity of recording and live streaming advanced cases such conference call, Player Kill, etc. with [Ant Media Server’s](https://github.com/ant-media/Ant-Media-Server/) Media Push Plugin🚀. This user-friendly tool lets you stream any web page. You just provide a URL to the plugin, and the plugin loads the web page on the server side and streams it in real time. You can then record 🎥 or re-stream the video if needed.
+Explore the simplicity of recording and live streaming advanced scenarios such as conference call, Player Kill and more, with [Ant Media Server’s](https://github.com/ant-media/Ant-Media-Server/) Media Push Plugin🚀. This user-friendly tool lets you stream any web page. Simply provide a URL to the plugin, and the plugin loads the web page on the server side and streams it in real time. You can then record 🎥 or re-stream the video if needed.
   
 
 ## How Media Push Works  
@@ -240,10 +240,20 @@ The composite layout page contains a canvas on which streams can be added; by de
 
 You can modify the code and build the plugin yourself to make it work according to your own needs. For example, you can play the video or login to the web page with your own credentials before starting the broadcast.
 
-Go to the MediaPushPlugin and modify the customModification method as you wish. Then build the plugin with the following command:.  
-  
+Go to the MediaPushPlugin and modify the customModification method as you wish. Then build the plugin with the following command:.    
 
   ```bash  
   chmod +x redeploy.sh  
   ./redeploy.sh  
   ```  
+
+<br /><br />
+---
+
+<div align="center">
+<h2> 🎬 Next-Gen Recording ⏺️ </h2>
+</div>
+
+You've successfully configured the **Media Push Plugin on Ant Media Server.** Whether it's broadcasting a conference call, recording a live auction, or streaming a custom web page, your setup is now capable of capturing and delivering dynamic content in real-time. With support for MP4/WebM recording, RTMP re-streaming, and customizable layouts, the possibilities are endless.
+
+**Maestro Stuff** 👏 your live streaming setup is now **more versatile than ever!** 🚀

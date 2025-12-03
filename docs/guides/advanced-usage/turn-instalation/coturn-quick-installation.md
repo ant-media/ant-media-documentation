@@ -112,3 +112,15 @@ turnutils_uclient -v -t -T -u username -w password -p 3478 turn_server_ip
 
 To use your TURN server with Ant Media, check out this
 [Guide](https://antmedia.io/docs/guides/configuration-and-testing/configuring-stun-turn-addresses/)
+
+<br /><br />
+---
+
+<div align="center">
+<h2> 🔄 TURN-Up the Connectivity — Firewalls, NATs, You're No Match! ⚡️ </h2>
+</div>
+
+With **coTURN** installed and configured, even the strictest **firewalls and NATs can't stop your streams**. Your communication gets relayed when needed, keeping everything smooth and seamless.
+
+**Your network just got smarter** — reliable, resilient, and ready for any connection challenge! 🚀
+

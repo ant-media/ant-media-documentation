@@ -43,7 +43,7 @@ Next, go to Images > CREATE IMAGE and select the instance you just set up as the
 
 ### Step 3: Create an Instance Template
 
-After the image creation process is complete, proceed to the Instance Templates > CREATE INSTANCE TEMPLATE menu.
+After creating the image, navigate to Instance Templates > CREATE INSTANCE TEMPLATE menu.
 
 Select the instance type
 ![](@site/static/img/gcp-installation/antmedia-gcp-marketplace-image-three.png)
@@ -79,7 +79,7 @@ Then repeat the same process for the Edge group as well.
 
 The autoscaling groups are now created. Let’s move on to configuring the Load Balancer to distribute the load.
 
-In the search bar, type “Load Balancer” and open the “Load balancing” service, then click on **CREATE LOAD BALANCER** and select **Application Load Balancer**.
+In the search bar, type “Load Balancer” and open the “Load balancing” service, then click **CREATE LOAD BALANCER** and select **Application Load Balancer**.
 
 ![](@site/static/img/gcp-installation/antmedia-gcp-marketplace-image-six.png)
 
@@ -129,3 +129,13 @@ That’s it! You’re all set. You can now access the Ant Media Server servers t
 
 
 ![](@site/static/img/gcp-installation/antmedia-gcp-marketplace-image-fifteen.png)
+
+
+<div align="center">
+  <h2> ☁️ GCP Magic — Clustered, Scalable, Stream-Ready! ✨ </h2>
+</div>
+
+Your Ant Media Server cluster is now humming on **Google Cloud Platform!** With Origin and Edge nodes, a MongoDB backend, and a fully configured Load Balancer, your streaming setup can handle high traffic without breaking a sweat.
+
+From deployment to broadcast, everything is automated, resilient, and under your control. Sit back, relax, and let the streams roll — **your viewers are in for a smooth ride!** 🎬🚀
+

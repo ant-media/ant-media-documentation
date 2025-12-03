@@ -21,10 +21,10 @@ Nginx started out as an open-source web server designed for maximum performance 
 
 You can do this setup in two ways:
 
-1. Using installation script
-2. Step-by-step installation
+1. Using the installation script
+2. Manual (step-by-step) installation
 
-## 1. Using installing script
+## 1. Using the installing script
 
 **Installation Steps**
 
@@ -78,7 +78,7 @@ When you run the script as shown below, it will perform the following tasks: Ngi
 ./install_and_configure_nginx.sh -o "192.168.1.201" -e "192.168.1.202,192.168.1.203" -d example.com
 ```
 
-## 2. Step-by-Step Installation:
+## 2. Manual (step-by-step) Installation:
 
 1.  [Install Nginx](#nginx-installation)
 2.  [Install LetsEncrypt](#encrypt-for-nginx)
@@ -361,3 +361,12 @@ Enable and restart nginx service
 systemctl enable nginx
 systemctl restart nginx
 ```
+
+
+<div align="center">
+  <h2> 🎉 Nginx + AMS — Your Streams Are Now in Safe Hands! 🚀 </h2>
+</div>
+
+And there you have it! Nginx is now **directing traffic like a pro**, with your origin and edge nodes coordinated behind the scenes.
+
+Your streams are ready for the spotlight — **balanced, secure, and flowing smoothly**. Go ahead, launch your live events, and let the load balancer handle the heavy lifting! 🎥✨
