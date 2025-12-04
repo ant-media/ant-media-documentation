@@ -2,12 +2,7 @@
 title: Plugins for Ant Media Server 
 description: Ant Media Community Contributions for Ant Media Plugins.
 keywords: [Plugins for Ant Media Server, Ant Media Server Documentation, Ant Media Server Tutorials, Community Plugins for Ant Media Server, Add-ons for Ant Media Server]
-sidebar_position: 11
----
-
-## TODO:
-- This document is to be reworked into multiple different documents
-
+sidebar_position: 4
 ---
 
 # Plugins for Ant Media Server
@@ -34,6 +29,14 @@ The Zixi Broadcaster is the central component of the Zixi Video Network. It acce
 
 Learn more about deploying Zixi with Ant Media Server [here](https://github.com/ant-media/Plugins/tree/master/ZixiPlugin).
 
+
+### DRM Plugin
+
+The DRM Plugin adds Digital Rights Management (DRM) capabilities to Ant Media Server using the CPIX (Content Protection Information Exchange) API. It enables protected content delivery over HLS and DASH by supporting popular DRM systems like Widevine (Google), FairPlay (Apple), and PlayReady (Microsoft).
+
+Whether you’re streaming to browsers, mobile apps, or smart TVs—this plugin ensures your media is encrypted and access-controlled.
+
+For details, visit [here](/guides/drm-integration/drm-plugin/).
 
 ### Low-Latency HLS (LL-HLS) Plugin
 

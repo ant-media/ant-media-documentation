@@ -2,7 +2,7 @@
 title: Plugin Architecture 
 description: Explore the inner workings of the plugin structure.
 keywords: [Ant Media Server plug-in structure, Ant Media plug-in system, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 1
+sidebar_position: 2
 ---
 
 # Introduction to Plugin Architecture
@@ -79,55 +79,3 @@ For detailed implementation steps and code examples, see the [Developing Plugins
 
 
 
-<!--  TODO: Migrate to developer guide
-### IFrameListener interface
-
-Encoded packets and stream properties are sent to the plugin by this interface. In other words, you should implement this interface and register your concrete object to capture stream properties and also packets from AMS.
-
-Methods of IPacketListener:
-
-*   **AVPacket onPacket(String streamId, AVPacket packet)**
-    
-          Packets are sent to the plugin with this method. A packet may be video or audio packet.
-        
-    
-*   **void writeTrailer()**
-    
-             called while stream closing
-        
-    
-*   **void setVideoStreamInfo(String streamId, StreamParametersInfo videoStreamInfo)**
-    
-          video stream properties are sent to the plugin with this method.
-        
-    
-*   **void setAudioStreamInfo(String streamId, StreamParametersInfo audioStreamInfo)**
-    
-           audio stream properties are sent to the plugin with this method.
-        
-    
-
-### IPacketListener Interface
-
-Encoded packets and stream properties are sent to the plugin by this interface. In other words, you should implement this interface and register your concrete object to capture stream properties and also packets from AMS.
-
-Methods of IPacketListener:
-
-*   **AVPacket onPacket(String streamId, AVPacket packet)**
-    
-          packets are sent to the plugin with this method. A packet may be video or audio packet.
-        
-    
-*   **void writeTrailer()**
-    
-          called while stream closing
-        
-    
-*   **void setVideoStreamInfo(String streamId, StreamParametersInfo videoStreamInfo)**
-    
-          video stream properties are sent to the plugin with this method.
-        
-    
-*   **void setAudioStreamInfo(String streamId, StreamParametersInfo audioStreamInfo)**
-    
-          audio stream properties are sent to the plugin with this method. -->

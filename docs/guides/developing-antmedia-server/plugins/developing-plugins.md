@@ -5,13 +5,6 @@ keywords: [Ant Media Server plug-in development, custom plugins, plugin API, IFr
 sidebar_position: 3
 ---
 
-<!-- Original TODO (kept for reference):
-- Brief 'about architecture', and link to architecture page
-- Link to simple plugin reference, and free plugins
-- Go over build and install guide for simple plugin
-- Go over interfaces and hooks, and example use-cases. Reference previous "plugin structure md" page
--->
-
 :::info What you'll learn
 This guide covers plugin development for Ant Media Server: implementing core interfaces, registering with AMS, and deploying your plugin.
 :::
@@ -49,19 +42,59 @@ Every plugin follows a consistent lifecycle within the AMS ecosystem:
 
 Plugins integrate with AMS through these interfaces:
 
+- **ApplicationContextAware:** Plugin's main class shell implement this interface
+- **AntMediaApplicationAdaptor:** Central registration and interaction point
 - **IStreamListener:** Get notified when streams start/finish or participants join/leave conference rooms
 - **IPacketListener:** Access to encoded packets (compressed data)
 - **IFrameListener:** Access to decoded video/audio frames (raw pixel/sample data)
-- **AntMediaApplicationAdaptor:** Central registration and interaction point
 - **Custom REST Endpoints:** Expose plugin functionality via HTTP API
 
 Your plugin also has access to all AMS project code.
 
 ---
 
-## Core Plugin Interfaces
+## Plugin Entry Point
 
-AMS provides interfaces for accessing media stream data.
+Every plugin requires a main entry point class that AMS discovers and initializes.
+
+### The Main Class
+
+Your plugin's main class must:
+1.  Be annotated with `@Component("plugins.my_plugin")` (Spring Framework) so AMS detects it.
+2.  Implement `ApplicationContextAware` to receive the application context.
+
+### ApplicationContextAware Interface
+
+This interface provides the `setApplicationContext` method, which serves as the plugin's initialization hook.
+
+```java
+@Component(value = "plugin.myPlugin")
+public class MyPlugin implements ApplicationContextAware {
+
+    private AntMediaApplicationAdaptor appAdaptor;
+    private ApplicationContext applicationContext;
+    private Vertx vertx;
+    
+    private static final Logger logger = LoggerFactory.getLogger(MyPlugin.class);
+
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        this.applicationContext = applicationContext;
+        
+        // Get access to the Application Adaptor (core AMS interface)
+        this.appAdaptor = (AntMediaApplicationAdaptor) applicationContext.getBean(AntMediaApplicationAdapter.BEAN_NAME);
+        
+        // Get access to Vertx (if needed for async tasks)
+        this.vertx = (Vertx) applicationContext.getBean("vertxCore");
+        
+        logger.info("MyPlugin initialized");
+    }
+}
+```
+
+## Core Media Interfaces
+
+AMS provides interfaces for accessing and manipulating media stream data.
 
 ### IFrameListener Interface
 
@@ -220,14 +253,19 @@ public interface IStreamListener {
 
 ## Registration and Lifecycle Management
 
-After implementing a listener interface, register listeners it with AMS through the `AntMediaApplicationAdaptor` class.
+Once your plugin is initialized and you have access to `AntMediaApplicationAdaptor`, you must register your listeners to start receiving data.
+
+### Listener Registration
+
+Listeners are registered via the `AntMediaApplicationAdaptor` class.
+
 
 ### Registration Methods
 
 Methods to register and unregister listeners:
 
 ```java
-public class AntMediaApplicationAdaptor {
+public class AntMediaApplicationAdaptor .... {
     
     // Frame listener registration
     public void addFrameListener(String streamId, IFrameListener listener);
@@ -349,9 +387,6 @@ mvn clean install -Dmaven.javadoc.skip=true -Dmaven.test.skip=true -Dgpg.skip=tr
 
 This generates a JAR file in the `target/` directory, typically named `SamplePlugin-1.0.0.jar`.
 
-#### TODO: Build Configuration Details
-<!-- Document build profiles, optimization flags, and troubleshooting -->
-
 ### Step 3: Deploy and Verify
 
 Deploy your plugin following the [installation procedure](./getting-started.md#plugin-intallation-guide):
@@ -378,9 +413,6 @@ Deploy your plugin following the [installation procedure](./getting-started.md#p
 
 You should see log entries indicating the plugin has been loaded. If not, see the [Troubleshooting](#troubleshooting) section.
 
-#### TODO: Deployment Best Practices
-<!-- Document staging environments, rollback procedures, monitoring -->
-
 ### Step 4: Customize for Statistics Collection
 
 Now that the sample plugin works, let's customize it to collect frame statistics.
@@ -401,9 +433,6 @@ Update `pom.xml` with your plugin details:
 <version>1.0.0</version>
 <name>Statistics Collection Plugin</name>
 ```
-
-#### TODO: Complete Maven Dependencies Section
-<!-- Need to document required dependencies and repository configuration -->
 
 ### Step 5: Implement the Frame Listener
 
@@ -638,12 +667,17 @@ Expected response:
 
 ## Best Practices and Optimization
 
+### General notes
+- Always put log after your plugin is booted up and ready, in ```setApplicationContext``` method. (EX: logger.log("Stats pluin ready!"))
+- 
+
 ### Thread Safety
 
 - Listener methods are called from AMS processing threads - make sure your code is thread-safe
-- Use `ConcurrentHashMap` for shared state
 - Don't block in `onVideoFrame()`/`onPacket()` - it blocks stream processing
+- Keep in mind that callbacks from multiple plugins can be called sequentially on same thread 
 - Offload heavy processing to separate threads
+- Use `ConcurrentHashMap` for shared state
 
 ### Performance Optimization
 
@@ -651,7 +685,7 @@ Expected response:
 - Reuse objects instead of creating new ones per frame
 - Profile with JVM tools to find bottlenecks
 - Use packet listeners for statistics (lower overhead)
-- Batch operations when possible (write stats every N frames, not every frame)
+- Batch operations when possible (EX: write stats every N frames, not every frame)
 
 ### Error Handling
 

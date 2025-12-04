@@ -13,7 +13,7 @@ This document covers plugin basics: what plugins are, how to install them, and w
 
 The Ant Media plugin system allows developers to customize and extend server functionality, while keeping the server source codes untouched. This includes capabilities like modifying video stream data or adding new logic, such as custom REST controllers and workflow management.
 
-The plugin architecture is versatile enough to address various developer needs. For example, the [MCU]((../todo-plugin.md)) (Merge/Mix Streams) and [DRM](../todo-plugin.md) features was developed by the Ant Media team as a plugin, showcasing the wide range of possible use cases.
+The plugin architecture is versatile enough to address various developer needs. For example, the [MCU](./plugins-for-ant-media-server.md#filter-plugin) (Merge/Mix Streams) and [DRM](./plugins-for-ant-media-server.md#drm-plugin) features was developed by the Ant Media team as a plugin, showcasing the wide range of possible use cases.
 
 
 ---
