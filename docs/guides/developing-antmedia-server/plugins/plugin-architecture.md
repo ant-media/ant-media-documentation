@@ -1,11 +1,11 @@
 ---
-title: Plugin Structure 
+title: Plugin Architecture 
 description: Explore the inner workings of the plugin structure.
 keywords: [Ant Media Server plug-in structure, Ant Media plug-in system, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 1
 ---
 
-# Introduction to plug-in structure
+# Introduction to Plugin Architecture
 
 :::info What you'll learn
 This guide explains the architectural patterns and data flow of Ant Media Server's plugin system. You'll learn about the different plugin use cases and how data flows between plugins and the server.

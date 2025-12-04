@@ -57,7 +57,7 @@ The plugin architecture is versatile enough to address various developer needs. 
 
 Now that you understand the basics of using plugins, you're ready to dive deeper:
 
-* **Plugin Architecture:** To understand how the plugin system works under the hood, read our [Plugin Architecture page](./plugin-structure.md).
+* **Plugin Architecture:** To understand how the plugin system works under the hood, read our [Plugin Architecture page](./plugin-architecture.md).
 
 * **Developing Your First Plugin:** Ready to build your own custom functionality? Follow our [Plugin Development Tutorial](./developing-plugins.md).
 

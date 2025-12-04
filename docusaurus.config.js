@@ -631,6 +631,7 @@ scripts: [
         copyright: `Copyright © ${new Date().getFullYear()} Ant Media`,
       },
       prism: {
+        additionalLanguages: ['java', 'bash', 'json', 'yaml'],
 	theme: prismThemes.github,
 	darkTheme: prismThemes.dracula,
       },

@@ -26,7 +26,7 @@ Before beginning plugin development, ensure you have:
 - Git
 
 **Recommended Reading:**
-- Review [Plugin Structure](./plugin-structure.md) to understand architectural patterns and use cases
+- Review [Plugin Architecture](./plugin-architecture.md) to understand architectural patterns and use cases
 
 ---
 
@@ -34,7 +34,7 @@ Before beginning plugin development, ensure you have:
 
 Plugins let you intercept and modify media streams without touching the server source code. You get direct access to decoded frames or encoded packets, which you can process, analyze, or manipulate based on your needs. 
 
-For architectural patterns and data flow diagrams, see the [Plugin Structure](./plugin-structure.md) guide.
+For architectural patterns and data flow diagrams, see the [Plugin Architecture](./plugin-architecture.md) guide.
 
 ### Plugin Lifecycle
 
@@ -118,11 +118,11 @@ public interface IFrameListener {
 
 The return value from `onVideoFrame()` and `onAudioFrame()` determines data flow:
 
-- **Return same frame:** Pass unmodified data to next stage ([Asynchronous pattern](./plugin-structure.md#asynchronous-case))
-- **Return modified frame:** Pass your manipulated data forward ([Synchronous pattern](./plugin-structure.md#synchronous-case))
-- **Return null:** Stop frame propagation, plugin is final destination ([Last Point pattern](./plugin-structure.md#last-point-case))
+- **Return same frame:** Pass unmodified data to next stage ([Asynchronous pattern](./plugin-architecture.md#asynchronous-case))
+- **Return modified frame:** Pass your manipulated data forward ([Synchronous pattern](./plugin-architecture.md#synchronous-case))
+- **Return null:** Stop frame propagation, plugin is final destination ([Last Point pattern](./plugin-architecture.md#last-point-case))
 
-See [Plugin Structure - Use Cases](./plugin-structure.md#use-cases) for more details.
+See [Plugin Architecture - Use Cases](./plugin-architecture.md#use-cases) for more details.
 
 ### IPacketListener Interface
 
@@ -255,7 +255,7 @@ public class AntMediaApplicationAdaptor {
 
 ### Custom Broadcast Integration
 
-For the **[First Point](./plugin-structure.md#first-point-case)** use case (plugin as stream source), use Custom Broadcast to inject streams into AMS from external sources.
+For the **[First Point](./plugin-architecture.md#first-point-case)** use case (plugin as stream source), use Custom Broadcast to inject streams into AMS from external sources.
 
 #### Custom Broadcast API
 
