@@ -24,7 +24,7 @@ The plugin architecture is versatile enough to address various developer needs. 
 * You must have filesystem access to your Ant Media Server. 
 * You need the plugin file, which is typically a `.jar` or `.zip` file.
 
-> **Important:** Always [back up](../todo-backup-guide.md) your server configuration and data before installing new plugins!
+> **Important:** Always back up your server configuration and data before installing new plugins!
 
 #### Installation Steps
 

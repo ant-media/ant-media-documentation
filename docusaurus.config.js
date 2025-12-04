@@ -406,7 +406,7 @@ scripts: [
         },
 	{
           from: '/guides/advanced-usage/circle-component-usage/',
-          to: '/guides/developing-antmedia-server/circle-component-usage/'
+          to: '/guides/developing-antmedia-server/applications/circle-component-usage/'
         },
 	{
           from: '/streaming-glossary/',
