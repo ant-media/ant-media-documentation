@@ -41,13 +41,17 @@ const config = {
 
 scripts: [
     {
-      src: "/docs/zfEmbed.js", // Ensure this loads first
+      src: "/zfEmbed.js", // Ensure this loads first
       async: false, // Load it synchronously	    
     },
     {
-      src: "/docs/zonka.js", // Load after zfEmbed.js
+      src: "/zonka.js", // Load after zfEmbed.js
       async: true,
       defer: true,
+    },
+    {
+      src: "//code.tidio.co/rk0jjyc0mwbxjgimchdsnl4cwitetyvi.js",
+      async: true,
     },
 ],
 
@@ -414,7 +418,7 @@ scripts: [
         },
 	{
           from: '/guides/advanced-usage/Plugins-for-Ant-Media-Server/',
-          to: '/guides/developing-antmedia-server/plugins-for-ant-media-server/'
+          to: '/guides/developing-antmedia-server/plugins/plugins-for-ant-media-server/'
         },
 	{
           from: '/guides/publish-live-stream/webrtc-peer-to-peer-communication/',

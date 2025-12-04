@@ -5,7 +5,7 @@ keywords: [Enable or Disable Undefined Streams, Accept Undefined Streams, One Ti
 sidebar_position: 7
 ---
 
-The CORS (Cross-Origin Resource Sharing) filter is enabled and accepts requests from everywhere by default.
+By default, the **CORS (Cross-Origin Resource Sharing)** filter is enabled and accepts requests from all origins.
 
 If you want to customize the CORS filter at the application level, you can access the ```/usr/local/antmedia/webapps/{AppName}/WEB-INF/web.xml``` file.
 
@@ -102,3 +102,15 @@ If you want to customize the CORS filter in root folder then you can do that by 
 :::info
 To learn more about CORS filter, check out [Tomcat CORS Filter](https://tomcat.apache.org/tomcat-8.0-doc/api/index.html?org/apache/catalina/filters/CorsFilter.html)
 :::
+
+<br /><br />
+---
+
+<div align="center">
+<h2> 🔐 ✅ Approved Origins — Here You GO!! 🌐 🎯 </h2>
+</div>
+
+**By enabling and customizing the CORS filter**, you've added an extra layer of security to your streaming setup. Only clients from the **specified origins** are permitted to access your streams, ensuring that **unauthorized sources are effectively blocked.**
+
+Your streaming environment is now smarter, tighter, and **fully under your command**! 🚀
+

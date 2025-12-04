@@ -5,26 +5,37 @@ keywords: [Push Notification Management Tutorial, Push Notification Management, 
 sidebar_position: 3
 ---
 
-# Step 2: Configure Your iOS Project in Xcode
+## Step 3: Configure Your iOS Project in Xcode
 
-Next, set up your iOS app to handle FCM and APN push notifications.
+Now let’s set up your iOS project to handle Firebase Cloud Messaging (FCM) and Apple Push Notifications (APN).
 
-1) Install Firebase SDK:
-- In your iOS project's Podfile, add the Firebase dependencies:
+### 1) Install Firebase SDK:
+
+- Open your project’s Podfile and add the Firebase dependency:
 
 ```ruby
 pod 'Firebase/Messaging'
 ```
 
-- Run pod install to integrate Firebase Messaging into your app.
+- Run the following command to install the pods:
 
-2) Enable Push Notifications:
+```bash
+pod install
+```
+This integrates Firebase Messaging into your iOS project.
 
-- In Xcode, select your project in the Project Navigator.
-- Under your app’s target, click on Signing & Capabilities.
-- Add Push Notifications and Background Modes. Under Background Modes, check the "Remote notifications" option.
 
-3) Configure AppDelegate for Firebase: You need to initialize Firebase and handle APN registration within the AppDelegate.
+### 2) Enable Push Notifications:
+
+1. In Xcode, select your project from the Project Navigator.
+2. Under your app’s target, go to Signing & Capabilities.
+3. Add the following capabilities:
+    * Push Notifications
+    * Background Modes - Enable Remote notifications
+
+### 3) Configure AppDelegate for Firebase
+
+You need to initialize Firebase and handle APN registration in your `AppDelegate.swift`.
 
 ```swift
 import UIKit
@@ -62,7 +73,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 ```
 
-4) Handle FCM Notifications: Create a delegate method to handle incoming messages from Firebase.
+### 4) Handle FCM Notifications
+
+Extend your `AppDelegate` with Firebase Messaging and UserNotificationCenter delegates to handle incoming notifications and token refreshes.
 
 ```swift
 extension AppDelegate: UNUserNotificationCenterDelegate, MessagingDelegate {
@@ -81,3 +94,8 @@ extension AppDelegate: UNUserNotificationCenterDelegate, MessagingDelegate {
     }
 }
 ```
+
+
+## Congratulations!
+
+You’ve successfully configured your iOS project in Xcode for Firebase Cloud Messaging and APNs. Your app is now ready to receive push notifications, and the integration is fully set up to handle tokens, registration, and message delivery.

@@ -7,9 +7,9 @@ sidebar_position: 1
 
 # How to Setup Ant Media Server Cluster on Azure
 
-In this guide, we will explain how to set up Ant Media Server Clustering on Azure. When your load is high, one server instance is not enough for you and you can handle that load with a clustering solution.
+This guide explains how to set up Ant Media Server clustering on Azure. When a single server can’t handle high traffic, a cluster allows you to manage the load efficiently.
 
-For streaming applications, you will need a clustering solution when you have a high number of publishers and viewers. Especially when you require ultra-low latency and adaptive bitrate because they need more processing power. Ultra-low latency is achieved by WebRTC and it is a CPU-intensive protocol. Adaptive bitrating is downgrading video quality in bad networks if needed. It is also CPU intensive because there is video conversion. Luckily, Ant Media Server Enterprise Edition supports clustering, so that you can handle the high load in your streaming applications.
+For streaming applications with many publishers and viewers, a clustering solution becomes essential—especially when ultra-low latency and adaptive bitrate are required. WebRTC, which enables ultra-low latency, is CPU-intensive, and adaptive bitrate processing involves real-time video conversion, which also demands significant CPU resources. Fortunately, Ant Media Server Enterprise Edition supports clustering, allowing you to distribute the load across multiple servers and handle high traffic efficiently.
 
 #### **Requirements**
 
@@ -25,8 +25,8 @@ Let's proceed for the cluster deployment.
 
 - Each resource created must be in the same resource group. For this, we will first create a resource group. Named **antmedia-cluster**
 
-- Click Resource Groups in the portal which is on the left side then click **+Add**
-
+- From the left-hand menu, go to Resource Groups and click + **Add** to create a new group.
+  
 ![](@site/static/img/create-resource-1.png)
 
 - Enter **Resource group** then choose your zone
@@ -39,9 +39,9 @@ Let's proceed for the cluster deployment.
 
 ### Step 2: Create a Virtual Network
 
-We need to create a virtual network named antmedia-cluster-virtual-network, and then we will add gateway-subnet, origin-subnet, and edge-subnet.
+We need to create a virtual network named **antmedia-cluster-virtual-network**, then we will add gateway-subnet, origin-subnet, and edge-subnet.
 
-- Click Create a Resource in the portal which is on the upper left. Enter Virtual network in the Search the Marketplace box at the top of the New pane that appears. Click Virtual Network when it appears in the search results.
+- In the portal’s upper-left corner, click Create a Resource. In the Search the Marketplace box at the top of the New pane, type Virtual Network. When it appears in the search results, click **Virtual Network**
 
 ![](@site/static/img/virtual-network-1.png)
 
@@ -260,4 +260,14 @@ For publishing please visit the ```https://your-domain-name/live/``` and click `
 
 For playing please visit the ```https://your-domain-name:5443/live/player.html```, put your streamId and click `Start Playing` button.
 
-As you figure out, we connect default HTTPS port (443) for publishing and 5443 port for playing. Because we configure load balancer to forward default port(443) to origin group and 5443 to edge group.
+As you figure out, we connect default HTTPS port (443) for publishing and 5443 port for playing. Because we configure load balancer to forward default port(443) to origin group and 5443 to edge group.   
+
+   
+
+<div align="center">
+<h2> 🔄 Stream Like a Boss — AMS on Azure! 🚀 </h2>
+</div>
+
+Your Ant Media Server cluster is now live on Azure, featuring Origin and Edge Scale Sets, a MongoDB backend, and an Application Gateway to route traffic. With resources that **scale automatically**, your streaming infrastructure is **ready to handle high loads** with resilience and flexibility.
+
+Your deployment is now **clustered, scalable, and fully under your control!** 🎯

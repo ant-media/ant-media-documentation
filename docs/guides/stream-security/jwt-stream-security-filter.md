@@ -151,3 +151,16 @@ ws://{ant-media-server}:5080/live/websocket
   token : "token",
 }
 ```
+
+<br /><br />
+---
+
+<div align="center">
+<h2> 🔑 Access Granted Only to the Rightful Heir(Token)! 🎯 </h2>
+</div>
+
+With the **JWT Stream Security Filter enabled**, only streams accompanied by valid tokens can publish or play. Unauthorized attempts are blocked automatically, giving you full control over who can access your content and unlike One-Time Token control, which generates a **new token for each session** and expires after a single use, **JWT tokens are more flexible**, allowing for **configurable expiration times** and supporting multiple streaming scenarios with a single token.  
+
+Your streams are now fortified with token-based security — **smart, seamless, and fully under your control!** 🔐🚀
+
+

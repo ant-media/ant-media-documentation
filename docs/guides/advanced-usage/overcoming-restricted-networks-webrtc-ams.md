@@ -25,8 +25,11 @@ sed -i -e 's/^User=.*/User=root/' -e 's/^Group=.*/Group=root/' /etc/systemd/syst
 
 systemctl daemon-reload
 ```
+```
+sudo setcap 'cap_net_bind_service=+ep' /usr/bin/turnserver
+```
 
-3. Get a certificate for your domain. (TLS/TCP does not work in Let's Encrpyt Coturn due to socket buffer operation error) 
+3. Obtain a certificate for your domain. (TLS/TCP does not work in Let's Encrypt Coturn due to socket buffer operation error) 
 
 4. Update the TURN server configuration file (/etc/turnserver.conf) with these parameters:
 
@@ -35,7 +38,7 @@ lt-cred-mech
 user=your-username:your-password
 realm=your-server-host-name
 listening-port=80
-listening-tls-port=443
+tls-listening-port=443
 alt-listening-port=3478
 alt-tls-listening-port=5349
 proto=tcp
@@ -88,4 +91,16 @@ turnServerCredential=your-turn-server-password
 ```
 
 Setting up a TURN server and configuring it with Ant Media Server allows you to seamlessly use WebRTC in restricted networks where only HTTP/HTTPS ports are open. This solution ensures uninterrupted communication with the outside world, enabling reliable video streaming through Ant Media Server.
+
+<br /><br />
+---
+
+<div align="center">
+<h2> 🔐 WebRTC, No Walls — TURNed On and Talking! 🌐 </h2>
+</div>
+
+With **TURN configured and AMS adjusted**, your WebRTC streams now flow even when all **you’ve got are HTTP/HTTPS channels**. TURN over TLS/TCP is punching through the restrictions.
+
+Streams are **no longer blocked—they’re resilient, connected, and unstoppable.** 🎯
+
 

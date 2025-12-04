@@ -104,3 +104,12 @@ There are multiple ways to setup the SSL certificate. If you do not have your ow
 Once all steps are done, you will be able to access your AMS cluster on the registered domains.
 
 Congratulations! You've successfully deployed Ant Media Server on GKE. Let's get ready to publish and play!
+
+<div align="center">
+  <h2> ⚡ AMS on GKE — Scalable Streaming, Unleashed! 🚀 </h2>
+</div>
+
+Your Ant Media Server cluster is alive and thriving on **Google Kubernetes Engine!** With automatic scaling, Origin and Edge nodes, and a MongoDB backend, your streaming empire is ready to take on the world.
+
+From zero to fully clustered in the cloud, your infrastructure is resilient, automated, and **under your control**. 🌍🎬✨
+

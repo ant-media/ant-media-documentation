@@ -17,7 +17,7 @@ In this document, we'll explain how to use Azure Cosmos DB with Ant Media Server
 
 ## Creating Azure CosmosDB
 
-Follow the below steps to create a Cosmos DB cluster and connect AMS to the database.
+Follow the below steps to create a Cosmos DB cluster and connect AMS to the database
 
 ### Create a Cluster
 
@@ -71,3 +71,12 @@ Here is the sample command to connect with CosmosDB.
 ```bash
 sudo ./change_server_mode.sh cluster "mongodb://username:password@cosmosdb-account-name.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&retryWrites=false"
 ```
+
+
+<div align="center">
+  <h2> 🎉 Cosmos DB + AMS — Global Streaming, Effortless Delivery!🚀 </h2>
+</div>
+
+Look at that! Your Ant Media Server is now **powered by Cosmos DB**, making your streams faster, more reliable, and ready to wow your audience.
+
+With this setup, **scaling for big events or a growing viewer base is a breeze**. Sit back, launch your streams, and let Cosmos DB do the heavy lifting! 🎥✨

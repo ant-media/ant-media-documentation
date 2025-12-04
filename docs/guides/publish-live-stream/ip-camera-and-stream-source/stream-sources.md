@@ -24,9 +24,7 @@ To restream from an external source, follow these steps:
 Make sure that the port that you are using to pull the stream source should be whitelisted on the firewall to avoid any issues.
 :::
 
-In AMS v2.5.3 and later, the stream auto-fetcher is disabled by default, so streams do not start themselves after a server restart. 
-
-Change the following flag to true in the Advance application settings so that streams start fetching automatically.
+In AMS versions 2.5.3 and later, the stream auto-fetcher is disabled by default. To enable automatic fetching of streams after a server restart, modify the following setting in the Advanced Application Settings:
 
 ```js
 "startStreamFetcherAutomatically": true,
@@ -36,9 +34,9 @@ Check out the [recording documentation](https://antmedia.io/docs/category/record
 
 ### Restream UDP Source
 
-For other stream sources like RTSP, RTMP, etc., you can directly pull it as the stream is already available. But if you want to send a stream to AMS with UDP, then first you have to publish it to the server and then you have to pull it.
+For stream sources like RTSP, RTMP, etc., you can directly pull the stream as it is already available. However, to send a stream to AMS using UDP, you must first publish it to the server and then pull it.
 
-You can pull the UDP stream on a server as a stream source by following the below steps.
+To pull the UDP stream on a server as a stream source, follow these steps:
 
  - First, send the stream with UDP to the Ant Media Server IP address using an encoder or FFMPEG. In this example, we used the FFMPEG command.
 
@@ -58,3 +56,15 @@ This [Rest API](https://antmedia.io/rest/#/default/createBroadcast) can be used 
 curl -X POST -H "Content-Type: application/json" "https://IP-address-or-domain:5443/App-Name/rest/v2/broadcasts/create?autoStart=false" -d '{ "type":"streamSource","name":"test",
 "streamId":"test","streamUrl":"YOUR_STREAM_SOURCE_URL"}'
 ```
+
+<br /><br />
+---
+
+<div align="center">
+<h2> Stream Source Connected! 🎉 </h2>
+</div>
+
+You've successfully configured Ant Media Server to **restream content from an external source**. Whether it's an RTSP feed from an IP camera, an HLS playlist, or a UDP stream, your AMS is now pulling and broadcasting it seamlessly.
+
+Your live stream is now ready for **playback via WebRTC, HLS, DASH, or LL-HLS. Great job — your content is live and accessible!**
+

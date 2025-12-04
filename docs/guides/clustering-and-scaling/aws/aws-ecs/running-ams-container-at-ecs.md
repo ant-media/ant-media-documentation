@@ -174,4 +174,13 @@ Ensure you have registered & subscribed to the [Ant Media Server Enterprise cont
 
 
 
+<br /><br />
+---
+
+<div align="center">
+<h2> 🚀 AMS on ECS — Scalable and Simplified </h2>
+</div>
+
+By deploying Ant Media Server on AWS ECS, you've embraced a **scalable**, **containerized architecture** that ensures high availability and efficient resource utilization. With ECS managing the **orchestration**, you can focus on **delivering seamless streaming experiences to your audience**, while AWS handles the underlying infrastructure complexities.
+
 

@@ -133,7 +133,7 @@ For detailed information about SSL, follow [SSL Setup](/guides/installing-on-lin
 Once your AMS is installed, open your browser and navigate to the web panel by typing ```http://SERVER IP ADDRESS:5080```. If you're having trouble accessing the web panel, it's possible that a firewall is blocking access to the 5080 port.
 
 If an SSL certificate is installed, the server can be reached at 
-```http://domain-name:5443```
+```https://domain-name:5443```
 
 ## Docker installation
 
@@ -199,5 +199,14 @@ sudo sh -c "iptables-save >` /etc/iptables/rules.v4"
 ## Please watch the quick installation of Ant Media Server.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/0m27oDIb95s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+<br /><br />
+---
+
+<div align="center">
+<h2> Well done 👏 </h2>
+</div>
+
+You have installed **AntMedia Server on Linux** (both Community and Enterprise), started the **service**, **set up SSL**, accessed the **web panel** and also understood the **server ports** used by AntMedia Server (all while sipping your ☕). You now have a solid foundation for live streaming and can build on this setup with confidence.
 
 

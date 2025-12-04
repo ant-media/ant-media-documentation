@@ -59,3 +59,16 @@ For example, you can test via this [sample page](https://test.antmedia.io:5443/l
 ## Watch the quick demo of WHIP using both methods
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/hw0gs7Dxym4?si=UyJ2sATPyMF-iWWO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+
+<br /><br />
+---
+
+<div align="center">
+<h2> WHIP Wizardy! 🎩✨ </h2>
+</div>
+
+Congratulations! You've successfully configured **WHIP streaming with Ant Media Server**. Your WebRTC streams are now effortlessly ingested via simple HTTP endpoints, streamlining your live broadcasting setup.
+
+With WHIP, you've embraced a modern, standardized approach to media ingestion, enhancing interoperability and reducing complexity. Your streaming workflow is now more efficient and future-ready.
+

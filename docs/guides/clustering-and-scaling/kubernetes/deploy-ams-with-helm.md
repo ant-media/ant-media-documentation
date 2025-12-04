@@ -95,7 +95,7 @@ If the result of this output is the expected Ingress IP address, then the DNS ha
 
 ## Install SSL
 
-By default, a self-signed certificate comes in the Ant Media Server Kubernetes structure that is installed with Helm. If required, this can be replace with a custom certificate as shown below or follow the steps in further down to install via Let's Encrypt.
+By default, a self-signed certificate comes in the Ant Media Server Kubernetes structure that is installed with Helm. If required, this can be replaced with a custom certificate as shown below or follow the steps further down to install via Let's Encrypt.
 
 ```shell
 kubectl create -n antmedia secret tls ${CERT_NAME} --key ${KEY_FILE} --cert ${CERT_FILE} 
@@ -153,3 +153,13 @@ You can customize the Ant Media Cluster installation using the following paramet
 ```shell
 helm install antmedia antmedia/antmedia --set origin=origin.antmedia.io --set edge=edge.antmedia.io --set autoscalingEdge.targetCPUUtilizationPercentage=20 --set autoscalingEdge.minReplicas=2 --namespace antmedia --create-namespace
 ```
+
+
+<div align="center">
+  <h2> 🚀 AMS on Helm — Click, Deploy, Done! 🎉 </h2>
+</div>
+
+Ta-da! Your Ant Media Server cluster is now running via **Helm with Origin and Edge, database, and Ingress all set.** Everything’s automated, modular, and scalable.
+
+**Helm just made your life easier**. You clicked deploy, and boom — streaming infrastructure done. Grab coffee, celebrate, and **get ready to stream like a boss!** ☕🎥
+

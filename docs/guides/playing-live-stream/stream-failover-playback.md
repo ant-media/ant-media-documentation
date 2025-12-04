@@ -7,6 +7,8 @@ sidebar_position: 6
 
 # Stream Failover Playback
 
+Ant Media Server introduces the concept of primary and backup streams to enhance the reliability and continuity of live streaming.
+
 The **Primary-Backup Stream** concept involves using two streams—one as the **primary (main) stream** and another as the **backup (failover) stream** to ensure reliability and continuity in live streaming.
 
 :::info
@@ -16,7 +18,7 @@ Starting with version 2.13, the Ant Media Server supports the concept of primary
 - **Primary Stream (Main Stream)**
     
     - The main video/audio stream is sent to the server.
-    -  Viewers watch this stream under normal conditions.
+    - Viewers watch this stream under normal conditions.
 
 - **Backup Stream (Failover Stream)**
     
@@ -77,3 +79,15 @@ The great part is that it works in reverse mode as well. If the backup goes down
 :::
 
 To learn more about Web Player, check [this document](https://antmedia.io/docs/guides/playing-live-stream/embedded-web-player/).
+
+
+<br /><br />
+---
+
+<div align="center">
+<h2> Interruption free Streaming 🎥 </h2>
+</div>
+
+**Congratulations!** You've successfully configured **stream failover playback** with Ant Media Server. Your viewers can now enjoy **uninterrupted live streaming experiences**, even in the event of stream failures. By implementing primary and backup streams, you've enhanced the reliability of your live broadcasts, ensuring a seamless viewing experience for your audience.
+Well done — your failover-enabled streaming solution is **live and ready to impress!**
+

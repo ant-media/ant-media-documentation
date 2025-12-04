@@ -163,3 +163,11 @@ bash ams-k8s-ssl.sh
 Enabling SSL for Azure Application gateway is complicated as compared to Nginx Ingress.
 
 If you want to use Azure Application gateway, please follow this guide to [Enable SSL for Azure Application Gateway](https://antmedia.io/ssl-for-azure-app-gateway-for-scaling-azure-ant-media/)
+
+<div align="center">
+  <h2> 🎉 Azure AKS — Your Streaming Empire Awaits! 🚀 </h2>
+</div>
+
+Congratulations! Your Ant Media Server cluster is now live on **Azure Kubernetes Service**, featuring Origin and Edge deployments, a MongoDB backend, and an Application Load Balancer to route traffic. With resources scaling automatically, your streaming infrastructure is ready to handle high loads with resilience and flexibility.
+
+Sit back, relax, and let the streams roll — **your viewers are in for a smooth ride!** 🎬🚀

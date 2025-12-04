@@ -25,13 +25,14 @@ As you can see, my input has been added successfully, and its preview can be see
 
 ![vmix-settings.JPG](@site/static/img/vmix-settings.JPG)
 
-*   Click to the setting button on the top right.
-*   Switch to the NDI On in first output
-*   Click setting icon in first output
-*   Click Enable SRT on settings
-*   In the Hostname box, type your Ant Media Server URL without port. It's like ```ant.media.server.address```
-*   In the Port box, type your Ant Media Server SRT port number. It's like ```4200```
-*   In the Stream ID box, type your App name and stream ID. It's like ```live/stream1```
+- Click the **Settings** button in the top right corner.  
+- In the first output, enable **NDI**.  
+- Click the **Settings** icon for the first output.  
+- Enable **SRT** in the settings panel.  
+- In the **Hostname** field, enter your Ant Media Server URL **without the port**, for example:```ant.media.server.address```  
+- In the **Port** field, enter your Ant Media Server SRT port number, for example: ```4200```.  
+- In the **Stream ID** field, enter your App name and stream ID, for example: ```live/stream1```.  
+
 
 ![](@site/static/img/vmix-output-settings.png)
 
@@ -54,3 +55,13 @@ As you can see from the following screenshot, it started to stream.
 ![](@site/static/img/95346239-476efb80-08c4-11eb-9eb9-a408cd47fd43.png)
 
 Now you are publishing with vMix!
+
+<br /><br />
+---
+
+<div align="center">
+<h2> Smooth Mix, Stream Secure 🎬 </h2>
+</div>
+
+You’ve successfully set up **SRT streaming from vMix** — added your **input**, enabled SRT in **output settings,** specified your **hostname**, **port**, **stream ID**, and **tuned the encoder** (baseline profile, keyframe latency = 1, etc.). Your stream is now lean, resilient, and ready for broadcast. 📡
+
