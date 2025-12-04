@@ -17,7 +17,7 @@ Let’s have a step-by-step look on how to use Teradek Vidiu Pro for streaming. 
 
 ## Connect to Teradek Vidiu Pro WiFi Network.
 
-It creates a WiFi network with the name ```VidiU−XXXXX```. Connect that network with your computer and go to the ```172.16.1.1``` on your browser.
+It creates a WiFi network with the name ```VidiU−XXXXX```. Connect to the Teradek Vidiu Pro WiFi network and open http://172.16.1.1 in your browser (this is the device’s default local interface address).
 
 ![](@site/static/img/vidiu_pro_console.png)
 
@@ -28,7 +28,9 @@ Click “Settings” button on the top right and then click “Network” item i
 ## Configure Wireless Network Connection of Teradek Vidiu Pro
 
 *   Click the WiFi item. Choose “Client” mode and Click the “Browse” button to look up the WiFi networks around.  
-    ![](@site/static/img/set_vidiu_pro_wifi_connectivity.png)Choose the WiFi you would like Teradek Vidiu Pro to connect. Enter the password of the WiFi network and click “**Apply**” button on the top right. Then Restart Teradek Vidiu Pro. Connect to the same wireless network on your computer and check the IP address of the Teradek Vidiu Pro from device’s LED screen. Press the Menu button on the device. The menu button is a joystick button as well. Now go to the Network Settings >` WiFi >` Info to see the IP address of the device
+    ![](@site/static/img/set_vidiu_pro_wifi_connectivity.png)
+
+Choose the WiFi you would like Teradek Vidiu Pro to connect. Enter the password of the WiFi network and click “**Apply**” button on the top right. Then Restart Teradek Vidiu Pro. Connect to the same wireless network on your computer and check the IP address of the Teradek Vidiu Pro from device’s LED screen. Press the Menu button on the device. The menu button is a joystick button as well. Now go to the Network Settings >` WiFi >` Info to see the IP address of the device
 
 Sometimes you may need to power off / on the Teradek Vidiu Pro.
 
@@ -51,3 +53,15 @@ Your device configuration is OK now.
 *   Wait until to see the ```Ready``` text appears on the right top of Teradek Vidiu Pro’s LED screen. Then press ```Start/Stop``` button on the device, a message appears on the device asking for confirmation about starting the broadcast. Press ```Yes``` and then broadcasting starts.
 
 Congrats! You're publishing with Teradek Vidiu Pro to Ant Media Server.
+
+<br /><br />
+---
+
+<div align="center">
+<h2> Teradek for you 🎛️ </h2>
+</div>
+
+You’ve powered up your **Teradek Vidiu Pro**, configured **WiFi client mode**, set the **RTMP Server URL and Stream ID**, and started the broadcast. The stream is flowing from your HDMI source through Teradek into AMS.  
+
+Tada 👏  you now have reliable hardware-encoded output and a **smooth RTMP pipeline via Teradek!** 🎥
+

@@ -7,7 +7,7 @@ sidebar_position: 7
 
 # Installing Ant Media Server on K8s by Digital Ocean
 
-In this guide, we’ll walk through how to deploy **Ant Media Server Enterprise Edition** on a Kubernetes cluster using **DigitalOcean’s Marketplace** — all with just a few clicks.
+This guide demonstrates how to deploy **Ant Media Server Enterprise Edition** on a Kubernetes cluster using **DigitalOcean’s Marketplace** — all with just a few clicks.
 
 :::info
 Before you begin, make sure you have the [Kubernetes command line tool (`kubectl`)](https://kubernetes.io/docs/tasks/tools/) installed on your local machine.
@@ -37,7 +37,7 @@ Before you begin, make sure you have the [Kubernetes command line tool (`kubectl
 
 ## Step 3: Connect to Kubernetes
 
-Once your cluster is deployed, you’ll be prompted to connect to it via the **“Getting Started with Kubernetes”** wizard.
+After deploying your cluster, you'll be prompted to connect to it via the **'Getting Started with Kubernetes'** wizard
 
 We recommend following the **Automated (recommended)** setup, which uses the `doctl` CLI to configure access to your cluster.
 
@@ -103,3 +103,13 @@ In order to access the cluster via public domains, set up the SSL certificate in
 ## Step 5: Setup SSL
 
 The Marketplace product comes with a self-signed certificate. If you want to use Let's Encrypt or your own certificate, follow the documentation to [install an SSL certificate via Helm](/guides/clustering-and-scaling/kubernetes/deploy-ams-with-helm/#install-ssl)
+
+
+<div align="center">
+  <h2> ☁️ DigitalOcean Kubernetes — Your Streaming Playground! 🎉🚀 </h2>
+</div>
+
+Hooray! Your Ant Media Server cluster is now live on **DigitalOcean Kubernetes**, with Origin and Edge nodes, a MongoDB backend, and a fully configured Load Balancer directing traffic seamlessly. Your infrastructure is ready to handle heavy loads with agility and resilience.
+
+Sit back, enjoy the view, and **let your streams shine across the globe!** 🌍🎬✨
+

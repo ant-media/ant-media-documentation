@@ -9,15 +9,15 @@ sidebar_position: 8
 
 In previous documents under S3 recording, we learned about recording streams to various cloud storages.
 
-By default, Ant Media Server records and uploads all types of files, like **HLS**, **MP4**/**WebM** or **PNG** to the bucket. 
+By default, Ant Media Server records and uploads all file types (e.g., **HLS, MP4/WebM, PNG**) to the bucket.
 
-In one of the cases, the user wants to play the streams with HLS and record with MP4 but does not want to record the HLS files to the bucket. This condition can be controlled using below application property.
+For instance, if a user wants to stream using HLS and record in MP4 format without uploading HLS files to the bucket. This can be controlled using the following application property:.
 
 ```js
 "uploadExtensionsToS3": 7
 ```
   
-You can change this property in the Application's Advanced settings on web panel. The default value is 7, which uploads all HLS, MP4/WebM and PNG files if enabled.
+You can modify this property in the application's Advanced Settings in the web panel. By default, the value is 7, uploading all HLS, MP4/WebM, and PNG files when enabled.
 
 This setting is a number where the digits represent whether an upload will be done or not. The least significant digit switches `MP4/WebM` files, the second switches `HLS` and the third switches `PNG`.
 
@@ -43,3 +43,15 @@ Possible values are as follows:
 
 
 Other than MP4 and WebM, HLS recording can also be done. Check out the [HLS recording document](https://antmedia.io/docs/guides/playing-live-stream/hls-playing/#save-hls-records).
+
+
+<br /><br />
+---
+
+<div align="center">
+<h2> 🎯 Tailored S3 Uploads! 🗂️ </h2>
+</div>
+
+You've fine-tuned your Ant Media Server's recording settings by configuring the **`uploadExtensionsToS3` property**. Whether it's uploading only MP4/WebM files, excluding HLS, or any other combination, your recordings are now efficiently managed. This customization ensures that only the desired file types are uploaded to your S3 bucket, optimizing storage and streamlining your workflow.
+
+Keep up the great work — your live streaming setup is **now more efficient than ever!** 🚀

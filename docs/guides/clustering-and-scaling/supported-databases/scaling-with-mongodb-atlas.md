@@ -13,7 +13,7 @@ In this document we'll explain how to use MongoDB Atlas with Ant Media Server.
 Creating a MongoDB Atlas Database
 ---------------------------------
 
-First, go to the Database section of your Atlas account and click on **Create a database**.  
+"Navigate to the 'Database' section of your Atlas account and click on **Create a database**.  
   
 
 ![atlas0.png](@site/static/img/atlas0.png)
@@ -25,15 +25,12 @@ You can create the type of MongoDB cluster that you want by simply choosing any 
 
 ![](@site/static/img/atlas1.png)
 
-  
-Once done with all the necessary fields, click on **Create cluster**. It’ll take a few minutes and the database cluster will be ready.  
+After completing all necessary fields, click '**Create cluster**.' The database cluster will be ready in a few minutes.
   
 **![](@site/static/img/Atlas3.png)**
 
-  
 
-Next, let's configure to control the IP addresses that can access the Atlas database by going to **Add IP Address** under Network Access.  
-  
+Next, configure the IP addresses that can access the Atlas database by navigating to '**Add IP Address**' under 'Network Access.  
 
 **![](@site/static/img/atlas4.png)**  
 
@@ -72,3 +69,12 @@ These parameters can be passed when starting Ant Media Server with **start.sh**
     sudo ./start.sh -m cluster -h mongodb+srv://username:password@url
 
 One critical point to note is that when we specify the URL with MongoDB or monodb+srv, it's compulsory to provide the username and password.
+
+
+<div align="center">
+  <h2> 🌍 MongoDB Atlas Integration — Global Streaming, Effortless Delivery! 🚀 </h2>
+</div>
+
+Congratulations! Your Ant Media Server infrastructure now **leverages MongoDB Atlas**, enabling seamless global streaming with **resilience and speed**.
+
+This isn’t just an **integration** — it’s a **foundation for delivering world-class streaming experiences** to audiences anywhere, anytime. Your platform is now ready to shine globally! 🌐🎬

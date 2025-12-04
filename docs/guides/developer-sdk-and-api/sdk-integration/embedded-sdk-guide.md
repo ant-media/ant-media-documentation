@@ -7,7 +7,7 @@ sidebar_position: 7
 
 # Embedded SDK for WebRTC Streaming
 
-The Embedded SDK is a C++ library designed to capture IP camera streams from RTSP URLs and restream them directly to web browsers using WebRTC. This approach eliminates the need for clients to install third-party tools on their devices, as they can simply use web browsers. Moreover, video latency is kept under one second. This solution is perfect for IP cameras located on private networks that do not have access to public networks and only support RTSP.
+The Embedded SDK is a C++ library designed to capture IP camera streams from RTSP URLs and restream them directly to web browsers using WebRTC. This eliminates the need for clients to install third-party tools; they can simply use a browser. Video latency is kept under one second, making this solution ideal for IP cameras on private networks that only support RTSP.
 
 The [WebRTC Embedded SDK Reference project](https://github.com/ant-media/WebRTCEmbeddedSDKReference) has ready to use [executable](https://github.com/ant-media/WebRTCEmbeddedSDKReference/tree/master/executables), [main.cpp](https://github.com/ant-media/WebRTCEmbeddedSDKReference/blob/master/main.cpp) that is the source code which uses embedded SDK, a [makefile](https://github.com/ant-media/WebRTCEmbeddedSDKReference/blob/master/Makefile), API in [sdkapi.h](https://github.com/ant-media/WebRTCEmbeddedSDKReference/blob/master/sdkapi.h) that is the interface between the library and your source code.i.e., between the application and the embedded SDK and shows how to use the embedded SDK.
 
@@ -62,3 +62,7 @@ In order to publish multiple streams using the Embedded SDK, you can run the exe
 ./webrtc_pull_rtsp "ws://127.0.0.1:5080/WebRTCAppEE/websocket" "rtsp://127.0.0.1:6554/test.flv" "stream1" &
 ./webrtc_pull_rtsp "ws://127.0.0.1:5080/WebRTCAppEE/websocket" "rtsp://127.0.0.1:6554/test.flv" "stream2" &
 ```
+
+## Congratulations!
+
+You have successfully explored the Embedded SDK for WebRTC streaming. You can now capture RTSP streams from IP cameras and stream them in real time to web browsers or AMS, either in peer-to-peer mode or using publish-and-play mode. Enjoy low-latency streaming with minimal CPU usage and maximum flexibility for your network environment!

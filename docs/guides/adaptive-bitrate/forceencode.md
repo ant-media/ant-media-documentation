@@ -5,7 +5,7 @@ keywords: [Adaptive Bitrate Streaming, ABR, multi-bitrate streaming, live stream
 sidebar_position: 4
 ---
 
-ForceEncode is a feature of Adaptive Bitrate Streaming that transcodes all resolutions on the server by default.
+ForceEncode is an ABR feature that ensures all resolutions are transcoded on the server by default, providing consistent quality across all streams.
 
 By default, if two ABRs are enabled, such as 1080p and 720p, and the user publishes the RTMP stream in 1080p, the HLS will include all three resolutions, including the original one, resulting in two 1080p, including the transcoded one.
 
@@ -82,3 +82,15 @@ test.m3u8
 :::
 
 Using this feature allows you to save bandwidth and resources.
+
+<br /><br />
+---
+
+<div align="center">
+<h2> 🎯 You are a Smart Encoder ⚙️ </h2>
+</div>
+
+With ForceEncode, you have the power to optimize your server's performance. By **selectively transcoding streams**, you can balance quality and resource usage effectively.
+
+Your streaming setup is now more efficient, **delivering high-quality content without overloading your server!** 🚀
+

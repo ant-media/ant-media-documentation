@@ -249,3 +249,15 @@ Otherwise, you can take the values as a URL parameter, as we use in AMS [play.ht
 - Your Embedded player may occasionally display a network warning. More information can be found [here](https://github.com/orgs/ant-media/discussions/4923).
  - Change the language on the player while the stream is not active, see [this](https://github.com/orgs/ant-media/discussions/4880).
  - Display poster image instead of text when stream is not active, see [this](https://github.com/orgs/ant-media/discussions/4877).
+
+<br /><br />
+---
+
+<div align="center">
+<h2> Take the Stream with You 🎥 </h2>
+</div>
+
+**Congratulations!** You've successfully integrated Ant Media Server's **Embedded Web Player into your website.** Your viewers can now enjoy **seamless** live streaming experiences with minimal setup. Whether you chose the quick **`<iframe>`** method or the customizable **Web Player**, you're all set to deliver high-quality content to your audience.
+
+Happy streaming!🙂
+

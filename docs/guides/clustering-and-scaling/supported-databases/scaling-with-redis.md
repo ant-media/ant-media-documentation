@@ -20,7 +20,7 @@ Redis's Pub/Sub messaging system enables real-time communication and event-drive
 - **Scalability and High Availability:**
 Redis supports standalone and clustered deployments, ensuring scalability and high availability. Clustered deployments distribute data across nodes, providing fault tolerance for uninterrupted streaming services.
 
-Therefore, by incorporating Redis with AMS, users can optimize their live video streaming workflows, leveraging its speed, caching capabilities, Pub/Sub messaging, and scalability features.
+By integrating Redis with AMS, users can enhance their live video streaming workflows, leveraging its speed, caching capabilities, Pub/Sub messaging, and scalability features."
 
 ## How to deploy Redis?
 
@@ -87,3 +87,12 @@ When deploying Ant Media Server (AMS) with Kubernetes, you can use Redis by pass
 Also, you can refer to this blogpost in we have discussed about using different [databases with Ant Media Server](https://antmedia.io/databases-supported-by-ant-media-server/).
 
 In this document we discussed Redis integration with AMS, covering use cases, implementation strategies, and best practices. Understanding the benefits of Redis integration helps you make informed decisions for your live video streaming infrastructure, whether you're using MongoDB, MapDB, or Redis.
+
+<div align="center">
+  <h2> 🎉 Redis + AMS — Faster Streams, Happier Viewers! 🚀 </h2>
+</div>
+
+Your Ant Media Server is now integrated with **Redis**, leveraging its **speed, caching, and Pub/Sub capabilities to optimize streaming workflows**
+
+Your audience will enjoy **smooth, reliable viewing, and you can relax knowing your infrastructure scales effortlessly.** Go ahead — let the streaming magic happen! 🎥✨
+

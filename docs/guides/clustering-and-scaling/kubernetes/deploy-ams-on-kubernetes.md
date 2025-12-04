@@ -90,7 +90,7 @@ v1beta1.metrics.k8s.io                 kube-system/metrics-server   True        
 
 ### Configure Autoscaling
 
-Make a small changes in the yaml files for edge and origin configurations in Ant Media Server:
+Make small changes in the YAML files for edge and origin configurations in Ant Media Server:
 
 :::tip
 A [sample deployment file](#sample-deployment-file) is at the end of this guide with detailed explanation of the parametres
@@ -595,3 +595,12 @@ Here are the explanations for the common parameters and the changes parameters.
 *   **hostNetwork:** true line above means that Ant Media Server uses the host network. It is required as there is a wide range of UDP and TCP ports are being used for WebRTC streaming. This also means that you can only use one pod of Ant Media Server in a host instance. Don't worry about where and how to deploy as K8s handles that. We're just letting you know this to determine total number of nodes in your cluster.
 *   **affinity: TODO**
 *   **labels:** for origin edge distinction TODO
+
+
+<div align="center">
+  <h2> 🏆 AMS on Kubernetes — You’ve Joined the Big Leagues! 🚀 </h2>
+</div>
+
+Well done, cloud architect! You’ve taken Ant Media Server to the next level — **fully deployed on Kubernetes** with Origin and Edge nodes, autoscaling, and secure Ingress routing. This isn’t just deployment; it’s a foundation for **world-class, low-latency streaming.**
+
+Few reach this level of infrastructure mastery. You’ve built a platform that scales with demand, heals itself, and is always ready for the next big live event. **The hard part is done — now let the streams roll!** 🎬🌍

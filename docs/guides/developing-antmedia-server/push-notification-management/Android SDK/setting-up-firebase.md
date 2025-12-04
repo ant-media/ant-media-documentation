@@ -16,3 +16,7 @@ Before integrating Firebase Cloud Messaging (FCM) into your Android app, you nee
 - Add Cloud Messaging to your project via Firebase Console.
 
 ![](@site/static/img/fcm.jpg)
+
+## Congratulations!
+
+You’ve successfully created and configured a Firebase project to support push notifications. With FCM connected, your Android app is now ready to send and receive real-time notifications, giving your users instant updates and a more engaging experience.

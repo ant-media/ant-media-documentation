@@ -7,9 +7,9 @@ sidebar_position: 2
 
 # Configuring RTMP LB in Azure
 
-Follow the below instructions to configure RTMP Load Balancer in Ant Media Server Auto Scaling structure.
+Follow the instructions below to configure RTMP Load Balancer in Ant Media Server Auto Scaling structure.
 
-**1.** Click on Create load balancer and create a new Load Balancer. (Search >` Load Balancing)  
+**1.** Click Create Load Balancer to create a new Load Balancer (Search >` Load Balancing)  
 ![azure-rtmp-1.png](@site/static/img/azure-rtmp-1.png)
 
 **2.** In this section, select ```Resource Group``` and click ```Next: Frontend IP configuration```.  
@@ -37,3 +37,12 @@ Now we need to create a Health Probe. Create the health probe as follows.
 **7.** You can find out the IP address you will use for broadcasting by clicking ```Load Balancing >` Your Load Balancing >` Frontend IP configuration```.
 
 ![azure-rtmp-9.png](@site/static/img/azure-rtmp-9.png)
+
+
+<div align="center">
+  <h2> ⚖️ RTMP LB — Balanced Broadcasting! 🎉 </h2>
+</div>
+
+Your **RTMP Load Balancer** is now configured inside the **Azure Auto Scaling framework**. With the load balancer and health probe in place, your Ant Media Server deployment is prepared for resilient, high-availability streaming at scale.
+
+You're ready to broadcast reliably — go light those streams and let the audience roll in. Happy streaming! 🎬

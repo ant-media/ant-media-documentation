@@ -130,3 +130,15 @@ If you prefer **Without HostNetwork**, then you can deploy multiple pods on a no
 Now, you can go to the next phase: AMS Kubernetes Deployment.  
   
 At this point, you have a Kubernetes cluster now, to create an Ant Media Server cluster you can continue with this document. Please keep in mind that according to the deployment type, you should need some customization as told in the document.
+
+
+<div align="center">
+  <h2> 🚀 Your Streaming Infrastructure- Kubernetes way! 🎉 </h2>
+</div>
+
+Congratulations! You've successfully prepared your Kubernetes environment for Ant Media Server deployment. With your **Docker image built**, Kubernetes cluster set up, and Metric Server installed, you're all set to scale your **streaming infrastructure effortlessly.**
+
+From here, you can proceed to deploy AMS using your preferred method—be it **manual deployment, Helm charts, or cloud-specific templates**. Your journey towards a robust, scalable, and automated streaming solution has just begun!
+
+Get ready to deliver high-quality, low-latency streams to your audience with confidence. **The cloud is your stage—let the streaming begin! **🎬🌐✨
+

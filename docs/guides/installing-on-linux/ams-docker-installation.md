@@ -5,6 +5,7 @@ keywords: [Docker, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 6
 ---
 
+Docker provides an easy and portable way to run Ant Media Server without installing it directly on your host system. Using the official Docker images, you can quickly spin up a containerized AMS instance, test it on different environments, and manage upgrades or custom builds with minimal effort.
 
 To use the Ant Media Server Enterprise Edition [official Docker Hub image](https://hub.docker.com/r/antmedia/enterprise/tags), you can execute the following command, which will pull the latest version directly from Docker Hub and run the container.
 
@@ -21,7 +22,7 @@ docker run --restart=always -d --name antmedia -p 5080:5080 -it antmedia/enterpr
 Once the container is running, reach out to the AMS dashboard and start streaming as explained below.
 
 
-**But in case you want to create your own AMS Docker image to run the container, follow the below procedure:**
+**For those who prefer creating their own AMS Docker image, here’s the process to follow:**
 
 
 ## 1. Download Dockerfile
@@ -50,9 +51,9 @@ docker build --network=host -t antmediaserver --build-arg LicenseKey=<Your_Licen
 
 #### Enterprise Edition:
 
-You can get the AMS Enterprise Edition Zip file from your [Ant Media account](https://antmedia.io) after purchasing the license.
+The AMS Enterprise Edition Zip file can be downloaded from your [Ant Media account](https://antmedia.io) after license purchase. 
 
-For example, if the zip file name is `ant-media-server-enterprise-2.14.0-20250513_1544.zip`
+Example: **ant-media-server-enterprise-2.14.0-20250513_1544.zip.**
 
 ```bash
 docker build --network=host -t antmediaserver --build-arg AntMediaServer=ant-media-server-enterprise-2.14.0-20250513_1544.zip .
@@ -60,9 +61,9 @@ docker build --network=host -t antmediaserver --build-arg AntMediaServer=ant-med
 
 #### Community Edition:
 
-You can get the AMS Community Edition Zip file from the Ant Media Server [GitHub release page](https://github.com/ant-media/Ant-Media-Server/releases).
+The AMS Community Edition Zip file can be downloaded from the Ant Media Server [GitHub release page](https://github.com/ant-media/Ant-Media-Server/releases).
 
-For example, if the zip file name is `ant-media-server-community-2.14.0.zip`
+Example: **ant-media-server-community-2.14.0.zip**
 
 ```bash
 docker build --network=host -t antmediaserver --build-arg AntMediaServer=ant-media-server-community-2.14.0.zip .
@@ -77,20 +78,18 @@ docker run --restart=always -d --name antmedia --network=host -it antmediaserver
 ```
 
 :::info
-By default, it uses the host network ports to reach but for example, in Mac OS, the⁣ `network=host` does not work so you can define the port as shown below.
+By default, Docker uses the host network ports. However, on macOS, the `--network=host` option is not supported. In such cases, you’ll need to explicitly define the ports as shown below.  
 :::
 
 ```bash
 docker run --restart=always -d --name antmedia -p 5080:5080 -it antmediaserver
 ```
-
-In the above example, we used only port 5080 for HTTP but for example, RTMP uses port 1935 so it needs to be added separately.
+In this example, only port 5080 is mapped for HTTP access. However, protocols like RTMP require additional ports (e.g., 1935), so they must be specified as well.
 
 ```bash
 docker run --restart=always -d --name antmedia -p 5080:5080 -p 1935:1935 -it antmediaserver
 ```
-
-Similarly, more ports can be allowed as per requirements.
+You can map more ports as needed, depending on your use case.
 
 ## 4. Volume
 
@@ -109,3 +108,15 @@ After the Docker container starts, reach out to `http://localhost:5080` or `http
 
 
 Check out [here](https://antmedia.io/docs/guides/publish-live-stream/webrtc/) to publish a WebRTC stream for testing.
+
+<br /><br />
+---
+
+<div align="center">
+<h2> Nice job 🚀 </h2>
+</div>
+
+You have successfully set up **Ant Media Server using Docker** — you ran the official image (or built your own), mapped the necessary ports like 5080 (and RTMP if you needed it). You can now access the Dashboard and start streaming immediately.  
+
+Bonus points: your setup is lightweight, quick to launch, and runs anywhere — that’s the Docker charm! 🎩
+

@@ -3,13 +3,15 @@ title: Enable SSL
 description: Setting up SSL for Ant Media Server using Let's Encrypt certificate.
 keywords: [Setting up SSL for Ant Media Server, Lets Encrypt, Let's Encrypt Certificate, Ant Media Server Documentation, Ant Media Server Tutorials, SSL]
 sidebar_position: 2
+priority: 1
+version: 2.14
 ---
 
 # How to Enable SSL
 
 ## Setting up SSL for Ant Media Server
 
-Setting up SSL is a mandatory task when requesting access to the microphone and camera. Also, you need to enable HTTPS and WSS (WebSocket Secure) for Chrome to run WebRTC and WebSocket applications. In addition, developers want to serve their content with a secure connection as well.
+SSL is mandatory to enable secure access to the camera, microphone, and to use WebSocket Secure (WSS) for WebRTC. In addition, serving content over HTTPS is required for most modern browsers.
 
 There are several options to get the SSL certificate. Please choose the one appropriate for you.
 
@@ -19,7 +21,7 @@ In previous versions, configuring SSL involved intricate steps, such as accessin
 
 However, with the release of Ant Media Server version 2.6.2, we have streamlined the SSL enablement process, allowing users to seamlessly secure their media server directly from the AMS Web Panel. This empowers users to enable SSL with utmost ease and convenience.
 
-- After [installaling the Ant Media Server](https://antmedia.io/docs/guides/installing-on-linux/installing-ams-on-linux/), login to the web panel and navigate to `SETTINGS > SSL`.
+- After [installing the Ant Media Server](https://antmedia.io/docs/guides/installing-on-linux/installing-ams-on-linux/), login to the web panel and navigate to `SETTINGS > SSL`.
 ![](@site/static/img/ssl-webpanel/ssl-settings.png)
 
 - In the drop-down select box named Type, choose among the various options to enable SSL, like [using your own domain](https://antmedia.io/docs/guides/installing-on-linux/setting-up-ssl/#create-lets-encrypt-certificate-with-http-01-challenge), [free subdomain of antmedia.cloud](https://antmedia.io/docs/guides/installing-on-linux/setting-up-ssl/#get-a-free-subdomain-and-install-ssl-with-lets-encrypt), or [import your own certificate](https://antmedia.io/docs/guides/installing-on-linux/setting-up-ssl/#import-your-custom-certificate) and then click Activate to enable the SSL and restart your server.
@@ -51,7 +53,7 @@ If the IP is dynamic/changed, then the server will not be accessible on a previo
 ```shell
 cd /usr/local/antmedia
 ```
-- Run the `enable_ssh.sh` command to install the SSL.
+- Run the `enable_ssl.sh` command to install the SSL.
 
 ```shell
 sudo ./enable_ssl.sh
@@ -173,9 +175,9 @@ Let's Encrypt have some plugins to simplify the authorization. Route 53 plugin c
 
 - If everything is set up properly, you can access the server via 
 
-    `http://{DOMAIN_NAME}:5443`
+    `https://{DOMAIN_NAME}:5443`
 
-If you disabled a service that binds to port 80, such as Apache Web Server, enable it again.
+If you are using Apache, Nginx, or any other web server / service binding port 80, ensure you stop/disable it temporarily before running enable_ssl.sh, and re-start afterwards if needed.
 
 ```bash
 sudo service apache2 start
@@ -192,3 +194,14 @@ The `enable_ssl.sh` command will fail if port 80 is already in use by another pr
 
 Please disable the process or delete the port forwarding temporarily before running the `enable_ssl.sh` script above.
 :::
+
+<br /><br />
+---
+
+<div align="center">
+<h2> Congratulations 🎉 </h2>
+</div>
+
+You have now **enabled SSL** for your Ant Media Server —via the **AMS Sub-domain** on webpanel or the **terminal** and secured your server with HTTPS/WSS, and (if applicable) set up the **Let’s Encrypt**, imported **your certificate**, and confirmed domain settings. You now have a **more secure streaming setup that users and browsers trust**. 
+
+Keep up the great work — your streams are safer now! 🔐

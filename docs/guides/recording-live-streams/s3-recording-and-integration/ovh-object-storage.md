@@ -21,11 +21,19 @@ You will see the Dashboard below after clicking Create the Container.
 
 Here you see the sample S3 credentials. You need to set to yours:
 
-Then, log in the http://your_ams_server:5080, enable Record Live Streams as MP4 and Enable S3 Recording, enter the S3 credentials you have created, and save the settings.
+Then, Log in to your Ant Media Server panel at `http://your_ams_server:5080`.  
+   - Navigate to **Applications** > **live** > **Settings**.  
+   - Enable **Record Live Streams as MP4**.  
+   - Enable **S3 Recording**.  
+   - Enter the following S3 credentials:  
+     - **Access Key**: `your_access_key`  
+     - **Secret Key**: `your_secret_key`  
+     - **Bucket Name**: `your_bucket_name`  
+   - **Save** the settings.
 
 ![image.png](@site/static/img/image-285529.png)
 
-Your MP4 files and Preview files will be uploaded to your OVH Object Storage automatically.
+Your MP4 and Preview files will be uploaded to your **OVH Object Storage** automatically.
 
 
 ## Enable HTTP Forwarding for Playback
@@ -67,3 +75,14 @@ Ant Media Server will forward the request to:
 ```bash
 https://mybucket.gra.cloud.ovh.net/streams/recording.mp4  
 ```
+
+<br /><br />
+---
+
+<div align="center">
+<h2> Streams Off to the Cloud! ☁️🚀 </h2>
+</div>
+
+You’ve successfully configured Ant Media Server to **record live streams directly to OVH Object Storage**. Now, every MP4 you capture will be securely **uploaded to the cloud**, ready for playback anytime.  
+
+Excelente!! your streams are **officially living the high life in the cloud!** 🌤️📦

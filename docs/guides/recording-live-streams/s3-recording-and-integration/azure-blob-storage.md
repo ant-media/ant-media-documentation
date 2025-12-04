@@ -102,3 +102,15 @@ sudo blobfuse2 mount /usr/local/antmedia/webapps/live/streams --config-file ~/bl
 ```
 
 After mounting, all the recordings or files of the `live` application will be stored in the Azure Storage account container.
+
+<br /><br />
+---
+
+<div align="center">
+<h2> Azure Assures Your Streams are Floating! ☁️✨ </h2>
+</div>
+
+**Congratulations!** You've successfully configured Ant Media Server to record live streams directly to **Azure Blob Storage**. Your MP4 and preview files are securely stored and ready for on-demand playback.
+
+Great job — your streams are now **safely floating in the Azure cloud!** 🚀🎬
+

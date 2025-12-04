@@ -43,7 +43,7 @@ The following steps outline the basic operations of an AMS cluster:
   3. Finally, the edge node distributes the stream to the requesting viewers.
 
 :::info
-Ensure that TCP port **5000** is open for internal network communication when running in Cluster mode. For security reasons, this port should remain inaccessible from the public internet.
+Ensure TCP port **5000** is open for internal network communication when running in Cluster mode. For security reasons, this port should remain inaccessible from the public internet.
 :::
 
 
@@ -179,3 +179,12 @@ Install the load balancer using either one of the below two options. AMS uses Ng
 - [Nginx Load Balancer](https://antmedia.io/docs/guides/clustering-and-scaling/load-balancing/nginx-load-balancer/)
 
 - [HAProxy Load Balancer](https://antmedia.io/docs/guides/clustering-and-scaling/load-balancing/haproxy-load-balancer/)
+
+
+<div align="center">
+  <h2> 🌍 AMS Cluster — A Streaming Engine You Built Yourself! 💪 </h2>
+</div>
+
+Look at what you’ve achieved — **from bare servers to a fully functioning Ant Media cluster**, every piece now works in harmony to deliver seamless, scalable streaming.
+
+This isn’t just a setup; it’s the backbone of a **powerful, resilient media platform** — You built it. Now let it shine. 🌟🚀
