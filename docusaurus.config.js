@@ -418,7 +418,7 @@ scripts: [
         },
 	{
           from: '/guides/advanced-usage/Plugins-for-Ant-Media-Server/',
-          to: '/guides/developing-antmedia-server/plugins-for-ant-media-server/'
+          to: '/guides/developing-antmedia-server/plugins/plugins-for-ant-media-server/'
         },
 	{
           from: '/guides/publish-live-stream/webrtc-peer-to-peer-communication/',
