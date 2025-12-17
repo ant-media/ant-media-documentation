@@ -17,15 +17,15 @@ LL-HLS achieves this by using smaller video segments (called **parts**) that all
 
 ### Prerequisites
 
-- **Ant Media Server Enterprise Edition v2.11 or later:** LL-HLS plugin compatible from this version.
+- **Ant Media Server Enterprise Edition v2.17 or later:** LL-HLS plugin compatible from this version.
 - **LL-HLS Plugin:** Purchase the plugin by emailing ```sales@antmedia.io``` or via the ```Ant Media website```
-- **Supported Player:** Use a player that supports LL-HLS, such as **THEO Player** or the **Ant Media Server Embedded Player**.
+- **Supported Player:** Use a player that supports LL-HLS. We recommend testing with **[hls.js](https://hlsjs.video-dev.org/demo/)** or **[THEO Player](https://www.theoplayer.com/test-your-stream-hls-dash-hesp)** first. 
 
 ### Key Differences: HLS vs. LL-HLS
 
 | Standard HLS | Low Latency HLS (LL-HLS) |
 | ------------ | ------------------------ |
-|Latency: 8-12 secs | Latency: 2-5 secs |
+|Latency: 8-12 secs | Latency: 3-5 secs |
 | Segment-based | Part-based (smaller chunks) |
 | Larger file sizes | Smaller, more frequent parts |
 
@@ -56,6 +56,28 @@ LL-HLS is a **paid plugin** offered by the Ant Media Server. So before using LL-
 
 Ant Media Server provides LL-HLS endpoints for all ingested streams. You can check the [publish live streams](https://antmedia.io/docs/category/publish-live-stream/) section to learn how to publish streams using different protocols with Ant Media Server. For this example, let's [publish with WebRTC](https://antmedia.io/docs/guides/publish-live-stream/webrtc/).
 
+#### Stream Configuration Requirements
+
+For LL-HLS to function correctly, your stream configuration must meet the following criteria:
+
+1. **Adaptive Bitrate (ABR):** ABR must be enabled.
+2. **GOP Size:** The Group of Pictures (GOP) size must be set to 1 or 2 seconds maximum. 
+   - Example: If the framerate is 30 fps, set the GOP size to 30 or 60.
+
+**Hardware Encoding Settings:**
+
+If you are using hardware encoding (e.g., `h264_nvenc`), you must configure the following parameters to ensure stability:
+
+```json
+"encoderParameters": {
+    "h264_nvenc": {
+      "rc": "cbr",
+      "gop_size": "60", // or 30 for 1 second
+      "no-scenecut": "1" // Ensure no additional keyframes are added between scene changes
+    }
+}
+```
+
 1. **Access the WebRTC Publish Page**
 
    - Open the following URL in your browser: https://yourserver.com:5443/live/?streamId=stream1
@@ -74,10 +96,10 @@ Ant Media Server provides LL-HLS endpoints for all ingested streams. You can che
 
 1. **Open a Video Player**
 
-   - Use a player that supports LL-HLS, like THEO Player, AMS Player, or others.
+   We recommend using **[hls.js](https://hlsjs.video-dev.org/demo/)** or **[THEO Player](https://www.theoplayer.com/test-your-stream-hls-dash-hesp)** for initial testing and latency verification.
 
-     For this example, we are going to use [THEO Player](https://www.theoplayer.com/test-your-stream-hls-dash-hesp).
-
+   - [hls.js demo player](https://hlsjs.video-dev.org/demo/)
+   - [THEO Player](https://www.theoplayer.com/test-your-stream-hls-dash-hesp)
    - From AMS v2.12 onwards, the LL-HLS playabck is supported via AMS Embedded Player as well. To learn more about embedded web player, check [here](https://antmedia.io/docs/guides/playing-live-stream/embedded-web-player/).
 
 2. **Enter the LL-HLS URL**
@@ -108,17 +130,19 @@ You can fine-tune LL-HLS settings in the [Advanced section of the application se
 
 1. **partTargetDurationMs**
 
-The maximum duration of partial segments in milliseconds (recommended: **1002 ms**).
+The maximum duration of partial segments in milliseconds.
+- **Recommended:** **1000 ms** (round value).
+- **Troubleshooting:** If you experience playback issues, try setting this to a non-round value slightly above 1 second (e.g., **1002 ms**).
 
 ```js
-"partTargetDurationMs": 1002
+"partTargetDurationMs": 1000
 ```
 
 2. **targetDuration**
 
-Target duration for media files (default: **10 seconds**). Lower values provide faster response times but increase server load.
+Target duration for media files
 ```js
-"targetDuration": 10
+"targetDuration": 8
 ```
 
 3. **slidingWindowEntries**
@@ -151,7 +175,7 @@ Controls whether the date and time are added to media file names (default: **tru
 
 7. **receiveDataTimeout**
 
-Timeout duration in seconds after which the segmenter pauses if no data is received (default: **0**, meaning no timeout).
+Timeout duration in seconds after which the segmenter pauses if no data is received (default: **10**). 0 means never.
 ```js
 "receiveDataTimeout": 0
 ```
@@ -184,6 +208,36 @@ If set to **true**, only error messages will be displayed in the logs (default: 
 "quiet": false
 ```
 
+12. **abrDirectMuxing**
+
+Only effective if using ABR. If direct muxing to LL-HLS is enabled, the original stream will also be directly re-muxed to LL-HLS alongside ABR (default: **true**).
+This rarely should be set to FALSE, mostly for debugging purposes.
+```js
+"abrDirectMuxing": true
+```
+
+13. **noFloatingPointDuration**
+
+If set, the segmenter will try to split segments into round numbers (default: **true**).
+Recommended **true**, since players might have problems handling decimal numbers
+```js
+"noFloatingPointDuration": true
+```
+
+14. **partsHoldback**
+
+Suggests to the player how many parts it should stay behind the live edge to ensure smooth playback (default: **3**).
+```js
+"partsHoldback": 3
+```
+
+15. **deleteFilesOnStreamEnd**
+
+If set, LL-HLS related stream files will be deleted when the stream completes (default: **false**).
+```js
+"deleteFilesOnStreamEnd": false
+```
+
 ### Apply Customization
 
 To apply the above settings, add them under the **customSettings** section in the Ant Media Server application's Advanced settings:
@@ -191,17 +245,21 @@ To apply the above settings, add them under the **customSettings** section in th
 ```js
 "customSettings": {
   "plugin.ll-hls": {
-    "partTargetDurationMs": 1002,
-    "targetDuration": 10,
+    "partTargetDurationMs": 1000,
+    "targetDuration": 4,
     "slidingWindowEntries": 5,
     "deleteFiles": true,
     "program": false,
     "addDateTime": true,
-    "receiveDataTimeout": 0,
+    "receiveDataTimeout": 10,
     "exitOnReceiveDataTimeout": false,
     "fileCompleteCommand": "/path/to/script %P %F",
     "fileDeleteCommand": "/path/to/delete_script %P %F",
-    "quiet": false
+    "quiet": false,
+    "abrDirectMuxing": true,
+    "noFloatingPointDuration": true,
+    "partsHoldback": 3,
+    "deleteFilesOnStreamEnd": false
   }
 }
 ```
