@@ -62,9 +62,9 @@ For example, you may have such a plugin that streams the AVFrame with a new prot
 
 ### First point case <small><em>(custom broadcast)</em></small>
 
-Ant Media Server already implements many protocols like WebRTC, RTMP, SRT and stream source pulling. But you may want to implement other streaming protocols for publishing to your server. In this case, you can create a CustomBroadcast and feed it from your plugin.
+Ant Media Server already implements many protocols like WebRTC, RTMP, SRT and stream source pulling. But you may want to implement other streaming protocols for publishing to your server. In this case, you can create a [CustomBroadcast](./developing-plugins.md#custom-broadcast-api) and feed it from your plugin.
 
-For example, you may have a plugin that receives frames from an external source and feeds them to the CustomBroadcast. Then CustomBroadcast can publish this stream with WebRTC, HLS, or DASH.
+For example, you may have a plugin that receives frames from an external source and feeds them to the [CustomBroadcast](./developing-plugins.md#custom-broadcast-api). Then [CustomBroadcast](./developing-plugins.md#custom-broadcast-api) can publish this stream with WebRTC, HLS, or DASH.
 
 <div style={{textAlign: 'center'}}>
 
