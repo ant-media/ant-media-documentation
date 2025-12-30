@@ -25,7 +25,10 @@ The default player is as follows:
 
 ![image](https://github.com/user-attachments/assets/59589673-b589-4652-8690-7f78299933ad)
 
-```play.html``` page uses our custom web player under the hood, which makes it possible to play with all playing protocols (WebRTC, HLS, or CMAF Dash).
+```play.html``` page uses our custom web player under the hood, which makes it possible to play with all playing protocols (WebRTC, HLS, or CMAF Dash). By clicking on stream action button, Play with WebRTC and Play with HLS option can be seen.
+
+![](@site/static/img/playing-live-streams/embedded-web-player/webrtc-hls-option.png)
+
 
 ### Play.html URL Parameters
 
