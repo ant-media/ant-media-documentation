@@ -22,7 +22,7 @@ sidebar_position: 4
 
 - [WebRTC](https://docs.antmedia.io/guides/playing-live-stream/webrtc-playback/) with 0.5 sec latency  
 - [LL-DASH](https://docs.antmedia.io/guides/playing-live-stream/dash-playing-cmaf/)/ [LL-HLS](https://antmedia.io/low-latency-hls-or-ll-hls/) (CMAF) with 3–5 sec latency  
-- [HLS] (https://docs.antmedia.io/guides/playing-live-stream/hls-playing/) with 10–12 sec latency  
+- [HLS](https://docs.antmedia.io/guides/playing-live-stream/hls-playing/) with 10–12 sec latency  
 - RTMP for [Restream](https://docs.antmedia.io/guides/publish-live-stream/simulcasting/) with 3 sec latency  
 
 # Scalability
