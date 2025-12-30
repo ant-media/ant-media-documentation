@@ -142,6 +142,8 @@ Ant Media Server will send a POST request to your application server endpoint wi
     ```json
      {
        "id": "{stream_id}",
+       "app": "{app_name}",
+       "duration": "(duration)",
        "action": "vodReady",
        "vodName": "{vod_file_name}",
        "vodId": "{vod_id}",
