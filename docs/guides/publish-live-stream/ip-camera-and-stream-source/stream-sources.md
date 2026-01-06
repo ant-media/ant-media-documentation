@@ -32,6 +32,22 @@ In AMS versions 2.5.3 and later, the stream auto-fetcher is disabled by default.
 
 Check out the [recording documentation](https://antmedia.io/docs/category/recording-live-streams/) to record the source streams on the Ant Media Server.
 
+### Add RTSP Source with Video or Audio Only
+
+The `allowed_media_types` parameter can be added as the parameter with the RTSP URL to enable audio/video only.
+
+- Audio Only
+
+```
+rtsp://username:password@IP-address:Port/Streaming/Channels/101?allowed_media_types=audio
+```
+
+- Video Only
+
+```
+rtsp://username:password@IP-address:Port/Streaming/Channels/101?allowed_media_types=video
+```
+
 ### Restream UDP Source
 
 For stream sources like RTSP, RTMP, etc., you can directly pull the stream as it is already available. However, to send a stream to AMS using UDP, you must first publish it to the server and then pull it.
