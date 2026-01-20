@@ -53,7 +53,7 @@ Copy and securely store the Access Key ID and Secret Access Key.
 
 ![AWS Access Key – Step 1](@site/static/img/recording-live-streams/s3-integration/aws_s3_accesskey_1.webp)
 
-![AWS Access Key – Step 2](@site/static/img/recording-live-streams/s3-integration/aws_s3_accesskey_2.webp)
+![AWS Access Key – Step 2](@site/static/img/recording-live-streams/s3-integration/aws_s3_accessey_2.webp)
 
 ![AWS Access Key – Step 3](@site/static/img/recording-live-streams/s3-integration/aws_s3_accesskey_3.webp)
 
