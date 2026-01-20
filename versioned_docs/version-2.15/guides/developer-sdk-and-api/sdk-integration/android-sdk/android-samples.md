@@ -149,6 +149,10 @@ Includes **Play Only mode** and allows enabling/disabling audio and video.
 Additional samples include USB Camera, MP3, MP4, MP4 with Surface, and Multi-Track activities.
 :::
 
+## Android SDK Sample Applications Installation Demo
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/aqMPGiF6YIw?si=0OWHopmyx1glwIYE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 ## Congratulations!
 
 You now have access to the full set of WebRTC Android SDK samples.
