@@ -38,12 +38,11 @@ Create a new IAM user for S3 access.
 - Attach the **AmazonS3FullAccess** policy (or a more restrictive custom S3 policy if required).
 - Complete the user creation process.
 
-![Create AWS S3 User](/img/recording-live-streams/s3-integration/aws_s3_CreateUser1.webp)
+![Create AWS S3 User](@site/static/img/recording-live-streams/s3-integration/aws_s3_CreateUser1.webp)
 
-![AWS S3 Full Access Policy](/img/recording-live-streams/s3-integration/aws_s3_fullaccess.webp)
+![AWS S3 Full Access Policy](@site/static/img/recording-live-streams/s3-integration/aws_s3_fullaccess.webp)
 
-![Create AWS S3 User – Final Step](/img/recording-live-streams/s3-integration/aws_s3_Create_Userfinal.webp)
-
+![Create AWS S3 User – Final Step](@site/static/img/recording-live-streams/s3-integration/aws_s3_Create_Userfinal.webp)
 
 After the user is created:
 - Open the newly created IAM user.
@@ -52,21 +51,20 @@ After the user is created:
 - Select **Application running outside AWS** (or the relevant use case).
 Copy and securely store the Access Key ID and Secret Access Key.
 
-![AWS Access Key – Step 1](/img/recording-live-streams/s3-integration/aws_s3_accesskey_1.webp)
+![AWS Access Key – Step 1](@site/static/img/recording-live-streams/s3-integration/aws_s3_accesskey_1.webp)
 
-![AWS Access Key – Step 2](/img/recording-live-streams/s3-integration/aws_s3_accesskey_2.webp)
+![AWS Access Key – Step 2](@site/static/img/recording-live-streams/s3-integration/aws_s3_accesskey_2.webp)
 
-![AWS Access Key – Step 3](/img/recording-live-streams/s3-integration/aws_s3_accesskey_3.webp)
+![AWS Access Key – Step 3](@site/static/img/recording-live-streams/s3-integration/aws_s3_accesskey_3.webp)
 
-![AWS Access Key – Step 4](/img/recording-live-streams/s3-integration/aws_s3_accesskey_4.webp)
+![AWS Access Key – Step 4](@site/static/img/recording-live-streams/s3-integration/aws_s3_accesskey_4.webp)
 
 
-You also need to know the region of your bucket. If you do not have any bucket, you can create it on S3 Console
+You must know the AWS region where your S3 bucket is located. If you don’t already have a bucket, you can create one from the Amazon S3 console.
 
-![Create S3 Bucket](/img/recording-live-streams/s3-integration/aws_s3_create_bucket.webp)
+![Create S3 Bucket](@site/static/img/recording-live-streams/s3-integration/aws_s3_create_bucket.webp)
 
-![Block Public Access](/img/recording-live-streams/s3-integration/aws_s3_block_public_access.webp)
-
+![Block Public Access](@site/static/img/recording-live-streams/s3-integration/aws_s3_block_public_access.webp)
 
 
 Here you see the sample S3 credentials. You need to replace the placeholders with your actual S3 credentials. Then follow the below
