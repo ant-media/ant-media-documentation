@@ -7,29 +7,63 @@ sidebar_position: 1
 
 # Record Streams To AWS S3
 
-In order to programmatically access S3, you should have an access token and secret keys. You can create a programmatic user to have an access token and secret key from the AWS IAM (Identity and Access Management) console.
+Ant Media Server supports recording live streams directly to Amazon S3, enabling durable, scalable, and cost-effective storage for your video content.
+
+By recording streams to S3, you can:
+- Persist live streams for on-demand playback
+- Store recordings securely outside the server lifecycle
+- Integrate with downstream workflows such as VOD delivery, archiving, analytics, or processing
+- Avoid local disk limitations on the Ant Media Server instance
+
+This guide explains how to configure Ant Media Server to upload recorded streams to Amazon S3. It covers the required AWS setup, access permissions, and the credentials needed to allow Ant Media Server to write recordings to your S3 bucket.
+
+## Prerequisites: AWS IAM Access for S3
+
+To access Amazon S3 programmatically, you need an Access Key ID and Secret Access Key associated with an IAM user.
+These credentials are created in the AWS IAM (Identity and Access Management) console by:
+- Creating an IAM user without console access, and
+- Generating access keys for that user after creation.
+  
+The access key and secret key are then used by applications or services to authenticate API requests to Amazon S3.
 
 ![image.png](@site/static/img/image-284429.png)
 
 ![image.png](@site/static/img/image-284529.png)
 
-Just add a user by checking the Programmatic Access box and then in the next section, click Attach existing policies directly and add AmazonS3FullAccess access permission to this user. Copy the access token and secret key for this user.
+Create a new IAM user for S3 access.
+- In the **IAM → Users → Create user** screen, enter a User name.
+- Do not select AWS Management Console access. This user is intended for programmatic access only.
+- Click Next to proceed to permissions.
+- In the Set permissions step, choose **Attach policies directly**.
+- Attach the **AmazonS3FullAccess** policy (or a more restrictive custom S3 policy if required).
+- Complete the user creation process.
 
-![image.png](@site/static/img/image-284629.png)
+![Create AWS S3 User](../../../../static/img/recording-live-streams/s3-integration/aws_s3_createuser1.webp)
 
-![image.png](@site/static/img/image-284729.png)
+![AWS S3 Full Access Policy](../../../../static/img/recording-live-streams/s3-integration/aws_s3_fullaccess.webp)
 
-Right now, you should have the access token, secret key, and bucket name in your hand.
+![Create AWS S3 User – Final Step](../../../../static/img/recording-live-streams/s3-integration/aws_s3_Create_Userfinal.webp)
 
-![image.png](@site/static/img/image-284829.png)
+After the user is created:
+- Open the newly created IAM user.
+- Go to the **Security credentials** tab.
+- Under Access keys, click **Create access** key.
+- Select **Application running outside AWS** (or the relevant use case).
+Copy and securely store the Access Key ID and Secret Access Key.
+
+![AWS Access Key – Step 1](../../../../static/img/recording-live-streams/s3-integration/accesskey1.webp)
+
+![AWS Access Key – Step 2](../../../../static/img/recording-live-streams/s3-integration/accesskey2.webp)
+
+![AWS Access Key – Step 3](../../../../static/img/recording-live-streams/s3-integration/accesskey3.webp)
+
+![AWS Access Key – Step 4](../../../../static/img/recording-live-streams/s3-integration/accesskey4.webp)
 
 You also need to know the region of your bucket. If you do not have any bucket, you can create it on S3 Console
 
-![image.png](@site/static/img/image-284929.png)
+![Create AWS S3 Bucket](../../../../static/img/recording-live-streams/s3-integration/aws_s3_create_bucket.webp)
 
-![image.png](@site/static/img/image-285029.png)
-
-![image.png](@site/static/img/image-285129.png)
+![Block Public Access for S3 Bucket](../../../../static/img/recording-live-streams/s3-integration/aws_s3_block_public_access.webp)
 
 Here you see the sample S3 credentials. You need to replace the placeholders with your actual S3 credentials. Then follow the below
 
