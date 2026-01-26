@@ -15,11 +15,6 @@ To log in to the Web Panel, open your browser and go to:
 
 ```http://YOUR_SERVER_URL_OR_IP:5080```
 
-- [WebRTC](https://docs.antmedia.io/guides/playing-live-stream/webrtc-playback/) with 0.5 sec latency  
-- [LL-DASH](https://docs.antmedia.io/guides/playing-live-stream/dash-playing-cmaf/)/ [LL-HLS](https://antmedia.io/low-latency-hls-or-ll-hls/) (CMAF) with 3–5 sec latency  
-- [HLS](https://docs.antmedia.io/guides/playing-live-stream/hls-playing/) with 10–12 sec latency  
-- RTMP for [Restream](https://docs.antmedia.io/guides/publish-live-stream/simulcasting/) with 3 sec latency  
-
 After logging into the web panel, the first page that loads is the dashboard.
 
 ![](@site/static/img/dashboard-features/dashboardIMG.webp)
