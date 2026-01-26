@@ -87,7 +87,7 @@ Its another tool to enable you to reach a wider audience.
 
 Here is an example embed code taken from my local installation:
 
-<iframe width="560" height="315" src="http://localhost:5080/live/play.html?id=jcmhp84xMBIJHmxk876462646524" frameborder="0" allowfullscreen></iframe>
+```<iframe width="560" height="315" src="http://localhost:5080/live/play.html?id=jcmhp84xMBIJHmxk876462646524" frameborder="0" allowfullscreen></iframe>```
 
 As you can see, the *play.html* page accepts the parameter name which expects the streamId. For more details about embedded player, check out this [document](https://docs.antmedia.io/guides/playing-live-stream/embedded-web-player/).
 
