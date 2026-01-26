@@ -184,7 +184,7 @@ Recording in MP4 and WebM is supported; however, you need to enable H.264 to rec
 ![](@site/static/img/dashboard-features/dashboardRecordingtwo.webp)
 
 
-Stream Security
+### Stream Security
 
 Anyone can publish and play live streams if they have get hold of the URL to the publish and play pages.
 
