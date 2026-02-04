@@ -406,7 +406,7 @@ scripts: [
         },
 	{
           from: '/guides/advanced-usage/circle-component-usage/',
-          to: '/guides/developing-antmedia-server/circle-component-usage/'
+          to: '/guides/developing-antmedia-server/applications/circle-component-usage/'
         },
 	{
           from: '/streaming-glossary/',
@@ -418,7 +418,7 @@ scripts: [
         },
 	{
           from: '/guides/advanced-usage/Plugins-for-Ant-Media-Server/',
-          to: '/guides/developing-antmedia-server/plugins-for-ant-media-server/'
+          to: '/guides/developing-antmedia-server/plugins/plugins-for-ant-media-server/'
         },
 	{
           from: '/guides/publish-live-stream/webrtc-peer-to-peer-communication/',
@@ -631,6 +631,7 @@ scripts: [
         copyright: `Copyright © ${new Date().getFullYear()} Ant Media`,
       },
       prism: {
+        additionalLanguages: ['java', 'bash', 'json', 'yaml'],
 	theme: prismThemes.github,
 	darkTheme: prismThemes.dracula,
       },
