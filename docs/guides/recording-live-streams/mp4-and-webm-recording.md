@@ -59,6 +59,17 @@ Once you call the above API, the server will start recording the stream. To stop
 curl -X 'PUT' 'https://domain-or-IP:5443/AppName/rest/v2/broadcasts/streamId/recording/false?recordType=mp4' -H 'accept: application/json'
 ```
 
+:::info
+
+For MP4 recording, you can also pass the **?fileName=** parameter in the API call, so that instead of following the default name format, the file will be saved with custom file name.
+
+```bash
+curl -X 'PUT' 'https://domain-or-IP:5443/AppName/rest/v2/broadcasts/streamId/recording/true?fileName=test123' -H 'accept: application/json'
+```
+
+So even the streamId is test, the file will be saved with test123.mp4
+:::
+
 ## WebM Recording
 
 To record in WebM format, you’ll need to enable the VP8 codec in your Ant Media Server application. Since WebRTC supports VP8, WebM recording is naturally supported as well.
