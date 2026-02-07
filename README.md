@@ -17,8 +17,6 @@ Ant Media’s main product is the real-time streaming engine, called Ant Media S
 
 Contributions are what make the open-source community such an amazing place to be learn, inspire, and create. Any contributions you make are greatly appreciated. Sincere thanks to all our contributors. Thank you, contributors!
 
-You are requested to follow the contribution guidelines specified in [CONTRIBUTING.md](https://github.com/ant-media/ant-media-documentation/blob/master/CONTRIBUTING.md) and code of conduct at [CODE_OF_CONDUCT.md](https://github.com/ant-media/ant-media-documentation/blob/master/CODE_OF_CONDUCT.md) while contributing to the project 😄.
-
 ## Quick launch
 
 Ant Media server is available in your favorite cloud platform:
