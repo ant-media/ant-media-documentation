@@ -32,8 +32,8 @@ In the **Node pools** tab, enter the node pool (default agent pool) and make the
 
 :::info
 - The public IP per node is needed if you want to establish the WebRTC publish/play connection directly.
-- If running over a private IP, the WebRTC protocol won't work without a turn server due to port issues and NAT restrictions.
-- For TURN server installation, check [here](https://docs.antmedia.io/guides/advanced-usage/turn-instalation/coturn-quick-installation/).
+- If running over a private IP, the WebRTC protocol won't work without a turn server due to port issues and NAT restrictions. But the HLS, DASH and other protocols will still work without public as well via LB or Gateway.
+- For TURN server installation, check [here](https://docs.antmedia.io/guides/advanced-usage/turn-instalation/coturn-quick-installation/). It is required to make the WebRTC work.
 :::
 
 ## Step 3: Review and Create Cluster
