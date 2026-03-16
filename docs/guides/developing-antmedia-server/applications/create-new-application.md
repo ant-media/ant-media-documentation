@@ -18,9 +18,10 @@ The fastest and easiest way to create new applications is via the web panel.
 
 ### Step 1
 
-Login to the web panel, navigate to the Dashboard, and click the New Application button.
+Login to the web panel, navigate to the Dashboard, and click the New Application button
 
-![image](https://github.com/user-attachments/assets/4df34b28-ff9d-429b-a061-8dd5b6938d5f)
+![image]<img width="1890" height="843" alt="image" src="https://github.com/user-attachments/assets/4acae42f-e4a7-4e17-b585-17c8248e947e" />
+
 
 ### Step 2
 
@@ -48,7 +49,7 @@ cd /usr/local/antmedia
 
 ### Step 2
 
-The `create\_app.sh` usage in below.
+The `create\_app.sh` usage in below
 
 
 ```bash
