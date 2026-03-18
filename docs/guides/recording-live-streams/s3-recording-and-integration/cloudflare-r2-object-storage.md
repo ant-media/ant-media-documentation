@@ -11,36 +11,31 @@ Cloudflare is another cloud provider that is preferred by many Ant Media Server 
 
 Firstly, you need to create an R2 storage bucket. Just go to the R2 object storage in the Cloudflare panel and click on `Create Bucket`.
 
-![image.png](@site/static/img/image-285629.png)
+![image.png](@site/static/img/recording-live-streams/s3-integration/cloudflare-r2-storage/cloudflare-R2-bucket.png)
 
 You just need to put your bucket name and other settings as shown below:
 
-![image.png](@site/static/img/image-285629.png)
+![image.png](@site/static/img/recording-live-streams/s3-integration/cloudflare-r2-storage/r2-bucket-create.png)
 
 After creating the bucket, you need to create API token for Access and Secret keys. Just click the Manage API Token button.
 
-![image.png](@site/static/img/image-285729.png)
+![image.png](@site/static/img/recording-live-streams/s3-integration/cloudflare-r2-storage/manage-api-token.png)
 
 Under Manage API token, you need to create the Account API token.
 
-![image.png](@site/static/img/image-285729.png)
+![image.png](@site/static/img/recording-live-streams/s3-integration/cloudflare-r2-storage/create-api-token.png)
 
 After that, create the Account API token with the below settings:
 
-![image.png](@site/static/img/image-285729.png)
-
-
-Just type the Name parameter and click the Create button.
-
-![image.png](@site/static/img/image-285829.png)
+![image.png](@site/static/img/recording-live-streams/s3-integration/cloudflare-r2-storage/api-token-settings.png)
 
 After generating the token, copy the Access key, Secret key and the Endpoint.
 
-![image.png](@site/static/img/image-285929.png)
+![image.png](@site/static/img/recording-live-streams/s3-integration/cloudflare-r2-storage/api-token-access.png)
 
 Then, log in to your AMS web panel and go to any application that you use, enable the Record Live Streams as MP4 and enable S3 Recording, enter the S3 credentials you have created, and save the settings.
 
-![image.png](@site/static/img/image-286029.png)
+![image.png](@site/static/img/recording-live-streams/s3-integration/cloudflare-r2-storage/ams-bucket-settings.png)
 
 Your recording files will be uploaded to your Cloudflare R2 Object Storage automatically.
 
