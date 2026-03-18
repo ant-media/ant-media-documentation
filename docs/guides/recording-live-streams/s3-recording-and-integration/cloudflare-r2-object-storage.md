@@ -42,11 +42,15 @@ Your recording files will be uploaded to your Cloudflare R2 Object Storage autom
 
 ## Enable HTTP Forwarding for Playback
 
-When your stream (mp4, m3u8 or preview) files are uploaded to DigitalOcean Spaces, they are removed from Ant Media Server local storage. If you try to access them using the AMS URL, you may encounter a **404 Not Found** error.
+When your stream (mp4, m3u8 or preview) files are uploaded to R2 Object Storage, they are removed from Ant Media Server local storage. If you try to access them using the AMS URL, you may encounter a **404 Not Found** error.
 
 To resolve this, enable **HTTP Forwarding** so Ant Media Server automatically redirects requests to your OVH Object Storage.
 
 ### Steps to Enable HTTP Forwarding
+
+Before enabling the HTTP forwarding, the bucket is not public so you need to generate the public development URL from bucket settings.
+
+After enabling the public development URL, copy it, as it will be needed in AMS settings. Following this:
 
 1. Log in to the Ant Media Server Management Panel
 2. Navigate to your application (e.g., `LiveApp`) and go to **Application Settings → Advanced Settings**.  
@@ -54,31 +58,30 @@ To resolve this, enable **HTTP Forwarding** so Ant Media Server automatically re
 
    ```bash
    httpForwardingExtension: mp4,m3u8  
-   httpForwardingBaseURL: https://{s3BucketName}.{region}.digitaloceanspaces.com  
+   httpForwardingBaseURL: https://pub-xxxx.r2.dev 
    ```
 
    Example:  
 
    ```bash
-   httpForwardingExtension: mp4,m3u8  
-   httpForwardingBaseURL: https://mybucket.nyc3.digitaloceanspaces.com  
+   "httpForwardingExtension": "m3u8,mp4",
+   "httpForwardingBaseURL": "https://pub-f6fd12cbd8f04a04a16547587df49ce4.r2.dev",
    ```
 
 4. Save your settings
 
 ## Playback
 
-With forwarding enabled, your VOD files stored in DigitalOcean Spaces can be played directly from AMS URLs, while the files are actually served from your DigitalOcean Space.
+With forwarding enabled, your VOD files stored in Cloudflare R2 Object Storage can be played directly from AMS URLs, while the files are actually served from your R2 storage.
 
-Now when you access:
+Now when you access the
 
 ```bash
-https://your-domain:5443/AppName/streams/recording.mp4  
+https://your-domain:5443/AppName/streams/streamId.mp4  
 ```
 
 Ant Media Server will forward the request to:
 
 ```bash
-https://mybucket.nyc3.digitaloceanspaces.com/streams/recording.mp4  
+https://pub-xxxx.r2.dev/streams/streamId.mp4
 ```
-
