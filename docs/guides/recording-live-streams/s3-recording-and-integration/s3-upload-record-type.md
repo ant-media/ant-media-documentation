@@ -2,7 +2,7 @@
 title: S3 Upload Record Type
 description: Uploading file type to S3 storage
 keywords: [S3 Integration with Ant Media Server, S3 Integration, Record streams to cloud storage, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 8
+sidebar_position: 9
 ---
 
 # S3 Upload Record Type
