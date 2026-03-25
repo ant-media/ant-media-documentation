@@ -54,7 +54,7 @@ To resolve this, enable **HTTP Forwarding** so Ant Media Server automatically re
 
 - After enabling the public development URL, copy it, as it will be needed in AMS settings. Following this:
 
-  1. Log in to the Ant Media Server Management Panel
+ 1. Log in to the Ant Media Server Management Panel
   2. Navigate to your application (e.g., `LiveApp`) and go to **Application Settings → Advanced Settings**.  
   3. Set the following properties:
 
