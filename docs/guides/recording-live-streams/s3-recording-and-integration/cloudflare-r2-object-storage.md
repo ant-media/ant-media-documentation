@@ -7,7 +7,7 @@ sidebar_position: 8
 
 # Record Streams To Cloudflare R2 Object Storage
 
-Cloudflare is another cloud provider that is preferred by many Ant Media Server users. You could integrate your AMS instance easily with Cludflare R2 object storage. Let’s see how it can be done with a few steps!
+Cloudflare is another cloud provider that is preferred by many Ant Media Server users. You could integrate your AMS instance easily with Cloudflare R2 object storage. Let’s see how it can be done with a few steps!
 
 - Firstly, you need to create an R2 storage bucket. Just go to the R2 object storage in the Cloudflare panel and click on `Create Bucket`.
 
@@ -21,7 +21,7 @@ You just need to put your bucket name and other settings as shown below:
 
 ![image.png](@site/static/img/recording-live-streams/s3-integration/cloudflare-r2-storage/manage-api-token.png)
 
-- Under Manage API token, you need to create the Account API token.
+- Under Manage API Token, you need to create the Account API token.
 
 ![image.png](@site/static/img/recording-live-streams/s3-integration/cloudflare-r2-storage/create-api-token.png)
 
@@ -44,7 +44,7 @@ Your recording files will be uploaded to your Cloudflare R2 Object Storage autom
 
 When your stream (mp4, m3u8 or preview) files are uploaded to R2 Object Storage, they are removed from Ant Media Server local storage. If you try to access them using the AMS URL, you may encounter a **404 Not Found** error.
 
-To resolve this, enable **HTTP Forwarding** so Ant Media Server automatically redirects requests to your OVH Object Storage.
+To resolve this, enable **HTTP Forwarding** so Ant Media Server automatically redirects requests to your R2 Object Storage.
 
 ### Steps to Enable HTTP Forwarding
 
