@@ -48,7 +48,9 @@ To resolve this, enable **HTTP Forwarding** so Ant Media Server automatically re
 
 ### Steps to Enable HTTP Forwarding
 
-Before enabling the HTTP forwarding, the bucket is not public so you need to generate the public development URL from bucket settings.
+Before enabling the HTTP forwarding, the bucket is not public so you need to generate the public development URL from bucket settings to make the bucket objects public.
+
+![image.png](@site/static/img/recording-live-streams/s3-integration/cloudflare-r2-storage/public-development-url.png)
 
 After enabling the public development URL, copy it, as it will be needed in AMS settings. Following this:
 
@@ -85,3 +87,4 @@ Ant Media Server will forward the request to:
 ```bash
 https://pub-xxxx.r2.dev/streams/streamId.mp4
 ```
+
