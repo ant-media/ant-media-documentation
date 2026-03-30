@@ -78,7 +78,7 @@ If you are using hardware encoding (e.g., `h264_nvenc`), you must configure the 
 
 1. **Access the WebRTC Publish Page**
 
-   - Open the following URL in your browser: https://yourserver.com:5443/live/?streamId=stream1
+   - Open the following URL in your browser: https://yourserver.com:5443/live/?id=stream1
 
    - Replace the domain with your Ant Media server's domain.
 
@@ -116,8 +116,6 @@ If you are using hardware encoding (e.g., `h264_nvenc`), you must configure the 
    - If you are using the Ant Media Server player, then the URL pattern would be as follows:
 
      `https://{YOUR_SERVER DOMAIN}:5443/{AppName}/play.html?name={streamId}&playOrder=ll-hls`
-
-     You can test the LL-HLS playback via this [testing URL](https://test.antmedia.io:5443/24x7test/play.html?name=live_test&playOrder=ll-hls).
 
 
 ## Customize LL-HLS
