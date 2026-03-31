@@ -94,12 +94,17 @@ Here’s how it works:
 - These DNS names are functional, but they use an AWS-issued certificate that does **not** match your custom domain.
 - If you try to open them directly over HTTPS, most browsers will mark them as **insecure** or show a **certificate mismatch error**.
 
+- When deployed the cluster via AWS CloudFormation, there are two Load Balancers deployed: one is `Network Load balancer` for TCP/UDP network traffic and one is `Application Load Balancer` for HTTP/HTTPS traffic.
+
+- So the CNAME records will be created for both Load balancers.
+
 To fix this:
 - Define a **CNAME record** in your DNS (e.g., `stream.example.com`) that points to your Load Balancer DNS name.
 - Then, request or import an SSL/TLS certificate in **AWS Certificate Manager** for your chosen domain (Or) If you already have a certificate from another provider, you can also import it into ACM and use it the same way.
-- Attach that certificate to your Load Balancer’s HTTPS listener.  
+- Attach that certificate to your Application Load Balancer’s HTTPS listener. 
+- For `Network Load Balancer`, you do not need any SSL certificate so CNAME can be created directly for it.
 
-After this setup, you’ll be able to access Ant Media Server securely on your own domain (e.g., `https://stream.example.com`) without any certificate errors.
+After this setup, you’ll be able to access Ant Media Server securely on your own domain (e.g., `https://stream.example.com`) without any certificate errors and publish the RTMP/SRT stream to another domain, which is mapped to Network Load Balancer.
 :::
 
 **13.** When you enter the Dashboard URL in your browser for the first time, the Ant Media Dashboard will open, asking you to create your account by providing the following details: **First Name, Last Name, Email Address, Password, and Confirm Password**.
