@@ -9,7 +9,7 @@ sidebar_position: 1
 
 Ant Media Server can be configured either by editing a configuration file or through the application settings tab in the Management Panel. 
 
-The configuration is set on the application level and is stored in a file located at ```<AMS_DIR>/webapps/{AppName}/WEB-INF/red5-web.properties```. 
+The configuration is set on the application level and is stored in a file located at `/usr/local/antmedia/webapps/{AppName}/WEB-INF/red5-web.properties`. 
 
 The Management Panel allows changing all the application settings; however, the file is much more extensive. See the [Application Settings Javadoc](https://antmedia.io/javadoc/io/antmedia/AppSettings.html) to find a complete list of all available settings.
 
@@ -68,28 +68,28 @@ To change the app settings via API, you need to call the Management Rest APIs to
 
 1. First you need to authenticate to call management Rest APIs. You can choose any of the methods defined  **[here](https://antmedia.io/docs/guides/developer-sdk-and-api/rest-api-guide/management-rest-apis/)**.
 
-   In this example, we authenticated using user name and password.
+   In this example, we authenticated using user name and password and stored the cookie to use it in further API calls.
 
-2.  Call the  [Get Settings Rest API](https://antmedia.io/rest/#/ManagementRestService/getSettings)  to get the settings of application. In this example, for LiveApp.
+2.  Call the  [Get Settings Rest API](https://antmedia.io/rest/#/ManagementRestService/getSettings)  to get the settings of application. For example, `live` application.
 
     Here is the curl sample:
 
      ```bash
-     curl -X GET -H "Content-Type: application/json" "https://example.com:5443/rest/v2/applications" --cookie cookies.txt
+     curl -X GET -H "Content-Type: application/json" "https://example.com:5443/rest/v2/live" --cookie cookies.txt
     ```
 
-    In response you will get all the application properties, that you need to copy and use it in next call.
+    In response you will get all the application properties that you need to copy and use in the next API call.
 
 3. After getting the application settings from the response of the previous Rest API call, use  [Change settings Rest API](https://antmedia.io/rest/#/ManagementRestService/changeSettings)  to change the settings.
 
-   For example, to disable the HLS option you need to change the below property and rest other properties will be  **same**.
+   For example, to disable the HLS option, you need to change the below property and all other properties will be  **same**.
 
    `"hlsMuxingEnabled": false,`  
 
    Here is the curl sample:
 
    ```bash
-   curl --location 'https://example.com:5443/rest/v2/applications/settings/LiveApp' \
+   curl --location 'https://example.com:5443/rest/v2/applications/settings/live' \
    --header 'Content-Type: application/json' \
    --cookie cookies.txt \
    --data '{
