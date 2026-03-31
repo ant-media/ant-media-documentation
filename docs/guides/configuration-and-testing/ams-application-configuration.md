@@ -89,9 +89,9 @@ To change the app settings via API, you need to call the Management Rest APIs to
    Here is the curl sample:
 
    ```bash
-   curl --location 'http://localhost:5080/rest/v2/applications/settings/LiveApp' \
+   curl --location 'https://example.com:5443/rest/v2/applications/settings/LiveApp' \
    --header 'Content-Type: application/json' \
-   --header 'Cookie: JSESSIONID=9762ACD603974026958AEAB9F0068663' \
+   --cookie cookies.txt \
    --data '{
     "hlsMuxingEnabled": true,
    }'
