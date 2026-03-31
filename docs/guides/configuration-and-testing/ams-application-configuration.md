@@ -61,7 +61,6 @@ Following the example of the ```aacEncodingEnabled``` setting, the below can be 
 ```json
 aacEncodingEnabled=false
 ```
-<div align="center">
 
 ## Change App settings programatically
 
@@ -100,6 +99,8 @@ To change the app settings via API, you need to call the Management Rest APIs to
    ```
 
    After that, you can verify the changes through the Management Panel.
+
+<div align="center">
 
 ### AMS configuration for you
 
