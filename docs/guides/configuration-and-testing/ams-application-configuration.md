@@ -75,8 +75,7 @@ To change the app settings via API, you need to call the Management Rest APIs to
     Here is the curl sample:
 
      ```bash
-     curl --location 'http://localhost:5080/rest/v2/applications/settings/live' \
-    --header 'Cookie: JSESSIONID=9762ACD603974026958AEAB9F0068663'
+     curl -X GET -H "Content-Type: application/json" "https://example.com:5443/rest/v2/applications" --cookie cookies.txt
     ```
 
     In response you will get all the application properties, that you need to copy and use it in next call.
