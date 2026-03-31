@@ -68,7 +68,7 @@ To change the app settings via API, you need to call the Management Rest APIs to
 
 1. First you need to authenticate to call management Rest APIs. You can choose any of the methods defined  **[here](https://antmedia.io/docs/guides/developer-sdk-and-api/rest-api-guide/management-rest-apis/)**.
 
-   In this example, we authenticated using user name and password and stored the cookie to use it in further API calls.
+   If you authenticate using a username and password, then you need to store the cookie to use it in further API calls.
 
 2.  Call the  [Get Settings Rest API](https://antmedia.io/rest/#/ManagementRestService/getSettings)  to get the settings of application. For example, `live` application.
 
