@@ -5,112 +5,126 @@ keywords: [Docker, Docker Compose, Ant Media Server Documentation, Ant Media Ser
 sidebar_position: 7
 ---
 
-Docker Compose offers a simpler way to manage Ant Media Server compared to running a single container with `docker run`. With Compose, you can:
+Docker Compose keeps your entire AMS configuration in a single file and reduces day-to-day management to a handful of commands. It's the recommended approach for anything that needs to survive reboots or will grow into a multi-service stack.
 
-- Define all configurations (ports, volumes, environment variables) in a single `docker-compose.yml` file.  
-- Start, stop, or restart your setup with a single command.  
-- Reuse the same configuration across different machines or environments.  
+:::tip
+`compose.yaml` is the modern preferred filename. Docker Compose V2 resolves files in this order: `compose.yaml`, `compose.yml`, `docker-compose.yaml`, `docker-compose.yml`.
+:::
 
-This makes your setup more organized, portable, and easier to maintain.
+## Quick Start — Official Image
 
+Create `compose.yaml`:
 
-To install the Ant Media Server standalone server using Docker Compose, follow the below step-by-step process.
+```yaml
+services:
+  antmedia:
+    image: antmedia/enterprise:latest
+    container_name: ant-media-server
+    restart: unless-stopped
+    network_mode: host
+```
 
-## 1. Download Docker File and Docker Compose File
+Start:
+
+```bash
+docker compose up -d
+```
+
+Open `http://localhost:5080` to access the dashboard.
+
+![](@site/static/img/docker-installation.webp)
+
+## Production compose.yaml
+
+Copy this as your starting point. It includes all required ports, persistent storage, and a health check.
+
+```yaml
+# compose.yaml — Ant Media Server standalone
+#
+# docker compose up -d        start
+# docker compose logs -f      follow logs
+# docker compose down         stop (data persists in volume)
+
+services:
+  antmedia:
+    image: antmedia/enterprise:latest
+    container_name: ant-media-server
+    restart: unless-stopped
+
+    # Option A: explicit ports (required on macOS, works everywhere)
+    ports:
+      - "5080:5080"         # HTTP — Dashboard, REST API, HLS
+      - "4443:4443/tcp"     # HTTPS/WebRTC signaling
+      - "4443:4443/udp"     # WebRTC media transport (both TCP+UDP required)
+      - "1935:1935"         # RTMP ingest
+      - "443:443"           # HTTPS (optional)
+    # Option B: host networking (Linux only, best performance)
+    # network_mode: host
+
+    # License key — uncomment for Enterprise Edition:
+    # command: ["-l", "your-license-key-here"]
+
+    volumes:
+      - antmedia_data:/usr/local/antmedia/          # persistent config, recordings, apps
+      - /var/log/antmedia:/usr/local/antmedia/log   # logs on host
+
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5080"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+volumes:
+  antmedia_data:
+```
+
+:::warning
+Port **4443** requires both `4443/tcp` and `4443/udp`. Missing the UDP entry breaks WebRTC media transport.
+:::
+
+## Building a Custom Image
+
+Use this if you're not pulling from Docker Hub and need to build from a local zip.
+
+### 1. Download files
 
 ```bash
 wget https://raw.githubusercontent.com/ant-media/Scripts/master/docker/docker-compose.yml
 wget https://raw.githubusercontent.com/ant-media/Scripts/master/docker/Dockerfile_Process -O Dockerfile
 ```
 
-## 2. Build Docker Image
+### 2. Build
 
-Download and save the Ant Media Server ZIP file in the same directory as the Dockerfile and Docker Compose file. Then run the docker compose build command from the command line.
-
-The AMS image will be created with name `antmedia-antmedia`.
-
-#### Enterprise Edition:
-
-You can get the AMS Enterprise Edition Zip file from your [Ant Media account](https://antmedia.io) after purchasing the license.
-
-For example, if the zip file name is `ant-media-server-enterprise-2.14.0-20250513_1544.zip`
+**Enterprise Edition:**
 
 ```bash
-docker-compose build --build-arg AntMediaServer=ant-media-server-enterprise-2.14.0-20250513_1544.zip
+docker compose build --build-arg AntMediaServer=ant-media-server-enterprise-2.14.0-20250513_1544.zip
 ```
 
-#### Community Edition:
-
-You can get the AMS Community Edition Zip file from the Ant Media Server [GitHub release page](https://github.com/ant-media/Ant-Media-Server/releases).
-
-For example, if the zip file name is `ant-media-server-community-2.14.0.zip`
+**Community Edition:**
 
 ```bash
-docker-compose build --build-arg AntMediaServer=ant-media-server-community-2.14.0.zip
+docker compose build --build-arg AntMediaServer=ant-media-server-community-2.14.0.zip
 ```
-    
-## 3. Run Docker Container
 
-Now we have a Docker image with Ant Media Server. Run the Docker container with the below command:
+### 3. Run
 
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
-:::info
-By default, it uses the host network ports to reach but for example, in MacOS, the⁣ `network=host` does not work so you can define the ports in the YML file.
-:::
+## Upgrading
 
-```yml
-version: "3.9"
-services:
-  antmedia:
-    build: 
-      context: ./
-      dockerfile: ./Dockerfile
-    container_name: antmedia
-    restart: unless-stopped
-    entrypoint: /usr/local/antmedia/start.sh
-    ports:
-      - "5080:5080"
-      - "1935:1935"
-```
-
-## 4. Volume
-
-**Optional:** If you would like to mount an existing volume, simply uncomment the below lines in the original yml file.
-
-:::info
-Please make sure that the indentation/alignment of the YML file content is correct; otherwise, it will cause issues
-:::
+Pull the latest image and recreate the container. The data volume is preserved automatically.
 
 ```bash
-    network_mode: host
-    volumes:
-       - antmedia_vol:/usr/local/antmedia/
- volumes:
-   antmedia_vol:
-     external: true
-     name:
-       antmedia_volume
+docker compose pull
+docker compose up -d
 ```
 
-After making the changes, run the same docker compose up command to run the container.
+If you built a custom image, rebuild first, then run `docker compose up -d`.
 
-## AMS Dashboard
-
-After the Docker container starts, reach out to `http://localhost:5080` or `http://host-IP:5080` to access the Ant Media Server dashboard.
-
-![](@site/static/img/docker-installation.webp)
-
-Check out [here](https://antmedia.io/docs/guides/publish-live-stream/webrtc/) to publish a WebRTC stream for testing.
-
-<br /><br />
 ---
 
-<div align="center">
-<h2> Compose‑Done ✅ </h2>
-</div>
-
-You’ve now set up Ant Media Server using **Docker Compose**. Compared to a single-container Docker setup, this method keeps your configuration organized, makes port/volume management easier, and lets you start or stop the entire stack with a single command. 🚀
-
+For multi-node cluster deployments, see [Docker Swarm](../../clustering-and-scaling/docker/docker-swarm).
