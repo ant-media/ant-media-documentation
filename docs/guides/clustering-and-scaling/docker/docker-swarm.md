@@ -151,4 +151,4 @@ docker service ls
 docker ps
 ```
 
-![](@site/static/img/image-1648753399859.png)
+![](@site/static/img/image-1648753399871.png)
