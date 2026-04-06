@@ -130,7 +130,7 @@ Let’s go over the sections of the Settings tab.
 
 ### WebRTC Codec Support
 
-Ant Media Server supports H.264, H.265, and VP8 video codecs.
+Ant Media Server supports H.264, H.265, VP8, and AV1 video codecs.
 
 H.265 can be enabled via the properties file, which is explained in this [blog post](https://antmedia.io/the-first-hevc-h265-support-in-webrtc/). Starting with v2.6.2 of Ant Media Server, all properties can be set via Advanced Settings from the web panel. Check out more details [here](https://docs.antmedia.io/guides/configuration-and-testing/ams-application-configuration/#management-panel-settings).
 
@@ -174,7 +174,7 @@ As already detailed above, when going through the actions menu on the live strea
 
 If this is something you will need, then make sure to check the box against the type of video file you need.
 
-Recording in MP4 and WebM is supported; however, you need to enable H.264 to record in MP4 and enable VP8 to record in WebM format.
+Recording in MP4 and WebM is supported; however, you need to enable H.264 to record in MP4 and enable VP8 or AV1 to record in WebM format.
 
 ![](@site/static/img/dashboard-features/dashboardRecordingtwo.webp)
 
