@@ -1,5 +1,5 @@
 ---
-title: Docker Swarm 
+title: Docker Swarm
 description: Docker Swarm
 keywords: [Docker Swarm, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 2
@@ -7,128 +7,148 @@ sidebar_position: 2
 
 # Docker Swarm
 
-Docker Swarm is a container orchestration tool. It is a cluster management tool that manages and scales virtual servers as a cluster and ensures the continuity of services without interruption. In this post, I will explain how to run Ant Media Server onto the docker swarm.
+Docker Swarm clusters multiple Docker hosts into a single pool, distributing AMS across nodes and replacing failed containers automatically.
 
 ![](@site/static/img/image-1648753338859.png)
 
-### Prerequisites:
+## Prerequisites
 
-First, let’s create a total of 3 instances, one Manager and 2 worker nodes.
+Three instances — one manager, two workers:
 
-```shell
-192.168.1.230 Manager
-192.168.1.231 Node1
-192.168.1.232 Node2
+```
+192.168.1.230  manager
+192.168.1.231  node1
+192.168.1.232  node2
 ```
 
-Docker Swarm is easy to install. You can divide it into two parts as Manager Node and Worker Node.
+Install Docker CE on all three:
 
-1- Manager Nodes: This node manages the Docker Swarm..
+```bash
+sudo apt-get update
+sudo apt-get install -y ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg \
+  -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
 
-2- Worker Nodes: These nodes run the services/tasks assigned to them..
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] \
+  https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" \
+  | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
-Install the Docker CE on all of the nodes by following the steps below.
-
-```shell
-sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
-sudo apt update && sudo apt install docker-ce -y
+sudo apt-get update && sudo apt-get install -y docker-ce
 sudo systemctl enable docker
-``` 
+```
 
-### Docker Swarm Cluster Installation
+## Initialize the Cluster
 
-In order to create a Docker Swarm cluster, you have to start the swarm mode first.
+On the **manager**:
 
-Run the command below to initialize Docker swarm node on the manager.
-
-```shell
+```bash
 sudo docker swarm init --advertise-addr 192.168.1.230
 ```
 
-Run the following command on node1 and node2.
+On **node1** and **node2** — use the token printed by the init command:
 
-```shell
-sudo docker swarm join --token SWMTKN-1-2jxta71638d1pyioznb9jo4hi4u5ppd8t7lc90linwi9acu54s-aef4mqdy23ktrkcxsp57uyoma 192.168.1.230:2377
+```bash
+sudo docker swarm join --token <SWMTKN-...> 192.168.1.230:2377
 ```
 
-The all nodes you added will show up in the **docker node ls** command’s output.
+Verify all nodes are visible:
+
+```bash
+docker node ls
+```
 
 ![](@site/static/img/image-1648753377587.png)
 
-### Nginx Load Balancer Installation
+## Nginx Load Balancer
 
-Create a directory called **/opt/nginx** on all nodes and save the following lines as **default.conf.**
+Create `/opt/nginx/default.conf` on all nodes:
 
-```shell
-mkdir /opt/nginx
-vim /opt/nginx/default.conf
-```
 ```conf
 server {
     listen 80;
     location / {
-      proxy_pass http://backend;
+        proxy_pass http://backend;
     }
 }
 upstream backend {
     ip_hash;
-    server 192.168.1.231:5080; #node1 ip address
-    server 192.168.1.232:5080; #node2 ip address
+    server 192.168.1.231:5080;  # node1
+    server 192.168.1.232:5080;  # node2
 }
-```  
-
-Let’s complete the deployment on master.
-
-```shell
-docker service create --name nginx --mount type=bind,source=/opt/nginx/,target=/etc/nginx/conf.d --constraint node.hostname==master  --publish 80:80 nginx
 ```
 
-### Ant Media Server Installation
+Deploy the Nginx service from the manager:
 
-On the master node, save the following lines as stack.yml. Don't forget to change the host addresses in the image and entrypoint according to your system.
+```bash
+docker service create \
+  --name nginx \
+  --mount type=bind,source=/opt/nginx/,target=/etc/nginx/conf.d \
+  --constraint node.hostname==master \
+  --publish 80:80 \
+  nginx
+```
+
+## Deploy Ant Media Server
+
+Save the following as `stack.yml`. Replace `<YOUR_IMAGE_URL>` with your AMS image and `<MONGO_HOST>` with your MongoDB address.
 
 ```yaml
-version: "3.9"
 services:
   antmedia:
-    image: your_image_url
-    entrypoint: /usr/local/antmedia/start.sh -r true -m cluster -h your_mongo_db_address
+    image: <YOUR_IMAGE_URL>
+    entrypoint: /usr/local/antmedia/start.sh
+    command: ["-r", "true", "-m", "cluster", "-h", "<MONGO_HOST>"]
     deploy:
       mode: global
       resources:
         limits:
-          cpus: "0.5"
-          memory: 1G
+          cpus: "4"
+          memory: 8G
       restart_policy:
         condition: on-failure
-    networks:
-      - host
+    ports:
+      - target: 5080
+        published: 5080
+        mode: host
+      - target: 4443
+        published: 4443
+        protocol: tcp
+        mode: host
+      - target: 4443
+        published: 4443
+        protocol: udp
+        mode: host
+      - target: 1935
+        published: 1935
+        mode: host
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5080"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+```
 
-networks:
-  host:
-    name: host
-    external: true
-``` 
+:::info
+The resource limits above (`cpus: "4"`, `memory: 8G`) are a starting point for nodes handling live transcoding. Scale down for edge or relay-only nodes.
 
-Then deploy the stack by running the command below.
+In Docker Swarm, `network_mode: host` is not valid at the service level. Use `mode: host` on individual port entries as shown above — this bypasses the Swarm mesh network and binds directly to the host interface, which is required for WebRTC UDP to work correctly.
+:::
 
-```shell
+Deploy the stack:
+
+```bash
 docker stack deploy -c stack.yml ant-media-server
-```   
+```
 
-You can monitor running services/containers using `docker service ls` or `docker ps`
+Monitor running services:
 
-Now, you can access your cluster via the master URL.
+```bash
+docker service ls
+docker ps
+```
 
 ![](@site/static/img/image-1648753399871.png)
-
-<div align="center">
-  <h2> 🐳 AMS + Docker Swarm — Streaming at Scale, the Easy Way! 🚀 </h2>
-</div>
-
-And there it is — your Ant Media Server cluster is **alive and thriving inside Docker Swarm!** Services are humming, containers are collaborating, and scaling is just a heartbeat away.
-
-You’ve built a streaming powerhouse from simple containers. **Now go ahead — launch those live events**, grow your audience, and let Swarm keep everything in perfect sync. 🎥🌊
-
