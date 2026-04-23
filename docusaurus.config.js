@@ -41,7 +41,7 @@ const config = {
   scripts: [
 	{
       src: "/zfEmbed.js",
-	  async: false,
+	  async: true,
     },
     {
       src: "//code.tidio.co/rk0jjyc0mwbxjgimchdsnl4cwitetyvi.js",
