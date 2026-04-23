@@ -16,7 +16,7 @@ var zfem_cons = {
         "articleWidgets": [],
         "bottomBarWidgets": [{
             "_id": "67b2f6441fc7b10008269302",
-            "type": "bottomBar",
+            "type": "button",
             "allowMultipleResponsesFromSameDevice": true,
             "endDate": null,
             "customerEndDate": null,
@@ -30,7 +30,7 @@ var zfem_cons = {
                 "type": "popover",
                 "button_text_color": "#ffffff",
                 "button_bg_color": "#000000",
-                "button_position": "relative",
+                "button_position": "top",
                 "variant": "micro",
                 "button_text": "Feedback",
                 "button_text_languages": {
