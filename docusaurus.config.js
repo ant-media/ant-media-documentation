@@ -38,21 +38,25 @@ const config = {
   ],
   */
 
-
-scripts: [
-  {
-    src: "https://us-js.zonka.co/679b6f226131b4000836e0bf",
-    async: true,
-  },
-  {
-  src: "/zfEmbed.js"
-  },
-  {
-    src: "//code.tidio.co/rk0jjyc0mwbxjgimchdsnl4cwitetyvi.js",
-    async: true,
-  },
-],
-
+  headTags: [
+    {
+      tagName: "script",
+      innerHTML: `
+        window._zfQueue = window._zfQueue || [];
+        function _zf(){_zfQueue.push(arguments);}
+      `,
+    },
+  ],
+  scripts: [
+    {
+      src: "https://us-js.zonka.co/679b6f226131b4000836e0bf",
+      async: true,
+    },
+    {
+      src: "//code.tidio.co/rk0jjyc0mwbxjgimchdsnl4cwitetyvi.js",
+      async: true,
+    },
+  ],
 
   presets: [
     [
