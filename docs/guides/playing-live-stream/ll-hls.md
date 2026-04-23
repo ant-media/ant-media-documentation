@@ -25,7 +25,7 @@ LL-HLS achieves this by using smaller video segments (called **parts**) that all
 
 | Standard HLS | Low Latency HLS (LL-HLS) |
 | ------------ | ------------------------ |
-|Latency: 8-12 secs | Latency: 3-5 secs |
+|Latency: 8-12 secs | Latency: 2-5 secs |
 | Segment-based | Part-based (smaller chunks) |
 | Larger file sizes | Smaller, more frequent parts |
 
