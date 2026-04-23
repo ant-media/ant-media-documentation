@@ -38,16 +38,11 @@ const config = {
   ],
   */
 
-  headTags: [
-    {
-      tagName: "script",
-      innerHTML: `
-        window._zfQueue = window._zfQueue || [];
-        function _zf(){_zfQueue.push(arguments);}
-      `,
-    },
-  ],
   scripts: [
+	{
+      src: "/zfEmbed.js",
+	  async: true,
+    }
     {
       src: "https://us-js.zonka.co/679b6f226131b4000836e0bf",
       async: true,
