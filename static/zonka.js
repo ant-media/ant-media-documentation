@@ -27,10 +27,10 @@ var zfem_cons = {
             "surveyId": "67b2f5d91fc7b10008268dd2",
             "embedSettings": {
                 "embedType": "popover",
-                "type": "bottomBar",
+                "type": "popover",
                 "button_text_color": "#ffffff",
                 "button_bg_color": "#000000",
-                "button_position": "right",
+                "button_position": "relative",
                 "variant": "micro",
                 "button_text": "Feedback",
                 "button_text_languages": {
