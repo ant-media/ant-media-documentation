@@ -45,6 +45,9 @@ scripts: [
     async: true,
   },
   {
+  src: "/zfEmbed.js"
+  },
+  {
     src: "//code.tidio.co/rk0jjyc0mwbxjgimchdsnl4cwitetyvi.js",
     async: true,
   },
