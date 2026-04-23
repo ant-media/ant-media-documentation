@@ -41,11 +41,7 @@ const config = {
   scripts: [
 	{
       src: "/zfEmbed.js",
-	  async: true,
-    }
-    {
-      src: "https://us-js.zonka.co/679b6f226131b4000836e0bf",
-      async: true,
+	  async: false,
     },
     {
       src: "//code.tidio.co/rk0jjyc0mwbxjgimchdsnl4cwitetyvi.js",
