@@ -15,7 +15,7 @@ In this guide, you will:
 - Create multiple RTSP Stream Sources through REST API and Simulate RTSP ingest load on Ant Media Server.
 - Measure how many RTSP streams your server can handle.
 
-Unlike RTMP/SRT publishing tests, RTSP load testing requires generating an RTSP source stream first and then using that RTSP URL as a Stream Source in Ant Media Server.
+Unlike RTMP/SRT publishing tests, RTSP load testing requires generating an RTSP source stream first and then using that RTSP URL as a Stream Source in the Ant Media Server.
 
 ## Prerequisites
 
@@ -25,26 +25,26 @@ Unlike RTMP/SRT publishing tests, RTSP load testing requires generating an RTSP 
 You can use separate servers for the RTSP generator and Ant Media Server, or run both on the same server for smaller tests.
 - Internet access between both servers
 - Install the required GStreamer packages using the below commands:
-```bash
-sudo apt update
-sudo apt install -y gstreamer1.0* libgstrtspserver-1.0-0
-```
+  ```bash
+  sudo apt update
+  sudo apt install -y gstreamer1.0* libgstrtspserver-1.0-0
+  ```
 
 ## Step 1: Download the RTSP Test Files
 
 Download the RTSP load testing files from the Ant Media Scripts repository.
 
 ```bash
-wget https://raw.githubusercontent.com/ant-media/Scripts/master/load-testing/rtsp_loadtest/start_rtsp_server.sh
-wget https://raw.githubusercontent.com/ant-media/Scripts/master/load-testing/rtsp_loadtest/test-launch
-wget https://raw.githubusercontent.com/ant-media/Scripts/master/load-testing/rtsp_loadtest/test.mp4
+sudo wget https://raw.githubusercontent.com/ant-media/Scripts/master/load-testing/rtsp_loadtest/start_rtsp_server.sh
+sudo wget https://raw.githubusercontent.com/ant-media/Scripts/master/load-testing/rtsp_loadtest/test-launch
+sudo wget https://raw.githubusercontent.com/ant-media/Scripts/master/load-testing/rtsp_loadtest/test.mp4
 ```
 
 ## Step 2: Make the Files Executable
 
 ```bash
-chmod +x start_rtsp_server.sh
-chmod +x test-launch
+sudo chmod +x start_rtsp_server.sh
+sudo chmod +x test-launch
 ```
 
 ## Step 3: Start the RTSP Server
@@ -52,20 +52,23 @@ chmod +x test-launch
 Run the following command:
 
 ```bash
-./start_rtsp_server.sh
+sudo ./start_rtsp_server.sh test.mp4
 ```
 
 By default, the script uses:
-* Video file: `test.mp4`
 * Resolution: 1920x1080
 * Frame rate: 25 FPS
 * Video bitrate: 2000 kbps
+* H264 codec
+
+You can also edit the script and make the required changes in parameters according to the requirements.
 
 The RTSP stream becomes available at:
 
 ```bash
 rtsp://SERVER_IP:8554/test
 ```
+
 Replace `SERVER_IP` with the public IP address of the RTSP server.
 
 Example:
@@ -75,7 +78,7 @@ rtsp://203.0.113.10:8554/test
 
 ## Step 4: Create RTSP Stream Sources in Ant Media Server for Load Testing
 
-Use the REST API to create RTSP Stream Sources in Ant Media Server. For RTSP load testing, you can create multiple RTSP Stream Sources automatically:
+Use the REST API to create RTSP Stream Sources in Ant Media Server. For RTSP load testing, you can create multiple RTSP stream sources automatically:
 
 Example-  
 
@@ -93,26 +96,25 @@ curl -X POST -H "Content-Type: application/json" \
 done
 ```
 
-This command creates 10 RTSP Stream Sources with stream IDs such as:
+This command creates 10 RTSP stream sources with stream IDs such as
 
 ```text
 rtsp-load-1
 rtsp-load-2
 rtsp-load-3
+...
+...
 rtsp-load-10
 ```
 
-You can increase the stream count by modifying:
+You can increase the stream count by modifying the following:
 
 For example:
 
 ```bash
 {1..50}
 ```
-or:
-```bash
-{1..100}
-```
+
 You can **monitor CPU usage, RAM usage, active broadcasts, and network throughput** from the Ant Media Server dashboard during the test.
 
 ## Stopping the RTSP Server
@@ -120,7 +122,7 @@ You can **monitor CPU usage, RAM usage, active broadcasts, and network throughpu
 To stop the RTSP server process:
 
 ```bash
-pkill test-launch
+sudo pkill test-launch
 ```
 
 You have now created **multiple RTSP Stream Sources and simulated RTSP ingest load on Ant Media Server.**
