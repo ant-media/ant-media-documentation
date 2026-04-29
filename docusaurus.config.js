@@ -41,15 +41,6 @@ const config = {
 
 scripts: [
     {
-      src: "/zfEmbed.js", // Ensure this loads first
-      async: false, // Load it synchronously	    
-    },
-    {
-      src: "/zonka.js", // Load after zfEmbed.js
-      async: true,
-      defer: true,
-    },
-    {
       src: "//code.tidio.co/rk0jjyc0mwbxjgimchdsnl4cwitetyvi.js",
       async: true,
     },
