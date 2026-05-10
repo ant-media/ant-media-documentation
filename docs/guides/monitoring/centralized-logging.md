@@ -1,3 +1,9 @@
+---
+title: Centralized Logging Setup
+description: Monitoring AMS with Central Logging System
+keywords: [Monitoring AMS with Central Logging, Ant Media Server Documentation, Ant Media Server Tutorials]
+---
+
 # Centralized Logging Setup
 
 ## Overview
@@ -67,32 +73,34 @@ These credentials will be used to configure secure log forwarding.
 
  The installation script installs Fluent Bit as a systemd service.
 
-    $ systemctl status fluent-bit
-    ● fluent-bit.service - Fluent Bit
-         Loaded: loaded (/usr/lib/systemd/system/fluent-bit.service; enabled; preset: enabled)
-         Active: active (running) since Sun 2026-05-03 13:05:47 UTC; 38min ago
-           Docs: https://docs.fluentbit.io/manual/
-       Main PID: 4295 (fluent-bit)
-          Tasks: 3 (limit: 9126)
-         Memory: 4.3M (peak: 4.9M)
-            CPU: 314ms
-         CGroup: /system.slice/fluent-bit.service
-                 └─4295 /opt/fluent-bit/bin/fluent-bit -c //etc/fluent-bit/fluent-bit.conf
-    
-    May 03 13:05:47 ip-172-31-9-186 fluent-bit[4295]: [2026/05/03 13:05:47.257] [ info] [cmetrics] version=2.1.2
-    May 03 13:05:47 ip-172-31-9-186 fluent-bit[4295]: [2026/05/03 13:05:47.257] [ info] [ctraces ] version=0.7.1
-    May 03 13:05:47 ip-172-31-9-186 fluent-bit[4295]: [2026/05/03 13:05:47.257] [ info] [input:tail:tail.0] initializing
-    May 03 13:05:47 ip-172-31-9-186 fluent-bit[4295]: [2026/05/03 13:05:47.257] [ info] [input:tail:tail.0] storage_strategy='memory' (memory only)
-    May 03 13:05:47 ip-172-31-9-186 fluent-bit[4295]: [2026/05/03 13:05:47.272] [ info] [input:tail:tail.0] multiline core started
-    May 03 13:05:47 ip-172-31-9-186 fluent-bit[4295]: [2026/05/03 13:05:47.275] [ info] [input:tail:tail.0] db: delete unmonitored stale inodes from the databa>
-    May 03 13:05:47 ip-172-31-9-186 fluent-bit[4295]: [2026/05/03 13:05:47.275] [ info] [output:****:****.0] configured, hostname=log.antmedia.io:80
-    May 03 13:05:47 ip-172-31-9-186 fluent-bit[4295]: [2026/05/03 13:05:47.275] [ info] [sp] stream processor started
-    May 03 13:05:47 ip-172-31-9-186 fluent-bit[4295]: [2026/05/03 13:05:47.275] [ info] [engine] Shutdown Grace Period=5, Shutdown Input Grace Period=2
-    May 03 13:05:47 ip-172-31-9-186 fluent-bit[4295]: [2026/05/03 13:05:47.277] [ info] [input:tail:tail.0] inotify_fs_add(): inode=296751 watch_fd=1 name=/var>
+```bash
+$ systemctl status fluent-bit
+● fluent-bit.service - Fluent Bit
+     Loaded: loaded (/usr/lib/systemd/system/fluent-bit.service; enabled; preset: enabled)
+     Active: active (running) since Sun 2026-05-03 13:05:47 UTC; 38min ago
+       Docs: https://docs.fluentbit.io/manual/
+   Main PID: 4295 (fluent-bit)
+      Tasks: 3 (limit: 9126)
+     Memory: 4.3M (peak: 4.9M)
+        CPU: 314ms
+     CGroup: /system.slice/fluent-bit.service
+             └─4295 /opt/fluent-bit/bin/fluent-bit -c //etc/fluent-bit/fluent-bit.conf
+
+May 03 13:05:47 ip-172-31-9-186 fluent-bit[4295]: [2026/05/03 13:05:47.257] [ info] [cmetrics] version=2.1.2
+May 03 13:05:47 ip-172-31-9-186 fluent-bit[4295]: [2026/05/03 13:05:47.257] [ info] [ctraces ] version=0.7.1
+May 03 13:05:47 ip-172-31-9-186 fluent-bit[4295]: [2026/05/03 13:05:47.257] [ info] [input:tail:tail.0] initializing
+May 03 13:05:47 ip-172-31-9-186 fluent-bit[4295]: [2026/05/03 13:05:47.257] [ info] [input:tail:tail.0] storage_strategy='memory' (memory only)
+May 03 13:05:47 ip-172-31-9-186 fluent-bit[4295]: [2026/05/03 13:05:47.272] [ info] [input:tail:tail.0] multiline core started
+May 03 13:05:47 ip-172-31-9-186 fluent-bit[4295]: [2026/05/03 13:05:47.275] [ info] [input:tail:tail.0] db: delete unmonitored stale inodes from the databa>
+May 03 13:05:47 ip-172-31-9-186 fluent-bit[4295]: [2026/05/03 13:05:47.275] [ info] [output:****:****.0] configured, hostname=log.antmedia.io:80
+May 03 13:05:47 ip-172-31-9-186 fluent-bit[4295]: [2026/05/03 13:05:47.275] [ info] [sp] stream processor started
+May 03 13:05:47 ip-172-31-9-186 fluent-bit[4295]: [2026/05/03 13:05:47.275] [ info] [engine] Shutdown Grace Period=5, Shutdown Input Grace Period=2
+May 03 13:05:47 ip-172-31-9-186 fluent-bit[4295]: [2026/05/03 13:05:47.277] [ info] [input:tail:tail.0] inotify_fs_add(): inode=296751 watch_fd=1 name=/var>
+```
 
 - **Watch Live Log Forwarding**
 
-```
+```bash
 $ sudo journalctl -u fluent-bit -f
 May 03 13:05:47 ip-172-31-9-186 fluent-bit[4295]: [2026/05/03 13:05:47.257] [ info] [cmetrics] version=2.1.2
 May 03 13:05:47 ip-172-31-9-186 fluent-bit[4295]: [2026/05/03 13:05:47.257] [ info] [ctraces ] version=0.7.1
@@ -110,8 +118,10 @@ May 03 13:05:47 ip-172-31-9-186 fluent-bit[4295]: [2026/05/03 13:05:47.277] [ in
 
 Fluent Bit creates `flb.db*` files to track which log positions it has already forwarded. Their presence confirms it has started reading your Ant Media logs:
 
-    $ ls /usr/local/antmedia/log/ 
-    0.0.0.0_access.log  ant-media-server-analytics.log  ant-media-server.log  antmedia-error.log  flb.db  flb.db-shm  flb.db-wal
+```bash
+$ ls /usr/local/antmedia/log/ 
+0.0.0.0_access.log  ant-media-server-analytics.log  ant-media-server.log  antmedia-error.log  flb.db  flb.db-shm  flb.db-wal
+```
 
 🔒 Credentials are stored in `/etc/fluent-bit/fluent-bit.conf` with restricted permissions and are never echoed back to the terminal.
 
@@ -127,6 +137,10 @@ For Kubernetes clusters, Fluent Bit is deployed using Helm.
 - Cluster-admin or sufficient RBAC permissions
 - Centralized logging credentials provided by the Ant Media team
 
+:::info
+Your **centralized logging credentials** (Tenant Email, Username, Password) are provided by the Ant Media team. Contact [Ant Media support](https://antmedia.io/contact-us/) to request them before starting.
+:::
+
 ### Install Fluent Bit via Helm — Kubernetes Cluster
 
 For Kubernetes environments, **Fluent Bit** is deployed as a DaemonSet using Helm — the standard Kubernetes-native approach. Fluent Bit runs on every node in your cluster and collects logs from all Ant Media Server pods automatically.
@@ -139,7 +153,7 @@ helm repo add fluent https://fluent.github.io/helm-charts
 helm repo update
 ```
 
-- Run the Helm install command, replacing the three placeholder values with your actual credentials from Step 1:
+- Run the Helm install command, replacing the three placeholder values with your actual credentials that AMS provides.
 
 ```bash
 helm upgrade --install fluent-bit fluent/fluent-bit \
