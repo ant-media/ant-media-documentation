@@ -213,7 +213,7 @@ fluent-bit    default     1          deployed   fluent-bit-0.x.x
 :::
 
 
-# Final Check — Confirm with the Ant Media Team (Both Environments)
+## Final Check — Confirm with the Ant Media Team (Both Environments)
 
 Regardless of your environment, contact the Ant Media team and ask them to confirm that logs from your tenant are visible on their central logging platform. If all three checks above pass, but logs are still not showing on their end, the most common cause is an outbound rule blocking port 80 traffic to `log.antmedia.io`.
 
