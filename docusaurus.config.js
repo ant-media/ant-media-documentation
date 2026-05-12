@@ -152,10 +152,6 @@ scripts: [
           to: '/guides/playing-live-stream/webrtc-playback/'
         },
 	{
-          from: '/guides/publish-live-stream/Simulcasting/',
-          to: '/guides/publish-live-stream/simulcasting/'
-        },
-	{
           from: '/guides/advanced-usage/stream-security/',
           to: '/category/stream-security/'
         },
@@ -382,10 +378,6 @@ scripts: [
 	{
           from: '/guides/developer-sdk-and-api/rest-api-guide/REST-API-examples/',
           to: '/guides/developer-sdk-and-api/rest-api-guide/rest-apis-examples/'
-        },
-	{
-          from: '/guides/advanced-usage/WebRTC-codecs/',
-          to: '/guides/configuration-and-testing/video-codecs/'
         },
 	{
           from: '/get-started/User-Management/',
