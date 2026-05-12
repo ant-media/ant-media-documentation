@@ -67,9 +67,11 @@ https://your-server:5443/live/moq/publish.html
 2. Enter a stream ID.
 3. Select **Camera** or **Screen** as the source.
 4. Click **Start Publishing**.
-   ![](@site/static/img/publish-live-stream/moq-publish.webp)
 
 The stream is now live on the MoQ relay and fully available inside AMS — recording, REST API, and adaptive bitrate all work as normal.
+
+![](@site/static/img/publish-live-stream/moq-publish.webp)
+
 
 ### Option 2 — Any MoQ-Compatible Client
 
@@ -91,6 +93,12 @@ AMS picks up the stream as a regular broadcast automatically.
    - **source** — original quality as published into AMS
    - **720p / 480p** — adaptive bitrate renditions transcoded by AMS
    - **publish** — stream sent directly from the browser publisher, bypassing AMS entirely (lowest overhead, but no ABR, recording, or AMS pipeline features)
+  
+![](@site/static/img/publish-live-stream/moq-player.webp)
+
+4. The stream is now playing live with MoQ.
+
+![](@site/static/img/publish-live-stream/moq-play.webp)
 
 Stream URLs follow this format:
 
