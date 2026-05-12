@@ -17,7 +17,7 @@ The plugin architecture is versatile enough to address various developer needs. 
 
 
 ---
-### Plugin Intallation guide:
+### Plugin Installation guide:
 
 
 #### Prerequisites:

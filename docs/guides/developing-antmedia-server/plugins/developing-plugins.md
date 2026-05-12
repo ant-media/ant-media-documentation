@@ -668,7 +668,7 @@ Expected response:
 ## Best Practices and Optimization
 
 ### General notes
-- Always put log after your plugin is booted up and ready, in ```setApplicationContext``` method. (EX: logger.log("Stats pluin ready!"))
+- Always put log after your plugin is booted up and ready, in ```setApplicationContext``` method. (EX: logger.log("Stats plugin ready!"))
 - 
 
 ### Thread Safety
