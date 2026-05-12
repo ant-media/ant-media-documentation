@@ -1,4 +1,3 @@
-
 ---
 title: Video codecs 
 description: Simplified understanding of H.264, VP8, and H.265 codecs used with Ant Media Server. This guide also explains how to enable H.264, VP8, and H.265.
