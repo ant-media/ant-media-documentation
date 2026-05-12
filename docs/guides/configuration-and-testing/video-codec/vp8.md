@@ -2,7 +2,7 @@
 title: VP8
 description: Learn how to enable and use the VP8 codec in Ant Media Server. Understand its advantages, limitations, and when to choose it for WebRTC streaming.
 keywords: [VP8 codec, WebRTC VP8, Ant Media Server VP8, video codec configuration, open source codec, AMS streaming]
-sidebar_position: 4
+sidebar_position: 2
 ---
 
 # VP8
