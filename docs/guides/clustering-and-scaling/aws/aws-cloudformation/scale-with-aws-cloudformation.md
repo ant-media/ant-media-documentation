@@ -45,7 +45,7 @@ Open the link: [https://aws.amazon.com/marketplace/pp/B07569Y9SJ/](https://aws.a
 
 ![](/img/clustering-and-scaling/aws-cloudformation/5-Create-Stack-Upload-Template.webp)
 
-**8.** The **Specify Stack Deatils** page is where we will adjust all our settings.
+**8.** The **Specify Stack Details** page is where we will adjust all our settings.
 
 ![](@site/static/img/AntMedia-CloudFormation-4.png)
 

@@ -11,7 +11,7 @@ Thumbnails are small, lightweight versions of images or videos, used as previews
 
 ## Enable Thumbnails
 
-Ant Media Server can generate thumbnails (previews) of the incoming streams on the fly. This guide will help you learn configuration parameters for generating and using thumnails.
+Ant Media Server can generate thumbnails (previews) of the incoming streams on the fly. This guide will help you learn configuration parameters for generating and using thumbnails.
 
 - To activate thumbnail generation, add at least one adaptive bitrate. You can do that in the dashboard using ```Application > live > Settings > Add New Bitrate```
 

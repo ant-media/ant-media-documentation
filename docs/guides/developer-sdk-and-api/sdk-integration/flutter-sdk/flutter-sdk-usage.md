@@ -133,7 +133,7 @@ Connect is the main function that we ca do pretty much everything with it's para
 
 ### -> Stream ID
 
-**Stream ID** is used to identify each stream for publshing and playing purposes. 
+**Stream ID** is used to identify each stream for publishing and playing purposes. 
 
 ### -> Room ID
 
@@ -151,7 +151,7 @@ Connect is the main function that we ca do pretty much everything with it's para
 
 ### -> User Screen
 
-**User Screen** is used to switch betwenn screen and camera publishing mode during initialization part. 
+**User Screen** is used to switch between screen and camera publishing mode during initialization part. 
 
 ### -> On State Change
 
@@ -281,7 +281,7 @@ You can call **sendMessage(RTCDataChannelMessage message)** to send a text messa
 AntMediaFlutter.anthelper?.getStreamInfo(streamId)
 ```
 
-You can call **getStreamInfo(streamId)** to receive infromation about a specific stream. 
+You can call **getStreamInfo(streamId)** to receive information about a specific stream. 
 
 ```
 AntMediaFlutter.anthelper?.closePeerConnection(streamId)

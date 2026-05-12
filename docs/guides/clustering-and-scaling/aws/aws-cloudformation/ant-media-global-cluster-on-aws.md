@@ -19,7 +19,7 @@ You can have an `N` number of regions but for simplicity, we will be creating th
 
 Before we start, make sure that you have an AWS account and have subscribed to [Ant Media Server Enterprise Edition on AWS Marketplace](https://aws.amazon.com/marketplace/pp/prodview-464ritgzkzod6?sr=0-1&ref_=beagle&applicationId=AWSMPContessa) and a domain/subdomain for SSL certificate.
 
-## Step 1: Launcing Ant Media Server Cluster
+## Step 1: Launching Ant Media Server Cluster
 
 As the first step, we will be using the [AWS cloudformation template](https://antmedia.io/docs/guides/clustering-and-scaling/aws/scale-with-aws-cloudformation/) to launch Ant Media autoscaling clusters in both regions.
 
@@ -31,7 +31,7 @@ Using the CloudFormation template, launch a cluster in the Frankfurt region by m
 - OriginCidrBlock: 172.31.1.0/24	
 - EdgeCidrBlock: 172.31.2.0/24
 
-### Lauch a cluster in Mumbai region
+### Launch a cluster in Mumbai region
 
 Using the CloudFormation template, launch another cluster in the Mumbai region with the default configurations.
 
@@ -153,7 +153,7 @@ AWS Global Accelerator is a service in which you create accelerators to improve 
 
 - Click **Create accelerator** and wait for it to be deployed.
 
-- Finally the Global Accelarator is ready and can be accessed with the DNS name like
+- Finally the Global Accelerator is ready and can be accessed with the DNS name like
 ```aa9a2b9bdeef1fb0c.awsglobalaccelerator.com```
 
   ![](@site/static/img/aws-global-cluster/accelerator-complete.png)
