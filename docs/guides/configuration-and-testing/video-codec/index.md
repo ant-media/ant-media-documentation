@@ -1,13 +1,13 @@
 ---
 title: Video codecs 
-description: Simplified understanding of H.264, VP8, and H.265 codecs used with Ant Media Server. This guide also explains how to enable H.264, VP8, and H.265.
+description: Simplified understanding of H.264, VP8, H.265 and AV1 codecs used with Ant Media Server. This guide also explains how to enable H.264, VP8, and H.265.
 keywords: [Enable H.264, VP8, and H.265, WebRTC codecs, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 6
+sidebar_position: 1
 ---
 
 # Video Codecs
 
-In this guide, we’ll explain how to use H.264, VP8, and H.265 (HEVC) video codecs in Ant Media Server.
+In this guide, we’ll explain how to use H.264, VP8, H.265 (HEVC) and AV1 video codecs in Ant Media Server.
 
 Currently, WebRTC relies on specific codecs for video streaming, and Ant Media Server supports H.264 and VP8 for it.
 
