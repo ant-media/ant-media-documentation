@@ -1,4 +1,4 @@
-# MoQ (Media over QUIC) Publish and Play 
+# MoQ (Media over QUIC)
 
 Media over QUIC (MoQ) is an emerging live streaming protocol built on QUIC and WebTransport. It delivers sub-second latency like WebRTC, while scaling through a CDN relay like HLS — no plugins or native apps required.
 
