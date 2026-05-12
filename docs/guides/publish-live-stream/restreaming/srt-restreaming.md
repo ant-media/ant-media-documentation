@@ -13,7 +13,7 @@ For example, a user may publish a live stream to AMS via WebRTC or RTMP and then
 
 Follow the below steps to see SRT restreaming in action:
 
-## Step-1: Publish stream to Ant Media Server.
+## Step-1: Publish Stream to Ant Media Server.
 
 For example, we will publish the WebRTC stream to AMS and use a `live` application for it.
 
@@ -27,7 +27,7 @@ Here `test` is the streamId
 
 ## Step-2: Add SRT Endpoint
 
-For example, we will add the SRT endpoint of another application named `LiveApp` of the AMS.
+For example, we will add the SRT endpoint of another application named `LiveApp` of the same AMS.
 
 But you can use any other SRT endpoint as well.
 
@@ -35,7 +35,7 @@ But you can use any other SRT endpoint as well.
 
   Adding & Removing Endpoint via the web panel is straightforward, as you can see in the below screenshot.
 
-  - After creating/publishing the live stream, click on three horizontal lines in front of the stream and click on `Edit ReStreaming Endpoints` button.
+  - After creating/publishing the live stream, click on the three horizontal lines in front of the stream and click on `Edit ReStreaming Endpoints` button.
  ![](@site/static/img/publish-live-stream/simulcasting/restreaming-endpoint-button.png)
 
   - Now add your SRT endpoint.
@@ -65,7 +65,7 @@ But you can use any other SRT endpoint as well.
     {"success":true,"message":null,"dataId":"customm4ugat","errorId":0}
     ```
 
-    The `dataId` is important to remove the endpoint so it needs to be saved somewhere.
+    **NOTE:** The `dataId` is important to remove the endpoint so it needs to be saved somewhere.
 
   - **Remove Endpoint API Sample**
 
@@ -75,9 +75,9 @@ But you can use any other SRT endpoint as well.
     -H 'accept: application/json'
     ```
 
-## Step-3: Check out the destination
+## Step-3: Check Destination Server
 
-After publishing the stream and adding the endpoint, check out the destination.
+After publishing the stream and adding the endpoint, check out the destination to verify the stream.
 
 In this case, we will check the LiveApp application to check the restream.
 
