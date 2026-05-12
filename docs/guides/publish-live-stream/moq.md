@@ -64,9 +64,10 @@ https://your-server:5443/live/moq/publish.html
 ### Option 1 — Browser Publisher (Built-in)
 
 1. Open `https://your-server:5443/live/moq/publish.html` in a Chromium-based browser.
-2. Enter your relay address and a stream ID.
+2. Enter a stream ID.
 3. Select **Camera** or **Screen** as the source.
 4. Click **Start Publishing**.
+   ![](@site/static/img/publish-live-stream/moq-publish.webp)
 
 The stream is now live on the MoQ relay and fully available inside AMS — recording, REST API, and adaptive bitrate all work as normal.
 
