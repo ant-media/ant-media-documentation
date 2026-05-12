@@ -11,7 +11,7 @@ The Embedded SDK is a C++ library designed to capture IP camera streams from RTS
 
 The [WebRTC Embedded SDK Reference project](https://github.com/ant-media/WebRTCEmbeddedSDKReference) has ready to use [executable](https://github.com/ant-media/WebRTCEmbeddedSDKReference/tree/master/executables), [main.cpp](https://github.com/ant-media/WebRTCEmbeddedSDKReference/blob/master/main.cpp) that is the source code which uses embedded SDK, a [makefile](https://github.com/ant-media/WebRTCEmbeddedSDKReference/blob/master/Makefile), API in [sdkapi.h](https://github.com/ant-media/WebRTCEmbeddedSDKReference/blob/master/sdkapi.h) that is the interface between the library and your source code.i.e., between the application and the embedded SDK and shows how to use the embedded SDK.
 
-Ant Media Server's WebRTC Embedded SDk provides a solution for the beolow two cases.
+Ant Media Server's WebRTC Embedded SDK provides a solution for the below two cases.
 
 1.  WebRTC Peer to Peer mode.
 2.  WebRTC publish and Play mode.
