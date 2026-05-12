@@ -93,7 +93,7 @@ v1beta1.metrics.k8s.io                 kube-system/metrics-server   True        
 Make small changes in the YAML files for edge and origin configurations in Ant Media Server:
 
 :::tip
-A [sample deployment file](#sample-deployment-file) is at the end of this guide with detailed explanation of the parametres
+A [sample deployment file](#sample-deployment-file) is at the end of this guide with detailed explanation of the parameters
 :::
 
 ```shell

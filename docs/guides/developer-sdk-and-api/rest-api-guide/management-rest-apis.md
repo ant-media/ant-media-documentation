@@ -82,7 +82,7 @@ The request body should include your email and MD5 password:
 { "email": "your-email", "password": "05a671c66aefea124cc08b76ea6d30bb" }
 ```
 
-Here is the Curl Sample to Authenicate the user:
+Here is the Curl Sample to Authenticate the user:
 
 ```bash
 curl -X POST 'https://example.com:5443/rest/v2/users/authenticate' -H 'Content-Type: application/json' -d '{"email":"test@example.com", "password":"05a671c66aefea124cc08b76ea6d30bb"}' --cookie-jar cookies.txt

@@ -62,7 +62,7 @@ Following the example of the ```aacEncodingEnabled``` setting, the below can be 
 aacEncodingEnabled=false
 ```
 
-## Change App settings programatically
+## Change App settings programmatically
 
 To change the app settings via API, you need to call the Management Rest APIs to change the application settings. You can use this method in either standalone mode or cluster mode of Ant Media Server.
 

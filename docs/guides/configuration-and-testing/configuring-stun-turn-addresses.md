@@ -107,7 +107,7 @@ If WebRTC connectivity fails even with all ports open, you may need to configure
 TURN is an extension of STUN, so configuration is very similar.
 
 ### Custom TURN server Configuration in Ant Media Server
-You can configure TURN server directly through ant media server application settings. This way, you won't need to configure TURN server seperately in each client SDK.
+You can configure TURN server directly through ant media server application settings. This way, you won't need to configure TURN server separately in each client SDK.
 
 - Goo to your Ant Media Server Dashboard  → `Application` → `Settings` → `Advanced Settings`.
 
@@ -144,7 +144,7 @@ You can configure TURN server directly through ant media server application sett
     })
 ```
 
-### Configure custom TURN server in the Embeded Player.
+### Configure custom TURN server in the Embedded Player.
 
 - If you are using Ant Media Server Embedded Web Player which is found in this [Github Repo](https://github.com/ant-media/Web-Player)
 to play your streams you need to pass ```iceServers``` as String to the WebPlayer constructor.
@@ -191,7 +191,7 @@ webRTCClient = IWebRTCClient.builder()
                 .build();
 ```
 
-- This will add your turn server to ice server lists. If default google STUN fails, it will automaticly utilize your TURN server.
+- This will add your turn server to ice server lists. If default google STUN fails, it will automatically utilize your TURN server.
 
 - If you are using WebRTC Android SDK as a module in your project, since it is open source, you can also directly add TURN server to ice server list.
 

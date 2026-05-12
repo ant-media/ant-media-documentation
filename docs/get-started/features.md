@@ -104,11 +104,11 @@ More is detailed regarding the different supported codecs further down in this p
 
 ### Play with WebRTC
 
-Plays the stream in a new tab using the play.html applicaiton with the WebRTC protocol being prioritized (&playOrder=webrtc)
+Plays the stream in a new tab using the play.html application with the WebRTC protocol being prioritized (&playOrder=webrtc)
 
 ### Play with HLS
 
-Plays the stream in a new tab using the play.html applicaiton with the HLS protocol being prioritized (&playOrder=hls)
+Plays the stream in a new tab using the play.html application with the HLS protocol being prioritized (&playOrder=hls)
 
 ## VOD Assets
 

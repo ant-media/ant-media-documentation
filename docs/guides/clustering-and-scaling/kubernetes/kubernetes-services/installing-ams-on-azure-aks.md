@@ -72,7 +72,7 @@ Run the below commands to connect to the cluster from your computer.
 az login
 ```
 :::info
-Afer you run the above command, you will see a prompt message like "To sign in, use a web browser to open the page https://microsoft.com/devicelogin and enter the code XXXXXXXXX to authenticate.
+After you run the above command, you will see a prompt message like "To sign in, use a web browser to open the page https://microsoft.com/devicelogin and enter the code XXXXXXXXX to authenticate.
 :::
 
 - Follow the instructions, authenticate the code, and `Azure CLI` will open in the terminal.
@@ -146,7 +146,7 @@ These changes must be made on both Origin and Edge deployment side.
 
 ## Step 7
 
-If the installation and configuration was successful, the public IP address/domain name will be output when running the command `kubectl get ingress -n antmedia`. After making the DNS registration, you will be able to access Ant Media Server using the hostname thats been configured.
+If the installation and configuration was successful, the public IP address/domain name will be output when running the command `kubectl get ingress -n antmedia`. After making the DNS registration, you will be able to access Ant Media Server using the hostname that's been configured.
 
 ![](@site/static/img/azure-aks/azure-aks-8-1.png)
 

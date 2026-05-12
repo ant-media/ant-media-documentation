@@ -36,8 +36,8 @@ Before moving forward with using the WebRTC JavaScript SDK, we highly recommend 
       localVideoId: "id-of-video-element", // <video id="id-of-video-element" autoplay muted></video>
       bandwidth: int|string, // default is 900 kbps, string can be 'unlimited'
       dataChannelEnabled: true|false, // enable or disable data channel
-      callback: (info, obj) => {}, // check info callbacks bellow
-      callbackError: function(error, message) {}, // check error callbacks bellow
+      callback: (info, obj) => {}, // check info callbacks below
+      callbackError: function(error, message) {}, // check error callbacks below
     });
 ```
 
