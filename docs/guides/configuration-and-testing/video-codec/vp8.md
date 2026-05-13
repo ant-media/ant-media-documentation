@@ -7,7 +7,7 @@ sidebar_position: 3
 
 # VP8
 
-VP8 is an open-source video codec developed by Google and widely used in WebRTC applications. It is a reliable alternative to H264, especially in environments where licensing or open standards are preferred.
+VP8 is an open-source video codec developed by Google and widely used in WebRTC applications. It is a reliable alternative to H.264, especially in environments where licensing or open standards are preferred.
 
 ---
 
@@ -22,38 +22,36 @@ VP8 is an open-source video codec developed by Google and widely used in WebRTC 
 
 ## Limitations
 
-- **Limited Hardware Acceleration:** Not as widely hardware-accelerated as H264, especially on mobile devices  
-- **Recording Restrictions:** Does not support HLS or MP4 recording formats  
-- **Lower Device Compatibility:** Some devices and browsers (e.g., Safari) may have limited or no support  
-- **Higher CPU Usage:** Encoding/decoding may consume more resources compared to H264  
+- **Limited Hardware Acceleration:** Not as widely hardware-accelerated as H.264, especially on mobile devices  
+- **Recording Restrictions:** Does not support HLS or MP4 recording formats.
+- **Lower Device Compatibility:** Some devices and browsers (e.g., Safari) may have limited or no support
+- **Higher CPU Usage:** Encoding/decoding may consume more resources compared to H.264.
 
 ---
 
-## Enable Only VP8 Codec
+## Enable VP8 Codec
 
 ![vp8](https://github.com/user-attachments/assets/c8900114-0f74-4cba-9dd9-c5b0da5b757a)
 
 - **SFU Mode:** Only VP8 streams are ingested and forwarded without transcoding  
-- **Adaptive Bitrate (ABR) Mode:** VP8 streams are transcoded into multiple bitrates for adaptive playback  
+- **Adaptive Bitrate (ABR) Mode:** VP8 streams are transcoded into multiple bitrates for adaptive playback
 
 ---
 
 ## When to Use VP8
 
-VP8 is a good choice when:
-
-- You want a **fully open-source and royalty-free codec**
-- Your application is focused on **WebRTC streaming**
-- Your target audience primarily uses **Chrome or Firefox**
-- Recording in HLS/MP4 is **not required**
+VP8 is a recommended choice when:  
+  
+- You prefer a **fully open-source and royalty-free codec**  
+- Your application is primarily focused on **WebRTC-based streaming**  
+- Your target audience mainly uses **modern browsers such as Chrome and Firefox**  
+- You do not require **HLS or MP4 recording support**  
+- You want a **lightweight codec with broad WebRTC compatibility**
 
 ---
 
 ## Important Notes
 
 :::info
-HLS and MP4 recording require the H264 codec. Enabling only VP8 limits recording to WebM format and playback primarily to WebRTC.
+HLS and MP4 recordings require the H.264 codec. Enabling only VP8 limits recording to WebM format and playback primarily to WebRTC.
 :::
-
----
-
