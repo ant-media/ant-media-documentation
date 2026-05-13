@@ -1,23 +1,23 @@
 ---
-title: Video codecs 
-description: Simplified understanding of H.264, VP8, H.265 and AV1 codecs used with Ant Media Server. This guide also explains how to enable H.264, VP8, and H.265.
-keywords: [Enable H.264, VP8, and H.265, WebRTC codecs, Ant Media Server Documentation, Ant Media Server Tutorials]
+title: Video Codecs 
+description: Simplified understanding of H.264, VP8, H.265 and AV1 video codecs used with Ant Media Server.
+keywords: [Enable H.264, VP8, H.265 & AV1 WebRTC codecs, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 1
 ---
 
 # Video Codecs
 
-In this guide, we’ll explain how to use H.264, VP8, H.265 (HEVC) and AV1 video codecs in Ant Media Server.
+In this guide, we’ll explain how to use `H.264`, `VP8`, `H.265(HEVC)` and `AV1` video codecs in Ant Media Server.
 
-Currently, WebRTC relies on specific codecs for video streaming, and Ant Media Server supports H.264 and VP8 for it.
+Currently, WebRTC relies on specific codecs for video streaming, and Ant Media Server supports H.264, VP8 & AV1 for it.
 
-Protocols like HLS, LL-HLS, and CMAF (DASH) support H.265 codec to provide maximum compatibility and quality options. WebRTC does not officially support H.265 yet.
+Protocols like HLS, LL-HLS, and CMAF (DASH) support the H.265 codec to provide maximum compatibility and quality options. WebRTC does not officially support H.265 yet.
 
-### Codec Configuration Changes
+## Codec Configuration
 
-In earlier versions of Ant Media Server, only H264 and VP8 could be enabled from the Application Settings, while H265 required configuration through Advanced Settings. AV1 was not supported.
+In earlier versions of Ant Media Server, only H.264 and VP8 could be enabled from the application settings, while H.265 required configuration through advanced settings and AV1 was not supported.
 
-Starting from version 3.0.1, all supported video codecs (H264, H265, VP8, and AV1) can be enabled directly from the Application Settings.
+Starting from version 3.0.1, all supported video codecs (H.264, H.265, VP8, and AV1) can be enabled directly from the application settings via the web panel.
 
 ![Video Codecs](https://raw.githubusercontent.com/ant-media/ant-media-documentation/video-codec-11/static/img/configuration-and-testing/Video%20codecs.webp)
 
@@ -26,18 +26,4 @@ Starting from version 3.0.1, all supported video codecs (H264, H265, VP8, and AV
 VP8 and H.264 are mandatory in WebRTC as per RFC 7742. However, not all browsers support these codecs at the same time.
 :::
 
-- Each codec can be enabled or disabled based on your requirements. This guide will cover how to enable and configure these codecs in different scenarios.
-
-## Enable and Configure H.264 & VP8 Codecs
-
-In this section, learn about the H264 and VP8 video codecs.
-
-### Enable H.264 and VP8 Codec Together
-
-Both H.264 & VP8 can be enabled in the basic application settings.
-
-![h264andvp8](https://github.com/user-attachments/assets/37123332-5f07-4350-ac11-09b64a433cb2)
-
-- **SFU Mode (No adaptive bitrate):** Ant Media Server ingests a WebRTC stream in either H.264 or VP8; if both are available, H.264 is prioritized. The original stream is forwarded to players without transcoding.
-
-- **Adaptive Bitrate Mode (if you have at least one adaptive bitrate):** If at least one adaptive bitrate is enabled, the stream is transcoded into multiple bitrates for both H.264 and VP8. This ensures compatibility across devices that support either codec. See [Adaptive streaming](https://antmedia.io/docs/guides/adaptive-bitrate/adaptive-bitrate-streaming/) for details.
+Each codec can be enabled or disabled based on your requirements. This guide will cover how to enable and configure these codecs in different scenarios.
