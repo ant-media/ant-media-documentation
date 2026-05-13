@@ -124,7 +124,7 @@ A 403 error usually indicates insufficient permissions or authentication issues 
 
 ## How can I prevent streams from stuttering when publishing in Ant Media Server?
 
-To prevent stuttering in streams, ensure your network bandwidth is stable and sufficient for the bitrate you're streaming. Additionaly, please adjust these settings on your encoders (like OBS and etc).
+To prevent stuttering in streams, ensure your network bandwidth is stable and sufficient for the bitrate you're streaming. Additionally, please adjust these settings on your encoders (like OBS and etc).
 - Avoid **B-frames (Must)**
 - Set the profile to **baseline** for better compatibility.
 - Use a low-latency encoding preset.
@@ -410,4 +410,4 @@ const VideoPlayerComponent = dynamic(
    }
  );
 ```
-Now you shouldnt get any errors and SDK should work as expected.
+Now you shouldn't get any errors and SDK should work as expected.

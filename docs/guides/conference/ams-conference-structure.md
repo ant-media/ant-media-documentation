@@ -31,7 +31,7 @@ In video conferencing context, this object represents the **conference participa
 
 Now that we've covered the fundamental concepts of conferencing, let's take a look at video conferencing in action via sample Conference application on AMS.
 
-By default, there is a sample conference applictaion page available in all applications of AMS. Here is the URL format:
+By default, there is a sample conference application page available in all applications of AMS. Here is the URL format:
 
 ```https://{ams-url}:5443/{appName}/conference.html```
 
@@ -325,11 +325,11 @@ export default function ConferenceComponent(){
 
 Now, run ```npm start``` command and start the development server. 
 
-Go to ```localhost``` page, open console and observe that webrtc adaptor is initialized succesfully and your camera video is rendered inside ```localParticipantVideoElement```
+Go to ```localhost``` page, open console and observe that webrtc adaptor is initialized successfully and your camera video is rendered inside ```localParticipantVideoElement```
 
 ![](@site/static/img/conference/video-conference/video-conference-5.png)
 
-This means that our client succesfully connected to Ant Media Server through web socket and we are ready to do all kind of cool stuff such as publish, play and conference.
+This means that our client successfully connected to Ant Media Server through web socket and we are ready to do all kind of cool stuff such as publish, play and conference.
 
 
 ### Step 6: Join a Room
@@ -427,7 +427,7 @@ return(
 
 ### Step 7: Retrieve Main Track Broadcast Object
 
-After you call ```.play()``` with ```roomId```, if it is succesful, you will receive ```play_started``` event from WebRTC adaptor.
+After you call ```.play()``` with ```roomId```, if it is successful, you will receive ```play_started``` event from WebRTC adaptor.
 
 Catch the ```play_started``` message on webrtc adaptor callback and call.
 
@@ -776,7 +776,7 @@ This function will be called with 2 types of objects:
 ```
 
 :::info
-Those track objects ```streamId``` field  will be always equal to our ```roomId```, eventhough they are video or audio tracks of remote participants. So do not confuse it. We will explain how to assign participant streamIds to video tracks in next steps.
+Those track objects ```streamId``` field  will be always equal to our ```roomId```, even though they are video or audio tracks of remote participants. So do not confuse it. We will explain how to assign participant streamIds to video tracks in next steps.
 :::
 
 At this state we need to store those tracks in a state variable to render them on screen. Before we render them first go ahead and create a new state variable to store remote participant tracks.
@@ -833,7 +833,7 @@ const onNewTrack = (obj) => {
 ### Step 11: Render Remote Participants On Screen
 
 Now we store both audio and video tracks in a state variable. 
-But still we didnt render them on screen.
+But still we didn't render them on screen.
 
 To render those tracks on screen we will create 2 new components. 
 
@@ -1295,7 +1295,7 @@ We completed base structure required for simple conferencing. So if you managed 
 
 At this state we should be able to receive remote participants and play them. Each participant should be able to see and hear each other.
 
-Open ```localhost``` page in 3 seperate tabs on your browser for testing. Type the same room id in each tab and a distinct stream id.
+Open ```localhost``` page in 3 separate tabs on your browser for testing. Type the same room id in each tab and a distinct stream id.
 
 Click on join room button in each tab and each participant should be able to see and hear each other!
 
@@ -1310,7 +1310,7 @@ At step 13 we will learn how to match streamId of participants with their video 
 At step 10, we received video and audio tracks of participants with ```onNewVideoTrack``` message coming from Ant Media Server. But this incoming object did not contain stream id of the related video track.
 
 :::info
-Ant Media Server sends stream id of participant in a seperate message called ```VIDEO_TRACK_ASSIGNMENT_LIST``` via data channel. This message contains which video track belongs to which stream id. This seperation is caused by the nature of multi track webrtc streaming.
+Ant Media Server sends stream id of participant in a separate message called ```VIDEO_TRACK_ASSIGNMENT_LIST``` via data channel. This message contains which video track belongs to which stream id. This separation is caused by the nature of multi track webrtc streaming.
 :::
 
 Whenever a data channel message received, webrtc adaptor notifies us with ```data_received``` message.
@@ -1486,7 +1486,7 @@ We iterate ```remoteParticipantTracksRef``` and ```videoTrackAssignmentList```, 
 
 Finally we set the remoteParticipantTracks state with ```setRemoteParticipantTracks(updatedTracks)``` to render it on screen.
 
-Now its time for some testing action again! Open ```localhost``` in 3 seperate tabs. Join the same room with distinct stream id from all tabs.
+Now its time for some testing action again! Open ```localhost``` in 3 separate tabs. Join the same room with distinct stream id from all tabs.
 
 You should observe streamIds are matched correctly with video tracks and rendered below video of each participant.
 
@@ -1875,7 +1875,7 @@ You’ve completed all the essential steps to embark on your journey to launch a
 
 Its time for a final test.
 
-Go ahead and open 3 seperate tabs on your browser. Join a room with distinct stream ids.
+Go ahead and open 3 separate tabs on your browser. Join a room with distinct stream ids.
 
 ![](@site/static/img/conference/video-conference/video-conference-9.png)
 
