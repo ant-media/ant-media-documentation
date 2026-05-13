@@ -5,7 +5,7 @@ keywords: [VP8 codec, WebRTC VP8, Ant Media Server VP8, video codec configuratio
 sidebar_position: 3
 ---
 
-# VP8
+# VP8 Codec
 
 VP8 is an open-source video codec developed by Google and widely used in WebRTC applications. It is a reliable alternative to H.264, especially in environments where licensing or open standards are preferred.
 
@@ -33,6 +33,8 @@ VP8 is an open-source video codec developed by Google and widely used in WebRTC 
 
 ![vp8](https://github.com/user-attachments/assets/c8900114-0f74-4cba-9dd9-c5b0da5b757a)
 
+The VP8 codec can be enabled from application settings via the web panel.
+
 - **SFU Mode:** Only VP8 streams are ingested and forwarded without transcoding  
 - **Adaptive Bitrate (ABR) Mode:** VP8 streams are transcoded into multiple bitrates for adaptive playback
 
@@ -47,6 +49,14 @@ VP8 is a recommended choice when:
 - Your target audience mainly uses **modern browsers such as Chrome and Firefox**  
 - You do not require **HLS or MP4 recording support**  
 - You want a **lightweight codec with broad WebRTC compatibility**
+
+---
+
+## Streaming and Playback with VP8
+
+Only the WebRTC protocol supports stream publishing with the VP8 codec in Ant Media Server.
+
+Check out the [WebRTC publishing](https://docs.antmedia.io/category/webrtc/) & [WebRTC playback](https://docs.antmedia.io/guides/playing-live-stream/webrtc-playback/) to publish/play streams with VP8.
 
 ---
 
