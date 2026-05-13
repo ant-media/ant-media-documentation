@@ -7,7 +7,7 @@ sidebar_position: 1
 
 # Building AMS from Source Code
 
-### Linux (Ubuntu)
+#### Linux (Ubuntu)
 
 A couple of common repos should be cloned and built with Maven.
 
@@ -21,7 +21,7 @@ A couple of common repos should be cloned and built with Maven.
     cd ..
     ```
 
-### Building Community Edition
+#### Building Community Edition
 
 *   Clone the repositories
     ```bash
@@ -51,8 +51,32 @@ A couple of common repos should be cloned and built with Maven.
         
 ### Building Enterprise Edition
 
-If you are building Enterprise, please contact us for latest instructions
+If you are building Enterprise, finish the the steps above first.  Then:
 
+*  Build Ant-Media-Enterprise code 
+    Note: Ant-Media-Enterprise is provided to Enterprise users.  Instructions assume it's in Ant-Media-Enterprise folder
+
+    ```bash
+    cd Ant-Media-Enterprise
+    mvn clean install -Dmaven.javadoc.skip=true -Dmaven.test.skip=true -Dgpg.skip=true -Djarsigner.skip=true
+    # You may also use this script which builds and redeploys and starts the server
+    # ./redeploy.sh
+    cd ..
+    ```
+
+*   Build the Filter Plugin
+    ```bash
+    git clone https://github.com/ant-media/Plugins.git
+    cd Plugins/FilterPlugin
+    mvn install -Dmaven.test.skip=true -Dgpg.skip=true
+    cd ..
+    ```
+    
+*   Package Enterprise Edition
+    ```bash
+    cd Ant-Media-Server
+    ./repackage_enterprise.sh
+    ```
 
 ## Congratulations!
 
