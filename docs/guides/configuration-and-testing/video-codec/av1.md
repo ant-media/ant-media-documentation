@@ -83,5 +83,5 @@ Since AV1 support is limited in browsers, enable H.264 alongside AV1 and use ada
 At least one adaptive bitrate (ABR) must be enabled. Without ABR, Ant Media Server will not transcode AV1 streams into H264, and playback will fail on browsers that do not support AV1.
 :::
 
-![h265andh264](https://github.com/user-attachments/assets/366e921c-8ab1-4235-a9d9-5062b8c109a3)
+![AV1 + H264 with ABR](/img/configuration-and-testing/AV1andH264.webp)
 
