@@ -1,0 +1,8 @@
+{
+    "label": "Playlist",
+    "position": 7,
+    "link": {
+      "type": "generated-index",
+      "description": "Create and stream playlist with Ant Media Server."
+    }
+  }
