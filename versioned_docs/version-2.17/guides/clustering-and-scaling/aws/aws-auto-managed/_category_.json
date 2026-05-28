@@ -1,0 +1,8 @@
+{
+  "label": "AWS Auto Managed Service",
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "description": "Deploy Ant Media Server Auto-managed Live Streaming Service on AWS."
+  }
+}
