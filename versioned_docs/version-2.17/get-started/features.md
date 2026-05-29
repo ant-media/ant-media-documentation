@@ -26,7 +26,7 @@ Seeing high memory or CPU usage is an indication of a problem that needs to be a
 
 # Applications
 
-Ant Media Server comes with three default applications: LiveApp, WebRTCApp and live in the community edition, and WebRTCAppEE ( in lieu of WebRTCApp) in the enterprise edition. All applications are [open source](github.com/ant-media/StreamApp).
+Ant Media Server comes with three default applications: LiveApp, WebRTCApp and live in the community edition, and WebRTCAppEE ( in lieu of WebRTCApp) in the enterprise edition. All applications are [open source](https://github.com/ant-media/StreamApp/).
 
 The application holds sample pages for publishing and playing live streams. You can also test the sample pages via [WebRTC samples](https://antmedia.io/webrtc-samples/) on the website. Each application functions independently of each other and holds their own settings and configuration options.
 
@@ -82,7 +82,7 @@ Its another tool to enable you to reach a wider audience.
 
 Here is an example embed code taken from my local installation:
 
-```<iframe width="560" height="315" src="http://localhost:5080/live/play.html?id=jcmhp84xMBIJHmxk876462646524" frameBorder="0" allowfullscreen></iframe>```
+```<iframe width="560" height="315" src="http://localhost:5080/live/play.html?id=jcmhp84xMBIJHmxk876462646524" frameBorder="0" allowFullScreen></iframe>```
 
 As you can see, the *play.html* page accepts the parameter name which expects the streamId. For more details about embedded player, check out this [document](https://docs.antmedia.io/guides/playing-live-stream/embedded-web-player/).
 

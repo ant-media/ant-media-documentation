@@ -188,7 +188,7 @@ to
 http_bind_address = your_server_public_ip:9000
 ```
 
-> If you want to use the reverse proxy with SSL termination, please go to [this step](/v1/docs/getting-started-with-ant-media-server).
+> If you want to use the reverse proxy with SSL termination, please go to [this step](/guides/installing-on-linux/setting-up-ssl/).
 
 Save the file and exit.
 

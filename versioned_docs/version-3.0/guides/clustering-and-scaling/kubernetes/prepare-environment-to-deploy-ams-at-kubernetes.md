@@ -61,7 +61,7 @@ You can create your own Kubernetes Cluster [on your servers.](https://antmedia.
 
 You can have a Kubernetes Cluster on the cloud services. You will find blog posts about how to create such a Kubernetes cluster below.
 
-* [AWS EKS](/guides/clustering-and-scaling/kubernetes/installing-ams-on-aws-eks/)
+* [AWS EKS](/guides/clustering-and-scaling/kubernetes/kubernetes-services/installing-ams-on-aws-eks/)
 * [Digital Ocean](https://antmedia.io/how-to-create-kubernetes-cluster-on-digital-ocean/) 
 * [OVH](https://antmedia.io/auto-scaling-streaming-server-with-kubernetes/)
 
@@ -141,4 +141,3 @@ Congratulations! You've successfully prepared your Kubernetes environment for An
 From here, you can proceed to deploy AMS using your preferred method—be it **manual deployment, Helm charts, or cloud-specific templates**. Your journey towards a robust, scalable, and automated streaming solution has just begun!
 
 Get ready to deliver high-quality, low-latency streams to your audience with confidence. **The cloud is your stage—let the streaming begin! **🎬🌐✨
-

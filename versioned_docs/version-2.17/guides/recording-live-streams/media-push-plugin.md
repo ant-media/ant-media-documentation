@@ -109,7 +109,7 @@ Please check out [**this blog post**](https://antmedia.io/conference-call-record
 
 ## Media Push Quick Demo
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/gyog1t9cQNs?si=uiXqrbpsn81pjzrW" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/gyog1t9cQNs?si=uiXqrbpsn81pjzrW" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
 
 ### Add Chrome Switches
 

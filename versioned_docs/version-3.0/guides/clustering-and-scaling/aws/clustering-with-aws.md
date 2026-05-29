@@ -191,7 +191,7 @@ Click `Load Balancer > Your LoadBalancer > HTTPS: 443 > View/Edit Rules` and add
 
 Right now Everything is ok. Just let me give a brief information about the difference between publish and play. In our load balancer configuration, we forward HTTP(80) and HTTPS(443) to Origin Group and we forward HTTP(5080) and HTTPS(5443) to Edge Group. It means that we should connect 80 or 443 ports to publish and connect 5080 or 5443 to play streams. Otherwise, play requests goes to origin group and publish request goes to edge group and it’s likely create some performance issues according to your configurations.
 
-> Quick Link: [How to configure RTMP Load Balancer in AWS ?](/v1/docs/how-to-configure-rtmp-load-balancer-in-aws)
+> Quick Link: [How to configure RTMP Load Balancer in AWS ?](/guides/clustering-and-scaling/aws/aws-lb/configuring-rtmp-lb-in-aws/)
 
 ### Logging in Web Panel
 
@@ -221,7 +221,7 @@ The command will provide an output similar to the following:
 
 #### Enable IP Filtering
 
-Please visit: [How to enable IP filter behind a load balancer for Ant Media Server?](/v1/docs/how-to-enable-ip-filter-for-ant-media-servers-behind-load-balancer-in-aws)
+Please visit: [How to enable IP filter behind a load balancer for Ant Media Server?](/guides/clustering-and-scaling/aws/aws-lb/enabling-ip-filtering-behind-load-balancer-in-aws/)
 
 #### Test Flight
 
@@ -239,4 +239,3 @@ As you figure out, we connect default https port(443) for publishing and 5443 po
 You’ve set up a clustered AMS on AWS with **Origin & Edge auto-scaling, shared MongoDB for stream metadata, and a Load Balancer** routing publish & play requests properly. When traffic spikes, new nodes spin up; when it drops, resources scale back without you lifting a finger.
 
 Your streaming infrastructure now **grows with your audience** — resilient, reliable, and ready for anything! 🚀
-

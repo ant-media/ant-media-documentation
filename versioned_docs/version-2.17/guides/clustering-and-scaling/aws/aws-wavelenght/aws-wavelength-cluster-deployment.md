@@ -14,7 +14,7 @@ Before we start with the installation, let’s take a look at what exactly the t
 Prerequisite
 ------------
 
-*   Subscribe the [Ant Media Server on AWS Marketplace](https://aws.amazon.com/marketplace/pp/prodview-464ritgzkzod6). If you don't know how to do that [just follow the 3 steps here](/guides/clustering-and-scaling/aws/scale-with-aws-cloudformation/)
+*   Subscribe the [Ant Media Server on AWS Marketplace](https://aws.amazon.com/marketplace/pp/prodview-464ritgzkzod6). If you don't know how to do that [just follow the 3 steps here](/guides/clustering-and-scaling/aws/aws-cloudformation/scale-with-aws-cloudformation/)
 
 Step by Step Deployment
 -----------------------
@@ -126,6 +126,5 @@ Then restart the service using the systemctl restart nginx command.
 </div>
 
 Your Ant Media Server cluster is now running on AWS Wavelength, automatically **scaling Edge and Origin nodes based on demand**. Streams are efficiently routed, resources adjust dynamically, and your viewers enjoy **uninterrupted**, **high-performance** streaming no matter where they connect from. Truly, your network is ready for anything! 🎯
-
 
 

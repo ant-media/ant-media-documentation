@@ -36,7 +36,11 @@ const config = {
   baseUrl: '/',
   trailingSlash: true,
   onBrokenLinks: 'warn', // replace with 'throw' to stop building if broken links
-  onBrokenMarkdownLinks: 'warn',
+  markdown: {
+    hooks: {
+      onBrokenMarkdownLinks: 'warn',
+    },
+  },
   favicon: 'img/favicon.ico',
 
   // GitHub pages deployment config.
@@ -74,7 +78,7 @@ scripts: [
           lastVersion:
               isDev ? 'current' : getLastStableVersion(),
           onlyIncludeVersions: (() => {
-                return [ ...(isDev ? ['current'] : []), ...versions.slice(0, 2)]; // return only the last 2 
+                return [ ...(isDev ? ['current'] : []), ...versions.slice(0, 3)]; // return only the last 2 
             })(),
           versions: {
              current: {
@@ -241,10 +245,6 @@ scripts: [
         },
         {
           from: '/guides/developer-sdk-and-api/rest-api-guide/rest-api-guide/',
-          to: '/category/rest-api-guide/'
-        },
-	{
-          from: '/guides/developer-sdk-and-api/rest-api-guide/',
           to: '/category/rest-api-guide/'
         },
         {

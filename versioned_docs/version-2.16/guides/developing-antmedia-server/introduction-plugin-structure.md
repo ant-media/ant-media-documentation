@@ -17,7 +17,7 @@ You can either access decoded video frames through the IFrameListener interface 
 
 ### Custom Broadcasts
 
-You can implement other streaming protocols for publishing to your Ant Media Server using custom broadcast plug-ins. The already implemented protocols include WebRTC, RTMP, SRT, and stream source pulling. [More information.](/v1/docs/custom-broadcasting)
+You can implement other streaming protocols for publishing to your Ant Media Server using custom broadcast plug-ins. The already implemented protocols include WebRTC, RTMP, SRT, and stream source pulling. [More information.](#custom-broadcasts)
 
 ### IFrameListener interface
 

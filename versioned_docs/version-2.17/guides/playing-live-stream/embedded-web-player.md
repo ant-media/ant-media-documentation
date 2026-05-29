@@ -70,7 +70,7 @@ You can copy the Embed code for a specific stream directly from the AMS dashboar
 Here is the sample Embed code:
 
 ```html
-<iframe width="560" height="315" src="https://AMS-domain-name:5443/live/play.html?name=stream1" frameBorder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://AMS-domain-name:5443/live/play.html?name=stream1" frameBorder="0" allowFullScreen></iframe>
 ```
 
 ```src="https://AMS-domain-name:5443/live/play.html?name=stream1"``` 

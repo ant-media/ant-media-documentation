@@ -389,7 +389,7 @@ This generates a JAR file in the `target/` directory, typically named `SamplePlu
 
 ### Step 3: Deploy and Verify
 
-Deploy your plugin following the [installation procedure](./getting-started.md#plugin-intallation-guide):
+Deploy your plugin following the [installation procedure](./getting-started.md#plugin-installation-guide):
 
 1. **Copy the JAR file** to the plugins directory:
    ```bash

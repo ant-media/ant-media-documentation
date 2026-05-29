@@ -23,7 +23,18 @@ You are requested to follow the contribution guidelines specified in [CONTRIBUTI
 Install dependencies using npm:
 
     $ npm ci
-    $ NODE_ENV=development npm run build
+
+Build the documentation in dev mode, so the latest, yet unpublished documentation for the upcoming version is visible:
+
+    $ npm run build -- -dev
+
+Build the documentation for production deployment, so the last stable version listed in `versions.json` is the root:
+
+    $ npm run build
+
+Serve the previously built files locally:
+
+    $ npm run serve
 
 ## Links
 

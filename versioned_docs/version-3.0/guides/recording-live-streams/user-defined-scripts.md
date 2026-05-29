@@ -22,8 +22,8 @@ MP4 muxing(recording) finish process
 
  It will work after the MP4 Muxing(recording) process finishes. Let’s have a look at that step by step.
 
-1.  [Define run script location in App Settings](#define-mp4-muxing)
-2.  [Script running instructions](#mp4-muxing-script)
+1.  [Define run script location in App Settings](#define-mp4-muxing-run-script-location-in-app-settings)
+2.  [Script running instructions](#mp4-muxing-script-usage-instructions)
 
 ### Define MP4 muxing run script location in App Settings
 
@@ -77,8 +77,8 @@ running muxer finish script: ~/test_script.sh /usr/local/antmedia/webapps/live/s
 
 It will work after the VoD upload process finishes. Let’s have a look at that step by step.
 
-1.  [Define run script location in App Settings](#define-vod-upload)
-2.  [Script running instructions](#vod-upload-script)
+1.  [Define run script location in App Settings](#define-vod-upload-run-script-location-in-app-settings)
+2.  [Script running instructions](#vod-upload-script-usage-instructions)
 
 ### Define VoD upload run script location in App Settings
 
@@ -317,5 +317,4 @@ Upload any VoD file to your application. The file will be automatically transcod
 You've successfully configured **User Defined Scripts in Ant Media Server**. Now, your live stream recordings and **VoD uploads trigger custom scripts automatically**, enabling seamless post-processing tasks such as transcoding, merging, or watermarking. This automation enhances your workflow, saving time and resources.
 
 **Mission Accomplished** 🤝 - With these scripts, your workflow is now faster, smarter, and unbeatable! 🫰
-
 
