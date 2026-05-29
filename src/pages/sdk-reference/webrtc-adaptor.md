@@ -31,7 +31,7 @@
 </dl>
 
 
-<a name="WebRTCAdaptor"></a>
+<a id="WebRTCAdaptor"></a>
 
 ## WebRTCAdaptor
 WebRTCAdaptor Class is interface to the JS SDK of Ant Media Server (AMS). This class manages the signalling,
@@ -125,21 +125,21 @@ WebRTC peer-to-peer session
     * [.turnOffLocalCamera()](#WebRTCAdaptor+turnOffLocalCamera)
     * [.switchVideoCameraFacingMode(streamId, facingMode)](#WebRTCAdaptor+switchVideoCameraFacingMode)
 
-<a name="WebRTCAdaptor+peerconnection_config"></a>
+<a id="WebRTCAdaptor+peerconnection_config"></a>
 
 ### webRTCAdaptor.peerconnection\_config
 Used while initializing the PeerConnection
 https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/RTCPeerConnection#parameters
 
 **Kind**: instance property of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+sdp_constraints"></a>
+<a id="WebRTCAdaptor+sdp_constraints"></a>
 
 ### webRTCAdaptor.sdp\_constraints
 Used while creating SDP (answer or offer)
 https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/createOffer#parameters
 
 **Kind**: instance property of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+remotePeerConnection"></a>
+<a id="WebRTCAdaptor+remotePeerConnection"></a>
 
 ### webRTCAdaptor.remotePeerConnection
 This keeps the PeerConnections for each stream id.
@@ -147,7 +147,7 @@ It is an array because one @WebRTCAdaptor instance can manage multiple WebRTC co
 Its indices are the Stream Ids of each stream
 
 **Kind**: instance property of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+remotePeerConnectionStats"></a>
+<a id="WebRTCAdaptor+remotePeerConnectionStats"></a>
 
 ### webRTCAdaptor.remotePeerConnectionStats
 This keeps statistics for the each PeerConnection.
@@ -155,7 +155,7 @@ It is an array because one @WebRTCAdaptor instance can manage multiple WebRTC co
 Its indices are the Stream Ids of each stream
 
 **Kind**: instance property of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+remoteDescriptionSet"></a>
+<a id="WebRTCAdaptor+remoteDescriptionSet"></a>
 
 ### webRTCAdaptor.remoteDescriptionSet
 This keeps the Remote Description (SDP) set status for each PeerConnection.
@@ -165,47 +165,47 @@ in @iceCandidateList field until we get and set the Remote Description.
 Otherwise setting ice candidates before Remote description may cause problem.
 
 **Kind**: instance property of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+iceCandidateList"></a>
+<a id="WebRTCAdaptor+iceCandidateList"></a>
 
 ### webRTCAdaptor.iceCandidateList
 This keeps the Ice Candidates which are received before the Remote Description (SDP) received.
 For details please check @remoteDescriptionSet field.
 
 **Kind**: instance property of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+roomName"></a>
+<a id="WebRTCAdaptor+roomName"></a>
 
 ### webRTCAdaptor.roomName
 This is the name for the room that is desired to join in conference mode.
 
 **Kind**: instance property of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+playStreamId"></a>
+<a id="WebRTCAdaptor+playStreamId"></a>
 
 ### webRTCAdaptor.playStreamId
 This keeps StreamIds for the each playing session.
 It is an array because one @WebRTCAdaptor instance can manage multiple playing sessions.
 
 **Kind**: instance property of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+audioContext"></a>
+<a id="WebRTCAdaptor+audioContext"></a>
 
 ### webRTCAdaptor.audioContext
 Audio context to use
 
 **Kind**: instance property of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+isMultiPeer"></a>
+<a id="WebRTCAdaptor+isMultiPeer"></a>
 
 ### webRTCAdaptor.isMultiPeer
 This is the flag indicates if multiple peers will join a peer in the peer to peer mode.
 This is used only with Embedded SDK
 
 **Kind**: instance property of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+multiPeerStreamId"></a>
+<a id="WebRTCAdaptor+multiPeerStreamId"></a>
 
 ### webRTCAdaptor.multiPeerStreamId
 This is the stream id that multiple peers can join a peer in the peer to peer mode.
 This is used only with Embedded SDk
 
 **Kind**: instance property of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+webSocketAdaptor"></a>
+<a id="WebRTCAdaptor+webSocketAdaptor"></a>
 
 ### webRTCAdaptor.webSocketAdaptor
 This is instance of @WebSocketAdaptor and manages to websocket connection.
@@ -213,20 +213,20 @@ All signalling messages are sent to/recived from
 the Ant Media Server over this web socket connection
 
 **Kind**: instance property of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+isPlayMode"></a>
+<a id="WebRTCAdaptor+isPlayMode"></a>
 
 ### webRTCAdaptor.isPlayMode
 This flags indicates if this @WebRTCAdaptor instance is used only for playing session(s)
 You don't need camera/mic access in play mode
 
 **Kind**: instance property of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+debug"></a>
+<a id="WebRTCAdaptor+debug"></a>
 
 ### webRTCAdaptor.debug
 This flags enables/disables debug logging
 
 **Kind**: instance property of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+publishStreamId"></a>
+<a id="WebRTCAdaptor+publishStreamId"></a>
 
 ### webRTCAdaptor.publishStreamId
 This is the Stream Id for the publisher. One @WebRCTCAdaptor supports only one publishing
@@ -235,27 +235,27 @@ In conference mode you can join a room with null stream id. In that case
 Ant Media Server generates a stream id and provides it JoinedTheRoom callback and it is set to this field.
 
 **Kind**: instance property of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+idMapping"></a>
+<a id="WebRTCAdaptor+idMapping"></a>
 
 ### webRTCAdaptor.idMapping
 This is used to keep stream id and track id (which is provided in SDP) mapping
 in MultiTrack Playback and conference.
 
 **Kind**: instance property of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+onlyDataChannel"></a>
+<a id="WebRTCAdaptor+onlyDataChannel"></a>
 
 ### webRTCAdaptor.onlyDataChannel
 This is used when only data is brodcasted with the same way video and/or audio.
 The difference is that no video or audio is sent when this field is true
 
 **Kind**: instance property of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+dataChannelEnabled"></a>
+<a id="WebRTCAdaptor+dataChannelEnabled"></a>
 
 ### webRTCAdaptor.dataChannelEnabled
 While publishing and playing streams data channel is enabled by default
 
 **Kind**: instance property of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+receivingMessages"></a>
+<a id="WebRTCAdaptor+receivingMessages"></a>
 
 ### webRTCAdaptor.receivingMessages
 This is array of @ReceivingMessage
@@ -263,7 +263,7 @@ When you receive multiple large size messages @ReceivingMessage simultaneously
 this map is used to indicate them with its index tokens.
 
 **Kind**: instance property of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+candidateTypes"></a>
+<a id="WebRTCAdaptor+candidateTypes"></a>
 
 ### webRTCAdaptor.candidateTypes
 Supported candidate types. Below types are for both sending and receiving candidates.
@@ -272,32 +272,32 @@ is in the list. Likely, when client receives remote candidate from server, it ad
 if candidate protocol is in the list below.
 
 **Kind**: instance property of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+remoteVideo"></a>
+<a id="WebRTCAdaptor+remoteVideo"></a>
 
 ### webRTCAdaptor.remoteVideo
 The html video tag for receiver is got here
 
 **Kind**: instance property of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+soundMeters"></a>
+<a id="WebRTCAdaptor+soundMeters"></a>
 
 ### webRTCAdaptor.soundMeters
 Keeps the sound meters for each connection. Its index is stream id
 
 **Kind**: instance property of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+soundLevelList"></a>
+<a id="WebRTCAdaptor+soundLevelList"></a>
 
 ### webRTCAdaptor.soundLevelList
 Keeps the current audio level for each playing streams in conference mode
 
 **Kind**: instance property of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+mediaManager"></a>
+<a id="WebRTCAdaptor+mediaManager"></a>
 
 ### webRTCAdaptor.mediaManager
 All media management works for teh local stream are made by @MediaManager class.
 for details please check @MediaManager
 
 **Kind**: instance property of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+initialize"></a>
+<a id="WebRTCAdaptor+initialize"></a>
 
 ### webRTCAdaptor.initialize()
 Called by constuctor to
@@ -305,7 +305,7 @@ Called by constuctor to
 	-start websocket connection
 
 **Kind**: instance method of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+publish"></a>
+<a id="WebRTCAdaptor+publish"></a>
 
 ### webRTCAdaptor.publish()
 Called to start a new WebRTC stream. AMS responds with start message.
@@ -321,7 +321,7 @@ Parameters:
   metaData: a free text information for the stream to AMS. It is provided to Rest methods by the AMS
 
 **Kind**: instance method of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+joinRoom"></a>
+<a id="WebRTCAdaptor+joinRoom"></a>
 
 ### webRTCAdaptor.joinRoom()
 Called to join a room. AMS responds with joinedTheRoom message.
@@ -333,7 +333,7 @@ Parameters:
 			amcu: audio only conferences with mixed audio
 
 **Kind**: instance method of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+play"></a>
+<a id="WebRTCAdaptor+play"></a>
 
 ### webRTCAdaptor.play()
 Called to start a playing session for a stream. AMS responds with start message.
@@ -348,7 +348,7 @@ Parameters:
   metaData: a free text information for the stream to AMS. It is provided to Rest methods by the AMS
 
 **Kind**: instance method of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+stop"></a>
+<a id="WebRTCAdaptor+stop"></a>
 
 ### webRTCAdaptor.stop()
 Called to stop a publishing/playing session for a stream. AMS responds with publishFinished or playFinished message.
@@ -356,7 +356,7 @@ Parameters:
 	 streamId: unique id for the stream that you want to stop publishing or playing
 
 **Kind**: instance method of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+join"></a>
+<a id="WebRTCAdaptor+join"></a>
 
 ### webRTCAdaptor.join()
 Called to join a peer-to-peer mode session as peer. AMS responds with joined message.
@@ -364,7 +364,7 @@ Parameters:
 	 streamId: unique id for the peer-to-peer session
 
 **Kind**: instance method of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+leaveFromRoom"></a>
+<a id="WebRTCAdaptor+leaveFromRoom"></a>
 
 ### webRTCAdaptor.leaveFromRoom()
 Called to leave from a conference room. AMS responds with leavedTheRoom message.
@@ -372,7 +372,7 @@ Parameters:
 	 roomName: unique id for the conference room
 
 **Kind**: instance method of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+leave"></a>
+<a id="WebRTCAdaptor+leave"></a>
 
 ### webRTCAdaptor.leave()
 Called to leave from a peer-to-peer mode session. AMS responds with leaved message.
@@ -380,7 +380,7 @@ Parameters:
 	 streamId: unique id for the peer-to-peer session
 
 **Kind**: instance method of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+getStreamInfo"></a>
+<a id="WebRTCAdaptor+getStreamInfo"></a>
 
 ### webRTCAdaptor.getStreamInfo()
 Called to get a stream information for a specific stream. AMS responds with streamInformation message.
@@ -388,7 +388,7 @@ Parameters:
 	 streamId: unique id for the stream that you want to get info about
 
 **Kind**: instance method of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+upateStreamMetaData"></a>
+<a id="WebRTCAdaptor+upateStreamMetaData"></a>
 
 ### webRTCAdaptor.upateStreamMetaData()
 Called to update the meta information for a specific stream.
@@ -397,7 +397,7 @@ Parameters:
   metaData: new free text information for the stream
 
 **Kind**: instance method of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+getRoomInfo"></a>
+<a id="WebRTCAdaptor+getRoomInfo"></a>
 
 ### webRTCAdaptor.getRoomInfo()
 Called to get the room information for a specific room. AMS responds with roomInformation message
@@ -407,7 +407,7 @@ Parameters:
 	 streamId: unique id for the stream that is streamed by this @WebRTCAdaptor
 
 **Kind**: instance method of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+enableTrack"></a>
+<a id="WebRTCAdaptor+enableTrack"></a>
 
 ### webRTCAdaptor.enableTrack()
 Called to enable/disable data flow from the AMS for a specific track under a main track.
@@ -417,7 +417,7 @@ Parameters:
 	 enabled: true or false
 
 **Kind**: instance method of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+getTracks"></a>
+<a id="WebRTCAdaptor+getTracks"></a>
 
 ### webRTCAdaptor.getTracks()
 Called to get the track ids under a main stream. AMS responds with trackList message.
@@ -427,7 +427,7 @@ Parameters:
 TODO: check this function
 
 **Kind**: instance method of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+onTrack"></a>
+<a id="WebRTCAdaptor+onTrack"></a>
 
 ### webRTCAdaptor.onTrack()
 Called by browser when a new track is added to WebRTC connetion. This is used to infor html pages with newStreamAvailable callback.
@@ -436,7 +436,7 @@ Parameters:
 	 streamId: unique id for the stream
 
 **Kind**: instance method of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+iceCandidateReceived"></a>
+<a id="WebRTCAdaptor+iceCandidateReceived"></a>
 
 ### webRTCAdaptor.iceCandidateReceived()
 Called by WebSocketAdaptor when a new ice candidate is received from AMS.
@@ -445,7 +445,7 @@ Parameters:
 	 streamId: unique id for the stream
 
 **Kind**: instance method of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+initDataChannel"></a>
+<a id="WebRTCAdaptor+initDataChannel"></a>
 
 ### webRTCAdaptor.initDataChannel()
 Called internally to initiate Data Channel.
@@ -454,7 +454,7 @@ Note that Data Channel should be enabled fromAMS settings.
   dataChannel: provided by PeerConnection
 
 **Kind**: instance method of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+initPeerConnection"></a>
+<a id="WebRTCAdaptor+initPeerConnection"></a>
 
 ### webRTCAdaptor.initPeerConnection()
 Called internally to initiate PeerConnection.
@@ -462,14 +462,14 @@ Called internally to initiate PeerConnection.
   dataChannelMode: can be "publish" , "play" or "peer" based on this it is decided which way data channel is created
 
 **Kind**: instance method of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+closePeerConnection"></a>
+<a id="WebRTCAdaptor+closePeerConnection"></a>
 
 ### webRTCAdaptor.closePeerConnection()
 Called internally to close PeerConnection.
 	 streamId: unique id for the stream
 
 **Kind**: instance method of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+signallingState"></a>
+<a id="WebRTCAdaptor+signallingState"></a>
 
 ### webRTCAdaptor.signallingState()
 Called to get the signalling state for a stream.
@@ -478,7 +478,7 @@ Check: https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/connec
 	 streamId: unique id for the stream
 
 **Kind**: instance method of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+iceConnectionState"></a>
+<a id="WebRTCAdaptor+iceConnectionState"></a>
 
 ### webRTCAdaptor.iceConnectionState()
 Called to get the ice connection state for a stream.
@@ -487,7 +487,7 @@ Check: https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/iceCon
 	 streamId: unique id for the stream
 
 **Kind**: instance method of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+gotDescription"></a>
+<a id="WebRTCAdaptor+gotDescription"></a>
 
 ### webRTCAdaptor.gotDescription()
 Called by browser when Local Configuration (SDP) is created successfully.
@@ -496,7 +496,7 @@ It is set as LocalDescription first then sent to AMS.
 	 streamId: unique id for the stream
 
 **Kind**: instance method of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+takeConfiguration"></a>
+<a id="WebRTCAdaptor+takeConfiguration"></a>
 
 ### webRTCAdaptor.takeConfiguration()
 Called by WebSocketAdaptor when Remote Configuration (SDP) is received from AMS.
@@ -509,7 +509,7 @@ is received bfore this message, it is added as ice candidate.
 				It is recorded to match stream id as new tracks are added with @onTrack
 
 **Kind**: instance method of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+takeCandidate"></a>
+<a id="WebRTCAdaptor+takeCandidate"></a>
 
 ### webRTCAdaptor.takeCandidate()
 Called by WebSocketAdaptor when new ice candidate is received from AMS.
@@ -520,7 +520,7 @@ otherwise stored in @iceCandidateList to add after Remote Description (SDP) set.
 	 tmpCandidate: ice candidate
 
 **Kind**: instance method of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+addIceCandidate"></a>
+<a id="WebRTCAdaptor+addIceCandidate"></a>
 
 ### webRTCAdaptor.addIceCandidate()
 Called internally to add the Ice Candidate to PeerConnection
@@ -528,14 +528,14 @@ Called internally to add the Ice Candidate to PeerConnection
 	 tmpCandidate: ice candidate
 
 **Kind**: instance method of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+startPublishing"></a>
+<a id="WebRTCAdaptor+startPublishing"></a>
 
 ### webRTCAdaptor.startPublishing()
 Called by WebSocketAdaptor when start message is received //TODO: may be changed. this logic shouldn't be in WebSocketAdaptor
 	 idOfStream: unique id for the stream
 
 **Kind**: instance method of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+toggleVideo"></a>
+<a id="WebRTCAdaptor+toggleVideo"></a>
 
 ### webRTCAdaptor.toggleVideo()
 Toggle video track on the server side.
@@ -546,7 +546,7 @@ Toggle video track on the server side.
   enabled: is the enable/disable video track. If it's true, server sends video track. If it's false, server does not send video
 
 **Kind**: instance method of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+toggleAudio"></a>
+<a id="WebRTCAdaptor+toggleAudio"></a>
 
 ### webRTCAdaptor.toggleAudio()
 Toggle audio track on the server side.
@@ -557,7 +557,7 @@ Toggle audio track on the server side.
   enabled: is the enable/disable video track. If it's true, server sends audio track. If it's false, server does not send audio
 
 **Kind**: instance method of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+getStats"></a>
+<a id="WebRTCAdaptor+getStats"></a>
 
 ### webRTCAdaptor.getStats()
 Called to get statistics for a PeerConnection. It can be publisher or player.
@@ -565,7 +565,7 @@ Called to get statistics for a PeerConnection. It can be publisher or player.
 	 streamId: unique id for the stream
 
 **Kind**: instance method of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+enableStats"></a>
+<a id="WebRTCAdaptor+enableStats"></a>
 
 ### webRTCAdaptor.enableStats()
 Called to start a periodic timer to get statistics periodically (5 seconds) for a specific stream.
@@ -573,7 +573,7 @@ Called to start a periodic timer to get statistics periodically (5 seconds) for 
 	 streamId: unique id for the stream
 
 **Kind**: instance method of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+disableStats"></a>
+<a id="WebRTCAdaptor+disableStats"></a>
 
 ### webRTCAdaptor.disableStats()
 Called to stop the periodic timer which is set by @enableStats
@@ -581,13 +581,13 @@ Called to stop the periodic timer which is set by @enableStats
 	 streamId: unique id for the stream
 
 **Kind**: instance method of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+checkWebSocketConnection"></a>
+<a id="WebRTCAdaptor+checkWebSocketConnection"></a>
 
 ### webRTCAdaptor.checkWebSocketConnection()
 Called to check and start Web Socket connection if it is not started
 
 **Kind**: instance method of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+closeWebSocket"></a>
+<a id="WebRTCAdaptor+closeWebSocket"></a>
 
 ### webRTCAdaptor.closeWebSocket()
 Called to stop Web Socket connection
@@ -595,13 +595,13 @@ After calling this function, create new WebRTCAdaptor instance, don't use the th
 Because all streams are closed on server side as well when websocket connection is closed.
 
 **Kind**: instance method of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+peerMessage"></a>
+<a id="WebRTCAdaptor+peerMessage"></a>
 
 ### webRTCAdaptor.peerMessage()
 Called to send a text message to other peer in the peer-to-peer sessionnnection is closed.
 
 **Kind**: instance method of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+forceStreamQuality"></a>
+<a id="WebRTCAdaptor+forceStreamQuality"></a>
 
 ### webRTCAdaptor.forceStreamQuality()
 Called to force AMS to send the video with the specified resolution in case of Adaptive Streaming (ABR) enabled.
@@ -610,7 +610,7 @@ Normally the resolution is automatically determined by AMS according to the netw
   resolution: default is auto. You can specify any height value from the ABR list.
 
 **Kind**: instance method of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+sendData"></a>
+<a id="WebRTCAdaptor+sendData"></a>
 
 ### webRTCAdaptor.sendData()
 Called to send data via DataChannel. DataChannel should be enabled on AMS settings.
@@ -618,7 +618,7 @@ Called to send data via DataChannel. DataChannel should be enabled on AMS settin
   data: data that you want to send. It may be a text (may in Json format or not) or binary
 
 **Kind**: instance method of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+enableAudioLevel"></a>
+<a id="WebRTCAdaptor+enableAudioLevel"></a>
 
 ### webRTCAdaptor.enableAudioLevel(stream, streamId)
 Called by user
@@ -636,7 +636,7 @@ in conference room. And also to determine the dominant audio to focus that playe
 | stream | <code>\*</code> | 
 | streamId | <code>\*</code> | 
 
-<a name="WebRTCAdaptor+getSoundLevelList"></a>
+<a id="WebRTCAdaptor+getSoundLevelList"></a>
 
 ### webRTCAdaptor.getSoundLevelList(streamsList)
 Called by the user
@@ -648,7 +648,7 @@ to get the audio levels for the streams for the provided StreamIds
 | --- | --- |
 | streamsList | <code>\*</code> | 
 
-<a name="WebRTCAdaptor+getSender"></a>
+<a id="WebRTCAdaptor+getSender"></a>
 
 ### webRTCAdaptor.getSender(streamId, type) ⇒
 Called media manaher to get video/audio sender for the local peer connection
@@ -661,7 +661,7 @@ Called media manaher to get video/audio sender for the local peer connection
 | streamId | <code>\*</code> | : |
 | type | <code>\*</code> | : "video" or "audio" |
 
-<a name="WebRTCAdaptor+assignVideoTrack"></a>
+<a id="WebRTCAdaptor+assignVideoTrack"></a>
 
 ### webRTCAdaptor.assignVideoTrack(videoTrackId, streamId, enabled) ⇒
 Called by user
@@ -675,7 +675,7 @@ Called by user
 | streamId | <code>\*</code> | : streamId of the pinned video |
 | enabled | <code>\*</code> | : true | false |
 
-<a name="WebRTCAdaptor+updateVideoTrackAssignments"></a>
+<a id="WebRTCAdaptor+updateVideoTrackAssignments"></a>
 
 ### webRTCAdaptor.updateVideoTrackAssignments(offset, size) ⇒
 Called by user
@@ -691,7 +691,7 @@ This message is used to make pagination in conference.
 | offset | <code>\*</code> | : start index for participant list to play |
 | size | <code>\*</code> | : number of the participants to play |
 
-<a name="WebRTCAdaptor+setMaxVideoTrackCount"></a>
+<a id="WebRTCAdaptor+setMaxVideoTrackCount"></a>
 
 ### webRTCAdaptor.setMaxVideoTrackCount(maxTrackCount) ⇒
 Called by user
@@ -704,7 +704,7 @@ This message is used to set max video track count in a conference.
 | --- | --- | --- |
 | maxTrackCount | <code>\*</code> | : maximum video track count |
 
-<a name="WebRTCAdaptor+updateAudioLevel"></a>
+<a id="WebRTCAdaptor+updateAudioLevel"></a>
 
 ### webRTCAdaptor.updateAudioLevel(value) ⇒
 Called by user
@@ -717,7 +717,7 @@ This message is used to send audio level in a conference.
 | --- | --- | --- |
 | value | <code>\*</code> | : audio lavel |
 
-<a name="WebRTCAdaptor+getDebugInfo"></a>
+<a id="WebRTCAdaptor+getDebugInfo"></a>
 
 ### webRTCAdaptor.getDebugInfo() ⇒
 Called by user
@@ -725,14 +725,14 @@ This message is used to get debug data from server for debugging purposes in con
 
 **Kind**: instance method of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
 **Returns**: void  
-<a name="WebRTCAdaptor+turnOffLocalCamera"></a>
+<a id="WebRTCAdaptor+turnOffLocalCamera"></a>
 
 ### webRTCAdaptor.turnOffLocalCamera()
 The following messages are forwarded to MediaManager. They are also kept here because of backward compatibility.
 You can find the details about them in media_manager.js
 
 **Kind**: instance method of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
-<a name="WebRTCAdaptor+switchVideoCameraFacingMode"></a>
+<a id="WebRTCAdaptor+switchVideoCameraFacingMode"></a>
 
 ### webRTCAdaptor.switchVideoCameraFacingMode(streamId, facingMode)
 Called by User
@@ -745,7 +745,7 @@ to switch between front and back camera on mobile devices
 | streamId | <code>\*</code> | Id of the stream to be changed. |
 | facingMode | <code>\*</code> | it can be "user" or "environment" This method is used to switch front and back camera. |
 
-<a name="ReceivingMessage"></a>
+<a id="ReceivingMessage"></a>
 
 ## ReceivingMessage
 This structure is used to handle large size data channel messages (like image)
