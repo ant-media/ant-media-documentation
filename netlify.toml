@@ -1,6 +1,13 @@
 [build]
-  command = "npm run build"
   publish = "build"
 
 [build.environment]
   NODE_VERSION = "24"
+
+# Triggered from master branch, no 'Next' version
+[context.production]
+  command = "npm run build"
+
+# Triggered by pull requests, includes 'Next' version
+[context.deploy-preview]
+  command = "npm run build -- --dev"
