@@ -1,8 +1,18 @@
+---
+title: MoQ (Media over QUIC)
+description: MoQ (Media over QUIC) Streaming
+keywords: [MoQ, Ant Media Server Documentation, Ant Media Server Tutorials]
+sidebar_position: 9
+---
+
+
 # MoQ (Media over QUIC)
 
-Media over QUIC (MoQ) is an emerging live streaming protocol built on QUIC and WebTransport. It delivers sub-second latency like WebRTC, while scaling through a CDN relay like HLS — no plugins or native apps required.
+Media over QUIC (MoQ) is an emerging live streaming protocol built on QUIC and WebTransport. It delivers sub-second latency like WebRTC while scaling through a CDN relay like HLS—no plugins or native apps required.
 
-> **Note:** MoQ is still an evolving IETF standard. The AMS MoQ plugin is based on **moq-lite**, a deployable subset of the spec. Treat this as early-access and keep an eye on updates.
+:::info
+MoQ is still an evolving IETF standard. The AMS MoQ plugin is based on **moq-lite**, a deployable subset of the spec. Treat this as early access and keep an eye on updates.
+:::
 
 ---
 
@@ -19,10 +29,10 @@ Media over QUIC (MoQ) is an emerging live streaming protocol built on QUIC and W
 
 **1. Download and unzip the plugin**
 
-[Download MoQPlugin-release.zip](https://drive.google.com/file/d/107IbSG71U8xo6qd8nQ4uli_w59u7LydS/view?usp=sharing) and upload it to your Ant Media Server, and then.
+[Download MoQPlugin-release.zip](https://drive.google.com/drive/folders/1Gjk1aHuCwXbOkEWIHsj_3ETcB7WTSUvv?usp=sharing) and upload it to your Ant Media Server, and then.
 
 ```bash
-unzip MoQPlugin-release.zip
+sudo unzip MoQPlugin-release.zip
 cd MoQ-Plugin
 ```
 
@@ -53,13 +63,16 @@ https://your-server:5443/live/moq/play.html
 https://your-server:5443/live/moq/publish.html
 ```
 
-> **Before you open the pages:**
-> - **HTTPS is required** on real servers. Browsers only allow WebTransport over HTTPS. Localhost is the only exception.
-> - **Open port 4443** (UDP/TCP). The embedded MoQ relay listens on this port. Make sure it is open to inbound traffic.
+:::info
+**Before you open the pages:**
+- **HTTPS is required** on real servers. Browsers only allow WebTransport over HTTPS. Localhost is the only exception.
+- **Open port 4443** (UDP/TCP). The embedded MoQ relay listens on this port. Make sure it is open to inbound traffic.
+
+:::
 
 ---
 
-## Publishing a Stream via MoQ
+## Publish Stream via MoQ
 
 ### Option 1 — Browser Publisher (Built-in)
 
@@ -68,7 +81,7 @@ https://your-server:5443/live/moq/publish.html
 3. Select **Camera** or **Screen** as the source.
 4. Click **Start Publishing**.
 
-The stream is now live on the MoQ relay and fully available inside AMS — recording, REST API, and adaptive bitrate all work as normal.
+The stream is now live on the MoQ relay and fully available inside AMS—recording, REST API, and adaptive bitrate all work as normal.
 
 ![](@site/static/img/publish-live-stream/moq-publish.webp)
 
@@ -85,13 +98,13 @@ AMS picks up the stream as a regular broadcast automatically.
 
 ---
 
-## Playing a Stream via MoQ
+## Play Stream via MoQ
 
 1. Open `https://your-server:5443/live/moq/play.html` in a Chromium-based browser.
 2. Enter your stream ID and connect.
 3. Select a quality track:
    - **source** — original quality as published into AMS
-   - **720p / 480p** — adaptive bitrate renditions transcoded by AMS
+   - **720p / 480p** — if adaptive bitrate renditions are enabled and transcoded by AMS
    - **publish** — stream sent directly from the browser publisher, bypassing AMS entirely (lowest overhead, but no ABR, recording, or AMS pipeline features)
   
 ![](@site/static/img/publish-live-stream/moq-player.webp)
@@ -142,7 +155,7 @@ The plugin works out of the box. To override defaults, go to **Settings → Adva
 | Video | H.264 (AVC), H.265 (HEVC) |
 | Audio | AAC, Opus |
 
-Codecs outside this list (e.g., VP8) are not yet supported.
+Codecs outside this list (e.g., VP8, AV1) are not yet supported.
 
 ---
 
