@@ -1,0 +1,8 @@
+{
+  "label": "WebRTC",
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "description": "Achieve sub-second latency with WebRTC."
+  }
+}

@@ -1,0 +1,8 @@
+{
+    "label": "Guides",
+    "position": 3,
+    "link": {
+      "type": "generated-index",
+      "description": "Ant Media Server Documentation guide is a comprehensive resource that users with everything they need to know about Ant Media Server, an open-source media server software. The guide covers all aspects of Ant Media Server, including installation, configuration, and usage."
+    }
+  }

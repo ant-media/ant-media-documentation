@@ -195,7 +195,7 @@ Audio context to use
 
 ### webRTCAdaptor.isMultiPeer
 This is the flag indicates if multiple peers will join a peer in the peer to peer mode.
-This is used only with Embedded SDk
+This is used only with Embedded SDK
 
 **Kind**: instance property of [<code>WebRTCAdaptor</code>](#WebRTCAdaptor)  
 <a name="WebRTCAdaptor+multiPeerStreamId"></a>

@@ -63,13 +63,18 @@ scripts: [
           lastVersion: 'current',
           versions: {
             'current': {
-              label: '2.16', // Customize the label for the current (unversioned) docs
+              label: '3.0', // Customize the label for the current (unversioned) docs
               path: '', // Leave empty to use the root URL for the latest version
               banner: 'none',
             },
-            '2.15': {
-              label: '2.15', // Customize the label for the current (unversioned) docs
-              path: 'version-2.15', // Leave empty to use the root URL for the latest version
+            '2.17': {
+              label: '2.17', // Customize the label for the current (unversioned) docs
+              path: 'version-2.17', // Leave empty to use the root URL for the latest version
+              banner: 'none',
+              },
+            '2.16': {
+              label: '2.16', // Customize the label for the current (unversioned) docs
+              path: 'version-2.16', // Leave empty to use the root URL for the latest version
               banner: 'none',
               }
           },
@@ -150,10 +155,6 @@ scripts: [
 	{
           from: '/guides/playing-live-stream/webrtc-playing/',
           to: '/guides/playing-live-stream/webrtc-playback/'
-        },
-	{
-          from: '/guides/publish-live-stream/Simulcasting/',
-          to: '/guides/publish-live-stream/simulcasting/'
         },
 	{
           from: '/guides/advanced-usage/stream-security/',
@@ -382,10 +383,6 @@ scripts: [
 	{
           from: '/guides/developer-sdk-and-api/rest-api-guide/REST-API-examples/',
           to: '/guides/developer-sdk-and-api/rest-api-guide/rest-apis-examples/'
-        },
-	{
-          from: '/guides/advanced-usage/WebRTC-codecs/',
-          to: '/guides/configuration-and-testing/video-codecs/'
         },
 	{
           from: '/get-started/User-Management/',
