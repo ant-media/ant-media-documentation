@@ -26,7 +26,7 @@ Install dependencies using npm:
 
 Build the documentation in dev mode, so the latest, yet unpublished documentation for the upcoming version is visible:
 
-    $ npm run build -- -dev
+    $ npm run build -- --dev
 
 Build the documentation for production deployment, so the last stable version listed in `versions.json` is the root:
 
