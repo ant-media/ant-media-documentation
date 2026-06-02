@@ -36,7 +36,7 @@ But you can use any other SRT endpoint as well.
   Adding & Removing Endpoint via the web panel is straightforward, as you can see in the below screenshot.
 
   - After creating/publishing the live stream, click on the three horizontal lines in front of the stream and click on `Edit ReStreaming Endpoints` button.
- ![](@site/static/img/publish-live-stream/simulcasting/restreaming-endpoint-button.png)
+ ![](@site/static/img/publish-live-stream/simulcasting/add-srt-endpoint.png)
 
   - Now add your SRT endpoint.
 
