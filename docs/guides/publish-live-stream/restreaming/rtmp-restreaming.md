@@ -1,6 +1,6 @@
 ---
-title: Social Media Restreaming
-description: Social Media Restreaming
+title: Social-Media/RTMP Restreaming
+description: Social-Media/RTMP Restreaming
 keywords: [Simulcasting to social media channels, Restreaming, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 1
 ---
