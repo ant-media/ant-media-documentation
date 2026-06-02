@@ -1,8 +1,8 @@
 ---
-title: Simulcasting to social media channels
-description: Simulcasting to social media channels
+title: Social-Media/RTMP Restreaming
+description: Social-Media/RTMP Restreaming
 keywords: [Simulcasting to social media channels, Restreaming, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 7
+sidebar_position: 1
 ---
 
 This guide will show you how to use Ant Media Server to push your live stream to social media channels like Facebook, YouTube, Twitch, and other third-party RTMP endpoints.
@@ -206,4 +206,3 @@ Click for more detail about [REST API Guide](https://antmedia.io/docs/category/r
 Congratulations! You've successfully set up **simulcasting** with Ant Media Server. Your live stream is now reaching audiences across multiple platforms simultaneously, expanding your reach and engagement.
 
 Your content is now accessible to a **wider audience, enhancing visibility and interaction**. Well done — your simulcasting setup is live and ready to shine!
-
