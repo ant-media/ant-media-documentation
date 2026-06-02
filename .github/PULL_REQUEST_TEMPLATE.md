@@ -8,8 +8,6 @@ To help us merge your PR, make sure to follow the instructions below:
 - Specify if the PR is in WIP (work in progress) state, kindly keep it in draft.
 - Once it is ready to merge, kindly request for review and mention that it is ready to be merged.
 
-Please ensure you read through the Contributing Guide: 
-https://github.com/ant-media/ant-media-documentation/blob/master/CONTRIBUTING.md
 -->
 
 ### What does it do?
