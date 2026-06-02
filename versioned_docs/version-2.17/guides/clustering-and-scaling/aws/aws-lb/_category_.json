@@ -1,0 +1,8 @@
+{
+  "label": "AWS Load Balancer",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "Deploy Ant Media Server at AWS with Load Balancer."
+  }
+}
