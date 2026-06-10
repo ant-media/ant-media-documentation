@@ -82,7 +82,7 @@ This feature allows one or more publishers to send video streams to a group of a
 
 The file is located at `/usr/local/antmedia/webapps/live/conference.html`.
 
-For technical and detailed information about conference calls, please follow the [link](/guides/playing-live-stream/webrtc-conference-call/).
+For technical and detailed information about conference calls, please follow the [link](/guides/publish-live-stream/webrtc/webrtc-conference-call/).
 
 ![](@site/static/img/image-1645105628540.png )
 
@@ -96,7 +96,7 @@ https://domain-name.com:5443/live/peer.html
 
 The file is located at `/usr/local/antmedia/webapps/live/peer.html`
 
-If you would like to dive in further regarding the technology behind live streaming, you can also analyze the WebRTC video/audio publish example. For technical details, please follow the [link](/guides/publish-live-stream/webrtc-peer-to-peer-communication).
+If you would like to dive in further regarding the technology behind live streaming, you can also analyze the WebRTC video/audio publish example. For technical details, please follow the [link](/guides/publish-live-stream/webrtc/webrtc-peer-to-peer-communication).
 
 ## 7. WebRTC Multitrack Player
 

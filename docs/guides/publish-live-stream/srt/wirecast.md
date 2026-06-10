@@ -9,11 +9,11 @@ sidebar_position: 3
 
 Wirecast is a live video streaming production tool by Telestream. It allows users to create live or on-demand broadcasts for the web. Wirecast supports various sources for capturing, such as webcams, IP cameras, NDIs, and capture cards.
 
-- Some encoders, like **Wirecast do not have support for streamId**.
+- Some encoders, like **Wirecast does not have support for streamId**.
 - There are also many IP cameras that support SRT output but do not support streamId.
 
 - Starting from **version 2.8.0, Ant Media Server supports SRT without streamId**.
-- In this scenario, the enocder/camera IP address will behave like streamId and it will be published to the **LiveApp** application by default.
+- In this scenario, the encoder/camera IP address will behave like streamId and it will be published to the **LiveApp** application by default.
 
 ## Create a Stream With Wirecast
 

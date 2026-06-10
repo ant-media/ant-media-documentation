@@ -3,6 +3,30 @@
 
 import {themes as prismThemes} from 'prism-react-renderer';
 
+import versions from './versions.json';
+
+const isDev = process.env.NODE_ENV === 'development';
+
+function isPrerelease(version) {
+  return (
+    version.includes('-') ||
+    version.includes('alpha') ||
+    version.includes('beta') ||
+    version.includes('rc')
+  );
+}
+
+function getLastStableVersion() {
+  const lastStableVersion = versions.find((version) => !isPrerelease(version));
+  if (!lastStableVersion) {
+    throw new Error('unexpected, no stable Docusaurus version?');
+  }
+  return lastStableVersion;
+}
+
+function getNextVersionName() {
+  return 'Next';
+}
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -12,7 +36,11 @@ const config = {
   baseUrl: '/',
   trailingSlash: true,
   onBrokenLinks: 'warn', // replace with 'throw' to stop building if broken links
-  onBrokenMarkdownLinks: 'warn',
+  markdown: {
+    hooks: {
+      onBrokenMarkdownLinks: 'warn',
+    },
+  },
   favicon: 'img/favicon.ico',
 
   // GitHub pages deployment config.
@@ -28,16 +56,6 @@ const config = {
     defaultLocale: 'en',
     locales: ['en'],
   },
-
-  /* Disable js/script.js because it gives 404 error - @mekya
-  scripts: [
-    {
-      src: 'js/script.js',
-      async: false,
-    }
-  ],
-  */
-
 
 scripts: [
     {
@@ -56,27 +74,16 @@ scripts: [
           routeBasePath: '/',
           sidebarPath: require.resolve('./sidebars.js'),
           breadcrumbs: true,
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          // editUrl: 'https://github.com/facebook/docusaurus/edit/main/website/',
           editUrl: 'https://github.com/ant-media/ant-media-documentation/edit/master/',
-          lastVersion: 'current',
+          lastVersion:
+              isDev ? 'current' : getLastStableVersion(),
+          onlyIncludeVersions: (() => {
+                return [ ...(isDev ? ['current'] : []), ...versions.slice(0, 3)]; // return only the last 2 
+            })(),
           versions: {
-            'current': {
-              label: '3.0', // Customize the label for the current (unversioned) docs
-              path: '', // Leave empty to use the root URL for the latest version
-              banner: 'none',
-            },
-            '2.17': {
-              label: '2.17', // Customize the label for the current (unversioned) docs
-              path: 'version-2.17', // Leave empty to use the root URL for the latest version
-              banner: 'none',
+             current: {
+                label: `${getNextVersionName()} 🚧`,
               },
-            '2.16': {
-              label: '2.16', // Customize the label for the current (unversioned) docs
-              path: 'version-2.16', // Leave empty to use the root URL for the latest version
-              banner: 'none',
-              }
           },
         },
         blog: false,
@@ -238,10 +245,6 @@ scripts: [
         },
         {
           from: '/guides/developer-sdk-and-api/rest-api-guide/rest-api-guide/',
-          to: '/category/rest-api-guide/'
-        },
-	{
-          from: '/guides/developer-sdk-and-api/rest-api-guide/',
           to: '/category/rest-api-guide/'
         },
         {

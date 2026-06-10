@@ -1,0 +1,8 @@
+{
+  "label": "IP Camera & Stream Sources",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "IP Camera and External Stream Source streaming with Ant Media Server"
+  }
+}

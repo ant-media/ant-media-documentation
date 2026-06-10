@@ -1,0 +1,11 @@
+{
+  "label": "TURN Server Installation",
+  "position": 9,
+  "link": {
+    "type": "generated-index",
+    "description": "A TURN (Traversal Using Relays around NAT) server is a network component that facilitates communication between devices behind NAT (Network Address Translation). It relays data packets between clients, enabling them to establish peer-to-peer connections even when direct communication is not possible.
+    TURN load balancing involves distributing traffic across multiple TURN servers to optimize performance and ensure reliable connectivity for WebRTC users.
+    
+    For many applications, leveraging the default Google STUN server suffices. However, in scenarios where peers are operating within private networks and utilizing WebRTC communication, using a TURN server is a must. If your WebRTC streaming isn't working despite having open ports, it's highly probable that you require a TURN server."
+  }
+}

@@ -9,7 +9,7 @@ sidebar_position: 2
 
 HLS playback is available in both the Community and Enterprise Editions of Ant Media Server. Prior to initiating playback of a stream, ensure that the stream is actively broadcasting on the server.
 
-> Quick Link: [Learn How to Publish Live Streams](/docs/category/publish-live-stream/)
+> Quick Link: [Learn How to Publish Live Streams](/category/publish-live-stream/)
 
 ## Enable HLS
 
@@ -229,4 +229,3 @@ You can get the time stamp as per the ts file date and time via [Epoch Converter
 
 Congratulations! You've successfully set up **HLS playback with Ant Media Server**. Your viewers can now enjoy **seamless streaming** across various **devices** and **platforms**.
 With HLS, you've embraced a **widely supported streaming protocol** that ensures broad **compatibility** and **scalability**. Your content is now more accessible than ever before.
-

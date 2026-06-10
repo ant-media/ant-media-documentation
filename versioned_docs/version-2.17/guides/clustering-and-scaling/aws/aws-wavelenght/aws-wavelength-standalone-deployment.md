@@ -14,7 +14,7 @@ The template creates the VPC, Carrier IP, and Internet Gateway configuration aut
 Prerequisite
 ------------
 
-*   Subscribe the [Ant Media Server on AWS Marketplace](https://aws.amazon.com/marketplace/pp/prodview-464ritgzkzod6). If you don't know how to do that [just follow the 3 steps here](/guides/clustering-and-scaling/aws/scale-with-aws-cloudformation/)
+*   Subscribe the [Ant Media Server on AWS Marketplace](https://aws.amazon.com/marketplace/pp/prodview-464ritgzkzod6). If you don't know how to do that [just follow the 3 steps here](/guides/clustering-and-scaling/aws/aws-cloudformation/scale-with-aws-cloudformation/)
 
 Step by Step Deployment
 -----------------------
@@ -83,5 +83,4 @@ Here are the information about fields.
 </div>
 
 With Ant Media Server deployed on AWS Wavelength, your streaming infrastructure is positioned at the **edge of the network**, **closer to end-users**. This setup ensures ultra-**low latency, high availability, and scalability,** providing an optimal streaming experience for your audience..
-
 

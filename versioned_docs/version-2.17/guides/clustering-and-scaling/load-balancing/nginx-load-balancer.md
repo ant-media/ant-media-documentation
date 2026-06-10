@@ -81,7 +81,7 @@ When you run the script as shown below, it will perform the following tasks: Ngi
 ## 2. Manual (step-by-step) Installation:
 
 1.  [Install Nginx](#nginx-installation)
-2.  [Install LetsEncrypt](#encrypt-for-nginx)
+2.  [Install LetsEncrypt](#lets-encrypt-for-nginx-ssl-termination)
 3.  [Nginx Load balancer with SSL termination](#configure-nginx-as-a-load-balancer)
 
  **![](@site/static/img/origin_edge.png)**

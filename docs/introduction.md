@@ -11,6 +11,8 @@ sidebar_position: 1
 
 Ant Media Server is a ready-to-use, highly scalable, real-time video streaming solution. It supports Ultra-Low Latency (WebRTC), Low Latency (LL-DASH/CMAF and LL-HLS) and standard latency (HLS) for live streaming.
 
+The supported ingest protocols are RTMP (and Enhanced RTMP), RTSP, SRT, WebRTC and NDI.
+
 Ant Media Server (AMS) can be easily and quickly deployed on-premises or on public cloud networks like AWS, Azure, Google Cloud, Digital Ocean, Oracle, and Linode/Akamai.
 
 Ant Media Server is available in two versions: **Community Edition** and **Enterprise Edition**. A table of comparisons is provided below.
@@ -20,7 +22,7 @@ When set up in cluster mode, Ant Media Server can dynamically scale both horizon
 
 In addition to supporting live stream playback in any web browser, the SDKs for iOS, Android, Flutter, React Native, Unity, and JavaScript are also freely available for users to increase their audience reach.
 
-## Usage scenarios
+## Usage Scenarios
 
 ### 👨🏽‍💻 Education
 
@@ -59,7 +61,7 @@ Ant Media Server resolves interactivity and scalability issues by providing ultr
 Build your own telehealth application with Ant Media Server to create a seamless interaction between doctors and patients. [Read more](https://antmedia.io/solutions/telehealth/)
 
 
-### Community and Enterprise Edition comparison
+### Community and Enterprise Edition Comparison
 
 |               **Feature**               |         **Community Edition**         |        **Enterprise Edition**        |
 | :----------------------------------------: | :-------------------------------------: | :------------------------------------: |
@@ -68,12 +70,13 @@ Build your own telehealth application with Ant Media Server to create a seamless
 |             LL-DASH(CMAF)                   | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
 |               Auto Scaling                 | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
 |            Kubernetes Support            | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
-|   RTMP(Ingesting) to WebRTC (Playing)   | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
+|   RTMP (Ingesting) to WebRTC (Playing)   | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
 | Hardware Encoding(Nvidia GPU, QuickSync) | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
 |           WebRTC Data Channel           | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
 |             Adaptive Bitrate             | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
 |             Secure Streaming             | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
 |            SRT ingest support            | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
+|            NDI ingest support            | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
 |         iOS & Android WebRTC SDK         | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
 |          VP8 and H.265 Support           | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
 |             iOS & Android SDK            | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
@@ -109,7 +112,7 @@ Ant Media Server has two types of licenses.
    license.
 - Ant Media Server Enterprise Edition requires a paid license per instance/server. Paid license options include monthly, annual, and perpetual licenses, which can be purchased directly from [antmedia.io](https://antmedia.io).
 
-### Enterprise Edition cluster license
+### Enterprise Edition Cluster License
 
 The Enterprise Edition cluster license has similar features to the standard Enterprise Edition license. The only difference is that the Enterprise Cluster license supports many instances running simultaneously with the same license key. The standard Enterprise Edition license only supports one instance at a time.
 
@@ -121,7 +124,7 @@ Ant Media provides **free Enterprise Edition licenses** for students, academics,
 
 ## Functional Architecture
 
-**![](@site/static/img/image-1648754379709.png)**
+![server architecture diagram](/img/image-1648754379709.png)
 
 ## Supported Environments
 
@@ -129,7 +132,7 @@ Ant Media can be installed on Linux, specifically Ubuntu (18.04, 20.04, 22.04 an
 
 To run AMS on a single instance, you'll need at least 4 vCPU dedicated compute optimized servers with 8 GB of RAM. In terms of smooth read-write performance, SSD disks are highly recommended.
 
-There are several installation methods available, including deployment to a full VM, Docker, or Kubernetes.
+There are several installation methods available, including deployment to a full VM, Docker or Kubernetes.
 
 ## Ant Media Community discussion
 
