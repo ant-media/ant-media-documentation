@@ -78,7 +78,7 @@ scripts: [
           lastVersion:
               isDev ? 'current' : getLastStableVersion(),
           onlyIncludeVersions: (() => {
-                return [ ...(isDev ? ['current'] : []), ...versions.slice(0, 3)]; // return only the last 2 
+                return [ ...(isDev ? ['current'] : []), ...versions.slice(0, 3)]; // return only the last 4 
             })(),
           versions: {
              current: {
