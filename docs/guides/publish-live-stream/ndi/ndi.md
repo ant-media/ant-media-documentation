@@ -15,9 +15,8 @@ Ant Media Server supports ingesting NDI® signal and muxing that into any of the
 
 Ant Media Server comes packed with NDI SDK, so the separate installation of the SDK is not necessary.
 
-On Linux the NDI® SDK requires `avahi-daemon` to be running. You can install it using your package manager:
-
-    $ sudo apt install -y avahi-daemon avahi-utils
+On Linux the NDI® SDK requires `avahi-daemon` to be running. It is installed as part of the normal
+Ant Media Server installation procedure.
 
 For more information, visit: https://docs.ndi.video/all/developing-with-ndi/sdk/platform-considerations#linux
 
