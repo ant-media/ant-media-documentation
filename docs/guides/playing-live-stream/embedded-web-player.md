@@ -61,6 +61,25 @@ https://AMS-domain-name:5443/live/play.html?name=streamId&token=generated-token
 
 For HLS, Dash, or VOD playback, you can use the ```playOrder``` parameter as defined above.
 
+### Using hls.js Player
+
+Ant Media Server supports playback through the integrated hls.js player.
+
+You can enable the hls.js player by passing the player parameter in the playback URL.
+
+```
+https://AMS-domain-name:5443/live/play.html?streamId={STREAM_ID}&player=hlsjs&playOrder=ll-hls
+```
+
+* **Parameters used in the play.html url** 
+* **```streamId```**  Stream ID to play
+* **```player```** 	  Selects the playback engine
+* **```playOrder```** Defines playback priority
+
+The **playOrder** parameter defines the playback priority and can be set to values such as **ll-hls** for Low-Latency HLS playback or **hls** for standard HLS playback.
+
+All available player parameters are defined in [here](https://github.com/ant-media/StreamApp/blob/master/src/main/webapp/play.html)
+
 ### iFrame Embed Code 
 
 You can copy the Embed code for a specific stream directly from the AMS dashboard, as shown in the screenshot below:
