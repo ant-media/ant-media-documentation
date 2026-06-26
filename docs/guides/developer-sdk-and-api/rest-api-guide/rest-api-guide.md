@@ -58,11 +58,13 @@ You cannot enable both at the same time. Ant Media Server will give preference t
 
 ### IP Filter
 
-The REST interface only responds to calls from 127.0.0.1 by default. If you call from any other IP address, it does not return anything. However, you can add more trusted IP addresses to make API requests from other machines. Please refer to the [API security (IP)](/guides/developer-sdk-and-api/rest-api-guide/securing-rest-apis/) document for details.
+By default, the REST interface only accepts requests from 127.0.0.1 (localhost). Requests coming from other IP addresses are blocked and will not receive a response.
+
+To allow API access from other machines, you need to add those IP addresses to the trusted IP list. Please refer to the API security (IP) [API security (IP)](/guides/developer-sdk-and-api/rest-api-guide/securing-rest-apis/) documentation for details.
 
 ### JWT Filter
 
-If preferred, you can generate JWT tokens and pass them in the header of API requests. You can generate a permanent token or one with an expiry date for an additional security layer. Please refer to the [API security (JWT)](/guides/developer-sdk-and-api/rest-api-guide/jwt-rest-api-filter/) ocument for details on configuration.
+If preferred, you can generate JWT tokens and pass them in the header of API requests. You can generate a permanent token or one with an expiry date for an additional security layer. Please refer to the [API security (JWT)](/guides/developer-sdk-and-api/rest-api-guide/jwt-rest-api-filter/) document for details on configuration.
 
 ## Management Service Authentication
 
