@@ -7,37 +7,62 @@ sidebar_position: 2
 
 # JWT REST API Filter Guide
 
-This guide will walk you through the steps to use the JWT REST API Filter in Ant Media Server.
+This guide explains how to secure Ant Media Server REST APIs using JWT (JSON Web Token) authentication.
 
-## Step 1: Introduction
+JWT authentication is useful when your REST API requests come from external servers, frontend applications, or distributed systems where IP-based filtering is not practical.
 
-Understand that by default, the JWT REST API Filter is disabled and the REST API IP Filter is enabled in Ant Media Server. The JWT Filter can be used when you consume the REST API from different endpoints. For more information about JWT, visit [jwt.io](https://jwt.io).
+## Step 1: Enable the JWT REST API Filter
+By default, the JWT REST API Filter is turned off, while the REST API IP Filter is active in Ant Media Server. You can use the JWT Filter when accessing the REST API from multiple endpoints.
 
-## Step 2: Enable JWT Filter
-
-The first step is to enable the JWT REST API Filter in Ant Media Server. Go to the web panel, find the setting for JWT REST API Filter, and enable it. Also, enter the Secret key which will be used for encrypting with `HMAC-SHA256` in the JWT REST API Filter.
+1. Open the Ant Media Server Web Panel.
+2. Navigate to the application settings.
+3. Enable the JWT REST API Filter option.
+4. Enter a secret key that will be used to sign and validate JWT tokens using the HMAC-SHA256 (HS256) algorithm. For more information about JWT, visit [jwt.io](https://jwt.io).
 
 ![](@site/static/img/jwt-filter-enable.png)
 
-## Step 3: Generate a JWT Token
+## Step 2: Generate a JWT Token
 
-Next, generate a JWT token. For this example, let's assume our secret key is `zautXStXM9iW3aD3FuyPH0TdK4GHPmHq`. There are plenty of libraries available for JWT token creation, which can be found at [Libraries for JWT](https://jwt.io/libraries/). For this example, we'll use the [Debugger at JWT](https://jwt.io/#debugger-io).
+After enabling the JWT filter, generate a JWT token using your preferred JWT library or tool.
 
-![](@site/static/img/generate_jwt_token.png)
+You can find JWT libraries for different programming languages here:
 
-Use the `HS256` algorithm and the secret key `zautXStXM9iW3aD3FuyPH0TdK4GHPmHq` to generate the token. This will be our JWT token to access the REST API:
+https://jwt.io/libraries/
 
+For testing purposes, you can also use the JWT Debugger:
+
+https://jwt.io/#debugger-io
+
+Use the following configuration:
+- Algorithm: HS256
+- Secret Key: Your configured secret key
+
+Example token:
 ```
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0b2tlbiIsImlhdCI6MTUxNjIzOTAyMn0.OESIxgNsnD_JwByKTXcrw9Ov4GaOUZw66QxMfmudhKQ
 ```
 
-## Step 4: Generate JWT Token with Expiration Time(Optional)
+![](@site/static/img/generate_jwt_token.png)
 
-It is also possible to generate a JWT token with an expiration time. For this, you can use the exp option in JWT. The token's expiration time is a Unix timestamp, and the token will become invalid once it expires.
 
+## Step 3: Generate a JWT Token with Expiration Time (Optional)
+
+You can also create JWT tokens with an expiration time using the exp claim.
+
+The expiration value must be provided as a Unix timestamp. Once the token expires, Ant Media Server will reject the request.
+
+Example payload:
+```bash
+{
+  "sub": "token",
+  "iat": 1719380000,
+  "exp": 1719383600
+}
+```
 ![](@site/static/img/rest-api/generate-jwt-expire-time.png)
 
-## Step 5: Use JWT Token for Accessing REST Filter API
+
+## Step 4: Use JWT Token for Accessing REST Filter API
 
 To use the JWT token, simply add it to the `Authorization` header as shown below:
 
@@ -47,7 +72,7 @@ curl -X POST -H "accept: application/json" -H "Content-Type: application/json" -
 
 Replace `{JWTToken}` with your actual JWT token when making requests.
 
-## Step 6: Enable JWKS (Optional)
+## Step 5: Enable JWKS Support (Optional)
 
 If you want to use the JSON Web Key Set (JWKS) feature, you need to have an OAuth server like auth0.com. You can also build your own OAuth server system with [Hydra](https://www.ory.sh/hydra/docs/install). For JWKS configurations, add parameters to the `/usr/local/antmedia/webapps/{App-Name}/WEB-INF/red5-web.properties` file:
 
