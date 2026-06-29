@@ -2,6 +2,7 @@
 title: TURN Load Balancing
 description: Setting up TURN using coTurn to enable load balancer using Turn Server as Round Robin DNS.
 keywords: [Setup TURN Server, TURN Server Installation, TURN Load Balancing, TURN Server using coTurn Installation, coTURN Quick Installation, Setup TURN using coTurn, Ant Media Server Documentation, Ant Media Server Tutorials]
+sidebar_position: 3
 ---
 
 # Implementing TURN Load Balancing with CoTurn

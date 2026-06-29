@@ -2,6 +2,7 @@
 title: coTURN Quick Installation 
 description: Install coTURN, TURN Server to stream your data without any firewall restrictions.
 keywords: [Setup TURN Server, TURN Server Installation, TURN Server Installation, coTURN Quick Installation, Ant Media Server Documentation, Ant Media Server Tutorials]
+sidebar_position: 1
 ---
 
 # coTURN quick installation
