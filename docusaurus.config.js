@@ -253,7 +253,7 @@ scripts: [
         },
 	{
           from: '/guides/configuration-and-testing/configuring-stun-addresses/',
-          to: '/guides/configuration-and-testing/configuring-stun-turn-addresses/'
+          to: '/guides/advanced-usage/turn-instalation/coturn-quick-installation/'
         },
 	{
           from: '/guides/advanced-usage/turn-and-stun-installation/coturn-quick-installation/',
