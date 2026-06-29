@@ -111,7 +111,7 @@ turnutils_uclient -v -t -T -u username -w password -p 3478 turn_server_ip
 ## How to use the TURN server with Ant Media
 
 To use your TURN server with Ant Media, check out this
-[Guide](https://antmedia.io/docs/guides/advanced-usage/turn-instalation/configuring-stun-turn-addresses/)
+[Guide](https://antmedia.io/docs/guides/advanced-usage/turn-instalation/coturn-quick-installation/)
 
 <br /><br />
 ---
