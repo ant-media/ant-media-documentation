@@ -2,6 +2,7 @@
 title: coTURN Quick Installation 
 description: Install coTURN, TURN Server to stream your data without any firewall restrictions.
 keywords: [Setup TURN Server, TURN Server Installation, TURN Server Installation, coTURN Quick Installation, Ant Media Server Documentation, Ant Media Server Tutorials]
+sidebar_position: 1
 ---
 
 # coTURN quick installation
@@ -108,10 +109,6 @@ turnutils_uclient -v -t -T -u username -w password -p 3478 turn_server_ip
 
 ![](https://raw.githubusercontent.com/wiki/ant-media/Ant-Media-Server/images/turn3.png)
 
-## How to use the TURN server with Ant Media
-
-To use your TURN server with Ant Media, check out this
-[Guide](https://antmedia.io/docs/guides/configuration-and-testing/configuring-stun-turn-addresses/)
 
 <br /><br />
 ---
