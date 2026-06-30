@@ -38,10 +38,11 @@ The URL parameters listed below are accepted by the ```play.html``` page.
 * **```token```**: The token used to access the stream. If token security is enabled on the server, it is required.
 * **```autoplay```**: If streams are accessible, playback will begin immediately. Optional. True is the default value.
 * **```mute```**: If a stream is accessible, begin playing with mute. Optional. True is the default value.
-* **```playOrder```** : The order is to define the playback technology or protocol. Optional. ```webrtc,hls``` is the default value. ```hls,webrtc,dash,vod``` are possible values.
+* **```playOrder```** : The order is to define the playback technology or protocol. Optional. ```webrtc,hls``` is the default value. ```hls,webrtc,ll-hls,dash,vod``` are possible values.
 * **```playType```**: PlayType is required to play the recording. ```mp4``` is the default value. ```webm,mp4``` are possible values.
 * **```targetLatency```**: To specify the DASH player's target latency. Optional. The default value is ''3''.
 * **```is360```**: To play the 360-degree input stream. The default value is false.
+* **`player`**: "videojs" or "hlsjs". Default value is videojs. It defines the player library to use for hls and vod playback.
 
 :::info
 When streams are configured with SubFolder option, the SubFolder path should be included in streamId (e.g., `?id=mySubFolder/streamId`). For more details, see [Playing streams from SubFolders](hls-playing.md#playing-streams-from-subfolders).
@@ -60,6 +61,29 @@ https://AMS-domain-name:5443/live/play.html?name=streamId&token=generated-token
 ```
 
 For HLS, Dash, or VOD playback, you can use the ```playOrder``` parameter as defined above.
+
+### Using hls.js Player
+
+:::info
+By default, the player use the video.js library so by passing the parameter, hls.js player can also be used.
+:::
+
+Starting v3.0, Ant Media Server also supports playback through the integrated hls.js player.
+
+You can enable the hls.js player by passing the player parameter in the playback URL.
+
+```
+https://AMS-domain-name:5443/live/play.html?streamId={STREAM_ID}&player=hlsjs&playOrder=ll-hls
+```
+
+* **Parameters used in the play.html url** 
+* **```streamId```**  Stream ID to play
+* **```player```** 	  Selects the playback engine
+* **```playOrder```** Defines playback priority
+
+The **playOrder** parameter defines the playback priority and can be set to values such as **ll-hls** for Low-Latency HLS playback or **hls** for standard HLS playback.
+
+All available player parameters are defined in [here](https://github.com/ant-media/StreamApp/blob/master/src/main/webapp/play.html)
 
 ### iFrame Embed Code 
 
@@ -263,4 +287,3 @@ Otherwise, you can take the values as a URL parameter, as we use in AMS [play.ht
 **Congratulations!** You've successfully integrated Ant Media Server's **Embedded Web Player into your website.** Your viewers can now enjoy **seamless** live streaming experiences with minimal setup. Whether you chose the quick **`<iframe>`** method or the customizable **Web Player**, you're all set to deliver high-quality content to your audience.
 
 Happy streaming!🙂
-
