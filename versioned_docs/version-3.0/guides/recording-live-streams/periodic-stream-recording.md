@@ -36,7 +36,7 @@ sudo apt install ffmpeg
 
 #### 2. Download the Plugin JAR File
 
-Download the latest `clip-creator.jar` file from [Drive]([https://drive.google.com/drive/folders/15s-dgsOpj3ybhmr2390UlBN62ftRlNLR?usp=drive_link](https://drive.google.com/drive/folders/15s-dgsOpj3ybhmr2390UlBN62ftRlNLR?usp=drive_link)) or build from the [official repository](https://github.com/ant-media/Plugins/tree/master/ClipCreatorPlugin).
+Download the latest `clip-creator.jar` file from [Drive](https://drive.google.com/drive/folders/15s-dgsOpj3ybhmr2390UlBN62ftRlNLR?usp=drive_link) or build from the [official repository](https://github.com/ant-media/Plugins/tree/master/ClipCreatorPlugin).
 
 #### 3. Place the Plugin in the Plugins Directory
 
@@ -64,6 +64,9 @@ To make the Periodic Stream Recording work properly, you’ll need to adjust the
 
 - ffmpeg automatically deletes old `.ts` files and prunes the m3u8 to the configured window. No manual cleanup needed.
 
+:::info
+If the HLS list size is very big, then the old TS files will take time to be deleted. The shorter the window, the faster it will be removed from the server. So make sure that good amount of disk space is there.
+:::
 
 Plugin settings (advanced app settings → `customSettings`):
 
