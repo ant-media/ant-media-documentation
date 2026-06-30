@@ -25,7 +25,7 @@ The default player is as follows:
 
 ![image](https://github.com/user-attachments/assets/59589673-b589-4652-8690-7f78299933ad)
 
-```play.html``` page uses our custom web player under the hood, which makes it possible to play with all playing protocols (WebRTC, HLS, or CMAF Dash). By clicking on stream action button, Play with WebRTC and Play with HLS option can be seen.
+The ```play.html``` page uses our custom web player under the hood, which makes it possible to play with all playing protocols (WebRTC, HLS, LL-HLS & CMAF Dash). By clicking on stream action button, Play with WebRTC and Play with HLS option can be seen.
 
 ![](@site/static/img/playing-live-streams/embedded-web-player/webrtc-hls-option.png)
 
@@ -60,12 +60,12 @@ When the token is enabled:
 https://AMS-domain-name:5443/live/play.html?name=streamId&token=generated-token
 ```
 
-For HLS, Dash, or VOD playback, you can use the ```playOrder``` parameter as defined above.
+For HLS, LL-HLS, Dash or VOD playback, you can use the ```playOrder``` parameter as defined above.
 
 ### Using hls.js Player
 
 :::info
-By default, the player use the video.js library so by passing the parameter, hls.js player can also be used.
+By default, the player use the `video.js` library so by passing the parameter, `hls.js` player can be used.
 :::
 
 Starting v3.0, Ant Media Server also supports playback through the integrated hls.js player.
