@@ -9,30 +9,37 @@ sidebar_position: 1
 
 # Introduction to Ant Media Server
 
-Ant Media Server is a ready-to-use, highly scalable, real-time video streaming solution. It supports Ultra-Low Latency (WebRTC), Low Latency (LL-DASH/CMAF and LL-HLS) and standard latency (HLS) for live streaming.
+Ant Media Server (AMS) is a scalable, real-time video streaming platform designed for ultra-low latency live streaming and interactive broadcasting.
 
-The supported ingest protocols are RTMP (and Enhanced RTMP), RTSP, SRT, WebRTC and NDI.
+Built around WebRTC and adaptive streaming technologies, AMS enables organizations to deliver live video with sub-second latency while supporting large-scale audience delivery through HLS, LL-HLS, CMAF, and DASH streaming protocols.
 
-Ant Media Server (AMS) can be easily and quickly deployed on-premises or on public cloud networks like AWS, Azure, Google Cloud, Digital Ocean, Oracle, and Linode/Akamai.
+Ant Media Server supports multiple ingest protocols including WebRTC, RTMP, SRT, RTSP, WHIP, and NDI, along with modern codec support such as AV1, providing flexible streaming workflows for browsers, mobile devices, and broadcasting infrastructures.
+
+AMS is available in two editions:
+- Community Edition — Open-source streaming server suitable for standard streaming and development workloads.
+- Enterprise Edition — Advanced streaming platform with ultra-low latency delivery, adaptive bitrate streaming, clustering, GPU acceleration, enterprise security, and professional support.
 
 Ant Media Server is available in two versions: **Community Edition** and **Enterprise Edition**. A table of comparisons is provided below.
 
-There are two installation options for Ant Media Server: standalone (a single server) and cluster (many connected servers).
-When set up in cluster mode, Ant Media Server can dynamically scale both horizontally and vertically to support thousands of viewers and broadcasters at once in an automated and controlled manner.
+Ant Media Server can be deployed on-premises, in air-gapped environments, on Kubernetes and Docker infrastructures, or on major public cloud providers including AWS, Azure, Google Cloud, Oracle Cloud, and DigitalOcean.
 
-In addition to supporting live stream playback in any web browser, the SDKs for iOS, Android, Flutter, React Native, Unity, and JavaScript are also freely available for users to increase their audience reach.
+The platform supports both standalone and clustered deployments, enabling deployments ranging from a single streaming server to large-scale distributed streaming infrastructures capable of supporting thousands of concurrent publishers and viewers.
+
+AMS also provides SDKs and APIs for JavaScript, iOS, Android, Flutter, React Native, and Unity, allowing developers to build interactive real-time streaming applications for use cases such as webinars, auctions, telehealth, online education, gaming, surveillance, and live broadcasting.
 
 ## Usage Scenarios
 
-### 👨🏽‍💻 Education
+### 👨🏽‍💻 Online Education & Virtual Classrooms
 
-Ant Media can provide virtual classrooms to teachers using ultra-low latency technology, enabling teachers to connect with the audience using 1-1 or 1-many connection types.
+Build interactive virtual classroom platforms with ultra-low latency communication between instructors and students using WebRTC-based real-time streaming.
+
+Ant Media Server supports one-to-one and one-to-many streaming workflows for online education, remote training, and live tutoring platforms.
 
 ### 🤖 IP camera streaming
 
 Watch and Monitor IP cameras with ultra-low latency on a web browser with Ant Media Server. You can embed ONVIF IP camera streams into your websites and mobile applications. [Read more](https://antmedia.io/solutions/ip-camera-streaming/)
 
-### 🙇 Webinars
+### 🙇 Webinars & Video Conferencing
 
 Ant Media Server supports N-N live video/audio conferencing by using WebRTC, allowing you to achieve ultra-low latency (~ 0.5 sec). Ant Media Server also provides scalability, which can help you scale up your solution dynamically. [Read more](https://antmedia.io/solutions/webinar-e-learning-virtual-classroom/) 
 
@@ -40,25 +47,39 @@ Ant Media Server supports N-N live video/audio conferencing by using WebRTC, all
 
 Using our SDKs, you can integrate your mobile application solutions with Ant Media Server and build a fast, reliable, and stable streaming platform with AMS APIs and SDKs. [Read more](https://antmedia.io/docs/category/sdk-integration/) 
 
-### 📺 Live game shows
+### 📺 Live Game shows
 
 Live video experience has a significant role in live game show success, with the strong requirement of being scalable and having low latency. [Read more](https://antmedia.io/solutions/media-entertainment/) 
 
-### 🎯 E-sports & betting streaming   
+### 🎯 E-sports & Betting streaming   
 
 Due to the ever-growing e-sports domain, there is a tremendous demand for video streaming with ultra-low latency. [Read more](https://antmedia.io/solutions/video-game-streaming/)
 
-### 🎭 Auctions and bidding 
+### 🎭 Live Auctions and Bidding 
 
 Live auctions should be streamed with ultra-sub-second latency in order to get bids on time. [Read more](https://antmedia.io/solutions/auction-bidding/)
 
-### ✨ Video game streaming 
+### ✨ Video Game streaming 
 
 Ant Media Server resolves interactivity and scalability issues by providing ultra-low-latency streaming via WebRTC. [Read more](https://antmedia.io/solutions/video-game-streaming/)
 
-### 🎭 Telehealth
+### 🎭 Telehealth & Remote Consultation
 
-Build your own telehealth application with Ant Media Server to create a seamless interaction between doctors and patients. [Read more](https://antmedia.io/solutions/telehealth/)
+Develop secure telehealth platforms that enable real-time communication between doctors and patients.
+
+AMS provides low-latency video streaming suitable for remote consultation, patient monitoring, and healthcare communication systems. [Read more](https://antmedia.io/solutions/telehealth/)
+
+### 📺 Broadcast & OTT Streaming
+
+Deploy scalable live broadcasting and OTT streaming infrastructures using adaptive bitrate streaming, clustering, playlist scheduling, and multi-protocol delivery.
+
+AMS supports large-scale media distribution workflows for broadcasters, content providers, and enterprise streaming platforms.
+
+### 🤖 AI, Analytics & Computer Vision Workflows
+
+Use Ant Media Server as a real-time video ingestion and distribution layer for AI-powered video analytics, object detection, computer vision, and edge processing applications.
+
+AMS supports scalable real-time video transport pipelines for intelligent video processing systems.
 
 
 ### Community and Enterprise Edition Comparison
@@ -67,34 +88,37 @@ Build your own telehealth application with Ant Media Server to create a seamless
 | :----------------------------------------: | :-------------------------------------: | :------------------------------------: |
 |       One-to-Many WebRTC Streaming       | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
 |            End-to-End Latency            |             8-12 Seconds             |         0.5 Seconds (500ms)         |
-|             LL-DASH(CMAF)                   | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
-|               Auto Scaling                 | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
+|             LL-DASH(CMAF)                | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
+|               Auto Scaling               | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
 |            Kubernetes Support            | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
 |   RTMP (Ingesting) to WebRTC (Playing)   | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
 | Hardware Encoding(Nvidia GPU, QuickSync) | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
-|           WebRTC Data Channel           | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
+|           WebRTC Data Channel            | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
 |             Adaptive Bitrate             | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
 |             Secure Streaming             | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
 |            SRT ingest support            | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
 |            NDI ingest support            | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
 |         iOS & Android WebRTC SDK         | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
 |          VP8 and H.265 Support           | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
+|                 WHIP                     | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
 |             iOS & Android SDK            | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
 |              JavaScript SDK              | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
-|     RTMP, RTSP, MP4 and HLS Support     | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
+|                 AV1                      | ![false](@site/static/img/cross.png) | ![false](@site/static/img/tick.png ) |
+|     RTMP, RTSP, MP4 and HLS Support      | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
 |           LL-HLS (Paid plugin)           | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
+|           SCTE-35 Plugin                 | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
 |          WebRTC to RTMP Adapter          | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
-|      360 Degree Live & VoD Streams      | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
+|      360 Degree Live & VoD Streams       | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
 |         Web Management Dashboard         | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
-|            IP Camera Support            | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
-|         Re-stream to End Points         | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
+|            IP Camera Support             | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
+|         Re-stream to End Points          | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
 |                  WHIP                    | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
-|               Open Source               | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
+|               Open Source                | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
 |      Linear Live Streaming (Playlist)    | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
 |  Simulcast to all Social Media via RTMP  | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
-|  Recording (MP4,WebM,HLS)  | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
-|                 Support                 |               Community               |           E-mail, Slack           |
-|                  Price                  |                 Free                 |                 Paid                 |
+|  Recording (MP4,WebM,HLS)                | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
+|                 Support                  |               Community               |           E-mail, Slack           |
+|                  Price                   |                 Free                 |                 Paid                 |
 
 ## Community Edition and Enterprise Edition Releases
 
