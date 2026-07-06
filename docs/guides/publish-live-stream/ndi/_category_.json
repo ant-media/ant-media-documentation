@@ -1,0 +1,8 @@
+{
+  "label": "NDI",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "NDI Publishing with Ant Media Server."
+  }
+}

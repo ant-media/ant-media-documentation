@@ -1,0 +1,8 @@
+{
+  "label": "Load Testing",
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "description": "WebRTC and HLS load testiing with Ant Media Server"
+  }
+}

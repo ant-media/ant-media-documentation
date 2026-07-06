@@ -1,0 +1,8 @@
+{
+  "label": "Video Codecs",
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "description": "Learn about supported video codecs in Ant Media Server including H264, H265, VP8, and AV1."
+  }
+}

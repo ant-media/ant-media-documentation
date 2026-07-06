@@ -3,6 +3,30 @@
 
 import {themes as prismThemes} from 'prism-react-renderer';
 
+import versions from './versions.json';
+
+const isDev = process.env.NODE_ENV === 'development';
+
+function isPrerelease(version) {
+  return (
+    version.includes('-') ||
+    version.includes('alpha') ||
+    version.includes('beta') ||
+    version.includes('rc')
+  );
+}
+
+function getLastStableVersion() {
+  const lastStableVersion = versions.find((version) => !isPrerelease(version));
+  if (!lastStableVersion) {
+    throw new Error('unexpected, no stable Docusaurus version?');
+  }
+  return lastStableVersion;
+}
+
+function getNextVersionName() {
+  return 'Next';
+}
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -12,7 +36,11 @@ const config = {
   baseUrl: '/',
   trailingSlash: true,
   onBrokenLinks: 'warn', // replace with 'throw' to stop building if broken links
-  onBrokenMarkdownLinks: 'warn',
+  markdown: {
+    hooks: {
+      onBrokenMarkdownLinks: 'warn',
+    },
+  },
   favicon: 'img/favicon.ico',
 
   // GitHub pages deployment config.
@@ -29,26 +57,7 @@ const config = {
     locales: ['en'],
   },
 
-  /* Disable js/script.js because it gives 404 error - @mekya
-  scripts: [
-    {
-      src: 'js/script.js',
-      async: false,
-    }
-  ],
-  */
-
-
 scripts: [
-    {
-      src: "/zfEmbed.js", // Ensure this loads first
-      async: false, // Load it synchronously	    
-    },
-    {
-      src: "/zonka.js", // Load after zfEmbed.js
-      async: true,
-      defer: true,
-    },
     {
       src: "//code.tidio.co/rk0jjyc0mwbxjgimchdsnl4cwitetyvi.js",
       async: true,
@@ -65,22 +74,16 @@ scripts: [
           routeBasePath: '/',
           sidebarPath: require.resolve('./sidebars.js'),
           breadcrumbs: true,
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          // editUrl: 'https://github.com/facebook/docusaurus/edit/main/website/',
           editUrl: 'https://github.com/ant-media/ant-media-documentation/edit/master/',
-          lastVersion: 'current',
+          lastVersion:
+              isDev ? 'current' : getLastStableVersion(),
+          onlyIncludeVersions: (() => {
+                return [ ...(isDev ? ['current'] : []), ...versions.slice(0, 3)]; // return only the last 4 
+            })(),
           versions: {
-            'current': {
-              label: '2.16', // Customize the label for the current (unversioned) docs
-              path: '', // Leave empty to use the root URL for the latest version
-              banner: 'none',
-            },
-            '2.15': {
-              label: '2.15', // Customize the label for the current (unversioned) docs
-              path: 'version-2.15', // Leave empty to use the root URL for the latest version
-              banner: 'none',
-              }
+             current: {
+                label: `${getNextVersionName()} 🚧`,
+              },
           },
         },
         blog: false,
@@ -159,10 +162,6 @@ scripts: [
 	{
           from: '/guides/playing-live-stream/webrtc-playing/',
           to: '/guides/playing-live-stream/webrtc-playback/'
-        },
-	{
-          from: '/guides/publish-live-stream/Simulcasting/',
-          to: '/guides/publish-live-stream/simulcasting/'
         },
 	{
           from: '/guides/advanced-usage/stream-security/',
@@ -246,10 +245,6 @@ scripts: [
         },
         {
           from: '/guides/developer-sdk-and-api/rest-api-guide/rest-api-guide/',
-          to: '/category/rest-api-guide/'
-        },
-	{
-          from: '/guides/developer-sdk-and-api/rest-api-guide/',
           to: '/category/rest-api-guide/'
         },
         {
@@ -393,10 +388,6 @@ scripts: [
           to: '/guides/developer-sdk-and-api/rest-api-guide/rest-apis-examples/'
         },
 	{
-          from: '/guides/advanced-usage/WebRTC-codecs/',
-          to: '/guides/configuration-and-testing/video-codecs/'
-        },
-	{
           from: '/get-started/User-Management/',
           to: '/get-started/user-management/'
         },
@@ -406,7 +397,7 @@ scripts: [
         },
 	{
           from: '/guides/advanced-usage/circle-component-usage/',
-          to: '/guides/developing-antmedia-server/circle-component-usage/'
+          to: '/guides/developing-antmedia-server/applications/circle-component-usage/'
         },
 	{
           from: '/streaming-glossary/',
@@ -418,7 +409,7 @@ scripts: [
         },
 	{
           from: '/guides/advanced-usage/Plugins-for-Ant-Media-Server/',
-          to: '/guides/developing-antmedia-server/plugins-for-ant-media-server/'
+          to: '/guides/developing-antmedia-server/plugins/plugins-for-ant-media-server/'
         },
 	{
           from: '/guides/publish-live-stream/webrtc-peer-to-peer-communication/',
@@ -631,6 +622,7 @@ scripts: [
         copyright: `Copyright © ${new Date().getFullYear()} Ant Media`,
       },
       prism: {
+        additionalLanguages: ['java', 'bash', 'json', 'yaml'],
 	theme: prismThemes.github,
 	darkTheme: prismThemes.dracula,
       },

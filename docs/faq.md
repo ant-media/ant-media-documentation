@@ -56,8 +56,8 @@ If you're using ```mongodb``` as the database, your password will be stored in t
 
 *   Connect to your ```mongodb``` server with ```mongo``` client.
 *   Type ```use serverdb;```
-*   Type ```db.User.find()``` and it shows you the output like below. ```{ "_id" : ObjectId("5ea486690f09e71c2462385a"), "className" : "io.antmedia.rest.model.User", "email" : "test@antmedia.io", "password" : "1234567", "userType" : "ADMIN" }```
-*   You can update the password with a command something like below. Change the parameters below according to the your case. ```db.User.updateOne( { email:"test@antmedia.io" }, { $set: { "password" : "test123" }})```
+*   Type ```db.User.find()``` and it shows you the output like below. ```{ "_id" : ObjectId("5ea486690f09e71c2462385a"), "className" : "io.antmedia.rest.model.User", "email" : "test@antmedia.io", "password" : "...", "userType" : "ADMIN" }```
+*   You can update the password with a command something like below. Change the parameters below according to the your case. ```db.User.updateOne( { email:"test@antmedia.io" }, { $set: { "password" : "..." }})```
 *   Alternatively, you can delete the user with a command something like below. Change the parameters below according to the your case. ```db.user.deleteOne( { "email": "test@antmedia.io" } )```
 *   As of version 2.3.2, passwords should be hashed with MD5.
 
@@ -124,7 +124,7 @@ A 403 error usually indicates insufficient permissions or authentication issues 
 
 ## How can I prevent streams from stuttering when publishing in Ant Media Server?
 
-To prevent stuttering in streams, ensure your network bandwidth is stable and sufficient for the bitrate you're streaming. Additionaly, please adjust these settings on your encoders (like OBS and etc).
+To prevent stuttering in streams, ensure your network bandwidth is stable and sufficient for the bitrate you're streaming. Additionally, please adjust these settings on your encoders (like OBS and etc).
 - Avoid **B-frames (Must)**
 - Set the profile to **baseline** for better compatibility.
 - Use a low-latency encoding preset.
@@ -410,4 +410,4 @@ const VideoPlayerComponent = dynamic(
    }
  );
 ```
-Now you shouldnt get any errors and SDK should work as expected.
+Now you shouldn't get any errors and SDK should work as expected.
