@@ -106,7 +106,7 @@ AMS supports scalable real-time video transport pipelines for intelligent video 
 |                 AV1                      | ![false](@site/static/img/cross.png) | ![false](@site/static/img/tick.png ) |
 |     RTMP, RTSP, MP4 and HLS Support      | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
 |           LL-HLS (Paid plugin)           | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
-|           SCTE-35 Plugin                 | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
+|           SCTE-35 Plugin                 | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
 |          WebRTC to RTMP Adapter          | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
 |      360 Degree Live & VoD Streams       | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
 |         Web Management Dashboard         | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
@@ -115,7 +115,7 @@ AMS supports scalable real-time video transport pipelines for intelligent video 
 |               Open Source                | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
 |      Linear Live Streaming (Playlist)    | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
 |  Simulcast to all Social Media via RTMP  | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
-|  Recording (MP4,WebM,HLS)                | ![false](@site/static/img/cross.png ) HLS Only | ![false](@site/static/img/tick.png ) |
+|  Recording (MP4,WebM,HLS)                | ![false](@site/static/img/cross.png ) HLS and MP4 Only | ![false](@site/static/img/tick.png ) |
 |                 Support                  |               Community               |           E-mail, Slack           |
 |                  Price                   |                 Free                 |                 Paid                 |
 
