@@ -13,7 +13,7 @@ Ant Media Server (AMS) is a scalable, real-time video streaming platform designe
 
 Built around WebRTC and adaptive streaming technologies, AMS enables organizations to deliver live video with sub-second latency while supporting large-scale audience delivery through HLS, LL-HLS, CMAF, and DASH streaming protocols.
 
-Ant Media Server supports multiple ingest protocols including WebRTC, RTMP, SRT, RTSP, WHIP, and NDI, along with modern codec support such as AV1, providing flexible streaming workflows for browsers, mobile devices, and broadcasting infrastructures.
+Ant Media Server supports multiple ingest protocols, including WebRTC, RTMP, SRT, RTSP, WHIP, and NDI, along with modern codecs such as AV1, enabling flexible streaming workflows for browsers, mobile devices, and broadcasting infrastructure.
 
 AMS is available in two editions:
 - Community Edition — Open-source streaming server suitable for standard streaming and development workloads.
@@ -31,13 +31,13 @@ AMS also provides SDKs and APIs for JavaScript, iOS, Android, Flutter, React Nat
 
 ### 👨🏽‍💻 Online Education & Virtual Classrooms
 
-Build interactive virtual classroom platforms with ultra-low latency communication between instructors and students using WebRTC-based real-time streaming.
+Build interactive virtual classroom platforms with ultra-low-latency communication between instructors and students via WebRTC-based real-time streaming.
 
 Ant Media Server supports one-to-one and one-to-many streaming workflows for online education, remote training, and live tutoring platforms.
 
 ### 🤖 IP camera streaming
 
-Watch and Monitor IP cameras with ultra-low latency on a web browser with Ant Media Server. You can embed ONVIF IP camera streams into your websites and mobile applications. [Read more](https://antmedia.io/solutions/ip-camera-streaming/)
+Watch and monitor IP cameras with ultra-low latency on a web browser with Ant Media Server. You can embed ONVIF IP camera streams into your websites and mobile applications. [Read more](https://antmedia.io/solutions/ip-camera-streaming/)
 
 ### 🙇 Webinars & Video Conferencing
 
@@ -98,10 +98,9 @@ AMS supports scalable real-time video transport pipelines for intelligent video 
 |             Secure Streaming             | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
 |            SRT ingest support            | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
 |            NDI ingest support            | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
-|         iOS & Android WebRTC SDK         | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
+|         iOS & Android WebRTC SDK         | Publish only | ![false](@site/static/img/tick.png ) |
 |          VP8 and H.265 Support           | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
 |                 WHIP                     | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
-|             iOS & Android SDK            | ![false](@site/static/img/cross.png ) Publish Only| ![false](@site/static/img/tick.png ) |
 |              JavaScript SDK              | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
 |                 AV1                      | ![false](@site/static/img/cross.png) | ![false](@site/static/img/tick.png ) |
 |     RTMP, RTSP, MP4 and HLS Support      | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
@@ -112,10 +111,10 @@ AMS supports scalable real-time video transport pipelines for intelligent video 
 |         Web Management Dashboard         | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
 |            IP Camera Support             | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
 |         Re-stream to End Points          | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
-|               Open Source                | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
+|               Open Source                | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/cross.png ) |
 |      Linear Live Streaming (Playlist)    | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
 |  Simulcast to all Social Media via RTMP  | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
-|  Recording (MP4,WebM,HLS)                | ![false](@site/static/img/cross.png ) HLS and MP4 Only | ![false](@site/static/img/tick.png ) |
+|  Recording (MP4,WebM,HLS)                | HLS and MP4 Only | ![false](@site/static/img/tick.png ) |
 |                 Support                  |               Community               |           E-mail, Slack           |
 |                  Price                   |                 Free                 |                 Paid                 |
 
@@ -131,7 +130,7 @@ AMS supports scalable real-time video transport pipelines for intelligent video 
 
 Ant Media Server has two types of licenses.
 
- - Ant Media Server Community Edition is free to use with Apache
+ - Ant Media Server Community Edition is free to use with the Apache
    license.
 - Ant Media Server Enterprise Edition requires a paid license per instance/server. Paid license options include monthly, annual, and perpetual licenses, which can be purchased directly from [antmedia.io](https://antmedia.io).
 
@@ -151,11 +150,11 @@ Ant Media provides **free Enterprise Edition licenses** for students, academics,
 
 ## Supported Environments
 
-Ant Media can be installed on Linux, specifically Ubuntu (18.04, 20.04, 22.04 and 24.04), CentOS (8 and 9), Rocky Linux (8 and 9), and Alma Linux (8 and 9). It is compatible with both the x86-64 and Arm64 architectures.
+Ant Media can be installed on Linux, specifically Ubuntu (18.04, 20.04, 22.04, and 24.04), CentOS (8 and 9), Rocky Linux (8 and 9), and Alma Linux (8 and 9). It is compatible with both the x86-64 and Arm64 architectures.
 
-To run AMS on a single instance, you'll need at least 4 vCPU dedicated compute optimized servers with 8 GB of RAM. In terms of smooth read-write performance, SSD disks are highly recommended.
+To run AMS on a single instance, you'll need at least 4 vCPU dedicated compute-optimized servers with 8 GB of RAM. In terms of smooth read-write performance, SSD disks are highly recommended.
 
-There are several installation methods available, including deployment to a full VM, Docker or Kubernetes.
+There are several installation methods available, including deployment to a full VM, Docker, or Kubernetes.
 
 ## Ant Media Community discussion
 
@@ -165,4 +164,4 @@ You can also ask your questions in [Discussions Q&A](https://github.com/orgs/ant
 
 ## Contact
 
-For more information and to read our latest [blog posts](https://antmedia.io/blog/) visit [antmedia.io](https://antmedia.io/). If you have any questions, please send an email to [contact@antmedia.io](mailto:contact@antmedia.io). Support inquiries should go to [support@antmedia.io](mailto:support@antmedia.io).
+For more information and to read our latest [blog posts](https://antmedia.io/blog/), visit [antmedia.io](https://antmedia.io/). If you have any questions, please send an email to [contact@antmedia.io](mailto:contact@antmedia.io). Support inquiries should go to [support@antmedia.io](mailto:support@antmedia.io).
