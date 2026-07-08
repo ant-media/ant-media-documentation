@@ -101,7 +101,7 @@ AMS supports scalable real-time video transport pipelines for intelligent video 
 |         iOS & Android WebRTC SDK         | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
 |          VP8 and H.265 Support           | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
 |                 WHIP                     | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
-|             iOS & Android SDK            | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
+|             iOS & Android SDK            | ![false](@site/static/img/cross.png ) Publish Only| ![false](@site/static/img/tick.png ) |
 |              JavaScript SDK              | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
 |                 AV1                      | ![false](@site/static/img/cross.png) | ![false](@site/static/img/tick.png ) |
 |     RTMP, RTSP, MP4 and HLS Support      | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
@@ -112,11 +112,10 @@ AMS supports scalable real-time video transport pipelines for intelligent video 
 |         Web Management Dashboard         | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
 |            IP Camera Support             | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
 |         Re-stream to End Points          | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
-|                  WHIP                    | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
-|               Open Source                | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
+|               Open Source                | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
 |      Linear Live Streaming (Playlist)    | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
 |  Simulcast to all Social Media via RTMP  | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
-|  Recording (MP4,WebM,HLS)                | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
+|  Recording (MP4,WebM,HLS)                | ![false](@site/static/img/cross.png ) HLS Only | ![false](@site/static/img/tick.png ) |
 |                 Support                  |               Community               |           E-mail, Slack           |
 |                  Price                   |                 Free                 |                 Paid                 |
 
