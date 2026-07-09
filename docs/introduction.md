@@ -89,7 +89,7 @@ Integrate custom AI models directly into live streams using the Python AI Plugin
 |              JavaScript SDK              | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
 |                   LL-DASH(CMAF)                 | ![false](@site/static/img/cross.png) | ![true](@site/static/img/tick.png ) |
 |     Stream Source Pull/Ingest      | RTMP, UDP, MP4, HLS, RTSP | RTMP, UDP, MP4, HLS, RTSP, SRT |
-|           LL-HLS (Paid plugin)           | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
+|           LL-HLS (Paid plugin)           | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
 |           SCTE-35 Plugin                 | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
 |      360 Degree Live & VoD Streams       | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
 |         Web Management Dashboard         | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
