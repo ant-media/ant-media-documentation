@@ -75,11 +75,10 @@ Integrate custom AI models directly into live streams using the Python AI Plugin
 |       One-to-Many WebRTC Streaming       | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
 |            End-to-End Latency            |             8-12 Seconds             |         0.5 Seconds (500ms)         |
 |             WebRTC Support                | WebRTC Ingest Only (No playback) | Full WebRTC Support |
-|               Auto Scaling               | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
+|               Scaling             | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
 |            Kubernetes Support            | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
 |   RTMP Ingest   | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
 | Hardware Encoding(Nvidia GPU) | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
-|           WebRTC Data Channel            | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
 |             Adaptive Bitrate (Transcoding)            | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
 |             Stream Security            | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
 |            SRT Ingest            | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
