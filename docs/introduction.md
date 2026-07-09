@@ -57,7 +57,7 @@ Build secure telehealth platforms with real-time video communication for consult
 
 ### 🛍️ Live Shopping
 
-Increase engagement and conversions with interactive live shopping experiences powered by ultra-low-latency streaming. [Read more](https://antmedia.io/solutions/live-shopping/?utm_source=chatgpt.com)
+Increase engagement and conversions with interactive live shopping experiences powered by ultra-low-latency streaming. [Read more](https://antmedia.io/solutions/live-shopping/)
 
 ### 👨🏽‍💻 Online Education & Virtual Classrooms
 
@@ -65,7 +65,7 @@ Deliver interactive virtual classrooms, live tutoring, and remote training with 
 
 ### 🤖 AI-Powered Video Streaming
 
-Integrate custom AI models directly into live streams using the Python AI Plugin for real-time analytics, computer vision, and intelligent video processing. [Learn more](https://antmedia.io/integrate-your-ai-into-live-streams-with-python-plugin/?utm_source=chatgpt.com)
+Integrate custom AI models directly into live streams using the Python AI Plugin for real-time analytics, computer vision, and intelligent video processing. [Learn more](https://antmedia.io/integrate-your-ai-into-live-streams-with-python-plugin/)
 
 
 ### Community and Enterprise Edition Comparison
@@ -107,9 +107,9 @@ Integrate custom AI models directly into live streams using the Python AI Plugin
 
 Choose the edition that best fits your needs:
 
--   **Community Edition** – Free and open source. Download the latest release directly from the [Release Page](https://github.com/ant-media/Ant-Media-Server/releases/?utm_source=chatgpt.com).
+-   **Community Edition** – Free and open source. Download the latest release directly from the [Release Page](https://github.com/ant-media/Ant-Media-Server/releases/).
     
--   **Enterprise Edition** – Access advanced features, scalability, and professional support. Enterprise packages can be downloaded from your [Ant Media Account](https://antmedia.io/my-account/?utm_source=chatgpt.com) after purchasing a license.
+-   **Enterprise Edition** – Access advanced features, scalability, and professional support. Enterprise packages can be downloaded from your [Ant Media Account](https://antmedia.io/my-account/) after purchasing a license.
 
 ## License Information
 
@@ -129,10 +129,6 @@ If you're planning to have a large deployment for your Enterprise Cluster, pleas
 
 Ant Media provides **free Enterprise Edition licenses** for students, academics, and communities. To take advantage of this opportunity, just send an email from your institution or community e-mail address to [contact@antmedia.io](mailto:contact@antmedia.io)
 
-## Functional Architecture
-
-![server architecture diagram](/img/image-1648754379709.png)
-
 ## Deployment Options
 
 Ant Media Server supports a wide range of Linux distributions, including Ubuntu 20.04, 22.04, and 24.04, CentOS 8 and 9, Rocky Linux 8 and 9, Red Hat Enterprise Linux 9, and AlmaLinux 8 and 9. It is fully compatible with both x86-64 and Arm64 architectures.
@@ -143,12 +139,12 @@ Ant Media Server can be deployed in multiple environments, including `Virtual Ma
 
 ## Join the Ant Media Community
 
-Connect with Ant Media users and developers from around the world. Ask questions, share knowledge, discover best practices, and get help from the community through [GitHub Discussions](https://github.com/orgs/ant-media/discussions?utm_source=chatgpt.com).
+Connect with Ant Media users and developers from around the world. Ask questions, share knowledge, discover best practices, and get help from the community through [GitHub Discussions](https://github.com/orgs/ant-media/discussions).
 
-Looking for technical assistance or have a specific question? Visit the [Q&A Discussions section](https://github.com/orgs/ant-media/discussions/categories/q-a?utm_source=chatgpt.com) to engage with community members and the Ant Media team.
+Looking for technical assistance or have a specific question? Visit the [Q&A Discussions section](https://github.com/orgs/ant-media/discussions/categories/q-a) to engage with community members and the Ant Media team.
 
 ## Get in Touch
 
-Explore the latest updates, product news, and streaming insights on the [Ant Media Blog](https://antmedia.io/blog/?utm_source=chatgpt.com) or visit [Ant Media's website](https://antmedia.io/?utm_source=chatgpt.com) to learn more about our solutions.
+Explore the latest updates, product news, and streaming insights on the [Ant Media Blog](https://antmedia.io/blog/) or visit [Ant Media's website](https://antmedia.io/) to learn more about our solutions.
 
 For sales, partnerships, or general inquiries, contact us at **[contact@antmedia.io](mailto:contact@antmedia.io)**. If you need technical assistance, our support team is available at **[support@antmedia.io](mailto:support@antmedia.io)**.
