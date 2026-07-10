@@ -7,11 +7,20 @@ sidebar_position: 5
 
 # REST API examples
 
-Here are some practical examples of how to consume the REST API on Ant Media Server. Replace placeholders with your actual configuration:
+Ant Media Server provides REST APIs to create, manage, and monitor live streams programmatically. In this guide, you'll learn how to perform the most common operations, including creating a broadcast, retrieving stream information, updating stream settings, and deleting broadcasts.
 
-* `{domain}` : your server's accessible IP address or fully qualified domain name
-* `{port}`: 5080 for HTTP, 5443 for HTTPS  
-* `{applications}`: the name of your application in this guide, we use `live`
+This document provides examples of common REST API calls. For a complete list of all REST methods, visit the [https://antmedia.io/rest/](https://antmedia.io/rest/).
+
+All REST API endpoints follow a consistent URL structure. Throughout this guide, the examples use the following format:
+
+```
+https://{domain}:{port}/{appName}/rest/v2/
+```
+**where**:
+
+* `{domain}` : your server's IP address or fully qualified domain name (FQDN).
+* `{port}`: 5080 for HTTP, 5443 for HTTPS.
+* `{appName}`: Your application name (for example, live), in this guide; we use `live`.
 
 :::info
 
@@ -21,10 +30,10 @@ This guide assumes that your IP is included in the IP Filter as [mentioned here]
 
 ## Create Broadcast
 
-Create a new live stream on the Ant Media Server:
+Creating a broadcast registers a new live stream in Ant Media Server. The server generates a unique `streamId`, which is used when publishing and playing the stream.
 
 ```bash
-curl -X POST -H "Content-Type: application/json" "https://{domain:port}/live/rest/v2/broadcasts/create"
+curl -X POST -H "Content-Type: application/json" "https://{domain}:{port}/{appName}/rest/v2/broadcasts/create"
 ```
 
 For example, on localhost: 
@@ -52,12 +61,14 @@ Response:
 
 You can see the full [Broadcast object in the REST Reference](https://antmedia.io/rest/#/default/createBroadcast).
 
-### Create Broadcast with Pre-defined StreamId
+### Create a Broadcast with Custom StreamId
+
+By default, Ant Media Server automatically generates a unique `streamId` for every new broadcast. If your application requires predictable or meaningful stream identifiers, you can specify your own streamId when creating the broadcast. This is useful when integrating with external systems, maintaining consistent stream names, or allowing publishers to use predefined stream IDs.
 
 Specify your own `streamId` in the payload:
 
 ```bash
-curl -X POST -H "Content-Type: application/json" "https://{domain:port}/live/rest/v2/broadcasts/create" -d '{"streamId":"{YOUR_STREAM_ID}"}'
+curl -X POST -H "Content-Type: application/json" https://{domain}:{port}/{appName}/rest/v2/broadcasts/create" -d '{"streamId":"{YOUR_STREAM_ID}"}'
 ```
 
 Example:
@@ -74,63 +85,62 @@ Response:
 
 ### Create Stream Source Broadcasts
 
-Stream sources allow Ant Media Server to pull external streams (RTSP, HLS, etc.):
+Unlike a regular broadcast where publishers push media to Ant Media Server, a Stream Source instructs the server to pull media from another source such as RTSP, HLS, or another network stream.
 
 ```bash
-curl -X POST -H "Content-Type: application/json" "https://{domain:port}/live/rest/v2/broadcasts/create?autoStart=false" -d '{ "type":"streamSource", "streamUrl":"YOUR_STREAM_SOURCE_URL"}'
+curl -X POST -H "Content-Type: application/json" "https://{domain}:{port}/{appName}/rest/v2/broadcasts/create?autoStart=false" -d '{ "type":"streamSource", "streamUrl":"YOUR_STREAM_SOURCE_URL"}'
 ```
 
 Set `autoStart=true` to begin pulling immediately.
 
-### Starting Stream Source
+### Start a Stream Source
 
 In case you want to start the Stream Source using API, check out the [Start API](https://antmedia.io/rest/#/default/startStreamSourceV2) call.
 
 ```bash
-curl -X POST -H "Content-Type: application/json" "https://{domain:port}/live/rest/v2/broadcasts/{streamId}/start"
+curl -X POST -H "Content-Type: application/json" "https://{domain}:{port}/{appName}/rest/v2/broadcasts/{streamId}/start"
 ```
 
 ## Read Broadcast
 
-Query a broadcast by its streamId to check the stream data:
+Retrieve information about an existing broadcast using its `streamId`.
 
 ```bash
-curl -X GET "https://{domain:port}/live/rest/v2/broadcasts/{streamid}"
+curl -X GET "https://{domain}:{port}/{appName}/rest/v2/broadcasts/{streamid}"
 ```
 
-Returns the broadcast object, or `404` if the streamId does not exist.
+Returns the broadcast object, or `404` if the `streamId` does not exist.
 
 ### Read Broadcast Statistics
 
 Get viewer statistics for a broadcast:
 
 ```bash
-curl -X GET "https://{domain:port}/live/rest/v2/broadcasts/{streamid}/broadcast-statistics"
+curl -X GET "https://{domain}:{port}/{appName}/rest/v2/broadcasts/{streamid}/broadcast-statistics"
 ```
 
 ## Update Broadcast
 
-Change the name of a broadcast or any parameter of the existing stream:
+Update one or more broadcast properties, such as the stream name or description.
 
 ```bash
-curl -X PUT -H "Content-Type: application/json" "https://{domain:port}/live/rest/v2/broadcasts/{streamid}" -d '{"name":"{streamname}"}'
+curl -X PUT -H "Content-Type: application/json" "https://{domain}:{port}/{appName}/rest/v2/broadcasts/{streamid}" -d '{"name":"{streamname}"}'
 ```
 
 Response will indicate if the operation was successful.
 
 ## Delete Broadcast
 
+Delete a broadcast when it is no longer needed. This removes the broadcast configuration from Ant Media Server.
+
 Delete a broadcast:
 
 ```bash
-curl -X DELETE https://{domain:port}/live/rest/v2/broadcasts/{streamId}
+curl -X DELETE https://{domain}:{port}/{appName}/rest/v2/broadcasts/{streamId}
 ```
 
 This removes the broadcast from the server.
 
-## REST API Reference
-
-This document provides examples of common REST API calls. For a complete list of all REST methods, visit the [https://antmedia.io/rest/](https://antmedia.io/rest/).
 
 :::info
 
