@@ -136,10 +136,20 @@ Copy the files to your `live` app’s web directory:
 
 ```bash
 cd html5-player-drm-samples
-sudo cp videojs-doverunner-sample.html /usr/local/antmedia/webapps/live/
-sudo cp js/videojs-sample.js /usr/local/antmedia/webapps/live/js/
-sudo cp js/doverunner-sample-helper.js /usr/local/antmedia/webapps/live/js/
+sudo cp basic/videojs/index.html /usr/local/antmedia/webapps/live/videojs-doverunner-sample.html
+sudo cp basic/videojs/js/videojs-sample.js /usr/local/antmedia/webapps/live/js/
+sudo cp shared/js/doverunner-base-helper.js /usr/local/antmedia/webapps/live/js/
 sudo cp css/* /usr/local/antmedia/webapps/live/css/
+```
+
+**Path exists** — confirm the file is actually there:
+```bash
+ls -la /usr/local/antmedia/webapps/WebRTCAppEE/videojs-doverunner-sample.html
+```
+
+Then run:
+```bash
+sudo sed -i 's|\.\./\.\./css/|./css/|g; s|\.\./\.\./shared/js/|./js/|g; s|\.\./\.\./media/|./media/|g' /usr/local/antmedia/webapps/WebRTCAppEE/videojs-doverunner-sample.html
 ```
 
 ### Step 3: Publish a WebRTC Stream
@@ -168,12 +178,12 @@ sudo cp css/* /usr/local/antmedia/webapps/live/css/
    - **DRM Type**: `Widevine`.
    - **CID**: Your streamId (e.g., `stream007`).
    - **USER ID**: Any unique identifier (e.g., `1234`).
-   - Click **Refresh Timestamp** and keep default values for the rest.
+   - Click **Refresh Timestamp** and keep the default values for the rest.
 3. Click **Generate Token** and copy the result.
 4. Edit the following file:
 
    ```bash
-   sudo nano /usr/local/antmedia/webapps/live/js/doverunner-sample-helper.js
+   sudo nano /usr/local/antmedia/webapps/live/js/doverunner-base-helper.js
    ```
 
    Replace:
