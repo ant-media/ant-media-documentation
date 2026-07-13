@@ -7,7 +7,7 @@ sidebar_position: 7
 
 # Periodic Stream Recording in Ant Media
 
-Ant Media Server now supports **Periodic Stream Recording**, a powerful feature that lets you **capture short MP4 clips** from your live streams —without interrupting the broadcast. It’s perfect for saving highlights, generating snippets, or sharing quick moments with your audience.
+Ant Media Server now supports **Periodic Stream Recording**, a powerful feature that lets you **capture short MP4 clips** from your live streams—without interrupting the broadcast. It’s perfect for saving highlights, generating snippets, or sharing quick moments with your audience.
 
 ### How Does the Periodic Stream Recording Function Work?
 
@@ -19,7 +19,7 @@ Periodic Stream Recording allows you to:
 
 - Automatically record and save short MP4 clips from live streams.
 - Define how often clips are saved (e.g., every 10 minutes).
-- Generate MP4 clips instantly on demand via a REST API.
+- Generate MP4 clips between two UTC timestamps for a given stream instantly on demand via a REST API.
 - Avoid manual HLS segment merging and configurations.
 
 This feature is powered by a plugin that captures and converts HLS stream segments into MP4 files ready for distribution.
@@ -36,7 +36,7 @@ sudo apt install ffmpeg
 
 #### 2. Download the Plugin JAR File
 
-Download the latest `clip-creator.jar` file from [**Sonatype**](https://oss.sonatype.org/#nexus-search;gav~io.antmedia.plugin~clip-creator~~~).
+Download the latest `clip-creator.jar` file from [Drive](https://drive.google.com/drive/folders/15s-dgsOpj3ybhmr2390UlBN62ftRlNLR?usp=drive_link) or build from the [official repository](https://github.com/ant-media/Plugins/tree/master/ClipCreatorPlugin).
 
 #### 3. Place the Plugin in the Plugins Directory
 
@@ -52,58 +52,42 @@ sudo service antmedia restart
 
 ## Configuration Guide
 
-To make the Periodic Stream Recording work properly, you’ll need to adjust the App configuration:
+To make the Periodic Stream Recording work properly, you’ll need to adjust the Application configuration from the [Application's advanced settings](https://docs.antmedia.io/guides/configuration-and-testing/ams-application-configuration/#management-panel-application-settings):
 
-#### 1. Enable HLS Streaming
+| Setting | Value | Purpose |
+|---|---|---|
+| `hlsMuxingEnabled` | `true` | Enable HLS |
+| `hlsPlayListType` | empty (live mode) | **Not** `event` - `event` disables segment cleanup |
+| `hlsListSize` | `43200` | Retention window in segments. At `hlsTime=2`, this is 24 hours. Tune to your desired window |
+| `hlsTime` | `2` | Segment duration in seconds |
+| `hlsflags` | `delete_segments+program_date_time` | AMS default — both flags required |
 
-Go to your application settings & make sure that [HLS is enabled](https://antmedia.io/docs/guides/playing-live-stream/hls-playing/#enable-hls).
+- ffmpeg automatically deletes old `.ts` files and prunes the m3u8 to the configured window. No manual cleanup needed.
 
-#### 2. Set Playlist Type to "event"
+:::info
+If the HLS list size is very big, then the old TS files will take time to be deleted. The shorter the window, the faster it will be removed from the server. So make sure that good amount of disk space is there.
+:::
 
-Go to the Advanced Settings and set:
+Plugin settings (advanced app settings → `customSettings`):
 
-```js
-"hlsPlayListType": "event",
-```
-
-#### 3. Set the Clip Recording Interval
-
-Under **Advanced App Settings**, add the following in `customSettings`:
-
-```js
+```json
 "customSettings": {
-  "plugin.clip-creator": {
-    "mp4CreationIntervalSeconds": 600
-  }
+    "plugin.clip-creator": {
+        "enabled": true,
+        "maxClipDurationSeconds": 21600
+        "mp4CreationIntervalSeconds": 60
+    }
 }
 ```
 
-Replace `600` with your desired interval in seconds. For example, `1800` = 30 minutes.
+`mp4CreationIntervalSeconds`: By default, it is not enabled. If you want to get recordings automatically for every stream without any API call, use this setting. If not, you can remove it and enable the periodic recording via API as explained below.
 
-## Clip Storage Location
+`maxClipDurationSeconds`: (default `21600` = 6 h) is the hard upper bound on a single clip request. You can change it as per the requirement.
 
-Generated MP4 clips are saved under:
-
-```js
-/usr/local/antmedia/webapps/{AppName}/streams
-```
-
-Each clip is also registered as a **VoD entry** in the database.
-
-## How the Periodic Recording Works
-
-At each configured interval, Ant Media Server:
-
-1. Locates the most recent segment in the `.m3u8` playlist.
-2. Goes back by the specified number of seconds.
-3. Captures that range of segments.
-4. Converts them into a single MP4 file.
-
-Clip duration = `mp4CreationIntervalSeconds`
 
 ## REST API Endpoints
 
-You can also control recording behavior via REST API.
+You can also control recording behavior via the REST API.
 
 ### 1. Start Periodic Clip Creation
 
@@ -123,34 +107,45 @@ Use this to **manually start periodic recording** with a custom interval.
 
 ### 2. Create MP4 Clip On-Demand
 
-Trigger an MP4 clip generation instantly for a specific stream.
+```js
+POST /{appName}/rest/clip-creator/mp4/{streamId}/range
+     ?startTimestamp={utcMillis}
+     &endTimestamp={utcMillis}
+     &returnFile={true|false}
+```
 
-- **POST** request:
+| Parameter | Required | Notes |
+|---|---|---|
+| `startTimestamp` | yes | UTC milliseconds since epoch, inclusive |
+| `endTimestamp` | yes | UTC milliseconds since epoch, inclusive. Must be > start and not in the future |
+| `returnFile` | no, default `false` | `false` returns JSON with the new vodId. `true` returns the MP4 file content directly |
 
-  ```js
-  https://{SERVER}:{5443}/{APP}/rest/clip-creator/mp4/{STREAM_ID}?returnFile=true
-  ```
+#### Create Periodic On-Demand Recording without downloading
 
-- **CURL** Example:
+```bash
+curl -X POST "http://your-server:5080/live/rest/clip-creator/mp4/myStreamId/range?startTimestamp=1777829567000&endTimestamp=1777829587000&returnFile=false"
+```
 
-  ```js
-  curl -X POST "https://{YOUR_SERVER}:{5443}/{APP}/rest/clip-creator/mp4/{STREAM_ID}?returnFile=true" -H "Content-Type: application/json"
-  ```
+Response:
+```json
+{"success":true,"message":"MP4 created successfully for stream myStreamId","dataId":"abc123def456..."}
+```
 
-  If a periodic MP4 has already been created, this captures the clip from the last MP4 creation time to now.
+The MP4 lands at:
 
--   `returnFile`: This parameter is set to false by default.
+```
+/usr/local/antmedia/webapps/{appName}/streams/{dataId}.mp4
+```
 
-    -   `returnFile=true`: The server will create the MP4 immediately and return the file content as a response.
-        
-    -   `returnFile=false`: The server will return a JSON response indicating whether the VoD creation was successful. If successful, the response will include a dataId field containing the created vodId.
-        
+It is also registered as a VoD in the AMS database, so the standard `vodReady` webhook fires and the file appears in the VoD listing.
 
-If there is an MP4 created by the plugin since boot, it returns the MP4 clip from the last MP4 creation time to the time of calling this REST endpoint.
+#### Create Periodic On-Demand Recording with downloading directly
 
-For example, if the last MP4 is generated at 14:00 and the method is called at 14:05, the duration of the clip should be 5 minutes.
+```bash
+curl -X POST -o clip.mp4 "http://your-server:5080/live/rest/clip-creator/mp4/myStreamId/range?startTimestamp=1777829567000&endTimestamp=1777829587000&returnFile=true"
+```
 
-If there is no MP4 created so far by the plugin, the maximum duration of the clip created by this endpoint will be around ⁣`mp4CreationIntervalSeconds`.
+Response headers include `X-vodId` and `Content-Disposition`.
 
 ### 3. Stop Periodic Clip Creation
 
@@ -159,20 +154,31 @@ To stop automatic periodic MP4 creation:
 - **DELETE** request:
 
   ```js
-  https://{SERVER}:{5443}/{APP}/rest/clip-creator/periodic-recording
+  https://{SERVER}:{5443}/live/rest/clip-creator/periodic-recording
   ```
 
 - **CURL** example:
 
   ```js
-  curl -X DELETE "https://{YOUR_SERVER}:{5443}/{APP}/rest/clip-creator/periodic-recording" -H "Content-Type: application/json"
+  curl -X DELETE "https://{YOUR_SERVER}:{5443}/live/rest/clip-creator/periodic-recording" -H "Content-Type: application/json"
   ```
+  
+## 4. Validation Responses
 
-## Webhook Notification
+| HTTP | Reason |
+|---|---|
+| `400` | `endTimestamp <= startTimestamp` |
+| `400` | `endTimestamp` is in the future |
+| `400` | Requested duration > `maxClipDurationSeconds` |
+| `417` | No broadcast exists for the given streamId |
+| `417` | No segments found in range — typically the range is outside the HLS retention window (`hlsListSize × hlsTime`), or the stream had no data then |
+| `200` | Success — JSON or MP4 body depending on `returnFile` |
 
-Webhooks can be used to get notified about the newly generated clips. Check out [this document](https://antmedia.io/docs/guides/advanced-usage/webhooks/) for Webhook.
+## 5. Notes
 
-Each time a new MP4 clip is created, a `vodReady` webhook is triggered, letting you know the clip is ready to be used.
+- Clip boundaries are aligned to HLS segment boundaries; the resulting MP4 may be shorter or longer than the requested window by up to one segment duration (~2 s with default settings).
+- Range clips do not affect the periodic recorder (if you have it enabled). The two are independent.
+- Concurrent range requests serialize per web app. For typical orchestration cadences, this is not an issue.
 
 <br /><br />
 ---
@@ -188,6 +194,3 @@ You've successfully configured **Periodic Stream Recording in Ant Media Server**
 - Share quick moments with your audience
 
 With seamless integration into your workflow, this feature enhances your content creation process without interrupting the broadcast. 
-
-
-
