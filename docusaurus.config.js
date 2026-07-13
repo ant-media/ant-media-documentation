@@ -253,11 +253,11 @@ scripts: [
         },
 	{
           from: '/guides/configuration-and-testing/configuring-stun-addresses/',
-          to: '/guides/advanced-usage/turn-instalation/coturn-quick-installation/'
+          to: '/guides/advanced-usage/turn-installation/coturn-quick-installation/'
         },
 	{
           from: '/guides/advanced-usage/turn-and-stun-installation/coturn-quick-installation/',
-          to: '/guides/advanced-usage/turn-instalation/coturn-quick-installation/'
+          to: '/guides/advanced-usage/turn-installation/coturn-quick-installation/'
         },
 	{
           from: '/category/stream-security/webhook-stream-authorization',
