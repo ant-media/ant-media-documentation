@@ -1,83 +1,154 @@
 ---
-title: Quickstart
-description: REST API guide for Ant Media Server.
-keywords: [REST API guide, REST API Documentation, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 1
+title: REST API examples 
+description: REST API examples
+keywords: [REST API examples, Ant Media Server Documentation, Ant Media Server Tutorials]
+sidebar_position: 5
 ---
 
-# REST API Quickstart
+# REST API examples
 
-Ant Media Server's REST API is thoughtfully designed, providing you with full control over your Ant Media Server's management. The REST API is organized into the following services:
+Ant Media Server provides REST APIs to create, manage, and monitor live streams programmatically. In this guide, you'll learn how to perform the most common operations, including creating a broadcast, retrieving stream information, updating stream settings, and deleting broadcasts.
 
-* ***Broadcast Rest Service:*** Management of live streams and stream sources. [API Reference](https://antmedia.io/rest/#/ManagementRestService)
-* ***VOD Rest Service:*** Management of video-on-demand assets and recordings. [API Reference](https://antmedia.io/rest/#/VoD%20Rest%20Service)
-* ***Management Rest Service:*** Non-application-specific commands such as user management and creating apps. [API Reference](https://antmedia.io/rest/#/ManagementRestService)
-* ***Cluster Service:*** Cluster management service. [API Reference](https://antmedia.io/rest/#/default) 
+This document provides examples of common REST API calls. For a complete list of all REST methods, visit the [https://antmedia.io/rest/](https://antmedia.io/rest/).
 
-:::tip
+All REST API endpoints follow a consistent URL structure. Throughout this guide, the examples use the following format:
 
-The full [API reference guide is here](https://antmedia.io/rest). Refer to this [GitHub discussion](https://github.com/orgs/ant-media/discussions/5664)to find out **how to import the API REST methods into Postman**.
-
-:::
-
-
-
-To get started using the REST API, you must have an instance of Ant Media Server running. Refer to our quickstart guide on [installing Ant Media Server](/quick-start) first if needed.
-
-## API Services
-
-The required base URL for API access varies depending on the specific service. For example, the broadcast service and VOD service APIs are associated with the rest path of a specific Ant Media Server application. While executing web panel commands through the REST API, it is not necessary to include the application name in the request URL.
-
-### Broadcast Service
-```shell
-https://ant-media-server:5443/{application}/rest/v2/broadcasts
 ```
-### VoD Service
-```shell
-https://ant-media-server:5443/{application}/rest/v2/vods
+https://{domain}:{port}/{appName}/rest/v2/
 ```
+**where**:
 
-### Management Service
-```shell
-https://ant-media-server:5443/rest/v2
-```
-### Cluster Service
-```shell
-https://ant-media-server:5443/rest/v2/cluster
-```
-
-## API Security
-
-Ant Media Server offers two methods to secure your API requests. By default, the IP filter is enabled and bound to localhost at 127.0.0.1. In addition to IP filter, you can enable JWT Filter and make secure API requests by passing the JWT token in the request header.
+* `{domain}` : your server's IP address or fully qualified domain name (FQDN).
+* `{port}`: 5080 for HTTP, 5443 for HTTPS.
+* `{appName}`: Your application name (for example, live), in this guide; we use `live`.
 
 :::info
 
-You cannot enable both at the same time. Ant Media Server will give preference to IP filter, which will result in failed API requests using JWT Filter.
+This guide assumes that your IP is included in the IP Filter as [mentioned here](https://antmedia.io/docs/guides/developer-sdk-and-api/rest-api-guide/securing-rest-apis/#ip-filter-for-the-web-panel).
 
 :::
 
-### IP Filter
+## Create Broadcast
 
-By default, the REST interface only accepts requests from 127.0.0.1 (localhost). Requests coming from other IP addresses are blocked and will not receive a response.
+Creating a broadcast registers a new live stream in Ant Media Server. The server generates a unique `streamId`, which is used when publishing and playing the stream.
 
-To allow API access from other machines, you need to add those IP addresses to the trusted IP list. Please refer to the API security (IP) [API security (IP)](/guides/developer-sdk-and-api/rest-api-guide/securing-rest-apis/) documentation for details.
+```bash
+curl -X POST -H "Content-Type: application/json" "https://{domain}:{port}/{appName}/rest/v2/broadcasts/create"
+```
 
-### JWT Filter
+For example, on localhost: 
 
-If preferred, you can generate JWT tokens and pass them in the header of API requests. You can generate a permanent token or one with an expiry date for an additional security layer. Please refer to the [API security (JWT)](/guides/developer-sdk-and-api/rest-api-guide/jwt-rest-api-filter/) document for details on configuration.
+```bash
+curl -X POST -H "Content-Type: application/json" "http://localhost:5080/live/rest/v2/broadcasts/create"
+``` 
 
-## Management Service Authentication
+Response:
 
-To access the web panel using the API, you'll need to use the management REST service. Before making any API requests, it is necessary to authenticate access. There are two methods to access management REST services: using a JWT token or by username and password. Please refer to the [Web Panel REST API](/guides/developer-sdk-and-api/rest-api-guide/management-rest-apis/) document for details.
+```js
+{
+  "streamId":"247807894779015096249123",
+  "status":"created",
+  "type":"liveStream",
+  "name":null,
+  "publish":true,
+  "originAddress":"127.0.0.1",
+  "rtmpURL":"rtmp://127.0.0.1/live/247807894779015096249123",
+  "hlsViewerCount":0,
+  "webRTCViewerCount":0,
+  "rtmpViewerCount":0
+}
+```
 
-## REST API reference
+You can see the full [Broadcast object in the REST Reference](https://antmedia.io/rest/#/default/createBroadcast).
 
-All REST methods and services are listed on the REST API reference page at [https://antmedia.io/rest](https://antmedia.io/rest) built with Swagger.
+### Create a Broadcast with Custom StreamId
 
-![](@site/static/img/rest.png)
+By default, Ant Media Server automatically generates a unique `streamId` for every new broadcast. If your application requires predictable or meaningful stream identifiers, you can specify your own streamId when creating the broadcast. This is useful when integrating with external systems, maintaining consistent stream names, or allowing publishers to use predefined stream IDs.
 
-Once you’ve set up your REST API access, authenticated, and made your first requests, you can start managing your Ant Media Server programmatically. You can create broadcasts, manage VoD content, control applications, and monitor clusters—all directly through the API.
+Specify your own `streamId` in the payload:
+
+```bash
+curl -X POST -H "Content-Type: application/json" https://{domain}:{port}/{appName}/rest/v2/broadcasts/create" -d '{"streamId":"{YOUR_STREAM_ID}"}'
+```
+
+Example:
+
+```bash
+curl -X POST -H "Content-Type: application/json" "http://localhost:5080/live/rest/v2/broadcasts/create" -d '{"streamId":"1234567", "name":"Test Stream"}'
+```
+
+Response:
+
+```js
+{"streamId":"1234567","status":"created","type":"liveStream","name":"Test Stream","description":null,"publish":true,"date":1605776884508,"plannedStartDate":0,"plannedEndDate":0,"duration":0,"endPointList":null,"publicStream":true,"is360":false,"listenerHookURL":null,"category":null,"ipAddr":null,"username":null,"password":null,"quality":null,"speed":0.0,"streamUrl":null,"originAdress":"127.0.0.1","mp4Enabled":0,"webMEnabled":0,"expireDurationMS":0,"rtmpURL":"rtmp://127.0.0.1/live/1234567","zombi":false,"pendingPacketSize":0,"hlsViewerCount":0,"webRTCViewerCount":0,"rtmpViewerCount":0,"startTime":0,"receivedBytes":0,"bitrate":0,"userAgent":"N/A","latitude":null,"longitude":null,"altitude":null,"mainTrackStreamId":null,"subTrackStreamIds":null,"absoluteStartTimeMs":0,"webRTCViewerLimit":-1,"hlsViewerLimit":-1}
+```
+
+### Create Stream Source Broadcasts
+
+Unlike a regular broadcast where publishers push media to Ant Media Server, a Stream Source instructs the server to pull media from another source such as RTSP, HLS, or another network stream.
+
+```bash
+curl -X POST -H "Content-Type: application/json" "https://{domain}:{port}/{appName}/rest/v2/broadcasts/create?autoStart=false" -d '{ "type":"streamSource", "streamUrl":"YOUR_STREAM_SOURCE_URL"}'
+```
+
+Set `autoStart=true` to begin pulling immediately.
+
+### Start a Stream Source
+
+In case you want to start the Stream Source using API, check out the [Start API](https://antmedia.io/rest/#/default/startStreamSourceV2) call.
+
+```bash
+curl -X POST -H "Content-Type: application/json" "https://{domain}:{port}/{appName}/rest/v2/broadcasts/{streamId}/start"
+```
+
+## Read Broadcast
+
+Retrieve information about an existing broadcast using its `streamId`.
+
+```bash
+curl -X GET "https://{domain}:{port}/{appName}/rest/v2/broadcasts/{streamid}"
+```
+
+Returns the broadcast object, or `404` if the `streamId` does not exist.
+
+### Read Broadcast Statistics
+
+Get viewer statistics for a broadcast:
+
+```bash
+curl -X GET "https://{domain}:{port}/{appName}/rest/v2/broadcasts/{streamid}/broadcast-statistics"
+```
+
+## Update Broadcast
+
+Update one or more broadcast properties, such as the stream name or description.
+
+```bash
+curl -X PUT -H "Content-Type: application/json" "https://{domain}:{port}/{appName}/rest/v2/broadcasts/{streamid}" -d '{"name":"{streamname}"}'
+```
+
+Response will indicate if the operation was successful.
+
+## Delete Broadcast
+
+Delete a broadcast when it is no longer needed. This removes the broadcast configuration from Ant Media Server.
+
+Delete a broadcast:
+
+```bash
+curl -X DELETE https://{domain}:{port}/{appName}/rest/v2/broadcasts/{streamId}
+```
+
+This removes the broadcast from the server.
+
+
+:::info
+
+On Windows Command Prompt, the body of requests should be escaped like this: ```-d "{""name"":""{streamname}""}"```
+
+:::
+
 
 ## Congratulations!
 
-You now have full control over your server through the REST API, enabling automated workflows and seamless management of your streaming infrastructure.
+You’ve successfully learned how to create, read, update, and delete broadcasts using the Ant Media Server REST API. By using these examples as a starting point, you can automate stream management, integrate with custom applications, and fully control your live streaming environment. Keep experimenting with the API, and soon you’ll be orchestrating multiple streams like a pro!
