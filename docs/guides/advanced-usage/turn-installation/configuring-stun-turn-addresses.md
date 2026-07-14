@@ -112,8 +112,10 @@ TURN is an extension of STUN, so configuration is very similar.
 
 You can configure the TURN server directly through the Ant Media Server application settings. This way, you won't need to configure a TURN server separately in each client SDK.
 
-::info
+:::info
+
 But in case configuring on the server side does not work, then you must add your custom STUN/TURN server as an ICE server on the client side.
+
 :::
 
 - Go to your Ant Media Server Dashboard  → `Application` → `Settings` → `Advanced Settings`.
