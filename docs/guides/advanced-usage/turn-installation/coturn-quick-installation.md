@@ -1,7 +1,7 @@
 ---
 title: Coturn Server Installation 
-description: Install coTURN, TURN Server to stream your data without any firewall restrictions.
-keywords: [Setup TURN Server, TURN Server Installation, TURN Server Installation, coTURN Quick Installation, Ant Media Server Documentation, Ant Media Server Tutorials]
+description: Install Coturn TURN Server to stream your data without any firewall restrictions.
+keywords: [Setup TURN Server, TURN Server Installation, Coturn Quick Installation, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 1
 ---
 
@@ -26,14 +26,14 @@ Ant Media Server does not require a TURN server even if there is Symmetric NAT. 
 
 By running the `install_turn-server.sh` script, you can quickly install and configure the TURN server automatically.
 
-- Get the `install_turn-server.sh` script
+- Get the Installation Script
 
-```js
-wget https://raw.githubusercontent.com/ant-media/Scripts/master/install_turn-server.sh && chmod +x install_turn-server.sh
+```bash
+sudo wget https://raw.githubusercontent.com/ant-media/Scripts/master/install_turn-server.sh && sudo chmod +x install_turn-server.sh
 ```
-- Run the installation script
+- Run the Installation Script
 
-```js
+```bash
 sudo ./install_turn-server.sh
 ```
 
@@ -43,45 +43,49 @@ If you want to install the TURN server manually, please follow the below steps.
 
 1. **Install Coturn**
   
-```js
-apt-get update && apt-get install coturn
+```bash
+sudo apt-get update && sudo apt-get install coturn
 ```
 
 2. **Enable TURN Server**
 
 - Edit the below file.
 
-```js
+```bash
 vim /etc/default/coturn
 ```
 
-- Add the following line
+- Add the following line:
 
-```js
+```bash
 TURNSERVER_ENABLED=1
 ```
 
 3. **Configure TURN Server**
 
-- Edit file: ```/etc/turnserver.conf``` by adding the following 2 lines as mentioned below:
+- Edit the file ```/etc/turnserver.conf``` by adding the following 2 lines as mentioned below:
 
-```js
+```bash
 user=username:password
 realm=your_public_ip_address
 ```
 
 4. Once you are done with making the changes as suggested above, **restart the TURN server** with the below command.
 
-```js
-systemctl restart coturn
+```bash
+sudo systemctl restart coturn
 ```
 
-**Note**: If you using an AWS EC2, GCP, or Azure instance, etc. where NAT is used, you must add the following lines in the ```turnserver.conf``` file.
+:::info
+If you are using an AWS EC2, GCP, or Azure instance, etc., where NAT is used, you must add the following lines in the ```turnserver.conf``` file.
+:::
 
-  - EC2 private ip address : ```relay-ip=your_private_ip```
-  - EC2 Public/Private ip address : ```external-ip=your_public_ip/your_private_ip```
+```bash
+relay-ip=your_EC2_private_ip
+external-ip=your_EC2_public_ip/your_EC2_private_ip
+```
 
-Also, Open the following ports on the security group or firewall.
+Also, open the following ports on the security group or firewall.
 
   - TCP 443 #TLS listening port
   - TCP 3478-3479 #coturn listening port
@@ -95,17 +99,17 @@ You can test the TURN server if it is configured and working properly with the b
 
 1. **Command Line**
 
-```js
+```bash
 turnutils_uclient -v -t -T -u username -w password -p 3478 turn_server_ip
 ```
 
 2. **Web Browser**
 
-- Open the following link and fill required details. Thereafter, _Add Server_ here : [https://webrtc.github.io/samples/src/content/peerconnection/trickle-ice/](https://webrtc.github.io/samples/src/content/peerconnection/trickle-ice/)
+- Open the following link and fill in the required details. Thereafter, _Add Server_ here : [https://webrtc.github.io/samples/src/content/peerconnection/trickle-ice/](https://webrtc.github.io/samples/src/content/peerconnection/trickle-ice/)
 
 ![](@site/static/img/turn1.png)
 
-- Once done. Click ``` Gather Candidates```. If the details you provided, are validated, you will get the output as in the below image.
+- Once done. Click ``` Gather Candidates```. If the details you provided are validated, you will get the output as in the below image.
 
 ![](https://raw.githubusercontent.com/wiki/ant-media/Ant-Media-Server/images/turn3.png)
 
@@ -120,4 +124,3 @@ turnutils_uclient -v -t -T -u username -w password -p 3478 turn_server_ip
 With **coTURN** installed and configured, even the strictest **firewalls and NATs can't stop your streams**. Your communication gets relayed when needed, keeping everything smooth and seamless.
 
 **Your network just got smarter** — reliable, resilient, and ready for any connection challenge! 🚀
-
