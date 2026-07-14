@@ -1,13 +1,14 @@
 ---
-title: Configuring STUN/TURN addresses 
-description: Fix limitations of AWS Wavelength Zones both server side as well as client side. This guide will help you to setup custom TURN server for Android SDK and IOS SDK.
-keywords: [STUN addresses, TURN configuration, add turn, TURN addresses, turn config, stun config, custom stun server, custom turn server, AWS Wavelength Zones, red5-web Properties, Ant Media Server Documentation, Ant Media Server Tutorials]
+title: Configure STUN/TURN Server
+description: This guide will help you to set up a custom STUN/TURN server for the Ant Media server-side and client-side SDKs and for AWS Wavelength Zone
+keywords: [STUN & TURN configuration, TURN Server, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 2
 ---
 
-# Configuring STUN/TURN addresses
+# Configure STUN/TURN Server
 
 ## Custom STUN servers for AWS Wavelength Zones
+
 In most cases, the default Google STUN server is sufficient for WebRTC connectivity, so you don’t need to change the default settings.
 
 However, in AWS Wavelength Zones, there are limitations when obtaining ICE candidates. To address this, Ant Media provides freely accessible STUN servers specifically designed for Wavelength Zones.
@@ -18,7 +19,7 @@ You can use them via: ```stun.wavelength.antmedia.cloud``` where multiple instan
 
 1. Open the Ant Media Server Web Panel and navigate to `Application` →`Advanced Settings`.
 
-2. Change the following property
+2. Change the following property:
 
 ```js
 "stunServerURI"="stun:stun1.l.google.com:19302"
@@ -35,11 +36,12 @@ to
 ### Configure Custom STUN Server on the Client Side
 
 If you configure STUN/TURN on the server, you don’t need to configure it again on the client.
+
 If not, you must add your custom STUN/TURN server as an ICE server on the client side.
 
 #### Javascript SDK
 
-For custom STUN/TURN server to work you need to pass it to WebRTCAdaptor object as an element in iceServers list.
+For a custom STUN/TURN server to work, you need to pass it to the WebRTCAdaptor object as an element in the iceServers list.
 
 WebRTCAdaptor has a ```peerconnection_config``` field that accepts ```iceServers``` array.
 
@@ -59,7 +61,7 @@ var webRTCAdaptor = new WebRTCAdaptor({
           //goes on...
 ```
 
-To use custom STUN server, replace the default google STUN with your STUN server.
+To use a custom STUN server, replace the default Google STUN with your STUN server.
 
 - Example:
 
@@ -87,7 +89,7 @@ And pass it to ```peerconnection_config``` field of WebRTCAdaptor, as specified 
      	};
 ```
 
-Replace them with the following
+Replace them with the following:
 
 ```js
     var pc_config = {
@@ -100,18 +102,23 @@ Replace them with the following
 - Save the files. You don't need to restart the Ant Media Server.
 
   
-## Custom TURN servers
+## Custom TURN Server
 
-If WebRTC connectivity fails even with all ports open, you may need to configure a TURN server. To learn more about TURN server check this [Guide](https://antmedia.io/docs/guides/advanced-usage/turn-instalation/coturn-quick-installation/)
+If WebRTC connectivity fails even with all ports open, you may need to configure a TURN server. To learn more about TURN server , check out this [Guide](https://antmedia.io/docs/guides/advanced-usage/turn-instalation/coturn-quick-installation/)
 
 TURN is an extension of STUN, so configuration is very similar.
 
 ### Custom TURN server Configuration in Ant Media Server
-You can configure TURN server directly through ant media server application settings. This way, you won't need to configure TURN server separately in each client SDK.
 
-- Goo to your Ant Media Server Dashboard  → `Application` → `Settings` → `Advanced Settings`.
+You can configure the TURN server directly through the Ant Media Server application settings. This way, you won't need to configure a TURN server separately in each client SDK.
 
-- Set below settings as follows:
+::info
+But in case configuring on the server side does not work, then you must add your custom STUN/TURN server as an ICE server on the client side.
+:::
+
+- Go to your Ant Media Server Dashboard  → `Application` → `Settings` → `Advanced Settings`.
+
+- Set the below settings as follows:
   
 ```js
 "stunServerURI"="turn:TYPE_YOUR_TURN_SERVER_URL",
@@ -122,7 +129,7 @@ You can configure TURN server directly through ant media server application sett
 - Save the settings. Ant Media Server will automatically use your TURN server.
 
 
-### Configure custom TURN server in the JavaScript SDK.
+### Configure Custom TURN server in the JavaScript SDK.
 
 ```js
     var pc_config =
@@ -146,8 +153,7 @@ You can configure TURN server directly through ant media server application sett
 
 ### Configure custom TURN server in the Embedded Player.
 
-- If you are using Ant Media Server Embedded Web Player which is found in this [Github Repo](https://github.com/ant-media/Web-Player)
-to play your streams you need to pass ```iceServers``` as String to the WebPlayer constructor.
+- If you are using Ant Media Server Embedded Web Player, which is found in this [Github Repo](https://github.com/ant-media/Web-Player) to play your streams, you need to pass  ```iceServers``` as a string to the WebPlayer constructor.
 
 Example:
 
@@ -168,19 +174,30 @@ new WebPlayer({
 }, videoRef.current, placeHolderRef.current);
 ```
 
-- If you are utilizing the Ant Media Server sample ```play.html``` page, please remember that it is also based on embedded web player.
+- If you are utilizing the Ant Media Server sample ```play.html``` page, please remember that it is also based on an embedded web player.
 
-- You can find ```embedded-player.js``` in ```/usr/local/antmedia/webapps/live/webapps/js/embedded-player.js```  location and directly edit the ice server list by modifying the embedded player source.
+- You can find ```embedded-player.js``` in ```/usr/local/antmedia/webapps/live/webapps/js/embedded-player.js```  location and directly edit the ICE server list.
 
-- For more information about embedded web player, checkout this [Guide](https://antmedia.io/docs/guides/playing-live-stream/embedded-web-player/#ant-media-server-web-player)
+```js
+this.iceServers = '[ { "urls": "stun:stun1.l.google.com:19302" } ]';
+```
+
+To
+
+```js
+this.iceServers = '[ { "urls": "turn:TURN_IP:3478", "username": "username", "credential": "password" } ]';
+```
+
+- For more information about embedded web player, check out this [Guide](https://antmedia.io/docs/guides/playing-live-stream/embedded-web-player/#ant-media-server-web-player)
 
 
-### Configure a custom TURN server in the Android SDK.
-- You can set a TURN server by using ```setTurnServer()``` method of WebRTCClient Builder in android SDK.
+### Configure custom TURN server in Android SDK
+
+- You can set a TURN server by using ```setTurnServer()``` method of WebRTCClient Builder in the Android SDK.
 
 Example:
 
-```js
+```java
 webRTCClient = IWebRTCClient.builder()
                 .setLocalVideoRenderer(fullScreenRenderer)
                 .setServerUrl(serverUrl)
@@ -191,17 +208,17 @@ webRTCClient = IWebRTCClient.builder()
                 .build();
 ```
 
-- This will add your turn server to ice server lists. If default google STUN fails, it will automatically utilize your TURN server.
+- This will add your turn server to ICE server lists. If default Google STUN fails, it will automatically utilize your TURN server.
 
-- If you are using WebRTC Android SDK as a module in your project, since it is open source, you can also directly add TURN server to ice server list.
+- If you are using the WebRTC Android SDK as a module in your project, since it is open source, you can also directly add a TURN server to the ICE server list.
 
-- Open ```WebRTCClient.java``` file and go to the ```init()``` function. There is a line that adds stunServerUri to ice servers.  
- 
+- Open ```WebRTCClient.java``` file and go to the ```init()``` function. There is a line that adds stunServerUri to ice servers.  
+ 
 ```js
     iceServers.add(new PeerConnection.IceServer(stunServerUri));
 ```
 
-Replace this line with:   
+Replace this line with:   
   
 ```js
     iceServers.add(PeerConnection.IceServer.builder("turn:YOUR_SERVER")
@@ -210,17 +227,17 @@ Replace this line with: 
           .createIceServer());
 ```
 
-### Configure a custom TURN server in the IOS SDK.
+### Configure custom TURN server in the iOS SDK.
 
-- Open the ```Config.swift``` file, go to the ```createConfiguration()``` function. There is a line that adds stunServerUri to ice servers. 
+- Open the ```Config.swift``` file, go to the ```createConfiguration()``` function. There is a line that adds a stunServerUri to ice servers. 
 
-```js
+```swift
 let configuration = Config.createConfiguration(server: stunServer)
 ```
 
 Replace this function with:  
   
-```js
+```swift
     static func createConfiguration(server: RTCIceServer) ->` RTCConfiguration { 
     let config = RTCConfiguration.init()
     let iceServerNew = RTCIceServer.init(urlStrings: [your_server], username: "your_username", credential: "your_password")
@@ -229,7 +246,7 @@ Replace this function with:
     }
 ```
 
-### Configure a custom TURN server in the Flutter SDK.
+### Configure custom TURN server in the Flutter SDK.
 
 ```js
     List<Map<String, String>> iceServers = [
