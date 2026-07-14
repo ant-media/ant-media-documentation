@@ -1,11 +1,11 @@
 ---
-title: coTURN Quick Installation 
+title: Coturn Server Installation 
 description: Install coTURN, TURN Server to stream your data without any firewall restrictions.
 keywords: [Setup TURN Server, TURN Server Installation, TURN Server Installation, coTURN Quick Installation, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 1
 ---
 
-# coTURN quick installation
+# Coturn Quick Installation
 
 What is a TURN Server?
 ----------------------
@@ -41,13 +41,13 @@ sudo ./install_turn-server.sh
 
 If you want to install the TURN server manually, please follow the below steps.
 
-1. **Install coturn**
+1. **Install Coturn**
   
 ```js
 apt-get update && apt-get install coturn
 ```
 
-2. **Enable TURN server**
+2. **Enable TURN Server**
 
 - Edit the below file.
 
@@ -61,7 +61,7 @@ vim /etc/default/coturn
 TURNSERVER_ENABLED=1
 ```
 
-3. **Configure the TURN server**
+3. **Configure TURN Server**
 
 - Edit file: ```/etc/turnserver.conf``` by adding the following 2 lines as mentioned below:
 
