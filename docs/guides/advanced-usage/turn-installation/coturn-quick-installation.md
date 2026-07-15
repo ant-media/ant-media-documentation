@@ -20,7 +20,7 @@ So we use the TURN server for this solution.
 
 Ant Media Server does not require a TURN server even if there is Symmetric NAT. However, it's required if UDP ports are blocked for any reason or Ant Media Server is used as a signaling server in P2P communication.
 
-## Install the TURN server
+## Install TURN server
 
 ### Automatic Installation
 
