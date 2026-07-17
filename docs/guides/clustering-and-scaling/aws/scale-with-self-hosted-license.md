@@ -1,71 +1,107 @@
 ---
-title: Scale AMS on AWS using Self-Hosted license
+title: Scale AMS on AWS using Self-Hosted License
 description: Scale AMS on AWS using self-hosted license
 keywords: [Scale AMS with AWS CloudFormation, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 7
 ---
 
-# Scale AMS with AWS CloudFormation using Self-Hosted License
 
-If you have already gone through the Ant Media Server cluster deployment via [AWS CloudFormation](https://antmedia.io/docs/guides/clustering-and-scaling/aws/scale-with-aws-cloudformation/) service, by default it uses the AWS [marketplace image](https://aws.amazon.com/marketplace/pp/prodview-464ritgzkzod6?sr=0-1&ref_=beagle&applicationId=AWSMPContessa#pdp-overview) of AMS.
+# Deploy and Scale Ant Media Server on AWS Using a Self-Hosted License
 
-Now here comes the question of how to deploy the autoscalable Ant Media cluster quickly via CloudFormation while using the `self-hosted license` purchased via [AntMedia](https://antmedia.io/#products) directly.
+The default Ant Media Server [AWS CloudFormation](https://antmedia.io/docs/guides/clustering-and-scaling/aws/scale-with-aws-cloudformation/) deployment uses the Ant Media Server image available on the AWS Marketplace.
 
-So in this document, we will go through the step-by-step guide to deploy the AMS cluster with CloudFormation using the self-hosted license of Ant Media Server.
+However, if you have purchased a **[self-hosted license directly from Ant Media](https://antmedia.io/#products)**, you may want to deploy and autoscale your cluster using your own licensed Ant Media Server image instead of the Marketplace image.
+
+This guide explains how to create a custom AWS AMI with your Ant Media Server license preconfigured and use it in the CloudFormation autoscaling template.
 
 :::info
-We are assuming that you already have purchased the licenses for your AMS cluster. If not, reach out to contact@antmedia.io for the discussion.
+This guide assumes that you already have valid Ant Media Server Enterprise licenses for your deployment. If you need licenses, please contact contact@antmedia.io
 :::
 
-## Step 1: Create the image (AMI) of AMS on your AWS account
+## Prerequisites
 
- - First, you need to install the AMS on a basic 4-core instance
-   (c5.xlarge). Please follow the [installation
-   document](https://antmedia.io/docs/guides/installing-on-linux/installing-ams-on-linux/) to install the server.
+Before you begin, ensure that you have:
+
+-   An AWS account with permissions to create EC2 instances and AMIs
+-   A valid Ant Media Server Enterprise self-hosted license
+-   Basic familiarity with AWS EC2 and CloudFormation
+
+## Step 1: Create a Licensed Ant Media Server AMI
+
+### Launch and Install Ant Media Server
+
+1.  Launch a standard EC2 instance (recommended: **c5.xlarge**).
+2.  Install Ant Media Server by following the [**Linux installation**](https://antmedia.io/docs/guides/installing-on-linux/installing-ams-on-linux/) guide.
+3.  After installation:
+    -   SSL configuration is **not required** for the AMI.
+    -   Ensure all required [**AMS ports**](https://resources.antmedia.io/docs/installation#server-ports) are allowed in your Security Group.
+
+### Configure Your License
+
+- SSH into the server and add your license key to:
+
+  ```bash
+  sudo nano /usr/local/antmedia/conf/red5.properties
+  ```
+
+- Add the following line and save the settings:
+
+  ```bash
+  server.licence_key=YOUR_AMS_LICENSE_KEY
+  ```
+
+- Restart Ant Media Server:
+
+  ```
+  sudo service antmedia restart
+  ```
    
-   After the AMS is installed, there is no need to install the SSL
-   certificate for the image. Please make sure that all the required
-   [server ports](https://resources.antmedia.io/docs/installation#server-ports) are allowed in the security groups.
-   
- - Once the server is installed, SSH into the server and put the license key in the  **red5.properties**  file under the **/usr/local/antmedia/conf** folder. It should look like this:    
+### Verify the Installation
 
-   ```bash
-   server.licence_key=put-your-AMS-license-key     
-   ```
-   
-   After saving the settings, restart the server with **sudo service antmedia restart**
+Open the AMS dashboard:
 
-- Open the server at [http://IP-address:5080](http://ip-address:5080/) to verify if it is working. You do not have to create an account for the web panel.
+```html
+http://<SERVER_IP>:5080
+```
 
-- Then create the AMI by selecting the `Instances` --> `Actions` --> `Image and templates` --> `Create image`.
+Verify that Ant Media Server starts successfully. You do not need to create an administrator account before creating the AMI.
 
+### Create the AMI
+
+1. Navigate to **EC2 → Instances**.
+2. Select your Ant Media Server instance.
+3. Go to **Instances →Actions → Image and Templates → Create Image**
+    
 ![](@site/static/img/clustering-and-scaling/aws-cloudformation/create-aws-ami.png)
 
-- During the image creation, just provide the name and description of the image and create the image.
+4. Provide an image name and description.
+5. Click **Create Image**.
 
 ![](@site/static/img/clustering-and-scaling/aws-cloudformation/ams-image.png)
 
-- To check the image, go to the Images section of EC2 and select AMIs. Under that section, you will see your created image.
+### Retrieve the AMI ID
 
-- You need to note down the AMI ID of your Ant Media Server image.
+After the image creation process completes:
+
+1.  Navigate to **EC2 → AMIs**.
+2.  Locate your newly created image.
+3.  Copy and save the **AMI ID**.
 
 ![](@site/static/img/clustering-and-scaling/aws-cloudformation/ami-id.png)
 
-## Step 2: Download and Edit the CloudFormation Template
+You will use this AMI ID in the CloudFormation template.
 
-Download the CloudFormation template from the below link to your computer.
+## Step 2: Update the CloudFormation Template
+
+Download the Ant Media Server autoscaling CloudFormation template:
 
 [https://raw.githubusercontent.com/ant-media/Scripts/master/cloudformation/antmedia-aws-autoscale-template.yaml](https://raw.githubusercontent.com/ant-media/Scripts/master/cloudformation/antmedia-aws-autoscale-template.yaml)
 
-After the template is downloaded, we have to edit it and put our image ID (an AMS image with a pre-configured license key) instead of using the marketplace image of Ant Media Server.
+Open the template and replace the default Marketplace image references with the AMI ID (ami-xxxxxxxxxxxxxxxxx) created in Step 1.
 
-In the template, edit the **ImageId** in the Origin and Edge Launch template part as below and put your AMI ID that we generated in Step 1.
+### Update the Origin Launch Template Part
 
-:::info
-In Origin configuration, you may use the GPU image as well so for that, you need to create the AMS image on the GPU-based instance and then you have to put the ImageId in place of **!Ref AntMediaGPUAmi**
-
-The GPU image will be used when you set the GPU option to true during the deployment; otherwise, a normal image will be used, like we created and used in this document.
-:::
+Replace the `ImageId` value with your AMI ID:
 
 ```yaml
   LaunchTemplateOrigin:
@@ -75,7 +111,7 @@ The GPU image will be used when you set the GPU option to true during the deploy
       LaunchTemplateData:
         InstanceType: !Ref OriginInstanceType
         KeyName: !Ref KeyName
-        ImageId: !If [UseGPUImage, !Ref AntMediaGPUAmi, Put-Your-ImageId]
+        ImageId: !If [UseGPUImage, !Ref AntMediaGPUAmi, ami-xxxxxxxxxxxxxxxxx]
         SecurityGroupIds:
           - !GetAtt "InstanceSecurityGroup.GroupId"
         BlockDeviceMappings:
@@ -86,7 +122,20 @@ The GPU image will be used when you set the GPU option to true during the deploy
               DeleteOnTermination: true
 ```
 
-Similarly for Edge Group
+:::  
+If you plan to use GPU-enabled Origin instances, create a separate GPU-based Ant Media Server AMI and use its AMI ID in place of `!Ref AntMediaGPUAmi`.
+
+When the `GPU` deployment option is enabled, CloudFormation will launch instances using the GPU AMI. Otherwise, it will use the standard AMI.  
+:::
+
+### Update the Edge Launch Template Part
+
+Replace the Edge image reference as well:
+
+:::info
+- If the license key is different for Edge Servers, then you will have to create one more image for the edge group.
+- In case you want to have some extra changes for Edge servers, then in that case also you can create the separate AMI for Edge.
+:::
 
 ```yaml
   LaunchTemplateEdge:
@@ -96,7 +145,7 @@ Similarly for Edge Group
       LaunchTemplateData:
         InstanceType: !Ref EdgeInstanceType
         KeyName: !Ref KeyName
-        ImageId: Put-Your-ImageId
+        ImageId: ami-xxxxxxxxxxxxxxxxx
         SecurityGroupIds:
           - !GetAtt "InstanceSecurityGroup.GroupId"
         BlockDeviceMappings:
@@ -107,25 +156,25 @@ Similarly for Edge Group
               DeleteOnTermination: true
 ```
 
-## Step 3: Deploy the AMS Cluster using the CloudFormation Template
+Save the modified template after updating both launch templates part.
 
-Now, in order to deploy the Ant Media Cluster with CloudFormation, follow this [CloudFormation document](https://antmedia.io/docs/guides/clustering-and-scaling/aws/scale-with-aws-cloudformation/) step-by-step from **step 5**. All the steps will remain the same for further deployment.
 
-Once the installation is done, your servers will be launched using your own Ant Media Server image with the pre-configured self-hosted license that you have purchased from Ant Media.
+## Step 3: Deploy the Cluster
 
-:::info
-The above steps in this document were to instruct on how to create the AWS AMI of Ant Media Server with a pre-configured self-hosted license and use it to deploy the cluster.
+After updating the template, follow the standard AWS CloudFormation deployment guide:
 
-Please feel free to reach out to [Github discussions](https://github.com/orgs/ant-media/discussions) if you have any query.
-:::
+[https://antmedia.io/docs/guides/clustering-and-scaling/aws/scale-with-aws-cloudformation/](https://antmedia.io/docs/guides/clustering-and-scaling/aws/scale-with-aws-cloudformation/)
+
+You can start directly from **Step 5** of that guide. The remaining deployment process is identical.
+
+CloudFormation will provision Origin and Edge instances using your custom AMI, ensuring that every instance starts with your preconfigured Ant Media Server license.
+
 
 <br /><br />
 ---
 
-<div align="center">
-<h2> 🔐 Scaled & Licensed — Your AMS, Your Rules! 🎯 </h2>
-</div>
+<div align="center"> <h2>🔐 Scale with Your Own Licensed AMS Deployment 🚀</h2> </div>
 
-You’ve created **your own AMS AMI** with your **self-hosted license**, plugged it into the **CloudFormation template**, and spun up a full cluster using your licensed image — **no marketplace image required**. Your cluster runs on your terms, with the license baked right in.
+You have successfully created a custom Ant Media Server AMI with your self-hosted license and integrated it into the AWS CloudFormation autoscaling workflow. Every Origin and Edge instance launched by CloudFormation now uses your licensed image, giving you complete control over your deployment while retaining the flexibility and scalability of AWS.
 
-Your deployment now scales with power — fully yours, end to end! 🚀
+Enjoy a fully automated, enterprise-ready AMS cluster built on your own licensing model 🚀.  
