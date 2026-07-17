@@ -110,13 +110,10 @@ helm install antmedia antmedia/antmedia --set origin=origin.antmedia.cloud --set
 
 ## Step 6: Configure Ingress Controller
 
-You have two alternatives for Ingress Controller: 
+There are two alternatives for an ingress controller: 
 
 - Nginx Ingress Controller.
 - Azure Application Gateway 
-
-By default, Ant Media Server deploys a self-signed certificate. If you prefer to utilize a signed certificate, kindly refer to [this link](https://antmedia.io/docs/guides/clustering-and-scaling/kubernetes/deploy-ams-on-kubernetes/#install-an-ssl-certificate) for detailed instructions.
-
 
 1. **Nginx Ingress Controller:** 
 
