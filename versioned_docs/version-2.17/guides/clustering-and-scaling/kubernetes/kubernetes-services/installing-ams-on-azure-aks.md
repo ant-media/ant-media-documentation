@@ -190,10 +190,20 @@ Enabling SSL for Azure Application Gateway is complicated as compared to Nginx I
 
 If you want to use Azure Application gateway, please follow this guide to [Enable SSL for Azure Application Gateway](https://antmedia.io/ssl-for-azure-app-gateway-for-scaling-azure-ant-media/)
 
+
+## Step 9: Access AMS Cluster
+
+If everything was set up correctly, `origin.yourdomain.com` or `edge.yourdomain.com` will display the Ant Media Server Create Account Page:
+
+![AMS registration page](@site/static/img/kubernetes/digitalOceanImageEightw.webp)
+
+Congratulations! You've successfully deployed Ant Media Server on AKS. Let's get ready to publish and play!
+
+
 <div align="center">
   <h2> 🎉 Azure AKS — Your Streaming Empire Awaits! 🚀 </h2>
 </div>
 
-Congratulations! Your Ant Media Server cluster is now live on **Azure Kubernetes Service**, featuring Origin and Edge deployments, a MongoDB backend, and an Application Load Balancer to route traffic. With resources scaling automatically, your streaming infrastructure is ready to handle high loads with resilience and flexibility.
+Congratulations! Your Ant Media Server cluster is now live on **Azure Kubernetes Service**, featuring Origin and Edge deployments, a MongoDB backend, and an Application Gateway to route traffic. With resources scaling automatically, your streaming infrastructure is ready to handle high loads with resilience and flexibility.
 
 Sit back, relax, and let the streams roll — **your viewers are in for a smooth ride!** 🎬🚀
