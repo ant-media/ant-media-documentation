@@ -7,26 +7,26 @@ sidebar_position: 1
 
 # Quick Start
 
-### 1. Download Installation Script
+## 1. Download Installation Script
 
 ```bash
 wget https://raw.githubusercontent.com/ant-media/Scripts/master/install_ant-media-server.sh -O install_ant-media-server.sh  && sudo chmod 755 install_ant-media-server.sh
 ```
 
-### 2. Install Ant Media Server
+## 2. Install Ant Media Server
 
-#### Install Enterprise Edition
+### Install Enterprise Edition
 
 ```bash
 sudo ./install_ant-media-server.sh -l 'your-license-key'
 ```
-#### Install Community Edition
+### Install Community Edition
 
 ```bash
 sudo ./install_ant-media-server.sh
 ```
 
-#### Install Specific Version
+### Install Specific Version
 
 ```bash
 sudo ./install_ant-media-server.sh -i <ANT_MEDIA_SERVER_ZIP_FILE>
@@ -38,7 +38,7 @@ sudo ./install_ant-media-server.sh -i <ANT_MEDIA_SERVER_ZIP_FILE>
 
 **For more installation options, check the help:** `./install_ant-media-server.sh -h`
 
-#### Checkout: Fast & Easy Installations on Cloud Marketplaces
+### Checkout: Fast & Easy Installations on Cloud Marketplaces
 
 
 <div style={{display: 'flex', justifyContent: 'space-between', textAlign: 'center', fontWeight:'bold', height: 'auto'}}>
@@ -52,7 +52,7 @@ sudo ./install_ant-media-server.sh -i <ANT_MEDIA_SERVER_ZIP_FILE>
   </div>
 </div>
 
-### 3. Configure SSL
+## 3. Configure SSL
 
 - After [installaling the Ant Media Server](https://antmedia.io/docs/guides/installing-on-linux/installing-ams-on-linux/), log in to the web panel and navigate to `SETTINGS > SSL`.
 ![](@site/static/img/ssl-webpanel/ssl-settings.png)
@@ -75,35 +75,35 @@ If the IP is dynamic/changed, then the server will not be accessible on a previo
 
 - Check this to learn how to [enable SSL via the terminal](https://antmedia.io/docs/version-2.11.3/guides/installing-on-linux/setting-up-ssl/#option-2-installing-ssl-using-the-terminal).
 
-### 4. Log in to Web Panel
+## 4. Log in to Web Panel
 
 Navigate to ```https://ant-media-server:5443``` and create the first user account.
 
 ![management-panel](https://github.com/user-attachments/assets/8901d363-23b2-4f08-979c-6c7e6e15a7df)
 
-### 5. Publish and Play WebRTC Live Streams
+## 5. Publish and Play WebRTC Live Streams
 
-#### Publish Live Stream
+### Publish Live Stream
 
 Publish a WebRTC live stream from the sample webrtc publish page, which is available at ```https://domain-name:5443/live ```
 
 ![publish](https://github.com/user-attachments/assets/510d9d26-275a-459f-939c-0acec27b8632)
 
 
-#### Play Live Stream
+### Play Live Stream
 
 Play the live stream with WebRTC using the sample WebRTC player page, which is available at ```https://domain-name:5443/live/player.html```
 
 ![play](https://github.com/user-attachments/assets/dad6d64e-6462-408e-849b-4b25c590ca96)
 
 
-### Sample Tools and Applications
+## Sample Tools and Applications
 
 - Access the [sample tools and applications](/get-started/sample-tools-and-applications/) via ```https://domain-name:5443/live/samples.html```.
 
 - Experience the sample pages [here](https://test.antmedia.io:5443/live/samples.html) now.
 
 
-### Getting Help
+## Getting Help
 
 If you need any help, feel free to head over to [Github discussions](https://github.com/orgs/ant-media/discussions) or follow our more detailed [AMS Installation Guide](/guides/installing-on-linux/installing-ams-on-linux/).
