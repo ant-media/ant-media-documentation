@@ -25,10 +25,19 @@ After creating the Resource Group and configuring settings such as Region and Ku
 
 ## Step 2: Configure Node Pools
 
-In the **Node pools** tab, enter the node pool (default agent pool) and make the desired changes according to your preferences. However, it is essential to ensure that **Enable public IP per node** is selected here.
+In the **Node pools** tab, enter the node pool (default agent pool) and make the desired changes according to your preferences. 
 
-![](@site/static/img/azure-aks/azure-aks-3-1.png)
-![](@site/static/img/azure-aks/azure-aks-3-2.png)
+![](@site/static/img/azure-aks/azure-aks-node-pool.png)
+
+Now go to optional settings and **Enable public IP per node** option and update the node pool.
+
+![](@site/static/img/azure-aks/azure-aks-public-ip.png)
+
+:::info
+- The public IP per node is needed if you want to establish the WebRTC publish/play connection directly.
+- If running over a private IP, the WebRTC protocol won't work without a turn server due to port issues and NAT restrictions. But the HLS, DASH, and other protocols will still work without a public as well via LB or Gateway.
+- For TURN server installation, check [here](https://docs.antmedia.io/guides/advanced-usage/turn-instalation/coturn-quick-installation/). It is required to make the WebRTC work.
+:::
 
 ## Step 3: Review and Create Cluster
 
@@ -38,11 +47,11 @@ Navigate to the **Review + create** tab and click **Create** to complete the set
 
 ## Step 4: Connect to Cluster
 
-When the installation is complete, you will see a screen like the one below. And then Click on the **Connect to cluster** button.
+When the installation is complete, you will see a screen like the one below. And then click on the **Connect to cluster** button.
 
 ![](@site/static/img/azure-aks/azure-aks-5-1.png)
 
-There are a number of ways to connect to the cluster like using the Cloud Shell, Azure CLI, or Run command. So, let's discuss a couple of them.
+There are a number of ways to connect to the cluster, like using the Cloud Shell, Azure CLI, or Run command. So, let's discuss a couple of them.
 
 ### Using Cloud Shell
 
@@ -50,7 +59,7 @@ Open Cloud Shell and run the below commands to connect to the cluster directly f
 
 ![](@site/static/img/azure-aks/using-cloud-shell.png)
 
-```
+```bash
 az account set --subscription your-subscription
 az aks get-credentials --resource-group your-resource-group --name your-cluster-name
 ```
@@ -62,18 +71,19 @@ To use Azure CLI on your computer, please make sure the prerequisites Azure CLI 
 ![](@site/static/img/azure-aks/using-azure-cli.png)
 
 Run the below commands to connect to the cluster from your computer.
-```
+
+```bash
 az login
 ```
 :::info
-Afer you run the above command, you will see a prompt message like "To sign in, use a web browser to open the page https://microsoft.com/devicelogin and enter the code XXXXXXXXX to authenticate.
+After you run the above command, you will see a prompt message like "To sign in, use a web browser to open the page https://microsoft.com/devicelogin and enter the code XXXXXXXXX to authenticate.
 :::
 
 - Follow the instructions, authenticate the code, and `Azure CLI` will open in the terminal.
 
 ![](@site/static/img/azure-aks/azure-cli-success.png)
 
-```
+```bash
 az account set --subscription your-subscription
 az aks get-credentials --resource-group your-resource-group --name your-cluster-name
 ```
@@ -82,65 +92,75 @@ az aks get-credentials --resource-group your-resource-group --name your-cluster-
 
 After successfully accessing the cluster, let's add and update the Ant Media Helm repository as follows.
 
-```
+```bash
 helm repo add antmedia https://ant-media.github.io/helm
 helm repo update
 ```
 
-And start the installation as follows
+And start the installation as follows:
 
 :::warning
 Don't forget to change your licenseKey, origin and edge values.
 :::
 
-```
+```bash
 helm install antmedia antmedia/antmedia --set origin=origin.antmedia.cloud --set edge=edge.antmedia.cloud  --set licenseKey="your-key" --set UseGlobalIP=false 
 --namespace antmedia --create-namespace
 ```
 
 ## Step 6: Configure Ingress Controller
 
-You have two alternatives: you can opt for either Azure Application Gateway or Nginx Ingress Controller.
+There are two alternatives for an ingress controller: 
 
-By default, Ant Media Server deploys a self-signed certificate. If You should prefer to utilize a signed certificate, kindly refer to [this link](https://antmedia.io/docs/guides/clustering-and-scaling/kubernetes/deploy-ams-on-kubernetes/#install-an-ssl-certificate) for detailed instructions.
+- Nginx Ingress Controller.
+- Azure Application Gateway 
+
+1. **Nginx Ingress Controller:** 
+
+   For the Nginx Ingress Controller, you will only need to run the following command.
+
+   ```bash
+   kubectl annotate service antmedia-ingress-nginx-controller service.beta.kubernetes.io/azure-load-balancer-health-probe-request-path=/healthz -n antmedia
+   ```
 
 
-1. Nginx Ingress Controller: For the Nginx Ingress Controller, you will only need to run the following command.
+2. **Azure Application Gateway:** 
 
-```
-kubectl annotate service antmedia-ingress-nginx-controller service.beta.kubernetes.io/azure-load-balancer-health-probe-request-path=/healthz -n antmedia
-```
+   For Application Gateway, go to **Networking > Virtual Network Integration > Enable ingress controller** from your cluster, and then create the application gateway.
 
+   ![](@site/static/img/azure-aks/azure-aks-app-gateway.png)
 
-2. Azure Application Gateway: Need to use an Application Gateway for which you can select **Networking > Enable ingress controller** from your cluster, and then create the Application Gateway.
+   Then run the following command to enable Application Gateway Ingress.
 
-![](@site/static/img/azure-aks/azure-aks-7.png)
+   ```bash
+   kubectl annotate ingress -n antmedia kubernetes.io/ingress.class=azure/application-gateway --overwrite --all
+   ```
+   
+   If you are using Application Gateway as ingress, you should make changes to the deployment files as follows.
 
-Then run the following command to enable Application Gateway Ingress.
+   ```bash
+   kubectl edit deployment ant-media-server-origin -n antmedia
+   ```
+   
+   Add the following lines under `image` variable:
 
-```shell
-kubectl annotate ingress -n antmedia kubernetes.io/ingress.class=azure/application-gateway --overwrite --all
-```
-If you are using Application Gateway as Ingress, you should make changes to the deployment files as follows.
-```
-kubectl edit deployment ant-media-server-origin -n antmedia
-```
-Add the following lines under `image:`
+   ```bash
+   image: antmedia/enterprise:x.x.x
+   imagePullPolicy: IfNotPresent
+   lifecycle:
+     postStart:
+       exec:
+         command:
+         - /bin/sh
+         - -c
+         - sed -i '/org.apache.catalina.valves.RemoteIpValve/d' /usr/local/antmedia/conf/jee-container.xml
+   ```
 
-```
-        lifecycle:
-          postStart:
-            exec:
-              command:
-              - /bin/sh
-              - -c
-              - sed -i '/org.apache.catalina.valves.RemoteIpValve/d' /usr/local/antmedia/conf/jee-container.xml
-```
-These changes must be made on both Origin and Edge deployment side.
+   These changes must be made on both the origin and edge deployment sides.
 
-## Step 7
+## Step 7: Verify IP assignment
 
-If the installation and configuration was successful, the public IP address/domain name will be output when running the command `kubectl get ingress -n antmedia`. After making the DNS registration, you will be able to access Ant Media Server using the hostname thats been configured.
+If the installation and configuration were successful, the public IP address/domain name will be output when running the command `kubectl get ingress -n antmedia`. After making the DNS registration, you will be able to access Ant Media Server using the hostname that's been configured.
 
 ![](@site/static/img/azure-aks/azure-aks-8-1.png)
 
@@ -149,25 +169,38 @@ Execute the `kubectl get svc -n antmedia` command to fetch the RTMP address from
 ![](@site/static/img/azure-aks/azure-aks-8-2.png)
 
 ## Step 8: Enable SSL
+
 We will discuss how to enable SSL for both cases, using Nginx Ingress Controller or using Azure Application Gateway.
 
 ### Nginx Ingress Controller
-After creating the DSN records for both Origin and Edge.
-- Get the `ams-k8s-ssl.sh` script and run it to enable SSL.
-```
+
+After creating the DNS records for both Origin and Edge, get the `ams-k8s-ssl.sh` script and run it to enable SSL.
+
+```bash
 wget https://raw.githubusercontent.com/ant-media/helm/add_helm_repo/ams-k8s-ssl.sh
 bash ams-k8s-ssl.sh
 ```
 
 ### Azure Application Gateway
-Enabling SSL for Azure Application gateway is complicated as compared to Nginx Ingress.
+
+Enabling SSL for Azure Application Gateway is complicated as compared to Nginx Ingress.
 
 If you want to use Azure Application gateway, please follow this guide to [Enable SSL for Azure Application Gateway](https://antmedia.io/ssl-for-azure-app-gateway-for-scaling-azure-ant-media/)
+
+
+## Step 9: Access AMS Cluster
+
+If everything was set up correctly, `origin.yourdomain.com` or `edge.yourdomain.com` will display the Ant Media Server Create Account Page:
+
+![AMS registration page](@site/static/img/kubernetes/digitalOceanImageEightw.webp)
+
+Congratulations! You've successfully deployed Ant Media Server on AKS. Let's get ready to publish and play!
+
 
 <div align="center">
   <h2> 🎉 Azure AKS — Your Streaming Empire Awaits! 🚀 </h2>
 </div>
 
-Congratulations! Your Ant Media Server cluster is now live on **Azure Kubernetes Service**, featuring Origin and Edge deployments, a MongoDB backend, and an Application Load Balancer to route traffic. With resources scaling automatically, your streaming infrastructure is ready to handle high loads with resilience and flexibility.
+Congratulations! Your Ant Media Server cluster is now live on **Azure Kubernetes Service**, featuring Origin and Edge deployments, a MongoDB backend, and an Application Gateway to route traffic. With resources scaling automatically, your streaming infrastructure is ready to handle high loads with resilience and flexibility.
 
 Sit back, relax, and let the streams roll — **your viewers are in for a smooth ride!** 🎬🚀
