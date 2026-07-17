@@ -5,11 +5,11 @@ keywords: [Scale AMS with AWS CloudFormation, Ant Media Server Documentation, An
 sidebar_position: 7
 ---
 
-# Scale AMS with AWS CloudFormation using Self-Hosted license
+# Scale AMS with AWS CloudFormation using Self-Hosted License
 
 If you have already gone through the Ant Media Server cluster deployment via [AWS CloudFormation](https://antmedia.io/docs/guides/clustering-and-scaling/aws/scale-with-aws-cloudformation/) service, by default it uses the AWS [marketplace image](https://aws.amazon.com/marketplace/pp/prodview-464ritgzkzod6?sr=0-1&ref_=beagle&applicationId=AWSMPContessa#pdp-overview) of AMS.
 
-Now here comes the question of how to deploy the Ant Media cluster quickly via CloudFormation while using the `self-hosted license` purchased via [AntMedia](https://antmedia.io/#products) directly.
+Now here comes the question of how to deploy the autoscalable Ant Media cluster quickly via CloudFormation while using the `self-hosted license` purchased via [AntMedia](https://antmedia.io/#products) directly.
 
 So in this document, we will go through the step-by-step guide to deploy the AMS cluster with CloudFormation using the self-hosted license of Ant Media Server.
 
@@ -35,21 +35,19 @@ We are assuming that you already have purchased the licenses for your AMS cluste
    
    After saving the settings, restart the server with **sudo service antmedia restart**
 
-- Open the server at [http://IP-address:5080](http://ip-address:5080/) to verify if it is working. You do not have to create an account for web panel.
-
-- Then remove the **instanceId** file from the same **/usr/local/antmedia/conf**  folder.
+- Open the server at [http://IP-address:5080](http://ip-address:5080/) to verify if it is working. You do not have to create an account for the web panel.
 
 - Then create the AMI by selecting the `Instances` --> `Actions` --> `Image and templates` --> `Create image`.
 
 ![](@site/static/img/clustering-and-scaling/aws-cloudformation/create-aws-ami.png)
 
-During the image creation, just provide the name and description of the image and create the image.
+- During the image creation, just provide the name and description of the image and create the image.
 
 ![](@site/static/img/clustering-and-scaling/aws-cloudformation/ams-image.png)
 
-To check the image, go to the Images section of EC2 and select AMIs. Under that section, you will see your created image.
+- To check the image, go to the Images section of EC2 and select AMIs. Under that section, you will see your created image.
 
-You need to note down the AMI ID of your Ant Media Server image.
+- You need to note down the AMI ID of your Ant Media Server image.
 
 ![](@site/static/img/clustering-and-scaling/aws-cloudformation/ami-id.png)
 
@@ -66,7 +64,7 @@ In the template, edit the **ImageId** in the Origin and Edge Launch template par
 :::info
 In Origin configuration, you may use the GPU image as well so for that, you need to create the AMS image on the GPU-based instance and then you have to put the ImageId in place of **!Ref AntMediaGPUAmi**
 
-The GPU Image will be used when you set the GPU option to true during the deployment; otherwise, a normal image will be used, like we created and used in this document.
+The GPU image will be used when you set the GPU option to true during the deployment; otherwise, a normal image will be used, like we created and used in this document.
 :::
 
 ```yaml
@@ -111,9 +109,9 @@ Similarly for Edge Group
 
 ## Step 3: Deploy the AMS Cluster using the CloudFormation Template
 
-Now, in order to deploy the Ant Media Cluster with CloudFormation, follow this [CloudFormation document](https://antmedia.io/docs/guides/clustering-and-scaling/aws/scale-with-aws-cloudformation/) step-by-step from step 5. All the steps will remain same for further deployment.
+Now, in order to deploy the Ant Media Cluster with CloudFormation, follow this [CloudFormation document](https://antmedia.io/docs/guides/clustering-and-scaling/aws/scale-with-aws-cloudformation/) step-by-step from **step 5**. All the steps will remain the same for further deployment.
 
-Once the installation is done, your servers will be launched using your own Ant Media Server Image with the pre-configured self-hosted license that you have purchased from Ant Media.
+Once the installation is done, your servers will be launched using your own Ant Media Server image with the pre-configured self-hosted license that you have purchased from Ant Media.
 
 :::info
 The above steps in this document were to instruct on how to create the AWS AMI of Ant Media Server with a pre-configured self-hosted license and use it to deploy the cluster.
