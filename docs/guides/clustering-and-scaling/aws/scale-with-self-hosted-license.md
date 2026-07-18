@@ -1,5 +1,5 @@
 ---
-title: Scale AMS on AWS using Self-Hosted License
+title: Scale AMS on AWS using Self-Hosted license
 description: Scale AMS on AWS using self-hosted license
 keywords: [Scale AMS with AWS CloudFormation, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 7
@@ -8,7 +8,7 @@ sidebar_position: 7
 
 # Deploy and Scale Ant Media Server on AWS Using a Self-Hosted License
 
-The default Ant Media Server [AWS CloudFormation](https://antmedia.io/docs/guides/clustering-and-scaling/aws/scale-with-aws-cloudformation/) deployment uses the Ant Media Server image available on the AWS Marketplace.
+The default Ant Media Server **[AWS CloudFormation](https://antmedia.io/docs/guides/clustering-and-scaling/aws/scale-with-aws-cloudformation/)** deployment uses the Ant Media Server image available on the AWS Marketplace.
 
 However, if you have purchased a **[self-hosted license directly from Ant Media](https://antmedia.io/#products)**, you may want to deploy and autoscale your cluster using your own licensed Ant Media Server image instead of the Marketplace image.
 
@@ -122,13 +122,13 @@ Replace the `ImageId` value with your AMI ID:
               DeleteOnTermination: true
 ```
 
-:::  
+:::info
 If you plan to use GPU-enabled Origin instances, create a separate GPU-based Ant Media Server AMI and use its AMI ID in place of `!Ref AntMediaGPUAmi`.
 
 When the `GPU` deployment option is enabled, CloudFormation will launch instances using the GPU AMI. Otherwise, it will use the standard AMI.  
 :::
 
-### Update the Edge Launch Template Part
+### Update the Edge Launch Template
 
 Replace the Edge image reference as well:
 
@@ -156,8 +156,7 @@ Replace the Edge image reference as well:
               DeleteOnTermination: true
 ```
 
-Save the modified template after updating both launch templates part.
-
+Save the modified template after updating.
 
 ## Step 3: Deploy the Cluster
 
