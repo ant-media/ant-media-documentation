@@ -8,9 +8,9 @@ sidebar_position: 7
 
 # Deploy and Scale Ant Media Server on AWS Using a Self-Hosted License
 
-The default Ant Media Server **[AWS CloudFormation](https://antmedia.io/docs/guides/clustering-and-scaling/aws/scale-with-aws-cloudformation/)** deployment uses the Ant Media Server image available on the AWS Marketplace.
+The default Ant Media Server **[AWS CloudFormation](https://docs.antmedia.io/guides/clustering-and-scaling/aws/aws-cloudformation/scale-with-aws-cloudformation/)** deployment uses the Ant Media Server image available on the AWS Marketplace.
 
-However, if you have purchased a **[self-hosted license directly from Ant Media](https://antmedia.io/#products)**, you may want to deploy and autoscale your cluster using your own licensed Ant Media Server image instead of the Marketplace image.
+However, if you have purchased a **[self-hosted license directly from Ant Media](https://antmedia.io/pricing/)**, you may want to deploy and autoscale your cluster using your own licensed Ant Media Server image instead of the Marketplace image.
 
 This guide explains how to create a custom AWS AMI with your Ant Media Server license preconfigured and use it in the CloudFormation autoscaling template.
 
@@ -34,7 +34,7 @@ Before you begin, ensure that you have:
 2.  Install Ant Media Server by following the [**Linux installation**](https://antmedia.io/docs/guides/installing-on-linux/installing-ams-on-linux/) guide.
 3.  After installation:
     -   SSL configuration is **not required** for the AMI.
-    -   Ensure all required [**AMS ports**](https://resources.antmedia.io/docs/installation#server-ports) are allowed in your Security Group.
+    -   Ensure all required [**AMS ports**](https://docs.antmedia.io/guides/installing-on-linux/installing-ams-on-linux/#server-ports) are allowed in your Security Group.
 
 ### Configure Your License
 
@@ -134,7 +134,7 @@ Replace the Edge image reference as well:
 
 :::info
 - If the license key is different for Edge Servers, then you will have to create one more image for the edge group.
-- In case you want to have some extra changes for Edge servers, then in that case also you can create the separate AMI for Edge.
+- In case you want to have some extra changes for Edge servers, then in that case also you can create the separate AMI for Edge Group.
 :::
 
 ```yaml
@@ -162,9 +162,9 @@ Save the modified template after updating.
 
 After updating the template, follow the standard AWS CloudFormation deployment guide:
 
-[https://antmedia.io/docs/guides/clustering-and-scaling/aws/scale-with-aws-cloudformation/](https://antmedia.io/docs/guides/clustering-and-scaling/aws/scale-with-aws-cloudformation/)
+[https://antmedia.io/docs/guides/clustering-and-scaling/aws/scale-with-aws-cloudformation/](https://docs.antmedia.io/guides/clustering-and-scaling/aws/aws-cloudformation/scale-with-aws-cloudformation/)
 
-You can start directly from **Step 5** of that guide. The remaining deployment process is identical.
+**NOTE:** You can start directly from **Step 5** of that guide. The remaining deployment process is identical.
 
 CloudFormation will provision Origin and Edge instances using your custom AMI, ensuring that every instance starts with your preconfigured Ant Media Server license.
 
