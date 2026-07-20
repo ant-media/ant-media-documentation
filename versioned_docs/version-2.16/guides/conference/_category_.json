@@ -1,8 +1,8 @@
 {
-  "label": "Conference Room",
+  "label": "Conference",
   "position": 5,
   "link": {
     "type": "generated-index",
-    "description": "Conferencing with Ant Media Server"
+    "description": "Conferencing with Ant Media Server."
   }
 }

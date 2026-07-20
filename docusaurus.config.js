@@ -320,8 +320,79 @@ scripts: [
           to: '/category/load-testing/'
         },
 	{
+          from: '/guides/configuration-and-testing/load-testing/webrtc-load-testing/',
+          to: '/guides/load-testing/webrtc-load-testing/',
+        },
+	{
+          from: '/guides/configuration-and-testing/load-testing/hls-load-testing/',
+          to: '/guides/load-testing/hls-load-testing/',
+        },
+	{
+          from: '/guides/configuration-and-testing/load-testing/rtmp-load-testing/',
+          to: '/guides/load-testing/rtmp-load-testing/',
+        },
+	{
+          from: '/guides/configuration-and-testing/load-testing/rtsp-load-testing/',
+          to: '/guides/load-testing/rtsp-load-testing/',
+        },
+	{
+          from: '/guides/configuration-and-testing/load-testing/srt-loadt-testing/',
+          to: '/guides/load-testing/srt-loadt-testing/',
+        },
+	{
           from: '/guides/configuration-and-testing/webrtc-load-testing/',
           to: '/category/load-testing/'
+        },
+	// Versioned load-testing moves (3.0 latest is unversioned)
+	...['2.17', '2.16'].flatMap((ver) => [
+          {
+            from: `/${ver}/guides/configuration-and-testing/load-testing/`,
+            to: `/${ver}/category/load-testing/`,
+          },
+          {
+            from: `/${ver}/guides/configuration-and-testing/load-testing/webrtc-load-testing/`,
+            to: `/${ver}/guides/load-testing/webrtc-load-testing/`,
+          },
+          {
+            from: `/${ver}/guides/configuration-and-testing/load-testing/hls-load-testing/`,
+            to: `/${ver}/guides/load-testing/hls-load-testing/`,
+          },
+          {
+            from: `/${ver}/guides/configuration-and-testing/load-testing/rtmp-load-testing/`,
+            to: `/${ver}/guides/load-testing/rtmp-load-testing/`,
+          },
+          {
+            from: `/${ver}/guides/configuration-and-testing/load-testing/srt-loadt-testing/`,
+            to: `/${ver}/guides/load-testing/srt-loadt-testing/`,
+          },
+        ]),
+	{
+          from: '/3.0/guides/configuration-and-testing/load-testing/',
+          to: '/category/load-testing/',
+        },
+	{
+          from: '/3.0/guides/configuration-and-testing/load-testing/webrtc-load-testing/',
+          to: '/guides/load-testing/webrtc-load-testing/',
+        },
+	{
+          from: '/3.0/guides/configuration-and-testing/load-testing/hls-load-testing/',
+          to: '/guides/load-testing/hls-load-testing/',
+        },
+	{
+          from: '/3.0/guides/configuration-and-testing/load-testing/rtmp-load-testing/',
+          to: '/guides/load-testing/rtmp-load-testing/',
+        },
+	{
+          from: '/3.0/guides/configuration-and-testing/load-testing/rtsp-load-testing/',
+          to: '/guides/load-testing/rtsp-load-testing/',
+        },
+	{
+          from: '/3.0/guides/configuration-and-testing/load-testing/srt-loadt-testing/',
+          to: '/guides/load-testing/srt-loadt-testing/',
+        },
+	{
+          from: '/2.17/guides/configuration-and-testing/load-testing/rtsp-load-testing/',
+          to: '/2.17/guides/load-testing/rtsp-load-testing/',
         },
 	{
           from: '/v1/docs/ssl-setup/',
@@ -365,12 +436,75 @@ scripts: [
         },
 	{
           from: '/guides/configuration-and-testing/configuring-stun-addresses/',
-          to: '/guides/advanced-usage/turn-installation/coturn-quick-installation/'
+          to: '/guides/configuration-and-testing/configuring-stun-turn-addresses/'
+        },
+	{
+          from: '/guides/advanced-usage/turn-installation/configuring-stun-turn-addresses/',
+          to: '/guides/configuration-and-testing/configuring-stun-turn-addresses/',
+        },
+	{
+          from: '/3.0/guides/advanced-usage/turn-installation/configuring-stun-turn-addresses/',
+          to: '/guides/configuration-and-testing/configuring-stun-turn-addresses/',
         },
 	{
           from: '/guides/advanced-usage/turn-and-stun-installation/coturn-quick-installation/',
           to: '/guides/advanced-usage/turn-installation/coturn-quick-installation/'
         },
+	// Push Notification moved under Developer SDKs & API
+	...(() => {
+          const pushPages = [
+            'push-notification-management/',
+            'Android SDK/configure-ant-media-server/',
+            'Android SDK/configure-manifest/',
+            'Android SDK/create-android-project/',
+            'Android SDK/create-required-classes/',
+            'Android SDK/dependency/',
+            'Android SDK/sending-notification/',
+            'Android SDK/setting-up-firebase/',
+            'iOS SDK/configure-ant-media-server/',
+            'iOS SDK/configure-your-ios-project/',
+            'iOS SDK/prerequirements/',
+            'iOS SDK/sending-notification/',
+            'iOS SDK/setting-up-apn-certificates/',
+          ];
+          const redirects = [
+            {
+              from: '/guides/developing-antmedia-server/push-notification-management/',
+              to: '/category/push-notification/',
+            },
+            {
+              from: '/3.0/guides/developing-antmedia-server/push-notification-management/',
+              to: '/category/push-notification/',
+            },
+            {
+              from: '/2.17/guides/developing-antmedia-server/push-notification-management/',
+              to: '/2.17/category/push-notification/',
+            },
+            {
+              from: '/2.16/guides/developing-antmedia-server/push-notification-management/',
+              to: '/2.16/category/push-notification/',
+            },
+          ];
+          for (const page of pushPages) {
+            redirects.push({
+              from: `/guides/developing-antmedia-server/push-notification-management/${page}`,
+              to: `/guides/developer-sdk-and-api/push-notification-management/${page}`,
+            });
+            redirects.push({
+              from: `/3.0/guides/developing-antmedia-server/push-notification-management/${page}`,
+              to: `/guides/developer-sdk-and-api/push-notification-management/${page}`,
+            });
+            redirects.push({
+              from: `/2.17/guides/developing-antmedia-server/push-notification-management/${page}`,
+              to: `/2.17/guides/developer-sdk-and-api/push-notification-management/${page}`,
+            });
+            redirects.push({
+              from: `/2.16/guides/developing-antmedia-server/push-notification-management/${page}`,
+              to: `/2.16/guides/developer-sdk-and-api/push-notification-management/${page}`,
+            });
+          }
+          return redirects;
+        })(),
 	{
           from: '/category/stream-security/webhook-stream-authorization',
           to: '/guides/stream-security/webhook-stream-authorization/'

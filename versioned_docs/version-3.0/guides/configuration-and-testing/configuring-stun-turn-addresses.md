@@ -2,8 +2,7 @@
 title: Configure STUN/TURN Server
 description: This guide will help you to set up a custom STUN/TURN server for the Ant Media server-side and client-side SDKs and for AWS Wavelength Zone
 keywords: [STUN & TURN configuration, TURN Server, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 2
----
+sidebar_position: 3---
 
 # Configure STUN/TURN Server
 
