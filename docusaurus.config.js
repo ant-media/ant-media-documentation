@@ -261,11 +261,11 @@ scripts: [
         },
 	{
           from: '/guides/advanced-usage/monitoring/monitoring-ams-with-datadog/',
-          to: '/category/monitoring-solutions/'
+          to: '/category/monitoring/'
         },
 	{
           from: '/guides/monitoring/monitoring-ams-with-datadog/',
-          to: '/category/monitoring-solutions/'
+          to: '/category/monitoring/'
         },
 	{
           from: '/v1/docs/rest-api-guide/',
@@ -452,8 +452,8 @@ scripts: [
         },
 	// Push Notification moved under Developer SDKs & API
 	...(() => {
+          // Overview doc is served at the folder URL (not .../push-notification-management/push-notification-management/).
           const pushPages = [
-            'push-notification-management/',
             'Android SDK/configure-ant-media-server/',
             'Android SDK/configure-manifest/',
             'Android SDK/create-android-project/',
@@ -473,16 +473,32 @@ scripts: [
               to: '/category/push-notification/',
             },
             {
+              from: '/guides/developing-antmedia-server/push-notification-management/push-notification-management/',
+              to: '/guides/developer-sdk-and-api/push-notification-management/',
+            },
+            {
               from: '/3.0/guides/developing-antmedia-server/push-notification-management/',
               to: '/category/push-notification/',
+            },
+            {
+              from: '/3.0/guides/developing-antmedia-server/push-notification-management/push-notification-management/',
+              to: '/guides/developer-sdk-and-api/push-notification-management/',
             },
             {
               from: '/2.17/guides/developing-antmedia-server/push-notification-management/',
               to: '/2.17/category/push-notification/',
             },
             {
+              from: '/2.17/guides/developing-antmedia-server/push-notification-management/push-notification-management/',
+              to: '/2.17/guides/developer-sdk-and-api/push-notification-management/',
+            },
+            {
               from: '/2.16/guides/developing-antmedia-server/push-notification-management/',
               to: '/2.16/category/push-notification/',
+            },
+            {
+              from: '/2.16/guides/developing-antmedia-server/push-notification-management/push-notification-management/',
+              to: '/2.16/guides/developer-sdk-and-api/push-notification-management/',
             },
           ];
           for (const page of pushPages) {
@@ -547,7 +563,7 @@ scripts: [
         },
 	{
           from: '/guides/publish-live-stream/introduction/',
-          to: '/category/publish-live-stream/'
+          to: '/category/publish-live-streams/'
         },
 	{
           from: '/guides/playing-live-stream/Embedded-Web-Player/',
@@ -559,7 +575,23 @@ scripts: [
         },
 	{
           from: '/category/monitoring-ant-media-instance/',
-          to: '/category/monitoring-solutions/'
+          to: '/category/monitoring/'
+        },
+	{
+          from: '/category/monitoring-solutions/',
+          to: '/category/monitoring/'
+        },
+	{
+          from: '/category/publish-live-stream/',
+          to: '/category/publish-live-streams/'
+        },
+	{
+          from: '/category/installing-on-linux/',
+          to: '/category/installation/'
+        },
+	{
+          from: '/category/configuration--testing/',
+          to: '/category/configuration/'
         },
 	{
           from: '/guides/upgrading-ant-media-server/',
@@ -647,11 +679,11 @@ scripts: [
         },
 	{
           from: '/streaming-glossary/',
-          to: '/category/installing-on-linux/'
+          to: '/category/installation/'
         },
 	{
           from: '/category/guides/',
-          to: '/category/installing-on-linux/'
+          to: '/category/installation/'
         },
 	{
           from: '/guides/configuration-and-testing/AMS-application-configuration/',
@@ -704,7 +736,7 @@ scripts: [
         },
 	{
           from: '/guides/configuration-and-testing/decreasing-boot-time/',
-          to: '/category/configuration--testing/',
+          to: '/category/configuration/',
         },
 	{
           // Temporary flat AWS URLs (from brief flatten) → restored nested paths
