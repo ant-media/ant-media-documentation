@@ -1,8 +1,8 @@
 {
   "label": "Manual Configuration",
-  "position": 6,
+  "position": 2,
   "link": {
     "type": "generated-index",
-    "description": "These guides explain how you can install a cluster manually to deploy Ant Media Server"
+    "description": "Core cluster concepts and DIY install (origin, edge, database). These are building blocks\u2014not alternate products. Start with Choose a Deployment Option at the Clustering and Scaling root if you have not picked a platform yet."
   }
 }

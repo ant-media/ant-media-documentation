@@ -2,7 +2,8 @@
 title: Multi Level Cluster
 description: Multi Level Cluster
 keywords: [Multi Level Cluster, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 3
+sidebar_position: 2
+sidebar_label: Multi-Level Cluster
 ---
 # Multi Level Cluster
 

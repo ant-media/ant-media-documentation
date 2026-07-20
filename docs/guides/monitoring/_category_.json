@@ -1,9 +1,8 @@
 {
-    "label": "Monitoring Solutions",
-    "position": 12,
-    "link": {
-      "type": "generated-index",
-      "description": "These guides will assist you in monitoring the Ant Media Server statistics that you require to maximize your streaming experience."
-    }
+  "label": "Monitoring Solutions",
+  "position": 14,
+  "link": {
+    "type": "generated-index",
+    "description": "These guides will assist you in monitoring the Ant Media Server statistics that you require to maximize your streaming experience."
   }
-  
+}

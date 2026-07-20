@@ -2,7 +2,8 @@
 title: Ant Media Server Cluster on Azure
 description: How to Setup Ant Media Server Cluster on Azure
 keywords: [Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 1
+sidebar_position: 2
+sidebar_label: Cluster on Azure
 ---
 
 # How to Setup Ant Media Server Cluster on Azure

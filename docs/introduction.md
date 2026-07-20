@@ -4,6 +4,7 @@ slug: /
 description: Deploy Ant Media Server to your choice of cloud within minutes.
 keywords: [Free Streaming Server Software, Ant Media Community v/s Enterprise Edition, Use Cases, Live Streaming Server Software]
 sidebar_position: 1
+sidebar_label: Introduction to Ant Media Server
 ---
 
 

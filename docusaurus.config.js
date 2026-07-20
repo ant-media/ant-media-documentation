@@ -57,6 +57,30 @@ const config = {
     locales: ['en'],
   },
 
+  // One-time migration: older visits stored theme=light in localStorage, which
+  // overrides defaultMode. Apply dark once, then respect the user's toggle.
+  headTags: [
+    {
+      tagName: 'script',
+      attributes: {},
+      innerHTML: `
+        (function () {
+          try {
+            var flag = 'ams-docs-default-dark-v1';
+            if (!localStorage.getItem(flag)) {
+              localStorage.setItem('theme', 'dark');
+              localStorage.setItem(flag, '1');
+              document.documentElement.setAttribute('data-theme', 'dark');
+              document.documentElement.setAttribute('data-theme-choice', 'dark');
+            }
+          } catch (e) {}
+        })();
+      `,
+    },
+  ],
+
+  clientModules: [require.resolve('./src/clientModules/defaultDarkMode.js')],
+
 scripts: [
     {
       src: "//code.tidio.co/rk0jjyc0mwbxjgimchdsnl4cwitetyvi.js",
@@ -85,6 +109,69 @@ scripts: [
                 label: `${getNextVersionName()} 🚧`,
               },
           },
+          // Flatten Guides + Get Started into top-level sidebar items, and place
+          // Security and Privacy after FAQ for a clearer onboarding flow.
+          async sidebarItemsGenerator({defaultSidebarItemsGenerator, ...args}) {
+            const items = await defaultSidebarItemsGenerator(args);
+
+            const getStartedOrder = [
+              'features',
+              'user-management',
+              'sample-tools-and-applications',
+            ];
+
+            const itemKey = (item) =>
+              `${item.docId || ''} ${item.href || ''} ${item.id || ''} ${item.label || ''}`.toLowerCase();
+
+            const isSecurity = (item) => itemKey(item).includes('security-and-privacy');
+            const isFaq = (item) =>
+              itemKey(item).includes('faq') ||
+              (item.label || '').toLowerCase().includes('frequently asked');
+
+            const sortGetStarted = (children) => {
+              const rank = (item) => {
+                const key = itemKey(item);
+                const idx = getStartedOrder.findIndex((id) => key.includes(id));
+                return idx === -1 ? 999 : idx;
+              };
+              return [...children].sort((a, b) => rank(a) - rank(b));
+            };
+
+            let securityItem = null;
+            const flattened = [];
+
+            for (const item of items) {
+              if (item.type === 'category' && item.label === 'Guides') {
+                flattened.push(...(item.items ?? []));
+                continue;
+              }
+              if (item.type === 'category' && item.label === 'Get Started') {
+                const children = item.items ?? [];
+                const rest = [];
+                for (const child of children) {
+                  if (isSecurity(child)) {
+                    securityItem = child;
+                  } else {
+                    rest.push(child);
+                  }
+                }
+                flattened.push(...sortGetStarted(rest));
+                continue;
+              }
+              flattened.push(item);
+            }
+
+            if (securityItem) {
+              const faqIdx = flattened.findIndex(isFaq);
+              if (faqIdx >= 0) {
+                flattened.splice(faqIdx + 1, 0, securityItem);
+              } else {
+                flattened.push(securityItem);
+              }
+            }
+
+            return flattened;
+          },
         },
         blog: false,
         theme: {
@@ -105,7 +192,12 @@ scripts: [
   ],
 
   plugins: [[ require.resolve('docusaurus-lunr-search'), {
-    languages: ['en']
+    languages: ['en'],
+    // Index the latest-version homepage (`/`). Without this, only older
+    // versioned home pages (`/2.17/`, `/2.16/`) appear for "Introduction".
+    indexBaseUrl: true,
+    // Give ranking room after we prefer latest-version hits in SearchBar.
+    maxHits: 10,
   }],
   [
     '@docusaurus/plugin-client-redirects',
@@ -129,7 +221,7 @@ scripts: [
         },
         {
           from: '/guides/clustering-and-scaling/aws/installing-ams-on-aws-eks/',
-          to: '/guides/clustering-and-scaling/kubernetes/kubernetes-services/installing-ams-on-aws-eks/'
+          to: '/guides/clustering-and-scaling/kubernetes/installing-ams-on-aws-eks/'
         },
         {
           from: '/guides/developer-sdk-and-api/rest-api-guide/enabling-ip-filtering-behind-load-balancer-in-aws/',
@@ -200,8 +292,24 @@ scripts: [
           to: '/category/android-sdk/'
         },
 	{
-          from: '/guides/clustering-and-scaling/kubernetes/installing-ams-on-aws-eks/',
-          to: '/guides/clustering-and-scaling/kubernetes/kubernetes-services/installing-ams-on-aws-eks/'
+          from: '/guides/clustering-and-scaling/kubernetes/kubernetes-services/installing-ams-on-aws-eks/',
+          to: '/guides/clustering-and-scaling/kubernetes/installing-ams-on-aws-eks/'
+        },
+	{
+          from: '/guides/clustering-and-scaling/kubernetes/kubernetes-services/installing-ams-on-azure-aks/',
+          to: '/guides/clustering-and-scaling/kubernetes/installing-ams-on-azure-aks/'
+        },
+	{
+          from: '/guides/clustering-and-scaling/kubernetes/kubernetes-services/installing-ams-on-google-gke/',
+          to: '/guides/clustering-and-scaling/kubernetes/installing-ams-on-google-gke/'
+        },
+	{
+          from: '/guides/clustering-and-scaling/kubernetes/kubernetes-services/install-ams-at-digital-ocean/',
+          to: '/guides/clustering-and-scaling/kubernetes/install-ams-at-digital-ocean/'
+        },
+	{
+          from: '/category/kubernetes-services/',
+          to: '/category/kubernetes/'
         },
 	{
           from: '/guides/playing-live-stream/webrtc-conference-call/',
@@ -229,7 +337,11 @@ scripts: [
         },
 	{
           from: '/v1/docs/getting-started-with-ant-media-server/',
-          to: '/category/get-started/'
+          to: '/get-started/features/'
+        },
+	{
+          from: '/category/get-started/',
+          to: '/get-started/features/'
         },
 	{
           from: '/v1/docs/clustering-and-scaling-ant-media-server/',
@@ -401,7 +513,11 @@ scripts: [
         },
 	{
           from: '/streaming-glossary/',
-          to: '/category/guides/'
+          to: '/category/installing-on-linux/'
+        },
+	{
+          from: '/category/guides/',
+          to: '/category/installing-on-linux/'
         },
 	{
           from: '/guides/configuration-and-testing/AMS-application-configuration/',
@@ -457,28 +573,76 @@ scripts: [
           to: '/category/configuration--testing/',
         },
 	{
+          // Temporary flat AWS URLs (from brief flatten) → restored nested paths
           from: '/guides/clustering-and-scaling/aws/running-ams-container-at-ecs/',
           to: '/guides/clustering-and-scaling/aws/aws-ecs/running-ams-container-at-ecs/',
         },
-        {
-          from: [
-            '/guides/clustering-and-scaling/aws/aws-wavelength-standalone-deployment/',
-            '/guides/clustering-and-scaling/aws/aws-wavelength-cluster-deployment/',
-            '/guides/clustering-and-scaling/aws/deploying-ams-at-aws-wavelength/',
-          ],
-          to: '/category/aws-wavelength/'
+	{
+          from: '/guides/clustering-and-scaling/aws/scaling-at-aws-ecs-fargate/',
+          to: '/guides/clustering-and-scaling/aws/aws-ecs/scaling-at-aws-ecs-fargate/',
         },
 	{
           from: '/guides/clustering-and-scaling/aws/configuring-rtmp-lb-in-aws/',
-          to: '/category/aws-load-balancer/',
+          to: '/guides/clustering-and-scaling/aws/aws-lb/configuring-rtmp-lb-in-aws/',
         },
 	{
-          from: [
-            '/guides/clustering-and-scaling/aws/scale-with-aws-cloudformation/',
-	    '/guides/clustering-and-scaling/aws/updating-ams-with-cloudformation/',
-	    '/guides/clustering-and-scaling/aws/ant-media-global-cluster-on-aws/',
-	  ],
-          to: '/category/aws-cloudformation/',
+          from: '/guides/clustering-and-scaling/aws/enabling-ip-filtering-behind-load-balancer-in-aws/',
+          to: '/guides/clustering-and-scaling/aws/aws-lb/enabling-ip-filtering-behind-load-balancer-in-aws/',
+        },
+	{
+          from: '/guides/clustering-and-scaling/aws/scale-with-aws-cloudformation/',
+          to: '/guides/clustering-and-scaling/aws/aws-cloudformation/scale-with-aws-cloudformation/',
+        },
+	{
+          from: '/guides/clustering-and-scaling/aws/updating-ams-with-cloudformation/',
+          to: '/guides/clustering-and-scaling/aws/aws-cloudformation/updating-ams-with-cloudformation/',
+        },
+	{
+          from: '/guides/clustering-and-scaling/aws/ant-media-global-cluster-on-aws/',
+          to: '/guides/clustering-and-scaling/aws/aws-cloudformation/ant-media-global-cluster-on-aws/',
+        },
+	{
+          from: '/guides/clustering-and-scaling/aws/auto-managed-service-on-aws/',
+          to: '/guides/clustering-and-scaling/aws/aws-auto-managed/auto-managed-service-on-aws/',
+        },
+	{
+          from: '/guides/clustering-and-scaling/aws/scale-with-self-hosted-license/',
+          to: '/guides/clustering-and-scaling/aws/aws-cloudformation/scale-with-self-hosted-license/',
+        },
+	// Versioned docs: kubernetes-services flattened + self-hosted moved under CloudFormation
+	...['3.0', '2.17', '2.16'].flatMap((ver) => [
+          {
+            from: `/${ver}/guides/clustering-and-scaling/kubernetes/kubernetes-services/installing-ams-on-aws-eks/`,
+            to: `/${ver}/guides/clustering-and-scaling/kubernetes/installing-ams-on-aws-eks/`,
+          },
+          {
+            from: `/${ver}/guides/clustering-and-scaling/kubernetes/kubernetes-services/installing-ams-on-azure-aks/`,
+            to: `/${ver}/guides/clustering-and-scaling/kubernetes/installing-ams-on-azure-aks/`,
+          },
+          {
+            from: `/${ver}/guides/clustering-and-scaling/kubernetes/kubernetes-services/installing-ams-on-google-gke/`,
+            to: `/${ver}/guides/clustering-and-scaling/kubernetes/installing-ams-on-google-gke/`,
+          },
+          {
+            from: `/${ver}/guides/clustering-and-scaling/kubernetes/kubernetes-services/install-ams-at-digital-ocean/`,
+            to: `/${ver}/guides/clustering-and-scaling/kubernetes/install-ams-at-digital-ocean/`,
+          },
+          {
+            from: `/${ver}/guides/clustering-and-scaling/aws/scale-with-self-hosted-license/`,
+            to: `/${ver}/guides/clustering-and-scaling/aws/aws-cloudformation/scale-with-self-hosted-license/`,
+          },
+        ]),
+	{
+          from: '/guides/clustering-and-scaling/aws/deploying-ams-at-aws-wavelength/',
+          to: '/guides/clustering-and-scaling/aws/aws-wavelenght/deploying-ams-at-aws-wavelength/',
+        },
+	{
+          from: '/guides/clustering-and-scaling/aws/aws-wavelength-standalone-deployment/',
+          to: '/guides/clustering-and-scaling/aws/aws-wavelenght/aws-wavelength-standalone-deployment/',
+        },
+	{
+          from: '/guides/clustering-and-scaling/aws/aws-wavelength-cluster-deployment/',
+          to: '/guides/clustering-and-scaling/aws/aws-wavelenght/aws-wavelength-cluster-deployment/',
         },
 	{
           from: '/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/',
@@ -552,7 +716,7 @@ scripts: [
         ],
       },
       colorMode: {
-        defaultMode: 'light',
+        defaultMode: 'dark',
         disableSwitch: false,
         respectPrefersColorScheme: false,
       },

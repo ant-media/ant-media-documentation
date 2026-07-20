@@ -2,7 +2,7 @@
 title: Release Notes
 description: Ant Media Server Release Notes
 keywords: [changelog, release notes]
-sidebar_position: 5
+sidebar_position: 100
 ---
 
 # Release Notes

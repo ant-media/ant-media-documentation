@@ -2,7 +2,8 @@
 title: Scaling with Azure CosmosDB
 description: Using Azure CosmosDB with AMS
 keywords: [Using Azure CosmosDB with AMS, CosmosDB, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 12
+sidebar_position: 4
+sidebar_label: Azure CosmosDB
 ---
 
 Azure Cosmos DB is a fully managed, globally distributed database service designed for scalability and high availability with MongoDB workloads. It simplifies database deployment and management while providing automatic scaling, low latency, and multi-region availability.

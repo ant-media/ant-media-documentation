@@ -1,6 +1,6 @@
 {
   "label": "Plugins",
-  "position": 15,
+  "position": 3,
   "link": {
     "type": "generated-index",
     "description": "Introduction to the plugin system, and development of plugins for Ant Media Server"

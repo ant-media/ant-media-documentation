@@ -3,6 +3,7 @@ title: Scale AMS with AWS ECS Fargate
 description: Scale AMS with AWS ECS Fargate
 keywords: [Scale AMS with AWS ECS Fargate, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 2
+sidebar_label: Scale with Fargate
 ---
 
 # Scale AMS with AWS ECS Fargate
@@ -52,7 +53,7 @@ Ensure you have registered & subscribed to the [Ant Media Server Enterprise cont
    - Create an IAM role with the name of ``ecsTaskExecutionRole`` and attach ``AmazonECSTaskExecutionRolePolicy``, ``AWSMarketplaceMeteringRegisterUsage`` policies.
    - Select the ``ecsTaskExecutionRole`` under Task roles.
      
-Check: [Creating an IAM role](https://antmedia.io/docs/guides/clustering-and-scaling/aws/running-ams-container-at-ecs/#step-2-create-an-identity-and-access-management-iam-role-for-task-execution).
+Check: [Creating an IAM role](https://antmedia.io/docs/guides/clustering-and-scaling/aws/aws-ecs/running-ams-container-at-ecs/#step-2-create-an-identity-and-access-management-iam-role-for-task-execution).
 
 5. Add a Container:
    - Container Name: **mongo-container**

@@ -2,7 +2,8 @@
 title: Scaling with Redis Database
 description: Using Redis Database with AMS
 keywords: [Using Redis with AMS, Redis Database, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 10
+sidebar_position: 1
+sidebar_label: Redis
 ---
 
 AMS already supports databases like MapDB for standalone server deployments and [MongoDB](https://antmedia.io/docs/guides/clustering-and-scaling/manual-configuration/cluster-installation/#installing-the-mongodb-database) (including [MongoDB Atlas](https://antmedia.io/docs/guides/clustering-and-scaling/supported-databases/scaling-with-mongodb-atlas/)) for both standalone and cluster environments; the recent addition of Redis integration with AMS EE presents new opportunities for optimizing streaming workflows. With its unique advantages, Redis offers distinct benefits over MongoDB and MapDB in certain use cases.

@@ -2,7 +2,8 @@
 title: Quickstart
 description: Deploy Ant Media Server to choice of your cloud within minutes.
 keywords: [Download Ant Media Server, Setup Ant Media Server, Deploy Ant Media Server, Tutorial to deploy Ant Media Server, Ant Media Documentation]
-sidebar_position: 1
+sidebar_position: 2
+sidebar_label: Quick Start
 ---
 
 # Quick Start

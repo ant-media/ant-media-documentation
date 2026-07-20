@@ -2,7 +2,8 @@
 title: Scaling with AWS DocumentDB
 description: Using AWS DocumentDB with AMS
 keywords: [Using DocumentDB with AMS, AWS DocumentDB, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 11
+sidebar_position: 3
+sidebar_label: AWS DocumentDB
 ---
 
 AWS DocumentDB is a managed database service designed for scalability, high availability, and compatibility with MongoDB workloads. It simplifies the deployment and management of databases while providing the flexibility to build robust and performant global applications on AWS.

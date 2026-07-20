@@ -2,7 +2,8 @@
 title: User Management
 description: Create and Manage Users with Roles at Ant Media Server. 
 keywords: [Ant Media Server Documentation, Ant Media Server Tutorials, User Management, Create and Manage Users with Roles]
-sidebar_position: 4
+sidebar_position: 2
+sidebar_label: User Management
 ---
 
 # Ant Media Server User Management

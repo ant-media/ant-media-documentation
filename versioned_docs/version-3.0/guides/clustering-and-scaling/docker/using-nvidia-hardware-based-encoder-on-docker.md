@@ -2,7 +2,8 @@
 title: Enable NVIDIA Hardware-based Encoder 
 description: You may use NVIDIA hardware-based encoder on Docker with Ant Media Server.
 keywords: [Using NVIDIA Hardware-based Encoder on Docker, NVIDIA GPU on Docker, Hardware-based Encoder on Docker, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 8
+sidebar_position: 3
+sidebar_label: NVIDIA Hardware Encoder
 ---
 
 # Using NVIDIA Hardware-based Encoder on Docker

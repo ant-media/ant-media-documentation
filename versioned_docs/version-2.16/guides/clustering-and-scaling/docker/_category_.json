@@ -3,6 +3,6 @@
   "position": 5,
   "link": {
     "type": "generated-index",
-    "description": "Deploy Ant Media Server with Docker"
+    "description": "Start with Choose a Deployment Option to decide when Docker Swarm is enough and when to prefer Kubernetes or cloud templates. Then follow the matching Docker guide."
   }
 }
