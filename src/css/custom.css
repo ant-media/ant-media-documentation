@@ -54,6 +54,21 @@
   --menu-link-hover: #ffffff;
   --sidebar-section-label: #9ca3af;
   --sidebar-section-divider: #2e2e2e;
+  /* Keep in-content links distinct from body text (primary is near-white in dark mode). */
+  --ifm-link-color: #ff6b7a;
+  --ifm-link-hover-color: #ff8f9a;
+}
+
+/* Make markdown hyperlinks obvious in both themes. */
+.markdown a:not(.card):not(.hash-link) {
+  color: var(--ifm-link-color);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: 1px;
+}
+
+.markdown a:not(.card):not(.hash-link):hover {
+  color: var(--ifm-link-hover-color, var(--ifm-color-primary-dark));
 }
 
 article{
