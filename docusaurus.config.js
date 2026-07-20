@@ -609,29 +609,33 @@ scripts: [
           from: '/guides/clustering-and-scaling/aws/scale-with-self-hosted-license/',
           to: '/guides/clustering-and-scaling/aws/aws-cloudformation/scale-with-self-hosted-license/',
         },
-	// Versioned docs: kubernetes-services flattened + self-hosted moved under CloudFormation
-	...['3.0', '2.17', '2.16'].flatMap((ver) => [
-          {
-            from: `/${ver}/guides/clustering-and-scaling/kubernetes/kubernetes-services/installing-ams-on-aws-eks/`,
-            to: `/${ver}/guides/clustering-and-scaling/kubernetes/installing-ams-on-aws-eks/`,
-          },
-          {
-            from: `/${ver}/guides/clustering-and-scaling/kubernetes/kubernetes-services/installing-ams-on-azure-aks/`,
-            to: `/${ver}/guides/clustering-and-scaling/kubernetes/installing-ams-on-azure-aks/`,
-          },
-          {
-            from: `/${ver}/guides/clustering-and-scaling/kubernetes/kubernetes-services/installing-ams-on-google-gke/`,
-            to: `/${ver}/guides/clustering-and-scaling/kubernetes/installing-ams-on-google-gke/`,
-          },
-          {
-            from: `/${ver}/guides/clustering-and-scaling/kubernetes/kubernetes-services/install-ams-at-digital-ocean/`,
-            to: `/${ver}/guides/clustering-and-scaling/kubernetes/install-ams-at-digital-ocean/`,
-          },
-          {
-            from: `/${ver}/guides/clustering-and-scaling/aws/scale-with-self-hosted-license/`,
-            to: `/${ver}/guides/clustering-and-scaling/aws/aws-cloudformation/scale-with-self-hosted-license/`,
-          },
-        ]),
+	// Versioned docs: kubernetes-services flattened + self-hosted moved under CloudFormation.
+	// Latest stable (3.0) is served without a version prefix, so redirect targets must omit it.
+	...['3.0', '2.17', '2.16'].flatMap((ver) => {
+          const toPrefix = ver === getLastStableVersion() ? '' : `/${ver}`;
+          return [
+            {
+              from: `/${ver}/guides/clustering-and-scaling/kubernetes/kubernetes-services/installing-ams-on-aws-eks/`,
+              to: `${toPrefix}/guides/clustering-and-scaling/kubernetes/installing-ams-on-aws-eks/`,
+            },
+            {
+              from: `/${ver}/guides/clustering-and-scaling/kubernetes/kubernetes-services/installing-ams-on-azure-aks/`,
+              to: `${toPrefix}/guides/clustering-and-scaling/kubernetes/installing-ams-on-azure-aks/`,
+            },
+            {
+              from: `/${ver}/guides/clustering-and-scaling/kubernetes/kubernetes-services/installing-ams-on-google-gke/`,
+              to: `${toPrefix}/guides/clustering-and-scaling/kubernetes/installing-ams-on-google-gke/`,
+            },
+            {
+              from: `/${ver}/guides/clustering-and-scaling/kubernetes/kubernetes-services/install-ams-at-digital-ocean/`,
+              to: `${toPrefix}/guides/clustering-and-scaling/kubernetes/install-ams-at-digital-ocean/`,
+            },
+            {
+              from: `/${ver}/guides/clustering-and-scaling/aws/scale-with-self-hosted-license/`,
+              to: `${toPrefix}/guides/clustering-and-scaling/aws/aws-cloudformation/scale-with-self-hosted-license/`,
+            },
+          ];
+        }),
 	{
           from: '/guides/clustering-and-scaling/aws/deploying-ams-at-aws-wavelength/',
           to: '/guides/clustering-and-scaling/aws/aws-wavelenght/deploying-ams-at-aws-wavelength/',
