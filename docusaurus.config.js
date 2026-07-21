@@ -36,6 +36,11 @@ const config = {
   baseUrl: '/',
   trailingSlash: true,
   onBrokenLinks: 'throw', // stop the build when broken links are found
+  // Force real git last-update dates even in --dev builds.
+  // Default "default-v1" uses a hardcoded 2018-10-14 date in development for perf.
+  future: {
+    experimental_vcs: 'git-eager',
+  },
   markdown: {
     mermaid: true,
     hooks: {
