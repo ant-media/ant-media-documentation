@@ -31,7 +31,7 @@ You integrate Ant Media Server into your platform via APIs.
 1. [Quick start](/quick-start/) — get a server to develop against.
 2. [REST API quickstart](/guides/developer-sdk-and-api/rest-api-guide/) — services, base URLs, authentication model.
 3. [Securing REST APIs](/guides/developer-sdk-and-api/rest-api-guide/securing-rest-apis/) and [JWT filter](/guides/developer-sdk-and-api/rest-api-guide/jwt-rest-api-filter/).
-4. [REST API Reference](/rest-api/) — interactive Swagger UI for Application and Management APIs.
+4. [REST API Reference](/rest-api/) — Application and Management APIs, each on one page with a jumpable method list.
 5. [REST API examples](/guides/developer-sdk-and-api/rest-api-guide/rest-apis-examples/) — common operations end to end.
 6. [Webhooks](/guides/advanced-usage/webhooks/) — react to stream lifecycle events.
 7. [Stream security](/guides/stream-security/jwt-stream-security-filter/) — tokenize publish/play for your users.
