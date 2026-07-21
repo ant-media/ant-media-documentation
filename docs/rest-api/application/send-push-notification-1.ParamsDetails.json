@@ -1,0 +1,1 @@
+{"parameters":[{"name":"topic","in":"path","required":true,"schema":{"type":"string"}},{"name":"serviceName","in":"query","schema":{"type":"string"}}]}

@@ -4,6 +4,6 @@
     "link": {
       "type": "generated-index",
       "slug": "/rest-api",
-      "description": "Interactive REST API reference for Ant Media Server. Covers Application (broadcast, VoD, streams) and Management Panel endpoints."
+      "description": "Full REST API reference for Ant Media Server, generated from the OpenAPI specification. Covers broadcast, VoD, and management endpoints."
     }
 }

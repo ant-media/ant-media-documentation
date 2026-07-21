@@ -1,0 +1,1 @@
+{"parameters":[{"name":"autoStart","in":"query","description":"Only effective if stream is IP Camera or Stream Source. If it's true, it starts automatically pulling stream. Its value is false by default","schema":{"type":"boolean"}}]}

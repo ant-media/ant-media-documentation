@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"Profile list for the ONVIF IP camera","content":{"application/json":{"schema":{"type":"string"}}}}}}

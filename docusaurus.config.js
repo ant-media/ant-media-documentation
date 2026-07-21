@@ -79,6 +79,7 @@ scripts: [
         docs: {
           routeBasePath: '/',
           sidebarPath: require.resolve('./sidebars.js'),
+          docItemComponent: '@theme/ApiItem',
           breadcrumbs: true,
           editUrl: 'https://github.com/ant-media/ant-media-documentation/edit/master/',
           showLastUpdateTime: true,
@@ -111,11 +112,34 @@ scripts: [
     ],
   ],
 
-  themes: ['@docusaurus/theme-mermaid'],
+  themes: ['docusaurus-theme-openapi-docs', '@docusaurus/theme-mermaid'],
 
   plugins: [[ require.resolve('docusaurus-lunr-search'), {
     languages: ['en']
   }],
+  [
+    'docusaurus-plugin-openapi-docs',
+    {
+      id: 'openapi',
+      docsPluginId: 'classic',
+      config: {
+        amsRestApi: {
+          specPath: 'static/openapi/ams-rest-api.json',
+          outputDir: 'docs/rest-api/application',
+          sidebarOptions: {
+            groupPathsBy: 'tag',
+          },
+        },
+        amsManagementApi: {
+          specPath: 'static/openapi/ams-management-api.json',
+          outputDir: 'docs/rest-api/management',
+          sidebarOptions: {
+            groupPathsBy: 'tag',
+          },
+        },
+      },
+    },
+  ],
   [
     '@docusaurus/plugin-client-redirects',
     {

@@ -1,0 +1,1 @@
+{"parameters":[{"name":"roomId","in":"path","description":"Room Id","required":true,"schema":{"type":"string"}},{"name":"videoEnabled","in":"query","description":"Video enabled","schema":{"type":"boolean"}},{"name":"audioEnabled","in":"query","description":"Audio enabled","schema":{"type":"boolean"}}]}

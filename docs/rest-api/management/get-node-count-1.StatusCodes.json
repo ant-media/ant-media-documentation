@@ -1,0 +1,1 @@
+{"responses":{"default":{"description":"default response","content":{"*/*":{"schema":{"type":"object","properties":{"number":{"type":"integer","description":"the stat value","format":"int64"}},"description":"Simple generic statistics class to return single values","title":"SimpleStat"}}}}}}

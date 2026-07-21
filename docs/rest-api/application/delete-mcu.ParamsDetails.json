@@ -1,0 +1,1 @@
+{"parameters":[{"name":"roomId","in":"path","description":"Room Id","required":true,"schema":{"type":"string"}}]}

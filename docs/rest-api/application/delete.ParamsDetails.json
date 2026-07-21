@@ -1,0 +1,1 @@
+{"parameters":[{"name":"id","in":"path","description":"Filter id for deleting filter","required":true,"schema":{"type":"string"}}]}

@@ -1,0 +1,1 @@
+{"parameters":[{"name":"id","in":"path","description":"Broadcast id","required":true,"schema":{"type":"string"}},{"name":"resolutionHeight","in":"query","description":"Resolution height of the broadcast that is wanted to send to the endpoint. ","schema":{"type":"integer","format":"int32"}}]}
