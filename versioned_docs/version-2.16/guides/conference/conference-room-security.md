@@ -1,5 +1,5 @@
 ---
-title: Room Security
+title: Conference Room Security
 description: Video Conference Room Security with AMS
 keywords: [Conference Ant Media, Ant Media conference room security, ant media conference token, ant media conference room password, ant media conference room, ant media video conference room security, Ant Media video conference, ant media conferencing, Publish, Multitrack conference, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 3

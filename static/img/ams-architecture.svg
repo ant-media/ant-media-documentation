@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" role="img" aria-labelledby="amsArchTitle amsArchDesc">
+  <title id="amsArchTitle">Ant Media Server architecture</title>
+  <desc id="amsArchDesc">Publishers connect to Ant Media Server ingest, then transcoding and playback layers deliver streams to players.</desc>
+  <defs>
+    <marker id="ah" markerWidth="7" markerHeight="7" refX="5.5" refY="3.5" orient="auto">
+      <path d="M0,0 L6,3.5 L0,7 Z" fill="#5a5a5a"/>
+    </marker>
+  </defs>
+
+  <!-- Publishers -->
+  <rect x="12" y="8" width="696" height="112" rx="12" fill="#f6f3e8" stroke="#d4cbb0"/>
+  <text x="28" y="32" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#333">Publishers</text>
+
+  <rect x="36" y="46" width="144" height="54" rx="8" fill="#e9e5f4" stroke="#8f87ad"/>
+  <text x="108" y="68" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="13" font-weight="600" fill="#1a1a1a">Web Browser</text>
+  <text x="108" y="86" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="11" fill="#555">WebRTC</text>
+
+  <rect x="204" y="46" width="144" height="54" rx="8" fill="#e9e5f4" stroke="#8f87ad"/>
+  <text x="276" y="68" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="13" font-weight="600" fill="#1a1a1a">OBS / Encoder</text>
+  <text x="276" y="86" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="11" fill="#555">RTMP / WHIP</text>
+
+  <rect x="372" y="46" width="144" height="54" rx="8" fill="#e9e5f4" stroke="#8f87ad"/>
+  <text x="444" y="68" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="13" font-weight="600" fill="#1a1a1a">SRT Encoder</text>
+  <text x="444" y="86" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="11" fill="#555">SRT</text>
+
+  <rect x="540" y="46" width="144" height="54" rx="8" fill="#e9e5f4" stroke="#8f87ad"/>
+  <text x="612" y="68" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="13" font-weight="600" fill="#1a1a1a">IP Camera</text>
+  <text x="612" y="86" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="11" fill="#555">RTSP / ONVIF</text>
+
+  <!-- Publisher to AMS -->
+  <line x1="108" y1="100" x2="108" y2="138" stroke="#5a5a5a" stroke-width="1.6" marker-end="url(#ah)"/>
+  <line x1="276" y1="100" x2="276" y2="138" stroke="#5a5a5a" stroke-width="1.6" marker-end="url(#ah)"/>
+  <line x1="444" y1="100" x2="444" y2="138" stroke="#5a5a5a" stroke-width="1.6" marker-end="url(#ah)"/>
+  <line x1="612" y1="100" x2="612" y2="138" stroke="#5a5a5a" stroke-width="1.6" marker-end="url(#ah)"/>
+  <path d="M108 138 H612" stroke="#5a5a5a" stroke-width="1.6" fill="none"/>
+  <line x1="360" y1="138" x2="360" y2="158" stroke="#5a5a5a" stroke-width="1.6" marker-end="url(#ah)"/>
+
+  <!-- AMS -->
+  <rect x="12" y="156" width="696" height="220" rx="12" fill="#f6f3e8" stroke="#d4cbb0"/>
+  <text x="28" y="180" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#333">Ant Media Server</text>
+
+  <rect x="180" y="196" width="360" height="44" rx="8" fill="#fff7e0" stroke="#c49a3c"/>
+  <text x="360" y="223" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="13" font-weight="600" fill="#1a1a1a">Ingest Layer</text>
+
+  <line x1="360" y1="240" x2="360" y2="262" stroke="#5a5a5a" stroke-width="1.6" marker-end="url(#ah)"/>
+
+  <rect x="180" y="262" width="360" height="44" rx="8" fill="#fff7e0" stroke="#c49a3c"/>
+  <text x="360" y="289" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="13" font-weight="600" fill="#1a1a1a">Transcoding / ABR</text>
+
+  <line x1="360" y1="306" x2="360" y2="328" stroke="#5a5a5a" stroke-width="1.6" marker-end="url(#ah)"/>
+
+  <rect x="180" y="328" width="360" height="44" rx="8" fill="#fff7e0" stroke="#c49a3c"/>
+  <text x="360" y="355" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="13" font-weight="600" fill="#1a1a1a">Playback Layer</text>
+
+  <!-- AMS to Players -->
+  <line x1="360" y1="372" x2="360" y2="392" stroke="#5a5a5a" stroke-width="1.6"/>
+  <path d="M108 392 H612" stroke="#5a5a5a" stroke-width="1.6" fill="none"/>
+  <line x1="108" y1="392" x2="108" y2="418" stroke="#5a5a5a" stroke-width="1.6" marker-end="url(#ah)"/>
+  <line x1="276" y1="392" x2="276" y2="418" stroke="#5a5a5a" stroke-width="1.6" marker-end="url(#ah)"/>
+  <line x1="444" y1="392" x2="444" y2="418" stroke="#5a5a5a" stroke-width="1.6" marker-end="url(#ah)"/>
+  <line x1="612" y1="392" x2="612" y2="418" stroke="#5a5a5a" stroke-width="1.6" marker-end="url(#ah)"/>
+
+  <!-- Latency pills -->
+  <rect x="74" y="396" width="68" height="18" rx="9" fill="#fff" stroke="#b8b8b8"/>
+  <text x="108" y="409" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="10" font-weight="600" fill="#444">~0.5s</text>
+  <rect x="242" y="396" width="68" height="18" rx="9" fill="#fff" stroke="#b8b8b8"/>
+  <text x="276" y="409" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="10" font-weight="600" fill="#444">8-12s</text>
+  <rect x="410" y="396" width="68" height="18" rx="9" fill="#fff" stroke="#b8b8b8"/>
+  <text x="444" y="409" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="10" font-weight="600" fill="#444">2-4s</text>
+  <rect x="578" y="396" width="68" height="18" rx="9" fill="#fff" stroke="#b8b8b8"/>
+  <text x="612" y="409" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="10" font-weight="600" fill="#444">WebRTC</text>
+
+  <!-- Players -->
+  <rect x="12" y="420" width="696" height="108" rx="12" fill="#f6f3e8" stroke="#d4cbb0"/>
+  <text x="28" y="444" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#333">Players</text>
+
+  <rect x="36" y="456" width="144" height="54" rx="8" fill="#e9e5f4" stroke="#8f87ad"/>
+  <text x="108" y="478" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="13" font-weight="600" fill="#1a1a1a">WebRTC Player</text>
+  <text x="108" y="496" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="11" fill="#555">Ultra-low latency</text>
+
+  <rect x="204" y="456" width="144" height="54" rx="8" fill="#e9e5f4" stroke="#8f87ad"/>
+  <text x="276" y="478" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="13" font-weight="600" fill="#1a1a1a">HLS Player</text>
+  <text x="276" y="496" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="11" fill="#555">Scale / CDN</text>
+
+  <rect x="372" y="456" width="144" height="54" rx="8" fill="#e9e5f4" stroke="#8f87ad"/>
+  <text x="444" y="478" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="13" font-weight="600" fill="#1a1a1a">DASH / CMAF</text>
+  <text x="444" y="496" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="11" fill="#555">Low latency</text>
+
+  <rect x="540" y="456" width="144" height="54" rx="8" fill="#e9e5f4" stroke="#8f87ad"/>
+  <text x="612" y="478" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="13" font-weight="600" fill="#1a1a1a">Mobile SDK</text>
+  <text x="612" y="496" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="11" fill="#555">iOS / Android / Flutter</text>
+</svg>

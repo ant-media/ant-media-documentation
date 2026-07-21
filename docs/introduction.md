@@ -1,75 +1,78 @@
 ---
 title: Introduction
 slug: /
-description: Deploy Ant Media Server to your choice of cloud within minutes.
-keywords: [Free Streaming Server Software, Ant Media Community v/s Enterprise Edition, Use Cases, Live Streaming Server Software]
+description: Ant Media Server is a self-hosted live streaming platform for ultra-low latency WebRTC, adaptive HLS/DASH, and large-scale delivery. Start here to understand the platform and choose your path.
+keywords: [Ant Media Server, WebRTC streaming, live streaming server, ultra-low latency, HLS, clustering]
 sidebar_position: 1
 sidebar_label: Introduction to Ant Media Server
 ---
 
+# Introduction to Ant Media Server
 
-# Getting Started with Ant Media Server
+**Ant Media Server (AMS)** is a self-hosted live streaming platform for ultra-low latency WebRTC, adaptive HLS/DASH delivery, and large-scale audience reach. Run it on your own infrastructure—on-premises, in air-gapped environments, or on public cloud—so you control ingest, transcoding, security, and playback end to end.
 
-Ant Media Server (AMS) is a scalable, real-time video streaming platform designed for ultra-low latency live streaming and interactive broadcasting.
+AMS is built for **developers** integrating streaming into apps, **platform teams** deploying and scaling production workloads, and **organizations** that need full control over their video stack without vendor lock-in.
 
-Built around WebRTC and adaptive streaming technologies, AMS enables organizations to deliver live video with sub-second latency while supporting large-scale audience delivery through HLS, LL-HLS, CMAF, and DASH streaming protocols.
+## How Ant Media Server works
 
-Ant Media Server supports multiple ingest protocols, including WebRTC, RTMP, SRT, RTSP, WHIP, and NDI, along with modern codec support such as AV1, providing flexible streaming workflows for browsers, mobile devices, and broadcasting infrastructures.
+Publishers push live video into AMS. The server ingests, optionally transcodes for adaptive bitrate, then delivers streams to players at the latency your use case needs.
+
+![Ant Media Server architecture: publishers to Ant Media Server to players](/img/ams-architecture.svg)
+
+### Key concepts
+
+- **Applications** — Isolated streaming contexts, each with its own settings, sample pages, and configuration. See [Applications](./get-started/features#applications) in the Dashboard Features guide.
+- **Publish and play** — Ingest live streams from encoders, cameras, or SDKs, then deliver to browsers and devices. Start with [Publish Live Streams](/category/publish-live-streams/) and [Play Live Streams](/category/play-live-streams/).
+- **Standalone vs cluster** — Run a single server for development and small deployments, or scale horizontally with clustering for thousands of concurrent publishers and viewers. See [Clustering and Scaling](/category/clustering-and-scaling/).
+
+## Choose your path
+
+| I want to… | Go to |
+| --- | --- |
+| Install AMS in minutes | [Quick Start](./quick-start) |
+| Explore the web panel | [Dashboard Features](./get-started/features) |
+| Build a mobile or web app | [Developer SDKs & API](/category/sdk-integration/) |
+| Deploy at scale | [Clustering and Scaling](/category/clustering-and-scaling/) |
+| Secure streams | [Stream Security](/category/stream-security/) |
+| Compare editions | [Community and Enterprise Edition comparison](#community-and-enterprise-edition-comparison) |
+
+:::tip
+New to streaming? Start with [Quick Start](./quick-start), then explore [Dashboard Features](./get-started/features) to publish and play your first stream.
+:::
+
+## Core capabilities
+
+- **Latency modes** — WebRTC (~500 ms with Enterprise Edition), LL-HLS/LL-DASH, and standard HLS/DASH for large audiences
+- **Ingest** — WebRTC, RTMP, SRT, RTSP, WHIP, and NDI (beta)
+- **Codecs** — H.264, H.265, VP8, and AV1. See [Video Codecs](./guides/configuration-and-testing/video-codecs) for details.
+- **Deployment** — Linux, Docker, and Kubernetes; available on AWS, Azure, GCP, and other cloud marketplaces
+- **SDKs** — JavaScript, iOS, Android, Flutter, React Native, and Unity
 
 AMS is available in two editions:
-- **Community Edition** — Open-source streaming server suitable for standard streaming and development workloads.
-- **Enterprise Edition** — Advanced streaming platform with ultra-low latency delivery, adaptive bitrate streaming, clustering, GPU acceleration, enterprise security, and professional support.
 
-Ant Media Server can be deployed on-premises, in air-gapped environments, on Kubernetes and Docker infrastructures, or on major public cloud providers including AWS, Azure, GCP, Oracle Cloud, DigitalOcean and many more.
+- **Community Edition** — Open-source streaming server for standard streaming and development workloads.
+- **Enterprise Edition** — Advanced platform with ultra-low latency delivery, adaptive bitrate streaming, clustering, GPU acceleration, enterprise security, and professional support.
 
-The platform supports both standalone and clustered deployments, enabling deployments ranging from a single streaming server to large-scale distributed streaming infrastructures capable of supporting thousands of concurrent publishers and viewers.
+## Solutions and use cases
 
-AMS also provides SDKs and APIs for JavaScript, iOS, Android, Flutter, React Native, and Unity, allowing developers to build interactive real-time streaming applications for use cases such as webinars, auctions, live shopping, telehealth, online education, gaming, surveillance, and live broadcasting.
+- **IP camera streaming** — Stream and monitor ONVIF IP cameras with ultra-low latency. [Docs](./guides/publish-live-stream/ip-camera-and-stream-source/stream-sources) · [Solutions](https://antmedia.io/solutions/ip-camera-streaming/)
+- **Webinars and video conferencing** — Scalable real-time audio and video with sub-second latency. [Conference](/category/conference/) · [Solutions](https://antmedia.io/solutions/webinar-e-learning-virtual-classroom/)
+- **Mobile streaming applications** — Build apps with AMS APIs and SDKs for Android, iOS, Flutter, and React Native. [SDK Integration](/category/sdk-integration/)
+- **Media and entertainment** — Real-time game shows and interactive live experiences. [Solutions](https://antmedia.io/solutions/media-entertainment/)
+- **E-sports and gaming** — Ultra-low latency streams for competitive gaming and betting. [Solutions](https://antmedia.io/solutions/video-game-streaming/)
+- **Live auctions and bidding** — Sub-second latency to keep bids synchronized in real time. [Solutions](https://antmedia.io/solutions/auction-bidding/)
+- **Telehealth** — Secure real-time video for consultations and remote care. [Solutions](https://antmedia.io/solutions/telehealth/)
+- **Live shopping** — Interactive shopping experiences with ultra-low latency. [Solutions](https://antmedia.io/solutions/live-shopping/)
+- **Online education** — Virtual classrooms and remote training with real-time engagement. [Webinar guide](./guides/webinar/webinar-usage) · [Solutions](https://antmedia.io/solutions/webinar-e-learning-virtual-classroom/)
+- **AI-powered video streaming** — Integrate custom AI models into live streams with the Python AI Plugin. [Learn more](https://antmedia.io/integrate-your-ai-into-live-streams-with-python-plugin/)
 
-## Explore Use Cases
+## Community and Enterprise Edition comparison
 
-### 🤖 Live Video Surveillance &  IP Camera Streaming
+Choose **Community Edition** for open-source development, RTMP/HLS workflows, and getting started at no cost. Choose **Enterprise Edition** when you need WebRTC playback, clustering, GPU encoding, adaptive bitrate transcoding, advanced stream security, or commercial support.
 
-Stream, monitor, and manage ONVIF IP cameras with ultra-low latency on web and mobile applications. [Read more](https://antmedia.io/solutions/ip-camera-streaming/)
-
-### 🙇 Webinars & Video Conferencing
-
-Power scalable video conferencing and webinars with real-time audio/video communication and sub-second latency. [Read more](https://antmedia.io/solutions/webinar-e-learning-virtual-classroom/)
-
-### 📱 Mobile Streaming Applications
-
-Build high-performance mobile streaming apps using Ant Media Server APIs and SDKs for Android, iOS, Flutter, React Native, and more. [Read more](https://antmedia.io/docs/category/sdk-integration/)
-
-### 📺 Media & Entertainment
-
-Create engaging, real-time game show experiences with scalable, ultra-low-latency streaming. [Read more](https://antmedia.io/solutions/media-entertainment/)
-
-### 🎯 E-Sports & Gaming
-
-Deliver live e-sports and betting streams with ultra-low latency, ensuring viewers never miss critical moments. [Read more](https://antmedia.io/solutions/video-game-streaming/)
-
-### 🏷️ Live Auctions & Bidding
-
-Enable fair and responsive auctions with sub-second latency streaming that keeps bids synchronized in real time. [Read more](https://antmedia.io/solutions/auction-bidding/)
-
-### 🩺 Telehealth & Remote Consultation
-
-Build secure telehealth platforms with real-time video communication for consultations, patient monitoring, and remote care. [Read more](https://antmedia.io/solutions/telehealth/)
-
-### 🛍️ Live Shopping
-
-Increase engagement and conversions with interactive live shopping experiences powered by ultra-low-latency streaming. [Read more](https://antmedia.io/solutions/live-shopping/)
-
-### 👨🏽‍💻 Online Education & Virtual Classrooms
-
-Deliver interactive virtual classrooms, live tutoring, and remote training with ultra-low-latency WebRTC streaming for real-time teacher-student engagement.
-
-### 🤖 AI-Powered Video Streaming
-
-Integrate custom AI models directly into live streams using the Python AI Plugin for real-time analytics, computer vision, and intelligent video processing. [Learn more](https://antmedia.io/integrate-your-ai-into-live-streams-with-python-plugin/)
-
-
-### Community and Enterprise Edition Comparison
+:::info
+Install either edition with the commands in [Quick Start](./quick-start). Community Edition is free from [GitHub Releases](https://github.com/ant-media/Ant-Media-Server/releases/). Enterprise Edition requires a license from [antmedia.io](https://antmedia.io).
+:::
 
 |               **Feature**               |         **Community Edition**         |        **Enterprise Edition**        |
 | :----------------------------------------: | :-------------------------------------: | :------------------------------------: |
@@ -103,48 +106,30 @@ Integrate custom AI models directly into live streams using the Python AI Plugin
 |                 Support                  |               Community               |           E-mail, Slack           |
 |                  Price                   |                 Free                 |                 Paid                 |
 
-## Download Ant Media Server
+## License information
 
-Choose the edition that best fits your needs:
+- **Community Edition** is free under the Apache license.
+- **Enterprise Edition** requires a paid license per instance. Options include Pay-As-You-Go, Monthly, Annual, and Perpetual licenses—see [antmedia.io](https://antmedia.io) for pricing.
 
--   **Community Edition** – Free and open source. Download the latest release directly from the [Release Page](https://github.com/ant-media/Ant-Media-Server/releases/).
-    
--   **Enterprise Edition** – Access advanced features, scalability, and professional support. Enterprise packages can be downloaded from your [Ant Media Account](https://antmedia.io/my-account/) after purchasing a license.
+### Enterprise Edition cluster license
 
-## License Information
+The cluster license includes the same features as the standard Enterprise Edition license, but supports many instances running simultaneously with the same license key. The standard Enterprise license supports one instance at a time.
 
-Ant Media Server has two types of licenses.
+For large cluster deployments and discount options, see [Contact](#contact) below.
 
- - Ant Media Server Community Edition is free to use with the Apache
-   license.
-- Ant Media Server Enterprise Edition requires a paid license per instance/server. Paid license options include Pay-As-You-Go, Monthly, Annual, and Perpetual licenses, which can be purchased directly from [antmedia.io](https://antmedia.io).
+### Free Enterprise Edition license for education and tech communities
 
-### Enterprise Edition Cluster License
+Ant Media provides **free Enterprise Edition licenses** for educational institutions, academic projects, student organizations, etc. Send an email from your institution or community address — see [Contact](#contact) below.
 
-The Enterprise Edition cluster license has similar features to the standard Enterprise Edition license. The only difference is that the Enterprise Cluster license supports many instances running simultaneously with the same license key. The standard Enterprise Edition license only supports one instance at a time.
+## Community and support
 
-If you're planning to have a large deployment for your Enterprise Cluster, please contact Sales at [contact@antmedia.io](mailto:contact@antmedia.io) to discuss discount options.
+Connect with Ant Media users and developers on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or ask questions in the [Q&A section](https://github.com/orgs/ant-media/discussions/categories/q-a).
 
-### Free Enterprise Edition license for educational and Tech Communities
+For product news and streaming insights, visit the [Ant Media Blog](https://antmedia.io/blog/) or [antmedia.io](https://antmedia.io/).
 
-Ant Media provides **free Enterprise Edition licenses** for students, academics, and communities. To take advantage of this opportunity, just send an email from your institution or community e-mail address to [contact@antmedia.io](mailto:contact@antmedia.io)
+### Contact
 
-## Deployment Options
-
-Ant Media Server supports a wide range of Linux distributions, including Ubuntu 20.04, 22.04, and 24.04, CentOS 8 and 9, Rocky Linux 8 and 9, Red Hat Enterprise Linux 9, and AlmaLinux 8 and 9. It is fully compatible with both x86-64 and Arm64 architectures.
-
-For a single-server deployment, we recommend a minimum of 4 vCPUs on a compute-optimized instance with at least 8 GB of RAM. SSD storage is strongly recommended to ensure optimal read/write performance and reliable media processing.
-
-Ant Media Server can be deployed in multiple environments, including `Virtual Machines`, `Docker Containers`, and `Kubernetes Clusters`, allowing you to choose the installation method that best fits your infrastructure and scalability requirements.
-
-## Join the Ant Media Community
-
-Connect with Ant Media users and developers from around the world. Ask questions, share knowledge, discover best practices, and get help from the community through [GitHub Discussions](https://github.com/orgs/ant-media/discussions).
-
-Looking for technical assistance or have a specific question? Visit the [Q&A Discussions section](https://github.com/orgs/ant-media/discussions/categories/q-a) to engage with community members and the Ant Media team.
-
-## Get in Touch
-
-Explore the latest updates, product news, and streaming insights on the [Ant Media Blog](https://antmedia.io/blog/) or visit [Ant Media's website](https://antmedia.io/) to learn more about our solutions.
-
-For sales, partnerships, or general inquiries, contact us at **[contact@antmedia.io](mailto:contact@antmedia.io)**. If you need technical assistance, our support team is available at **[support@antmedia.io](mailto:support@antmedia.io)**.
+| Need | Reach out |
+| --- | --- |
+| Sales, licenses, partnerships, education licenses | [contact@antmedia.io](mailto:contact@antmedia.io) |
+| Technical support | [support@antmedia.io](mailto:support@antmedia.io) |
