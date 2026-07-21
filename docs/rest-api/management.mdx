@@ -1,11 +1,11 @@
 ---
 title: Management REST API
-description: Interactive Management Panel REST API reference for Ant Media Server — applications, users, licenses, and server-level operations.
+description: Management Panel REST API methods for Ant Media Server — applications, users, licenses, and server-level operations. Browse all methods on one page.
 keywords: [REST API, Management REST API, Web Panel API, Ant Media Server Documentation]
 sidebar_position: 2
 ---
 
-import SwaggerUIPage from '@site/src/components/SwaggerUIPage';
+import RestApiReference from '@site/src/components/RestApiReference';
 
 # Management REST API
 
@@ -13,6 +13,8 @@ Management Panel REST APIs cover server-level operations such as creating applic
 
 **Base URL:** `https://your-server:5443/rest/v2`
 
-These endpoints require Management authentication (JWT via `ProxyAuthorization` or username/password). See the [Management REST API guide](/guides/developer-sdk-and-api/rest-api-guide/management-rest-apis/). You can also browse this API on [antmedia.io/rest](https://antmedia.io/rest/).
+These endpoints require Management authentication (JWT via `ProxyAuthorization` or username/password). See the [Management REST API guide](/guides/developer-sdk-and-api/rest-api-guide/management-rest-apis/). You can also try these APIs interactively at [antmedia.io/rest](https://antmedia.io/rest/).
 
-<SwaggerUIPage src="/openapi/management.html" title="Management REST API" />
+Use the method list below to jump to a specific endpoint.
+
+<RestApiReference specUrl="/openapi/ams-management-api.json" />

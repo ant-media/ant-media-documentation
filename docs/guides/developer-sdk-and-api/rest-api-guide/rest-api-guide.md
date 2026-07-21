@@ -70,12 +70,12 @@ To access the web panel using the API, you'll need to use the management REST se
 
 ## REST API reference
 
-The full API reference is available in this documentation site under [REST API Reference](/rest-api/), presented as interactive Swagger UI pages (same style as [antmedia.io/rest](https://antmedia.io/rest/)):
+The full API reference is available in this documentation site under [REST API Reference](/rest-api/). Each API is a **single page** with all methods listed at the top — click a method to jump to its details:
 
 * [Application REST API](/rest-api/application/) — broadcasts, VoD, streams
 * [Management REST API](/rest-api/management/) — applications, users, server-level operations
 
-All REST methods and services are also listed on the external Swagger page at [https://antmedia.io/rest](https://antmedia.io/rest).
+You can also try these APIs interactively on the external Swagger page at [https://antmedia.io/rest](https://antmedia.io/rest).
 
 ![](@site/static/img/rest.png)
 

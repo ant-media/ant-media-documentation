@@ -251,21 +251,152 @@ h1, article h1, article header h1 {
   background-color: #e64a19;
 }
 
-/* Swagger UI embedded in REST API pages */
-.ams-swagger-frame-wrap {
+/* Single-page REST API reference (Application / Management) */
+.ams-api-reference {
   margin-top: 1rem;
-  width: 100%;
-  border: 1px solid var(--ifm-color-emphasis-300);
-  border-radius: 8px;
-  overflow: hidden;
-  background: #fafafa;
 }
 
-.ams-swagger-frame {
-  width: 100%;
-  min-height: 75vh;
-  height: 80vh;
-  border: 0;
-  display: block;
+.ams-api-toc {
+  margin-bottom: 2.5rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  background: var(--ifm-background-surface-color);
 }
+
+.ams-api-toc-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.ams-api-toc-header h2 {
+  margin: 0;
+}
+
+.ams-api-filter {
+  min-width: min(100%, 16rem);
+  padding: 0.4rem 0.65rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 6px;
+  background: var(--ifm-background-color);
+  color: var(--ifm-font-color-base);
+}
+
+.ams-api-toc-count {
+  margin: 0 0 0.75rem;
+  color: var(--ifm-color-emphasis-700);
+  font-size: 0.9rem;
+}
+
+.ams-api-toc-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 28rem;
+  overflow: auto;
+}
+
+.ams-api-toc-list li + li {
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.ams-api-toc-list a {
+  display: grid;
+  grid-template-columns: 4.5rem minmax(8rem, 1.2fr) minmax(8rem, 1.4fr);
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.55rem 0.25rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.ams-api-toc-list a:hover {
+  background: var(--ifm-color-emphasis-100);
+}
+
+.ams-api-toc-path {
+  font-size: 0.85rem;
+  overflow-wrap: anywhere;
+}
+
+.ams-api-toc-summary {
+  color: var(--ifm-color-emphasis-700);
+  font-size: 0.9rem;
+}
+
+.ams-api-method {
+  display: inline-block;
+  min-width: 3.75rem;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-align: center;
+  color: #fff;
+}
+
+.ams-api-method--get { background: #2f6fed; }
+.ams-api-method--post { background: #1a7f37; }
+.ams-api-method--put { background: #9a6700; }
+.ams-api-method--delete { background: #cf222e; }
+.ams-api-method--patch { background: #8250df; }
+.ams-api-method--options,
+.ams-api-method--head { background: #57606a; }
+
+.ams-api-operation {
+  margin: 0 0 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+  scroll-margin-top: 5rem;
+}
+
+.ams-api-operation-title {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.ams-api-operation-summary {
+  font-weight: 600;
+}
+
+.ams-api-operation-id {
+  font-size: 0.9rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.ams-api-block {
+  margin-top: 1rem;
+}
+
+.ams-api-block h4 {
+  margin-bottom: 0.5rem;
+}
+
+.ams-api-back-top {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.ams-api-error {
+  color: var(--ifm-color-danger);
+}
+
+@media (max-width: 768px) {
+  .ams-api-toc-list a {
+    grid-template-columns: 4.5rem 1fr;
+  }
+
+  .ams-api-toc-summary {
+    grid-column: 1 / -1;
+    padding-left: 0.25rem;
+  }
+}
+
 

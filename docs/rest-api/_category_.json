@@ -4,6 +4,6 @@
     "link": {
       "type": "generated-index",
       "slug": "/rest-api",
-      "description": "Interactive REST API reference for Ant Media Server, presented like the Swagger UI at antmedia.io/rest. Choose Application or Management."
+      "description": "Application and Management REST API methods in two pages. Each page lists all methods at the top; click a method to jump to its details."
     }
 }
