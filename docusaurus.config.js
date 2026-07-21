@@ -79,6 +79,7 @@ scripts: [
         docs: {
           routeBasePath: '/',
           sidebarPath: require.resolve('./sidebars.js'),
+          docItemComponent: '@theme/ApiItem',
           breadcrumbs: true,
           editUrl: 'https://github.com/ant-media/ant-media-documentation/edit/master/',
           showLastUpdateTime: true,
@@ -111,27 +112,38 @@ scripts: [
     ],
   ],
 
-  themes: ['@docusaurus/theme-mermaid'],
+  themes: ['docusaurus-theme-openapi-docs', '@docusaurus/theme-mermaid'],
 
   plugins: [[ require.resolve('docusaurus-lunr-search'), {
     languages: ['en']
   }],
   [
+    'docusaurus-plugin-openapi-docs',
+    {
+      id: 'openapi',
+      docsPluginId: 'classic',
+      config: {
+        amsRestApi: {
+          specPath: 'static/openapi/ams-rest-api.json',
+          outputDir: 'docs/rest-api/application',
+          sidebarOptions: {
+            groupPathsBy: 'tag',
+          },
+        },
+        amsManagementApi: {
+          specPath: 'static/openapi/ams-management-api.json',
+          outputDir: 'docs/rest-api/management',
+          sidebarOptions: {
+            groupPathsBy: 'tag',
+          },
+        },
+      },
+    },
+  ],
+  [
     '@docusaurus/plugin-client-redirects',
     {
       redirects: [
-        {
-          to: '/rest-api/application/',
-          from: [
-            '/rest-api/application/ant-media-server-rest-api-reference/',
-          ],
-        },
-        {
-          to: '/rest-api/management/',
-          from: [
-            '/rest-api/management/ant-media-server-management-panel-rest-api/',
-          ],
-        },
         {
           to: '/guides/clustering-and-scaling/supported-databases/scaling-with-redis/',
           from: '/guides/clustering-and-scaling/scaling-with-redis/',

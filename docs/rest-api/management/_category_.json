@@ -1,0 +1,9 @@
+{
+    "label": "Management REST API",
+    "position": 2,
+    "link": {
+      "type": "generated-index",
+      "slug": "/rest-api/management",
+      "description": "Management Panel REST APIs for server-level operations such as application management, users, and licenses. Base URL: https://your-server:5443/rest/v2"
+    }
+}

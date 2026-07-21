@@ -1,11 +1,11 @@
 ---
 title: Application REST API
-description: Application REST API methods for Ant Media Server — broadcasts, VoD, streams, and more. Browse all methods on one page.
+description: Interactive Application REST API reference for Ant Media Server — broadcasts, VoD, streams, and more.
 keywords: [REST API, Application REST API, Broadcast API, VoD API, Ant Media Server Documentation]
 sidebar_position: 1
 ---
 
-import RestApiReference from '@site/src/components/RestApiReference';
+import SwaggerUIPage from '@site/src/components/SwaggerUIPage';
 
 # Application REST API
 
@@ -13,8 +13,6 @@ Application-level REST APIs manage broadcasts, VoD assets, stream sources, and r
 
 **Base URL:** `https://your-server:5443/{application}/rest/v2`
 
-For authentication and getting started, see the [REST API guide](/guides/developer-sdk-and-api/rest-api-guide/). You can also try these APIs interactively at [antmedia.io/rest](https://antmedia.io/rest/).
+For authentication and getting started, see the [REST API guide](/guides/developer-sdk-and-api/rest-api-guide/). You can also browse this API on [antmedia.io/rest](https://antmedia.io/rest/).
 
-Use the method list below to jump to a specific endpoint.
-
-<RestApiReference specUrl="/openapi/ams-rest-api.json" />
+<SwaggerUIPage src="/openapi/application.html" title="Application REST API" />
