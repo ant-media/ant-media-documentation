@@ -1,0 +1,1 @@
+{"parameters":[{"name":"id","in":"path","description":"the id of the stream","required":true,"schema":{"type":"string"}}]}

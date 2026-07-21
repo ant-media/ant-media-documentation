@@ -62,7 +62,7 @@ The REST interface only responds to calls from 127.0.0.1 by default. If you call
 
 ### JWT Filter
 
-If preferred, you can generate JWT tokens and pass them in the header of API requests. You can generate a permanent token or one with an expiry date for an additional security layer. Please refer to the [API security (JWT)](/guides/developer-sdk-and-api/rest-api-guide/jwt-rest-api-filter/) ocument for details on configuration.
+If preferred, you can generate JWT tokens and pass them in the header of API requests. You can generate a permanent token or one with an expiry date for an additional security layer. Please refer to the [API security (JWT)](/guides/developer-sdk-and-api/rest-api-guide/jwt-rest-api-filter/) document for details on configuration.
 
 ## Management Service Authentication
 
@@ -70,7 +70,12 @@ To access the web panel using the API, you'll need to use the management REST se
 
 ## REST API reference
 
-All REST methods and services are listed on the REST API reference page at [https://antmedia.io/rest](https://antmedia.io/rest) built with Swagger.
+The full, searchable API reference is available in this documentation site under [REST API Reference](/rest-api/), generated from the OpenAPI specification:
+
+* [Application REST API](/rest-api/application/) — broadcasts, VoD, streams
+* [Management REST API](/rest-api/management/) — applications, users, server-level operations
+
+All REST methods and services are also listed on the Swagger-based reference page at [https://antmedia.io/rest](https://antmedia.io/rest).
 
 ![](@site/static/img/rest.png)
 

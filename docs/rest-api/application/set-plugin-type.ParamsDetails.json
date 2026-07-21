@@ -1,0 +1,1 @@
+{"parameters":[{"name":"type","in":"query","description":"Change the plugin type for a filter: synchronous | asynchronous (default) | lastpoint","schema":{"type":"string"}}]}

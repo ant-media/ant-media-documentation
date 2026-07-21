@@ -1,0 +1,69 @@
+---
+id: move-ip-camera
+title: "Move IP Camera"
+description: "Supports continuous, relative, and absolute movement. By default, it's a relative move. Movement parameters should be provided according to the movement type. Generally, the following values are used: For Absolute move, value X and value Y are between -1.0f and 1.0f. Zoom value is between 0.0f and 1.0f. For Relative move, value X, value Y, and Zoom Value are between -1.0f and 1.0f. For Continuous move, value X, value Y, and Zoom Value are between -1.0f and 1.0f."
+sidebar_label: "Move IP Camera"
+hide_title: true
+hide_table_of_contents: true
+api: eJztV01v20YQ/SuDubQFGNJ10gtPdYO20CGoYaeBP+DDkDuUNiV3md2lHFfgfw9mKVFUJDuu4bZIUV1EcWdn3pudeTtaoWJfOt0GbQ3meN61rXXBQ2lN0KaznU/AcU1BLzkBMgqo8LbuAkNjl9ywCSn8dAeKK+rqkIAO33igcU+0SuHN2hZactRwYOfBL2xXKygYWmeXWrECKkvrlDZzCBbCYhsDwl3LKfzKhh3V9V0SVytb1/ZWzJdUd+yBHEPnWeXwi3VwMkWaDDZwEUkMz5dxQ8HhltnAi+/ToyquykMKV9Y2a0PtR6ujXSOJczblOsbZPFwOaYve3sU3DwUVf6/H3D+DR0zQtuxIDnimMEdxOTt9TQ07wgS3B4L59QoNNYw5aoUJaqmIlsICk8/K5O2CQSuwVTyG2SmM7hx/6LRjhXlwHSfoywU3hPkK5QQxRx+cNnPs+2QMFlldbAJ+6Njd7UUcC0gbuAClHZeyksKsAmMD+JZLXWlWmwr0vmtYSR0VDH+ys6nkSitwZObs70kXVNYB1fVYeB7wAAnTNQU7TLCyrqGAOVa1pbDP6vLxrC6/HlZXj2clRfp0OoJ7VBJhM8jSpjOmfXmokXak6nAHPzkRm1Q+MhWDfs0ClGSE7AbaVl3Buonq3puzjfkh3GNv3Ugj+tYaz17Wj4+O5GsX2xn7rg7SxI1dRs0dernc9LKgEYb5Cqlta11GEcnee9m+2g9vi/dcSkJaJ5IT9BDcd2XJ3k8MC2trJnNQVtyISuCM0oV9gg17T3PeJ3zIz9p4z9E6gPhTFEgk8THutmrnWO4o0NXEp/ZAhe0CkIq3F62tJAo7Z91OGG0Cz2N93Rcn7rkX+qQutQkvj6UuD7gqyOtyk8+yJu8xwaBDzePhYy8fyWxYWLkcWuvjAYro55gtj7PCWVIl+eCzlVZ9ptsXQ4Fk0gFSheyWm9ujczXmuAih9XmWBfYhJRMaVppSbfMfXr16mZ2TUYX9mDn2IdvLgeyBwSVKGWtT2Zi6Ne4TE+CN+IPzaARnP5+/hZPTGZxxxY5NyXs+H7dHqp3KWO3rFt/umwmK5DN6E2aYIDekZXXt5sfpap9grUs2nqfeWyoXDMfp0Y7nPMtub29TiqupdXPZLQkeuLwT+z6JB9WQmfgTqdm5ineSsNp28/9D3n9xyFtrS+CPIWtr0lExY1mt1u18jctjTHDb0JhgPgx6m57GJN5reJPgQpQgv8bVqiDPv7u67+X1cM1Jryvtqahl0quo9vxAvf2rs9vBvPzBd9O5Mz5gjij3+9N4/ePT25d4XT4Pr69hfvtSKq6eIRV/x/z2AO7JdLlFfiM/nBbof7EDvz1b/y37Du7/63YQzvolmbsplA1MrbC/6RNcMCl2EdSwcFKW3E7R7w2QwmYcO05/O3+Lff8JHaahpA==
+sidebar_class_name: "post api-method"
+info_path: rest-api/application/ant-media-server-rest-api-reference
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Move IP Camera"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/v2/broadcasts/{id}/ip-camera/move"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Supports continuous, relative, and absolute movement. By default, it's a relative move. Movement parameters should be provided according to the movement type. Generally, the following values are used: For Absolute move, value X and value Y are between -1.0f and 1.0f. Zoom value is between 0.0f and 1.0f. For Relative move, value X, value Y, and Zoom Value are between -1.0f and 1.0f. For Continuous move, value X, value Y, and Zoom Value are between -1.0f and 1.0f.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  {...require("./move-ip-camera.ParamsDetails.json")}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./move-ip-camera.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./move-ip-camera.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

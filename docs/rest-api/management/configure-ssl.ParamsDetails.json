@@ -1,0 +1,1 @@
+{"parameters":[{"name":"domain","in":"query","description":"SSL settings","required":true,"schema":{"type":"string"}},{"name":"type","in":"query","schema":{"type":"string"}}]}

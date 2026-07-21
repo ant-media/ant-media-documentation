@@ -1,0 +1,69 @@
+---
+id: get-vod-list
+title: "Get the VoD list from database"
+description: "Retrieves the list of VoD files from the database. It returns up to 50 items. You can use offset value to get result page by page."
+sidebar_label: "Get the VoD list from database"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNV99v2zgM/lcIvXQDvLjounvw0xXXbghwtw39BRyG4qBYdKydLbkSnS4L/L8PlO3USXqZE+zh+tLWIj9+pEiKXAmFPnW6Im2NSMQ1ktO4QA+UIxTaE9gM7u0lZLpAD5mzZThSkuRMepzAlMAh1c54qCsgC+9OQROWfgJ/2xpSaaD2CDbLPBIsZFEjS82R9XxdEFRyjjBbht8TEQlboZNMaKpEIuZI91b9qT2JSFTSyRIJnRfJl5UwskSRiBZbREKzD5WkXERbjn1qzdts7ZiIhMPHWjtUIiFXYyR8mmMpRbIStKwYWBvCOToRicy6UlL76e2ZaJpobd3r77jX9se6nKFj2yEuQLkkeNJFATOEDCnNUf06NtbRP7NlT+ixRrfcYfReY6H4Flh6Ap+t93pWYHs7HqRDOGG8kwhOlCQ8ES/Q8eS0mW8Yt06h+6n1E+nTE8isgwufolHazNkO9l8vsf8MAXCkcU8OZTlV+41PL/skaOU5CpkuCF342Kak53TszqeXY+2jdGm+3/pNkIFOex/uAyeEr6zx6Pn87PSUf23CcWGGInVd3SrwdZqi91ldFGw+tYbQEKvKqip0Ggor/upZf7Vr386+YhoqzXEZkm6tt7H4GBzd5rrt422O0MKAVn2w7+2laCKxsGo8CMd1S399x6MAuhvcYZE6DGG4lIQv1tcuVK/CjW+D1GYx/nbespSObnU5FjzIA+kNd8Fhal2oAm2g1EWhPabWKA+v7m7/eAN3Rn8DrGyav36RharbLjqSRC/+M+f4IbjhljfSN/19wytWZ4dmS0L/nwY+cx8ddccOC0l6gcCtd2hIZlzTsqraPPJ1moP0XU74eLWwaqqaSVmdd4k5Nqt20qlVGaPKEgPlaM2q9ujurYo6euHPuiqsVKjurWIrlcOFxqf3B0UnRDtEhhsrm+1gtlyonOWucUOSaj+2uFh2GPEORJt5mAr45Z/xXT/WWGM0OI4g00b7HFUEmdQFqk0Ov6B4no0dUz3ce6X6ZIpl+xg/s7sy6gBuaNQBzEbx2DAy5p4GXwY0JhzxEknyIDcOqJfeRuH6o1qNLIFeegfFmvkhML34No4sDmHTS2+ibIe5azTcjlHBQiu0b6x5o7CURvVvXVpIz1dImgps32bR8E+Ic267WTYMsVy+Il6cxQurfMwveLxqh9gmXnHHbHg2QLfoB93aFSIROVHlkzgm9DSRhkpUWk60Td6dn7+Nb6RRM/stdugp3vGWdaCFFDxcaJPZEKOO7oUh+Ivx4CYIwfXVzS1cfJ7CNWbo0KS4gzlOh0cQmYYRpJuUnvWmzCLacm/gmYgEllLzaQfz+/CU80anaDwO0SuZ5ghnk9MN5CSOn56eJjKcTqybh7aPznejFMtznVtPpTQDvA9I6+INw1ZYgvoFaDsoq+eR6/+xTXVFQPiN4qqQ2rCXISyrLhO/iMWZCE8g52+3GyXrpSoJC85DJHLriaVXK+Z654qm4c/tpMtZqrSXM+7mSSYLj3sic8wC8qIj/+JyY+kJACIRggfz8XyOWEn20BmsQUfyOW5L2Reh5+XoSErbq8s+Y/0m9Gzqgf9xmm0dmCqvrru9+DW8uMS/yKP7KM3GHazvp03tw/wf8Bi50B/BLJRa89BEIkfJecaxao8u0hQrGijt7HMc5PVT8+HqVjTND7VWGes=
+sidebar_class_name: "get api-method"
+info_path: rest-api/application/ant-media-server-rest-api-reference
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get the VoD list from database"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/v2/vods/list/{offset}/{size}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Retrieves the list of VoD files from the database. It returns up to 50 items. You can use offset value to get result page by page.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  {...require("./get-vod-list.ParamsDetails.json")}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./get-vod-list.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./get-vod-list.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

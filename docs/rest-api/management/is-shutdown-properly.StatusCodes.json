@@ -1,0 +1,1 @@
+{"responses":{"200":{"description":"Returns the shutdown status of entered applications."},"400":{"description":"Either entered in wrong format or typed incorrectly application names"}}}

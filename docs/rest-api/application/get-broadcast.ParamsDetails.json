@@ -1,0 +1,1 @@
+{"parameters":[{"name":"id","in":"path","description":"id of the broadcast","required":true,"schema":{"type":"string"}}]}

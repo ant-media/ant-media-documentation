@@ -1,0 +1,8 @@
+{
+    "label": "Reference Architectures",
+    "position": 10,
+    "link": {
+      "type": "generated-index",
+      "description": "Proven deployment architectures for Ant Media Server, from a single production server to multi-region clusters, with sizing guidance and failure mode analysis."
+    }
+}

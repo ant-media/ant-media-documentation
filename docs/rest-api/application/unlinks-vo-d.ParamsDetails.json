@@ -1,0 +1,1 @@
+{"parameters":[{"name":"directory","in":"query","description":"The full path of the directory from which imported VoD files will be deleted from the database","required":true,"schema":{"type":"string"}}]}

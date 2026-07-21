@@ -35,8 +35,9 @@ const config = {
   url: 'https://docs.antmedia.io',
   baseUrl: '/',
   trailingSlash: true,
-  onBrokenLinks: 'warn', // replace with 'throw' to stop building if broken links
+  onBrokenLinks: 'throw', // stop the build when broken links are found
   markdown: {
+    mermaid: true,
     hooks: {
       onBrokenMarkdownLinks: 'warn',
     },
@@ -73,6 +74,7 @@ scripts: [
         docs: {
           routeBasePath: '/',
           sidebarPath: require.resolve('./sidebars.js'),
+          docItemComponent: '@theme/ApiItem',
           breadcrumbs: true,
           editUrl: 'https://github.com/ant-media/ant-media-documentation/edit/master/',
           lastVersion:
@@ -104,9 +106,34 @@ scripts: [
     ],
   ],
 
+  themes: ['docusaurus-theme-openapi-docs', '@docusaurus/theme-mermaid'],
+
   plugins: [[ require.resolve('docusaurus-lunr-search'), {
     languages: ['en']
   }],
+  [
+    'docusaurus-plugin-openapi-docs',
+    {
+      id: 'openapi',
+      docsPluginId: 'classic',
+      config: {
+        amsRestApi: {
+          specPath: 'static/openapi/ams-rest-api.json',
+          outputDir: 'docs/rest-api/application',
+          sidebarOptions: {
+            groupPathsBy: 'tag',
+          },
+        },
+        amsManagementApi: {
+          specPath: 'static/openapi/ams-management-api.json',
+          outputDir: 'docs/rest-api/management',
+          sidebarOptions: {
+            groupPathsBy: 'tag',
+          },
+        },
+      },
+    },
+  ],
   [
     '@docusaurus/plugin-client-redirects',
     {

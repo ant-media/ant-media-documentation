@@ -1,0 +1,9 @@
+{
+    "label": "REST API Reference",
+    "position": 5,
+    "link": {
+      "type": "generated-index",
+      "slug": "/rest-api",
+      "description": "Full REST API reference for Ant Media Server, generated from the OpenAPI specification. Covers broadcast, VoD, and management endpoints."
+    }
+}

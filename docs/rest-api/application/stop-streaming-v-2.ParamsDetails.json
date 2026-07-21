@@ -1,0 +1,1 @@
+{"parameters":[{"name":"id","in":"path","description":"the id of the broadcast.","required":true,"schema":{"type":"string"}},{"name":"stopSubtracks","in":"query","description":"Stop also subtracks","schema":{"type":"boolean"}}]}

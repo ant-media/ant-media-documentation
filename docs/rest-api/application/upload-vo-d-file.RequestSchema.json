@@ -1,0 +1,1 @@
+{"title":"Body","body":{"content":{"multipart/form-data":{"schema":{"required":["file"],"type":"object","properties":{"file":{"type":"object","description":"VoD file"},"metadata":{"type":"string","description":"Custom metadata for the VoD file"}}}}}}}
