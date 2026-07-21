@@ -77,6 +77,7 @@ scripts: [
           docItemComponent: '@theme/ApiItem',
           breadcrumbs: true,
           editUrl: 'https://github.com/ant-media/ant-media-documentation/edit/master/',
+          showLastUpdateTime: true,
           lastVersion:
               isDev ? 'current' : getLastStableVersion(),
           onlyIncludeVersions: (() => {
