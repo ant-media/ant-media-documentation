@@ -1,1 +1,0 @@
-{"parameters":[{"name":"ids","in":"query","description":"Comma-separated IDs of the VoD files","required":true,"schema":{"type":"string"}}]}

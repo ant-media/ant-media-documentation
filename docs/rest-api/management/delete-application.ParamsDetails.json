@@ -1,1 +1,0 @@
-{"parameters":[{"name":"appName","in":"path","description":"Name of the application to delete","required":true,"schema":{"type":"string"}},{"name":"deleteDB","in":"query","description":"Whether to delete associated database","required":true,"schema":{"type":"boolean"}}]}

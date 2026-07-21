@@ -1,1 +1,0 @@
-{"responses":{"200":{"description":"Number of broadcasts for searched items","content":{"application/json":{"schema":{"type":"object","properties":{"number":{"type":"integer","description":"the stat value","format":"int64"}},"description":"Simple generic statistics class to return single values","title":"SimpleStat"}}}}}}

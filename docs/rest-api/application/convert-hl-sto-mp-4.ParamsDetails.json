@@ -1,1 +1,0 @@
-{"parameters":[{"name":"hls_filename","in":"path","required":true,"schema":{"type":"string"}},{"name":"download","in":"query","schema":{"type":"boolean"}},{"name":"deleteHLSFiles","in":"query","schema":{"type":"boolean"}}]}

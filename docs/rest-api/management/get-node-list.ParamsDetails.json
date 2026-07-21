@@ -1,1 +1,0 @@
-{"parameters":[{"name":"offset","in":"path","required":true,"schema":{"type":"integer","format":"int32"}},{"name":"size","in":"path","required":true,"schema":{"type":"integer","format":"int32"}}]}

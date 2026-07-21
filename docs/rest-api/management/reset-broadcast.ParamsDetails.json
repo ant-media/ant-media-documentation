@@ -1,1 +1,0 @@
-{"parameters":[{"name":"appname","in":"path","description":"Application name","required":true,"schema":{"type":"string"}}]}

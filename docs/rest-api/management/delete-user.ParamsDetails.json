@@ -1,1 +1,0 @@
-{"parameters":[{"name":"username","in":"path","description":"User name or e-mail of the user to be deleted","required":true,"schema":{"type":"string"}}]}

@@ -1,1 +1,0 @@
-{"parameters":[{"name":"id","in":"path","description":"Broadcast id (main track)","required":true,"schema":{"type":"string"}},{"name":"role","in":"query","description":"Role parameter for filtering active subtracks","schema":{"type":"string"}}]}

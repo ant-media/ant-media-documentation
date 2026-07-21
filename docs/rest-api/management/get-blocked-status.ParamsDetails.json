@@ -1,1 +1,0 @@
-{"parameters":[{"name":"usermail","in":"path","description":"User name or e-mail of the user to check its status","required":true,"schema":{"type":"string"}}]}

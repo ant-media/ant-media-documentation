@@ -1,1 +1,0 @@
-{"parameters":[{"name":"id","in":"path","description":"Broadcast id(main track)","required":true,"schema":{"type":"string"}},{"name":"id","in":"query","description":"Subtrack Stream Id","required":true,"schema":{"type":"string"}}]}

@@ -1,9 +1,0 @@
-{
-    "label": "Application REST API",
-    "position": 1,
-    "link": {
-      "type": "generated-index",
-      "slug": "/rest-api/application",
-      "description": "Application-level REST APIs for managing broadcasts, VoD assets, and streams. Base URL: https://your-server:5443/{application}/rest/v2"
-    }
-}

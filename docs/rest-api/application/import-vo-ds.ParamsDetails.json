@@ -1,1 +1,0 @@
-{"parameters":[{"name":"directory","in":"query","description":"The full path of the directory that VoD files will be imported to the datastore and linked to the streams","required":true,"schema":{"type":"string"}}]}

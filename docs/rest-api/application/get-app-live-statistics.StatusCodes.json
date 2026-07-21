@@ -1,1 +1,0 @@
-{"responses":{"200":{"description":"Active live streams","content":{"application/json":{"schema":{"type":"object","properties":{"number":{"type":"integer","description":"the stat value","format":"int64"}},"description":"Simple generic statistics class to return single values","title":"SimpleStat"}}}}}}

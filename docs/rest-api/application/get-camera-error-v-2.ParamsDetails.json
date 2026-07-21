@@ -1,1 +1,0 @@
-{"parameters":[{"name":"streamId","in":"path","description":"StreamId of the IP Camera Streaming.","required":true,"schema":{"type":"string"}}]}

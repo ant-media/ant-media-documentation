@@ -1,1 +1,0 @@
-{"parameters":[{"name":"subscriberId","in":"query","schema":{"type":"string"}},{"name":"timeoutSeconds","in":"query","schema":{"type":"integer","format":"int32"}}]}

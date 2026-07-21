@@ -1,1 +1,0 @@
-{"parameters":[{"name":"url","in":"query","description":"Url of the stream that its duration will be returned","required":true,"schema":{"type":"string"}}]}

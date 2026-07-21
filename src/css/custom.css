@@ -250,3 +250,22 @@ h1, article h1, article header h1 {
 .navbar-free-trial:hover {
   background-color: #e64a19;
 }
+
+/* Swagger UI embedded in REST API pages */
+.ams-swagger-frame-wrap {
+  margin-top: 1rem;
+  width: 100%;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fafafa;
+}
+
+.ams-swagger-frame {
+  width: 100%;
+  min-height: 75vh;
+  height: 80vh;
+  border: 0;
+  display: block;
+}
+
