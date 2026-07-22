@@ -1,11 +1,11 @@
 ---
-title: Using Nvidia GPUs 
+title: Using NVIDIA GPU
 description: To enhance encoding performance with GPU Encoder or GPU intence encoding, you may leverage Nvidia Graphics Cards. It is also helpful with Video Encode and Decode GPU Support Matrix.
 keywords: [Using Nvidia GPUs, Nvidia GPUs for Encoding, Enhance Encoding Performance with GPU Encoder, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 7
 ---
 
-# Using Nvidia GPUs
+# Using NVIDIA GPU
 
 Ant Media Server can use NVIDIA GPU’s hardware encoder (NVENC/NVDEC) for high-performance streaming.. If you have an NVIDIA GPU, you can see if it has a hardware-based encoder in the [Video Encode and Decode GPU Support Matrix](https://developer.nvidia.com/video-encode-decode-gpu-support-matrix).
 

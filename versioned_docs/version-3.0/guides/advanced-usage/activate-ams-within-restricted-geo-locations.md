@@ -1,11 +1,11 @@
 ---
-title: Activating License in Restricted Areas
+title: Active License in Restricted Regions
 description: Activate Ant Media Server from within restricted geo locations
 keywords: [Activate AMS within self-hosted proxy server, restricted geo locations, proxy server, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 12
 ---
 
-# Activate Ant Media Server in Restricted Geographies
+# Active License in Restricted Regions
 
 Ant Media uses Google services to verify the license key, which are banned in China and Hong Kong. 
 

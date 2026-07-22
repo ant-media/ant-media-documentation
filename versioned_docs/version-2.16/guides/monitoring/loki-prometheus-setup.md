@@ -1,10 +1,10 @@
 ---
-title: Collecting Logs and Metrics of Ant Media Server on Kubernetes
+title: Loki and Prometheus (Kubernetes)
 description: Collecting Logs and Metrics of Ant Media Server on Kubernetes
 keywords: [Collecting Logs and Metrics of Ant Media Server on Kubernetes, Ant Media Server Documentation, Ant Media Server Tutorials]
 ---
 
-# Collecting Logs and Metrics of Ant Media Server on Kubernetes
+# Loki and Prometheus (Kubernetes)
 
 Centralized collection, monitoring, and analysis of Ant Media Server logs and system metrics running on Kubernetes is critically important. This document explains how to configure it using two main components:
 

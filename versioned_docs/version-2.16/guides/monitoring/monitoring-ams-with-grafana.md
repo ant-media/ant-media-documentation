@@ -1,10 +1,10 @@
 ---
-title: Monitoring AMS with Grafana
+title: Monitoring with Grafana
 description: Monitoring AMS with Grafana
 keywords: [Monitoring AMS with Grafana, Grafana, Ant Media Server Documentation, Ant Media Server Tutorials]
 ---
 
-# Monitoring AMS with Grafana
+# Monitoring with Grafana
 
 In this document, you'll learn how to monitor Ant Media Servers with Apache Kafka, Elasticsearch and Grafana. This is a step-by-step guide to install your monitoring system from scratch.
 

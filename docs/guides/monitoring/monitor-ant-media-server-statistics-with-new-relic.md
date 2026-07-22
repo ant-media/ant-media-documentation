@@ -1,11 +1,11 @@
 ---
-title: Monitor AMS statistics with New Relic
+title: Monitoring with New Relic
 description: Monitor Ant Media Server statistics with New Relic
 keywords: [Analytics, New Relic, Statistics, Ant Media Server Tutorials]
 sidebar_position: 1
 ---
 
-# Monitor Ant Media Server statistics with New Relic
+# Monitoring with New Relic
 
 Starting with v2.10.0, Ant Media Server (AMS) provides analytics logs to monitor important usage and performance statistics.
 These logs are stored in JSON format at: `ant-media-server-analytics.log`. 

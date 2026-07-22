@@ -1,5 +1,5 @@
 ---
-title: Overcoming Restricted Networks for WebRTC with Ant Media Server
+title: WebRTC in Restricted Networks
 description: Solutions for WebRTC in Restricted Networks with Ant Media Server
 keywords: [Overcoming Restricted Networks for WebRTC with Ant Media Server, Solutions for WebRTC in Restricted Networks with Ant Media Server, Ant Media Server Tutorials]
 sidebar_position: 13

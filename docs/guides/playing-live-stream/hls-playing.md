@@ -1,11 +1,11 @@
 ---
-title: HLS Playing
+title: HLS Playback
 description: This documentation guide will help you achieve HLS playing and save HLS records to your servers.
-keywords: [HLS Playing, HLS Playing with Ant Media Server, Ant Media Server Documentation, Ant Media Server Tutorials]
+keywords: [HLS Playback, HLS Playback with Ant Media Server, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 2
 ---
 
-# HLS Playing
+# HLS Playback
 
 HLS playback is available in both the Community and Enterprise Editions of Ant Media Server. Prior to initiating playback of a stream, ensure that the stream is actively broadcasting on the server.
 

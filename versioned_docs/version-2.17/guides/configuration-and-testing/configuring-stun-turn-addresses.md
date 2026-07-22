@@ -1,11 +1,11 @@
 ---
-title: Configuring STUN/TURN addresses 
+title: STUN/TURN Server Configuration
 description: Fix limitations of AWS Wavelength Zones both server side as well as client side. This guide will help you to setup custom TURN server for Android SDK and IOS SDK.
 keywords: [STUN addresses, TURN configuration, add turn, TURN addresses, turn config, stun config, custom stun server, custom turn server, AWS Wavelength Zones, red5-web Properties, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 3
 ---
 
-# Configuring STUN/TURN addresses
+# STUN/TURN Server Configuration
 
 ## Custom STUN servers for AWS Wavelength Zones
 In most cases, the default Google STUN server is sufficient for WebRTC connectivity, so you don’t need to change the default settings.

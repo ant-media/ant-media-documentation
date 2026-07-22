@@ -428,10 +428,6 @@ scripts: [
           to: '/guides/clustering-and-scaling/aws/aws-lb/configuring-rtmp-lb-in-aws/'
         },
         {
-          from: '/guides/developer-sdk-and-api/rest-api-guide/rest-api-guide/',
-          to: '/category/rest-api-guide/'
-        },
-        {
           from: '/guides/clustering-and-scaling/kubernetes/kubernetes-autoscaling/',
           to: '/guides/clustering-and-scaling/kubernetes/deploy-ams-on-kubernetes/'
         },
@@ -700,8 +696,22 @@ scripts: [
         },
 	{
           from: '/guides/advanced-usage/webrtc-codecs/',
-          to: '/guides/configuration-and-testing/video-codecs/',
+          to: '/guides/configuration-and-testing/video-codec/',
         },
+	{
+          from: '/guides/configuration-and-testing/video-codecs/',
+          to: '/guides/configuration-and-testing/video-codec/',
+        },
+	{
+          // 3.0 is lastVersion (served unversioned); keep /3.0/ bookmarks working.
+          from: '/3.0/guides/configuration-and-testing/video-codecs/',
+          to: '/guides/configuration-and-testing/video-codec/',
+        },
+	{
+          from: '/2.17/guides/configuration-and-testing/video-codecs/',
+          to: '/2.17/guides/configuration-and-testing/video-codec/',
+        },
+	// 2.16 still has video-codecs.md — do not redirect that version.
 	{
           from: [
             '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/react-native-p2p-sample/',
@@ -740,7 +750,7 @@ scripts: [
           to: '/category/configuration/',
         },
 	{
-          // Temporary flat AWS URLs (from brief flatten) → restored nested paths
+          // Historical flat AWS doc URLs → current nested paths
           from: '/guides/clustering-and-scaling/aws/running-ams-container-at-ecs/',
           to: '/guides/clustering-and-scaling/aws/aws-ecs/running-ams-container-at-ecs/',
         },

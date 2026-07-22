@@ -44,7 +44,7 @@ New to streaming? Start with [Quick Start](./quick-start), then explore [Dashboa
 
 - **Latency modes** — WebRTC (~500 ms with Enterprise Edition), LL-HLS/LL-DASH, and standard HLS/DASH for large audiences
 - **Ingest** — WebRTC, RTMP, SRT, RTSP, WHIP, and NDI (beta)
-- **Codecs** — H.264, H.265, VP8, and AV1. See [Video Codecs](./guides/configuration-and-testing/video-codecs) for details.
+- **Codecs** — H.264, H.265, VP8, and AV1. See [Video Codecs](./guides/configuration-and-testing/video-codec/) for details.
 - **Deployment** — Linux, Docker, and Kubernetes; available on AWS, Azure, GCP, and other cloud marketplaces
 - **SDKs** — JavaScript, iOS, Android, Flutter, React Native, and Unity
 
