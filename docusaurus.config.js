@@ -851,6 +851,11 @@ scripts: [
             position: 'right',
             dropdownActiveClassDisabled: false,
           },
+          {
+            label: 'Release Notes',
+            href: 'https://github.com/ant-media/Ant-Media-Server/releases',
+            position: 'right',
+          },
 /*
           {
             type: 'doc',
