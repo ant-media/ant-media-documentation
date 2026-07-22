@@ -620,7 +620,7 @@ scripts: [
         },
 	{
           from: '/guides/advanced-usage/building-ams-from-source-code/',
-          to: '/guides/developing-antmedia-server/building-ams-from-source-code/'
+          to: '/guides/developer-sdk-and-api/extend-the-server/building-ams-from-source-code/'
         },
 	{
           from: '/old-front-page/',
@@ -672,7 +672,7 @@ scripts: [
         },
 	{
           from: '/guides/advanced-usage/circle-component-usage/',
-          to: '/guides/developing-antmedia-server/applications/circle-component-usage/'
+          to: '/guides/developer-sdk-and-api/extend-the-server/applications/circle-component-usage/'
         },
 	{
           from: '/streaming-glossary/',
@@ -688,7 +688,7 @@ scripts: [
         },
 	{
           from: '/guides/advanced-usage/Plugins-for-Ant-Media-Server/',
-          to: '/guides/developing-antmedia-server/plugins/plugins-for-ant-media-server/'
+          to: '/guides/developer-sdk-and-api/extend-the-server/plugins/plugins-for-ant-media-server/'
         },
 	{
           from: '/guides/publish-live-stream/webrtc-peer-to-peer-communication/',
@@ -829,6 +829,120 @@ scripts: [
           from: '/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/',
           to: '/category/javascript-sdk/',
         },
+	// Developer Guides section: nest former server-extension docs + move Webhooks
+	...(() => {
+          const nestedPages = [
+            'building-ams-from-source-code/',
+            'applications/circle-component-usage/',
+            'applications/create-new-application/',
+            'plugins/developing-plugins/',
+            'plugins/getting-started/',
+            'plugins/plugin-architecture/',
+            'plugins/plugins-for-ant-media-server/',
+          ];
+          // 2.16 kept a flatter developing-antmedia-server layout
+          const flat216Pages = [
+            'building-ams-from-source-code/',
+            'circle-component-usage/',
+            'create-new-application/',
+            'introduction-plugin-structure/',
+            'plugins-for-ant-media-server/',
+          ];
+          const redirects = [
+            // Old "Developer SDKs & API" category → unified Developer Guides
+            {
+              from: '/category/developer-sdks--api/',
+              to: '/category/developer-guides/',
+            },
+            {
+              from: '/category/developer-sdks-api/',
+              to: '/category/developer-guides/',
+            },
+            {
+              // Brief intermediate slug from prior rename
+              from: '/category/developers/',
+              to: '/category/developer-guides/',
+            },
+            {
+              from: '/guides/advanced-usage/webhooks/',
+              to: '/guides/developer-sdk-and-api/webhooks/',
+            },
+            {
+              from: '/3.0/guides/advanced-usage/webhooks/',
+              to: '/guides/developer-sdk-and-api/webhooks/',
+            },
+            {
+              from: '/2.17/guides/advanced-usage/webhooks/',
+              to: '/2.17/guides/developer-sdk-and-api/webhooks/',
+            },
+            {
+              from: '/2.16/guides/advanced-usage/webhooks/',
+              to: '/2.16/guides/developer-sdk-and-api/webhooks/',
+            },
+            {
+              from: '/guides/developing-antmedia-server/',
+              to: '/category/extend-the-server/',
+            },
+            {
+              from: '/3.0/guides/developing-antmedia-server/',
+              to: '/category/extend-the-server/',
+            },
+            {
+              from: '/2.17/guides/developing-antmedia-server/',
+              to: '/2.17/category/extend-the-server/',
+            },
+            {
+              from: '/2.16/guides/developing-antmedia-server/',
+              to: '/2.16/category/extend-the-server/',
+            },
+            // Short paths used in older absolute links
+            {
+              from: '/guides/developing-antmedia-server/create-new-application/',
+              to: '/guides/developer-sdk-and-api/extend-the-server/applications/create-new-application/',
+            },
+            {
+              from: '/3.0/guides/developing-antmedia-server/create-new-application/',
+              to: '/guides/developer-sdk-and-api/extend-the-server/applications/create-new-application/',
+            },
+            {
+              from: '/2.17/guides/developing-antmedia-server/create-new-application/',
+              to: '/2.17/guides/developer-sdk-and-api/extend-the-server/applications/create-new-application/',
+            },
+            {
+              from: '/guides/developing-antmedia-server/circle-component-usage/',
+              to: '/guides/developer-sdk-and-api/extend-the-server/applications/circle-component-usage/',
+            },
+            {
+              from: '/3.0/guides/developing-antmedia-server/circle-component-usage/',
+              to: '/guides/developer-sdk-and-api/extend-the-server/applications/circle-component-usage/',
+            },
+            {
+              from: '/2.17/guides/developing-antmedia-server/circle-component-usage/',
+              to: '/2.17/guides/developer-sdk-and-api/extend-the-server/applications/circle-component-usage/',
+            },
+          ];
+          for (const page of nestedPages) {
+            redirects.push({
+              from: `/guides/developing-antmedia-server/${page}`,
+              to: `/guides/developer-sdk-and-api/extend-the-server/${page}`,
+            });
+            redirects.push({
+              from: `/3.0/guides/developing-antmedia-server/${page}`,
+              to: `/guides/developer-sdk-and-api/extend-the-server/${page}`,
+            });
+            redirects.push({
+              from: `/2.17/guides/developing-antmedia-server/${page}`,
+              to: `/2.17/guides/developer-sdk-and-api/extend-the-server/${page}`,
+            });
+          }
+          for (const page of flat216Pages) {
+            redirects.push({
+              from: `/2.16/guides/developing-antmedia-server/${page}`,
+              to: `/2.16/guides/developer-sdk-and-api/extend-the-server/${page}`,
+            });
+          }
+          return redirects;
+        })(),
       ],
     },
   ], /*
@@ -876,7 +990,7 @@ scripts: [
 */
           {
             label: 'SDK references',
-            href: '/category/sdk-integration/',
+            href: '/category/developer-guides/',
             position: 'right'
           },
           {

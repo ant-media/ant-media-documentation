@@ -39,7 +39,7 @@ Before configuring CloudFront, ensure you have:
 
    - **Origin domain**: Enter the domain name of your Ant Media Server instance.
    - **Protocol**: Choose HTTP (5080) or HTTPS (5443). If you select HTTPS, ensure [SSL is enabled](https://antmedia.io/docs/guides/installing-on-linux/setting-up-ssl/).
-   - **Origin path**: Enter the name of your Ant Media Server [application](https://antmedia.io/docs/guides/developing-antmedia-server/create-new-application/) (e.g., `live`).
+   - **Origin path**: Enter the name of your Ant Media Server [application](https://antmedia.io/docs/guides/developer-sdk-and-api/extend-the-server/create-new-application/) (e.g., `live`).
    
 5. Configure the default cache behavior:
    - Set cache behavior settings and policies as needed.

@@ -80,7 +80,7 @@ If you want to change only look and feel, for example, button availabilities, th
 
 ### Embedding into Website
 
-If you want to embed Circle into your website as a component, please follow [this guide](https://antmedia.io/docs/guides/developing-antmedia-server/circle-component-usage/).
+If you want to embed Circle into your website as a component, please follow [this guide](https://antmedia.io/docs/guides/developer-sdk-and-api/extend-the-server/applications/circle-component-usage/).
 
 ----------
 

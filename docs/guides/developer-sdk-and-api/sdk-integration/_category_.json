@@ -1,8 +1,9 @@
 {
-  "label": "SDK Integration",
-  "position": 2,
+  "label": "SDKs",
+  "position": 1,
   "link": {
     "type": "generated-index",
-    "description": "Ant Media Server SDK Integration."
+    "description": "Integrate Ant Media Server with client SDKs.",
+    "slug": "/category/sdk-integration"
   }
 }

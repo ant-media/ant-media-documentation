@@ -31,7 +31,7 @@ Publishers push live video into AMS. The server ingests, optionally transcodes f
 | --- | --- |
 | Install AMS in minutes | [Quick Start](./quick-start) |
 | Explore the web panel | [Dashboard Features](./get-started/features) |
-| Build a mobile or web app | [Developer SDKs & API](/category/sdk-integration/) |
+| Build a mobile or web app | [Developer Guides](/category/developer-guides/) |
 | Deploy at scale | [Clustering and Scaling](/category/clustering-and-scaling/) |
 | Secure streams | [Stream Security](/category/stream-security/) |
 | Compare editions | [Community and Enterprise Edition comparison](#community-and-enterprise-edition-comparison) |

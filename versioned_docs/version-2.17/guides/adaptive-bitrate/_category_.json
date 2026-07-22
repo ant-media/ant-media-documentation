@@ -1,6 +1,6 @@
 {
   "label": "Adaptive Bitrate Streaming (Transcoding)",
-  "position": 8,
+  "position": 9,
   "link": {
     "type": "generated-index",
     "description": "Adaptive bitrate streaming with Ant Media Server helps you serve video smoothly across devices and network conditions.",
