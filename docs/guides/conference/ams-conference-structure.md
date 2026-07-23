@@ -84,7 +84,7 @@ In this section, we will develop a simple video conference application on top of
 
 With the help of this demo project, we will learn more deeply about the Ant Media Server conference structure.
 
-Before you start reading this section, take a quick look at to [Javascript SDK Documentation](https://antmedia.io/docs/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/).
+Before you start reading this section, take a quick look at [Javascript SDK Documentation](https://antmedia.io/docs/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/).
 
 For a more comprehensive conference sample in pure javascript, you can reference to this [Javascript Conference Sample](https://github.com/ant-media/StreamApp/blob/8544ecd2111952008f187f1e0d35fda4cccb030a/src/main/webapp/conference.html) that we tested in above section.
 
@@ -1890,7 +1890,7 @@ You can find source code of this tutorial on [Github](https://github.com/lastpeo
 The 15 steps should give you a strong foundation to start building a production-ready video conferencing app on top of Ant Media Server. Keep in mind that the conferencing concepts are consistent across all SDKs. Therefore, if you're developing a conferencing application with other SDKs, the principles you've learned here will still apply.
 
 
-For further development and examples dont forget to take a look at [Circle](https://github.com/ant-media/conference-call-application)
+For further development and examples don't forget to take a look at [Circle](https://github.com/ant-media/conference-call-application)
 
 <br /><br />
 ---

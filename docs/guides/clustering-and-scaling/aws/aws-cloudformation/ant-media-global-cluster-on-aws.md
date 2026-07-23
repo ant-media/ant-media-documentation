@@ -124,7 +124,7 @@ Once the cluster creation in both regions is completed, you can proceed with VPC
 
 - This will terminate the current nodes and increasing the capacity again will launch new nodes with the updated settings.
 
-- Now, when you will login to the Ant Media Server web panel, under Cluster tab all the nodes of both regions will be visible.
+- Now, when you log in to the Ant Media Server web panel, under the Cluster tab all the nodes of both regions will be visible.
 
   ![](@site/static/img/aws-global-cluster/cluster-nodes.png)
 

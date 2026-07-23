@@ -327,9 +327,9 @@ public class AntMediaApplicationAdaptor {
 
 1. **Create the custom broadcast:** `IFrameListener broadcast = createCustomBroadcast("mystream")`
 2. **Set stream properties:** Call `setVideoStreamInfo()` and `setAudioStreamInfo()` on the broadcast
-2. **Start the broadcast:**? TODO: check this? Call `start()` on the broadcast
-3. **Feed frames:** Call `onVideoFrame()` and `onAudioFrame()` with your data
-4. **Cleanup:** Call `stopCustomBroadcast()` when done
+3. **Start the broadcast:** Call `start()` on the broadcast
+4. **Feed frames:** Call `onVideoFrame()` and `onAudioFrame()` with your data
+5. **Cleanup:** Call `stopCustomBroadcast()` when done
 
 **Use Cases:**
 - Ingesting streams from proprietary protocols

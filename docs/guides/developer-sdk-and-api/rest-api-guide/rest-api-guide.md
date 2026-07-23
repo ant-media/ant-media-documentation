@@ -62,7 +62,7 @@ The REST interface only responds to calls from 127.0.0.1 by default. If you call
 
 ### JWT Filter
 
-If preferred, you can generate JWT tokens and pass them in the header of API requests. You can generate a permanent token or one with an expiry date for an additional security layer. Please refer to the [API security (JWT)](/guides/developer-sdk-and-api/rest-api-guide/jwt-rest-api-filter/) ocument for details on configuration.
+If preferred, you can generate JWT tokens and pass them in the header of API requests. You can generate a permanent token or one with an expiry date for an additional security layer. Please refer to the [API security (JWT)](/guides/developer-sdk-and-api/rest-api-guide/jwt-rest-api-filter/) document for details on configuration.
 
 ## Management Service Authentication
 

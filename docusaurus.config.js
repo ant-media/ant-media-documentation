@@ -344,7 +344,15 @@ scripts: [
         },
 	{
           from: '/guides/configuration-and-testing/load-testing/srt-loadt-testing/',
-          to: '/guides/load-testing/srt-loadt-testing/',
+          to: '/guides/load-testing/srt-load-testing/',
+        },
+	{
+          from: '/guides/configuration-and-testing/load-testing/srt-load-testing/',
+          to: '/guides/load-testing/srt-load-testing/',
+        },
+	{
+          from: '/guides/load-testing/srt-loadt-testing/',
+          to: '/guides/load-testing/srt-load-testing/',
         },
 	{
           from: '/guides/configuration-and-testing/webrtc-load-testing/',
@@ -372,6 +380,14 @@ scripts: [
             from: `/${ver}/guides/configuration-and-testing/load-testing/srt-loadt-testing/`,
             to: `/${ver}/guides/load-testing/srt-loadt-testing/`,
           },
+          {
+            from: `/${ver}/guides/configuration-and-testing/load-testing/srt-load-testing/`,
+            to: `/${ver}/guides/load-testing/srt-loadt-testing/`,
+          },
+          {
+            from: `/${ver}/guides/load-testing/srt-load-testing/`,
+            to: `/${ver}/guides/load-testing/srt-loadt-testing/`,
+          },
         ]),
 	{
           from: '/3.0/guides/configuration-and-testing/load-testing/',
@@ -395,7 +411,15 @@ scripts: [
         },
 	{
           from: '/3.0/guides/configuration-and-testing/load-testing/srt-loadt-testing/',
-          to: '/guides/load-testing/srt-loadt-testing/',
+          to: '/guides/load-testing/srt-load-testing/',
+        },
+	{
+          from: '/3.0/guides/configuration-and-testing/load-testing/srt-load-testing/',
+          to: '/guides/load-testing/srt-load-testing/',
+        },
+	{
+          from: '/3.0/guides/load-testing/srt-loadt-testing/',
+          to: '/guides/load-testing/srt-load-testing/',
         },
 	{
           from: '/2.17/guides/configuration-and-testing/load-testing/rtsp-load-testing/',
@@ -821,15 +845,27 @@ scripts: [
         }),
 	{
           from: '/guides/clustering-and-scaling/aws/deploying-ams-at-aws-wavelength/',
-          to: '/guides/clustering-and-scaling/aws/aws-wavelenght/deploying-ams-at-aws-wavelength/',
+          to: '/guides/clustering-and-scaling/aws/aws-wavelength/deploying-ams-at-aws-wavelength/',
         },
 	{
           from: '/guides/clustering-and-scaling/aws/aws-wavelength-standalone-deployment/',
-          to: '/guides/clustering-and-scaling/aws/aws-wavelenght/aws-wavelength-standalone-deployment/',
+          to: '/guides/clustering-and-scaling/aws/aws-wavelength/aws-wavelength-standalone-deployment/',
         },
 	{
           from: '/guides/clustering-and-scaling/aws/aws-wavelength-cluster-deployment/',
-          to: '/guides/clustering-and-scaling/aws/aws-wavelenght/aws-wavelength-cluster-deployment/',
+          to: '/guides/clustering-and-scaling/aws/aws-wavelength/aws-wavelength-cluster-deployment/',
+        },
+	{
+          from: '/guides/clustering-and-scaling/aws/aws-wavelenght/deploying-ams-at-aws-wavelength/',
+          to: '/guides/clustering-and-scaling/aws/aws-wavelength/deploying-ams-at-aws-wavelength/',
+        },
+	{
+          from: '/guides/clustering-and-scaling/aws/aws-wavelenght/aws-wavelength-standalone-deployment/',
+          to: '/guides/clustering-and-scaling/aws/aws-wavelength/aws-wavelength-standalone-deployment/',
+        },
+	{
+          from: '/guides/clustering-and-scaling/aws/aws-wavelenght/aws-wavelength-cluster-deployment/',
+          to: '/guides/clustering-and-scaling/aws/aws-wavelength/aws-wavelength-cluster-deployment/',
         },
 	{
           from: '/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/',

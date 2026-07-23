@@ -84,7 +84,7 @@ If you want to embed Circle into your website as a component, please follow [thi
 
 ----------
 
-In the next document, we will learn in more detail about the Ant Media Server Conferece solution structure.
+In the next document, we will learn in more detail about the Ant Media Server Conference solution structure.
 
 <br /><br />
 ---
