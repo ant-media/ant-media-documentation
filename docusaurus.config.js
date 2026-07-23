@@ -867,6 +867,19 @@ scripts: [
           from: '/guides/clustering-and-scaling/aws/aws-wavelenght/aws-wavelength-cluster-deployment/',
           to: '/guides/clustering-and-scaling/aws/aws-wavelength/aws-wavelength-cluster-deployment/',
         },
+	// 3.0 lastVersion is unversioned; keep /3.0/ typo bookmarks working.
+	{
+          from: '/3.0/guides/clustering-and-scaling/aws/aws-wavelenght/deploying-ams-at-aws-wavelength/',
+          to: '/guides/clustering-and-scaling/aws/aws-wavelength/deploying-ams-at-aws-wavelength/',
+        },
+	{
+          from: '/3.0/guides/clustering-and-scaling/aws/aws-wavelenght/aws-wavelength-standalone-deployment/',
+          to: '/guides/clustering-and-scaling/aws/aws-wavelength/aws-wavelength-standalone-deployment/',
+        },
+	{
+          from: '/3.0/guides/clustering-and-scaling/aws/aws-wavelenght/aws-wavelength-cluster-deployment/',
+          to: '/guides/clustering-and-scaling/aws/aws-wavelength/aws-wavelength-cluster-deployment/',
+        },
 	{
           from: '/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/',
           to: '/category/javascript-sdk/',

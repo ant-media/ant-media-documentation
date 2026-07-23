@@ -28,7 +28,7 @@ For most production AWS customers we recommend this order:
 1. **[CloudFormation (Marketplace)](/guides/clustering-and-scaling/aws/aws-cloudformation/scale-with-aws-cloudformation/)** — default choice for a production autoscaling cluster with the least custom work.
 2. **[Auto Managed](/guides/clustering-and-scaling/aws/aws-auto-managed/auto-managed-service-on-aws/)** — choose when you want Ant Media to operate scaling for you and prefer usage-based billing with minimal AWS ops.
 3. **[AWS ECS](/guides/clustering-and-scaling/aws/aws-ecs/running-ams-container-at-ecs/)** — choose when your org already standardizes on containers/ECS/Fargate.
-4. **[Wavelength](/guides/clustering-and-scaling/aws/aws-wavelenght/deploying-ams-at-aws-wavelength/)** — niche: ultra-low latency at the mobile edge (5G / Wavelength Zones). Skip unless you have that requirement.
+4. **[Wavelength](/guides/clustering-and-scaling/aws/aws-wavelength/deploying-ams-at-aws-wavelength/)** — niche: ultra-low latency at the mobile edge (5G / Wavelength Zones). Skip unless you have that requirement.
 5. **[Load Balancer](/guides/clustering-and-scaling/aws/aws-lb/configuring-rtmp-lb-in-aws/)** — not a cluster method; supporting guides once you already have a cluster.
 6. **[Clustering with AWS (manual)](/guides/clustering-and-scaling/aws/clustering-with-aws/)** — full step-by-step EC2 build. Use for learning, deep customization, or non-standard VPCs—not the fastest path to production.
 
