@@ -36,6 +36,11 @@ const config = {
   baseUrl: '/',
   trailingSlash: true,
   onBrokenLinks: 'warn', // replace with 'throw' to stop building if broken links
+  // Force real git last-update dates even in --dev builds.
+  // Default "default-v1" uses a hardcoded 2018-10-14 date in development for perf.
+  future: {
+    experimental_vcs: 'git-eager',
+  },
   markdown: {
     mermaid: true,
     hooks: {
@@ -100,6 +105,7 @@ scripts: [
           sidebarPath: require.resolve('./sidebars.js'),
           breadcrumbs: true,
           editUrl: 'https://github.com/ant-media/ant-media-documentation/edit/master/',
+          showLastUpdateTime: true,
           lastVersion:
               isDev ? 'current' : getLastStableVersion(),
           onlyIncludeVersions: (() => {
