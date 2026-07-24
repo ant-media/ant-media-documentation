@@ -89,7 +89,7 @@ Play the live stream with WebRTC using the sample WebRTC player page, which is a
 
 ### Sample Tools and Applications
 
-- Access the [sample tools and applications](/get-started/sample-tools-and-applications/) via ```https://domain-name:5443/live/samples.html```.
+- Access the [sample tools and applications](/sample-tools-and-applications/) via ```https://domain-name:5443/live/samples.html```.
 
 - Experience the sample pages [here](https://test.antmedia.io:5443/live/samples.html) now.
 

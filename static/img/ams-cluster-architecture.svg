@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 520" role="img" aria-labelledby="clusterTitle clusterDesc">
+  <title id="clusterTitle">Ant Media Server origin-edge cluster architecture</title>
+  <desc id="clusterDesc">Publishers and viewers connect through a load balancer to origin and edge node groups that share MongoDB metadata over TCP 5000.</desc>
+  <defs>
+    <marker id="clusterArrow" markerWidth="7" markerHeight="7" refX="5.5" refY="3.5" orient="auto">
+      <path d="M0,0 L6,3.5 L0,7 Z" fill="#5a5a5a"/>
+    </marker>
+    <marker id="clusterArrowBlue" markerWidth="7" markerHeight="7" refX="5.5" refY="3.5" orient="auto">
+      <path d="M0,0 L6,3.5 L0,7 Z" fill="#3d5a80"/>
+    </marker>
+    <linearGradient id="panelGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#faf8f2"/>
+      <stop offset="100%" stop-color="#f3efe4"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="16" y="16" width="848" height="100" rx="14" fill="url(#panelGrad)" stroke="#d4cbb0"/>
+  <text x="36" y="42" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#333" letter-spacing="0.04em">CLIENTS</text>
+
+  <rect x="56" y="56" width="160" height="44" rx="8" fill="#e9e5f4" stroke="#8f87ad"/>
+  <text x="136" y="76" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="13" font-weight="600" fill="#1a1a1a">Publishers</text>
+  <text x="136" y="92" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="11" fill="#555">WebRTC / RTMP / SRT</text>
+
+  <rect x="664" y="56" width="160" height="44" rx="8" fill="#e9e5f4" stroke="#8f87ad"/>
+  <text x="744" y="76" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="13" font-weight="600" fill="#1a1a1a">Viewers</text>
+  <text x="744" y="92" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="11" fill="#555">WebRTC / HLS / DASH</text>
+
+  <line x1="136" y1="100" x2="136" y2="138" stroke="#5a5a5a" stroke-width="1.6" marker-end="url(#clusterArrow)"/>
+  <line x1="744" y1="100" x2="744" y2="138" stroke="#5a5a5a" stroke-width="1.6" marker-end="url(#clusterArrow)"/>
+  <path d="M136 138 H744" stroke="#5a5a5a" stroke-width="1.6" fill="none"/>
+  <line x1="440" y1="138" x2="440" y2="158" stroke="#5a5a5a" stroke-width="1.6" marker-end="url(#clusterArrow)"/>
+
+  <rect x="280" y="158" width="320" height="52" rx="10" fill="#fff7e0" stroke="#c49a3c" stroke-width="1.5"/>
+  <text x="440" y="180" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="14" font-weight="700" fill="#1a1a1a">Load Balancer</text>
+  <text x="440" y="198" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="11" fill="#666">Nginx / HAProxy - publish vs play routing</text>
+
+  <line x1="440" y1="210" x2="440" y2="236" stroke="#5a5a5a" stroke-width="1.6"/>
+  <path d="M220 236 H660" stroke="#5a5a5a" stroke-width="1.6" fill="none"/>
+  <line x1="220" y1="236" x2="220" y2="258" stroke="#5a5a5a" stroke-width="1.6" marker-end="url(#clusterArrow)"/>
+  <line x1="660" y1="236" x2="660" y2="258" stroke="#5a5a5a" stroke-width="1.6" marker-end="url(#clusterArrow)"/>
+  <text x="300" y="252" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="10" font-weight="600" fill="#777">PUBLISH</text>
+  <text x="580" y="252" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="10" font-weight="600" fill="#777">PLAY</text>
+
+  <rect x="48" y="258" width="344" height="150" rx="12" fill="url(#panelGrad)" stroke="#d4cbb0"/>
+  <text x="68" y="282" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#333" letter-spacing="0.04em">ORIGIN GROUP</text>
+  <text x="68" y="300" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="11" fill="#666">Ingest / Transcode / ABR</text>
+
+  <rect x="72" y="316" width="130" height="70" rx="8" fill="#fff7e0" stroke="#c49a3c"/>
+  <text x="137" y="346" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="13" font-weight="600" fill="#1a1a1a">Origin 1</text>
+  <text x="137" y="364" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="11" fill="#555">AMS node</text>
+
+  <rect x="220" y="316" width="130" height="70" rx="8" fill="#fff7e0" stroke="#c49a3c"/>
+  <text x="285" y="346" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="13" font-weight="600" fill="#1a1a1a">Origin N</text>
+  <text x="285" y="364" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="11" fill="#555">AMS node</text>
+
+  <rect x="488" y="258" width="344" height="150" rx="12" fill="url(#panelGrad)" stroke="#d4cbb0"/>
+  <text x="508" y="282" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#333" letter-spacing="0.04em">EDGE GROUP</text>
+  <text x="508" y="300" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="11" fill="#666">Fetch from origin / Serve viewers</text>
+
+  <rect x="512" y="316" width="130" height="70" rx="8" fill="#e8f0f7" stroke="#6b8cae"/>
+  <text x="577" y="346" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="13" font-weight="600" fill="#1a1a1a">Edge 1</text>
+  <text x="577" y="364" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="11" fill="#555">AMS node</text>
+
+  <rect x="660" y="316" width="130" height="70" rx="8" fill="#e8f0f7" stroke="#6b8cae"/>
+  <text x="725" y="346" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="13" font-weight="600" fill="#1a1a1a">Edge N</text>
+  <text x="725" y="364" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="11" fill="#555">AMS node</text>
+
+  <line x1="392" y1="351" x2="488" y2="351" stroke="#3d5a80" stroke-width="1.8" marker-end="url(#clusterArrowBlue)"/>
+  <line x1="488" y1="361" x2="392" y2="361" stroke="#3d5a80" stroke-width="1.8" marker-end="url(#clusterArrowBlue)"/>
+  <rect x="408" y="332" width="64" height="18" rx="9" fill="#fff" stroke="#6b8cae"/>
+  <text x="440" y="345" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="10" font-weight="600" fill="#3d5a80">TCP 5000</text>
+
+  <line x1="220" y1="408" x2="220" y2="448" stroke="#5a5a5a" stroke-width="1.6"/>
+  <line x1="660" y1="408" x2="660" y2="448" stroke="#5a5a5a" stroke-width="1.6"/>
+  <path d="M220 448 H660" stroke="#5a5a5a" stroke-width="1.6" fill="none"/>
+  <line x1="440" y1="448" x2="440" y2="464" stroke="#5a5a5a" stroke-width="1.6" marker-end="url(#clusterArrow)"/>
+
+  <rect x="300" y="464" width="280" height="40" rx="20" fill="#f0ebe3" stroke="#a89880"/>
+  <text x="440" y="482" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#1a1a1a">MongoDB</text>
+  <text x="440" y="496" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="10" fill="#666">Shared stream metadata / Node registry</text>
+</svg>

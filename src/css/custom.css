@@ -165,6 +165,13 @@ html, article{
   border-top: 1px solid var(--sidebar-section-divider);
 }
 
+/* Single top-level docs (e.g. Troubleshooting) need the same divider when they follow a category. */
+.theme-doc-sidebar-item-category-level-1 + .theme-doc-sidebar-item-link-level-1 {
+  margin-top: 0.85rem;
+  padding-top: 0.65rem;
+  border-top: 1px solid var(--sidebar-section-divider);
+}
+
 .theme-doc-sidebar-item-category-level-1 > .menu__list-item-collapsible > .menu__link {
   font-size: 12px;
   font-weight: 600;

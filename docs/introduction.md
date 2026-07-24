@@ -21,7 +21,7 @@ Publishers push live video into AMS. The server ingests, optionally transcodes f
 
 ### Key concepts
 
-- **Applications** — Isolated streaming contexts, each with its own settings, sample pages, and configuration. See [Applications](./get-started/features#applications) in the Dashboard Features guide.
+- **Applications** — Isolated streaming contexts, each with its own settings, sample pages, and configuration. See [Applications](/dashboard-features/) in the Dashboard Features guide.
 - **Publish and play** — Ingest live streams from encoders, cameras, or SDKs, then deliver to browsers and devices. Start with [Publish Live Streams](/category/publish-live-streams/) and [Play Live Streams](/category/play-live-streams/).
 - **Standalone vs cluster** — Run a single server for development and small deployments, or scale horizontally with clustering for thousands of concurrent publishers and viewers. See [Clustering and Scaling](/category/clustering-and-scaling/).
 
@@ -30,14 +30,15 @@ Publishers push live video into AMS. The server ingests, optionally transcodes f
 | I want to… | Go to |
 | --- | --- |
 | Install AMS in minutes | [Quick Start](./quick-start) |
-| Explore the web panel | [Dashboard Features](./get-started/features) |
+| Run Enterprise in production | [Enterprise Deployment Hub](/enterprise-guide/) |
+| Explore the web panel | [Dashboard Features](/dashboard-features/) |
 | Build a mobile or web app | [Developer Guides](/category/developer-guides/) |
 | Deploy at scale | [Clustering and Scaling](/category/clustering-and-scaling/) |
 | Secure streams | [Stream Security](/category/stream-security/) |
 | Compare editions | [Community and Enterprise Edition comparison](#community-and-enterprise-edition-comparison) |
 
 :::tip
-New to streaming? Start with [Quick Start](./quick-start), then explore [Dashboard Features](./get-started/features) to publish and play your first stream.
+New to streaming? Start with [Quick Start](./quick-start), then explore [Dashboard Features](/dashboard-features/) to publish and play your first stream.
 :::
 
 ## Core capabilities

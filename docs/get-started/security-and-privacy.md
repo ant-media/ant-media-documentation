@@ -1,5 +1,6 @@
 ---
 title: Security and Privacy
+slug: /security-and-privacy
 description: Security and Privacy at Ant Media.
 keywords: [Ant Media Server Documentation, Ant Media Server Tutorials, Security, Privacy]
 sidebar_position: 99

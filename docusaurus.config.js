@@ -131,9 +131,13 @@ scripts: [
               `${item.docId || ''} ${item.href || ''} ${item.id || ''} ${item.label || ''}`.toLowerCase();
 
             const isSecurity = (item) => itemKey(item).includes('security-and-privacy');
+            const isEnterpriseHub = (item) => itemKey(item).includes('enterprise-guide');
             const isFaq = (item) =>
               itemKey(item).includes('faq') ||
               (item.label || '').toLowerCase().includes('frequently asked');
+            const isIntroduction = (item) =>
+              itemKey(item).includes('introduction') &&
+              !itemKey(item).includes('enterprise');
 
             const sortGetStarted = (children) => {
               const rank = (item) => {
@@ -145,6 +149,7 @@ scripts: [
             };
 
             let securityItem = null;
+            let enterpriseItem = null;
             const flattened = [];
 
             for (const item of items) {
@@ -158,6 +163,8 @@ scripts: [
                 for (const child of children) {
                   if (isSecurity(child)) {
                     securityItem = child;
+                  } else if (isEnterpriseHub(child)) {
+                    enterpriseItem = child;
                   } else {
                     rest.push(child);
                   }
@@ -166,6 +173,15 @@ scripts: [
                 continue;
               }
               flattened.push(item);
+            }
+
+            if (enterpriseItem) {
+              const introIdx = flattened.findIndex(isIntroduction);
+              if (introIdx >= 0) {
+                flattened.splice(introIdx + 1, 0, enterpriseItem);
+              } else {
+                flattened.unshift(enterpriseItem);
+              }
             }
 
             if (securityItem) {
@@ -233,18 +249,6 @@ scripts: [
         {
           from: '/guides/developer-sdk-and-api/rest-api-guide/enabling-ip-filtering-behind-load-balancer-in-aws/',
           to: '/guides/developer-sdk-and-api/rest-api-guide/securing-rest-apis/'
-        },
-        {
-          from: '/guides/clustering-and-scaling/aws/Configuring-RTMP-LB-in-AWS/',
-          to: '/guides/clustering-and-scaling/aws/aws-lb/configuring-rtmp-lb-in-aws/'
-        },
-        {
-          from: '/guides/clustering-and-scaling/aws/Scaling-at-AWS-ECS-Fargate/',
-          to: '/guides/clustering-and-scaling/aws/aws-ecs/scaling-at-aws-ecs-fargate/'
-        },
-        {
-          from: '/guides/playing-live-stream/HLS-Playing/',
-          to: '/guides/playing-live-stream/hls-playing/'
         },
         {
           from: '/guides/playing-live-stream/vod-streaming-via-webrtc-hls/',
@@ -439,12 +443,33 @@ scripts: [
         },
 	{
           from: '/v1/docs/getting-started-with-ant-media-server/',
-          to: '/get-started/features/'
+          to: '/dashboard-features/'
         },
 	{
           from: '/category/get-started/',
-          to: '/get-started/features/'
+          to: '/dashboard-features/'
         },
+	// Flattened Get Started docs now use root-level slugs.
+	...['', '3.0/', '2.17/', '2.16/'].flatMap((ver) => {
+          const toPrefix = ver === '3.0/' || ver === '' ? '' : `/${ver.replace(/\/$/, '')}`;
+          const fromPrefix = ver === '' ? '' : `/${ver.replace(/\/$/, '')}`;
+          // 2.16 never had Dashboard Features / enterprise-guide
+          const pairs = [
+            ['/get-started/user-management/', '/user-management/'],
+            ['/get-started/sample-tools-and-applications/', '/sample-tools-and-applications/'],
+            ['/get-started/security-and-privacy/', '/security-and-privacy/'],
+          ];
+          if (ver !== '2.16/') {
+            pairs.unshift(['/get-started/features/', '/dashboard-features/']);
+          }
+          if (ver === '' || ver === '3.0/') {
+            pairs.push(['/get-started/enterprise-guide/', '/enterprise-guide/']);
+          }
+          return pairs.map(([fromSuffix, toSuffix]) => ({
+            from: `${fromPrefix}${fromSuffix}`,
+            to: `${toPrefix}${toSuffix}`,
+          }));
+        }),
 	{
           from: '/v1/docs/clustering-and-scaling-ant-media-server/',
           to: '/category/clustering-and-scaling/'
@@ -593,14 +618,6 @@ scripts: [
           to: '/category/publish-live-streams/'
         },
 	{
-          from: '/guides/playing-live-stream/Embedded-Web-Player/',
-          to: '/guides/developer-sdk-and-api/sdk-integration/embedded-sdk-guide/'
-        },
-	{
-          from: '/guides/developer-sdk-and-api/sdk-integration/Unity-SDK/',
-          to: '/guides/developer-sdk-and-api/sdk-integration/unity-sdk/'
-        },
-	{
           from: '/category/monitoring-ant-media-instance/',
           to: '/category/monitoring/'
         },
@@ -633,18 +650,6 @@ scripts: [
           to: '/guides/publish-live-stream/webrtc/webrtc-websocket-messaging-reference/'
         },
 	{
-          from: '/guides/developer-sdk-and-api/sdk-integration/iOS-SDK/',
-          to: '/category/ios-sdk/'
-        },
-	{
-          from: '/guides/playing-live-stream/WebRTC-Playing/',
-          to: '/guides/playing-live-stream/webrtc-playback/'
-        },
-	{
-          from: '/guides/installing-on-linux/Setting-up-SSL/',
-          to: '/guides/installing-on-linux/setting-up-ssl/'
-        },
-	{
           from: '/Frequently-Asked-Questions/',
           to: '/faq/'
         },
@@ -655,14 +660,6 @@ scripts: [
 	{
           from: '/old-front-page/',
           to: '/quick-start/'
-        },
-	{
-          from: '/guides/publish-live-stream/WebRTC/',
-          to: '/guides/publish-live-stream/webrtc/'
-        },
-	{
-          from: '/get-started/Security-and-privacy/',
-          to: '/get-started/security-and-privacy/'
         },
 	{
           from: '/guides/publish-live-stream/user-defined-scripts/',
@@ -678,7 +675,7 @@ scripts: [
         },
 	{
           from: '/ant-media-server-administration-guide/',
-          to: '/get-started/user-management/'
+          to: '/user-management/'
         },
 	{
           from: '/edge-server-configuration-guide/',
@@ -691,10 +688,6 @@ scripts: [
 	{
           from: '/guides/developer-sdk-and-api/rest-api-guide/REST-API-examples/',
           to: '/guides/developer-sdk-and-api/rest-api-guide/rest-apis-examples/'
-        },
-	{
-          from: '/get-started/User-Management/',
-          to: '/get-started/user-management/'
         },
 	{
           from: '/guides/advanced-usage/using-nvidia-hardware-based-encoder-on-docker/',
@@ -711,10 +704,6 @@ scripts: [
 	{
           from: '/category/guides/',
           to: '/category/installation/'
-        },
-	{
-          from: '/guides/configuration-and-testing/AMS-application-configuration/',
-          to: '/guides/configuration-and-testing/ams-application-configuration/'
         },
 	{
           from: '/guides/advanced-usage/Plugins-for-Ant-Media-Server/',
@@ -753,11 +742,12 @@ scripts: [
           to: '/category/webrtc-samples/'
         },
 	{
-          from: [
-	    '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/download-react-native-samples/',
-	    '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/react-native-pre-requisite/'
-	  ],
-          to: '/category/getting-started/'
+          from: '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/react-native-pre-requisite/',
+          to: '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/getting-started/react-native-pre-requisite/',
+        },
+	{
+          from: '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/download-react-native-samples/',
+          to: '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/getting-started/download-react-native-samples/',
         },
 	{
           from: '/guides/publish-live-stream/ip-cameras-and-external-resources/',
@@ -1085,7 +1075,7 @@ scripts: [
             items: [
               {
                 label: 'Sample Applications',
-                to: '/get-started/sample-tools-and-applications/',
+                to: '/sample-tools-and-applications/',
               },
               {
                 label: 'Clustering & Scaling',

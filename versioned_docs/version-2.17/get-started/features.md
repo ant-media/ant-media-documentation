@@ -1,5 +1,6 @@
 ---
 title: Ant Media Server Dashboard Features
+slug: /dashboard-features
 description: Ant Media Server Features. These may help you explore your use-case.
 keywords: [Ant Media Server Features, Ant Media Server Enterprise Edition, Ant Media Server Documentation, Ant Media Server Tutorials, Ant Media Demonstration]
 sidebar_position: 1
