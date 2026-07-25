@@ -11,7 +11,7 @@ sidebar_label: Quick Start
 Get Ant Media Server running on Linux in a few steps: install the server, enable SSL, open the web panel, then publish and play a WebRTC stream.
 
 :::tip
-Need a production checklist, cluster architecture, or upgrade guidance? See the [Enterprise Deployment Hub](/enterprise-guide/) after you complete this quick start.
+Before you proceed, review the [Enterprise Deployment Hub](/enterprise-guide/) for a production checklist, cluster architecture, and upgrade guidance.
 :::
 
 ## 1. Download the installation script
@@ -99,7 +99,7 @@ Play the live stream with WebRTC using the sample WebRTC player page, which is a
 
 ## Sample tools and applications
 
-- Access the [sample tools and applications](/sample-tools-and-applications/) via ```https://domain-name:5443/live/samples.html```.
+- Access the [sample applications](/sample-applications/) via ```https://domain-name:5443/live/samples.html```.
 
 - Experience the sample pages [here](https://test.antmedia.io:5443/live/samples.html) now.
 
@@ -114,4 +114,4 @@ Play the live stream with WebRTC using the sample WebRTC player page, which is a
 
 ## Getting help
 
-If you need help, visit [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or follow the detailed [AMS Installation Guide](/guides/installing-on-linux/installing-ams-on-linux/).
+If you need help, visit [GitHub Discussions](https://github.com/orgs/ant-media/discussions), follow the [AMS Installation Guide](/guides/installing-on-linux/installing-ams-on-linux/), or use the [support escalation matrix](/enterprise-guide/#support-escalation-matrix) for production and Enterprise support channels.

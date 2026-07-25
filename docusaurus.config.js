@@ -124,7 +124,7 @@ scripts: [
             const getStartedOrder = [
               'features',
               'user-management',
-              'sample-tools-and-applications',
+              'sample-applications',
             ];
 
             const itemKey = (item) =>
@@ -456,7 +456,8 @@ scripts: [
           // 2.16 never had Dashboard Features / enterprise-guide
           const pairs = [
             ['/get-started/user-management/', '/user-management/'],
-            ['/get-started/sample-tools-and-applications/', '/sample-tools-and-applications/'],
+            ['/get-started/sample-tools-and-applications/', '/sample-applications/'],
+            ['/get-started/sample-applications/', '/sample-applications/'],
             ['/get-started/security-and-privacy/', '/security-and-privacy/'],
           ];
           if (ver !== '2.16/') {
@@ -465,10 +466,16 @@ scripts: [
           if (ver === '' || ver === '3.0/') {
             pairs.push(['/get-started/enterprise-guide/', '/enterprise-guide/']);
           }
-          return pairs.map(([fromSuffix, toSuffix]) => ({
+          const redirects = pairs.map(([fromSuffix, toSuffix]) => ({
             from: `${fromPrefix}${fromSuffix}`,
             to: `${toPrefix}${toSuffix}`,
           }));
+          // Old root slug after Get Started flatten
+          redirects.push({
+            from: `${fromPrefix}/sample-tools-and-applications/`,
+            to: `${toPrefix}/sample-applications/`,
+          });
+          return redirects;
         }),
 	{
           from: '/v1/docs/clustering-and-scaling-ant-media-server/',
@@ -1075,7 +1082,7 @@ scripts: [
             items: [
               {
                 label: 'Sample Applications',
-                to: '/sample-tools-and-applications/',
+                to: '/sample-applications/',
               },
               {
                 label: 'Clustering & Scaling',
