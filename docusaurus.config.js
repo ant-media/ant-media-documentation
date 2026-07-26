@@ -259,45 +259,47 @@ scripts: [
           to: '/category/stream-security/'
         },
 	{
-          from: '/guides/developer-sdk-and-api/sdk-integration/',
-          to: '/category/sdk-integration/'
-        },
-	{
-          from: '/guides/playing-live-stream/webrtc-playing/',
-          to: '/guides/playing-live-stream/webrtc-playback/'
-        },
-	{
           from: '/guides/advanced-usage/stream-security/',
           to: '/category/stream-security/'
-        },
-	{
-          from: '/guides/advanced-usage/monitoring/monitoring-ams-with-datadog/',
-          to: '/category/monitoring/'
-        },
-	{
-          from: '/guides/monitoring/monitoring-ams-with-datadog/',
-          to: '/category/monitoring/'
-        },
-	{
-          from: '/v1/docs/rest-api-guide/',
-          to: '/category/rest-api-guide/'
-        },
-	{
-          from: '/guides/clustering-and-scaling/kubernetes/install-ssl-on-kubernetes-using-lets-encrypt/',
-          to: '/category/kubernetes/'
-        },
-	{
-          from: '/guides/advanced-usage/monitoring/monitoring-ams-with-grafana/',
-          to: '/guides/monitoring/monitoring-ams-with-grafana/'
-        },
-	{
-          from: '/v1/docs/amazon-aws-s3-integration/',
-          to: '/category/recording-live-streams/'
         },
 	{
           from: '/guides/developer-sdk-and-api/rest-api-guide/stream-security/',
           to: '/category/stream-security/'
         },
+	{
+          from: '/guides/advanced-usage/webhook-stream-authorization/',
+          to: '/guides/stream-security/webhook-stream-authorization/'
+        },
+	{
+          from: [
+            '/category/stream-security/webhook-stream-authorization',
+            '/category/stream-security/webhook-stream-authorization/',
+          ],
+          to: '/guides/stream-security/webhook-stream-authorization/'
+        },
+	{
+          from: [
+            '/guides/stream-security/time-based-one-time-password',
+            '/guides/stream-security/time-based-one-time-password/',
+            '/guides/stream-security/totp/totp',
+            '/guides/stream-security/totp/totp/',
+          ],
+          to: '/guides/stream-security/totp/'
+        },
+	...['3.0/', '2.17/', '2.16/'].flatMap((ver) => {
+          const prefix = `/${ver.replace(/\/$/, '')}`;
+          return [
+            {
+              from: [
+                `${prefix}/guides/stream-security/time-based-one-time-password`,
+                `${prefix}/guides/stream-security/time-based-one-time-password/`,
+                `${prefix}/guides/stream-security/totp/totp`,
+                `${prefix}/guides/stream-security/totp/totp/`,
+              ],
+              to: `${prefix}/guides/stream-security/totp/`,
+            },
+          ];
+        }),
 	{
           from: '/guides/developer-sdk-and-api/sdk-integration/android-sdk/',
           to: '/category/android-sdk/'
@@ -326,6 +328,25 @@ scripts: [
           from: '/guides/playing-live-stream/webrtc-conference-call/',
           to: '/guides/publish-live-stream/webrtc/webrtc-conference-call/',
         },
+	// Webinar / Circle: fix nested relative-link mistakes and duplicate folder URLs
+	...['', '3.0/', '2.17/', '2.16/'].flatMap((ver) => {
+          const toPrefix = ver === '3.0/' || ver === '' ? '' : `/${ver.replace(/\/$/, '')}`;
+          const fromPrefix = ver === '' ? '' : `/${ver.replace(/\/$/, '')}`;
+          return [
+            {
+              from: `${fromPrefix}/guides/conference/circle-video-conference-solution/circle-video-conference-solution/`,
+              to: `${toPrefix}/guides/conference/circle-video-conference-solution/`,
+            },
+            {
+              from: `${fromPrefix}/guides/webinar/webinar-installation/webinar-usage/`,
+              to: `${toPrefix}/guides/webinar/webinar-usage/`,
+            },
+            {
+              from: `${fromPrefix}/guides/webinar/webinar-installation/webinar/`,
+              to: `${toPrefix}/guides/webinar/webinar/`,
+            },
+          ];
+        }),
 	{
           from: '/guides/configuration-and-testing/load-testing/',
           to: '/category/load-testing/'
@@ -580,10 +601,6 @@ scripts: [
           }
           return redirects;
         })(),
-	{
-          from: '/category/stream-security/webhook-stream-authorization',
-          to: '/guides/stream-security/webhook-stream-authorization/'
-        },
         {
           from: '/get-started/enterprise-and-community-edition/',
           to: '/quick-start/'
@@ -607,10 +624,6 @@ scripts: [
 	{
           from: '/guides/clustering-and-scaling/load-balancing/load-balancer-with-haproxy-ssl-termination/',
           to: '/guides/clustering-and-scaling/load-balancing/haproxy-load-balancer/'
-        },
-	{
-          from: '/guides/advanced-usage/webhook-stream-authorization/',
-          to: '/guides/stream-security/webhook-stream-authorization/'
         },
 	{
           from: '/category/turn--stun-installation/',

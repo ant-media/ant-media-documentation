@@ -1,0 +1,8 @@
+{
+  "label": "TOTP",
+  "position": 4,
+  "link": {
+    "type": "doc",
+    "id": "guides/stream-security/totp/index"
+  }
+}

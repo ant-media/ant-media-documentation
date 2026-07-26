@@ -40,7 +40,7 @@ Let's understand it step by step:
 
 - **```token```:** The ```token``` field is required if any stream security (token control) is enabled.
 
-  If the user has enabled [stream-security](https://antmedia.io/docs/guides/advanced-usage/stream-security/), they need to fill in the ```token``` field with the correct token.
+  If the user has enabled [stream-security](/category/stream-security/), they need to fill in the ```token``` field with the correct token.
 
 - **```subscriberId``` and ```subscriberCode```:** These are the values for the Time-based One-time Password (TOTP). If the user is using the TOTP mechanism, they need to pass the ```subscriberId``` and ```subscriberCode```.
 

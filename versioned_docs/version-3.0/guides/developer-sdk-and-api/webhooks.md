@@ -382,7 +382,7 @@ That's it! You can read the `action` field from the POST request body and take a
 
 > **Attention:** Please process the POST request within your application as quickly as possible as the hooks are called within the event loop thread which will not wait for your application to complete complex tasks.
 
-To secure streams using Webhook, refer to the [Webhook Authorization](https://antmedia.io/docs/guides/stream-security/webhook-stream-authorization/) document.
+To secure streams using Webhook, refer to the [Webhook Authorization](/guides/stream-security/webhook-stream-authorization/) document.
 
 <br /><br />
 ---

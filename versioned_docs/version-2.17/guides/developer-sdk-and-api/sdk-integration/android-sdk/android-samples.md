@@ -115,7 +115,7 @@ Includes **Play Only mode** and allows enabling/disabling audio and video.
 
 * Useful for **chat**, **control messages**, or **file sharing**.
 
-* Ensure the data channel is enabled in the [application settings](https://antmedia.io/docs/guides/publish-live-stream/webrtc/data-channel/#enabling-the-data-channel).
+* Ensure the data channel is enabled in the [application settings](/guides/publish-live-stream/webrtc/data-channel/#enabling-the-data-channel).
 
 
 ![data-channel-012](https://github.com/user-attachments/assets/1e7f631e-7f4a-4b4a-afd2-676320297e84)

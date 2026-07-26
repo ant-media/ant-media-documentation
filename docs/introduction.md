@@ -64,7 +64,7 @@ AMS is available in two editions:
 - **Live auctions and bidding** — Sub-second latency to keep bids synchronized in real time. [Solutions](https://antmedia.io/solutions/auction-bidding/)
 - **Telehealth** — Secure real-time video for consultations and remote care. [Solutions](https://antmedia.io/solutions/telehealth/)
 - **Live shopping** — Interactive shopping experiences with ultra-low latency. [Solutions](https://antmedia.io/solutions/live-shopping/)
-- **Online education** — Virtual classrooms and remote training with real-time engagement. [Webinar guide](./guides/webinar/webinar-usage) · [Solutions](https://antmedia.io/solutions/webinar-e-learning-virtual-classroom/)
+- **Online education** — Virtual classrooms and remote training with real-time engagement. [Webinar guide](/guides/webinar/webinar-usage/) · [Solutions](https://antmedia.io/solutions/webinar-e-learning-virtual-classroom/)
 - **AI-powered video streaming** — Integrate custom AI models into live streams with the Python AI Plugin. [Learn more](https://antmedia.io/integrate-your-ai-into-live-streams-with-python-plugin/)
 
 ## Community and Enterprise Edition comparison

@@ -137,11 +137,11 @@ Enable MP4 and/or WebM recording at the application level. MP4 needs H.264; WebM
 
 Without security options, anyone with the publish or play URL can access streams. Common controls:
 
-- [One-time tokens](/guides/stream-security/one-time-token-control/)
-- [TOTP tokens](/guides/stream-security/time-based-one-time-password/)
-- [Accept undefined streams](/guides/stream-security/accepting-undefined-streams/)
-- [JWT stream filter](/guides/stream-security/jwt-stream-security-filter/)
-- [Hash-based tokens](/guides/stream-security/hash-based-token/)
+- [One-Time Token](/guides/stream-security/one-time-token-control/)
+- [TOTP](/guides/stream-security/totp/)
+- [Accept Undefined Streams](/guides/stream-security/accepting-undefined-streams/)
+- [JWT Stream Token](/guides/stream-security/jwt-stream-security-filter/)
+- [Hash-Based Token](/guides/stream-security/hash-based-token/)
 
 See [Stream Security](/category/stream-security/) for the full set.
 
