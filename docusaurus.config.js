@@ -271,32 +271,27 @@ scripts: [
           to: '/guides/stream-security/webhook-stream-authorization/'
         },
 	{
-          from: [
-            '/category/stream-security/webhook-stream-authorization',
-            '/category/stream-security/webhook-stream-authorization/',
-          ],
+          from: '/category/stream-security/webhook-stream-authorization/',
           to: '/guides/stream-security/webhook-stream-authorization/'
         },
 	{
           from: [
-            '/guides/stream-security/time-based-one-time-password',
             '/guides/stream-security/time-based-one-time-password/',
-            '/guides/stream-security/totp/totp',
             '/guides/stream-security/totp/totp/',
           ],
           to: '/guides/stream-security/totp/'
         },
+	// 3.0 is lastVersion (unversioned); 2.17/2.16 keep version prefixes.
 	...['3.0/', '2.17/', '2.16/'].flatMap((ver) => {
-          const prefix = `/${ver.replace(/\/$/, '')}`;
+          const fromPrefix = `/${ver.replace(/\/$/, '')}`;
+          const toPrefix = ver === '3.0/' ? '' : fromPrefix;
           return [
             {
               from: [
-                `${prefix}/guides/stream-security/time-based-one-time-password`,
-                `${prefix}/guides/stream-security/time-based-one-time-password/`,
-                `${prefix}/guides/stream-security/totp/totp`,
-                `${prefix}/guides/stream-security/totp/totp/`,
+                `${fromPrefix}/guides/stream-security/time-based-one-time-password/`,
+                `${fromPrefix}/guides/stream-security/totp/totp/`,
               ],
-              to: `${prefix}/guides/stream-security/totp/`,
+              to: `${toPrefix}/guides/stream-security/totp/`,
             },
           ];
         }),
@@ -342,8 +337,12 @@ scripts: [
               to: `${toPrefix}/guides/webinar/webinar-usage/`,
             },
             {
-              from: `${fromPrefix}/guides/webinar/webinar-installation/webinar/`,
-              to: `${toPrefix}/guides/webinar/webinar/`,
+              // Nested mistake + duplicate folder/file segment (webinar/webinar.md → /guides/webinar/)
+              from: [
+                `${fromPrefix}/guides/webinar/webinar-installation/webinar/`,
+                `${fromPrefix}/guides/webinar/webinar/`,
+              ],
+              to: `${toPrefix}/guides/webinar/`,
             },
           ];
         }),
