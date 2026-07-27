@@ -649,11 +649,6 @@ scripts: [
           to: '/category/publish-live-streams/'
         },
 	{
-          // Restreaming category exists only in Next (docs/); production uses Simulcasting
-          from: '/category/restreaming/',
-          to: '/guides/publish-live-stream/simulcasting/'
-        },
-	{
           from: '/guides/developer-sdk-and-api/extend-the-server/create-new-application/',
           to: '/guides/developer-sdk-and-api/extend-the-server/applications/create-new-application/'
         },

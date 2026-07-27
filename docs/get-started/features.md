@@ -59,7 +59,7 @@ Open the **⋯** (actions) menu on a live stream for per-stream controls.
 
 ![](@site/static/img/dashboard-features/dashboardRecording.webp)
 
-**Edit Restreaming Endpoints** — Add restreaming targets such as RTMP YouTube, Facebook etc or SRT endpoints. There is no fixed limit on endpoints. See [Simulcasting](/guides/publish-live-stream/simulcasting/).
+**Edit Restreaming Endpoints** — Add restreaming targets such as RTMP YouTube, Facebook etc or SRT endpoints. There is no fixed limit on endpoints. See [Restreaming](/category/restreaming/).
 
 **Copy publish URL** — RTMP ingest URL for encoders. Some encoders need the stream ID split into a stream key field:
 
