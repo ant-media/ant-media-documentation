@@ -145,7 +145,11 @@ If you're using `network_mode: host`, this only resolves as expected on Linux â€
 
 ![](@site/static/img/docker-installation.webp)
 
-Check out [WebRTC Publishing](/guides/publish-live-stream/webrtc/webrtc/) to publish a stream for testing.
+Check out [WebRTC Publishing](/guides/publish-live-stream/webrtc/) to publish a stream for testing.
+
+## Need Help?
+
+If AMS isn't starting, or the container won't build, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
 
 <br /><br />
 ---
@@ -154,4 +158,4 @@ Check out [WebRTC Publishing](/guides/publish-live-stream/webrtc/webrtc/) to pub
 <h2>Docker Compose Setup Complete</h2>
 </div>
 
-You've set up AMS using **Docker Compose**. Compared to a single-container Docker setup, this keeps your configuration organized, makes port/volume management easier, and lets you start or stop the entire stack with a single command. From here, [publish a stream](/guides/publish-live-stream/webrtc/webrtc/) to see it in action.
+You've set up AMS using **Docker Compose**. Compared to a single-container Docker setup, this keeps your configuration organized, makes port/volume management easier, and lets you start or stop the entire stack with a single command. From here, [publish a stream](/guides/publish-live-stream/webrtc/) to see it in action.

@@ -128,7 +128,11 @@ If you ran the container with `--network=host`, `localhost` only resolves as exp
 
 ![](@site/static/img/docker-installation.webp)
 
-Check out [WebRTC Publishing](/guides/publish-live-stream/webrtc/webrtc/) to publish a stream for testing.
+Check out [WebRTC Publishing](/guides/publish-live-stream/webrtc/) to publish a stream for testing.
+
+## Need Help?
+
+If AMS isn't starting, or the container won't build, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
 
 <br /><br />
 ---
@@ -137,5 +141,5 @@ Check out [WebRTC Publishing](/guides/publish-live-stream/webrtc/webrtc/) to pub
 <h2>Docker Setup Complete</h2>
 </div>
 
-You've set up **Ant Media Server using Docker** — ran the official image (or built your own), mapped the ports you need (5080, and RTMP if applicable), and confirmed AMS is running. From here, [publish a stream](/guides/publish-live-stream/webrtc/webrtc/) to see it in action.
+You've set up **Ant Media Server using Docker** — ran the official image (or built your own), mapped the ports you need (5080, and RTMP if applicable), and confirmed AMS is running. From here, [publish a stream](/guides/publish-live-stream/webrtc/) to see it in action.
 

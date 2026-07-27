@@ -210,4 +210,4 @@ If you run into trouble during installation, reach out on [GitHub Discussions](h
 <h2>Installation Complete</h2>
 </div>
 
-You've installed **Ant Media Server on Linux**, started the **service**, opened the **ports** it needs, and can reach the **web panel**. From here, [enable SSL](/guides/installing-on-linux/setting-up-ssl/) if you haven't already, and [publish your first stream](/guides/publish-live-stream/webrtc/webrtc/) to see it in action.
+You've installed **Ant Media Server on Linux**, started the **service**, opened the **ports** it needs, and can reach the **web panel**. From here, [enable SSL](/guides/installing-on-linux/setting-up-ssl/) if you haven't already, and [publish your first stream](/guides/publish-live-stream/webrtc/) to see it in action.
