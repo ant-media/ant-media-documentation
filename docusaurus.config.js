@@ -649,6 +649,15 @@ scripts: [
           to: '/category/publish-live-streams/'
         },
 	{
+          // Restreaming category exists only in Next (docs/); production uses Simulcasting
+          from: '/category/restreaming/',
+          to: '/guides/publish-live-stream/simulcasting/'
+        },
+	{
+          from: '/guides/developer-sdk-and-api/extend-the-server/create-new-application/',
+          to: '/guides/developer-sdk-and-api/extend-the-server/applications/create-new-application/'
+        },
+	{
           from: '/category/installing-on-linux/',
           to: '/category/installation/'
         },
@@ -1101,7 +1110,7 @@ scripts: [
                 to: '/category/clustering-and-scaling/',
               },
               {
-                label: 'Adaptive Bitrate',
+                label: 'Adaptive Bitrate Streaming (Transcoding)',
                 to: '/category/adaptive-bitrate/',
               },
               {

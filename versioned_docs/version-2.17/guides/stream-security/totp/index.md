@@ -20,7 +20,7 @@ To create a token, a secret key is required, which you can generate by clicking 
 By default, the secret key is 6 bytes long when you click Generate, but in order to pre-register the subscriber, the secret key should be 8 bytes long, as shown in the screenshot above.
 :::
 
-## Subscriber operations
+## Subscriber operations {#subscriber-operations}
 
 After enabling TOTP on the server, register a subscriber if required.
 
@@ -60,7 +60,7 @@ curl -X 'DELETE' 'https://IP-address-or-domain:5443/Application_Name/rest/v2/bro
 curl -X 'GET' 'https://test.antmedia.io:5443/Sandbox/rest/v2/broadcasts/test/subscribers/list/0/10' -H 'accept: application/json'
 ```
 
-## TOTP token creation
+## TOTP token creation {#totp-token-creation}
 
 Create a TOTP with the [getTOTP](https://antmedia.io/rest/#/default/getTOTP) REST API.
 
@@ -110,9 +110,11 @@ webRTCAdaptor.play("teststream", null, "lastpeony", "451222");
 
 The second parameter (`null` here) is a stream token such as JWT, not the `subscriberCode`.
 
+<a id="subscriber-block"></a>
+
 To block a subscriber from publishing or playing after they connect, see [Subscriber Block](/guides/stream-security/totp/subscriber-block/).
 
-## Use TOTP with streaming protocols
+## Use TOTP with streaming protocols {#totp-usage-with-streaming-protocols}
 
 Pass `subscriberId` and `subscriberCode` on publish and play requests (query parameters or WebSocket fields).
 
@@ -138,7 +140,7 @@ If using the [WebRTC sample page](/guides/publish-live-stream/webrtc/):
 https://domain:5443/live?id=streamId&subscriberId=your-subscriber&subscriberCode=totp-token
 ```
 
-If connecting over WebSocket, include `subscriberId` and `subscriberCode` in the publish message. See the [WebRTC publishing reference](/guides/publish-live-stream/webrtc/webrtc-websocket-messaging-reference/#publishing-webrtc-stream).
+If connecting over WebSocket, include `subscriberId` and `subscriberCode` in the publish message. See the [WebRTC publishing reference](/guides/publish-live-stream/webrtc/webrtc-websocket-messaging-reference/#publish-webrtc-stream).
 
 ```shell
 # Secure WebSocket
@@ -158,7 +160,7 @@ ws://{ant-media-server}:5080/live/websocket
 }
 ```
 
-### Play
+### Play {#play}
 
 #### VoD
 
@@ -214,7 +216,7 @@ If using the embedded (`play.html`) player:
 https://IP-address-or-domain:5443/Application_Name/play.html?id=streamId&subscriberId=your-subscriber&subscriberCode=totp-token
 ```
 
-If connecting over WebSocket, include `subscriberId` and `subscriberCode` in the play message. See the [WebRTC playing reference](/guides/publish-live-stream/webrtc/webrtc-websocket-messaging-reference/#playing-webrtc-stream).
+If connecting over WebSocket, include `subscriberId` and `subscriberCode` in the play message. See the [WebRTC playing reference](/guides/publish-live-stream/webrtc/webrtc-websocket-messaging-reference/#play-webrtc-stream).
 
 ```shell
 # Secure WebSocket

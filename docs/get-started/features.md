@@ -59,7 +59,7 @@ Open the **⋯** (actions) menu on a live stream for per-stream controls.
 
 ![](@site/static/img/dashboard-features/dashboardRecording.webp)
 
-**Edit Restreaming Endpoints** — Add restreaming targets such as RTMP YouTube, Facebook etc or SRT endpoints. There is no fixed limit on endpoints. See [Restreaming](/category/restreaming/).
+**Edit Restreaming Endpoints** — Add restreaming targets such as RTMP YouTube, Facebook etc or SRT endpoints. There is no fixed limit on endpoints. See [Simulcasting](/guides/publish-live-stream/simulcasting/).
 
 **Copy publish URL** — RTMP ingest URL for encoders. Some encoders need the stream ID split into a stream key field:
 
@@ -105,7 +105,7 @@ If you enable more than one codec (for example H.264 and VP8), use adaptive bitr
 
 #### Adaptive bitrate
 
-Configure ABR ladders for viewers on different networks. See [Adaptive Bitrate](/category/adaptive-bitrate/).
+Configure ABR ladders for viewers on different networks. See [Adaptive Bitrate Streaming (Transcoding)](/category/adaptive-bitrate/).
 
 ![](@site/static/img/dashboard-features/dashboardAdaptive.webp)
 
@@ -161,4 +161,4 @@ Details: [Securing REST APIs](/guides/developer-sdk-and-api/rest-api-guide/secur
 | --- | --- |
 | Publish WebRTC, RTMP, SRT, and more | [Publish Live Streams](/category/publish-live-streams/) |
 | Play with WebRTC, HLS, and DASH | [Play Live Streams](/category/play-live-streams/) |
-| Deliver adaptive quality | [Adaptive Bitrate](/category/adaptive-bitrate/) |
+| Deliver adaptive quality | [Adaptive Bitrate Streaming (Transcoding)](/category/adaptive-bitrate/) |

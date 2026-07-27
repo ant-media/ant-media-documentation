@@ -137,7 +137,7 @@ Ant Media Server dynamically measures the client's bandwidth and selects the mos
 
 For example, if three bitrate options are available—2000Kbps, 1500Kbps, and 1000Kbps—and the client’s bandwidth is 1700Kbps, the server will automatically deliver the 1500Kbps stream to ensure smooth playback.
 
-Click [here](https://antmedia.io/docs/guides/adaptive-bitrate/adaptive-bitrate-streaming/) for more details on ABR. 
+See [Adaptive Bitrate Streaming](/guides/adaptive-bitrate/adaptive-bitrate-streaming/) for more on ABR. 
 
 ## How to configure auto-scaling and clustering with Ant Media Server?
 

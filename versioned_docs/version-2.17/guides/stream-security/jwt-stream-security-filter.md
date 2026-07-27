@@ -86,7 +86,7 @@ If using the [WebRTC sample page](/guides/publish-live-stream/webrtc/):
 https://domain:5443/live?id=streamId&token=tokenId
 ```
 
-If connecting over WebSocket, include `token` in the publish message. See the [WebRTC publishing reference](/guides/publish-live-stream/webrtc/webrtc-websocket-messaging-reference/#publishing-webrtc-stream).
+If connecting over WebSocket, include `token` in the publish message. See the [WebRTC publishing reference](/guides/publish-live-stream/webrtc/webrtc-websocket-messaging-reference/#publish-webrtc-stream).
 
 ```shell
 # Secure WebSocket
@@ -169,7 +169,7 @@ If using the embedded (`play.html`) player:
 https://IP-address-or-domain:5443/Application_Name/play.html?id=streamId&token=tokenId
 ```
 
-If connecting over WebSocket, include `token` in the play message. See the [WebRTC playing reference](/guides/publish-live-stream/webrtc/webrtc-websocket-messaging-reference/#playing-webrtc-stream).
+If connecting over WebSocket, include `token` in the play message. See the [WebRTC playing reference](/guides/publish-live-stream/webrtc/webrtc-websocket-messaging-reference/#play-webrtc-stream).
 
 ```shell
 # Secure WebSocket

@@ -14,7 +14,7 @@ Publisher IP Filter currently applies to **RTMP** publishing only.
 
 Use Publisher IP Filter to allow only specific publisher addresses. Enter one or more IPs or CIDR ranges, separated by commas.
 
-Set `allowedPublisherCIDR` in the application’s advanced settings from the web panel. See [AMS Application Configuration](/guides/configuration-and-testing/ams-application-configuration/#management-panel-settings).
+Set `allowedPublisherCIDR` in the application’s advanced settings from the web panel. See [AMS Application Configuration](/guides/configuration-and-testing/ams-application-configuration/#management-panel-application-settings).
 
 Example:
 

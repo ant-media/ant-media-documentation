@@ -9,7 +9,7 @@ sidebar_position: 2
 
 HLS playback is available in both the Community and Enterprise Editions of Ant Media Server. Prior to initiating playback of a stream, ensure that the stream is actively broadcasting on the server.
 
-> Quick Link: [Learn How to Publish Live Streams](/category/publish-live-stream/)
+> Quick Link: [Learn How to Publish Live Streams](/category/publish-live-streams/)
 
 ## Enable HLS
 

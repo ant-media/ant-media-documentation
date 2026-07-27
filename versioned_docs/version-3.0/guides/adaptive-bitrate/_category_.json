@@ -3,7 +3,7 @@
   "position": 9,
   "link": {
     "type": "generated-index",
-    "description": "Adaptive bitrate streaming with Ant Media Server helps you serve video smoothly across devices and network conditions.",
+    "description": "Transcode live streams into multiple renditions so WebRTC and HLS players can switch quality by bandwidth—configure ABR, thumbnails, force encode, and manual quality selection.",
     "slug": "/category/adaptive-bitrate"
   }
 }

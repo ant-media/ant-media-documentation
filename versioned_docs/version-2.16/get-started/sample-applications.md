@@ -11,7 +11,7 @@ sidebar_label: Sample Applications
 
 Ant Media Server ships with browser sample pages you can use to publish, play, and try common streaming features. These examples are a quick way to validate your install and prototype use cases.
 
-Examples below use the **live** application. You can swap in any other application name the same way. You can also [create your own application](/guides/developer-sdk-and-api/extend-the-server/create-new-application/).
+Examples below use the **live** application. You can swap in any other application name the same way. You can also [create your own application](/guides/developer-sdk-and-api/extend-the-server/applications/create-new-application/).
 
 Browse all samples from:
 

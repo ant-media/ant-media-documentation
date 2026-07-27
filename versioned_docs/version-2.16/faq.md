@@ -23,7 +23,7 @@ The JavaScript SDK is available for Ant Media Server and can be accessed via ```
 
 Its file location is ```/usr/local/antmedia/webapps/live/js/webrtc_adaptor.js``` and the source code is available [here](https://github.com/ant-media/StreamApp/blob/fb37558823769f3145be7a777343502ffd6793e4/src/main/webapp/samples/publish_webrtc.html#L509)
 
-Check out the [Java Script SDK documentation](https://antmedia.io/docs/category/javascript-sdk/) here for more details and implementation.
+Check out the [JavaScript SDK documentation](https://antmedia.io/docs/category/javascript-sdk/) here for more details and implementation.
 
 ## Can I use Docker to deploy Ant Media Server?
 
@@ -56,8 +56,8 @@ If you're using ```mongodb``` as the database, your password will be stored in t
 
 *   Connect to your ```mongodb``` server with ```mongo``` client.
 *   Type ```use serverdb;```
-*   Type ```db.User.find()``` and it shows you the output like below. ```{ "_id" : ObjectId("5ea486690f09e71c2462385a"), "className" : "io.antmedia.rest.model.User", "email" : "test@antmedia.io", "password" : "1234567", "userType" : "ADMIN" }```
-*   You can update the password with a command something like below. Change the parameters below according to the your case. ```db.User.updateOne( { email:"test@antmedia.io" }, { $set: { "password" : "test123" }})```
+*   Type ```db.User.find()``` and it shows you the output like below. ```{ "_id" : ObjectId("5ea486690f09e71c2462385a"), "className" : "io.antmedia.rest.model.User", "email" : "test@antmedia.io", "password" : "...", "userType" : "ADMIN" }```
+*   You can update the password with a command something like below. Change the parameters below according to the your case. ```db.User.updateOne( { email:"test@antmedia.io" }, { $set: { "password" : "..." }})```
 *   Alternatively, you can delete the user with a command something like below. Change the parameters below according to the your case. ```db.user.deleteOne( { "email": "test@antmedia.io" } )```
 *   As of version 2.3.2, passwords should be hashed with MD5.
 
@@ -124,7 +124,7 @@ A 403 error usually indicates insufficient permissions or authentication issues 
 
 ## How can I prevent streams from stuttering when publishing in Ant Media Server?
 
-To prevent stuttering in streams, ensure your network bandwidth is stable and sufficient for the bitrate you're streaming. Additionaly, please adjust these settings on your encoders (like OBS and etc).
+To prevent stuttering in streams, ensure your network bandwidth is stable and sufficient for the bitrate you're streaming. Additionally, please adjust these settings on your encoders (like OBS and etc).
 - Avoid **B-frames (Must)**
 - Set the profile to **baseline** for better compatibility.
 - Use a low-latency encoding preset.
@@ -137,7 +137,7 @@ Ant Media Server dynamically measures the client's bandwidth and selects the mos
 
 For example, if three bitrate options are available—2000Kbps, 1500Kbps, and 1000Kbps—and the client’s bandwidth is 1700Kbps, the server will automatically deliver the 1500Kbps stream to ensure smooth playback.
 
-Click [here](https://antmedia.io/docs/guides/adaptive-bitrate/adaptive-bitrate-streaming/) for more details on ABR. 
+See [Adaptive Bitrate Streaming](/guides/adaptive-bitrate/adaptive-bitrate-streaming/) for more on ABR. 
 
 ## How to configure auto-scaling and clustering with Ant Media Server?
 
@@ -410,4 +410,4 @@ const VideoPlayerComponent = dynamic(
    }
  );
 ```
-Now you shouldnt get any errors and SDK should work as expected.
+Now you shouldn't get any errors and SDK should work as expected.

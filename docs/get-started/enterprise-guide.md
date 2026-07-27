@@ -32,7 +32,7 @@ Work through this list before going live.
 
 ### Streaming configuration
 
-- [ ] Adaptive bitrate resolutions/bitrates match your content and audience networks — see [Adaptive Bitrate](/category/adaptive-bitrate/).
+- [ ] Adaptive bitrate resolutions/bitrates match your content and audience networks — see [Adaptive Bitrate Streaming (Transcoding)](/category/adaptive-bitrate/).
 - [ ] If transcoding at scale, GPU acceleration is configured on origin nodes — see [Using NVIDIA GPU](/guides/advanced-usage/using-nvidia-gpu/).
 - [ ] For viewers on restricted networks, a TURN server is deployed — see [TURN Server Installation](/category/turn-server-installation/) and [STUN/TURN Server Configuration](/guides/configuration-and-testing/configuring-stun-turn-addresses/).
 - [ ] Recording and object storage are configured if recordings are required — see [Recording Live Streams](/category/recording-live-streams/) and [Cloud Storage Integration](/category/s3-recording-and-integration/).

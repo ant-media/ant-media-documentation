@@ -6,7 +6,7 @@ sidebar_position: 2
 sidebar_label: Subscriber Block
 ---
 
-# Subscriber Block
+# Subscriber Block {#subscriber-block}
 
 With [TOTP](/guides/stream-security/totp/) enabled, each publisher or player is identified by a `subscriberId`. Subscriber Block lets you stop a specific subscriber from publishing, playing, or both at any moment—even if they are already connected. The block applies to all publish and play types (WebRTC, RTMP, HLS, and so on). Available in Ant Media Server 2.7.0 and later.
 
@@ -52,7 +52,7 @@ curl -X 'PUT' 'http://IP-address-or-domain:5080/live/rest/v2/broadcasts/streamId
 
 Playback can resume immediately after a successful unblock. If the user refreshes and the TOTP has expired, they need a new code. If the TOTP is still valid, they can reauthenticate and play again.
 
-## Block publish and play together
+## Block publish and play together {#block-publish-and-play-simultaneously}
 
 When the same `subscriberId` is used for both roles, block both at once with type `publish_play`:
 
