@@ -196,62 +196,7 @@ Check out [**this document**](https://antmedia.io/docs/guides/recording-live-str
 
 ## How to use Self-Signed Certificate on Ant Media Server?
 
-### 1.Install OpenSSL package. 
-
-For Ubuntu, you can install OpenSSL with the following command. Similarly, for CentOS, you can use **yum** to install it.
-
-```bash
-apt-get update && apt-get install openssl -y
-```
-
-### 2. Create a self-signed certificate.
-
-Use the below command to create a self-signed certificate.
-
-ams.crt = your certificate file  
-ams.key = your key file
-
-```bash
-openssl req -newkey rsa:4096 -x509 -sha256 -days 3650 -nodes -out ams.crt -keyout ams.key
-```
-
-### 3.Submit the requested
-
-You'll be prompted to enter details for the certificate. Fill in the following fields:
-
-```
-Country Name (2 letter code) [AU]:UK
-State or Province Name (full name) [Some-State]:London
-Locality Name (eg, city) []:London
-Organization Name (eg, company) [Internet Widgits Pty Ltd]:Ant Media
-Organizational Unit Name (eg, section) []:Support
-Common Name (e.g. server FQDN or YOUR name) []:domain.com
-Email Address []: contact@antmedia.io
-```
-
-### 4. Enable SSL
-
-The certificate and private key will be created at the specified location. Run the ```enable_ssl.sh``` script as shown below. Update "ams_server_ip" with your AMS IP address. 
-
-```bash
-/usr/local/antmedia/enable_ssl.sh -f ams.crt -p ams.key -c ams.crt -d ams_server_ip
-```
-
-#### Enable SSL locally
-
-If you're using a domain name in a local network, add the following entry to the ```/etc/hosts``` file:
-
-```
-ams_server_ip domain.com
-```
-
-After adding the domain, re-run the ```enable_ssl.sh``` script with the domain name:
-
-```
-/usr/local/antmedia/enable_ssl.sh -f ams.crt -p ams.key -c ams.crt -d domain.com
-```
-
-After running the final command with your domain name, SSL will be enabled for your Ant Media Server. This allows secure connections using HTTPS for the specified domain, ensuring that data transmission is encrypted. Make sure the server's domain is correctly mapped in the **/etc/hosts** file for local usage, and verify the SSL setup by accessing your server via the secure HTTPS protocol.
+Full step-by-step instructions (generating the certificate, enabling SSL, and using a local domain via `/etc/hosts`) now live in the [SSL setup guide](/guides/installing-on-linux/setting-up-ssl/#self-signed-certificate-local-development), alongside the other SSL options, so there's a single place to look regardless of which method you need.
 
 ## How can I install a custom SSL by building a chain certificate?
 
