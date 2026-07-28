@@ -533,9 +533,9 @@ This error can occur if a user attempts to re-publish a stream with the same `st
 
 - **```publishTimeoutError```:** The server sends the `publishTimeoutError` message when WebRTC publishing fails to start within a specified time period.
 
-  This may occur due to network issues, such as the lack of an established ICE connection or the failure to send video and audio streams to the server. The timeout value can be customized using the `settings.webrtc.client.start.timeoutMs` property in the [App-Configuration](https://antmedia.io/docs/guides/advanced-usage/turn-and-stun-installation/coturn-quick-installation/), with a default value of 5000 milliseconds.
+  This may occur due to network issues, such as the lack of an established ICE connection or the failure to send video and audio streams to the server. The timeout value can be customized using the `settings.webrtc.client.start.timeoutMs` property in the App-Configuration, with a default value of 5000 milliseconds.
 
-  Using a [TURN-server](https://antmedia.io/docs/guides/advanced-usage/turn-instalation/coturn-quick-installation/) helps mitigate these network-related issues.
+  Using a [TURN server](/guides/advanced-usage/turn-installation/coturn-quick-installation/) helps mitigate these network-related issues.
 
   ```json
   {
@@ -812,16 +812,16 @@ This error can occur if a user attempts to re-publish a stream with the same `st
   }
   ```
 
+## Need Help?
 
+If a command isn't producing the notification you expect, check the error callback list above first — most signaling issues surface there. Otherwise, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
 
 <br /><br />
 ---
 
 <div align="center">
-<h2> WSS-Messaging Ready 🔔 </h2>
+<h2>WebSocket Signaling Reference</h2>
 </div>
 
-You’ve now explored how **WebSocket signaling works in AMS**: connected via `wss://…/live/websocket`, sent the `**publish**` command, included **metadata**, managed **TOTP** or **token** fields if required, and understood the **optional** vs **mandatory** fields.  
-
-Your signaling layer is fully setup — **smooth**, **secure**, and ready to handle stream **control messages and status notifications**. Your WebRTC stack is talking properly now! 📡
+This covers the full WebSocket message flow for publishing, playing, conferences, and peer-to-peer sessions in AMS, along with the error callbacks and miscellaneous methods you'll need to handle a production signaling implementation.
 

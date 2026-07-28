@@ -24,7 +24,7 @@ There are some data delivery options for data channels you can choose:
 ## Data Channel Sample Page
 
 Go to 
-```https://your-domain-name:5443/live/datachannel.html``` to use the data channel sample.
+```https://<DOMAIN_NAME>:5443/live/datachannel.html``` to use the data channel sample.
 
 If you have AntMedia Server installed on your local machine, you can also go to ```http://localhost:5080/live/datachannel.html```.
 
@@ -227,16 +227,16 @@ Refer to the [Circle Conference Application](https://github.com/ant-media/confer
     ```UPDATE_AUDIO_LEVEL```: Used to receive participants audio level through data channel. Audio Level between 0 and 127. 0 means max, and 127 means min. Contains audioLevel and streamId of the participant. You can use this to show a speaking indicator on client side.
 *   ```UPDATE_PARTICIPANT_ROLE```: Used to update the role of a participant in the conference (e.g., from attendee to moderator).
 
+## Need Help?
 
+If messages aren't arriving, confirm the data channel is enabled in both the AMS dashboard and your SDK initialization — both sides need it on. Otherwise, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
 
 <br /><br />
 ---
 
 <div align="center">
-<h2> Connection Established 🔗 </h2>
+<h2>Data Channel Enabled</h2>
 </div>
 
-You’ve now **enabled Data Channel** support in AMS and in your SDK, tried out the **sample page**, and seen messages **flow peer-to-peer**. Your setup can handle chat, control messages, or file sharing right alongside your WebRTC stream.  
-
-PS: It’s real-time, flexible, and works **without extra plugins** — your app just got smarter! 💬
+You've enabled the data channel in AMS and your SDK, tried the sample page, and sent messages peer-to-peer. The same mechanism works for chat, control messages, or file sharing alongside your WebRTC stream, without any extra plugins.
 

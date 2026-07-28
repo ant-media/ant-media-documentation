@@ -5,15 +5,15 @@ keywords: [Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 4
 ---
 
-Ant Media Server offers robust support for conference calls. In this tutorial, we will see how to use the Basic Conference sample page.   
-   
+Ant Media Server offers robust support for conference calls. In this tutorial, we will see how to use the Basic Conference sample page.
+
 If you are looking for a ready-to-use conference solution, please check out our in-house [Circle Conference tool](https://antmedia.io/marketplace/circle-video-conferencing-tool) with all necessary features.
+
+**Requirements:** Ant Media Server Enterprise Edition — the WebRTC conference feature isn't available on Community Edition.
 
 ## Conference Call Sample Page
 
-Go to ```https://your-domain-name:5443/live/conference.html``` for conference call sample page.
-
-The WebRTC conference feature is only available in the Enterprise Edition of Ant Media Server
+Go to `https://<DOMAIN_NAME>:5443/live/conference.html` for conference call sample page.
 
 If you have Ant Media Server installed on your local machine, you can also go to `http://localhost:5080/live/conference.html`.
 
@@ -96,16 +96,18 @@ Here are the conference-related notifications that callback is invoked for. Plea
 *   ```publish_started```: Called when stream is published to the room.
 *   ```play_started```: Called when starting to play the remote streams.
 
-To learn more about the Ant Media Server Conference, visit [**here**](https://antmedia.io/docs/category/conference-room/).
+To learn more about Ant Media Server's conference features, see the [Conference](/category/conference/) section.
+
+## Need Help?
+
+If participants can't join or streams aren't appearing, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
 
 <br /><br />
 ---
 
 <div align="center">
-<h2> 🎥 Your Conference is NOW LIVE 🎥 </h2>
+<h2>Conference Room Live</h2>
 </div>
 
-You’ve just launched a **WebRTC conference room in AMS**. You joined the room, saw **remote streams from peers**, used **controls** like mute and **camera toggles**—and all in **real time.**  
-
-Nice work — your conference setup is seating everyone **around the same (digital) table**! 🪑📡
+You've launched a WebRTC conference room in AMS, joined from multiple tabs or devices, and used controls like mute and camera toggles — all in real time.
 

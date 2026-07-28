@@ -11,6 +11,8 @@ WHIP (WebRTC-HTTP Ingestion Protocol) is a standardized protocol designed to sim
 
 In version 2.10.0, Ant Media Server introduced WHIP support, making it easier than ever to integrate with WebRTC workflows. This document explores what WHIP is, its benefits, and how to use it with Open Broadcaster Software (OBS) and with other libraries.
 
+**Requirements:** Ant Media Server Enterprise Edition, v2.10 or later — WHIP applies to both methods below, not just the OBS one.
+
 ## Benefits of WHIP
 
 1.  **Simplicity**: WHIP simplifies the signaling process by using HTTP, making it straightforward to implement and integrate.
@@ -24,8 +26,7 @@ Open Broadcaster Software (OBS) is a popular open-source tool for live streaming
 
 #### Prerequisites
 
-- Ant Media Server EE v2.10 or later
-- OBS Studio v30.0 or later
+- OBS Studio v30.0 or later (the Enterprise Edition requirement above still applies)
 
 #### Configure OBS for WHIP
 
@@ -42,7 +43,7 @@ From Output tab of OBS, you can control your streaming parameters like bit rate,
 
 After your Output and streaming settings are done, you can start publishing your stream from OBS.
 
-When the stream is published, you can play the stream with WebRTC, HLS or Dash. Check out the [stream playback](https://antmedia.io/docs/category/playing-live-streams/) document for more reference.
+When the stream is published, you can play the stream with WebRTC, HLS or Dash. Check out the [stream playback](/category/play-live-streams/) category for more reference.
 
 
 ## Streaming to AMS with WHIP using Sample Web page
@@ -51,7 +52,7 @@ If you directly want to publish the WebRTC stream from your browser using WHIP p
 
 This sample page uses the [Eyevinn WHIP client](https://www.npmjs.com/package/@eyevinn/whip-endpoint) to publish the stream to the server using the WHIP protocol. You can also directly integrate it into your web application.
 
-Now, in order to publish the WHIP stream using the sample page, go to https://AMS-domain:5443/live/whip.html of your Ant Media Server and start publishing.
+Now, in order to publish the WHIP stream using the sample page, go to `https://<DOMAIN_NAME>:5443/live/whip.html` of your Ant Media Server and start publishing.
 
 For example, you can test via this [sample page](https://test.antmedia.io:5443/live/whip.html).
 
@@ -60,15 +61,16 @@ For example, you can test via this [sample page](https://test.antmedia.io:5443/l
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/hw0gs7Dxym4?si=UyJ2sATPyMF-iWWO" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
 
+## Need Help?
+
+If OBS or the sample page can't reach the WHIP endpoint, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
 
 <br /><br />
 ---
 
 <div align="center">
-<h2> WHIP Wizardy! 🎩✨ </h2>
+<h2>WHIP Streaming Configured</h2>
 </div>
 
-Congratulations! You've successfully configured **WHIP streaming with Ant Media Server**. Your WebRTC streams are now effortlessly ingested via simple HTTP endpoints, streamlining your live broadcasting setup.
-
-With WHIP, you've embraced a modern, standardized approach to media ingestion, enhancing interoperability and reducing complexity. Your streaming workflow is now more efficient and future-ready.
+Your WebRTC streams are now ingested over the standard WHIP protocol via simple HTTP endpoints — from OBS, or directly from a browser using the sample page. From here, see [WebRTC Playback](/guides/playing-live-stream/webrtc-playback/) to play the stream back.
 

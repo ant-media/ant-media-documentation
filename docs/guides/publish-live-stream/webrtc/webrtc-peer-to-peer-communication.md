@@ -11,7 +11,7 @@ In this documentation, we're going to explain how to implement WebRTC peer-to-pe
 
 There is already a working demo for this in the `peer.html` file.
 
-Go to ⁣`https://your-domain-name:5443/live/peer.html` for a sample page.
+Go to `https://<DOMAIN_NAME>:5443/live/peer.html` for a sample page.
 
 If you have Ant Media Server installed on your local machine, you can also go to ```http://localhost:5080/live/peer.html```
 
@@ -73,7 +73,7 @@ In some cases, peer-to-peer communication cannot be established and a relay serv
 
 ![](@site/static/img/dataPathways.png)
 
-Check out this [**TURN server document**](https://antmedia.io/docs/guides/advanced-usage/turn-instalation/coturn-quick-installation/) for the configuration.
+Check out this [**TURN server document**](/guides/advanced-usage/turn-installation/coturn-quick-installation/) for the configuration.
 
 You can configure TURN server credentials in [peer.html](https://github.com/ant-media/StreamApp/blob/master/src/main/webapp/peer.html) as follows.
 
@@ -89,13 +89,15 @@ var pc_config =
 };
 ```
 
+## Need Help?
+
+If two peers can't connect directly, that's usually a NAT/firewall issue — see the TURN server section above. Otherwise, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
+
 <br /><br />
 ---
 
 <div align="center">
-<h2> P2P Success ✅ </h2>
+<h2>Peer-to-Peer Connected</h2>
 </div>
 
-You’ve now used **Ant Media’s WebRTC Peer-to-Peer mode**: connected via the sample page, joined with **WebRTCAdaptor**, **exchanged streams** directly **between peers**, and (if needed) configured **TURN server** fallback.  
-
-Your connection is now **lean, fast, and minimizes lag** — pure peer-to-peer streaming magic! 🎯
+You've connected two peers directly via the sample page, joined with WebRTCAdaptor, and exchanged streams with minimal lag — with TURN server fallback configured for cases where a direct connection isn't possible.
