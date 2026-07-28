@@ -110,7 +110,7 @@ After enabling Keycloak integration, the same URLs are no longer accessible anon
 
 When you open either the publish or player page, Ant Media Server redirects you to the Keycloak login page.
 
-![](@site/static/img/stream-security/keycloak-login-2746c67d7253a57ef44ac5c4e82cb198.png)
+![](@site/static/img/stream-security/keycloak-login-2746c67d7253a57ef44ac5c4e82cb198.png) 
 
 After signing in with a user that has the required role, you are redirected back to the requested page and can continue publishing or playing streams normally.
 
