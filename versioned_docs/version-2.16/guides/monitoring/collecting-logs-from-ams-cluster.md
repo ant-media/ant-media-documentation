@@ -1,354 +1,317 @@
 ---
 title: Collecting Logs from AMS Cluster
-description: Collecting logs from AMS cluster
-keywords: [Collecting logs from AMS cluster, Ant Media Server Documentation, Ant Media Server Tutorials] 
+description: Set up Graylog with MongoDB and Elasticsearch to collect Ant Media Server logs from every node in a cluster.
+keywords: [Collecting logs from AMS cluster, Ant Media Server Documentation, Ant Media Server Tutorials]
+sidebar_position: 3
+sidebar_label: AMS Cluster Logs
 ---
 
 # Collecting Logs from AMS Cluster
 
-Graylog is an open source centralized log collection and analysis software which uses Elasticsearch and MongoDB in its architecture. This guide will be about Graylog setup, configuration, and how to send Ant Media Server logs to it.
+Use **Graylog** to collect and search Ant Media Server logs from every node in a cluster from one place. Graylog uses **MongoDB** for configuration metadata and **Elasticsearch** for log storage and search.
 
-If you are using the cluster structure and want to keep track of all logs from one place, this article is for you.
+This guide covers a self-hosted Graylog stack on Ubuntu (minimum **4 GB RAM**) and forwarding logs from multiple Ant Media Server instances over **Syslog UDP**.
 
-The following example is for Ubuntu with a 4Gb RAM (minimum), however the same setup is also valid for other Linux distributions as well.
+:::info
+For Ant Media's managed centralized logging platform, see [Centralized Logging Setup](/guides/monitoring/centralized-logging/).
+:::
 
-**Test environment:**
+## What you'll accomplish
 
-Graylog Server: 192.168.1.250
-Ant Media Server 1: 192.168.1.251
-Ant Media Server 2: 192.168.1.252
+By the end of this guide, you will:
 
-#### Prerequisites
+1. Install **MongoDB**, **Elasticsearch**, and **Graylog** on a dedicated log server.
+2. Access the Graylog web interface (optionally behind **Nginx** with SSL).
+3. Forward Ant Media Server logs from each cluster node with **rsyslog**.
+4. Search and filter cluster logs in Graylog in real time.
 
-- In order to run Elasticsearch, you must install Java. Run the following commands to install.
-  
-  ```bash
-  sudo apt-get update
-  sudo apt-get install apt-transport-https openjdk-11-jre openjdk-11-jre-headless uuid-runtime pwgen
-  ```
-  
-### Step 1: Install MongoDB
+## Example test environment
 
-- MongoDB stores the configurations and meta information. Install MongoDB using the following commands.
+| Role | Example address |
+|------|-----------------|
+| Graylog server | `192.168.1.250` |
+| Ant Media Server 1 | `192.168.1.251` |
+| Ant Media Server 2 | `192.168.1.252` |
 
-  ```bash
-  sudo apt-get install gnupg
-  wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
-  echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu `lsb_release -cs`/mongodb-org/4.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
-  sudo apt-get update && sudo apt-get install -y mongodb-org
-  ```
-  
-- Enable and restart MongoDB service by running the commands below.
+Replace these with your own IPs or hostnames throughout the guide.
 
-  ```bash
-  sudo systemctl enable mongod.service & sudo systemctl restart mongod.service
-  ```
+## How cluster log collection works
 
-- Make sure the service is running:
+Each Ant Media Server node runs **rsyslog** with the `imfile` module to tail `ant-media-server.log` and forward lines to the Graylog server on **UDP port 5144**. Graylog ingests the Syslog stream, indexes it in Elasticsearch, and exposes search and dashboards in the web UI.
 
-  ```bash
-  sudo systemctl status mongod.service
-  ```
+## Prerequisites
 
-### Step 2: Install Elasticsearch
+Before you begin, confirm the following:
 
-Graylog can be used with Elasticsearch 7.x. Elasticsearch acts as a search server, requiring Graylog to work.
+- A dedicated Linux server for Graylog (Ubuntu recommended, **4 GB RAM** minimum).
+- `sudo` access on the Graylog server and every Ant Media Server node.
+- Network connectivity from AMS nodes to Graylog on **UDP 5144**.
+- Java 11 for Elasticsearch.
 
-Install Elasticsearch using the following commands.
+Install Java on the Graylog server:
+
+```bash
+sudo apt-get update
+sudo apt-get install apt-transport-https openjdk-11-jre openjdk-11-jre-headless uuid-runtime pwgen
+```
+
+---
+
+## Step 1: Install MongoDB
+
+MongoDB stores Graylog configuration and metadata.
+
+```bash
+sudo apt-get install gnupg
+wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
+echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu $(lsb_release -cs)/mongodb-org/4.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
+sudo apt-get update && sudo apt-get install -y mongodb-org
+```
+
+Enable and start MongoDB:
+
+```bash
+sudo systemctl enable mongod.service
+sudo systemctl restart mongod.service
+sudo systemctl status mongod.service
+```
+
+---
+
+## Step 2: Install Elasticsearch
+
+Graylog requires **Elasticsearch 7.x OSS**.
 
 ```bash
 wget -O - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add
-echo "deb https://artifacts.elastic.co/packages/oss-7.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list
+echo "deb https://artifacts.elastic.co/packages/oss-7.x/apt stable main" | sudo tee /etc/apt/sources.list.d/elastic-7.x.list
 sudo apt-get update && sudo apt-get install elasticsearch-oss
 ```
-Once the installation of Elasticsearch 7.x is complete, set the cluster name for Graylog.
 
-Edit the following file:
+Edit `/etc/elasticsearch/elasticsearch.yml` and add:
 
-```bash
-vim /etc/elasticsearch/elasticsearch.yml
-```
-
-and then add the 2 lines below.
-
-```echo
+```yaml
 cluster.name: graylog
 action.auto_create_index: false
 ```
 
-Save the file and exit.
-
-Enable and restart Elasticsearch service by running the commands below:
+Enable and start Elasticsearch:
 
 ```bash
 sudo systemctl enable elasticsearch.service
 sudo systemctl restart elasticsearch.service
-```
-
-Make sure the service is running. To check the status of Elasticsearch, run the command below:
-
-```bash
 sudo systemctl status elasticsearch.service
 ```
 
-Make sure everything is correct by running the following command:
+Verify Elasticsearch responds:
 
 ```bash
 curl -X GET http://localhost:9200
+curl -XGET 'http://localhost:9200/_cluster/health?pretty=true'
 ```
 
-Output:
+Cluster health should report **`"status" : "green"`**.
 
-```echo
-    root@graylog:~# curl -X GET http://localhost:9200
-    {
-      "name" : "cdN0aJ1",
-      "cluster_name" : "graylog",
-      "cluster_uuid" : "hyWsngLVRqq_IWU1cr75AA",
-      "version" : {
-        "number" : "6.8.13",
-        "build_flavor" : "oss",
-        "build_type" : "deb",
-        "build_hash" : "be13c69",
-        "build_date" : "2020-10-16T09:09:46.555371Z",
-        "build_snapshot" : false,
-        "lucene_version" : "7.7.3",
-        "minimum_wire_compatibility_version" : "5.6.0",
-        "minimum_index_compatibility_version" : "5.0.0"
-      },
-      "tagline" : "You Know, for Search"
-    }
-```
+---
 
-Make sure the output status is green.
-
-```echo
-    curl -XGET 'http://localhost:9200/_cluster/health?pretty=true'
-
-    {
-      "cluster_name" : "graylog",
-      "status" : "green",
-      "timed_out" : false,
-      "number_of_nodes" : 1,
-      "number_of_data_nodes" : 1,
-      "active_primary_shards" : 12,
-      "active_shards" : 12,
-      "relocating_shards" : 0,
-      "initializing_shards" : 0,
-      "unassigned_shards" : 0,
-      "delayed_unassigned_shards" : 0,
-      "number_of_pending_tasks" : 0,
-      "number_of_in_flight_fetch" : 0,
-      "task_max_waiting_in_queue_millis" : 0,
-      "active_shards_percent_as_number" : 100.0
-    }
-```
-
-### Step 3: Install Graylog
-
-Graylog is a log parser. It collects logs from various inputs. Now that we have installed MongoDB and Elasticsearch, it is time to install Graylog.
-
-Install Graylog using the following commands:
+## Step 3: Install Graylog
 
 ```bash
 wget https://packages.graylog2.org/repo/packages/graylog-4.3-repository_latest.deb
 sudo dpkg -i graylog-4.3-repository_latest.deb
 sudo apt-get update && sudo apt-get install graylog-server -y
 ```
-To create your **root\_password\_sha2** run the following command. You will need this password to login to the Graylog web interface.
+
+Generate credentials for `/etc/graylog/server/server.conf`:
 
 ```bash
-echo -n "Enter Password: " && head -1 `</dev/stdin | tr -d '\n' | sha256sum | cut -d" " -f1
-```
+# SHA-256 hash of your admin password
+echo -n "Enter Password: " && head -1 </dev/stdin | tr -d '\n' | sha256sum | cut -d" " -f1
 
-Output: ```8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92```
-
-You will need to generate a secret to secure the user passwords. To generate the password\_secret, you can use the pwgen tool to do.
-
-```bash
+# 96-character password secret
 pwgen -N 1 -s 96
 ```
 
-Output: ```jyOQ188lAq1ssEMvCndsj2ImEOuWkC4v3aL4AQg9Dj4wvavkk3BAkSzMXFyH8aN8GiMoIJl2xmT4T5aGwS1r06Cz38SMsgDK```
+Add the outputs to `server.conf`:
 
-Edit the **/etc/graylog/server/server.conf** file then add **root\_password\_sha2** and **password\_secret** outputs.
-
-```
-password_secret = jyOQ188lAq1ssEMvCndsj2ImEOuWkC4v3aL4AQg9Dj4wvavkk3BAkSzMXFyH8aN8GiMoIJl2xmT4T5aGwS1r06Cz38SMsgDK
-root_password_sha2 = 8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92
+```properties
+password_secret = {YOUR_PASSWORD_SECRET}
+root_password_sha2 = {YOUR_ROOT_PASSWORD_SHA2}
 ```
 
-If you don't want to use reverse proxy with SSL termination, uncomment the following line then change according to your server ip address.
+For direct HTTP access without a reverse proxy, set:
 
-```
-http_bind_address = 127.0.0.1:9000`
-```
-to
-```
-http_bind_address = your_server_public_ip:9000
+```properties
+http_bind_address = {YOUR_SERVER_IP}:9000
 ```
 
-> If you want to use the reverse proxy with SSL termination, please go to [this step](/guides/installing-on-linux/setting-up-ssl/).
+For SSL termination with Nginx, keep `http_bind_address = 127.0.0.1:9000` and follow [Setting up SSL](/guides/installing-on-linux/setting-up-ssl/) or the optional Nginx section below.
 
-Save the file and exit.
-
-Enable and restart Graylog Server service by running the commands below.
+Enable and start Graylog:
 
 ```bash
 sudo systemctl enable graylog-server.service
 sudo systemctl restart graylog-server.service
-```
-
-Make sure the service is running.
-
-```bash
 sudo systemctl status graylog-server.service
 ```
 
-#### Optional: Configuring Nginx reverse proxy with SSL termination
+---
 
-Run the following commands to install Nginx and certbot:
+## Step 4: Optional — Nginx reverse proxy with SSL
+
+Install Nginx and Certbot:
 
 ```bash
 sudo apt install curl ca-certificates lsb-release -y
-echo "deb http://nginx.org/packages/`lsb_release -d | awk '{print $2}' | tr '[:upper:]' '[:lower:]'` `lsb_release -cs` nginx" | sudo tee /etc/apt/sources.list.d/nginx.list
+echo "deb http://nginx.org/packages/$(lsb_release -d | awk '{print $2}' | tr '[:upper:]' '[:lower:]') $(lsb_release -cs) nginx" | sudo tee /etc/apt/sources.list.d/nginx.list
 curl -fsSL https://nginx.org/keys/nginx_signing.key | sudo apt-key add -
-sudo apt-get update 
+sudo apt-get update
 sudo apt-get install nginx certbot python-certbot-nginx -y
 ```
 
-Run the following commands to create a certificate:
+Create a certificate:
 
 ```bash
-certbot --nginx -d yourdomain.com -d www.yourdomain.com
+sudo certbot --nginx -d yourdomain.com -d www.yourdomain.com
 ```
 
-Edit crontab file crontab -e add below line to renew certificate each 80 days:
+Add certificate renewal to crontab (`crontab -e`):
 
 ```bash
 0 0 */80 * * root certbot -q renew --nginx
 ```
 
-Backup default Nginx configuration.
+Back up the default Nginx config and create `/etc/nginx/conf.d/graylog.conf`:
 
 ```bash
-mv /etc/nginx/conf.d/default.conf{,_bck}
+sudo mv /etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf_bck
+sudo nano /etc/nginx/conf.d/graylog.conf
 ```
 
-Create a new file called **graylog.conf** and edit and save the following lines according to you.
+```nginx
+server {
+    listen 443 ssl;
+    server_name yourdomain.com;
+    ssl_certificate /etc/letsencrypt/live/yourdomain.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/yourdomain.com/privkey.pem;
+    ssl_session_cache shared:le_nginx_SSL:1m;
+    ssl_session_timeout 1440m;
+    ssl_protocols TLSv1.2;
+    ssl_prefer_server_ciphers on;
 
-```echo
-    vim /etc/nginx/conf.d/graylog.conf
-
-    server {
-    	listen 443 ssl;
-            server_name yourdomain.com;
-    	ssl_certificate /etc/letsencrypt/live/yourdomain.com/fullchain.pem;
-            ssl_certificate_key /etc/letsencrypt/live/yourdomain.com/privkey.pem;
-            ssl_session_cache shared:le_nginx_SSL:1m;
-    	ssl_session_timeout 1440m;
-    	ssl_protocols TLSv1.2;
-    	ssl_prefer_server_ciphers on;
-    	ssl_ciphers "EECDH+ECDSA+AESGCM EECDH+aRSA+AESGCM EECDH+ECDSA+SHA384 EECDH+ECDSA+SHA256 EECDH+aRSA+SHA384 EECDH+aRSA+SHA256 EECDH+aRSA+RC4 EECDH EDH+aRSA HIGH !RC4 !aNULL !eNULL !LOW !3DES !MD5 !EXP !PSK !SRP !DSS";
-           ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
-           add_header X-Frame-Options "SAMEORIGIN";
-           add_header X-XSS-Protection "1; mode=block";
-           location / {
-                    proxy_set_header HOST $host;
-                    proxy_set_header X-Forwarded-Proto $scheme;
-                    proxy_set_header X-Real-IP $remote_addr;
-                    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-                    proxy_pass http://127.0.0.1:9000;
-                }
+    location / {
+        proxy_set_header HOST $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_pass http://127.0.0.1:9000;
     }
+}
 ```
 
-Save and exit the file then restart nginx service as follows:
+Restart Nginx:
 
 ```bash
-systemctl restart nginx
+sudo systemctl restart nginx
 ```
 
-Now you can reach to Graylog server as follows.
+Access Graylog at `https://yourdomain.com`.
 
-```html
+---
+
+## Step 5: Access the Graylog web interface
+
+Open the Graylog UI:
+
+```text
+http://{GRAYLOG_SERVER_IP}:9000
+```
+
+Or, if Nginx SSL is configured:
+
+```text
 https://yourdomain.com
 ```
 
-### Step 4: Access Graylog web interface
+Log in with username **`admin`** and the password you hashed in Step 3.
 
-Access Graylog web interface using its IP Address and port 9000
+---
 
-```html
-http://serverip_or_hostname:9000
-```
+## Step 6: Forward logs from Ant Media Server nodes
 
-or
-
-```html
-https://yourdomain.com
-```
-
-### Step 5: AMS log settings for Graylog
-
-Login to your servers where Ant Media is installed with ssh and create **/etc/rsyslog.d/25-antmedia.conf** file then add the below lines:
-
-```echo
-    $ModLoad imfile
-    $InputFileName /usr/local/antmedia/log/ant-media-server.log
-    $InputFileTag antmedia
-    $InputFileStateFile stat-antmedia
-    $InputRunFileMonitor
-    *.* @192.168.1.250:5144;RSYSLOG_SyslogProtocol23Format
-```
-
-Save and exit the file then restart rsyslog service.
+On **each** Ant Media Server instance, create `/etc/rsyslog.d/25-antmedia.conf`:
 
 ```bash
-sytemctl restart rsyslog
+sudo nano /etc/rsyslog.d/25-antmedia.conf
 ```
 
-### Step 6: Configuring Graylog
+```text
+$ModLoad imfile
+$InputFileName /usr/local/antmedia/log/ant-media-server.log
+$InputFileTag antmedia
+$InputFileStateFile stat-antmedia
+$InputRunFileMonitor
+*.* @{GRAYLOG_SERVER_IP}:5144;RSYSLOG_SyslogProtocol23Format
+```
 
-Open the dashboard and log in.
+Replace `{GRAYLOG_SERVER_IP}` with your Graylog server address (for example, `192.168.1.250`).
 
-![](@site/static/img/graylog-1.png)
+Restart rsyslog:
 
-Click on **Systems - Inputs** and select **Syslog UDP** and click on **Launch New Input**.
+```bash
+sudo systemctl restart rsyslog
+```
 
-![](@site/static/img/graylog-2.png)
+:::tip Log file path
+If your install uses `/var/log/antmedia/ant-media-server.log` instead, update `$InputFileName` to match your environment.
+:::
 
-Set the settings as in the screenshot and click **Save**.
+---
 
-![](@site/static/img/graylog-3.png)
+## Step 7: Configure Graylog Syslog input
 
-Your input will appear as below.
+1. Open the Graylog dashboard and sign in.
 
-![](@site/static/img/graylog-4.png)
+   ![](@site/static/img/graylog-1.png)
 
-If you have made the correct log settings on Ant Media servers, the logs as below will start to appear.
+2. Go to **System → Inputs**, select **Syslog UDP**, and click **Launch new input**.
+
+   ![](@site/static/img/graylog-2.png)
+
+3. Set the port to **5144** (and other options as shown below), then click **Save**.
+
+   ![](@site/static/img/graylog-3.png)
+
+4. Confirm the input is running.
+
+   ![](@site/static/img/graylog-4.png)
+
+When rsyslog forwarding is configured correctly, Ant Media Server logs appear in Graylog:
 
 ![](@site/static/img/graylog-5.png)
 
-#### Search query examples:
+### Search query examples
 
-    "stream1"
-    (stream1 OR stream2)
-    "stream1" AND NOT source:192.168.1.251
-    source:192.168.1.252
-    "stream*" NOT source:192.168.1.2
+```text
+"stream1"
+(stream1 OR stream2)
+"stream1" AND NOT source:192.168.1.251
+source:192.168.1.252
+"stream*" AND NOT source:192.168.1.2
+```
 
+From here you can build dashboards, filter by stream or source server, and configure alerts for important events.
 
-If everything has been configured correctly, you should now see your Ant Media Server logs streaming into Graylog in real time.
+---
 
-## Congratulations!
+## Troubleshooting
 
-You now have centralized logging for your Ant Media Server cluster.
+| Symptom | What to check |
+|---------|----------------|
+| Graylog service fails to start | MongoDB and Elasticsearch are running; `password_secret` and `root_password_sha2` are set in `server.conf`. |
+| Elasticsearch not green | `curl localhost:9200/_cluster/health`; JVM heap and disk space on the Graylog server. |
+| No logs in Graylog | Syslog input is running on port **5144**; UDP traffic allowed from AMS nodes; rsyslog restarted on each node. |
+| rsyslog not forwarding | Log file path in `25-antmedia.conf` matches your install; `{GRAYLOG_SERVER_IP}` is correct. |
+| Cannot reach web UI | `http_bind_address` or Nginx proxy config; firewall allows port **9000** or **443**. |
 
-From here, you can:
-
-* Filter and search logs using queries (e.g., by stream name or source server).
-
-* Create dashboards to monitor AMS activity across your cluster.
-
-* Set up alerts for important events.
+For managed log forwarding by Ant Media, see [Centralized Logging Setup](/guides/monitoring/centralized-logging/).
