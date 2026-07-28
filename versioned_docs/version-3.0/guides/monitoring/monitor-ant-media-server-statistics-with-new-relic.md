@@ -1,168 +1,184 @@
 ---
-title: Monitoring with New Relic
-description: Monitor Ant Media Server statistics with New Relic
+title: Monitor Ant Media Server Statistics with New Relic
+description: Forward Ant Media Server analytics logs to New Relic, configure parsing rules, and import a prebuilt dashboard.
 keywords: [Analytics, New Relic, Statistics, Ant Media Server Tutorials]
 sidebar_position: 1
+sidebar_label: New Relic
 ---
 
-# Monitoring with New Relic
+# Monitor Ant Media Server Statistics with New Relic
 
-Starting with v2.10.0, Ant Media Server (AMS) provides analytics logs to monitor important usage and performance statistics.
-These logs are stored in JSON format at: `ant-media-server-analytics.log`. 
+Starting with **Ant Media Server v2.10.0**, analytics events are written as JSON lines to:
 
-This makes it possible to forward logs to external platforms such as New Relic for visualization and monitoring.
-
-## Metrics Available in Analytics Logs
-
-* Total data transfer per user
-* Publisher statistics (streamId, application name, codecs, height, width, resolution, etc)
-* WebRTC, HLS and DASH viewer count
-* Publishing and playing start/end times
-* Subscriber IDs and statistics
-* Tokens
-* Stream duration
-* Key Frame Interval per stream
-
-These metrics help analyze performance, monitor usage, and improve the streaming experience.
-
-## Installation and Use of New Relic
-
-New Relic is a software analytics and performance monitoring platform that helps monitor and optimize applications and infrastructure in real-time. It provides detailed insights into the performance, reliability, and scalability of web applications, microservices, and cloud infrastructure.
-
-After creating and logging into your [New Relic](https://newrelic.com/) account, follow these steps to configure and install the New Relic Client on the server where your Ant Media Server is installed.
-
-
-### New Relic Client Installation
-
-Select from the side bar, **All Entities > Add Data > Linux Logs > Create a new key**
-
-![image.png](@site/static/img/analytics/antmedia-analytics-new-relic-1.png)
-
-- Copy the command and install the Agent on the instance where Ant Media Server installed.
-
-![image.png](@site/static/img/analytics/antmedia-analytics-new-relic-2.png)
-
-```bash
-curl -Ls https://download.newrelic.com/install/newrelic-cli/scripts/install.sh | bash && sudo NEW_RELIC_API_KEY=NRAK-************YI91R NEW_RELIC_ACCOUNT_ID=44799 NEW_RELIC_REGION=EU /usr/local/bin/newrelic install -y
+```text
+/var/log/antmedia/ant-media-server-analytics.log
 ```
 
+Forward this log to **New Relic** to monitor publishing trends, viewer counts, data transfer, and stream performance in real time.
 
-### Configuration of Log File
+## What you'll accomplish
 
-To process only Ant Media Server's Analytics logs in New Relic, delete all the YAML files under `/etc/newrelic-infra/logging.d ` folder and create a new file named `antmedia.yaml` with the following lines:
+By the end of this guide, you will:
 
-```bash
-logs:
-  - name: antmedia
-    file: /var/log/antmedia/ant-media-server-analytics.log
-    attributes:
-      logtype: custom
-```
+1. Install the **New Relic infrastructure agent** on your Ant Media Server host.
+2. Configure the agent to ship **analytics logs only**.
+3. Create **log parsing rules** for Ant Media Server event types.
+4. Import the **prebuilt Ant Media Server dashboard** in New Relic.
 
-Restart the New Relic infrastructure service to activate the configuration:
+## Metrics available in analytics logs
 
-```bash
-sudo systemctl restart newrelic-infra.service
-```
+Ant Media Server analytics logs include events such as:
 
-Once you complete these steps, your logs will start being transferred to New Relic.
+| Category | Examples |
+|----------|----------|
+| Publishing | Stream start/end, codecs, resolution, protocol |
+| Playback | Play start/end, first-time play, watch time |
+| Viewers | WebRTC, HLS, and DASH viewer counts |
+| Performance | Key frame interval, bytes transferred per subscriber |
+| Identity | Stream ID, application name, subscriber ID, tokens |
 
-![image.png](@site/static/img/analytics/antmedia-analytics-new-relic-3.png)
+Use these events to analyze usage, detect playback issues, and track capacity over time.
 
+## Prerequisites
 
-### Log Parsing
+Before you begin, confirm the following:
 
-We need to add log parse on New Relic to process logs for each event. You can perform a parsing process suitable for your log format using the log parsing tools provided by New Relic. This step is critical for correctly interpreting and analyzing your logs.
-
-Let's create the rules by clicking `Logs > Parsion Logs > Create parsin rule`. Unfortunately, there is no Import/Export feature in New Relic Parsing Rules, so you need to create the parsing rule for each event manually, as below:
-
-![image.png](@site/static/img/analytics/antmedia-analytics-new-relic-4.png)
+- Ant Media Server **v2.10.0** or later.
+- Shell access to the server running Ant Media Server (`sudo` for agent install).
+- A [New Relic account](https://newrelic.com/).
+- Analytics log file present at `/var/log/antmedia/ant-media-server-analytics.log`.
 
 :::info
-- Please make sure that their is no blank space in the fields while creating the parsing rules.
-- You can also create more parsing rules and dashboard charts according to the analytics log entries.
-- The parsing rule format and the original log entry format in analytics logs should be matched for correct logging and data fetching.
+Generate a New Relic **API key** and note your **account ID** before installing the agent. You need both during setup.
 :::
 
-```html
+## Step 1: Install the New Relic agent
+
+1. Sign in to New Relic and go to **All entities → Add data → Linux logs → Create a new key**.
+
+   ![](@site/static/img/analytics/antmedia-analytics-new-relic-1.png)
+
+2. Copy the install command shown in the New Relic UI and run it on the Ant Media Server host.
+
+   ![](@site/static/img/analytics/antmedia-analytics-new-relic-2.png)
+
+   Example format:
+
+   ```bash
+   curl -Ls https://download.newrelic.com/install/newrelic-cli/scripts/install.sh | bash && \
+   sudo NEW_RELIC_API_KEY={YOUR_API_KEY} NEW_RELIC_ACCOUNT_ID={YOUR_ACCOUNT_ID} NEW_RELIC_REGION={EU_OR_US} \
+   /usr/local/bin/newrelic install -y
+   ```
+
+   Replace `{YOUR_API_KEY}`, `{YOUR_ACCOUNT_ID}`, and `{EU_OR_US}` with your values from the New Relic console.
+
+## Step 2: Configure analytics log forwarding
+
+To forward **only** Ant Media Server analytics logs:
+
+1. Remove existing YAML files under `/etc/newrelic-infra/logging.d/`.
+2. Create `/etc/newrelic-infra/logging.d/antmedia.yaml` with:
+
+   ```yaml
+   logs:
+     - name: antmedia
+       file: /var/log/antmedia/ant-media-server-analytics.log
+       attributes:
+         logtype: custom
+   ```
+
+3. Restart the New Relic infrastructure service:
+
+   ```bash
+   sudo systemctl restart newrelic-infra.service
+   ```
+
+Logs should start appearing in New Relic within a few minutes.
+
+![](@site/static/img/analytics/antmedia-analytics-new-relic-3.png)
+
+## Step 3: Create log parsing rules
+
+Parsing rules tell New Relic how to extract fields from each analytics event. Create them under **Logs → Parsing → Create parsing rule**.
+
+![](@site/static/img/analytics/antmedia-analytics-new-relic-4.png)
+
+:::info
+- Do not add blank spaces in parsing rule fields.
+- Match each rule name and pattern to the corresponding event in the analytics log.
+- New Relic does not support import/export for parsing rules — create each rule manually.
+:::
+
+For every rule below, use:
+
+- **Field to parse:** `message`
+- **Filter logs based on NRQL:** `filePath = '/var/log/antmedia/ant-media-server-analytics.log'`
+
+```text
 Name: keyFrameStats
-Field to parse: messages
-Filter logs based on NRQL: filePath = '/var/log/antmedia/ant-media-server-analytics.log'
 Parsing rule: \{"keyFramesInLastMinute":%{NUMBER:keyFramesInLastMinute},"keyFrameIntervalMs":%{NUMBER:keyFrameIntervalMs},"event":"%{DATA:event}","timeMs":%{NUMBER:timeMs},"app":"%{DATA:app}","streamId":"%{DATA:streamId}","logSource":"%{DATA:logSource}"\}
 
 Name: publishEnded
-Field to parse: messages
-Filter logs based on NRQL: filePath = '/var/log/antmedia/ant-media-server-analytics.log'
 Parsing rule: \{"durationMs":%{NUMBER:durationMs},"event":"%{DATA:event}","timeMs":%{NUMBER:timeMs},"app":"%{DATA:app}","streamId":"%{DATA:streamId}","logSource":"%{DATA:logSource}"\}
 
 Name: viewerCount
-Field to parse: messages
-Filter logs based on NRQL: filePath = '/var/log/antmedia/ant-media-server-analytics.log'
 Parsing rule: \{"dashViewerCount":%{NUMBER:dashViewerCount},"hlsViewerCount":%{NUMBER:hlsViewerCount},"webRTCViewerCount":%{NUMBER:webRTCViewerCount},"event":"%{DATA:event}","timeMs":%{NUMBER:timeMs},"app":"%{DATA:app}","streamId":"%{DATA:streamId}","logSource":"%{DATA:logSource}"\}
 
 Name: publishStarted
-Field to parse: messages
-Filter logs based on NRQL: filePath = '/var/log/antmedia/ant-media-server-analytics.log'
 Parsing rule: \{"height":%{NUMBER:height},"width":%{NUMBER:width},"videoCodec":"%{DATA:videoCodec}","audioCodec":"%{DATA:audioCodec}","protocol":"%{WORD:protocol}","event":"%{DATA:event}","timeMs":%{NUMBER:timeMs},"app":"%{DATA:app}","streamId":"%{DATA:streamId}","logSource":"%{DATA:logSource}"\}
 
 Name: playStartedFirstTime
-Field to parse: messages
-Filter logs based on NRQL: filePath = '/var/log/antmedia/ant-media-server-analytics.log'
 Parsing rule: \{"protocol":"%{WORD:protocol}","clientIP":"%{IP:clientIP}","subscriberId":"%{DATA:subscriberId}","event":"%{DATA:event}","timeMs":%{NUMBER:timeMs},"app":"%{DATA:app}","streamId":"%{DATA:streamId}","logSource":"%{DATA:logSource}"\}
 
 Name: playStarted
-Field to parse: messages
-Filter logs based on NRQL: filePath = '/var/log/antmedia/ant-media-server-analytics.log'
 Parsing rule: \{"protocol":"%{WORD:protocol}","clientIP":"%{IP:clientIP}","subscriberId":"%{DATA:subscriberId}","event":"%{DATA:event}","timeMs":%{NUMBER:timeMs},"app":"%{DATA:app}","streamId":"%{DATA:streamId}","logSource":"%{DATA:logSource}"\}
 
 Name: playEnded
-Field to parse: messages
-Filter logs based on NRQL: filePath = '/var/log/antmedia/ant-media-server-analytics.log'
 Parsing rule: \{"protocol":"%{WORD:protocol}","subscriberId":"%{DATA:subscriberId}","event":"%{DATA:event}","timeMs":%{NUMBER:timeMs},"app":"%{DATA:app}","streamId":"%{DATA:streamId}","logSource":"%{DATA:logSource}"\}
 
 Name: watchTime
-Field to parse: messages
-Filter logs based on NRQL: filePath = '/var/log/antmedia/ant-media-server-analytics.log'
 Parsing rule: \{"watchTimeMs":%{NUMBER:watchTimeMs},"startTimeMs":%{NUMBER:startTimeMs},"protocol":"%{WORD:protocol}","clientIP":"%{IP:clientIP}","subscriberId":"%{DATA:subscriberId}","event":"%{DATA:event}","timeMs":%{NUMBER:timeMs},"app":"%{DATA:app}","streamId":"%{DATA:streamId}","logSource":"%{DATA:logSource}"\}
 
 Name: playerStats
-Field to parse: messages
-Filter logs based on NRQL: filePath = '/var/log/antmedia/ant-media-server-analytics.log'
 Parsing rule: \{"subscriberId":"%{USERNAME:subscriberId}","totalBytesTransferred":%{INT:totalBytesTransferred},"byteTransferred":%{INT:byteTransferred},"event":"%{WORD:event}","timeMs":%{NUMBER:timeMs},"app":"%{WORD:app}","streamId":"%{USERNAME:streamId}","logSource":"%{WORD:logSource}"\}
 ```
 
+You can add more parsing rules and charts as your analytics events evolve.
 
-### Dashboard creation 
+## Step 4: Import the Ant Media Server dashboard
 
-We have done the hardest part, now you just need to import the dashboard from [here](https://raw.githubusercontent.com/ant-media/Scripts/master/monitor/ams-new-relic-dashboard.json) under `Dashboard > Import dashboard`. 
+1. Download the dashboard JSON from the Ant Media Scripts repository:
 
-:::info
-Please do not forget to change the account ID of your New Relic account in the json.
+   [ams-new-relic-dashboard.json](https://raw.githubusercontent.com/ant-media/Scripts/master/monitor/ams-new-relic-dashboard.json)
 
-    "accountIds": [
-      0000000    //replace your account ID in whole json
-    ],
- :::
+2. In New Relic, go to **Dashboards → Import dashboard** and upload the file.
+3. Replace the placeholder account ID in the JSON with your New Relic account ID:
 
-![image.png](@site/static/img/analytics/antmedia-analytics-new-relic-5.png)
-![image.png](@site/static/img/analytics/antmedia-analytics-new-relic-6.png)
-![image.png](@site/static/img/analytics/antmedia-analytics-new-relic-7.png)
+   ```json
+   "accountIds": [
+     {YOUR_ACCOUNT_ID}
+   ]
+   ```
 
+After import, you can monitor publishing and viewing trends, data transfer, and key frame performance from one place.
 
-If you wish, you can customize the dashboard according to your preferences by using [NRQL](https://docs.newrelic.com/docs/nrql/get-started/introduction-nrql-new-relics-query-language/) queries.
+![](@site/static/img/analytics/antmedia-analytics-new-relic-5.png)
 
-## Congratulations!
+![](@site/static/img/analytics/antmedia-analytics-new-relic-6.png)
 
-You’ve successfully integrated Ant Media Server with New Relic
+![](@site/static/img/analytics/antmedia-analytics-new-relic-7.png)
 
-Now you can:
+Customize widgets with [NRQL](https://docs.newrelic.com/docs/nrql/get-started/introduction-nrql-new-relics-query-language/) queries to match your workflow.
 
-* Monitor publishing and viewing trends in real time.
+---
 
-* Track data transfer and keyframe performance.
+## Troubleshooting
 
-* Detect anomalies or playback issues before your users notice.
+| Symptom | What to check |
+|---------|----------------|
+| No logs in New Relic | Agent is running (`systemctl status newrelic-infra`), API key and account ID are correct, analytics log file exists and is being written. |
+| Logs appear but fields are empty | Parsing rule name and pattern match the log event format; no extra spaces in rule fields. |
+| Dashboard shows no data | Account ID in imported JSON matches your account; parsing rules are created for the events used by dashboard widgets. |
+| Wrong events ingested | Only `antmedia.yaml` is present in `/etc/newrelic-infra/logging.d/`. |
 
-* Build custom dashboards tailored to your workflow.
-
-This is just the first iteration you can expand parsing rules, enhance dashboards, and fine-tune monitoring as your streaming projects grow.
+For cluster-wide log collection, see [Collecting logs from an AMS cluster](/guides/monitoring/collecting-logs-from-ams-cluster/).
