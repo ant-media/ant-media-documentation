@@ -254,15 +254,59 @@ Let's Encrypt has plugins to simplify authorization. The Route 53 plugin creates
 
 - If everything is set up properly, you can access the server via `https://<DOMAIN_NAME>:5443`
 
+## Renewing or Replacing Your Certificate
+
+Which fix applies depends on how you originally got the certificate:
+
+- **Let's Encrypt certificate** (any method above except importing your own) that didn't renew automatically — see below.
+- **Your own imported certificate** that's expired — see below.
+
+### Let's Encrypt Certificates That Didn't Auto-Renew
+
+Every time `enable_ssl.sh` issues a Let's Encrypt certificate, it schedules a cron job to renew it automatically, running `enable_ssl.sh -d <DOMAIN_NAME> -r` every 85 days (Let's Encrypt certificates are valid for 90 days, leaving a few days of buffer).
+
+To renew manually — for example, after the cron job failed silently:
+
+```shell
+sudo ./enable_ssl.sh -d <DOMAIN_NAME> -r
+```
+
+You don't need to stop the AMS service first — `enable_ssl.sh` restarts it automatically once the new certificate is in place.
+
+:::info
+**Why the cron job can fail silently**: verified directly against the script — the renewal command always validates over HTTP-01 (port 80 reachable from the internet), regardless of which method you originally used to get the certificate. In practice:
+
+- If you originally used **HTTP-01** or the **free antmedia.cloud subdomain**, renewal fails if port 80 became unreachable in the meantime — a firewall rule changed, another service started using it, and so on. Reopen port 80 and re-run the command above.
+- If you originally used **DNS-01 (manual or Route 53)** specifically because port 80 isn't reachable in your environment, the built-in renewal will never succeed — it doesn't fall back to DNS-01, and there's no flag to make it do so. Contact [Technical Support](mailto:support@antmedia.io) for a DNS-01 renewal path.
+:::
+
+### Replacing an Expired Custom Certificate
+
+If you imported your own certificate ([above](#import-your-custom-certificate)) and it's expired, there's no separate "renew" command — get the new certificate files from your provider and run the same import command again with them:
+
+```shell
+sudo ./enable_ssl.sh -f <NEW_FULL_CHAIN_FILE> -p <NEW_PRIVATE_KEY_FILE> -c <NEW_CHAIN_FILE> -d <DOMAIN_NAME>
+```
+
+:::info
+Don't add `-r` here — that flag only applies to Let's Encrypt-obtained certificates. Combining it with `-f`/`-p`/`-c` triggers a pointless Let's Encrypt renewal attempt in the background (which may fail, harmlessly) before your custom certificate files still get applied correctly afterward. Simplest and correct: just re-run the import command above with your new files, no `-r`.
+:::
+
 ## Verify SSL Is Working
 
-After running any of the methods above, confirm the certificate is actually in place:
+After running any of the methods above — including a renewal or certificate replacement — confirm the certificate is actually in place:
 
 ```shell
 curl -Iv https://<DOMAIN_NAME>:5443 2>&1 | grep -i "subject\|SSL certificate"
 ```
 
 Or simply open `https://<DOMAIN_NAME>:5443` in a browser and check for the padlock icon. If the browser shows a certificate warning, double-check the domain matches what you issued the certificate for, and that the `enable_ssl.sh` command completed without errors.
+
+To check the certificate's expiry date directly — useful for confirming a renewal actually pushed it out:
+
+```shell
+echo | openssl s_client -connect <DOMAIN_NAME>:5443 2>/dev/null | openssl x509 -noout -enddate
+```
 
 ## Need Help?
 
