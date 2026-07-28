@@ -91,18 +91,9 @@ The appName should be the same as the application name we are configuring. Also,
 
 Before Keycloak integration is enabled, the sample pages are accessible directly without authentication.
 
-- Publish page:
+#### >>publish-page-without-keycloak.png
 
-  `https://{AMS-URL}:5443/{APP-NAME}/samples/publish_webrtc.html`
-#### publish-page-without-keycloak.png
-  site/static/img/stream-security/publish-page-without-keycloak.png
-
-- Player page:
-
-  `https://{AMS-URL}:5443/{APP-NAME}/player.html`
-
-#### player-page-without-keycloak.png
-  site/static/img/stream-security/player-page-without-keycloak.png
+#### >>player-page-without-keycloak.png
 
 ### After Enabling Keycloak
 
@@ -114,8 +105,7 @@ When you open either the publish or player page, Ant Media Server redirects you 
 
 After signing in with a user that has the required role, you are redirected back to the requested page and can continue publishing or playing streams normally.
 
-#### publish-page-after-login.png
-site/static/img/stream-security/publish-page-after-login.png
+#### >>publish-page-after-login.png
 
   Once you authenticate, you will be able to publish the stream via sample page.
 
