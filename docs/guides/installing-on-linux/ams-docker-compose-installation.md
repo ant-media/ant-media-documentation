@@ -28,6 +28,10 @@ wget https://raw.githubusercontent.com/ant-media/Scripts/master/docker/docker-co
 wget https://raw.githubusercontent.com/ant-media/Scripts/master/docker/Dockerfile_Process -O Dockerfile
 ```
 
+:::info
+The downloaded `docker-compose.yml` includes a `version: "3.9"` line at the top. It's a leftover from Compose V1 — Compose V2 (used throughout this guide) ignores it and just prints a harmless warning that it's obsolete. You can safely delete that line, or ignore the warning.
+:::
+
 ## 2. Build Docker Image
 
 There are two ways to build the image — use whichever one fits how you're licensing AMS. Don't combine them.
@@ -79,7 +83,6 @@ By default, this uses the host's network ports. On macOS, however, `--network=ho
 :::
 
 ```yaml
-version: "3.9"
 services:
   antmedia:
     build: 
