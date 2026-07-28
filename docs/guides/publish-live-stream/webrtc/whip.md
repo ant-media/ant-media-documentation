@@ -56,6 +56,8 @@ Now, in order to publish the WHIP stream using the sample page, go to `https://<
 
 For example, you can test via this [sample page](https://test.antmedia.io:5443/live/whip.html).
 
+![](@site/static/img/publish-live-stream/whip/whip-sample-page.png)
+
 
 ## Watch the quick demo of WHIP using both methods
 

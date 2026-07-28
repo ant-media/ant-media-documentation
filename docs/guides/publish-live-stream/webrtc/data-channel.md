@@ -13,7 +13,7 @@ Data channel is another channel in WebRTC besides video and audio. Using a data 
 
 To use data channel functionality, first enable it from the AMS dashboard. This will allow you to send and receive data via data channel with SDKs.
 
-![](@site/static/img/image-1645113575789.png)
+![](@site/static/img/publish-live-stream/webrtc/enabling-data-channel.png)
 
 There are some data delivery options for data channels you can choose:
 

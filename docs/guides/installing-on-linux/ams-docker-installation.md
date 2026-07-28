@@ -126,7 +126,9 @@ After the Docker container starts, go to `http://localhost:5080` or `http://host
 If you ran the container with `--network=host`, `localhost` only resolves as expected on Linux — this is **not** the case on Docker Desktop for Mac or Windows, where `--network=host` is silently unsupported. There, use the `-p 5080:5080` (port-mapped) command instead, and connect to `http://localhost:5080`. If Docker is running on a remote Linux host, use that host's IP instead of `localhost`.
 :::
 
-![](@site/static/img/docker-installation.webp)
+The first time you access it, you'll be asked to create an admin account:
+
+![](@site/static/img/ams-management-panel-create-account.png)
 
 Check out [WebRTC Publishing](/guides/publish-live-stream/webrtc/) to publish a stream for testing.
 

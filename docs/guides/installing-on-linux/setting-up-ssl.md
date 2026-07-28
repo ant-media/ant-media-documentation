@@ -302,6 +302,8 @@ curl -Iv https://<DOMAIN_NAME>:5443 2>&1 | grep -i "subject\|SSL certificate"
 
 Or simply open `https://<DOMAIN_NAME>:5443` in a browser and check for the padlock icon. If the browser shows a certificate warning, double-check the domain matches what you issued the certificate for, and that the `enable_ssl.sh` command completed without errors.
 
+![](@site/static/img/ssl-webpanel/ssl-panel-connected.png)
+
 To check the certificate's expiry date directly — useful for confirming a renewal actually pushed it out:
 
 ```shell

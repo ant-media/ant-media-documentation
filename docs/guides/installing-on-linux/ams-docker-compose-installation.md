@@ -146,7 +146,9 @@ After the container starts, go to `http://localhost:5080` or `http://host-IP:508
 If you're using `network_mode: host`, this only resolves as expected on Linux — it's **not** supported on Docker Desktop for Mac or Windows. There, use the port-mapped `docker-compose.yml` from step 3 instead, and connect to `http://localhost:5080`. If Docker is running on a remote Linux host, use that host's IP instead of `localhost`.
 :::
 
-![](@site/static/img/docker-installation.webp)
+The first time you access it, you'll be asked to create an admin account:
+
+![](@site/static/img/ams-management-panel-create-account.png)
 
 Check out [WebRTC Publishing](/guides/publish-live-stream/webrtc/) to publish a stream for testing.
 

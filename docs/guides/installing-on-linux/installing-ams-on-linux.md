@@ -129,6 +129,10 @@ For AMS to run properly, you need to open the following network ports:
 
 Once AMS is installed, open your browser and navigate to the web panel by typing `http://<SERVER_IP_ADDRESS>:5080`. If you're having trouble accessing the web panel, it's possible that a firewall is blocking access to port 5080.
 
+The first time you access it, you'll be asked to create an admin account:
+
+![](@site/static/img/ams-management-panel-create-account.png)
+
 By default this is plain HTTP. SSL is required for camera/microphone access in the browser and for secure WebSocket (WSS) connections, and most browsers expect HTTPS by default — the quickest way to enable it is from the panel itself, under **Settings > SSL**, no terminal needed. For terminal-based setup or a specific certificate type (Let's Encrypt, your own certificate, or self-signed for local development), see the [SSL Setup guide](/guides/installing-on-linux/setting-up-ssl/).
 
 Once SSL is enabled, the server can also be reached at:

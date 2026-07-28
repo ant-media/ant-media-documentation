@@ -107,7 +107,9 @@ curl -I http://localhost:5080
 
 Any HTTP response (not "connection refused" or a timeout) means AMS is up and listening.
 
- ![](@site/static/img/wls-installation/screen3.webp)
+The first time you access it, you'll be asked to create an admin account:
+
+![](@site/static/img/ams-management-panel-create-account.png)
 
 Check out [WebRTC Publishing](/guides/publish-live-stream/webrtc/) to publish a stream for testing. To do this in a production environment, you'll also need SSL — see the [SSL Setup guide](/guides/installing-on-linux/setting-up-ssl/).
 
