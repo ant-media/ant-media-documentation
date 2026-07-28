@@ -91,9 +91,13 @@ The appName should be the same as the application name we are configuring. Also,
 
 Before Keycloak integration is enabled, the sample pages are accessible directly without authentication.
 
-#### >>publish-page-without-keycloak.png
+### Sample publish page without KeyCloak Integration
+![](@site/static/img/publish-live-stream/WebRTC/WebRTC-publishing/WebRTC-page.png)
 
-#### >>player-page-without-keycloak.png
+
+### Sample player page without KeyCloak Integration
+ ![](@site/static/img/playing-live-streams/webrtc-playing/webrtc-player.png)
+
 
 ### After Enabling Keycloak
 
