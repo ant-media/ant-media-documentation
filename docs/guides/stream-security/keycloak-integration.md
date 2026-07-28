@@ -87,23 +87,41 @@ The appName should be the same as the application name we are configuring. Also,
 
 ## Stream Testing with Keycloak Integration
 
-- Try to publish a WebRTC stream through a sample publish page.
+### Before Enabling Keycloak
+
+Before Keycloak integration is enabled, the sample pages are accessible directly without authentication.
+
+- Publish page:
 
   `https://{AMS-URL}:5443/{APP-NAME}/samples/publish_webrtc.html`
+#### publish-page-without-keycloak.png
+  ![](@site/static/img/stream-security/publish-page-without-keycloak.png)
 
-- Try to play a stream through the sample play page:
+- Player page:
 
   `https://{AMS-URL}:5443/{APP-NAME}/player.html`
 
-- When you try to publish or play, it will first ask you to authenticate with the keycloak user that we created.
+#### player-page-without-keycloak.png
+  ![](@site/static/img/stream-security/player-page-without-keycloak.png)
 
-  ![](@site/static/img/stream-security/keycloak-login.png)
+### After Enabling Keycloak
+
+After enabling Keycloak integration, the same URLs are no longer accessible anonymously.
+
+When you open either the publish or player page, Ant Media Server redirects you to the Keycloak login page.
+
+![](@site/static/img/stream-security/keycloak-login.png)
+
+After signing in with a user that has the required role, you are redirected back to the requested page and can continue publishing or playing streams normally.
+
+#### publish-page-after-login.png
+![](@site/static/img/stream-security/publish-page-after-login.png)
 
   Once you authenticate, you will be able to publish the stream via sample page.
 
 ## Congratulations!
 
-You have successfully integrated Keycloak with Ant Media Server. Your WebRTC sample pages are now protected by single sign-on (SSO).
+You have successfully integrated Keycloak with Ant Media Server. Your sample pages are now protected by single sign-on (SSO). When you open a sample page, Keycloak prompts you to sign in. Only authenticated users with the required role can access the streaming UI.
 
 From here, you can:
 
@@ -112,4 +130,4 @@ From here, you can:
 * Combine SSO with [JWT Stream Token](/guides/stream-security/jwt-stream-security-filter/) or [Webhook Authorization](/guides/stream-security/webhook-stream-authorization/) for additional stream-level controls.
 * Extend Keycloak with MFA, social login, or federation using the [Keycloak documentation](https://www.keycloak.org/documentation).
 
-When you open the publish or play page, Keycloak should prompt for login first. Only authenticated users with the correct role can access your streaming UI.
+
