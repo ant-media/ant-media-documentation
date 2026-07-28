@@ -30,6 +30,8 @@ If you have AntMedia Server installed on your local machine, you can also go to 
 
 Open the same page on another tab or another system and join with the same streamId there. Once you join from two or more tabs, you can send messages between peers.
 
+![](@site/static/img/publish-live-stream/WebRTC/WebRTC-publishing/Datachannel-page.png)
+
 ## Send & Receive Data with JS SDK
 
 For sending data channel messages with the JavaScript SDK, the  `sendData` function can be used. You can send either text messages or even Binary Data using ArrayBuffer or Blob. This function takes parameters as streamId and data.
@@ -233,19 +235,4 @@ Refer to the [Circle Conference Application](https://github.com/ant-media/confer
 ## Need Help?
 
 If messages aren't arriving, confirm the data channel is enabled in both the AMS dashboard and your SDK initialization — both sides need it on. Otherwise, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
-
-<br /><br />
----
-
-<div align="center">
-
-### Messages, Flowing Both Ways
-
-![](@site/static/img/publish-live-stream/WebRTC/WebRTC-publishing/Datachannel-page.png)
-
-*`Status: Connected`, with a message sent and echoed back — the data channel is open alongside your WebRTC stream.*
-
-</div>
-
-The same mechanism works for chat, control messages, or file sharing, without any extra plugins.
 

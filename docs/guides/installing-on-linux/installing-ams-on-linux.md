@@ -2,14 +2,14 @@
 title: Install on Linux
 description: Installing Ant Media Server on Linux. You may install AMS on Ubuntu, CentOS, Rocky Linux, Alma Linux.
 keywords: [Install Ant Media Server on Ubuntu, CentOS, Rocky Linux, Alma Linux, Install SSL on AMS, Cluster Installation, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 1
+sidebar_position: 2
 ---
 
 # Install AMS on Linux
 
 Ant Media Server (AMS) can be installed on Linux, specifically Ubuntu (20.04, 22.04, and 24.04), CentOS 9, Rocky Linux 9, and Alma Linux 9. It is compatible with both the x86-64 and Arm64 architectures.
 
-This document covers installing both the Community Edition and the Enterprise Edition directly on a Linux VM or server. There are other ways to install AMS too, including Docker, Docker Compose, WSL, and Cluster — see below to decide which one fits your situation.
+This document covers installing both the Community Edition and the Enterprise Edition directly on a Linux VM or server. If you're not sure this is the right method for you (vs. Docker, Docker Compose, WSL, or Cluster), see [Which Installation Method Should I Use?](/guides/installing-on-linux/which-installation-method-should-i-use/) first.
 
 **Note:** This procedure works the same whether your server is on-premises or in the cloud.
 
@@ -21,27 +21,6 @@ Make sure you have:
 - **Enough hardware**: at least 4 vCPUs (compute-optimized) and 8 GB RAM for a single instance. SSD storage is recommended for smooth read/write performance
 - **Root or sudo access** on the server
 - **A license key**, only if you're installing the Enterprise Edition — skip this if you're using the Community Edition
-
-## Which Installation Method Should I Use?
-
-There's more than one way to install AMS, and it's not always obvious which one fits your situation:
-
-```mermaid
-flowchart TD
-    A{What do you need?} -->|Evaluate or try AMS quickly| B["Docker"]
-    A -->|Local development on Windows| C["WSL"]
-    A -->|Repeatable, version-controlled setup| D["Docker Compose"]
-    A -->|Production on a single server| E["Native Linux Install (this page)"]
-    A -->|Production, scaling beyond one server| F["Cluster"]
-```
-
-- **Native install on Linux (this page)** — the standard choice for a production server. Installs AMS directly as a systemd service.
-- **[Docker](/guides/installing-on-linux/ams-docker-installation/)** — the fastest way to try AMS, or to run it alongside other containerized services.
-- **[Docker Compose](/guides/installing-on-linux/ams-docker-compose-installation/)** — the same as Docker, but with your ports, volumes, and environment variables captured in one file so the setup is repeatable and easy to version-control.
-- **[WSL (Windows Subsystem for Linux)](/guides/installing-on-linux/installing-ams-on-wls/)** — for local development and testing on a Windows machine. Not recommended for production.
-- **[Cluster](/guides/clustering-and-scaling/manual-configuration/cluster-installation/)** — for scaling beyond what a single instance can handle. Worth setting up once you outgrow one server; see [Clustering & Scaling](/category/clustering-and-scaling/) to choose between the available clustering approaches.
-
-If you're evaluating AMS or just getting started, Docker is usually the quickest path. For a production deployment, the native Linux install below is the most common and best-supported route.
 
 ## Download and Install Ant Media Server
 
@@ -207,7 +186,9 @@ If you run into trouble during installation, reach out on [GitHub Discussions](h
 ---
 
 <div align="center">
-<h2>Installation Complete</h2>
+
+### Installation Complete
+
 </div>
 
 You've installed **Ant Media Server on Linux**, started the **service**, opened the **ports** it needs, and can reach the **web panel**. From here, [enable SSL](/guides/installing-on-linux/setting-up-ssl/) if you haven't already, and [publish your first stream](/guides/publish-live-stream/webrtc/) to see it in action.

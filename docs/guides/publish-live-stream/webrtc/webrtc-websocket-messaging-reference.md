@@ -816,14 +816,3 @@ This error can occur if a user attempts to re-publish a stream with the same `st
 
 If a command isn't producing the notification you expect, check the error callback list above first — most signaling issues surface there. Otherwise, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
 
-<br /><br />
----
-
-<div align="center">
-
-### WebSocket Signaling Reference
-
-</div>
-
-This covers the full WebSocket message flow for publishing, playing, conferences, and peer-to-peer sessions in AMS, along with the error callbacks and miscellaneous methods you'll need to handle a production signaling implementation.
-

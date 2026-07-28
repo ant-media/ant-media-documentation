@@ -2,7 +2,7 @@
 title: Uninstall Ant Media Server
 description: Uninstall Ant Media Server, whether you installed it as a native Linux service, with Docker, with Docker Compose, or on WSL.
 keywords: [Uninstall Ant Media Server, Remove Ant Media Server, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 7
+sidebar_position: 8
 ---
 
 # Uninstall Ant Media Server

@@ -19,6 +19,8 @@ If you have Ant Media Server installed on your local machine, you can also go to
 
 Click the ```Join Room``` the button, then open the same page in multiple tabs or on different devices to join from there. You’ll immediately start receiving streams from the other participants.
 
+![](@site/static/img/publish-live-stream/WebRTC/WebRTC-publishing/Conference-page.png)
+
 ## Join Conference Room
 
 When WebRTCAdaptor is initialized successfully, it creates a websocket connection. After a successful connection, the client gets the ```initialized``` notification from the server. After receiving ```initialized``` notification, we can start publishing and playing to the conference room.
@@ -100,19 +102,4 @@ To learn more about Ant Media Server's conference features, see the [Conference]
 ## Need Help?
 
 If participants can't join or streams aren't appearing, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
-
-<br /><br />
----
-
-<div align="center">
-
-### Your Room Is Live
-
-![](@site/static/img/publish-live-stream/WebRTC/WebRTC-publishing/Conference-page.png)
-
-*Three participants, each with their own labeled video track, joined into `room1` and publishing simultaneously — this is the same multi-party session your integration will produce.*
-
-</div>
-
-From here, see the [Conference](/category/conference/) section to keep building out your room.
 

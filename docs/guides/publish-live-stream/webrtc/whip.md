@@ -61,18 +61,9 @@ For example, you can test via this [sample page](https://test.antmedia.io:5443/l
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/hw0gs7Dxym4?si=UyJ2sATPyMF-iWWO" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
 
+Once you're publishing, head to [WebRTC Playback](/guides/playing-live-stream/webrtc-playback/) to play the stream back.
+
 ## Need Help?
 
 If OBS or the sample page can't reach the WHIP endpoint, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
-
-<br /><br />
----
-
-<div align="center">
-
-### WHIP Streaming Configured
-
-</div>
-
-Your WebRTC streams are now ingested over the standard WHIP protocol via simple HTTP endpoints — from OBS, or directly from a browser using the sample page. From here, see [WebRTC Playback](/guides/playing-live-stream/webrtc-playback/) to play the stream back.
 

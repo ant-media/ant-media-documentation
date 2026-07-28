@@ -18,6 +18,7 @@ If you have Ant Media Server installed on your local machine, you can also go to
 - Input the streamId and click the join button.
 - Now open the same page in a new browser tab or any other machine and click join. You're now connected in P2P mode directly from your browser.
 
+![](@site/static/img/publish-live-stream/WebRTC/WebRTC-publishing/WebRTC-peer.png)
 
 ### Join P2P Communication
 
@@ -99,18 +100,3 @@ var pc_config =
 ## Need Help?
 
 If two peers can't connect directly, that's usually a NAT/firewall issue — see the TURN server section above. Otherwise, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
-
-<br /><br />
----
-
-<div align="center">
-
-### Connected, Peer to Peer
-
-![](@site/static/img/publish-live-stream/WebRTC/WebRTC-publishing/WebRTC-peer.png)
-
-*Two browsers, joined with the same streamId, exchanging video directly — no media server relay in the middle.*
-
-</div>
-
-That's the sample page working end to end. From here, wire up `join`/`leave` with the WebRTCAdaptor and configure TURN server fallback for the cases above where a direct connection isn't possible.

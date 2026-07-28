@@ -2,7 +2,7 @@
 title: Install with Docker Compose
 description: AMS Docker Compose Installation
 keywords: [Docker, Docker Compose, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 3
+sidebar_position: 4
 ---
 
 # Install AMS with Docker Compose
