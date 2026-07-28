@@ -60,7 +60,7 @@ wget -O install_ant-media-server.sh https://raw.githubusercontent.com/ant-media/
 Add your license key as a parameter, which you received via email, to the installation file using the -l parameter, and then execute it. If you have a valid license key, the installation process will begin.
 
 ```shell
-sudo ./install_ant-media-server.sh -l 'your-license-key'
+sudo ./install_ant-media-server.sh -l '<YOUR_LICENSE_KEY>'
 ```
 
 #### Install the Community Edition
@@ -75,13 +75,13 @@ sudo ./install_ant-media-server.sh
 
 Download and save the latest AMS Community Edition or Enterprise Edition package.
 
-*   Community Edition can be downloaded from Github [Releases](https://github.com/ant-media/Ant-Media-Server/releases) page.
+*   Community Edition can be downloaded from the GitHub [Releases](https://github.com/ant-media/Ant-Media-Server/releases) page.
 *   Enterprise Edition can be downloaded from your account after you get a license on [antmedia.io](https://antmedia.io/)
 
 If you downloaded the zip file locally, copy it to your AMS instance with `scp` (or any file-transfer method you prefer — this works the same from Linux, Windows, or Mac):
 
 ```shell
-scp -i ssh-key AMS-zip-file username@server-ip:/home/username
+scp -i <SSH_KEY> <AMS_ZIP_FILE> <USERNAME>@<SERVER_IP>:/home/<USERNAME>
 ```
 
 Then open a terminal on the AMS instance and navigate to the directory you copied the file into:

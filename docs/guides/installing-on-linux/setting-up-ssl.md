@@ -134,16 +134,16 @@ Browsers will show a security warning for self-signed certificates since they ar
     Email Address []: contact@antmedia.io
     ```
 
-3. Enable SSL with the certificate you just created, replacing `ams_server_ip` with your server's IP address:
+3. Enable SSL with the certificate you just created, replacing `<SERVER_IP>` with your server's IP address:
 
     ```bash
-    sudo /usr/local/antmedia/enable_ssl.sh -f ams.crt -p ams.key -c ams.crt -d ams_server_ip
+    sudo /usr/local/antmedia/enable_ssl.sh -f ams.crt -p ams.key -c ams.crt -d <SERVER_IP>
     ```
 
 4. **Using a local domain name instead of an IP:** add an entry to `/etc/hosts` mapping your chosen domain to the server's IP:
 
     ```
-    ams_server_ip domain.com
+    <SERVER_IP> domain.com
     ```
 
     Then re-run `enable_ssl.sh` with the domain name:

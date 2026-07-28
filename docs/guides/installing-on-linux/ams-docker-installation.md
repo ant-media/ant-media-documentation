@@ -53,7 +53,7 @@ Download and save the Ant Media Server ZIP file in the same directory as the Doc
 
 #### Enterprise Edition:
 
-The AMS Enterprise Edition Zip file can be downloaded from your [Ant Media account](https://antmedia.io) after license purchase. 
+The AMS Enterprise Edition Zip file can be downloaded from the downloads section of your [antmedia.io account](https://antmedia.io/my-account/downloads/) after license purchase. 
 
 Example: **ant-media-server-enterprise-2.14.0-20250513_1544.zip.**
 

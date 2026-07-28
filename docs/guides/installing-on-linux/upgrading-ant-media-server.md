@@ -16,7 +16,7 @@ Make sure you have:
 - **SSH access** to your AMS instance, with sudo/root privileges
 - **Your current edition and deployment type** — Community, self-licensed Enterprise, or a Cloud Marketplace Enterprise instance (AWS, Azure, or GCP) — since this determines which method below works for you
 
-There are two ways to upgrade. Most people should use the `upgrade.sh` script below — it's one command and detects your edition automatically. Use the installation script instead if you're on a **Cloud Marketplace Enterprise instance** (see the warning below), running AMS older than 2.9.0, or need to install a specific version rather than the latest.
+There are two ways to upgrade. Most people should use the `upgrade.sh` script below — it's one command and detects your edition automatically, and works even on versions older than 2.9.0 (see the info box below for how to get it in that case). Use the installation script instead if you're on a **Cloud Marketplace Enterprise instance** (see the warning below), or need to install a specific version rather than the latest.
 
 ## Using the `upgrade.sh` Script
 
@@ -48,7 +48,7 @@ The script checks your current version against the latest available, and downloa
 
 ## Using the Installation Script
 
-The other way to upgrade is with `install_ant-media-server.sh`, using an AMS installation zip file directly. This is the method to use if you're on a Cloud Marketplace Enterprise instance, need an older version's script, or want a specific version rather than the latest.
+The other way to upgrade is with `install_ant-media-server.sh`, using an AMS installation zip file directly. This is the method to use if you're on a Cloud Marketplace Enterprise instance, or want a specific version rather than the latest.
 
 First, get the zip file:
 
