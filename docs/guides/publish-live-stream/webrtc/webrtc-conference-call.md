@@ -17,10 +17,7 @@ Go to `https://<DOMAIN_NAME>:5443/live/conference.html` for conference call samp
 
 If you have Ant Media Server installed on your local machine, you can also go to `http://localhost:5080/live/conference.html`.
 
-Click the ```Join Room``` the button, then open the same page in multiple tabs or on different devices to join from there. You’ll immediately start receiving streams from the other participants. 
-
-![](@site/static/img/publish-live-stream/WebRTC/WebRTC-publishing/Conference-page.png)
-
+Click the ```Join Room``` the button, then open the same page in multiple tabs or on different devices to join from there. You’ll immediately start receiving streams from the other participants.
 
 ## Join Conference Room
 
@@ -96,6 +93,8 @@ Here are the conference-related notifications that callback is invoked for. Plea
 *   ```publish_started```: Called when stream is published to the room.
 *   ```play_started```: Called when starting to play the remote streams.
 
+These are the same notifications documented at the JSON/wire level in the [WebRTC WebSocket Messaging Reference](/guides/publish-live-stream/webrtc/webrtc-websocket-messaging-reference/) — check there if you're implementing signaling directly instead of through the JavaScript SDK.
+
 To learn more about Ant Media Server's conference features, see the [Conference](/category/conference/) section.
 
 ## Need Help?
@@ -106,8 +105,14 @@ If participants can't join or streams aren't appearing, reach out on [GitHub Dis
 ---
 
 <div align="center">
-<h2>Conference Room Live</h2>
+
+### Your Room Is Live
+
+![](@site/static/img/publish-live-stream/WebRTC/WebRTC-publishing/Conference-page.png)
+
+*Three participants, each with their own labeled video track, joined into `room1` and publishing simultaneously — this is the same multi-party session your integration will produce.*
+
 </div>
 
-You've launched a WebRTC conference room in AMS, joined from multiple tabs or devices, and used controls like mute and camera toggles — all in real time.
+From here, see the [Conference](/category/conference/) section to keep building out your room.
 

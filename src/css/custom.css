@@ -82,10 +82,18 @@ article{
   border: 1px solid #e3e3e3;
 }
 
+/* Content screenshots vary wildly in native resolution (some 785px wide,
+   some 1900px+). Without a shared treatment they read as randomly sized and
+   left-aligned down the page. Centering + a max-width cap + a consistent
+   card-like border unifies them regardless of source resolution. */
 p img{
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1.5rem auto;
   border: 1px solid #eae7e7;
-  border-radius: 0px;
-  margin: 15px 0;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
 }
 
 nav{

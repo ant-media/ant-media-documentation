@@ -30,9 +30,6 @@ If you have AntMedia Server installed on your local machine, you can also go to 
 
 Open the same page on another tab or another system and join with the same streamId there. Once you join from two or more tabs, you can send messages between peers.
 
-![](@site/static/img/publish-live-stream/WebRTC/WebRTC-publishing/Datachannel-page.png)
-
-
 ## Send & Receive Data with JS SDK
 
 For sending data channel messages with the JavaScript SDK, the  `sendData` function can be used. You can send either text messages or even Binary Data using ArrayBuffer or Blob. This function takes parameters as streamId and data.
@@ -61,7 +58,8 @@ callback: function (info, obj) {
 }
 ```
 
-## Send & Receive Data with Android SDK
+<details>
+<summary><strong>Send & Receive Data with Android SDK</strong></summary>
 
 Exchanging data through WebRTC data channels is also straightforward with the AMS Android WebRTC SDK. Your activity should implement the ```IDataChannelObserver``` interface as shown below:
 
@@ -135,7 +133,10 @@ public void onMessage(DataChannel.Buffer buffer, String dataChannelLabel)
 
 In this example, we show the incoming text in a toast message.
 
-## Send & Receive Data with iOS SDK
+</details>
+
+<details>
+<summary><strong>Send & Receive Data with iOS SDK</strong></summary>
 
 ### Initialization
 
@@ -173,6 +174,8 @@ func dataReceivedFromDataChannel(streamId: String, data: Data, binary: Bool) {
 ```
 
 Take a look at the following ```VideoViewController.swift``` in order to see how to use data channels.
+
+</details>
 
 ## Send Data with REST API
 
@@ -224,7 +227,7 @@ Refer to the [Circle Conference Application](https://github.com/ant-media/confer
 *   ```AUDIO_TRACK_ASSIGNMENT```: Used to manage audio track assignments for different participants.
 *   ```TRACK_LIST_UPDATED```: Triggered when the list of active tracks (audio or video) is updated.
 *   ```MESSAGE_RECEIVED```: Used to notify when a chat message is received during the conference.
-    ```UPDATE_AUDIO_LEVEL```: Used to receive participants audio level through data channel. Audio Level between 0 and 127. 0 means max, and 127 means min. Contains audioLevel and streamId of the participant. You can use this to show a speaking indicator on client side.
+*   ```UPDATE_AUDIO_LEVEL```: Used to receive participants audio level through data channel. Audio Level between 0 and 127. 0 means max, and 127 means min. Contains audioLevel and streamId of the participant. You can use this to show a speaking indicator on client side.
 *   ```UPDATE_PARTICIPANT_ROLE```: Used to update the role of a participant in the conference (e.g., from attendee to moderator).
 
 ## Need Help?
@@ -235,8 +238,14 @@ If messages aren't arriving, confirm the data channel is enabled in both the AMS
 ---
 
 <div align="center">
-<h2>Data Channel Enabled</h2>
+
+### Messages, Flowing Both Ways
+
+![](@site/static/img/publish-live-stream/WebRTC/WebRTC-publishing/Datachannel-page.png)
+
+*`Status: Connected`, with a message sent and echoed back — the data channel is open alongside your WebRTC stream.*
+
 </div>
 
-You've enabled the data channel in AMS and your SDK, tried the sample page, and sent messages peer-to-peer. The same mechanism works for chat, control messages, or file sharing alongside your WebRTC stream, without any extra plugins.
+The same mechanism works for chat, control messages, or file sharing, without any extra plugins.
 

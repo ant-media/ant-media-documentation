@@ -69,7 +69,9 @@ If OBS or the sample page can't reach the WHIP endpoint, reach out on [GitHub Di
 ---
 
 <div align="center">
-<h2>WHIP Streaming Configured</h2>
+
+### WHIP Streaming Configured
+
 </div>
 
 Your WebRTC streams are now ingested over the standard WHIP protocol via simple HTTP endpoints — from OBS, or directly from a browser using the sample page. From here, see [WebRTC Playback](/guides/playing-live-stream/webrtc-playback/) to play the stream back.

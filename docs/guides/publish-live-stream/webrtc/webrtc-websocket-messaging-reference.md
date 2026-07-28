@@ -496,7 +496,7 @@ When a new track, stream, or subTrack is dynamically added to the room during ru
   ```json
   {
    command : "error",
-   definition : "notSetRemoteDescriptio",
+   definition : "notSetRemoteDescription",
   }
   ```
 
@@ -820,7 +820,9 @@ If a command isn't producing the notification you expect, check the error callba
 ---
 
 <div align="center">
-<h2>WebSocket Signaling Reference</h2>
+
+### WebSocket Signaling Reference
+
 </div>
 
 This covers the full WebSocket message flow for publishing, playing, conferences, and peer-to-peer sessions in AMS, along with the error callbacks and miscellaneous methods you'll need to handle a production signaling implementation.
