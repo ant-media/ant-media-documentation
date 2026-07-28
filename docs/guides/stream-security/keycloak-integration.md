@@ -87,8 +87,6 @@ The appName should be the same as the application name we are configuring. Also,
 
 ## Stream Testing with Keycloak Integration
 
-### Before Enabling Keycloak
-
 Use the sample pages below to verify that Keycloak protection is working as expected.
 
 Before Keycloak integration is enabled, the sample publish and player pages are accessible directly without authentication.
@@ -100,8 +98,6 @@ Before Keycloak integration is enabled, the sample publish and player pages are 
 #### Player page
 ![](@site/static/img/playing-live-streams/webrtc-playing/webrtc-player.png)
 
-
-### After Enabling Keycloak
 
 After enabling Keycloak integration, the same URLs are no longer accessible anonymously.
 
