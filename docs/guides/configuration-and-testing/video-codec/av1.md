@@ -50,7 +50,7 @@ The AV1 codec can be enabled from application settings via the web panel.
 
 ### Publish AV1 Stream
 
-In AMS, the AV1 codec can be used with [WebRTC](https://docs.antmedia.io/guides/publish-live-stream/webrtc/) and [WHIP](https://docs.antmedia.io/guides/publish-live-stream/whip/) publishing protocols.
+In AMS, the AV1 codec can be used with [WebRTC](https://docs.antmedia.io/guides/publish-live-stream/webrtc/) and [WHIP](https://docs.antmedia.io/guides/publish-live-stream/webrtc/whip/) publishing protocols.
 
 ---
 

@@ -2,7 +2,7 @@
 title: WHIP
 description: WebRTC-HTTP Ingestion Protocol (WHIP)
 keywords: [WHIP, WebRTC]
-sidebar_position: 7
+sidebar_position: 2
 ---
 
 # WHIP (WebRTC-HTTP Ingestion Protocol)

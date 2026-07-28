@@ -323,6 +323,10 @@ scripts: [
           from: '/guides/playing-live-stream/webrtc-conference-call/',
           to: '/guides/publish-live-stream/webrtc/webrtc-conference-call/',
         },
+	{
+          from: '/guides/publish-live-stream/whip/',
+          to: '/guides/publish-live-stream/webrtc/whip/',
+        },
 	// Webinar / Circle: fix nested relative-link mistakes and duplicate folder URLs
 	...['', '3.0/', '2.17/', '2.16/'].flatMap((ver) => {
           const toPrefix = ver === '3.0/' || ver === '' ? '' : `/${ver.replace(/\/$/, '')}`;
