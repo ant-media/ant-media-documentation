@@ -87,25 +87,17 @@ The appName should be the same as the application name we are configuring. Also,
 
 ## Stream Testing with Keycloak Integration
 
-Use the sample pages below to verify that Keycloak protection is working as expected.
+Once Keycloak integration is complete and enabled, opening a sample publish or player page redirects you to the Keycloak login screen:
 
-Before Keycloak integration is enabled, the sample publish and player pages are accessible directly without authentication.
+![](@site/static/img/stream-security/keycloak-login.png)
+
+After you sign in with a user that has the required role, you are redirected back to the requested page and can continue publishing or playing normally.
 
 #### Publish page
 ![](@site/static/img/publish-live-stream/WebRTC/WebRTC-publishing/WebRTC-page.png)
 
-
 #### Player page
 ![](@site/static/img/playing-live-streams/webrtc-playing/webrtc-player.png)
-
-
-After enabling Keycloak integration, the same URLs are no longer accessible anonymously.
-
-When you open either the publish or player page, Ant Media Server redirects you to the Keycloak login page.
-
-![](@site/static/img/stream-security/keycloak-login.png)
-
-After signing in with a user that has the required role, you are redirected back to the requested page and can continue publishing or playing streams normally.
 
 ## Congratulations!
 
