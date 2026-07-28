@@ -2,7 +2,7 @@
 title: Publish RTMPS
 description: Publish stream with RTMPS
 keywords: [Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 1
+sidebar_position: 2
 ---
 
 ## Enable RTMPS
@@ -19,7 +19,7 @@ Follow below steps to enable/disable the RTMPS:
    cd /usr/local/antmedia/conf/
   ```
 
-- Edit the red5.properties file. “
+- Edit the red5.properties file.
 
 **Note**- If you’re upgrading from older version where RTMPS settings were in XML, the red5.properties approach takes precedence in v2.14+
 
@@ -43,22 +43,15 @@ Follow below steps to enable/disable the RTMPS:
 
 ## Publish RTMPS Stream
 
-To publish the RTMPS stream, follow this [OBS tutorial](https://antmedia.io/docs/guides/publish-live-stream/rtmp/publish-with-obs/) for reference and instead of using the simple RTMP endpoint, use the below RTMPS endpoint.
+To publish the RTMPS stream, follow the [OBS tutorial](/guides/publish-live-stream/rtmp/publish-with-obs/) for reference, and instead of using the simple RTMP endpoint, use the RTMPS endpoint below.
 
 ```json
-rtmps://domain-name:8443/live/streamId
+rtmps://<DOMAIN_NAME>:8443/live/<STREAM_ID>
 ```
 
-Check out the [playback guide](https://antmedia.io/docs/category/playing-live-streams/) to play your RTMPS stream with WebRTC, HLS etc.
+Check out the [playback guide](/category/play-live-streams/) to play your RTMPS stream with WebRTC, HLS etc.
 
-<br /><br />
----
+## Need Help?
 
-<div align="center">
-<h2> Secure Real-Time Stream Up ✅ </h2>
-</div>
-
-You’ve now enabled **RTMPS** in your **server settings**, verified that it listens on **TCP port 8443**, and published a stream using an RTMPS endpoint.  
-
-Your stream is now **encrypted in transit** — more **secure**, **trusted**, and **compliant**. Nice move protecting your content! 🔐
+If the RTMPS endpoint won't connect, double-check port 8443 is open in your firewall and that `rtmps.enabled=true` is actually set in `red5.properties` after your last restart. Otherwise, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
 

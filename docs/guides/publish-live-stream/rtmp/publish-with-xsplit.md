@@ -26,7 +26,7 @@ We're assuming that your Ant Media Server accepts all streams (There is no any s
     ![](@site/static/img/publish-live-stream/XSplit/XSplit-Custom-RTMP.png)
 
 *   You can write any name and description you want.
-*   In the RTMP URL box, type your RTMP URL without stream id. It's like ```rtmp://your-server-IP-or-domain/live``` 
+*   In the RTMP URL box, type your RTMP URL without stream id. It's like ```rtmp://<SERVER_IP_OR_DOMAIN_NAME>/live``` 
 *   In the stream key, you can write any ```stream Id``` because we assume that no security option is enabled.
 
 ![](@site/static/img/publish-live-stream/XSplit/XSplit-settings.png)
@@ -39,18 +39,11 @@ Close the ```Settings``` window and simply click the ```Stream``` button in the 
 
 You can view the stream in your browser by entering the following URL:
 
-```http(s)://IP-address:5080(5443)/live/play.html?name=streamId```
+```http(s)://<IP_ADDRESS>:5080(5443)/live/play.html?name=<STREAM_ID>```
 
-Check [here](https://antmedia.io/docs/category/playing-live-streams/) for more information on playback.
+Check [here](/category/play-live-streams/) for more information on playback.
 
-<br /><br />
----
+## Need Help?
 
-<div align="center">
-<h2> Stream On! 🎮 </h2>
-</div>
-
-You’ve now configured **XSplit with your RTMP URL** and Stream Key (plus token if needed), provided **sources**, set up the **output**, and hit “**Stream**.” You can view your live stream in the **browser** via the **play URL**.  
-
-Nice work— your broadcast is **live, flexible, and ready for whatever content you throw at it!** 🎤
+If XSplit won't connect or the stream doesn't appear in AMS, double-check the RTMP URL has no port number and that the stream key matches your stream ID exactly. Otherwise, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
 

@@ -35,14 +35,7 @@ If you are not using WebRTC or HLS playback on your browser, you do not need to 
 
 For HEVC support on different platforms, refer to [this page](https://caniuse.com/hevc). 
 
-<br /><br />
----
+## Need Help?
 
-<div align="center">
-<h2> Enhanced Quality Unleashed 🏅 </h2>
-</div>
-
-You have now used **Enhanced RTMP**: streaming with a modern encoder like HEVC (H.265), saving bandwidth while keeping great visual quality. Although VP9 & AV1 are coming soon, your stream is future-ready and more efficient right now.  
-
-Good work — your output is **sharper, leaner, and built for the next gen of streaming!** 🎯
+If your HEVC stream publishes but won't play back, remember WebRTC and some browsers don't support H.265 — use [server-side transcoding](/guides/adaptive-bitrate/adaptive-bitrate-streaming/) to convert to H.264. Otherwise, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
 

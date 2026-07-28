@@ -19,16 +19,16 @@ Let’s have a step-by-step look on how to use Teradek Vidiu Pro for streaming. 
 
 It creates a WiFi network with the name ```VidiU−XXXXX```. Connect to the Teradek Vidiu Pro WiFi network and open http://172.16.1.1 in your browser (this is the device’s default local interface address).
 
-![](@site/static/img/vidiu_pro_console.png)
+![](@site/static/img/publish-live-stream/teradek/vidiu-pro-console.png)
 
 Click “Settings” button on the top right and then click “Network” item in the screen.
 
-![](@site/static/img/configure_vidiu_network_button.png)
+![](@site/static/img/publish-live-stream/teradek/vidiu-pro-settings-menu.png)
 
 ## Configure Wireless Network Connection of Teradek Vidiu Pro
 
 *   Click the WiFi item. Choose “Client” mode and Click the “Browse” button to look up the WiFi networks around.  
-    ![](@site/static/img/set_vidiu_pro_wifi_connectivity.png)
+    ![](@site/static/img/publish-live-stream/teradek/vidiu-pro-wifi-client-mode.png)
 
 Choose the WiFi you would like Teradek Vidiu Pro to connect. Enter the password of the WiFi network and click “**Apply**” button on the top right. Then Restart Teradek Vidiu Pro. Connect to the same wireless network on your computer and check the IP address of the Teradek Vidiu Pro from device’s LED screen. Press the Menu button on the device. The menu button is a joystick button as well. Now go to the Network Settings >` WiFi >` Info to see the IP address of the device
 
@@ -37,13 +37,13 @@ Sometimes you may need to power off / on the Teradek Vidiu Pro.
 ## Configure broadcasting settings
 
 *   Click the broadcast item on the Settings screen.  
-    ![](@site/static/img/configure_broadcasting_settings_vidiu_pro.png)
+    ![](@site/static/img/publish-live-stream/teradek/vidiu-pro-settings-menu-2.png)
 *   Choose Manual from Mode then Enter Ant Media Server address to RTMP Server URL and write the name of the stream id to Stream box  
-    ![](@site/static/img/write_ant_media_server_url_to_vidiu_pro.png)
+    ![](@site/static/img/publish-live-stream/teradek/vidiu-pro-rtmp-url.png)
 
 Click ```Apply``` button on the top right again.
 
-![](@site/static/img/apply_settings_vidiu_pro.png)  
+![](@site/static/img/publish-live-stream/teradek/vidiu-pro-apply-settings.png)  
 
 Your device configuration is OK now.
 
@@ -54,14 +54,7 @@ Your device configuration is OK now.
 
 Congrats! You're publishing with Teradek Vidiu Pro to Ant Media Server.
 
-<br /><br />
----
+## Need Help?
 
-<div align="center">
-<h2> Teradek for you 🎛️ </h2>
-</div>
-
-You’ve powered up your **Teradek Vidiu Pro**, configured **WiFi client mode**, set the **RTMP Server URL and Stream ID**, and started the broadcast. The stream is flowing from your HDMI source through Teradek into AMS.  
-
-Tada 👏  you now have reliable hardware-encoded output and a **smooth RTMP pipeline via Teradek!** 🎥
+If the device won't connect or the stream doesn't appear in AMS, double-check the RTMP Server URL and Stream ID entered in the Broadcast settings above. Otherwise, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
 
