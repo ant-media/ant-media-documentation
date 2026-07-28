@@ -7,119 +7,108 @@ sidebar_position: 6
 
 # Upgrade Ant Media Server
 
-This guide explains how to upgrade the Ant Media Server from an earlier version to the latest version.
+This guide explains how to upgrade Ant Media Server (AMS) from an earlier version to the latest version.
 
-- There are two ways to upgrade your Ant Media Server to the latest version.
-1. Using the ```upgrade.sh``` script that automatically gets the latest version of the Ant Media Server and makes the upgrade. This script is available under the ```usr/local/antmedia``` directory by default for Ant Media Server version 2.9.0 and above.
+## Before You Begin
 
+Make sure you have:
 
-2. Using the ```install_ant-media-server.sh``` script and manually passing the Ant Media Server installation zip file.
+- **SSH access** to your AMS instance, with sudo/root privileges
+- **Your current edition and deployment type** — Community, self-licensed Enterprise, or a Cloud Marketplace Enterprise instance (AWS, Azure, or GCP) — since this determines which method below works for you
 
+There are two ways to upgrade. Most people should use the `upgrade.sh` script below — it's one command and detects your edition automatically. Use the installation script instead if you're on a **Cloud Marketplace Enterprise instance** (see the warning below), running AMS older than 2.9.0, or need to install a specific version rather than the latest.
 
-## Upgrading with the ```upgrade.sh``` script
+## Using the `upgrade.sh` Script
 
 :::info
-This script is available under the installation directory for Ant Media Server version 2.9.0 and above. If you want to use the script with an older version, kindly get the script from [here](https://github.com/ant-media/Ant-Media-Server/blob/master/src/main/server/upgrade.sh)
+This script is available under the installation directory (`/usr/local/antmedia`) for AMS version 2.9.0 and above. If you're on an older version, get the script from [GitHub](https://github.com/ant-media/Ant-Media-Server/blob/master/src/main/server/upgrade.sh) first.
 :::
 
-**1. SSH into your Ant Media Server instance.**
+:::warning Cloud Marketplace Enterprise instances (AWS, Azure, GCP)
+This script won't work for you. It checks for a license key in your configuration, and if it can't find one but detects Enterprise plugin files (which is exactly the case on a Marketplace deployment, since your license is tied to the marketplace subscription rather than a license key), it stops and tells you to upgrade through your Cloud Marketplace instead — verified directly against the script's own logic and error message.
 
-**2. Navigate to the installation directory.**
+In practice, the simplest path is to email [contact@antmedia.io](mailto:contact@antmedia.io), ask for the latest version zip file, and use the [Installation Script method](#using-the-installation-script) below instead.
+:::
 
-```
-cd /usr/local/antmedia
-```
+1. SSH into your AMS instance.
 
-**3. Run the upgrade script to start the upgrade process.**
+2. Navigate to the installation directory:
 
-```
-sudo ./upgrade.sh
-```
+   ```shell
+   cd /usr/local/antmedia
+   ```
 
-**4. The script will guide you through the process. It will:**
+3. Run the upgrade script:
 
-- Check the current version of Ant Media Server.
+   ```shell
+   sudo ./upgrade.sh
+   ```
 
-- Compare it with the latest available version.
+The script checks your current version against the latest available, and downloads and installs the update if one is needed. It automatically detects whether you're on Community or Enterprise (self-licensed) and upgrades accordingly — the same script works for both. For more detail on what it does, see the [script source](https://github.com/ant-media/Ant-Media-Server/blob/master/src/main/server/upgrade.sh).
 
-- Download and install the new version if an update is needed.
+## Using the Installation Script
 
-- After the script completes, verify that the Ant Media Server has been updated successfully.
+The other way to upgrade is with `install_ant-media-server.sh`, using an AMS installation zip file directly. This is the method to use if you're on a Cloud Marketplace Enterprise instance, need an older version's script, or want a specific version rather than the latest.
 
-```
+First, get the zip file:
+
+- **Self-licensed Enterprise**: download the latest version from the downloads section of your [antmedia.io account](https://antmedia.io/my-account/downloads/).
+- **Cloud Marketplace Enterprise (AWS, Azure, GCP, Oracle Cloud)**: email [contact@antmedia.io](mailto:contact@antmedia.io) and ask for the latest version zip file — your license is tied to the marketplace subscription, so it isn't available for self-service download.
+- **Community Edition**: download the latest version from the [GitHub Releases page](https://github.com/ant-media/Ant-Media-Server/releases).
+
+Then:
+
+1. SSH into your AMS instance.
+
+2. Download the installation script:
+
+   ```shell
+   wget -O install_ant-media-server.sh https://raw.githubusercontent.com/ant-media/Scripts/master/install_ant-media-server.sh && sudo chmod 755 install_ant-media-server.sh
+   ```
+
+3. Run it to upgrade, adding `-r true` if you want to keep your existing settings:
+
+   ```shell
+   sudo ./install_ant-media-server.sh -i <ANT_MEDIA_SERVER_ZIP_FILE> -r true
+   ```
+
+For release notes on the new version, check the [GitHub Releases page](https://github.com/ant-media/Ant-Media-Server/releases).
+
+## Verify the Upgrade
+
+Whichever method you used, confirm the new version is actually running:
+
+```shell
 unzip -p /usr/local/antmedia/ant-media-server.jar | grep -a "Implementation-Version"
 ```
 
-This command will show the version of the installed Ant Media Server.
+This prints the installed version — check it matches the version you expected to upgrade to.
 
-- The script automatically determines whether you are using the Community or Enterprise edition of the Ant Media Server and makes the upgrade according to it. Therefore, the script can be used for both Community and Enterprise editions.
+## Restore a Previous Installation
 
-- To learn more about the `upgrade.sh` script, please check [here](https://github.com/ant-media/Ant-Media-Server/blob/master/src/main/server/upgrade.sh).
+Every time you install over an existing AMS instance (which is what an upgrade does), AMS automatically backs up the previous installation to a timestamped folder under `/usr/local`, for example `/usr/local/antmedia-backup-2026-07-28_10-42-54`.
 
-
-## Upgrade with the Installation Script
-
-Another way to upgrade the Ant Media Server is by using the ```install_ant-media-server.sh```
-
-To use this approach, it is important to have the Ant Media Server installation zip file.
-
-- If you have purchased a license from Ant Media, then in the downloads section of your [antmedia.io](https://antmedia.io/my-account/downloads/) account, you can download the most recent version zip file.
-
-
-- In the case of Ant Media Server's Marketplace image on AWS, Azure, GCP, and Oracle Cloud, you can send an email to [contact@antmedia.io] and ask for the new version zip file.
-
-
-- In the case of Ant Media Server Community Edition, you can download the latest version zip file from [h](https://github.com/ant-media/Ant-Media-Server/releases)[ere](https://github.com/ant-media/Ant-Media-Server/releases).
-
-After downloading the zip file, kindly follow the below steps:
-
-**1. SSH into your Ant Media Server instance.**
-
-**2. Download the installation script**
-
-Download the`install_ant-media-server.sh` shell script with the latest changes.
+To roll back to it:
 
 ```shell
-wget -O install_ant-media-server.sh https://raw.githubusercontent.com/ant-media/Scripts/master/install_ant-media-server.sh && sudo chmod 755 install_ant-media-server.sh
-```
-
-  
-**3. Run the installation script to upgrade the server**
-
-If you want to keep the settings from the previous installation, you must add the **-r true** flag at the end of the command.
-
-```shell
-sudo ./install_ant-media-server.sh -i <ANT_MEDIA_SERVER_ZIP_FILE> -r true
-```
-
-For change/release logs of the new version, please check [here](https://github.com/ant-media/Ant-Media-Server/releases).
-
-## How do I restore the Ant Media Server if needed?
-
-Finally, whenever you perform a fresh installation or upgrade over an existing version, Ant Media Server automatically creates a backup of the previous installation in the ```/usr/local``` directory. You can find it in a timestamped folder — for example, **antmedia-backup-2022-11-18_15-42-54**
-
-To restore the previous installation, kindly follow the below commands:
-
-```shell
-sudo systemctl stop antmedia
+sudo service antmedia stop
 sudo rm -rf /usr/local/antmedia
-sudo cp -p -R /usr/local/antmedia-backup_folder/ /usr/local/antmedia
+sudo cp -p -R <BACKUP_FOLDER_PATH> /usr/local/antmedia
 sudo chown -R antmedia:antmedia /usr/local/antmedia/
-sudo systemctl start antmedia
+sudo service antmedia start
 ```
 
-## **What happens to previously installed plugins after upgrade?**
+## Plugins After an Upgrade
 
-During the upgrade, all previously installed plugins — along with their configurations and license files — are removed. To continue using them, you’ll need to either copy the files from your backup or reinstall the plugins. Our team is actively working on improving this process for future releases.
+An upgrade moves your entire previous installation — plugins, their configurations, and license files included — into the backup folder described above, and replaces it with a fresh install that doesn't include them. To keep using your plugins, copy them back from the backup after upgrading:
 
-<br /><br />
----
+```shell
+sudo cp -r <BACKUP_FOLDER_PATH>/plugins/* /usr/local/antmedia/plugins/
+sudo service antmedia restart
+```
 
-<div align="center">
-<h2> Success ✅ </h2>
-</div>
+Our team is actively working on improving this process for future releases.
 
-You have now **upgraded Ant Media Server** to the latest version — either by using the **upgrade.sh script** or by running the **installation script** with your downloaded zip file. You also learned how to **restore a previous installation** if needed and how to handle **plugins after an upgrade**.  
+## Need Help?
 
-Your server is now **up-to-date, backed up, and ready** to deliver the latest features and improvements. 🚀
-
+If the upgrade doesn't go as expected, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
