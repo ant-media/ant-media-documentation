@@ -1065,19 +1065,19 @@ scripts: [
             },
             {
               from: '/guides/developing-antmedia-server/',
-              to: '/category/extend-the-server/',
+              to: '/guides/developer-sdk-and-api/extend-the-server/',
             },
             {
               from: '/3.0/guides/developing-antmedia-server/',
-              to: '/category/extend-the-server/',
+              to: '/guides/developer-sdk-and-api/extend-the-server/',
             },
             {
               from: '/2.17/guides/developing-antmedia-server/',
-              to: '/2.17/category/extend-the-server/',
+              to: '/2.17/guides/developer-sdk-and-api/extend-the-server/',
             },
             {
               from: '/2.16/guides/developing-antmedia-server/',
-              to: '/2.16/category/extend-the-server/',
+              to: '/2.16/guides/developer-sdk-and-api/extend-the-server/',
             },
             // Short paths used in older absolute links
             {
