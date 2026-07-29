@@ -30,8 +30,8 @@ Publishers push live video into AMS. The server ingests, optionally transcodes f
 | I want to… | Go to |
 | --- | --- |
 | Install AMS in minutes | [Quick Start](./quick-start) |
-| Explore the web panel | [Dashboard Features](/dashboard-features/) |
 | Run Enterprise in production | [Enterprise Deployment Hub](/enterprise-guide/) |
+| Explore the web panel | [Dashboard Features](/dashboard-features/) |
 | Build a mobile or web app | [Developer Guides](/category/developer-guides/) |
 | Deploy at scale | [Clustering and Scaling](/category/clustering-and-scaling/) |
 | Secure streams | [Stream Security](/category/stream-security/) |
@@ -58,7 +58,7 @@ AMS is available in two editions:
 
 - **IP camera streaming** — Stream and monitor ONVIF IP cameras with ultra-low latency. [Docs](./guides/publish-live-stream/ip-camera-and-stream-source/stream-sources) · [Solutions](https://antmedia.io/solutions/ip-camera-streaming/)
 - **Webinars and video conferencing** — Scalable real-time audio and video with sub-second latency. [Conference](/category/conference/) · [Solutions](https://antmedia.io/solutions/webinar-e-learning-virtual-classroom/)
-- **Mobile streaming applications** — Build apps with AMS APIs and SDKs for Android, iOS, Flutter, and React Native. [SDK Integration](/category/sdk-integration/)
+- **Mobile streaming applications** — Build apps with AMS APIs and SDKs for Android, iOS, Flutter, and React Native. [SDK overview](/guides/developer-sdk-and-api/sdk-integration/)
 - **Media and entertainment** — Real-time game shows and interactive live experiences. [Solutions](https://antmedia.io/solutions/media-entertainment/)
 - **E-sports and gaming** — Ultra-low latency streams for competitive gaming and betting. [Solutions](https://antmedia.io/solutions/video-game-streaming/)
 - **Live auctions and bidding** — Sub-second latency to keep bids synchronized in real time. [Solutions](https://antmedia.io/solutions/auction-bidding/)

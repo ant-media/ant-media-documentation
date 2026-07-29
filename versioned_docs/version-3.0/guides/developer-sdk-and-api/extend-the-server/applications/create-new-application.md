@@ -1,107 +1,79 @@
 ---
-title: Creating a new application 
-description: Ant Media Server supports creating application development on the fly. You may create separate applications for each stream domain if you are managing multiple streams from same server.
-keywords: [Creating New Application, Creating Application Ant Media Server, Application Development, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 2
-
+title: Create Application
+description: Create and manage Ant Media Server applications via the web panel, shell script, or REST API.
+keywords: [Creating New Application, Ant Media Server Documentation]
+sidebar_position: 1
+sidebar_label: Create Application
 ---
 
-# Creating a new application
+# Create Application
 
-Ant Media Server supports dynamic application development, effectively addressing the multi-tenancy challenges of online video platforms. With three built-in applications, the server allows users to configure distinct settings for each application and customize application names.
+An AMS **application** is an isolated streaming context with its own settings, streams, and WebSocket URL (`/{application}/websocket`). Use separate applications when you manage multiple tenants or product lines on one server.
 
-Customers can create or delete applications as needed. There are multiple methods available for managing applications, outlined below.
+AMS ships with default applications. You can create or delete applications as needed.
 
-## Web Panel
+## Web panel
 
-The fastest and easiest way to create new applications is via the web panel.
+1. Log in to the web panel and open the **Dashboard**.
+2. Click **New Application**.
 
-### Step 1
+![New application button](https://github.com/user-attachments/assets/4acae42f-e4a7-4e17-b585-17c8248e947e)
 
-Login to the web panel, navigate to the Dashboard, and click the New Application button
+3. Enter the application name and click **Create**.
 
-![image](https://github.com/user-attachments/assets/4acae42f-e4a7-4e17-b585-17c8248e947e)
+![Create application dialog](https://github.com/user-attachments/assets/546a3581-0dbb-494f-8600-0248fc0eaa8b)
 
-
-### Step 2
-
-Enter the application name and click the ```Create``` button.
-
-![image](https://github.com/user-attachments/assets/546a3581-0dbb-494f-8600-0248fc0eaa8b)
-
-:::info
-
-In cluster mode, the server automatically creates the new application across all nodes in the cluster. Similarly, if an application is deleted, it will be removed from all nodes as well.
-
+:::info Cluster mode
+In cluster mode, a new application is created on all nodes automatically. Deleting an application removes it from all nodes.
 :::
 
-## Shell Script
+## Shell script
 
-You can also use a script to create new applications easily. Follow these steps:
-
-### Step 1
-
-Go to the folder where Ant-Media-Server is installed. The default directory is ```/usr/local/antmedia```.
+From the AMS install directory (default `/usr/local/antmedia`):
 
 ```bash
 cd /usr/local/antmedia
-```
-
-### Step 2
-
-The `create\_app.sh` usage in below
-
-
-```bash
-sudo ./create_app.sh -n applicationName -p AMS-Installation-Directory
-```
-
-For example:
-
-```bash
 sudo ./create_app.sh -n livestream -p /usr/local/antmedia
 ```
 
-Available parameters in the **create_app** script:
+| Flag | Description |
+|------|-------------|
+| `-n` | Application name (required) |
+| `-p` | AMS install path (default `/usr/local/antmedia`) |
+| `-w` | Deploy as WAR file (default `false`) |
+| `-c` | Cluster mode (default `false`) |
+| `-m`, `-u`, `-s` | MongoDB host, user, password (required in cluster mode) |
 
-**-n:**  Name of the application that you want to have. It's mandatory  
-**-p:**  (Optional) Path is the install location of Ant Media Server which is /usr/local/antmedia by default.  
-**-w:**  (Optional) The flag to deploy application as war file. Default value is false  
-**-c:**  (Optional) The flag to deploy application in cluster mode. Default value is false  
-**-m:**  Mongo DB host. If it's a cluster, it's mandatory. Otherwise optional  
-**-u:**  Mongo DB user. If it's a cluster, it's mandatory. Otherwise optional  
-**-s:**  Mongo DB password. If it's a cluster, it's mandatory. Otherwise optional  
-**-h:**  print this usage  
+Script source: [create_app.sh](https://github.com/ant-media/Ant-Media-Server/blob/master/src/main/server/create_app.sh)
 
-For more details, check the [Create App Script](https://github.com/ant-media/Ant-Media-Server/blob/master/src/main/server/create_app.sh#L5).
-
-### Step 3
-
-Restart Ant Media Service.
+Restart AMS after creating an application:
 
 ```bash
 sudo service antmedia restart
 ```
 
-## Rest Method
+## REST API
 
-In order to create and delete the application via Rest API, the management APIs needs to be called. Check out [this document](https://antmedia.io/docs/guides/developer-sdk-and-api/rest-api-guide/management-rest-apis/) for reference.
+Create or delete applications via the [Management REST API](/guides/developer-sdk-and-api/rest-api-guide/management-rest-apis/).
 
-### Create Application
+**Create:**
 
-Call the following method to create an application with curl.
-
+```bash
+curl -X POST -H "Content-Type: application/json" \
+  "https://your-domain:5443/rest/v2/applications/App_Name"
 ```
-curl -X POST -H "Content-Type: application/json" "https://{YOUR_SERVER_ADDRESS}:5443/rest/v2/applications/App_Name"
+
+**Delete:**
+
+```bash
+curl -X DELETE "https://your-domain:5443/rest/v2/applications/App_Name"
 ```
 
-### Delete Application
+## WebSocket URL
 
-Call the following method to delete an application with curl.
+After creating an application named `livestream`:
 
-```
-curl -X DELETE -H "https://{YOUR_SERVER_ADDRESS}:5443/rest/v2/applications/App_Name"
-```
-## Congratulations!
+- WSS: `wss://your-domain:5443/livestream/websocket`
+- WS: `ws://your-ip:5080/livestream/websocket`
 
-You now know how to create and manage applications in Ant Media Server using the web panel, shell scripts, or REST methods. You are ready to organize multiple streaming applications efficiently and deploy them across clusters with ease.
+Use this URL in your [SDK clients](/guides/developer-sdk-and-api/sdk-integration/).

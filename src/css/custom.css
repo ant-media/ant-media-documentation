@@ -323,3 +323,44 @@ h1, article h1, article header h1 {
   padding: 0.5rem;
   box-shadow: none;
 }
+
+/* SDK docs: keep reference tables full-width with matching column splits */
+.markdown table.sdk-api-table {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.markdown table.sdk-api-table th:first-child,
+.markdown table.sdk-api-table td:first-child {
+  width: 40%;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+.markdown table.sdk-api-table th:last-child,
+.markdown table.sdk-api-table td:last-child {
+  width: 60%;
+}
+
+.markdown table.sdk-full-table {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.markdown table.sdk-full-table th:first-child,
+.markdown table.sdk-full-table td:first-child {
+  width: 30%;
+  word-break: break-word;
+}
+
+.markdown table.sdk-full-table th:last-child,
+.markdown table.sdk-full-table td:last-child {
+  width: 70%;
+}
+
+/* Keep markdown tables in SDK docs from shrinking below content column */
+.markdown table {
+  width: 100%;
+}

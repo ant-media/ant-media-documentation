@@ -3,7 +3,7 @@
   "position": 8,
   "link": {
     "type": "generated-index",
-    "description": "Integrate with SDKs and REST APIs, use webhooks and push notifications, or extend Ant Media Server with custom apps and plugins.",
+    "description": "Integrate with SDKs and REST APIs, use webhooks and push notifications, extend AMS with plugins, or build custom applications from source.",
     "slug": "/category/developer-guides"
   }
 }

@@ -296,8 +296,16 @@ scripts: [
           ];
         }),
 	{
-          from: '/guides/developer-sdk-and-api/sdk-integration/android-sdk/',
-          to: '/category/android-sdk/'
+          from: '/category/android-sdk/',
+          to: '/guides/developer-sdk-and-api/sdk-integration/android-sdk/'
+        },
+	{
+          from: '/category/ios-sdk/',
+          to: '/guides/developer-sdk-and-api/sdk-integration/ios-sdk/'
+        },
+	{
+          from: '/category/sdk-integration/',
+          to: '/guides/developer-sdk-and-api/sdk-integration/'
         },
 	{
           from: '/guides/clustering-and-scaling/kubernetes/kubernetes-services/installing-ams-on-aws-eks/',
@@ -730,7 +738,23 @@ scripts: [
         },
 	{
           from: '/guides/advanced-usage/Plugins-for-Ant-Media-Server/',
-          to: '/guides/developer-sdk-and-api/extend-the-server/plugins/plugins-for-ant-media-server/'
+          to: '/guides/developer-sdk-and-api/plugins/plugins-for-ant-media-server/'
+        },
+	{
+          from: '/guides/developer-sdk-and-api/extend-the-server/plugins/getting-started/',
+          to: '/guides/developer-sdk-and-api/plugins/getting-started/',
+        },
+	{
+          from: '/guides/developer-sdk-and-api/extend-the-server/plugins/plugin-architecture/',
+          to: '/guides/developer-sdk-and-api/plugins/plugin-architecture/',
+        },
+	{
+          from: '/guides/developer-sdk-and-api/extend-the-server/plugins/developing-plugins/',
+          to: '/guides/developer-sdk-and-api/plugins/developing-plugins/',
+        },
+	{
+          from: '/guides/developer-sdk-and-api/extend-the-server/plugins/plugins-for-ant-media-server/',
+          to: '/guides/developer-sdk-and-api/plugins/plugins-for-ant-media-server/',
         },
 	{
           from: '/guides/publish-live-stream/webrtc-peer-to-peer-communication/',
@@ -755,14 +779,102 @@ scripts: [
         },
 	// 2.16 still has video-codecs.md — do not redirect that version.
 	{
+          from: '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/react-native-publish-sample/',
+          to: '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/webrtc-samples/publish/',
+        },
+	{
+          from: '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/react-native-play-sample/',
+          to: '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/webrtc-samples/play/',
+        },
+	{
+          from: '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/react-native-p2p-sample/',
+          to: '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/webrtc-samples/p2p/',
+        },
+	{
+          from: '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/react-native-conference-sample/',
+          to: '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/webrtc-samples/conference/',
+        },
+	{
+          from: '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/react-native-data-channel-sample/',
+          to: '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/webrtc-samples/data-channel/',
+        },
+	{
+          from: '/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/webrtc-samples/javascript-sdk-publish-sample/',
+          to: '/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/webrtc-samples/publish/',
+        },
+	{
+          from: '/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/webrtc-samples/javascript-sdk-play-sample/',
+          to: '/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/webrtc-samples/play/',
+        },
+	{
+          from: '/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/webrtc-samples/javascript-sdk-conference-sample/',
+          to: '/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/webrtc-samples/conference/',
+        },
+	{
+          from: '/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/webrtc-samples/javascript-sdk-p2p-sample/',
+          to: '/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/webrtc-samples/p2p/',
+        },
+	{
+          from: '/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/webrtc-samples/javascript-sdk-datachannel-sample/',
+          to: '/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/webrtc-samples/data-channel/',
+        },
+	{
+          from: '/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/webrtc-samples/screen-sharing-with-webrtc/',
+          to: '/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/webrtc-samples/screen-sharing/',
+        },
+	{
+          from: '/guides/developer-sdk-and-api/sdk-integration/flutter-sdk/webrtc-samples/flutter-publish-sample/',
+          to: '/guides/developer-sdk-and-api/sdk-integration/flutter-sdk/webrtc-samples/publish/',
+        },
+	{
+          from: '/guides/developer-sdk-and-api/sdk-integration/flutter-sdk/webrtc-samples/flutter-play-sample/',
+          to: '/guides/developer-sdk-and-api/sdk-integration/flutter-sdk/webrtc-samples/play/',
+        },
+	{
+          from: '/guides/developer-sdk-and-api/sdk-integration/flutter-sdk/webrtc-samples/flutter-conference-sample/',
+          to: '/guides/developer-sdk-and-api/sdk-integration/flutter-sdk/webrtc-samples/conference/',
+        },
+	{
+          from: '/guides/developer-sdk-and-api/sdk-integration/flutter-sdk/webrtc-samples/flutter-p2p-sample/',
+          to: '/guides/developer-sdk-and-api/sdk-integration/flutter-sdk/webrtc-samples/p2p/',
+        },
+	{
+          from: '/guides/developer-sdk-and-api/sdk-integration/flutter-sdk/webrtc-samples/flutter-data-channel-sample/',
+          to: '/guides/developer-sdk-and-api/sdk-integration/flutter-sdk/webrtc-samples/data-channel/',
+        },
+	{
+          from: '/category/webrtc-samples/',
+          to: '/category/javascript-sdk-samples/'
+        },
+	{
           from: [
-            '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/react-native-p2p-sample/',
-            '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/react-native-conference-sample/',
-            '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/react-native-play-sample/',
-	    '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/react-native-data-channel-sample/',
-            '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/react-native-publish-sample/'
+            '/guides/developing-antmedia-server/webrtc-publish-page-creation-tutorial/',
+            '/3.0/guides/developing-antmedia-server/webrtc-publish-page-creation-tutorial/',
           ],
-          to: '/category/webrtc-samples/'
+          to: '/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/webrtc-samples/publish/',
+        },
+	{
+          from: [
+            '/guides/developing-antmedia-server/webrtc-play-page-creation-tutorial/',
+            '/3.0/guides/developing-antmedia-server/webrtc-play-page-creation-tutorial/',
+          ],
+          to: '/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/webrtc-samples/play/',
+        },
+	{
+          from: '/2.17/guides/developing-antmedia-server/webrtc-publish-page-creation-tutorial/',
+          to: '/2.17/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/webrtc-samples/publish/',
+        },
+	{
+          from: '/2.17/guides/developing-antmedia-server/webrtc-play-page-creation-tutorial/',
+          to: '/2.17/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/webrtc-samples/play/',
+        },
+	{
+          from: '/2.16/guides/developing-antmedia-server/webrtc-publish-page-creation-tutorial/',
+          to: '/2.16/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/webrtc-samples/publish/',
+        },
+	{
+          from: '/2.16/guides/developing-antmedia-server/webrtc-play-page-creation-tutorial/',
+          to: '/2.16/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/webrtc-samples/play/',
         },
 	{
           from: '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/react-native-pre-requisite/',
@@ -899,20 +1011,24 @@ scripts: [
         },
 	// Developer Guides section: nest former server-extension docs + move Webhooks
 	...(() => {
-          const nestedPages = [
+          const extendPages = [
             'building-ams-from-source-code/',
             'applications/circle-component-usage/',
             'applications/create-new-application/',
-            'plugins/developing-plugins/',
-            'plugins/getting-started/',
-            'plugins/plugin-architecture/',
-            'plugins/plugins-for-ant-media-server/',
+          ];
+          const pluginPages = [
+            'developing-plugins/',
+            'getting-started/',
+            'plugin-architecture/',
+            'plugins-for-ant-media-server/',
           ];
           // 2.16 kept a flatter developing-antmedia-server layout
-          const flat216Pages = [
+          const flat216ExtendPages = [
             'building-ams-from-source-code/',
             'circle-component-usage/',
             'create-new-application/',
+          ];
+          const flat216PluginPages = [
             'introduction-plugin-structure/',
             'plugins-for-ant-media-server/',
           ];
@@ -989,7 +1105,7 @@ scripts: [
               to: '/2.17/guides/developer-sdk-and-api/extend-the-server/applications/circle-component-usage/',
             },
           ];
-          for (const page of nestedPages) {
+          for (const page of extendPages) {
             redirects.push({
               from: `/guides/developing-antmedia-server/${page}`,
               to: `/guides/developer-sdk-and-api/extend-the-server/${page}`,
@@ -1003,10 +1119,35 @@ scripts: [
               to: `/2.17/guides/developer-sdk-and-api/extend-the-server/${page}`,
             });
           }
-          for (const page of flat216Pages) {
+          for (const page of pluginPages) {
+            redirects.push({
+              from: `/guides/developing-antmedia-server/plugins/${page}`,
+              to: `/guides/developer-sdk-and-api/plugins/${page}`,
+            });
+            redirects.push({
+              from: `/3.0/guides/developing-antmedia-server/plugins/${page}`,
+              to: `/guides/developer-sdk-and-api/plugins/${page}`,
+            });
+            redirects.push({
+              from: `/2.17/guides/developing-antmedia-server/plugins/${page}`,
+              to: `/2.17/guides/developer-sdk-and-api/plugins/${page}`,
+            });
+            redirects.push({
+              from: `/guides/developer-sdk-and-api/extend-the-server/plugins/${page}`,
+              to: `/guides/developer-sdk-and-api/plugins/${page}`,
+            });
+          }
+          for (const page of flat216ExtendPages) {
             redirects.push({
               from: `/2.16/guides/developing-antmedia-server/${page}`,
-              to: `/2.16/guides/developer-sdk-and-api/extend-the-server/${page}`,
+              to: `/2.16/guides/developer-sdk-and-api/extend-the-server/${page === 'circle-component-usage/' ? 'applications/circle-component-usage/' : page === 'create-new-application/' ? 'applications/create-new-application/' : page}`,
+            });
+          }
+          for (const page of flat216PluginPages) {
+            const target = page === 'introduction-plugin-structure/' ? 'plugin-architecture/' : page;
+            redirects.push({
+              from: `/2.16/guides/developing-antmedia-server/${page}`,
+              to: `/2.16/guides/developer-sdk-and-api/plugins/${target}`,
             });
           }
           return redirects;

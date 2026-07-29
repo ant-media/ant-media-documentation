@@ -298,4 +298,4 @@ The screenshot above shows DRM protection in action: playback works for authoriz
 | Shaka Packager errors | Binary is executable at `/usr/local/bin/shakapackager` and on the server PATH. |
 | FairPlay not working | Use `"cbcs"` encryption scheme and include `"FairPlay"` in `enabledDRMSystems`. |
 
-For plugin architecture details, see [Plugins for Ant Media Server](/guides/developer-sdk-and-api/extend-the-server/plugins/plugins-for-ant-media-server/#drm-plugin).
+For plugin architecture details, see [Available Plugins](/guides/developer-sdk-and-api/plugins/plugins-for-ant-media-server/#drm-plugin).

@@ -1,6 +1,6 @@
 {
   "label": "Push Notifications",
-  "position": 4,
+  "position": 5,
   "link": {
     "type": "generated-index",
     "description": "Send push notifications from Ant Media Server.",
