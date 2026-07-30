@@ -9,6 +9,8 @@ sidebar_position: 7
 
 This guide explains how to upgrade Ant Media Server (AMS) from an earlier version to the latest version.
 
+By the end of this guide, your AMS instance will be running the latest (or a specific) version, with your existing settings and data preserved.
+
 ## Before You Begin
 
 Make sure you have SSH access to your AMS instance with sudo/root privileges.
@@ -123,6 +125,8 @@ sudo service antmedia restart
 ```
 
 Our team is actively working on improving this process for future releases.
+
+Your Ant Media Server instance is now upgraded and verified running the version you expected. If anything looks off after upgrading, the [Restore a Previous Installation](#restore-a-previous-installation) section above rolls you back to exactly where you started.
 
 ## Need Help?
 

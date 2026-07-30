@@ -7,6 +7,8 @@ sidebar_position: 5
 
 In this documentation, we're going to explain how to implement WebRTC peer-to-peer communication with JavaScript SDK. 
 
+By the end of this guide, you'll have two browser tabs connected directly to each other in P2P mode, and know how to fall back to a TURN server when a direct connection isn't possible.
+
 ## Navigate to P2P Sample Page
 
 There is already a working demo for this in the `peer.html` file.
@@ -96,6 +98,8 @@ var pc_config =
       } ]
 };
 ```
+
+You now have two peers connected directly over WebRTC, with a TURN server configured as a fallback for when direct connections fail. From here, integrate the `join`/`leave` calls above into your own application.
 
 ## Need Help?
 

@@ -11,6 +11,8 @@ If you are looking for a ready-to-use conference solution, please check out our 
 
 **Requirements:** Ant Media Server Enterprise Edition — the WebRTC conference feature isn't available on Community Edition.
 
+By the end of this guide, you'll have multiple participants publishing and playing in the same conference room, and know how to integrate join/publish/play into your own app.
+
 ## Conference Call Sample Page
 
 Go to `https://<DOMAIN_NAME>:5443/live/conference.html` for conference call sample page.
@@ -98,6 +100,8 @@ Here are the conference-related notifications that callback is invoked for. Plea
 These are the same notifications documented at the JSON/wire level in the [WebRTC WebSocket Messaging Reference](/guides/publish-live-stream/webrtc/webrtc-websocket-messaging-reference/) — check there if you're implementing signaling directly instead of through the JavaScript SDK.
 
 To learn more about Ant Media Server's conference features, see the [Conference](/category/conference/) section.
+
+You now have a working WebRTC conference room with multiple participants publishing and playing to each other. From here, head to the [Conference](/category/conference/) section for recording, security, and the ready-made Circle Conference tool.
 
 ## Need Help?
 

@@ -15,6 +15,8 @@ Docker Compose offers a simpler way to manage Ant Media Server (AMS) compared to
 
 This makes your setup more organized, portable, and easier to maintain.
 
+By the end of this guide, AMS will be running via Docker Compose and you'll be able to reach its web panel in your browser.
+
 :::info
 This guide uses `docker compose` (Compose V2 — the current standard, bundled with Docker Desktop and recent Docker Engine installations). If you're on an older system with only the standalone `docker-compose` binary, use `docker-compose` instead of `docker compose` with the same arguments.
 :::

@@ -9,6 +9,8 @@ sidebar_position: 6
 
 SSL is mandatory for secure access to the camera and microphone in the browser, and for WebSocket Secure (WSS) connections in WebRTC — most modern browsers require it. AMS offers several ways to get an SSL certificate; use this to find the one that fits your situation:
 
+By the end of this guide, SSL will be enabled on your server and you'll be able to confirm it's working over HTTPS.
+
 ```mermaid
 flowchart TD
     A{Prefer the terminal?}
@@ -310,8 +312,8 @@ To check the certificate's expiry date directly — useful for confirming a rene
 echo | openssl s_client -connect <DOMAIN_NAME>:5443 2>/dev/null | openssl x509 -noout -enddate
 ```
 
+SSL is now enabled on your Ant Media Server and verified working. From here, [publish a stream](/guides/publish-live-stream/webrtc/) or access the web panel securely over HTTPS.
+
 ## Need Help?
 
 If SSL setup isn't working, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
-
-Once verified, you're ready to [publish a stream](/guides/publish-live-stream/webrtc/) or access the web panel securely over HTTPS.

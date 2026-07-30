@@ -9,6 +9,8 @@ sidebar_position: 3
 
 Docker provides an easy and portable way to run Ant Media Server (AMS) without installing it directly on your host system. Using the official Docker images, you can quickly spin up a containerized AMS instance, test it on different environments, and manage upgrades or custom builds with minimal effort.
 
+By the end of this guide, AMS will be running in a Docker container and you'll be able to reach its web panel in your browser.
+
 To use the AMS Enterprise Edition [official Docker Hub image](https://hub.docker.com/r/antmedia/enterprise/tags), execute the following command, which pulls the latest version directly from Docker Hub and runs the container.
 
 ```bash

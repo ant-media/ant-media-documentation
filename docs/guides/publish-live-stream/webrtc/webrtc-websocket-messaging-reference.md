@@ -7,6 +7,8 @@ sidebar_position: 6
 
 This documentation is for developers who need to implement signaling between Ant Media Server and clients for publishing & playing streams. 
 
+By the end of this reference, you'll know the exact WebSocket commands and notifications for publish, play, conference, and peer-to-peer signaling, plus every error callback the server can send back.
+
 Let's understand it step by step:
 
 ##  Publish WebRTC Stream
@@ -811,6 +813,8 @@ This error can occur if a user attempts to re-publish a stream with the same `st
     description: "streaming_session_Restored",
   }
   ```
+
+You now have the full WebSocket command and notification reference for implementing signaling directly. If you'd rather use the higher-level JavaScript SDK instead of raw WebSocket messages, see [WebRTC Publishing](/guides/publish-live-stream/webrtc/webrtc/), [WebRTC Conference](/guides/publish-live-stream/webrtc/webrtc-conference-call/), or [Peer-to-Peer Communication](/guides/publish-live-stream/webrtc/webrtc-peer-to-peer-communication/).
 
 ## Need Help?
 

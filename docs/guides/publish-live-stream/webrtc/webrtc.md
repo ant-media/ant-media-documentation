@@ -9,6 +9,8 @@ WebRTC (Web Real-Time Communication) offers ultra-low latency streaming, making 
 
 **Requirements:** UDP ports `50000-60000` open on your firewall or security groups (see [here](https://github.com/orgs/ant-media/discussions/4944) if you need to change the range), and SSL enabled on your server — browsers require HTTPS for camera/microphone access and secure WebSocket connections outside of `localhost`. See the [SSL Setup guide](/guides/installing-on-linux/setting-up-ssl/) if you haven't enabled it yet.
 
+By the end of this guide, you'll be publishing a WebRTC stream to Ant Media Server from the built-in sample page, at sub-second latency.
+
 ## WebRTC Publish Sample Page
 
 Go to this URL for WebRTC publishing: `https://<DOMAIN_NAME>:5443/live`
@@ -29,6 +31,8 @@ If you have Ant Media Server installed on your local machine, you can also go to
   ![](@site/static/img/publish-live-stream/WebRTC/WebRTC-publishing/WebRTC-options.png)
 
 - To complete the loop and play this stream back with the same sub-second latency, see [WebRTC Playback](/guides/playing-live-stream/webrtc-playback/). If you need standards-based signaling instead, see [WHIP](/guides/publish-live-stream/webrtc/whip/).
+
+You're now publishing a WebRTC stream to Ant Media Server. From here, head to [WebRTC Playback](/guides/playing-live-stream/webrtc-playback/) to play it back at the same sub-second latency.
 
 ## Need Help?
 

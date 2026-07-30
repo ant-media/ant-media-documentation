@@ -9,6 +9,8 @@ sidebar_position: 3
 
 Data channel is another channel in WebRTC besides video and audio. Using a data channel, you can send any kind of data to the other clients. Data channels can be utilized in various use cases, including chat, control messages or file sharing. Ant Media Server provides a generic data channel mechanism that can be used in all use cases.
 
+By the end of this guide, you'll have data channel messaging working between two clients, and know how to send messages from your own SDK, REST API, or webhook.
+
 ## Enable Data Channel
 
 To use data channel functionality, first enable it from the AMS dashboard. This will allow you to send and receive data via data channel with SDKs.
@@ -231,6 +233,8 @@ Refer to the [Circle Conference Application](https://github.com/ant-media/confer
 *   ```MESSAGE_RECEIVED```: Used to notify when a chat message is received during the conference.
 *   ```UPDATE_AUDIO_LEVEL```: Used to receive participants audio level through data channel. Audio Level between 0 and 127. 0 means max, and 127 means min. Contains audioLevel and streamId of the participant. You can use this to show a speaking indicator on client side.
 *   ```UPDATE_PARTICIPANT_ROLE```: Used to update the role of a participant in the conference (e.g., from attendee to moderator).
+
+You now have data channel messaging enabled and working. From here, integrate `sendData` and the `data_received` callback into your own SDK code, or head to [WebRTC Conference](/guides/publish-live-stream/webrtc/webrtc-conference-call/) to see data channel messages driving a real conference UI.
 
 ## Need Help?
 

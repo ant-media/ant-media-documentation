@@ -9,6 +9,8 @@ sidebar_position: 5
 
 Windows Subsystem for Linux (WSL) provides a lightweight virtualized environment to run Linux distributions directly on Windows. This guide shows you how to install Ant Media Server (AMS) on WSL, which can be useful for local development, testing, and demos.
 
+By the end of this guide, AMS will be running inside WSL and you'll be able to reach its web panel from Windows.
+
 :::info **Important:** This guide requires **WSL2** and Ubuntu (>20.04) as your Linux distribution — step 1 below verifies this. WSL performance is more limited than a native Linux server, and hardware-accelerated encoding usually isn't available, so for production setups, use a dedicated Linux server or virtual machine instead.
 
 We also **do not cover** every installation step of AMS here — please follow our [Install AMS on Linux](/guides/installing-on-linux/installing-ams-on-linux/) documentation for the complete process. This guide supplements that with WSL-specific steps.

@@ -13,6 +13,8 @@ This document covers installing both the Community Edition and the Enterprise Ed
 
 **Note:** This procedure works the same whether your server is on-premises or in the cloud.
 
+By the end of this guide, AMS will be installed and running as a service, its ports will be open, and you'll be able to reach the web panel in your browser.
+
 ## Before You Begin
 
 Make sure you have:
