@@ -16,7 +16,7 @@ Before you proceed, review the [Enterprise Deployment Hub](/enterprise-guide/) f
 
 ## 1. Download the installation script
 
-```shell
+```bash
 wget https://raw.githubusercontent.com/ant-media/Scripts/master/install_ant-media-server.sh -O install_ant-media-server.sh  && sudo chmod 755 install_ant-media-server.sh
 ```
 
@@ -24,21 +24,24 @@ wget https://raw.githubusercontent.com/ant-media/Scripts/master/install_ant-medi
 
 ### Install the Enterprise Edition
 
-```shell
+```bash
 sudo ./install_ant-media-server.sh -l 'your-license-key'
 ```
 
 ### Install the Community Edition
 
-```shell
+```bash
 sudo ./install_ant-media-server.sh
 ```
 
 ### Install a specific version
 
-```shell
+```bash
 sudo ./install_ant-media-server.sh -i <ANT_MEDIA_SERVER_ZIP_FILE>
 ```
+
+- You can get the specific version ZIP file of Community Edition from [here](https://github.com/ant-media/Ant-Media-Server/releases).
+- For the Enterprise Edition ZIP file, download it from your antmedia.io account or ask the support team.
 
 For more installation options, run: `./install_ant-media-server.sh -h`
 
@@ -65,14 +68,22 @@ SSL is required for WebRTC (camera/microphone access and secure WebSockets). Aft
 
 ![](@site/static/img/ssl-webpanel/ssl-settings.png)
 
+:::info
+Before installing SSL, make sure that your server has a **static/fixed IP address** so that the domain can be mapped to a fixed IP.
+
+If the IP is dynamic or changes, the server may not be accessible on a previously generated subdomain.
+:::
+
 In the **Type** drop-down, choose how to enable SSL—[your own domain](/guides/installing-on-linux/setting-up-ssl/#create-lets-encrypt-certificate-with-http-01-challenge), a [free antmedia.cloud subdomain](/guides/installing-on-linux/setting-up-ssl/#get-a-free-subdomain-and-install-ssl-with-lets-encrypt), or [import your own certificate](/guides/installing-on-linux/setting-up-ssl/#import-your-custom-certificate)—then click **Activate**. The server restarts with SSL enabled.
 
 ![](@site/static/img/ssl-webpanel/ssl-options.png)
 
-- This will start to enable SSL for your Ant Media Server.
+This starts enabling SSL for your Ant Media Server:
+
 ![](@site/static/img/ssl-webpanel/enabling-ssl.png)
 
-- The Ant Media Server instance will restart and the server can now be accessed securely with SSL enabled.
+The Ant Media Server instance restarts and can be accessed securely with SSL enabled:
+
 ![](@site/static/img/ssl-webpanel/ssl-status.png)
 
 To configure SSL from the command line instead, see [Enable SSL via the terminal](/guides/installing-on-linux/setting-up-ssl/#option-2-installing-ssl-using-the-terminal).

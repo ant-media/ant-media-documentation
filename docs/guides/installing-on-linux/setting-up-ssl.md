@@ -4,24 +4,27 @@ description: Setting up SSL for Ant Media Server using Let's Encrypt certificate
 keywords: [Setting up SSL for Ant Media Server, Lets Encrypt, Let's Encrypt Certificate, Ant Media Server Documentation, Ant Media Server Tutorials, SSL]
 sidebar_position: 5
 priority: 1
-version: 2.14
 ---
 
 # How to Enable SSL
 
-## Setting up SSL for Ant Media Server
-
-SSL is mandatory to enable secure access to the camera, microphone, and to use WebSocket Secure (WSS) for WebRTC. In addition, serving content over HTTPS is required for most modern browsers.
+Setting up SSL is a mandatory task when requesting access to the microphone and camera. Also, you need to enable HTTPS and WSS (WebSocket Secure) to run WebRTC and WebSocket applications. In addition, developers want to serve their content with a secure connection as well.
 
 There are several options to get the SSL certificate. Please choose the one appropriate for you.
 
-## Option 1: Enabling SSL from the Web Panel
+:::info
+To avoid any issue later, make sure that your server has a **static/fixed IP address** so that the domain can be mapped to a fixed IP.
+
+If the IP is dynamic/changed, then the server will not be accessible on a previously generated subdomain.
+:::
+
+## Option 1: Enable SSL from the Web Panel
 
 In previous versions, configuring SSL involved intricate steps, such as accessing the server through SSH and executing the `enable_ssl.sh` script from the installation directory `usr/local/antmedia`.
 
 However, with the release of Ant Media Server version 2.6.2, we have streamlined the SSL enablement process, allowing users to seamlessly secure their media server directly from the AMS Web Panel. This empowers users to enable SSL with utmost ease and convenience.
 
-- After [installing the Ant Media Server](https://antmedia.io/docs/guides/installing-on-linux/installing-ams-on-linux/), login to the web panel and navigate to `SETTINGS > SSL`.
+- After [installing the Ant Media Server](https://antmedia.io/docs/guides/installing-on-linux/installing-ams-on-linux/), log in to the web panel and navigate to `SETTINGS > SSL`.
 ![](@site/static/img/ssl-webpanel/ssl-settings.png)
 
 - In the drop-down select box named Type, choose among the various options to enable SSL, like [using your own domain](https://antmedia.io/docs/guides/installing-on-linux/setting-up-ssl/#create-lets-encrypt-certificate-with-http-01-challenge), [free subdomain of antmedia.cloud](https://antmedia.io/docs/guides/installing-on-linux/setting-up-ssl/#get-a-free-subdomain-and-install-ssl-with-lets-encrypt), or [import your own certificate](https://antmedia.io/docs/guides/installing-on-linux/setting-up-ssl/#import-your-custom-certificate) and then click Activate to enable the SSL and restart your server.
@@ -34,7 +37,7 @@ However, with the release of Ant Media Server version 2.6.2, we have streamlined
 - The Ant Media Server instance will restart and the server can now be accessed securely with SSL enabled.
 ![](@site/static/img/ssl-webpanel/ssl-status.png)
 
-## Option 2: Installing SSL using the Terminal
+## Option 2: Install SSL using Terminal
 
 Apart from the web panel, SSL for the Ant Media Server can also be installed using the terminal and there are a number of ways to do it as per your specific use case and requirements.
 
@@ -42,30 +45,25 @@ Apart from the web panel, SSL for the Ant Media Server can also be installed usi
 
 If you do not have a domain name and want to install an SSL certificate, you can use this feature. With this feature, **enterprise users** will have a free domain name with the extension **ams-[id].antmedia.cloud**, and the Let's Encrypt certificate will be automatically installed. This feature is available in versions after 2.5.2
 
-:::info
-If you want to use the free sub-domain from `antmedia.cloud`, please make sure that your server has a static/fixed IP address so that the domain can be mapped to a fixed IP.
-
-If the IP is dynamic/changed, then the server will not be accessible on a previously generated sub-domain.
-:::
-
 - Go to the folder where Ant Media Server is installed. The default directory is `/usr/local/antmedia`
 
-```shell
-cd /usr/local/antmedia
-```
-- Run the `enable_ssl.sh` command to install the SSL.
+  ```bash
+  cd /usr/local/antmedia
+  ```
+  
+- Run the `enable_ssh.sh` command to install the SSL.
 
-```shell
-sudo ./enable_ssl.sh
-```
+  ```bash
+  sudo ./enable_ssl.sh
+  ```
 
 ### Create Let's Encrypt certificate with HTTP-01 challenge
 
 The script in this document installs **Let's Encrypt** SSL certificate.
 
-First, create an `A` record for your domain name in your DNS records. This way, your domain name will be resolved to your server's public IP address. Note that this guide is for Ubuntu systems, but there are several guides on the internet for other Linux distributions as well.
+First, create an `A` record for your domain name in your DNS records. This way, your domain name will be resolved to your server's `public IP address`. Note that this guide is for Ubuntu systems, but there are several guides on the internet for other Linux distributions as well.
 
-- If there is a service that uses port 80, you need to disable it first. For example, if your system has Apache web server, you need to disable it using:
+- If there is a service that uses port 80, you need to disable it first. For example, if your system has an Apache web server, you need to disable it using:
 
   ```bash
   sudo service apache2 stop
@@ -83,7 +81,7 @@ First, create an `A` record for your domain name in your DNS records. This way, 
   sudo ./enable_ssl.sh -d example.com
   ```
 
-### Import your custom certificate
+### Import Custom SSL Certificate
 
 The `enable_ssl.sh` script supports external `fullchain.pem`, `chain.pem` and `privkey.pem` files in the following format:.
 
@@ -110,8 +108,6 @@ sudo ./enable_ssl.sh -d {DOMAIN_NAME}  -v custom
 
 The script will ask you to create a TXT record for your domain name.
 
-Text
-
 ```comments
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Please deploy a DNS TXT record under the name
@@ -131,7 +127,7 @@ The process should be completed successfully if you set everything correctly.
 
 ### Create Let's Encrypt certificate with DNS-01 challenge and Route 53
 
-Let's Encrypt have some plugins to simplify the authorization. Route 53 plugin creates TXT records and deletes them after authorization is done. It's useful while creating instances in AWS Wavelength Zones, as the HTTP-01 challenge does not work in the AWS Wavelength zone due to its nature.
+Let's Encrypt has some plugins to simplify the authorization. The Route 53 plugin creates TXT records and deletes them after authorization is done. It's useful while creating instances in AWS Wavelength Zones, as the HTTP-01 challenge does not work in the AWS Wavelength Zone due to its nature.
 
 - Create a policy (i.e., dns-challenge-policy) in the IAM service with the following content:. [Check this out if you don't know how to create a Policy](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-create-and-attach-iam-policy.html).
 
@@ -175,9 +171,9 @@ Let's Encrypt have some plugins to simplify the authorization. Route 53 plugin c
 
 - If everything is set up properly, you can access the server via 
 
-    `https://{DOMAIN_NAME}:5443`
+    `http://{DOMAIN_NAME}:5443`
 
-If you are using Apache, Nginx, or any other web server / service binding port 80, ensure you stop/disable it temporarily before running enable_ssl.sh, and re-start afterwards if needed.
+If you disabled a service that binds to port 80, such as Apache Web Server, enable it again.
 
 ```bash
 sudo service apache2 start
@@ -194,14 +190,3 @@ The `enable_ssl.sh` command will fail if port 80 is already in use by another pr
 
 Please disable the process or delete the port forwarding temporarily before running the `enable_ssl.sh` script above.
 :::
-
-<br /><br />
----
-
-<div align="center">
-<h2> Congratulations 🎉 </h2>
-</div>
-
-You have now **enabled SSL** for your Ant Media Server —via the **AMS Sub-domain** on webpanel or the **terminal** and secured your server with HTTPS/WSS, and (if applicable) set up the **Let’s Encrypt**, imported **your certificate**, and confirmed domain settings. You now have a **more secure streaming setup that users and browsers trust**. 
-
-Keep up the great work — your streams are safer now! 🔐
