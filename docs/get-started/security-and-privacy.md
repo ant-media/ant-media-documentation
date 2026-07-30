@@ -16,25 +16,29 @@ In this document, you can read about the security and privacy features of Ant Me
 ## Security Architecture Overview
 
 ```mermaid
-graph TD
+flowchart TD
     subgraph Access["Access Control"]
+        direction LR
         UI["Web Panel<br/>(SSL encrypted)"]
         API["REST API<br/>(JWT + IP Filter)"]
         Stream["Stream Security<br/>(OTT / JWT / Hash tokens)"]
     end
 
     subgraph Deployment["Deployment Options"]
+        direction LR
         OnPrem["On-Premises<br/>(your data center)"]
         Cloud["Public Cloud<br/>(AWS / Azure / DO / GCP)"]
     end
 
     subgraph Roles["User Roles"]
+        direction LR
         Admin["ADMIN<br/>Full CRUD access"]
         User["USER<br/>App-scoped access"]
         ReadOnly["READ-ONLY<br/>View only"]
     end
 
     subgraph Data["Data Protection"]
+        direction LR
         Transit["Data in Transit<br/>(SSL/TLS)"]
         Rest["Data at Rest<br/>(disk encryption)"]
         Logs["Audit Logs"]
