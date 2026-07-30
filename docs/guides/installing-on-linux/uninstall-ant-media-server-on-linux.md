@@ -7,7 +7,9 @@ sidebar_position: 8
 
 # Uninstall Ant Media Server
 
-How you uninstall AMS depends on how you installed it. By the end of this guide, AMS and everything its installer created will be fully removed from your system. Find the section below that matches your setup:
+How you uninstall AMS depends on how you installed it.
+
+By the end of this guide, AMS and everything its installer created will be fully removed from your system. Find the section below that matches your setup:
 
 - [Native Linux Install](#native-linux-install)
 - [Docker](#docker)

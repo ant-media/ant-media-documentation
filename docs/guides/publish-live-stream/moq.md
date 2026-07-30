@@ -7,7 +7,9 @@ sidebar_position: 3
 
 # MoQ (Media over QUIC)
 
-Media over QUIC (MoQ) is an emerging live streaming protocol built on QUIC and WebTransport. It delivers sub-second latency like WebRTC while scaling through a CDN relay like HLS—no plugins or native apps required. By the end of this guide, you'll have the AMS MoQ plugin installed, be publishing a stream into it, and be playing that stream back at sub-second latency.
+Media over QUIC (MoQ) is an emerging live streaming protocol built on QUIC and WebTransport. It delivers sub-second latency like WebRTC while scaling through a CDN relay like HLS—no plugins or native apps required.
+
+By the end of this guide, you'll have the AMS MoQ plugin installed, be publishing a stream into it, and be playing that stream back at sub-second latency.
 
 :::info
 MoQ is still an evolving IETF standard — the AMS MoQ plugin is based on **moq-lite**, a deployable subset of the spec, and full IETF `moq-transport` support (via [moqtail.dev](https://moqtail.dev)) is on the roadmap as it matures. Treat this as early access and keep an eye on updates; see the [MoQ blog post](https://antmedia.io/moq-support-now-available-in-ant-media-server/) for more on the underlying implementation.

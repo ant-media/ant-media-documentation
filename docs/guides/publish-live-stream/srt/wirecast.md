@@ -7,7 +7,9 @@ sidebar_position: 3
 
 # SRT Ingest using Wirecast
 
-Wirecast is a live video streaming production tool by Telestream. It allows users to create live or on-demand broadcasts for the web. Wirecast supports various sources for capturing, such as webcams, IP cameras, NDIs, and capture cards. By the end of this guide, you'll be pushing an SRT stream from Wirecast into Ant Media Server.
+Wirecast is a live video streaming production tool by Telestream. It allows users to create live or on-demand broadcasts for the web. Wirecast supports various sources for capturing, such as webcams, IP cameras, NDIs, and capture cards.
+
+By the end of this guide, you'll be pushing an SRT stream from Wirecast into Ant Media Server.
 
 - Some encoders, like **Wirecast does not have support for streamId**.
 - There are also many IP cameras that support SRT output but do not support streamId.

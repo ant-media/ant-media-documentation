@@ -13,11 +13,11 @@ Teradek Vidiu Pro is fully compatible with Ant Media Server. Before starting, yo
 
 Depending on which app you use, you will use parts of these URLs in Teradek's settings.
 
-By the end of this guide, your Teradek Vidiu Pro will be pushing an RTMP stream into Ant Media Server, and you'll be able to confirm it's live from the web panel. Let’s have a step-by-step look on how to use Teradek Vidiu Pro for streaming. Firstly, start by powering the Teradek Vidiu Pro.
+By the end of this guide, your Teradek Vidiu Pro will be pushing an RTMP stream into Ant Media Server, and you'll be able to confirm it's live from the web panel.
 
 ## Connect to Teradek Vidiu Pro WiFi Network.
 
-It creates a WiFi network with the name ```VidiU−XXXXX```. Connect to the Teradek Vidiu Pro WiFi network and open http://172.16.1.1 in your browser (this is the device’s default local interface address).
+Power on the Teradek Vidiu Pro. It creates a WiFi network with the name ```VidiU−XXXXX```. Connect to the Teradek Vidiu Pro WiFi network and open http://172.16.1.1 in your browser (this is the device’s default local interface address).
 
 ![](@site/static/img/publish-live-stream/teradek/vidiu-pro-console.png)
 

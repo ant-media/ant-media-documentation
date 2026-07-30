@@ -7,7 +7,9 @@ sidebar_position: 5
 
 # Publish RTMPS Stream
 
-RTMPS is standard RTMP wrapped in TLS, so your publish traffic is encrypted in transit. By the end of this guide, RTMPS will be enabled on your server and you'll be publishing an encrypted stream into Ant Media Server.
+RTMPS is standard RTMP wrapped in TLS, so your publish traffic is encrypted in transit.
+
+By the end of this guide, RTMPS will be enabled on your server and you'll be publishing an encrypted stream into Ant Media Server.
 
 ## Enable RTMPS
 
