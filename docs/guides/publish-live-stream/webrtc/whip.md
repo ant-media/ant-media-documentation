@@ -13,6 +13,8 @@ In version 2.10.0, Ant Media Server introduced WHIP support, making it easier th
 
 **Requirements:** Ant Media Server Enterprise Edition, v2.10 or later — WHIP applies to both methods below, not just the OBS one.
 
+By the end of this guide, you'll be publishing a WebRTC stream into Ant Media Server over WHIP — using either OBS or a browser sample page — and know where to go to play it back.
+
 ## Benefits of WHIP
 
 1.  **Simplicity**: WHIP simplifies the signaling process by using HTTP, making it straightforward to implement and integrate.
@@ -67,7 +69,7 @@ For example, you can test via this [sample page](https://test.antmedia.io:5443/l
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/hw0gs7Dxym4?si=UyJ2sATPyMF-iWWO" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
 
-Once you're publishing, head to [WebRTC Playback](/guides/playing-live-stream/webrtc-playback/) to play the stream back.
+You're now publishing a WebRTC stream to Ant Media Server over WHIP. From here, head to [WebRTC Playback](/guides/playing-live-stream/webrtc-playback/) to play the stream back.
 
 ## Need Help?
 
