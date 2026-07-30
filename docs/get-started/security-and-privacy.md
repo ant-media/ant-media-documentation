@@ -22,19 +22,22 @@ flowchart TD
         UI["Web Panel<br/>(SSL encrypted)"]
         API["REST API<br/>(JWT + IP Filter)"]
         Stream["Stream Security<br/>(OTT / JWT / Hash tokens)"]
+        UI ~~~ API ~~~ Stream
     end
 
     subgraph Deployment["Deployment Options"]
         direction LR
         OnPrem["On-Premises<br/>(your data center)"]
         Cloud["Public Cloud<br/>(AWS / Azure / DO / GCP)"]
+        OnPrem ~~~ Cloud
     end
 
     subgraph Roles["User Roles"]
         direction LR
         Admin["ADMIN<br/>Full CRUD access"]
-        User["USER<br/>App-scoped access"]
+        UserRole["USER<br/>App-scoped access"]
         ReadOnly["READ-ONLY<br/>View only"]
+        Admin ~~~ UserRole ~~~ ReadOnly
     end
 
     subgraph Data["Data Protection"]
@@ -42,6 +45,7 @@ flowchart TD
         Transit["Data in Transit<br/>(SSL/TLS)"]
         Rest["Data at Rest<br/>(disk encryption)"]
         Logs["Audit Logs"]
+        Transit ~~~ Rest ~~~ Logs
     end
 
     Access --> Deployment
