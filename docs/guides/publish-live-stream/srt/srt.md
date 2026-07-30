@@ -7,33 +7,9 @@ sidebar_position: 1
 
 # SRT Ingest Guide
 
-SRT (Secure Reliable Transport) allows you to push streams to Ant Media Server and play them using various formats, including WebRTC, HLS, and CMAF, and record them as MP4. The SRT ingest feature, which also supports adaptive streaming, is available from version 2.4.3 EE onwards. By the end of this guide, you'll be pushing an SRT stream into Ant Media Server with FFmpeg or OBS, and know how to change the port SRT listens on.
+SRT (Secure Reliable Transport) allows you to push streams to Ant Media Server and play them using various formats, including WebRTC, HLS, and CMAF, and record them as MP4. The SRT ingest feature, which also supports adaptive streaming, is available from version 2.4.3 EE onwards. By the end of this guide, you'll be pushing an SRT stream into Ant Media Server with OBS or FFmpeg, and know how to change the port SRT listens on.
 
 To enable this feature, we utilized Haivision's official [SRT library](https://github.com/Haivision/srt) and created an SRT preset for [JavaCPP-Presets](https://github.com/bytedeco/javacpp-presets). We intend to submit a pull request for the JavaCPP-Presets repository.
-
-Below is a guide on how to publish an SRT stream to the Ant Media Server.
-
-## Pushing SRT streams with FFmpeg
-
-Assuming you have installed and launched Ant Media Server v2.4.3 or later, you can use FFmpeg to push the SRT stream.
-
-```bash
-ffmpeg -re -i <INPUT_FILE> -vcodec libx264 -profile:v baseline -g 60 -acodec aac -f mpegts srt://<DOMAIN_NAME>:4200?streamid=live/stream1
-```
-
-Once the command is executed, the stream will be available in the `live` application with the `streamId` stream1.
-
-:::info
- If you encounter a "**Protocol not found**" error, it means FFmpeg needs to be compiled with the [**--enable-libsrt**](https://srtlab.github.io/srt-cookbook/apps/ffmpeg/) to support the SRT protocol.
-
-srt://\<DOMAIN_NAME\>:4200?streamid\=live/stream1: Protocol not found
-:::
-
-In that case, you can verify if FFmpeg has SRT protocol support or not by running the following command:
-
-```bash
-ffmpeg -protocols
-```
 
 ## Publishing SRT streams with OBS
 
@@ -63,9 +39,29 @@ In such cases, the system IP address is used as the streamId and it is published
 
 ![](@site/static/img/publish-live-stream/srt/srt-stream.png)
 
-## Play SRT with Ant Media Server
+## Pushing SRT streams with FFmpeg
 
-Once the SRT stream has been published, it can be viewed using WebRTC, HLS, or CMAF (Dash). See the [Play Live Streams](/category/play-live-streams/) category for the full set of playback options.
+Assuming you have installed and launched Ant Media Server v2.4.3 or later, you can use FFmpeg to push the SRT stream.
+
+```bash
+ffmpeg -re -i <INPUT_FILE> -vcodec libx264 -profile:v baseline -g 60 -acodec aac -f mpegts srt://<DOMAIN_NAME>:4200?streamid=live/stream1
+```
+
+Once the command is executed, the stream will be available in the `live` application with the `streamId` stream1. Check the **live** application in your Ant Media Server web panel — the stream should show as **Broadcasting**.
+
+![](@site/static/img/publish-live-stream/ams-broadcasting-status.png)
+
+:::info
+ If you encounter a "**Protocol not found**" error, it means FFmpeg needs to be compiled with the [**--enable-libsrt**](https://srtlab.github.io/srt-cookbook/apps/ffmpeg/) to support the SRT protocol.
+
+srt://\<DOMAIN_NAME\>:4200?streamid\=live/stream1: Protocol not found
+:::
+
+In that case, you can verify if FFmpeg has SRT protocol support or not by running the following command:
+
+```bash
+ffmpeg -protocols
+```
 
 ## Configure SRT Ingest port number
 
@@ -89,7 +85,7 @@ SRT is enabled by default in Ant Media Server and communicates via UDP port 4200
 SRT support is available for both x86_64 and ARM architectures, starting with Ant Media Server version 2.6.0. For versions below 2.6.0 (till v2.5.3), SRT support is available for the x86_64 architecture only.
 :::
 
-You're now pushing streams over SRT with FFmpeg or OBS, with or without an explicit streamId, and you know how to move SRT off its default port if 4200 is already in use on your network. From here, see [Play Live Streams](/category/play-live-streams/) to view the stream, or [vMix](/guides/publish-live-stream/srt/vmix/) and [Wirecast](/guides/publish-live-stream/srt/wirecast/) if you'd rather push SRT from a dedicated encoder instead of FFmpeg or OBS.
+You're now pushing SRT streams into Ant Media Server with OBS or FFmpeg. From here, head to the [playback guide](/category/play-live-streams/) to view your stream, or see [vMix](/guides/publish-live-stream/srt/vmix/) and [Wirecast](/guides/publish-live-stream/srt/wirecast/) if you'd rather push from a dedicated encoder.
 
 ## Need Help?
 

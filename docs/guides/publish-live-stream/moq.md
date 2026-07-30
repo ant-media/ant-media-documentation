@@ -10,7 +10,7 @@ sidebar_position: 3
 Media over QUIC (MoQ) is an emerging live streaming protocol built on QUIC and WebTransport. It delivers sub-second latency like WebRTC while scaling through a CDN relay like HLS—no plugins or native apps required. By the end of this guide, you'll have the AMS MoQ plugin installed, be publishing a stream into it, and be playing that stream back at sub-second latency.
 
 :::info
-MoQ is still an evolving IETF standard. The AMS MoQ plugin is based on **moq-lite**, a deployable subset of the spec. Treat this as early access and keep an eye on updates.
+MoQ is still an evolving IETF standard — the AMS MoQ plugin is based on **moq-lite**, a deployable subset of the spec, and full IETF `moq-transport` support (via [moqtail.dev](https://moqtail.dev)) is on the roadmap as it matures. Treat this as early access and keep an eye on updates; see the [MoQ blog post](https://antmedia.io/moq-support-now-available-in-ant-media-server/) for more on the underlying implementation.
 :::
 
 ## Requirements
@@ -142,7 +142,7 @@ The plugin works out of the box. To override defaults, go to **Settings → Adva
 | `externalRelayUrl` | `localhost:4443` | URL of the external relay. Only used when `useEmbeddedRelay` is `false`. |
 | `ingestPollIntervalMs` | `2000` | How often (ms) to poll the relay's `/announced` endpoint for new streams. |
 
-You now have the MoQ plugin installed and are publishing and playing streams at sub-second latency through AMS's embedded relay. MoQ playback and publishing will be built directly into the main AMS web player in a future release, and full IETF `moq-transport` support (via [moqtail.dev](https://moqtail.dev)) is on the roadmap as that spec matures — see the [MoQ blog post](https://antmedia.io/moq-support-now-available-in-ant-media-server/) for a deeper look at the implementation. If you're deciding between MoQ and AMS's other publishing protocols, see [Which Protocol Should I Use to Publish?](/guides/publish-live-stream/which-protocol-should-i-use/)
+You now have the MoQ plugin installed and are publishing and playing streams at sub-second latency through AMS's embedded relay. From here, see [Which Protocol Should I Use to Publish?](/guides/publish-live-stream/which-protocol-should-i-use/) to compare MoQ against AMS's other publishing protocols.
 
 ## Need Help?
 

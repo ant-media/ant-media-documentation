@@ -55,7 +55,7 @@ As you can see from the following screenshot, it started to stream.
 
 Now you are publishing with vMix!
 
-You've successfully set up SRT streaming from vMix — added your input, enabled SRT in output settings, specified your hostname, port, and stream ID, and tuned the encoder (baseline profile, keyframe latency = 1, etc.). From here, see [Play Live Streams](/category/play-live-streams/) to view the stream, or check out [SRT Ingest Guide](/guides/publish-live-stream/srt/srt/) if you'd rather push SRT from FFmpeg or OBS instead.
+You're now publishing an SRT stream to Ant Media Server with vMix. From here, head to the [playback guide](/category/play-live-streams/) to view your stream.
 
 ## Need Help?
 
