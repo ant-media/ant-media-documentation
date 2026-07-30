@@ -7,7 +7,7 @@ sidebar_position: 3
 
 # SRT Ingest using Wirecast
 
-Wirecast is a live video streaming production tool by Telestream. It allows users to create live or on-demand broadcasts for the web. Wirecast supports various sources for capturing, such as webcams, IP cameras, NDIs, and capture cards.
+Wirecast is a live video streaming production tool by Telestream. It allows users to create live or on-demand broadcasts for the web. Wirecast supports various sources for capturing, such as webcams, IP cameras, NDIs, and capture cards. By the end of this guide, you'll be pushing an SRT stream from Wirecast into Ant Media Server.
 
 - Some encoders, like **Wirecast does not have support for streamId**.
 - There are also many IP cameras that support SRT output but do not support streamId.
@@ -37,30 +37,29 @@ To create a stream with Wirecast, it is first necessary to add a source.
 
   ![](@site/static/img/publish-live-stream/srt/destination-srt.png)
 
-- Enter your Ant Media Server URL under **Address** in the format ```srt://server-url/``` and **Port** 4200
+- Enter your Ant Media Server URL under **Address** in the format ```srt://<DOMAIN_NAME>/``` and **Port** 4200
 
   ![](@site/static/img/publish-live-stream/srt/server-url.png)
 
 ### Customizing the Stream Parameters
 
-If you want to change any parameters like stream resolution, bitrate, profile type, etc., you can do so by changing the **Encoding Settings**. 
+If you want to change any parameters like stream resolution, bitrate, profile type, etc., you can do so by changing the **Encoding Settings**.
 
 - Click on the Gear icon next to Encoding and go to **View Details**.
+
   ![](@site/static/img/publish-live-stream/srt/encoding-settings.png)
 
 - You can set the video and audio encoding parameters as you may need.
 
   ![](@site/static/img/publish-live-stream/srt/settings.png)
 
-
 :::info
 It's important to set the Profile type Baseline for WebRTC play.
 :::
 
-
 ## Starting the SRT Stream
 
-Now that, everything is set, let's proceed to push the SRT stream.
+Now that everything is set, let's proceed to push the SRT stream.
 
 - Click on the **right arrow icon** to select the source of the video and it will be reflected in the Live Broadcast Area.
 
@@ -80,18 +79,10 @@ Now that, everything is set, let's proceed to push the SRT stream.
 
 ## Playing The Stream
 
-- Ant Media Server supports various play protocols like WebRTC, CMAF (Dash), and HLS.
+Ant Media Server supports various play protocols like WebRTC, CMAF (Dash), and HLS. See the [Play Live Streams](/category/play-live-streams/) category to learn how to play the stream back.
 
-- To learn how to play a stream, check the [Playing Live Streams](https://antmedia.io/docs/category/playing-live-streams/) guide.
+You've now configured Wirecast to stream via SRT to Ant Media Server — added a source, set the SRT destination and address, tuned the encoding parameters, and started broadcasting. From here, see [Play Live Streams](/category/play-live-streams/) to view the stream, or check out [SRT Ingest Guide](/guides/publish-live-stream/srt/srt/) if you'd rather push SRT from FFmpeg or OBS instead.
 
+## Need Help?
 
-<br /><br />
----
-
-<div align="center">
-<h2> 🎬 Stream On with Wirecast & AMS </h2>
-</div>
-
-You’ve now configured **Wirecast to stream via SRT to Ant Media Server**. With your source set, encoding parameters tuned, and stream initiated, your content is live and ready for viewing.
-
-You should be proud— your broadcast is now **secure, resilient, and optimized for modern streaming!** 🚀
+If Wirecast can't reach the SRT port, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).

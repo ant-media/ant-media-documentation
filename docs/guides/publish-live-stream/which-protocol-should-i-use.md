@@ -30,7 +30,7 @@ flowchart TD
 
 - **[WebRTC](/guides/publish-live-stream/webrtc/)** — the default choice. Sub-second latency, works directly in the browser with no plugins, and AMS's built-in publish page gets you started in minutes. Works on both Community and Enterprise.
 - **[WHIP](/guides/publish-live-stream/webrtc/whip/)** — the same WebRTC transport, signaled over a standard HTTP-based protocol instead of AMS's own API. Worth it if you're integrating a third-party WHIP client or need interoperability across WebRTC servers. Requires Enterprise Edition (v2.10+).
-- **[MoQ](/guides/publish-live-stream/moq/)** — sub-second latency like WebRTC, but designed to scale through a CDN relay the way HLS does. It's getting a lot of industry attention right now and is genuinely worth evaluating if CDN-scale low latency is on your roadmap — but it's still early access on both the IETF spec side and AMS's own plugin (separate install, Chromium-only playback, requires AMS 3.0.0+), so it isn't yet the safe default for production.
+- **[MoQ](/guides/publish-live-stream/moq/)** — sub-second latency like WebRTC, but designed to scale through a CDN relay the way HLS does. It's getting a lot of industry attention right now and is genuinely worth evaluating if CDN-scale low latency is on your roadmap — but it's still early access on both the IETF spec side and AMS's own plugin (separate install, Chromium/Safari 26.4+ playback, requires AMS 3.0.0+), so it isn't yet the safe default for production.
 
 ## Publishing From a Hardware or Software Encoder
 
