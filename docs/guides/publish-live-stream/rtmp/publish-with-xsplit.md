@@ -2,7 +2,7 @@
 title: Publish Using XSplit 
 description: Publish RTMP stream using XSplit
 keywords: [Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 4
+sidebar_position: 3
 ---
 
 # Publish RTMP stream using XSplit

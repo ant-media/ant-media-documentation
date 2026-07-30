@@ -2,7 +2,7 @@
 title: Publish RTMPS
 description: Publish stream with RTMPS
 keywords: [Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 2
+sidebar_position: 5
 ---
 
 # Publish RTMPS Stream
