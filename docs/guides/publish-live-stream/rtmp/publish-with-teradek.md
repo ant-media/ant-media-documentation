@@ -13,7 +13,7 @@ Teradek Vidiu Pro is fully compatible with Ant Media Server. Before starting, yo
 
 Depending on which app you use, you will use parts of these URLs in Teradek's settings.
 
-Let’s have a step-by-step look on how to use Teradek Vidiu Pro for streaming. Firstly, start by powering the Teradek Vidiu Pro.
+By the end of this guide, your Teradek Vidiu Pro will be pushing an RTMP stream into Ant Media Server, and you'll be able to confirm it's live from the web panel. Let’s have a step-by-step look on how to use Teradek Vidiu Pro for streaming. Firstly, start by powering the Teradek Vidiu Pro.
 
 ## Connect to Teradek Vidiu Pro WiFi Network.
 
@@ -52,7 +52,11 @@ Your device configuration is OK now.
 *   Connect the HDMI cable between the HDMI source (camera, television or computer) and Teradek Vidiu Pro HDMI.
 *   Wait until to see the ```Ready``` text appears on the right top of Teradek Vidiu Pro’s LED screen. Then press ```Start/Stop``` button on the device, a message appears on the device asking for confirmation about starting the broadcast. Press ```Yes``` and then broadcasting starts.
 
-Congrats! You're publishing with Teradek Vidiu Pro to Ant Media Server.
+Check the **live** application in your Ant Media Server web panel — the stream should show as **Broadcasting**.
+
+![](@site/static/img/publish-live-stream/ams-broadcasting-status.png)
+
+You're now publishing an RTMP stream to Ant Media Server with the Teradek Vidiu Pro. From here, head to the [playback guide](/category/play-live-streams/) to view your stream.
 
 ## Need Help?
 

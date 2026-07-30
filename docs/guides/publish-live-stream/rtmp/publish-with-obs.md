@@ -9,7 +9,7 @@ sidebar_position: 1
 
 OBS (Open Broadcaster Software) is a free and open source video recording and live streaming software. With OBS, you can use either your PC's embedded camera or an externally connected camera as a video source. Audio sources can also be set up.
 
-Let's go over how to use OBS for streaming step by step:
+By the end of this guide, OBS will be pushing an RTMP stream into Ant Media Server, and you'll be able to confirm it's live from the web panel. Let's go over how to use OBS for streaming step by step:
 
 ## Install the OBS
 
@@ -63,7 +63,9 @@ Close ```Settings``` window and just click the “Start Streaming” button in t
 
 ![](@site/static/img/obs-rtmp-image/OBS-Start-Stream.png)
 
-Congrats! You're publishing a live stream with OBS.
+Once you start streaming, check the **live** application in your Ant Media Server web panel — the stream should show as **Broadcasting**.
+
+![](@site/static/img/publish-live-stream/ams-broadcasting-status.png)
 
 ## Troubleshooting
 
@@ -84,6 +86,8 @@ Stream health parameters are located at the bottom right. There are 3 stream hea
 If your PC cannot handle the stream with the parameters you set, this warning appears. In this case, you may want to decrease the resolution, bitrate, or change the encoder preset value to one with high speed and low quality.
 
 ![](@site/static/img/obs-rtmp-image/OBS-Warning.png)
+
+You're now publishing an RTMP stream to Ant Media Server with OBS. From here, head to the [playback guide](/category/play-live-streams/) to view your stream.
 
 ## Need Help?
 

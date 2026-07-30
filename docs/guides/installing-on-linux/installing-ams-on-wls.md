@@ -120,13 +120,6 @@ Check out [WebRTC Publishing](/guides/publish-live-stream/webrtc/) to publish a 
 - If the install script fails partway through with an error mentioning `systemctl` or "Failed to connect to bus", see the systemd note in [step 3](#3-install-ant-media-server) above.
 - Still stuck? Reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
 
-<br /><br />
----
-
-<div align="center">
-<h2>WSL Setup Complete</h2>
-</div>
-
 You've installed Ant Media Server inside WSL2, started the service, and confirmed the web dashboard is reachable. You now have a working local environment for testing, development, or demos, all from Windows. When you're ready to move to production, follow the [native Linux install guide](/guides/installing-on-linux/installing-ams-on-linux/) on a dedicated server or VM instead.
 
 

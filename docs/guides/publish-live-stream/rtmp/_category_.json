@@ -1,8 +1,8 @@
 {
-  "label": "RTMP & RTMPS",
+  "label": "RTMP, RTMPS & Enhanced RTMP",
   "position": 4,
   "link": {
     "type": "generated-index",
-    "description": "RTMP and RTMPS Publishing with Ant Media Server."
+    "description": "RTMP, RTMPS, and Enhanced RTMP Publishing with Ant Media Server."
   }
 }

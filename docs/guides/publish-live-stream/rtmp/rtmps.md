@@ -5,6 +5,10 @@ keywords: [Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 2
 ---
 
+# Publish RTMPS Stream
+
+RTMPS is standard RTMP wrapped in TLS, so your publish traffic is encrypted in transit. By the end of this guide, RTMPS will be enabled on your server and you'll be publishing an encrypted stream into Ant Media Server.
+
 ## Enable RTMPS
 
 :::info
@@ -49,7 +53,11 @@ To publish the RTMPS stream, follow the [OBS tutorial](/guides/publish-live-stre
 rtmps://<DOMAIN_NAME>:8443/live/<STREAM_ID>
 ```
 
-Check out the [playback guide](/category/play-live-streams/) to play your RTMPS stream with WebRTC, HLS etc.
+Once you're streaming, check the **live** application in your Ant Media Server web panel — the stream should show as **Broadcasting**.
+
+![](@site/static/img/publish-live-stream/ams-broadcasting-status.png)
+
+You're now publishing an encrypted RTMPS stream to Ant Media Server. From here, head to the [playback guide](/category/play-live-streams/) to view your stream with WebRTC, HLS, etc.
 
 ## Need Help?
 

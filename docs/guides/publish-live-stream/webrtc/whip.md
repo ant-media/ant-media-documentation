@@ -43,6 +43,10 @@ From Output tab of OBS, you can control your streaming parameters like bit rate,
 
 After your Output and streaming settings are done, you can start publishing your stream from OBS.
 
+Check the **live** application in your Ant Media Server web panel — the stream should show as **Broadcasting**.
+
+![](@site/static/img/publish-live-stream/ams-broadcasting-status.png)
+
 When the stream is published, you can play the stream with WebRTC, HLS or Dash. Check out the [stream playback](/category/play-live-streams/) category for more reference.
 
 

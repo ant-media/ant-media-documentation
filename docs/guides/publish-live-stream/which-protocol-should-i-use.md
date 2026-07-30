@@ -36,7 +36,7 @@ flowchart TD
 
 Most encoders — OBS, Wirecast, XSplit, Teradek, vMix, and virtually every hardware encoder on the market — speak RTMP by default, which is why it's still the most broadly compatible option and the one most social platforms require on their end too.
 
-- **[RTMP & RTMPS](/guides/publish-live-stream/rtmp/)** — the default for encoder-based publishing. If you're not sure which to pick, start here.
+- **[RTMP, RTMPS & Enhanced RTMP](/guides/publish-live-stream/rtmp/)** — the default for encoder-based publishing. If you're not sure which to pick, start here.
 - **[SRT](/guides/publish-live-stream/srt/)** — choose this instead if you're contributing over an unreliable network (satellite, cellular, long-haul internet). SRT's error correction handles packet loss RTMP can't.
 - **[WHIP](/guides/publish-live-stream/webrtc/whip/)** — if your encoder specifically supports it (OBS 30+ does) and you're on Enterprise, WHIP gets you WebRTC's latency from a traditional encoder.
 

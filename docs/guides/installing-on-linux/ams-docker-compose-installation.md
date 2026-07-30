@@ -150,17 +150,8 @@ The first time you access it, you'll be asked to create an admin account:
 
 ![](@site/static/img/ams-management-panel-create-account.png)
 
-Check out [WebRTC Publishing](/guides/publish-live-stream/webrtc/) to publish a stream for testing.
+You've set up AMS using **Docker Compose**. Compared to a single-container Docker setup, this keeps your configuration organized, makes port/volume management easier, and lets you start or stop the entire stack with a single command. From here, check out [WebRTC Publishing](/guides/publish-live-stream/webrtc/) to publish a stream for testing.
 
 ## Need Help?
 
 If AMS isn't starting, or the container won't build, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
-
-<br /><br />
----
-
-<div align="center">
-<h2>Docker Compose Setup Complete</h2>
-</div>
-
-You've set up AMS using **Docker Compose**. Compared to a single-container Docker setup, this keeps your configuration organized, makes port/volume management easier, and lets you start or stop the entire stack with a single command. From here, [publish a stream](/guides/publish-live-stream/webrtc/) to see it in action.

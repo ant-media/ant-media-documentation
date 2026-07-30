@@ -182,17 +182,8 @@ Then, every time you change the rules and want them to stick, save them:
 sudo sh -c "iptables-save > /etc/iptables/rules.v4"
 ```
 
+You've installed **Ant Media Server on Linux**, started the **service**, opened the **ports** it needs, and can reach the **web panel**. From here, [enable SSL](/guides/installing-on-linux/setting-up-ssl/) if you haven't already, and [publish your first stream](/guides/publish-live-stream/webrtc/) to see it in action.
+
 ## Need Help?
 
 If you run into trouble during installation, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
-
-<br /><br />
----
-
-<div align="center">
-
-### Installation Complete
-
-</div>
-
-You've installed **Ant Media Server on Linux**, started the **service**, opened the **ports** it needs, and can reach the **web panel**. From here, [enable SSL](/guides/installing-on-linux/setting-up-ssl/) if you haven't already, and [publish your first stream](/guides/publish-live-stream/webrtc/) to see it in action.

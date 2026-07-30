@@ -9,6 +9,8 @@ sidebar_position: 3
 
 Wirecast is a live video streaming production tool by Telestream. It allows users to create live or on-demand broadcasts for the web. Wirecast supports various sources for capturing such as webcams, IP cameras, NDIs and capture cards. 
 
+By the end of this guide, Wirecast will be pushing an RTMP stream into Ant Media Server, and you'll be able to confirm it's live from the web panel.
+
 ## Create a live stream in AMS
 
 To publish with Wirecast, we must first create a live stream in Ant Media Server, as this live stream ID will be used to publish the stream in Wirecast.
@@ -61,9 +63,11 @@ Start broadcasting the live stream by clicking the Start/Stop Broadcasting in th
 
 ![](@site/static/img/publish-live-stream/wirecast/wirecast-start-broadcasting-menu.png)
 
-Now the live stream is published to Ant Media Server. You will see the status of live stream in Ant Media Server is changed to Broadcasting status.
+Check the **live** application in your Ant Media Server web panel — the stream should show as **Broadcasting**.
 
-You can now click the Play button and watch the live stream.
+![](@site/static/img/publish-live-stream/ams-broadcasting-status.png)
+
+You're now publishing an RTMP stream to Ant Media Server with Wirecast. From here, head to the [playback guide](/category/play-live-streams/) to view your stream.
 
 ## Need Help?
 

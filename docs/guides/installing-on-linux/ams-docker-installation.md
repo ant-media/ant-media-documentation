@@ -130,18 +130,9 @@ The first time you access it, you'll be asked to create an admin account:
 
 ![](@site/static/img/ams-management-panel-create-account.png)
 
-Check out [WebRTC Publishing](/guides/publish-live-stream/webrtc/) to publish a stream for testing.
+You've set up **Ant Media Server using Docker** — ran the official image (or built your own), mapped the ports you need (5080, and RTMP if applicable), and confirmed AMS is running. From here, check out [WebRTC Publishing](/guides/publish-live-stream/webrtc/) to publish a stream for testing.
 
 ## Need Help?
 
 If AMS isn't starting, or the container won't build, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
-
-<br /><br />
----
-
-<div align="center">
-<h2>Docker Setup Complete</h2>
-</div>
-
-You've set up **Ant Media Server using Docker** — ran the official image (or built your own), mapped the ports you need (5080, and RTMP if applicable), and confirmed AMS is running. From here, [publish a stream](/guides/publish-live-stream/webrtc/) to see it in action.
 

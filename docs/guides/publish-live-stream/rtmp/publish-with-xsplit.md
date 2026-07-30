@@ -9,6 +9,8 @@ sidebar_position: 4
 
 XSplit is a free and open source software for live streaming and video recording. It is easy to use and provides a great canvas with a screen share option for different purposes (PC gaming, talk shows or presentations). Embedded or external cameras and audio sources can be used with XSplit.
 
+By the end of this guide, XSplit will be pushing an RTMP stream into Ant Media Server, and you'll be able to confirm it's live from the web panel.
+
 ## Install XSplit
 
 Download XSplit from [xsplit.com](https://www.xsplit.com/) and install it. 
@@ -37,11 +39,11 @@ When you're using any token type for stream security,  you need to generate a pu
 
 Close the ```Settings``` window and simply click the ```Stream``` button in the main XSplit window. It will begin streaming.
 
-You can view the stream in your browser by entering the following URL:
+Check the **live** application in your Ant Media Server web panel — the stream should show as **Broadcasting**.
 
-```http(s)://<IP_ADDRESS>:5080(5443)/live/play.html?name=<STREAM_ID>```
+![](@site/static/img/publish-live-stream/ams-broadcasting-status.png)
 
-Check [here](/category/play-live-streams/) for more information on playback.
+You're now publishing an RTMP stream to Ant Media Server with XSplit. From here, head to the [playback guide](/category/play-live-streams/) to view your stream.
 
 ## Need Help?
 
