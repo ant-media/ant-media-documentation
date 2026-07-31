@@ -1,13 +1,15 @@
 ---
 title: LL-HLS Playback
-description: Low Latency HLS (LL-HLS) Playback with Ant Media Server.
+description: Low Latency HLS (LL-HLS) playback with Ant Media Server.
 keywords: [LL-HLS playback, LL-HLS playback with Ant Media Server, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 3
 ---
 
-# Introduction
+# LL-HLS Playback
 
 A low-latency HLS (LL-HLS) playback feature has been introduced in Ant Media Server version 2.11 and above. It reduces traditional HLS latency from 8–12 seconds to approximately 2–5 seconds, making it ideal for near-real-time streaming applications.
+
+By the end of this guide, you'll have the LL-HLS plugin installed and be playing a stream back at 2-5 second latency.
 
 ## What is LL-HLS?
 
@@ -15,11 +17,11 @@ A low-latency HLS (LL-HLS) playback feature has been introduced in Ant Media Ser
 
 LL-HLS achieves this by using smaller video segments (called **parts**) that allow the video player to start playback before an entire segment is completed.
 
-### Prerequisites
+## Requirements
 
 - **Ant Media Server Enterprise Edition v2.12 or later:** LL-HLS plugin compatible from this version.
-- **LL-HLS Plugin:** Purchase the plugin by emailing ```contact@antmedia.io``` or via the [Ant Media website](https://antmedia.io/product/low-latency-hls-plugin/)
-- **Supported Player:** Use a player that supports LL-HLS. We recommend testing with **[hls.js](https://hlsjs.video-dev.org/demo/)** or **[Dolby Player](https://optiview.dolby.com/resources/demos/test-stream/)** first. 
+- **LL-HLS Plugin:** Purchase the plugin by emailing `contact@antmedia.io` or via the [Ant Media website](https://antmedia.io/product/low-latency-hls-plugin/).
+- **Supported Player:** Use a player that supports LL-HLS. We recommend testing with **[hls.js](https://hlsjs.video-dev.org/demo/)** or **[Dolby Player](https://optiview.dolby.com/resources/demos/test-stream/)** first.
 
 ### Key Differences: HLS vs. LL-HLS
 
@@ -52,7 +54,7 @@ For more information about plugin structure in Ant Media Server, take a look at 
      
 ### Step 2: Publish a Stream
 
-Ant Media Server provides LL-HLS endpoints for all ingested streams. You can check the [publish live streams](https://antmedia.io/docs/category/publish-live-stream/) section to learn how to publish streams using different protocols with Ant Media Server. For this example, let's [publish with WebRTC](https://antmedia.io/docs/guides/publish-live-stream/webrtc/).
+Ant Media Server provides LL-HLS endpoints for all ingested streams. You can check the [publish live streams](/category/publish-live-streams/) section to learn how to publish streams using different protocols with Ant Media Server. For this example, let's [publish with WebRTC](/guides/publish-live-stream/webrtc/).
 
 #### Stream Configuration Requirements
 
@@ -78,9 +80,7 @@ If you are using hardware encoding (e.g., `h264_nvenc`), you must configure the 
 
 1. **Access the WebRTC Publish Page**
 
-   - Open the following URL in your browser: https://yourserver.com:5443/live/?id=stream1
-
-   - Replace the domain with your Ant Media server's domain.
+   - Open the following URL in your browser: `https://<DOMAIN_NAME>:5443/live/?id=stream1`
 
    - You can use `stream1` or any custom stream ID.
 
@@ -98,29 +98,30 @@ If you are using hardware encoding (e.g., `h264_nvenc`), you must configure the 
 
    - [hls.js demo player](https://hlsjs.video-dev.org/demo/)
    - [Dolby Player ](https://optiview.dolby.com/resources/demos/test-stream/)
-   - From AMS v2.12 onwards, the LL-HLS playback is supported via the AMS Embedded Player as well. To learn more about embedded web player, check [here](https://antmedia.io/docs/guides/playing-live-stream/embedded-web-player/).
+   - From AMS v2.12 onwards, the LL-HLS playback is supported via the AMS Embedded Player as well. To learn more about embedded web player, check [here](/guides/playing-live-stream/embedded-web-player/).
 
 2. **Enter the LL-HLS URL**
 
    In the player, enter the following URL to play the stream:
 
-   ```https://yourserver.com:5443/live/streams/ll-hls/stream1/stream1__master.m3u8```
+   ```
+   https://<DOMAIN_NAME>:5443/live/streams/ll-hls/stream1/stream1__master.m3u8
+   ```
 
    ![Screenshot 2024-09-23 131202](https://github.com/user-attachments/assets/63bca3f6-0c71-4ba8-a8f7-5b8d8f56c24f)
 
-
    - Ensure two underscores (__) exist between the stream ID and `master.m3u8`.
 
-   - **URL pattern:** ```https://{YOUR_SERVER}:{5443}/{APP}/streams/ll-hls/{STREAM_ID}/{STREAM_ID}__master.m3u8```
+   - **URL pattern:** `https://<DOMAIN_NAME>:5443/<APP_NAME>/streams/ll-hls/<STREAM_ID>/<STREAM_ID>__master.m3u8`
 
    - If you are using the Ant Media Server player, then the URL pattern would be as follows:
 
-     `https://{YOUR_SERVER DOMAIN}:5443/{AppName}/play.html?name={streamId}&playOrder=ll-hls`
+     `https://<DOMAIN_NAME>:5443/<APP_NAME>/play.html?name=<STREAM_ID>&playOrder=ll-hls`
 
 
 ## Customize LL-HLS
 
-You can fine-tune LL-HLS settings in the [Advanced section of the application settings](https://antmedia.io/docs/guides/configuration-and-testing/ams-application-configuration/#management-panel-application-settings) of the Ant Media Server web panel. These settings allow you to adjust the behavior of LL-HLS to meet specific needs, like controlling segment durations or playlist updates.
+You can fine-tune LL-HLS settings in the [Advanced section of the application settings](/guides/configuration-and-testing/ams-application-configuration/#management-panel-application-settings) of the Ant Media Server web panel. These settings allow you to adjust the behavior of LL-HLS to meet specific needs, like controlling segment durations or playlist updates.
 
 ### Customization Parameters
 
@@ -260,14 +261,10 @@ To apply the above settings, add them under the **customSettings** section in th
 }
 ```
 
-You can easily enable Low-Latency HLS (LL-HLS) on Ant Media Server with this guide. For a more detailed explanation of LL-HLS and its related properties, check the [Low-latency HLS blogpost](https://antmedia.io/low-latency-hls-or-ll-hls/).
+For a more detailed explanation of LL-HLS and its related properties, check the [Low-latency HLS blogpost](https://antmedia.io/low-latency-hls-or-ll-hls/).
 
-<br /><br />
----
+You now have the LL-HLS plugin installed and are playing a stream back at 2-5 second latency.
 
-<div align="center">
-<h2> ⏩ LL-HLS – Streaming in the Fast Lane! 🏎️💨 </h2>
-</div>
+## Need Help?
 
-Congratulations! You've successfully **set up LL-HLS with Ant Media Server**. Your viewers can now enjoy live streams with **significantly reduced latency**, enhancing their real-time viewing experience. 
-With LL-HLS, you've embraced a **modern streaming protocol** that balances performance and compatibility. Your content is now delivered faster, keeping your audience engaged and satisfied.
+If the plugin fails to install or the player can't load the `__master.m3u8` URL, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).

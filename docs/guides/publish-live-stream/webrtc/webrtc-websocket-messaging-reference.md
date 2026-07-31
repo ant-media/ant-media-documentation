@@ -816,7 +816,7 @@ This error can occur if a user attempts to re-publish a stream with the same `st
   }
   ```
 
-You now have the full WebSocket command and notification reference for implementing signaling directly. If you'd rather use the higher-level JavaScript SDK instead of raw WebSocket messages, see [WebRTC Publishing](/guides/publish-live-stream/webrtc/webrtc/).
+You now have the full WebSocket command and notification reference for implementing signaling directly. If you'd rather use the higher-level JavaScript SDK instead of raw WebSocket messages, see [WebRTC Publishing](/guides/publish-live-stream/webrtc/).
 
 ## Need Help?
 

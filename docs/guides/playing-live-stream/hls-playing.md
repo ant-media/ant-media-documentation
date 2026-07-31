@@ -2,14 +2,14 @@
 title: HLS Playback
 description: This documentation guide will help you achieve HLS playing and save HLS records to your servers.
 keywords: [HLS Playback, HLS Playback with Ant Media Server, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 2
+sidebar_position: 4
 ---
 
 # HLS Playback
 
-HLS playback is available in both the Community and Enterprise Editions of Ant Media Server. Prior to initiating playback of a stream, ensure that the stream is actively broadcasting on the server.
+HLS playback is available in both the Community and Enterprise Editions of Ant Media Server. Prior to initiating playback of a stream, ensure that the stream is actively broadcasting on the server — see [Publish Live Streams](/category/publish-live-streams/) if you haven't started one yet.
 
-> Quick Link: [Learn How to Publish Live Streams](/category/publish-live-streams/)
+By the end of this guide, you'll be playing a live stream back with HLS, and know how to tune segment settings, subfolders, and time-interval playback.
 
 ## Enable HLS
 
@@ -31,7 +31,7 @@ Example:
 Here’s an example of how to pass these parameters in a `POST` request to create a live stream with specific HLS settings:
 
 ```bash
-curl -X POST -H "Accept: Application/json" -H "Content-Type: application/json" http://<Your-Ant-Media-Server>:5080/<App-Name>/rest/v2/broadcasts/create -d '{"streamId":"test1","name":"test1s","type":"liveStream","hlsParameters":{"hlsTime":"4","hlsListSize":"7","hlsPlayListType":"event"}}'
+curl -X POST -H "Accept: Application/json" -H "Content-Type: application/json" http://<DOMAIN_NAME>:5080/<APP_NAME>/rest/v2/broadcasts/create -d '{"streamId":"test1","name":"test1s","type":"liveStream","hlsParameters":{"hlsTime":"4","hlsListSize":"7","hlsPlayListType":"event"}}'
 ```
 
 -   `hlsTime` is set to `4`, meaning each segment will be 4 seconds long.
@@ -42,21 +42,27 @@ curl -X POST -H "Accept: Application/json" -H "Content-Type: application/json" h
 
 You can use the embedded player in `play.html` to play the streams with HLS. To use play.html, go to the below URL format.
 
-```https://AMS-domain-name:5443/live/play.html```.
+```
+https://<DOMAIN_NAME>:5443/live/play.html
+```
 
 If you have Ant Media Server installed on your local machine, you may also go to
 
-```http://localhost:5080/live/play.html```.
+```
+http://localhost:5080/live/play.html
+```
 
-To play a HLS stream, provide ```streamId``` as the id and ```hls``` as the playOrder parameters in the URL shown below.
-    
-```https://AMS-domain-name:5443/live/play.html?id=test&playOrder=hls```
+To play a HLS stream, provide `streamId` as the id and `hls` as the playOrder parameters in the URL shown below.
+
+```
+https://<DOMAIN_NAME>:5443/live/play.html?id=test&playOrder=hls
+```
 
 The HLS playback will start automatically when the stream is live.
-    
+
 ![](@site/static/img/playing-live-streams/hls-playing/hls-started.png)
 
-To learn more about the embedded player, check [the document](https://antmedia.io/docs/guides/playing-live-stream/embedded-web-player/).
+To learn more about the embedded player, check [the document](/guides/playing-live-stream/embedded-web-player/).
 
 Autoplay is enabled by default in a player, but it may be disabled for certain policies in Chrome and Firefox. So you might need to click the player button to get it started. Check out the following links:
 
@@ -69,7 +75,7 @@ To play HLS streams with [React Player](https://github.com/cookpete/react-player
 
 ```
 <ReactPlayer
-  url="https://{AMS-URL}:5443/{APP-NAME}/streams/{STREAM-ID}.m3u8"
+  url="https://<DOMAIN_NAME>:5443/<APP_NAME>/streams/<STREAM_ID>.m3u8"
   config={{
     file: {
       hlsOptions: { 
@@ -97,7 +103,7 @@ This functionality ensures that when HLS files are being generated on the server
 Curl sample to create a broadcast with subFolder:
 
 ```bash
-curl -X 'POST' 'https://domain:5443/live/rest/v2/broadcasts/create' \
+curl -X 'POST' 'https://<DOMAIN_NAME>:5443/live/rest/v2/broadcasts/create' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
   -d '{
@@ -113,7 +119,7 @@ Alternatively, if you name subFolder as ```teststream/mySubFolder``` your HLS fi
 Curl Sample:
 
 ```bash
-curl -X 'POST' 'https://domain:5443/live/rest/v2/broadcasts/create' \
+curl -X 'POST' 'https://<DOMAIN_NAME>:5443/live/rest/v2/broadcasts/create' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
   -d '{
@@ -126,13 +132,13 @@ Remember, if you try to HLS play a stream that has a subFolder defined, you need
 
 So if you created a stream with  ```"streamId":"teststream"``` and ```"subFolder":"mySubFolder"``` you should play it with:
 
-```https://domain:5443/live/play.html?id=mySubFolder/teststream&playOrder=hls```
+```https://<DOMAIN_NAME>:5443/live/play.html?id=mySubFolder/teststream&playOrder=hls```
 
 If you created a stream with ```"streamId":"teststream"``` and ```"subFolder":"teststream/mySubFolder"``` you should play it with:
 
-```https://domain:5443/live/play.html?id=teststream/mySubFolder/teststream&playOrder=hls```
+```https://<DOMAIN_NAME>:5443/live/play.html?id=teststream/mySubFolder/teststream&playOrder=hls```
 
-To observe how folders and files are generated, go to ```/usr/local/antmedia/webapps/{appName}/streams``` 
+To observe how folders and files are generated, go to ```/usr/local/antmedia/webapps/<APP_NAME>/streams``` 
 directory.
 
 ### Playing HLS stream directly via M3U8
@@ -141,11 +147,11 @@ Assume HLS muxing is enabled and a stream is published to Ant Media Server.
 
 The default HLS (.m3u8) URL will be as follows:
 
-```https://AMS-domain-or-IP:5443/AppName/streams/StreamId.m3u8```
+```https://<DOMAIN_NAME>:5443/<APP_NAME>/streams/<STREAM_ID>.m3u8```
 
 If adaptive bit rates are enabled in the application (Enterprise Edition), the HLS (.m3u8) URL will be as follows:
 
-```https://AMS-domain-or-IP:5443/AppName/streams/StreamId_adaptive.m3u8```
+```https://<DOMAIN_NAME>:5443/<APP_NAME>/streams/<STREAM_ID>_adaptive.m3u8```
 
 :::info
 Beginning with version 2.4.1, the filename structure included the bitrate in the name. For example, 480p ABR is enabled on the server and you want to play it.
@@ -177,7 +183,7 @@ To insert an ID3 tag into any stream, just call the [REST method](https://antmed
 Below is a curl sample to use ID3 metadata
 
 ```bash
-curl -X 'POST' 'https://domain:5443/AppName/rest/v2/broadcasts/streamId/id3' \
+curl -X 'POST' 'https://<DOMAIN_NAME>:5443/<APP_NAME>/rest/v2/broadcasts/<STREAM_ID>/id3' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
   -d '"string"'
@@ -199,7 +205,7 @@ The HLS modifier feature is included by default on the server side, starting wit
 
 You can include the ```startTime``` and ```endTime``` parameters in the query string of the m3u8 request to play the stream during that specific time frame.
 
-```https://domain:5443/live/streams/streamId.m3u8?start=1668454888&end=1668454999```
+```https://<DOMAIN_NAME>:5443/live/streams/<STREAM_ID>.m3u8?start=1668454888&end=1668454999```
 
 ### Configuration for HLS Manifest Modifier
 
@@ -215,17 +221,12 @@ Set the below settings from application settings -> advanced settings through th
 
 Request m3u8 by adding the `start` and `end` date and time in the Unix timestamp as below:
 
-```https://domain:5443/live/streams/streamId.m3u8?start=1668454888&end=1668454999```
+```https://<DOMAIN_NAME>:5443/live/streams/<STREAM_ID>.m3u8?start=1668454888&end=1668454999```
 
 You can get the time stamp as per the ts file date and time via [Epoch Converter](https://www.epochconverter.com/).
 
+You're now playing a live stream back with HLS, with segment settings, subfolders, and time-interval playback all available if you need them.
 
-<br /><br />
----
+## Need Help?
 
-<div align="center">
-<h2> Playback Made Easy!🚢 </h2>
-</div>
-
-Congratulations! You've successfully set up **HLS playback with Ant Media Server**. Your viewers can now enjoy **seamless streaming** across various **devices** and **platforms**.
-With HLS, you've embraced a **widely supported streaming protocol** that ensures broad **compatibility** and **scalability**. Your content is now more accessible than ever before.
+If the stream doesn't appear in the player or the m3u8 URL 404s, confirm HLS muxing is enabled and the stream is actually broadcasting, then reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).

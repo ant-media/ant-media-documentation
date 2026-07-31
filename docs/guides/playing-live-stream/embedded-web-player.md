@@ -2,12 +2,14 @@
 title: Embedded Web Player
 description: Embed AMS Web Player to your webpage
 keywords: [Embedded Web Player, Embedded Player using iFrame, Ant Media Server Documentation, Ant Media Server Tutorials, play streams, play on separate websites]
-sidebar_position: 5
+sidebar_position: 6
 ---
 
 # Embedded Web Player
 
 There are several methods available for embedding an Ant Media Server custom video player onto your website to watch streams hosted on the Ant Media Server.
+
+By the end of this guide, you'll have a stream embedded in your own website, either via a quick `<iframe>` or the customizable Web Player component.
 
 ## Iframe
 
@@ -45,19 +47,19 @@ The URL parameters listed below are accepted by the ```play.html``` page.
 * **`player`**: "videojs" or "hlsjs". Default value is videojs. It defines the player library to use for hls and vod playback.
 
 :::info
-When streams are configured with SubFolder option, the SubFolder path should be included in streamId (e.g., `?id=mySubFolder/streamId`). For more details, see [Playing streams from SubFolders](hls-playing.md#playing-streams-from-subfolders).
+When streams are configured with SubFolder option, the SubFolder path should be included in streamId (e.g., `?id=mySubFolder/streamId`). For more details, see [Playing streams from SubFolders](/guides/playing-live-stream/hls-playing/#playing-streams-from-subfolders).
 :::
 
 The default WebRTC URL is as follows for play.html (when no token is enabled).
 
 ```
-https://AMS-domain-name:5443/live/play.html?name=streamId
+https://<DOMAIN_NAME>:5443/live/play.html?name=<STREAM_ID>
 ```
 
 When the token is enabled:
 
 ```
-https://AMS-domain-name:5443/live/play.html?name=streamId&token=generated-token
+https://<DOMAIN_NAME>:5443/live/play.html?name=<STREAM_ID>&token=<TOKEN>
 ```
 
 For HLS, LL-HLS, Dash or VOD playback, you can use the ```playOrder``` parameter as defined above.
@@ -73,7 +75,7 @@ Starting v3.0, Ant Media Server also supports playback through the integrated hl
 You can enable the hls.js player by passing the player parameter in the playback URL.
 
 ```
-https://AMS-domain-name:5443/live/play.html?streamId={STREAM_ID}&player=hlsjs&playOrder=ll-hls
+https://<DOMAIN_NAME>:5443/live/play.html?streamId=<STREAM_ID>&player=hlsjs&playOrder=ll-hls
 ```
 
 * **Parameters used in the play.html url** 
@@ -94,28 +96,28 @@ You can copy the Embed code for a specific stream directly from the AMS dashboar
 Here is the sample Embed code:
 
 ```html
-<iframe width="560" height="315" src="https://AMS-domain-name:5443/live/play.html?name=stream1" frameBorder="0" allowFullScreen></iframe>
+<iframe width="560" height="315" src="https://<DOMAIN_NAME>:5443/live/play.html?name=stream1" frameBorder="0" allowFullScreen></iframe>
 ```
 
-```src="https://AMS-domain-name:5443/live/play.html?name=stream1"``` 
+```src="https://<DOMAIN_NAME>:5443/live/play.html?name=stream1"``` 
 
 In the above segment of the iframe code, we're passing a name parameter to define the `streamId`. You can include additional parameters similarly as specified above.
 
 For example, `playOrder=webrtc`
 
-```src="https://AMS-domain-name:5443/live/play.html?name=stream1&playOrder=webrtc"```
+```src="https://<DOMAIN_NAME>:5443/live/play.html?name=stream1&playOrder=webrtc"```
 
 With this adjustment, your Iframe player will attempt to stream solely via WebRTC. If a WebRTC stream isn't available, it will refrain from playing the stream altogether. If you do not specify playOrder, then in that case, the player will switch to HLS playback as a fallback method if it is enabled.
 
 :::info
-Some secured websites do not accept the embedded code with an HTTP URL; please ensure that SSL is configured on your Ant Media Server. For further information, see the [SSL section](https://antmedia.io/docs/guides/installing-on-linux/setting-up-ssl/).
+Some secured websites do not accept the embedded code with an HTTP URL; please ensure that SSL is configured on your Ant Media Server. For further information, see the [SSL section](/guides/installing-on-linux/setting-up-ssl/).
 :::
 
 ## Ant Media Server Web Player
 
 The [Web Player](https://github.com/ant-media/Web-Player) is a custom video player developed by Ant Media, designed to facilitate playback of live streams hosted on the server. It accommodates all playback protocols (WebRTC, HLS, or CMAF Dash) and offers extensive customization options. It is fully open-source and accessible on [Github](https://github.com/ant-media/Web-Player).
 
-The Web Player utilizes the Ant Media Server Javascript SDK for WebRTC playback functionality. If your specific requirement involves exclusively WebRTC playback and you seek the most customizable solution, consider exploring the [JavaScript SDK](https://antmedia.io/docs/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/).
+The Web Player utilizes the Ant Media Server Javascript SDK for WebRTC playback functionality. If your specific requirement involves exclusively WebRTC playback and you seek the most customizable solution, consider exploring the [JavaScript SDK](/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/).
 
 Quick instructions for integrating the web player can be found in the GitHub [README](https://github.com/ant-media/Web-Player/blob/main/README.md). 
 
@@ -191,7 +193,7 @@ useEffect(() => {
  
  - **```httpBaseURL```**: The web player retrieves the application name (e.g., live in our example) and the URL of your server where the stream is located through this parameter. In a production environment, it should resemble: 
 
-    https://your_ams_url:5443/AppName/
+    https://<DOMAIN_NAME>:5443/<APP_NAME>/
 
    
  - **```videoHTMLContent```**: Content that the web player will inject into our videoContainer.
@@ -258,7 +260,7 @@ export default App;
 If you want to use the defined token or other parameter, then first you have to define the token or other variable and pass it as a parameter to the player.
 
 ```html
-const Token = "your-generated-token-value";
+const Token = "<TOKEN>";
 
 useEffect(() => {
 embeddedPlayerRef.current = new WebPlayer({
@@ -277,13 +279,8 @@ Otherwise, you can take the values as a URL parameter, as we use in AMS [play.ht
  - Change the language on the player while the stream is not active, see [this](https://github.com/orgs/ant-media/discussions/4880).
  - Display poster image instead of text when stream is not active, see [this](https://github.com/orgs/ant-media/discussions/4877).
 
-<br /><br />
----
+You now have a stream embedded in your own website, either via the quick `<iframe>` method or the customizable Web Player component.
 
-<div align="center">
-<h2> Take the Stream with You 🎥 </h2>
-</div>
+## Need Help?
 
-**Congratulations!** You've successfully integrated Ant Media Server's **Embedded Web Player into your website.** Your viewers can now enjoy **seamless** live streaming experiences with minimal setup. Whether you chose the quick **`<iframe>`** method or the customizable **Web Player**, you're all set to deliver high-quality content to your audience.
-
-Happy streaming!🙂
+If the embedded player shows a network warning or won't load, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
