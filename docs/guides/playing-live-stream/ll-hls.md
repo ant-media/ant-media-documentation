@@ -34,37 +34,32 @@ LL-HLS achieves this by using smaller video segments (called **parts**) that all
 
 ## How to Enable LL-HLS in Ant Media Server
 
-LL-HLS is a **paid plugin** offered by the Ant Media Server. So before using LL-HLS, you need to purchase and install the plugin on your Ant Media Server. 
+LL-HLS is a **paid plugin** offered by Ant Media Server. Before you can play with LL-HLS, you need to purchase and install the plugin on your Ant Media Server.
 
-For more information about plugin structure in Ant Media Server, take a look at the [Ant Media Server Plugins](https://antmedia.io/plugins-will-make-ant-media-server-more-powerful/).
+For more information about plugin structure in Ant Media Server, take a look at [Ant Media Server Plugins](https://antmedia.io/plugins-will-make-ant-media-server-more-powerful/).
 
-### Step 1: Install the LL-HLS Plugin
+### Install the LL-HLS Plugin
 
-1. **Install the Plugin**
+1. Upload/copy the plugin file to your instance running Ant Media Server.
+2. Run the following commands to install it:
 
-   - Upload/copy the plugin file to your instance running the Ant Media Server.
-   - Run the following commands to install:
-   
-     ```bash
-     sudo unzip low-latency-hls-plugin.zip
-     cd low-latency-hls-plugin
-     sudo ./install_low-latency-hls-plugin.sh
-     sudo service antmedia restart
-     ```
-     
-### Step 2: Publish a Stream
+   ```bash
+   sudo unzip low-latency-hls-plugin.zip
+   cd low-latency-hls-plugin
+   sudo ./install_low-latency-hls-plugin.sh
+   sudo service antmedia restart
+   ```
 
-Ant Media Server provides LL-HLS endpoints for all ingested streams. You can check the [publish live streams](/category/publish-live-streams/) section to learn how to publish streams using different protocols with Ant Media Server. For this example, let's [publish with WebRTC](/guides/publish-live-stream/webrtc/).
+### Stream Configuration Requirements
 
-#### Stream Configuration Requirements
-
-For LL-HLS to function correctly, your stream configuration must meet the following criteria:
+Ant Media Server generates LL-HLS output for every stream it ingests, but the encoder feeding it has to meet a few requirements for LL-HLS to actually deliver low latency. If you haven't published a stream yet, see [Publish Live Streams](/category/publish-live-streams/) for the protocol-specific guides.
 
 1. **Adaptive Bitrate (ABR):** ABR must be enabled.
-2. **GOP Size:** The Group of Pictures (GOP) size must be set to 1 or 2 seconds maximum. 
+2. **GOP Size:** The Group of Pictures (GOP) size must be set to 1 or 2 seconds maximum.
    - Example: If the framerate is 30 fps, set the GOP size to 30 or 60.
+3. **ABR Resolution and Bitrate:** Every ABR rendition must be lower resolution and bitrate than the source stream, never upscaled. This is good practice for adaptive bitrate in general, but it matters even more for LL-HLS.
 
-**Hardware Encoding Settings:**
+**Hardware Encoding Settings**
 
 If you are using hardware encoding (e.g., `h264_nvenc`), you must configure the following parameters to ensure stability:
 
@@ -78,45 +73,34 @@ If you are using hardware encoding (e.g., `h264_nvenc`), you must configure the 
 }
 ```
 
-1. **Access the WebRTC Publish Page**
+## Play the Stream with LL-HLS
 
-   - Open the following URL in your browser: `https://<DOMAIN_NAME>:5443/live/?id=stream1`
+With the plugin installed and your stream configured correctly, you have two ways to play it back: Ant Media Server's own embedded player, or any external LL-HLS-compatible player.
 
-   - You can use `stream1` or any custom stream ID.
+### Play with the Ant Media Server Embedded Player
 
-2. **Start Publishing the Stream**
+From v2.12 onwards, the [embedded web player](/guides/playing-live-stream/embedded-web-player/) plays LL-HLS natively, so you don't need a separate player just to test it. Open the following URL pattern in your browser:
 
-   - Click the **Start Publishing** button on the page.
+```
+https://<DOMAIN_NAME>:5443/<APP_NAME>/play.html?name=<STREAM_ID>&playOrder=ll-hls
+```
 
-   ![Screenshot 2024-09-23 130823](https://github.com/user-attachments/assets/ce967db5-640a-4ddb-b584-7a7b9eb03883)
+### Play with an External Player
 
-### Step 3: Play the Stream with LL-HLS
+For hls.js, Dolby Player, or any other LL-HLS-compatible player, use the direct `.m3u8` URL instead:
 
-1. **Open a Video Player**
+```
+https://<DOMAIN_NAME>:5443/<APP_NAME>/streams/ll-hls/<STREAM_ID>/<STREAM_ID>__master.m3u8
+```
 
-   We recommend using hls.js or Dolby Player for initial testing and latency verification.
+Make sure two underscores (`__`) sit between the stream ID and `master.m3u8` — that's part of the generated filename, not a typo.
 
-   - [hls.js demo player](https://hlsjs.video-dev.org/demo/)
-   - [Dolby Player ](https://optiview.dolby.com/resources/demos/test-stream/)
-   - From AMS v2.12 onwards, the LL-HLS playback is supported via the AMS Embedded Player as well. To learn more about embedded web player, check [here](/guides/playing-live-stream/embedded-web-player/).
+![Screenshot 2024-09-23 131202](https://github.com/user-attachments/assets/63bca3f6-0c71-4ba8-a8f7-5b8d8f56c24f)
 
-2. **Enter the LL-HLS URL**
+We recommend testing with one of these first:
 
-   In the player, enter the following URL to play the stream:
-
-   ```
-   https://<DOMAIN_NAME>:5443/live/streams/ll-hls/stream1/stream1__master.m3u8
-   ```
-
-   ![Screenshot 2024-09-23 131202](https://github.com/user-attachments/assets/63bca3f6-0c71-4ba8-a8f7-5b8d8f56c24f)
-
-   - Ensure two underscores (__) exist between the stream ID and `master.m3u8`.
-
-   - **URL pattern:** `https://<DOMAIN_NAME>:5443/<APP_NAME>/streams/ll-hls/<STREAM_ID>/<STREAM_ID>__master.m3u8`
-
-   - If you are using the Ant Media Server player, then the URL pattern would be as follows:
-
-     `https://<DOMAIN_NAME>:5443/<APP_NAME>/play.html?name=<STREAM_ID>&playOrder=ll-hls`
+- [hls.js demo player](https://hlsjs.video-dev.org/demo/)
+- [Dolby Player](https://optiview.dolby.com/resources/demos/test-stream/)
 
 
 ## Customize LL-HLS
