@@ -19,15 +19,6 @@ You can set the H.264 codec in the application settings via the web panel.
 
 ![Screenshot from 2021-12-06 17-03-19](https://user-images.githubusercontent.com/32591015/144859658-8a1887e2-3e3a-4247-948f-6c35e611684a.png)
 
-You can also set the below property to enable the H.264 codec via SSH.
-- Edit `/usr/local/antmedia/webapps/<APP_NAME>/WEB-INF/red5-web.properties` file and change the below setting:
-
-  `settings.h264Enabled=true`
-
-- Save the file & restart the Ant Media Server to apply the settings if you are using SSH.
-
-  `sudo service antmedia restart`
-
 ### Enable MP4 recording by default for every stream
 
 You can enable MP4 recording from the web panel under application settings.
@@ -71,15 +62,6 @@ To record in WebM format, you’ll need to enable the VP8 codec in your Ant Medi
 You can set the VP8 codec in the application settings via the web panel.
 
 ![Screenshot from 2021-12-06 17-00-45](https://user-images.githubusercontent.com/32591015/144859285-9dedac37-f0a7-4f0d-94d5-de97f393d194.png)
-
-You can also set the below property to enable the VP8 codec via SSH.
-- Edit the `/usr/local/antmedia/webapps/<APP_NAME>/WEB-INF/red5-web.properties` file and change the below setting:
-
-  `settings.vp8Enabled=true`
-
-- Save the file & restart the Ant Media Server to apply the settings if you are using SSH.
-
-  `sudo service antmedia restart`
 
 ### Enable WebM recording by default for every stream
 
