@@ -7,7 +7,9 @@ sidebar_position: 1
 
 # IP Camera Streaming
 
-Ant Media Server users can pull IP camera streams easily from the management panel. In other words, you don’t need to write any commands or use a terminal to be able to re-stream external sources.
+Ant Media Server users can pull IP camera streams easily from the management panel. In other words, you don't need to write any commands or use a terminal to be able to re-stream external sources.
+
+By the end of this guide, you'll be pulling a live feed from an IP camera into Ant Media Server, either through ONVIF or a direct RTSP URL.
 
 For IP camera re-streaming, the camera should support the ONVIF standard. ONVIF makes it easy to manage IP cameras. All CRUD and PTZ operations are based on well-defined SOAP messages.
 
@@ -28,7 +30,7 @@ Let’s have a look at how to pull a stream from an IP camera.
 
 - Fill in the **Stream Name**, **Camera Username**, **Camera Password** and any custom **StreamId**. 
 
-- You should add the ONVIF URL of the IP camera. Generally, it is in the following format: ```IP-ADDRESS-OF-IPCAMERA:ONVIF PORT```. 
+- You should add the ONVIF URL of the IP camera. Generally, it is in the following format: `<IP_ADDRESS>:<ONVIF_PORT>`. 
 
 - If you don't know the ONVIF URL, you can use the **Auto Discover** feature. If the IP camera and the server are on the same network, the Ant Media server can discover them automatically.
     ![](@site/static/img/publish-live-stream/IP-Camera-and-External-Sources/IP-Camera-Add.png)
@@ -60,7 +62,7 @@ You can learn more about Stream Source in the next section.
 
 ### RTSP Transport Type
 
-In some cases, the RTSP camera does not start and shows the status as `preparing` on the dashboard. By default, the [**RTSP pull transport type**](https://antmedia.io/javadoc/io/antmedia/AppSettings.html#rtspPullTransportType) is set to pull the stream with both `TCP` and ⁣`UDP` but sometimes the camera only supports only TCP or UDP at a time, so you can change it with the application settings.
+In some cases, the RTSP camera does not start and shows the status as `preparing` on the dashboard. By default, the [**RTSP pull transport type**](https://antmedia.io/javadoc/io/antmedia/AppSettings.html#rtspPullTransportType) is set to pull the stream with both `TCP` and `UDP` but sometimes the camera only supports only TCP or UDP at a time, so you can change it with the application settings.
 
 Under the application's Advanced settings, there is the below property:
 
@@ -82,27 +84,20 @@ If IP cameras are accessible and properly configured, Ant Media Server adds thei
 
 ![](@site/static/img/publish-live-stream/IP-Camera-and-External-Sources/IP-Camera-Play.png)
 
-The IP camera stream can be monitored with any output protocol, like `WebRTC`, `HLS`⁣, ⁣`DASH`, and `LL-HLS`. Check out the [playback section](https://antmedia.io/docs/category/playing-live-streams/) for more details.
-
-Check out the [recording documentation](https://antmedia.io/docs/category/recording-live-streams/) to record the IP camera streams. 
+The IP camera stream can be monitored with any output protocol, like `WebRTC`, `HLS`, `DASH`, and `LL-HLS`. Check out the [playback section](/category/play-live-streams/) for more details, or the [recording documentation](/category/recording-live-streams/) to record the IP camera streams.
 
 ## Rest API to add IP Camera Stream
 
 This [Rest API](https://antmedia.io/rest/#/default/createBroadcast) can be used to create the live stream.
 
 ```bash
-curl -X POST -H "Content-Type: application/json" "https://IP-address-or-domain:5443/App-Name/rest/v2/broadcasts/create?autoStart=false" -d '{
-"type":"ipCamera","name":"test","streamId":"test","ipAddr":  "127.0.0.1:8080","username": "camera-username","password":"camera-password"}'
+curl -X POST -H "Content-Type: application/json" "https://<DOMAIN_NAME>:5443/<APP_NAME>/rest/v2/broadcasts/create?autoStart=false" -d '{
+"type":"ipCamera","name":"test","streamId":"test","ipAddr":  "<CAMERA_IP>:<ONVIF_PORT>","username": "<CAMERA_USERNAME>","password":"<CAMERA_PASSWORD>"}'
 ```
 
-<br /><br />
----
+You've now connected an IP camera to Ant Media Server and it's live and accessible via WebRTC, HLS, DASH, or LL-HLS.
 
-<div align="center">
-<h2> Your Camera is Now Online 📷 </h2>
-</div>
+## Need Help?
 
-You’ve successfully connected your **IP camera to Ant Media Server**, entered the **URL and Stream ID**, and started streaming. Whether using **RTSP** or **ONVIF**, your feed is now live and accessible via WebRTC, HLS, DASH, or LL-HLS.  
-
-Great job 👏 — your camera stream is now securely flowing into AMS and ready for your audience! 🎥
+If the camera doesn't come online or Auto Discover can't find it, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
 

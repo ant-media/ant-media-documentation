@@ -51,5 +51,5 @@ If AMS should reach out and pull a stream instead of receiving one pushed to it 
 ## Once You're Publishing
 
 - **[Restreaming](/guides/publish-live-stream/restreaming/)** — send an already-ingested stream onward to another RTMP/SRT destination, for example simulcasting to a social platform.
-- **[Multitrack Publish and Play](/guides/publish-live-stream/multitrack-publish-and-play-with-ams/)** — publish and play multiple audio/video tracks within a single session.
+- **[Multitrack Publish and Play](/guides/publish-live-stream/multitrack-publish-and-play/)** — publish and play multiple audio/video tracks within a single session.
 - **[Playlist](/guides/publish-live-stream/playlist/)** — schedule VOD content to play out as a live stream.

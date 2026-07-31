@@ -13,6 +13,8 @@ The Dynamic Stream Pulling feature is available in versions 2.8.3 and up.
 
 Dynamic Stream Pulling offers an efficient bandwidth optimization solution by automatically starting and stopping stream pulling based on user demand. 
 
+By the end of this guide, you'll have Dynamic Stream Pulling enabled on a broadcast, so AMS only pulls the source while someone is actually watching.
+
 ## How It Works
 
 - Auto-Start: When a user attempts to view an offline stream, Ant Media Server automatically initiates stream pulling, bringing the broadcast online.
@@ -36,26 +38,20 @@ This feature is beneficial for bandwidth optimization, especially when continuou
 **Here is the curl sample:**
 
 ```bash
-curl --location --request PUT 'https://AMS_DOMAIN:5443/AppName/rest/v2/broadcasts/streamId' --header 'Content-Type: application/json' --data '{"autoStartStopEnabled":true}'
+curl --location --request PUT 'https://<DOMAIN_NAME>:5443/<APP_NAME>/rest/v2/broadcasts/<STREAM_ID>' --header 'Content-Type: application/json' --data '{"autoStartStopEnabled":true}'
 ```
-Replace AMS_DOMAIN, Port, and streamId with your server's domain, port, and the specific stream ID, respectively.
-   
+
 - Open a new tab and start watching the live stream using the below URL.
 
    ```html
-   https://AMS_DOMAIN:5443/AppName/play.html?id=streamId&playOrder=webrtc
+   https://<DOMAIN_NAME>:5443/<APP_NAME>/play.html?id=<STREAM_ID>&playOrder=webrtc
    ```
    Now the server will start fetching streams.
 
  - Close the player tab. Since there are no viewers anymore, the Ant Media Server will stop pulling the stream within a few seconds, and the broadcast status will change to `Offline`.
 
-<br /><br />
----
+You've now configured Dynamic Stream Pulling, so this broadcast only pulls from its source while someone is watching and stops automatically once viewers leave.
 
-<div align="center">
-<h2> You Are an Optimizer! 🎉 </h2>
-</div>
+## Need Help?
 
-You've successfully configured **Dynamic Stream Pulling in Ant Media Server**. With this feature, your server efficiently manages bandwidth by **pulling streams only when needed** and stopping when no viewers are present. This ensures optimal resource utilization and a seamless viewing experience for your audience.
-
-Your live streams are now more efficient and responsive, adapting dynamically to viewer demand. Great job 🐜
+If the stream doesn't stop pulling when idle, or won't auto-start on view, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).

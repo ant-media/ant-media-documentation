@@ -9,6 +9,8 @@ sidebar_position: 2
 
 Ant Media Server (AMS) can handle a variety of streaming flows. It can accept and create streaming media as well as pull live streams from external sources such as live TV streams, IP camera streams, and other types of live streams.
 
+By the end of this guide, you'll be pulling an external stream URL into Ant Media Server as a Stream Source.
+
 The stream sources that Ant Media Server can fetch are: **RTSP, RTMP, HLS, SRT, UDP, FLV, etc.**
 
 To restream from an external source, follow these steps:
@@ -30,7 +32,7 @@ In AMS versions 2.5.3 and later, the stream auto-fetcher is disabled by default.
 "startStreamFetcherAutomatically": true,
 ```
 
-Check out the [recording documentation](https://antmedia.io/docs/category/recording-live-streams/) to record the source streams on the Ant Media Server.
+Check out the [recording documentation](/category/recording-live-streams/) to record the source streams on the Ant Media Server.
 
 ### Add RTSP Source with Video or Audio Only
 
@@ -69,18 +71,13 @@ To pull the UDP stream on a server as a stream source, follow these steps:
 This [Rest API](https://antmedia.io/rest/#/default/createBroadcast) can be used to create the live stream.
 
 ```bash
-curl -X POST -H "Content-Type: application/json" "https://IP-address-or-domain:5443/App-Name/rest/v2/broadcasts/create?autoStart=false" -d '{ "type":"streamSource","name":"test",
-"streamId":"test","streamUrl":"YOUR_STREAM_SOURCE_URL"}'
+curl -X POST -H "Content-Type: application/json" "https://<DOMAIN_NAME>:5443/<APP_NAME>/rest/v2/broadcasts/create?autoStart=false" -d '{ "type":"streamSource","name":"test",
+"streamId":"test","streamUrl":"<STREAM_SOURCE_URL>"}'
 ```
 
-<br /><br />
----
+You've now configured Ant Media Server to restream content from an external source, and it's ready for playback via WebRTC, HLS, DASH, or LL-HLS.
 
-<div align="center">
-<h2> Stream Source Connected! 🎉 </h2>
-</div>
+## Need Help?
 
-You've successfully configured Ant Media Server to **restream content from an external source**. Whether it's an RTSP feed from an IP camera, an HLS playlist, or a UDP stream, your AMS is now pulling and broadcasting it seamlessly.
-
-Your live stream is now ready for **playback via WebRTC, HLS, DASH, or LL-HLS. Great job — your content is live and accessible!**
+If AMS can't pull the source stream, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
 

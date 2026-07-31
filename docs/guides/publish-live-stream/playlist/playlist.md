@@ -19,7 +19,7 @@ Linear live streaming, also known as pre-recorded live streaming or VoD streamin
 
 This technique is widely employed, involving the recording of a video that mimics a live event. The recorded video is then scheduled for broadcast, creating the appearance of real-time streaming.
 
-It's often utilized to maintain a continuous 24/7 live presence on various social platforms, such as [YouTube, Facebook, and other social media channels](https://antmedia.io/docs/guides/publish-live-stream/simulcasting/).
+It's often utilized to maintain a continuous 24/7 live presence on various social platforms, such as YouTube, Facebook, and other social media channels — see [Restreaming](/guides/publish-live-stream/restreaming/) to send a stream on to those platforms.
 
 Linear live streams consist of scheduled programs with specific start and end times. Additionally, they offer synchronized viewing experiences where all viewers watch the same content simultaneously. This ensures that viewers avoid spoilers before watching.
 
