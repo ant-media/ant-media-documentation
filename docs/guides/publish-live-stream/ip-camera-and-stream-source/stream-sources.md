@@ -59,7 +59,7 @@ To pull the UDP stream on a server as a stream source, follow these steps:
  - First, send the stream with UDP to the Ant Media Server IP address using an encoder or FFMPEG. In this example, we used the FFMPEG command.
 
    ```bash
-   ffmpeg -f lavfi -re -i smptebars=duration=60:size=1280x720:rate=30 -f lavfi -re -i sine=frequency=1000:duration=60:sample_rate=44100 -pix_fmt yuv420p -c:v libx264 -b:v 1000k -g 30 -keyint_min 120 -profile:v baseline -preset veryfast -f mpegts "udp://server-IP:5000?pkt_size=1316"
+   ffmpeg -f lavfi -re -i smptebars=duration=60:size=1280x720:rate=30 -f lavfi -re -i sine=frequency=1000:duration=60:sample_rate=44100 -pix_fmt yuv420p -c:v libx264 -b:v 1000k -g 30 -keyint_min 120 -profile:v baseline -preset veryfast -f mpegts "udp://<SERVER_IP>:5000?pkt_size=1316"
    ```
 
    You can change the port number as per your requirements. We published the stream on port 5000. Also, make sure that the used port is whitelisted on the firewall.

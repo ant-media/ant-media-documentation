@@ -87,7 +87,7 @@ SRT is enabled by default in Ant Media Server and communicates via UDP port 4200
 SRT support is available for both x86_64 and ARM architectures, starting with Ant Media Server version 2.6.0. For versions below 2.6.0 (till v2.5.3), SRT support is available for the x86_64 architecture only.
 :::
 
-You're now pushing SRT streams into Ant Media Server with OBS or FFmpeg. From here, head to the [playback guide](/category/play-live-streams/) to view your stream, or see [vMix](/guides/publish-live-stream/srt/vmix/) and [Wirecast](/guides/publish-live-stream/srt/wirecast/) if you'd rather push from a dedicated encoder.
+You're now pushing SRT streams into Ant Media Server with OBS or FFmpeg. From here, head to the [playback guide](/category/play-live-streams/) to view your stream.
 
 ## Need Help?
 

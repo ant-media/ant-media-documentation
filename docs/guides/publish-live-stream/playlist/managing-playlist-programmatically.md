@@ -5,6 +5,8 @@ keywords: [Managing the Playlist Programmatically, Ant Media Server Documentatio
 sidebar_position: 3
 ---
 
+# Managing the Playlist Programmatically
+
 In the previous sections, we learned how to create and manage playlists via the management panel/dashboard. The playlist can also be managed programmatically with the help of the Ant Media Server REST APIs offering flexibility for automation and integration.
 
 By the end of this guide, you'll be creating, starting, skipping items in, and stopping a playlist entirely through the REST API.

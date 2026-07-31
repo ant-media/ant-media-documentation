@@ -34,7 +34,7 @@ By the end of this guide, you'll be simulcasting an existing AMS live stream out
 If you want to use a persistent stream key, you just need to enable **Persistent Stream key** in the Advanced settings option.
 :::
 
-The Facebook RTMPs Endpoint URL that will be used in Ant Media Server will be of the format: ```server-URL/stream-key```
+The Facebook RTMPs Endpoint URL that will be used in Ant Media Server will be of the format: ```<SERVER_URL>/<STREAM_KEY>```
 
 example:
 
@@ -82,7 +82,7 @@ Then copy the **Stream URL** and **Stream Key.**
 
 ![](@site/static/img/youtube-studio-stream-url-stream-key.png)
 
-The YouTube RTMP Endpoint URL that will be used in Ant Media Server will be of the format: ```stream-URL/stream-key```
+The YouTube RTMP Endpoint URL that will be used in Ant Media Server will be of the format: ```<STREAM_URL>/<STREAM_KEY>```
 
 example
 
@@ -123,7 +123,7 @@ Congratulations! The stream is live on YouTube.
 
 ![](@site/static/img/publish-live-stream/simulcasting/twitch-ingest.png)
 
-Twitch RTMP Endpoint URL that will be used in Ant Media Server will be of the format: ```ingest-endpoint/stream-key```
+Twitch RTMP Endpoint URL that will be used in Ant Media Server will be of the format: ```<INGEST_ENDPOINT>/<STREAM_KEY>```
 
 example
 

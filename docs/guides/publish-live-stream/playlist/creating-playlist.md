@@ -5,6 +5,8 @@ keywords: [Creating a playlist, Ant Media Server Documentation, Ant Media Server
 sidebar_position: 2
 ---
 
+# Creating a Playlist
+
 Ant Media Server (AMS) allows you to create and manage playlists, enabling seamless playback of multiple Video on Demand (VoD) files in a specified order. This feature is available in both the Community and Enterprise editions of AMS.
 
 By the end of this guide, you'll have a playlist of VoD files created and streaming on Ant Media Server.
@@ -92,7 +94,7 @@ If you have the VoD URL handy or are adding external VoDs, you can use this opti
 
 #### Get the VoD URL
 
-- The sample path of a VoD file uploaded to the Ant Media Server VoD section is like `http(s)://ams-server-url:5080(5443)/LiveApp/streams/vod_id.mp4`
+- The sample path of a VoD file uploaded to the Ant Media Server VoD section is like `http(s)://<DOMAIN_NAME>:5080(5443)/LiveApp/streams/<VOD_ID>.mp4`
 
 - To get the VOD URL, click on the hamburger icon, which is located on the right side of the screen, and then click `Copy VoD URL`
 
@@ -101,8 +103,8 @@ If you have the VoD URL handy or are adding external VoDs, you can use this opti
 - Now we have the VoDs accessible through the links below.
 
 ```
-https://AMS_URL:5443/LiveApp/streams/044283659243035008593467.mp4
-https://AMS_URL:5443/LiveApp/streams/127700726123231884567831.mp4
+https://<DOMAIN_NAME>:5443/LiveApp/streams/044283659243035008593467.mp4
+https://<DOMAIN_NAME>:5443/LiveApp/streams/127700726123231884567831.mp4
 ```
 
 - Add all the playlist items and then click `Create`.

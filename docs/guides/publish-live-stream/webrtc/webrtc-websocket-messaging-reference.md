@@ -5,13 +5,15 @@ keywords: [WebRTC WebSocket Messaging Reference, Ant Media Server Documentation,
 sidebar_position: 6
 ---
 
+# WebRTC WebSocket Messaging Reference
+
 This documentation is for developers who need to implement signaling between Ant Media Server and clients for publishing & playing streams. 
 
 By the end of this reference, you'll know the exact WebSocket commands and notifications for publish, play, conference, and peer-to-peer signaling, plus every error callback the server can send back.
 
 Let's understand it step by step:
 
-##  Publish WebRTC Stream
+## Publish WebRTC Stream
 
 1. To connect to the Ant Media Server, client can use WebSocket with a URL in the format: 
  
@@ -814,7 +816,7 @@ This error can occur if a user attempts to re-publish a stream with the same `st
   }
   ```
 
-You now have the full WebSocket command and notification reference for implementing signaling directly. If you'd rather use the higher-level JavaScript SDK instead of raw WebSocket messages, see [WebRTC Publishing](/guides/publish-live-stream/webrtc/webrtc/), [WebRTC Conference](/guides/publish-live-stream/webrtc/webrtc-conference-call/), or [Peer-to-Peer Communication](/guides/publish-live-stream/webrtc/webrtc-peer-to-peer-communication/).
+You now have the full WebSocket command and notification reference for implementing signaling directly. If you'd rather use the higher-level JavaScript SDK instead of raw WebSocket messages, see [WebRTC Publishing](/guides/publish-live-stream/webrtc/webrtc/).
 
 ## Need Help?
 

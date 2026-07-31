@@ -5,6 +5,8 @@ keywords: [WebRTC Peer to Peer Communication, Ant Media Server Documentation, An
 sidebar_position: 5
 ---
 
+# WebRTC Peer to Peer Communication
+
 In this documentation, we're going to explain how to implement WebRTC peer-to-peer communication with JavaScript SDK. 
 
 By the end of this guide, you'll have two browser tabs connected directly to each other in P2P mode, and know how to fall back to a TURN server when a direct connection isn't possible.

@@ -5,6 +5,8 @@ keywords: [WebRTC publishing, Ant Media Server Documentation, Ant Media Server T
 sidebar_position: 1
 ---
 
+# WebRTC Publishing
+
 WebRTC (Web Real-Time Communication) offers ultra-low latency streaming, making it ideal for applications requiring real-time interaction, such as live events, online gaming, and virtual meetings. Unlike traditional protocols like RTMP or HLS, WebRTC enables direct peer-to-peer communication, reducing delays to approximately 0.5 seconds. This makes it a superior choice for scenarios where immediacy is crucial.
 
 **Requirements:** UDP ports `50000-60000` open on your firewall or security groups (see [here](https://github.com/orgs/ant-media/discussions/4944) if you need to change the range), and SSL enabled on your server — browsers require HTTPS for camera/microphone access and secure WebSocket connections outside of `localhost`. See the [SSL Setup guide](/guides/installing-on-linux/setting-up-ssl/) if you haven't enabled it yet.
