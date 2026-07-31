@@ -537,74 +537,43 @@ scripts: [
           from: '/guides/advanced-usage/turn-and-stun-installation/coturn-quick-installation/',
           to: '/guides/advanced-usage/turn-installation/coturn-quick-installation/'
         },
-	// Push Notification moved under Developer SDKs & API
+	// Push Notifications — refactored under Developer Guides
 	...(() => {
-          // Overview doc is served at the folder URL (not .../push-notification-management/push-notification-management/).
-          const pushPages = [
-            'Android SDK/configure-ant-media-server/',
-            'Android SDK/configure-manifest/',
-            'Android SDK/create-android-project/',
-            'Android SDK/create-required-classes/',
-            'Android SDK/dependency/',
-            'Android SDK/sending-notification/',
-            'Android SDK/setting-up-firebase/',
-            'iOS SDK/configure-ant-media-server/',
-            'iOS SDK/configure-your-ios-project/',
-            'iOS SDK/prerequirements/',
-            'iOS SDK/sending-notification/',
-            'iOS SDK/setting-up-apn-certificates/',
+          const pushBase = '/guides/developer-sdk-and-api/push-notification-management';
+          const pathMap = {
+            'push-notification-management/': '',
+            'Android SDK/setting-up-firebase/': 'android/setup-firebase/',
+            'Android SDK/create-android-project/': 'android/create-project/',
+            'Android SDK/dependency/': 'android/add-dependencies/',
+            'Android SDK/configure-manifest/': 'android/configure-manifest/',
+            'Android SDK/create-required-classes/': 'android/implement-handlers/',
+            'Android SDK/configure-ant-media-server/': 'server-setup/',
+            'Android SDK/sending-notification/': 'send-notifications/',
+            'iOS SDK/prerequirements/': 'ios/prerequisites/',
+            'iOS SDK/setting-up-apn-certificates/': 'ios/setup-apn/',
+            'iOS SDK/configure-your-ios-project/': 'ios/configure-xcode/',
+            'iOS SDK/configure-ant-media-server/': 'server-setup/',
+            'iOS SDK/sending-notification/': 'send-notifications/',
+          };
+          const prefixes = [
+            { from: '/guides/developing-antmedia-server/push-notification-management/', to: pushBase + '/' },
+            { from: '/3.0/guides/developing-antmedia-server/push-notification-management/', to: pushBase + '/' },
+            { from: '/2.17/guides/developing-antmedia-server/push-notification-management/', to: '/2.17' + pushBase + '/' },
+            { from: '/2.16/guides/developing-antmedia-server/push-notification-management/', to: '/2.16' + pushBase + '/' },
+            { from: pushBase + '/', to: pushBase + '/' },
+            { from: '/3.0' + pushBase + '/', to: pushBase + '/' },
+            { from: '/2.17' + pushBase + '/', to: '/2.17' + pushBase + '/' },
+            { from: '/2.16' + pushBase + '/', to: '/2.16' + pushBase + '/' },
           ];
           const redirects = [
-            {
-              from: '/guides/developing-antmedia-server/push-notification-management/',
-              to: '/category/push-notification/',
-            },
-            {
-              from: '/guides/developing-antmedia-server/push-notification-management/push-notification-management/',
-              to: '/guides/developer-sdk-and-api/push-notification-management/',
-            },
-            {
-              from: '/3.0/guides/developing-antmedia-server/push-notification-management/',
-              to: '/category/push-notification/',
-            },
-            {
-              from: '/3.0/guides/developing-antmedia-server/push-notification-management/push-notification-management/',
-              to: '/guides/developer-sdk-and-api/push-notification-management/',
-            },
-            {
-              from: '/2.17/guides/developing-antmedia-server/push-notification-management/',
-              to: '/2.17/category/push-notification/',
-            },
-            {
-              from: '/2.17/guides/developing-antmedia-server/push-notification-management/push-notification-management/',
-              to: '/2.17/guides/developer-sdk-and-api/push-notification-management/',
-            },
-            {
-              from: '/2.16/guides/developing-antmedia-server/push-notification-management/',
-              to: '/2.16/category/push-notification/',
-            },
-            {
-              from: '/2.16/guides/developing-antmedia-server/push-notification-management/push-notification-management/',
-              to: '/2.16/guides/developer-sdk-and-api/push-notification-management/',
-            },
+            { from: '/category/push-notification/', to: pushBase + '/' },
+            { from: '/2.17/category/push-notification/', to: '/2.17' + pushBase + '/' },
+            { from: '/2.16/category/push-notification/', to: '/2.16' + pushBase + '/' },
           ];
-          for (const page of pushPages) {
-            redirects.push({
-              from: `/guides/developing-antmedia-server/push-notification-management/${page}`,
-              to: `/guides/developer-sdk-and-api/push-notification-management/${page}`,
-            });
-            redirects.push({
-              from: `/3.0/guides/developing-antmedia-server/push-notification-management/${page}`,
-              to: `/guides/developer-sdk-and-api/push-notification-management/${page}`,
-            });
-            redirects.push({
-              from: `/2.17/guides/developing-antmedia-server/push-notification-management/${page}`,
-              to: `/2.17/guides/developer-sdk-and-api/push-notification-management/${page}`,
-            });
-            redirects.push({
-              from: `/2.16/guides/developing-antmedia-server/push-notification-management/${page}`,
-              to: `/2.16/guides/developer-sdk-and-api/push-notification-management/${page}`,
-            });
+          for (const { from, to } of prefixes) {
+            for (const [oldPath, newPath] of Object.entries(pathMap)) {
+              redirects.push({ from: from + oldPath, to: to + newPath });
+            }
           }
           return redirects;
         })(),

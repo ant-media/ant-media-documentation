@@ -8,16 +8,18 @@ sidebar_label: Build from Source
 
 # Build from Source
 
-Build Ant Media Server locally when you need to contribute to the project, patch the server, or create a custom distribution.
+Build Ant Media Server from source to contribute, test patches, or create a custom distribution.
 
 ## Prerequisites
 
 - Ubuntu Linux (recommended)
 - Java JDK and Maven
-- Node.js v20 LTS (for the management console)
+- Node.js and Angular CLI (for the management console)
 - Git
 
-## Step 1: Build parent POM
+## Linux (Ubuntu)
+
+Clone and build the shared parent Maven project first:
 
 ```bash
 git clone https://github.com/ant-media/ant-media-server-parent.git
@@ -26,71 +28,41 @@ mvn clean install -Dgpg.skip=true
 cd ..
 ```
 
-## Step 2: Build Community Edition
+## Building Community Edition
 
-### Web panel
-
-Install Node.js and Angular CLI:
+### Clone the repositories
 
 ```bash
-wget https://nodejs.org/dist/v20.11.1/node-v20.11.1-linux-x64.tar.xz
-tar -xJf node-v20.11.1-linux-x64.tar.xz
-echo 'export PATH=$PATH:'`pwd`'/node-v20.11.1-linux-x64/bin' >> ~/.bashrc
-npm install -g @angular/cli
+git clone https://github.com/ant-media/Ant-Media-Server.git
+git clone https://github.com/ant-media/Ant-Media-Management-Console.git
 ```
 
-Build the management console:
+### Build the web panel
 
 ```bash
-git clone https://github.com/ant-media/Ant-Media-Management-Console.git
 cd Ant-Media-Management-Console
 npm install
+# Need this to use older SSL when building the web panel
+export NODE_OPTIONS=--openssl-legacy-provider
 ng build --prod
 cp -a ./dist/. ../Ant-Media-Server/src/main/server/webapps/root/
+cd ..
 ```
 
-### Server package
+### Build and package Ant Media Server
 
 ```bash
-git clone https://github.com/ant-media/Ant-Media-Server.git
 cd Ant-Media-Server
 mvn clean install -Dmaven.javadoc.skip=true -Dmaven.test.skip=true -Dgpg.skip=true
-./repackage_community.sh
+# Optionally: this script builds and redeploys community to an existing installation
+# ./repackage_community.sh
 ```
 
-The packaged ZIP appears in `Ant-Media-Server/target/`.
+When packaging succeeds, `ant-media-server-x.x.x.zip` is available in `Ant-Media-Server/target/`.
 
-## Step 3: Build Enterprise Edition
+## Building Enterprise Edition
 
-Enterprise source is provided to licensed customers.
-
-```bash
-git clone https://github.com/ant-media/Ant-Media-Server.git
-cd Ant-Media-Server
-mvn clean install -Dmaven.javadoc.skip=true -Dmaven.test.skip=true -Dgpg.skip=true
-```
-
-Build and deploy enterprise artifacts:
-
-```bash
-cd /where/you/download/enterprise/repo
-./redeploy.sh
-```
-
-Build the Filter plugin (optional):
-
-```bash
-git clone https://github.com/ant-media/Plugins.git
-cd Plugins/FilterPlugin
-mvn install -Dmaven.test.skip=true -Dgpg.skip=true
-```
-
-Rebuild the web panel (same steps as Community), then package:
-
-```bash
-cd Ant-Media-Server
-./repackage_enterprise.sh
-```
+If you are building Enterprise Edition, [contact Ant Media](https://antmedia.io/contact-us/) for the latest instructions.
 
 ## Next steps
 
