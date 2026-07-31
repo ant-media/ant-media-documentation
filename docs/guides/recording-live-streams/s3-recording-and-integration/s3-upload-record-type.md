@@ -2,56 +2,32 @@
 title: S3 Upload Record Type
 description: Uploading file type to S3 storage
 keywords: [S3 Integration with Ant Media Server, S3 Integration, Record streams to cloud storage, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 2
+sidebar_position: 9
 ---
 
 # S3 Upload Record Type
 
-In previous documents under S3 recording, we learned about recording streams to various cloud storages.
+By default, when S3 Recording is enabled, Ant Media Server uploads every recording file type — HLS segments, MP4/WebM, and PNG previews — to your bucket. If you only want some of those file types uploaded (for example, recording in MP4 but not pushing HLS segments to S3), control it with the `uploadExtensionsToS3` application property, set from **Advanced Settings** in the web panel.
 
-By default, Ant Media Server records and uploads all file types (e.g., **HLS, MP4/WebM, PNG**) to the bucket.
+## How the Value Works
 
-For instance, if a user wants to stream using HLS and record in MP4 format without uploading HLS files to the bucket. This can be controlled using the following application property:.
+`uploadExtensionsToS3` is a bitmask: the least significant bit controls MP4/WebM, the next bit controls HLS, and the third bit controls PNG. Add up the bits for the file types you want uploaded.
 
-```js
-"uploadExtensionsToS3": 7
-```
-  
-You can modify this property in the application's Advanced Settings in the web panel. By default, the value is 7, uploading all HLS, MP4/WebM, and PNG files when enabled.
+| Value | Binary | Uploads |
+| --- | --- | --- |
+| `0` | `000` | Nothing |
+| `1` | `001` | MP4/WebM only |
+| `2` | `010` | HLS only |
+| `3` | `011` | MP4/WebM and HLS |
+| `4` | `100` | PNG only |
+| `5` | `101` | MP4/WebM and PNG |
+| `6` | `110` | HLS and PNG |
+| `7` | `111` | Everything (default) |
 
-This setting is a number where the digits represent whether an upload will be done or not. The least significant digit switches `MP4/WebM` files, the second switches `HLS` and the third switches `PNG`.
+For example, `uploadExtensionsToS3=5` uploads MP4/WebM and PNG but not HLS.
 
-**Example:** `uploadExtensionsToS3=5` (101 in binary) means upload MP4/WebM and PNG but not HLS.
+For more on HLS recording specifically, see [HLS Recording](/guides/recording-live-streams/hls-recording/).
 
-Possible values are as follows:
+## Need Help?
 
- - No upload: `js uploadExtensionsToS3=0`
- 
- - Only MP4/WebM upload: `uploadExtensionsToS3=1`
-
- - HLS upload only: `uploadExtensionsToS3=2`
-
- - HLS and Mp4/WebM upload: `uploadExtensionsToS3=3`
-
- - PNG upload only: `uploadExtensionsToS3=4`
-
- - PNG and MP4/WebM upload: `uploadExtensionsToS3=5`
-
- - PNG and HLS upload: `uploadExtensionsToS3=6`
-
- - Upload everything: `uploadExtensionsToS3=7`
-
-
-Other than MP4 and WebM, HLS recording can also be done. Check out the [HLS recording document](https://antmedia.io/docs/guides/playing-live-stream/hls-playing/#save-hls-records).
-
-
-<br /><br />
----
-
-<div align="center">
-<h2> 🎯 Tailored S3 Uploads! 🗂️ </h2>
-</div>
-
-You've fine-tuned your Ant Media Server's recording settings by configuring the **`uploadExtensionsToS3` property**. Whether it's uploading only MP4/WebM files, excluding HLS, or any other combination, your recordings are now efficiently managed. This customization ensures that only the desired file types are uploaded to your S3 bucket, optimizing storage and streamlining your workflow.
-
-Keep up the great work — your live streaming setup is **now more efficient than ever!** 🚀
+If files you expect to see in the bucket aren't uploading, confirm `uploadExtensionsToS3` includes the bit for that file type, then reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).

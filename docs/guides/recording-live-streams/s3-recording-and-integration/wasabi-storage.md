@@ -2,85 +2,44 @@
 title: Wasabi Storage
 description: Record streams to Wasabi Storage
 keywords: [S3 Integration with Ant Media Server, S3 Integration, Record streams to Wasabi Storage, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 4
+sidebar_position: 5
 ---
 
-# Record Streams TO Wasabi Storage
+# Record Streams to Wasabi Storage
 
-Wasabi is another cloud provider that is preferred by many Ant Media Server users. You could integrate your Wasabi storage. Let’s see how it can be done with a few steps!
+Wasabi is an S3-compatible object storage service, so Ant Media Server can record to it the same way it does with AWS S3.
 
-Firstly, you need to create a new access key in your Wasabi account.
+By the end of this guide, you'll have a Wasabi bucket, an access key for it, and Ant Media Server configured to upload recordings there automatically.
 
-![image.png](@site/static/img/image-286129.png)
+## Create an Access Key and Bucket
 
-After generating Access keys and Secret keys, you need to create a bucket. Just click the Create Bucket button on the right side.
+1. In your Wasabi console, go to **Access Keys** and create a new key. Wasabi shows the Access Key and Secret Key once — copy both immediately.
+2. Go to **Buckets** and create a new bucket, noting the region you create it in.
 
-![image.png](@site/static/img/image-286229.png)
+:::important
+Treat the Access Key and Secret Key like a password — especially a root account key, which has full access to your Wasabi account. Don't commit them to a repository, paste them into a screenshot, or share them outside of Ant Media Server's own credential fields. If you're setting this up for production, consider creating a scoped-down user key instead of using the root account key.
+:::
 
-Then Log in to your Ant Media Server panel at `http://your_ams_server:5080`.
-   - Navigate to **Applications** > **live** > **Settings**.
-   - Enable **Record Live Streams as MP4** and **Enable S3 Recording**.
-   - Enter the following S3 credentials:
-     - **Access Key**: `your_access_key`
-     - **Secret Key**: `your_secret_key`
-     - **Bucket Name**: `your_space_name`
-   - **Save** the settings.
-![](@site/static/img/image-1648581984499.png )
+## Configure Ant Media Server
 
-Your MP4 and Preview files will be uploaded to your **Wasabi storage** automatically.
+1. Log in to your Ant Media Server panel at `https://<DOMAIN_NAME>:5443`.
+2. Navigate to **Applications** and select your application (e.g., `live`).
+3. Go to **Settings**, enable **Record Live Streams as MP4**, then enable **S3 Recording**.
+4. Enter the Access Key, Secret Key, bucket name, and region.
+5. Click **Save**.
 
----
+Your MP4 and preview files now upload to the bucket automatically once a stream finishes.
 
 ## Enable HTTP Forwarding for Playback
 
-When your stream (mp4, m3u8 or preview) files are uploaded to Wasabi Storage, they are no longer available on Ant Media Server local storage. If you try to play them directly from AMS URLs, you may encounter a **404 Not Found** error.
+Once files upload to Wasabi, they're no longer served from Ant Media Server's local storage, so requesting them by the usual AMS URL returns a 404 until you configure forwarding. See [HTTP Forwarding](/guides/recording-live-streams/http-forwarding/) for the full setup — the bucket URL pattern for Wasabi is:
 
-To resolve this, enable **HTTP Forwarding** so Ant Media Server automatically redirects requests to your OVH Object Storage.
-
-### Steps to Enable HTTP Forwarding
-
-1. Log in to the Ant Media Server Management Panel
-2. Navigate to your application (e.g., `live`) and go to **Application Settings → Advanced Settings**.  
-3. Set the following properties:
-
-   ```bash
-   httpForwardingExtension: mp4,m3u8  
-   httpForwardingBaseURL: https://{bucket-name}.s3.{region}.wasabisys.com  
-   ```
-
-   Example:  
-
-   ```bash
-   httpForwardingExtension: mp4,m3u8  
-   httpForwardingBaseURL: https://mybucket.s3.us-east-1.wasabisys.com  
-   ```
-
-4. Save your settings
-
-## Playback
-
-Once forwarding is configured, you can share or embed your AMS URLs as usual. The media will actually be served from Wasabi, while users continue to use your Ant Media Server domain.
-
-Now, when you access:
-
-```bash
-https://your-domain:5443/live/streams/recording.mp4  
+```
+https://<BUCKET_NAME>.s3.<REGION>.wasabisys.com
 ```
 
-Ant Media Server will forward the request to:
+You now have Ant Media Server recording live streams directly to Wasabi, with playback working through HTTP Forwarding.
 
-```bash
-https://mybucket.s3.us-east-1.wasabisys.com/streams/recording.mp4  
-```
+## Need Help?
 
-<br /><br />
----
-
-<div align="center">
-<h2> Your Streams have reached the destination 🔥 </h2>
-</div>
-
-You’ve successfully set up Ant Media Server to record live streams **directly to Wasabi Storage**. Now, every MP4 you capture is **automatically uploaded, safely stored, and ready for on-demand playback.**  
-
-**Fantastic job** — your streams are now living large in the Wasabi cloud! 🚀🎬
-
+If uploads aren't appearing in your bucket, double-check the access key's permissions and the credentials entered in the AMS panel, then reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
