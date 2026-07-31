@@ -35,8 +35,6 @@ Generate a JWT with payload as below:
 }
 ```
 
-![](@site/static/img/conference/video-conference/room-security-1.png)
-
 
 You can either generate the JWT token with the JWT Debugger UI or via the Rest API as defined in the document.
 

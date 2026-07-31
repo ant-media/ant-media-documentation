@@ -61,11 +61,7 @@ First, log in to the Ant Media Server Management Panel.
   ![](@site/static/img/conference/circle/circle-room-creation.png)
   
 * Enter your name for yourself and join the meeting
-  ![](@site/static/img/conference/circle/circle-room-entrance.png)
-  
 * You are in the room now
-  ![](@site/static/img/conference/circle/circle-room.png)
-
 ### Try Now
 
 If you want to try the Circle conference application without any installation, visit [here](https://meet.antmedia.io/Conference).

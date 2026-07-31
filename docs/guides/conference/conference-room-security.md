@@ -9,6 +9,8 @@ sidebar_position: 3
 
 In Ant Media Server, each participant and the conference room itself are treated as individual broadcasts. This means that all [Stream Security](/category/stream-security/) features apply to both on the conferencing as well.
 
+By the end of this guide, you'll have token security enabled on a conference room and know how to generate and pass a token so only authorized participants can join.
+
 ## Secure Rooms With Tokens
 
 To secure a conference room, enable token security settings for both publishing and playing through the web panel, then generate a publish token using the room's (main track) broadcast ID.
@@ -35,14 +37,15 @@ Generate a JWT with payload as below:
 }
 ```
 
-![](@site/static/img/conference/video-conference/room-security-1.png)
+You can either generate the JWT token with a JWT debugger tool (using your server's configured token secret) or via the REST API as defined in the [JWT Stream Token](/guides/stream-security/jwt-stream-security-filter/) document.
 
-
-You can either generate the JWT token with the JWT Debugger UI or via the Rest API as defined in the document.
+:::important
+Whatever secret you sign the token with, treat it like a password — don't paste it into a screenshot, commit it to a repository, or share it outside of your own tooling. Anyone with the secret can forge a valid token for any stream on your server.
+:::
 
 #### Step 3: Join The Room Using JWT
 
-In Ant Media Server, joining a video conference room involves both publishing to the room broadcast and playing that broadcast. Therefore, it's essential to pass the generated publish token to both the⁣ ```.publish()``` and ```.play()``` functions in the Ant Media Server SDKs.
+In Ant Media Server, joining a video conference room involves both publishing to the room broadcast and playing that broadcast. Therefore, it's essential to pass the generated publish token to both the ```.publish()``` and ```.play()``` functions in the Ant Media Server SDKs.
 
 :::info
 In conferencing, even though the token type is publish, it can be used for both publishing and playing.
@@ -99,14 +102,9 @@ In case, you are using the Circle Conference application, the token generation s
 
 ```https://test.antmedia.io:5443/Conference/test?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdHJlYW1JZCI6InRlc3QiLCJ0eXBlIjoicHVibGlzaCIsImV4cCI6OTk5OTk5OTk5OX0.AE9DiAxsA4N1tGbg08NC4ISnXlnPaybF84psMOoDDus```
 
+You now have token security enabled on your conference room, with participants required to present a valid JWT to join.
 
-<br /><br />
----
+## Need Help?
 
-<div align="center">
-<h2> Secure Rooms, Secure Voices! 🔐 </h2>
-</div>
-
-You’ve now enabled **token security for your conference room**, generated a JWT tied to your room’s broadcast, and used it to join via `.publish()` and `.play()`. Unauthorized attempts without a valid token are denied.
-Nice job — your conference space is now locked down, **users only get in with tokens**, and your **stream room is as safe as it gets**! 🛡️
+If participants can join without a token, or valid tokens are being rejected, confirm JWT security is enabled for both publish and play on the application, then reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
 
