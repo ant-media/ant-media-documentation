@@ -21,7 +21,7 @@ LL-HLS achieves this by using smaller video segments (called **parts**) that all
 
 - **Ant Media Server Enterprise Edition v2.12 or later:** LL-HLS plugin compatible from this version.
 - **LL-HLS Plugin:** Purchase the plugin by emailing `contact@antmedia.io` or via the [Ant Media website](https://antmedia.io/product/low-latency-hls-plugin/).
-- **Supported Player:** Use a player that supports LL-HLS. We recommend testing with **[hls.js](https://hlsjs.video-dev.org/demo/)** or **[Dolby Player](https://optiview.dolby.com/resources/demos/test-stream/)** first.
+- **Supported Player:** Ant Media Server's own [embedded player](/guides/playing-live-stream/embedded-web-player/) supports LL-HLS natively from v2.12 onwards, so no extra player setup is needed if you're using it. If you're using your own player instead, make sure it supports LL-HLS — **[hls.js](https://hlsjs.video-dev.org/demo/)** and **[Dolby Player](https://optiview.dolby.com/resources/demos/test-stream/)** are both good options for testing.
 
 ### Key Differences: HLS vs. LL-HLS
 
