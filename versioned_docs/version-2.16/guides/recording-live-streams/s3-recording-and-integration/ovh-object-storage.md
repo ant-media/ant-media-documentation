@@ -31,8 +31,6 @@ Then, Log in to your Ant Media Server panel at `http://your_ams_server:5080`.
      - **Bucket Name**: `your_bucket_name`  
    - **Save** the settings.
 
-![image.png](@site/static/img/image-285529.png)
-
 Your MP4 and Preview files will be uploaded to your **OVH Object Storage** automatically.
 
 
