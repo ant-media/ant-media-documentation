@@ -191,11 +191,13 @@ useEffect(() => {
 
  - **```streamId```**: streamId for the stream your player will display.
  
- - **```httpBaseURL```**: The web player retrieves the application name (e.g., live in our example) and the URL of your server where the stream is located through this parameter. In a production environment, it should resemble: 
+ - **```httpBaseURL```**: The web player retrieves the application name (e.g., live in our example) and the URL of your server where the stream is located through this parameter. In a production environment, it should resemble:
 
-    https://<DOMAIN_NAME>:5443/<APP_NAME>/
+   ```
+   https://<DOMAIN_NAME>:5443/<APP_NAME>/
+   ```
 
-   
+
  - **```videoHTMLContent```**: Content that the web player will inject into our videoContainer.
  
  - **```playOrder```**: Array specifying the order of playback.
