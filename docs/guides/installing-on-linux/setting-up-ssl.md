@@ -26,7 +26,13 @@ flowchart TD
     I -->|No| K["Let's Encrypt DNS-01, manual"]
 ```
 
-## Option 1: Enabling SSL from the Web Panel
+:::info
+To avoid any issue later, make sure that your server has a **static/fixed IP address** so that the domain can be mapped to a fixed IP.
+
+If the IP is dynamic/changed, then the server will not be accessible on a previously generated subdomain.
+:::
+
+## Option 1: Enable SSL from the Web Panel
 
 In previous versions, configuring SSL involved intricate steps, such as accessing the server through SSH and executing the `enable_ssl.sh` script from the installation directory `/usr/local/antmedia`.
 
@@ -45,7 +51,7 @@ However, starting with AMS version 2.6.2, this process is streamlined so you can
 - The AMS instance will restart and the server can now be accessed securely with SSL enabled.
 ![](@site/static/img/ssl-webpanel/ssl-status.png)
 
-## Option 2: Installing SSL using the Terminal
+## Option 2: Install SSL using Terminal
 
 Apart from the web panel, SSL for AMS can also be installed using the terminal, and there are a number of ways to do it depending on your specific use case and requirements.
 
@@ -67,14 +73,15 @@ If the IP is dynamic and changes, the server will no longer be accessible on a p
 
 - Go to the folder where AMS is installed. The default directory is `/usr/local/antmedia`
 
-```shell
-cd /usr/local/antmedia
-```
-- Run the `enable_ssl.sh` command to install the SSL.
+  ```bash
+  cd /usr/local/antmedia
+  ```
+  
+- Run the `enable_ssh.sh` command to install the SSL.
 
-```shell
-sudo ./enable_ssl.sh
-```
+  ```bash
+  sudo ./enable_ssl.sh
+  ```
 
 ### Create Let's Encrypt certificate with HTTP-01 challenge
 
@@ -82,9 +89,9 @@ The script in this document installs a **Let's Encrypt** SSL certificate.
 
 **Requirements:** a domain with an `A` record pointing to your server's public IP, and port 80 reachable from the internet — Let's Encrypt connects to your server on port 80 to validate the domain.
 
-First, create an `A` record for your domain name in your DNS records. This way, your domain name will be resolved to your server's public IP address. Note that this guide is for Ubuntu systems, but there are several guides on the internet for other Linux distributions as well.
+First, create an `A` record for your domain name in your DNS records. This way, your domain name will be resolved to your server's `public IP address`. Note that this guide is for Ubuntu systems, but there are several guides on the internet for other Linux distributions as well.
 
-- If there is a service that uses port 80, you need to disable it first. For example, if your system has Apache web server, you need to disable it using:
+- If there is a service that uses port 80, you need to disable it first. For example, if your system has an Apache web server, you need to disable it using:
 
   ```bash
   sudo service apache2 stop
