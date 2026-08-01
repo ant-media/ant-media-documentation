@@ -115,12 +115,15 @@ The first time you access it, you'll be asked to create an admin account:
 
 Check out [WebRTC Publishing](/guides/publish-live-stream/webrtc/) to publish a stream for testing. To do this in a production environment, you'll also need SSL — see the [SSL Setup guide](/guides/installing-on-linux/setting-up-ssl/).
 
-## Need Help?
+## Troubleshooting
 
 - If you can't access AMS at `http://localhost:5080`, check if the WSL instance is running and that AMS is started: `wsl -l -v` from PowerShell, then `sudo service antmedia status` inside WSL.
 - Make sure ports are not blocked by your firewall or antivirus.
 - If the install script fails partway through with an error mentioning `systemctl` or "Failed to connect to bus", see the systemd note in [step 3](#3-install-ant-media-server) above.
-- Still stuck? Reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
+
+## Need Help?
+
+If AMS still isn't reachable after checking the above, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
 
 You've installed Ant Media Server inside WSL2, started the service, and confirmed the web dashboard is reachable. You now have a working local environment for testing, development, or demos, all from Windows. When you're ready to move to production, follow the [native Linux install guide](/guides/installing-on-linux/installing-ams-on-linux/) on a dedicated server or VM instead.
 

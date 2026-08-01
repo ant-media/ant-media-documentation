@@ -128,6 +128,20 @@ Our team is actively working on improving this process for future releases.
 
 Your Ant Media Server instance is now upgraded and verified running the version you expected. If anything looks off after upgrading, the [Restore a Previous Installation](#restore-a-previous-installation) section above rolls you back to exactly where you started.
 
+## Troubleshooting
+
+**`It's already up-to-date. No need to update`**
+This isn't an error — `upgrade.sh` compares your installed version against the latest release and exits without changing anything if you're already current.
+
+**"It seems like an enterprise version. On the other hand, there is no license key..."**
+This is the Cloud Marketplace detection described above — see [Cloud Marketplace Instances](#cloud-marketplace-instances-aws-azure-gcp) for what to do next.
+
+**`Invalid license key. Please check your license key.`**
+Your configured Enterprise license key was rejected. Check it under License in the web panel and confirm it's still valid on your [antmedia.io account](https://antmedia.io/my-account/downloads/).
+
+**`Unexpected response from service: <response>. Please try again later`**
+The license validation service didn't return a result the script recognizes — usually a temporary network or service issue rather than something wrong with your key. Wait a few minutes and re-run `sudo ./upgrade.sh`.
+
 ## Need Help?
 
 If the upgrade doesn't go as expected, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
