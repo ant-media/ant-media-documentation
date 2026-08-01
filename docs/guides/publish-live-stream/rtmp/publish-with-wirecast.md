@@ -1,5 +1,5 @@
 ---
-title: Publish Using Wirecast 
+title: Publish Using Wirecast
 description: Publish RTMP stream using Wirecast
 keywords: [Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 2

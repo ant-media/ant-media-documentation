@@ -81,7 +81,7 @@ To match multiple sources by pattern instead of listing them individually, use a
 ## Step 5: Restart Ant Media Server
 
 ```bash
-sudo systemctl restart antmedia
+sudo service antmedia restart
 ```
 
 ## Step 6: Verify the Stream

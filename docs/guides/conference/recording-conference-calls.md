@@ -52,7 +52,7 @@ Now, let's discuss all these steps individually and see how they are done.
 
 There are various ways to join a conference call from different devices and platforms, such as the Web i.e., from the sample conference page [conference.html](https://github.com/ant-media/StreamApp/blob/master/src/main/webapp/conference.html) or using the mobile SDKs like [Android](https://github.com/ant-media/WebRTC-Android-SDK) or [iOS](https://github.com/ant-media/WebRTC-iOS-SDK), etc.
 
-- Let's join the conference room with `roomid' as `room1`, also known as the `maintrack`.
+- Let's join the conference room with `roomid` as `room1`, also known as the `maintrack`.
 
   ![join-coference](https://github.com/user-attachments/assets/a764c2e9-1396-4147-b304-b3700fe01b11)
 

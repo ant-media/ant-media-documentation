@@ -49,7 +49,7 @@ After running the script, the `ConferenceCall.war` file should be in the `target
 First, log in to the Ant Media Server Management Panel.
 
 * **Step 1:** On the Dashboard page, click the New Application button.
-* **Step 2:** Click the Chose File button and browse the war file you downloaded.
+* **Step 2:** Click the Choose File button and browse the war file you downloaded.
 * **Step 3:** Give a name to the application.
 * **Step 4:** Click the Create button. That's all.
 
@@ -71,7 +71,7 @@ If you want to try the Circle conference application without any installation, v
 
 ## Advanced Topics (for Developers)
 
-### Customization:
+### Customization
 
 You can make any changes to the Circle code base and customize it for your own applications without any restriction.
 

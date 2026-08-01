@@ -248,7 +248,7 @@ Add inputs for the room id and the local participant's stream id, plus a Join Ro
 
 ### Step 7: Retrieve the Main Track Broadcast Object
 
-Once `.play(roomId)` succeeds, the adaptor fires `play_started`. Use it to request the room's broadcast object:
+Once `.play(roomId)` succeeds, the adaptor fires `play_started`. Handle it by requesting the room's broadcast object:
 
 ```js
 } else if (info === "play_started") {

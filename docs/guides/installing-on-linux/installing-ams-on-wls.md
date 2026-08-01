@@ -115,7 +115,7 @@ The first time you access it, you'll be asked to create an admin account:
 
 Check out [WebRTC Publishing](/guides/publish-live-stream/webrtc/) to publish a stream for testing. To do this in a production environment, you'll also need SSL — see the [SSL Setup guide](/guides/installing-on-linux/setting-up-ssl/).
 
-## Troubleshooting
+## Need Help?
 
 - If you can't access AMS at `http://localhost:5080`, check if the WSL instance is running and that AMS is started: `wsl -l -v` from PowerShell, then `sudo service antmedia status` inside WSL.
 - Make sure ports are not blocked by your firewall or antivirus.

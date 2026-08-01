@@ -1,5 +1,5 @@
 ---
-title: Publish Using OBS 
+title: Publish Using OBS
 description: Publish RTMP stream using OBS
 keywords: [Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 1

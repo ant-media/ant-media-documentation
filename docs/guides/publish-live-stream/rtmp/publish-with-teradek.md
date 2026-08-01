@@ -1,5 +1,5 @@
 ---
-title: Publish Using Teradek 
+title: Publish Using Teradek
 description: Publish RTMP stream using Teradek
 keywords: [Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 4
