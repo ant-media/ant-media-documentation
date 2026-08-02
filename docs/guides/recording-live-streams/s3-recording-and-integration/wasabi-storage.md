@@ -40,6 +40,11 @@ https://<BUCKET_NAME>.s3.<REGION>.wasabisys.com
 
 You now have Ant Media Server recording live streams directly to Wasabi, with playback working through HTTP Forwarding.
 
+## Troubleshooting
+
+- **Uploads fail, or files never appear in the bucket** — check the AMS server logs for `AmazonS3StorageClient` entries. A successful upload logs `File upload has started with key: ...` at INFO; a failed one logs `S3 - Error: Upload failed with key ...` at ERROR along with the underlying error, which tells you whether AMS is even reaching Wasabi or failing on Wasabi's side.
+- **The error points to a permissions problem** — double-check the access key's permissions and that the Access Key and Secret Key entered in the AMS panel are current, especially if you're using a scoped-down user key rather than the root account key.
+
 ## Need Help?
 
-If uploads aren't appearing in your bucket, double-check the access key's permissions and the credentials entered in the AMS panel, then reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
+If the steps above don't resolve it, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).

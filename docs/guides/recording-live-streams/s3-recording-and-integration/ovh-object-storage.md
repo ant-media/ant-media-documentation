@@ -49,6 +49,11 @@ https://<BUCKET_NAME>.<REGION>.cloud.ovh.net
 
 You now have Ant Media Server recording live streams directly to OVH Object Storage, with playback working through HTTP Forwarding.
 
+## Troubleshooting
+
+- **Uploads fail, or files never appear in the container** — check the AMS server logs for `AmazonS3StorageClient` entries. A successful upload logs `File upload has started with key: ...` at INFO; a failed one logs `S3 - Error: Upload failed with key ...` at ERROR along with the underlying error, which tells you whether AMS is even reaching OVH or failing on the OVH side.
+- **The error points to a permissions problem** — double-check the access key's permissions on the container and that the Access Key and Secret Key entered in the AMS panel are current.
+
 ## Need Help?
 
-If uploads aren't appearing in your container, double-check the access key's permissions and the credentials entered in the AMS panel, then reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
+If the steps above don't resolve it, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).

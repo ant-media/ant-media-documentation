@@ -49,6 +49,11 @@ https://pub-xxxx.r2.dev
 
 You now have Ant Media Server recording live streams directly to Cloudflare R2, with playback working through HTTP Forwarding.
 
+## Troubleshooting
+
+- **Uploads fail, or files never appear in the bucket** — check the AMS server logs for `AmazonS3StorageClient` entries. A successful upload logs `File upload has started with key: ...` at INFO; a failed one logs `S3 - Error: Upload failed with key ...` at ERROR along with the underlying error, which tells you whether AMS is even reaching R2 or failing on Cloudflare's side.
+- **The error points to a permissions problem** — double-check the API token is still scoped to R2 and hasn't expired, and that the Access Key, Secret Key, and endpoint entered in the AMS panel match what Cloudflare issued.
+
 ## Need Help?
 
-If uploads aren't appearing in your bucket, double-check the API token's permissions and the credentials entered in the AMS panel, then reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
+If the steps above don't resolve it, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).

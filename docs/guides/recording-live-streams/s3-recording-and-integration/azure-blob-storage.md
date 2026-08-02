@@ -80,6 +80,11 @@ After mounting, every recording produced by the `live` application writes direct
 
 You now have Ant Media Server recording live streams directly into Azure Blob Storage, mounted transparently as a local directory.
 
+## Troubleshooting
+
+- **Mount fails, or recordings never appear in the container** — the config above sets `logging: type: syslog` at `log_debug` level, so blobfuse2 writes its own failures (bad account name/key, wrong endpoint, container name typo) to syslog rather than to any AMS log. Check syslog on the server first.
+- **Recordings keep landing in a local folder instead of the container** — because the container is just mounted as a filesystem path, AMS has no way to detect if the mount drops or goes stale mid-stream; it just keeps writing to whatever's at that path. Confirm the mount is still active with `mount | grep blobfuse` before assuming AMS itself is misbehaving.
+
 ## Need Help?
 
-If the mount fails or recordings aren't appearing in the container, confirm the access key and endpoint in your `fuse_connection.yaml` are correct, then reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
+If the steps above don't resolve it, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).

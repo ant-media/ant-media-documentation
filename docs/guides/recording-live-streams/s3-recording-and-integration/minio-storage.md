@@ -57,6 +57,11 @@ http://<MINIO_DOMAIN>:<PORT>/<BUCKET_NAME>
 
 You now have Ant Media Server recording live streams directly to your own MinIO instance, with playback working through HTTP Forwarding.
 
+## Troubleshooting
+
+- **Uploads fail, or files never appear in the bucket** — check the AMS server logs for `AmazonS3StorageClient` entries. A successful upload logs `File upload has started with key: ...` at INFO; a failed one logs `S3 - Error: Upload failed with key ...` at ERROR along with the underlying error, which tells you whether AMS is even reaching MinIO or failing on MinIO's side.
+- **The error points to a permissions or configuration problem** — double-check the access key's permissions, that the region set in the MinIO console matches what's entered in the AMS panel, and that the bucket is set to public (MinIO needs this since AMS writes to it directly).
+
 ## Need Help?
 
-If uploads aren't appearing in your bucket, double-check the access key's permissions, the region match between MinIO and the AMS panel, and that the bucket is public, then reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
+If the steps above don't resolve it, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).

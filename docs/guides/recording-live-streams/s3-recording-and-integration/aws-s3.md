@@ -77,6 +77,11 @@ In the S3 console, go to your bucket's **Permissions** tab and scroll to **Cross
 
 You now have Ant Media Server recording live streams directly to AWS S3, with playback working through HTTP Forwarding.
 
+## Troubleshooting
+
+- **Uploads fail, or files never appear in the bucket** — check the AMS server logs for `AmazonS3StorageClient` entries. A successful upload logs `File upload has started with key: ...` at INFO; a failed one logs `S3 - Error: Upload failed with key ...` at ERROR along with the underlying AWS error, which tells you whether AMS is even reaching S3 or failing on the AWS side.
+- **The error points to a permissions problem** — double-check the IAM user has `AmazonS3FullAccess` (or an equivalent scoped policy) attached, and that the Access Key ID and Secret Access Key entered in the AMS panel match that user's current keys.
+
 ## Need Help?
 
-If uploads aren't appearing in your bucket, double-check the IAM user's permissions and the credentials entered in the AMS panel, then reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
+If the steps above don't resolve it, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
