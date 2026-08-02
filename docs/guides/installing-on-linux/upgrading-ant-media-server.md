@@ -130,17 +130,10 @@ Your Ant Media Server instance is now upgraded and verified running the version 
 
 ## Troubleshooting
 
-**`It's already up-to-date. No need to update`**
-This isn't an error — `upgrade.sh` compares your installed version against the latest release and exits without changing anything if you're already current.
-
-**"It seems like an enterprise version. On the other hand, there is no license key..."**
-This is the Cloud Marketplace detection described above — see [Cloud Marketplace Instances](#cloud-marketplace-instances-aws-azure-gcp) for what to do next.
-
-**`Invalid license key. Please check your license key.`**
-Your configured Enterprise license key was rejected. Check it under License in the web panel and confirm it's still valid on your [antmedia.io account](https://antmedia.io/my-account/downloads/).
-
-**`Unexpected response from service: <response>. Please try again later`**
-The license validation service didn't return a result the script recognizes — usually a temporary network or service issue rather than something wrong with your key. Wait a few minutes and re-run `sudo ./upgrade.sh`.
+- **`It's already up-to-date. No need to update`** — this isn't an error; `upgrade.sh` compares your installed version against the latest release and exits without changing anything if you're already current.
+- **"It seems like an enterprise version. On the other hand, there is no license key..."** — this is the Cloud Marketplace detection described above; see [Cloud Marketplace Instances](#cloud-marketplace-instances-aws-azure-gcp) for what to do next.
+- **`Invalid license key. Please check your license key.`** — your configured Enterprise license key was rejected. Check it under License in the web panel and confirm it's still valid on your [antmedia.io account](https://antmedia.io/my-account/downloads/).
+- **`Unexpected response from service: <response>. Please try again later`** — the license validation service didn't return a result the script recognizes, usually a temporary network or service issue rather than something wrong with your key. Wait a few minutes and re-run `sudo ./upgrade.sh`.
 
 ## Need Help?
 

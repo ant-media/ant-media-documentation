@@ -136,14 +136,9 @@ You've set up **Ant Media Server using Docker** — ran the official image (or b
 
 ## Troubleshooting
 
-**Build fails with `Both AntMediaServer and LicenseKey arguments are not provided. Aborting the build process.`**
-Your `docker build` command didn't include either `--build-arg AntMediaServer=<ZIP_FILE>` or `--build-arg LicenseKey=<YOUR_LICENSE_KEY>` — see [Build Docker Image](#2-build-docker-image) above; you need exactly one.
-
-**Provided both a zip file and a license key**
-Not a hard error, but only the zip file (`AntMediaServer`) is used — the license key is silently ignored. Use one or the other, not both, so the build does what you expect.
-
-**Container starts but the dashboard never loads**
-Check the container's logs first — see [Verify Ant Media Server Is Running](#verify-ant-media-server-is-running) above. If logs show it running but you still can't reach it in a browser, see the [Can't reach localhost:5080?](#ams-dashboard) note under AMS Dashboard for the macOS/Windows networking case.
+- **Build fails with `Both AntMediaServer and LicenseKey arguments are not provided. Aborting the build process.`** — your `docker build` command didn't include either `--build-arg AntMediaServer=<ZIP_FILE>` or `--build-arg LicenseKey=<YOUR_LICENSE_KEY>`; see [Build Docker Image](#2-build-docker-image) above, you need exactly one.
+- **Provided both a zip file and a license key** — not a hard error, but only the zip file (`AntMediaServer`) is used and the license key is silently ignored. Use one or the other, not both, so the build does what you expect.
+- **Container starts but the dashboard never loads** — check the container's logs first; see [Verify Ant Media Server Is Running](#verify-ant-media-server-is-running) above. If logs show it running but you still can't reach it in a browser, see the [Can't reach localhost:5080?](#ams-dashboard) note under AMS Dashboard for the macOS/Windows networking case.
 
 ## Need Help?
 
