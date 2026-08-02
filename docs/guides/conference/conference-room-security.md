@@ -74,9 +74,7 @@ In this step, we will use a conference sample to do a simple conference room sec
 
 Conference.html sample will get the token from query parameter and pass it to ```.publish()``` and ```.play()``` functions.
 
-Type room ID and click join room. 
-
-Remember, the room ID here must be the same as the ID you used while generating the JWT.
+Type room ID and click join room.
 
 You should be able to successfully join the room and publish; play should start.
 
@@ -104,7 +102,13 @@ In case, you are using the Circle Conference application, the token generation s
 
 You now have token security enabled on your conference room, with participants required to present a valid JWT to join.
 
+## Troubleshooting
+
+- **JWT enabled for only one of publish or play** — AMS tracks publish-side and play-side JWT enforcement as separate settings, so enabling it for only one direction leaves the other reachable without a token at all, rather than failing safely. Step 1 above says to enable both for exactly this reason.
+- **Room ID typed into the join form doesn't match the token's `streamId` claim** — the JWT was generated for a specific room ID, and you must join with that exact same room ID; a mismatch (even a small typo) causes the join to fail.
+- **`Invalid JWT Token` (HTTP 403) when accessing a recorded room's HLS, DASH, or VoD file directly** — this is AMS's own play-side token check rejecting the request; confirm the token hasn't expired and that its `streamId` claim matches the file's stream ID.
+
 ## Need Help?
 
-If participants can join without a token, or valid tokens are being rejected, confirm JWT security is enabled for both publish and play on the application, then reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
+If the steps above don't resolve it, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
 
