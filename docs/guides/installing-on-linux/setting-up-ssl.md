@@ -16,14 +16,14 @@ flowchart TD
     A{Prefer the terminal?}
     A -->|No| B["Web Panel: Settings > SSL"]
     A -->|Yes| C{What do you have?}
-    C -->|A certificate file already| D["Import Your Custom Certificate"]
-    C -->|Just local dev, no public domain| E["Self-Signed Certificate"]
+    C -->|A certificate file already| D["Import Your Custom Certificate<br/>enable_ssl.sh -f FULL_CHAIN_FILE -p PRIVATE_KEY_FILE -c CHAIN_FILE -d DOMAIN_NAME"]
+    C -->|Just local dev, no public domain| E["Self-Signed Certificate<br/>enable_ssl.sh -f ams.crt -p ams.key -c ams.crt -d SERVER_IP"]
     C -->|Need a Let's Encrypt cert| F{Can port 80 be reached from the internet?}
-    F -->|Yes, and I have a domain| G["Let's Encrypt, HTTP-01"]
-    F -->|Yes, but no domain yet| H["Free antmedia.cloud Subdomain"]
+    F -->|Yes, and I have a domain| G["Let's Encrypt, HTTP-01<br/>enable_ssl.sh -d DOMAIN_NAME"]
+    F -->|Yes, but no domain yet| H["Free antmedia.cloud Subdomain<br/>enable_ssl.sh"]
     F -->|No, port 80 is blocked or unavailable| I{Using AWS Route 53 for DNS?}
-    I -->|Yes| J["Let's Encrypt DNS-01 + Route 53"]
-    I -->|No| K["Let's Encrypt DNS-01, manual"]
+    I -->|Yes| J["Let's Encrypt DNS-01 + Route 53<br/>enable_ssl.sh -d DOMAIN_NAME -v route53"]
+    I -->|No| K["Let's Encrypt DNS-01, manual<br/>enable_ssl.sh -d DOMAIN_NAME -v custom"]
 ```
 
 :::info
@@ -77,7 +77,7 @@ If the IP is dynamic and changes, the server will no longer be accessible on a p
   cd /usr/local/antmedia
   ```
   
-- Run the `enable_ssh.sh` command to install the SSL.
+- Run the `enable_ssl.sh` command to install the SSL.
 
   ```bash
   sudo ./enable_ssl.sh
