@@ -90,19 +90,26 @@ Both H.264 and VP8 can be enabled in basic application settings when you need br
 - **SFU mode:** Ant Media Server ingests WebRTC in H.264 or VP8; if both are available, H.264 is prioritized. The original stream is forwarded without transcoding.
 - **ABR mode:** With at least one adaptive bitrate enabled, the stream is transcoded into multiple bitrates for both H.264 and VP8. See [Adaptive Bitrate Streaming](/guides/adaptive-bitrate/adaptive-bitrate-streaming/) for details.
 
-## Enable and Configure VP8 Codec
+## VP8 Codec
 
-In this section, learn about the VP8 video codec.
+**VP8** is an open-source, royalty-free video codec widely used in WebRTC. Use it when you prefer open standards or need a WebRTC fallback alongside H.264.
 
 ### Enable only VP8
 
+1. Log in to the Ant Media Server dashboard.
+2. Select your application.
+3. Open the **Settings** tab.
+4. Enable **VP8** (disable H.264 if you want VP8 only) and save.
+
 ![vp8](https://github.com/user-attachments/assets/c8900114-0f74-4cba-9dd9-c5b0da5b757a)
 
-- **SFU Mode:** Only VP8 streams are ingested and forwarded.
-- **Adaptive Bitrate Mode:** VP8 is transcoded into multiple bitrates.
+When only VP8 is enabled:
+
+- **SFU mode:** Only VP8 streams are ingested and forwarded.
+- **ABR mode:** VP8 is transcoded into multiple bitrates.
 
 :::info
-HLS and MP4 recording require H.264 codec. Enabling only VP8 will limit recording (WebM) and playback (WebRTC) options.
+HLS and MP4 recording require the H.264 codec. Enabling only VP8 limits recording to WebM and playback primarily to WebRTC.
 :::
 
 ## Enable and Configure H.265 (HEVC) Codec
