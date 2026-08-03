@@ -112,56 +112,50 @@ When only VP8 is enabled:
 HLS and MP4 recording require the H.264 codec. Enabling only VP8 limits recording to WebM and playback primarily to WebRTC.
 :::
 
-## Enable and Configure H.265 (HEVC) Codec
+## H.265 (HEVC) Codec
 
-HEVC (H.265) provides better video quality at the same bitrate, making it ideal for bandwidth-sensitive environments.
+**H.265 (HEVC)** delivers better video quality at lower bitrates than H.264, making it ideal for bandwidth-sensitive **HLS**, **LL-HLS**, and **DASH** delivery. WebRTC does not officially support H.265 in most browsers.
 
- 1. **Enable H.265 in Configuration**
+### Enable H.265
 
-H.265 is disabled by default. Enable it via Advanced settings:
+H.265 is disabled by default. Enable it via **Advanced settings**:
 
-- Go to the advanced application settings & set
+1. Log in to the Ant Media Server dashboard.
+2. Select your application.
+3. Open **Settings → Advanced**.
+4. Set `h265Enabled` to `true` and save.
 
-   ```js
-   "h265Enabled": true,
-  ```
-  
-- If H.264 & VP8 are also true, AMS will accept streams with all three codecs.
-- If H.264 & VP8 are false, AMS will only accept streams with H.265:
-  
-```js
-"h264Enabled": false,
-"vp8Enabled": false,
-"h265Enabled": true,
+```properties
+h265Enabled=true
+```
+
+If H.264 and VP8 remain enabled, Ant Media Server accepts all three codecs. For H.265-only ingest:
+
+```properties
+h264Enabled=false
+vp8Enabled=false
+h265Enabled=true
 ```
 
 ![h265](https://github.com/user-attachments/assets/a41545a1-9ec9-43ff-b41b-8e0aa88f159b)
 
-- Scroll down and save after making changes.
+### Publish and play H.265
 
-2. **Send an RTMP Stream to Ant Media Server**
+- Publish with **Enhanced RTMP**, **SRT**, or **RTSP** (for example OBS with H.265). See [Enhanced RTMP](/guides/publish-live-stream/rtmp/enhanced-rtmp/).
+- **Android** devices typically play H.265 via HLS, LL-HLS, and DASH.
+- **Desktop:** use VLC or other third-party players.
+- **Browsers:** limited H.265 support — see [caniuse.com — H.265](https://caniuse.com/?search=H.265).
 
-- Use a tool like OBS to send an RTMP stream with H.265 video codec. See the [Enhanced RTMP document](https://antmedia.io/docs/guides/publish-live-stream/rtmp/enhanced-rtmp/) for details.
+### H.265 with H.264 and ABR
 
-3. **Play H.265 Stream**
+Enable **H.264** alongside H.265 and at least one adaptive bitrate so Ant Media Server transcodes H.265 to H.264 for browser clients:
 
-- Most Android devices natively support H.265 playback via HLS, LL-HLS, and DASH.
-- You can also use VLC or third-party players for H.265 playback.
-
-4. **Play H.265 Stream on browsers**
-
-Most browsers do not yet support H.265 playback. Check [H.265 supported browsers](https://caniuse.com/?search=H.265).
-
-5. **Play H.265 transcoded streams with H.264**
-
-- Since H.265 support is limited in browsers/WebRTC, enable H.264 alongside H.265 and use Adaptive streaming:
-
-```js
-"h264Enabled": true,
-"h265Enabled": true,
+```properties
+h264Enabled=true
+h265Enabled=true
 ```
 
-- Enable at least one adaptive bitrate. AMS will transcode incoming H.265 streams to H.264, ensuring browser and SDK compatibility.
+See [Adaptive Bitrate Streaming](/guides/adaptive-bitrate/adaptive-bitrate-streaming/) for details.
 
 ![h265andh264](https://github.com/user-attachments/assets/366e921c-8ab1-4235-a9d9-5062b8c109a3)
 
