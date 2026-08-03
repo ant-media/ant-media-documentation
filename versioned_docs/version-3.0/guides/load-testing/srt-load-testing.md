@@ -1,72 +1,67 @@
 ---
-title: SRT Load Testing 
-description: A simple guide to making a SRT load test on your Ant Media Server.
+title: SRT Load Testing
+description: Simulate multiple SRT publishers on Ant Media Server using FFmpeg and the srt_publisher.sh load test script.
 keywords: [Ant Media Load Testing, SRT load test, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 4
 ---
 
-This document outlines the steps to perform an SRT publishing load test on Ant Media Server using the provided script with the help of FFmpeg.
+# SRT Load Testing
 
-The script simulates a specified number of SRT live streams published to the Ant Media Server.
+Simulate many **SRT publishers** pushing the same MP4 file into Ant Media Server. The `srt_publisher.sh` script uses **FFmpeg** to open multiple SRT connections with distinct stream IDs (`test_1`, `test_2`, …).
+
+For WebRTC load tests, see [WebRTC Load Testing](/guides/load-testing/webrtc-load-testing/).
+
+## What you'll accomplish
+
+By the end of this guide, you will:
+
+1. Download and run the **SRT load test script** on a test machine.
+2. Publish multiple **SRT streams** using the `streamid=AppName/streamId` format.
+3. Scale publisher count to measure SRT ingest capacity.
 
 ## Prerequisites
 
-- A server or virtual machine running Ubuntu 20.04 or later
+Before you begin, confirm the following:
 
-- FFmpeg installed on the server
+- **Ubuntu 20.04 or later** on the test machine (or any Linux host with FFmpeg and SRT support).
+- **FFmpeg** with SRT enabled installed on the test machine.
+- An **MP4 file** on the test machine for looping publish.
+- Ant Media Server **SRT ingest** enabled (default port **4200** unless changed).
 
-- The SRT load test script
+## Step 1: Download the SRT load test script
 
-### Step 1: Downloading the SRT Load Test Script
+```bash
+sudo wget https://raw.githubusercontent.com/ant-media/Scripts/master/load-testing/srt_publisher.sh
+sudo chmod +x srt_publisher.sh
+```
 
-1. Open a terminal window on your Ubuntu server or virtual machine.
+## Step 2: Run the SRT load test
 
-2. Navigate to the directory where you want to store the SRT load test script.
+```bash
+sudo ./srt_publisher.sh /path/to/file.mp4 srt://domain-or-ip:4200?streamid=AppName/streamId 10
+```
 
-3. Run the following command to download the `srt_publisher.sh` script and give it executable permission:
+Example:
 
-   ```bash
-   sudo wget https://raw.githubusercontent.com/ant-media/Scripts/master/load-testing/srt_publisher.sh && sudo chmod +x srt_publisher.sh
-   ```
+```bash
+sudo ./srt_publisher.sh /home/ubuntu/test.mp4 srt://srt.antmedia.io:4200?streamid=LiveApp/test 10
+```
 
-### Step 2: Running the SRT Load Test
+This publishes **10** SRT streams with IDs `test_1`, `test_2`, … `test_10` in the `LiveApp` application.
 
-1. Open a terminal window on your Ubuntu server or virtual machine and go to the directory where you downloaded the `srt_publisher.sh` script.
+Replace the MP4 path, SRT URL, `streamid`, and publisher count as needed.
 
-2. Run the following command to start the SRT load test:
+## Step 3: Stop the test
 
-   ```bash
-   sudo ./srt_publisher.sh /path/to/file.mp4 srt://domain-or-IP:4200?streamid=AppName/streamId 10
-   ```
+```bash
+sudo pkill ffmpeg
+```
 
-   Here is the sample command:
+Increase the publisher count to test higher loads. Monitor active broadcasts and server resources in the dashboard.
 
-   ```bash
-   sudo ./srt_publisher.sh /home/ubuntu/test.mp4 srt://srt.antmedia.io:4200?streamid=LiveApp/test 10
-   ```
-     
-   This command will publish 10 SRT streams with stream IDs `test_1`, `test_2` etc. in the LiveApp application of your Ant Media Server.
+## Related guides
 
-   Replace `file.mp4` with the actual mp4 file, the URL with the actual URL of your Ant Media Server and `10` with the number of SRT streams you want to simulate.
-
-3. Wait for the test to complete.
-
-4. To stop the SRT load test, run the following command:
-
-   ```bash
-   sudo pkill ffmpeg
-   ```
-
-Similarly, you can increase the number of SRT streams to simulate higher loads.
-
-
-<div align="center">
-
-### SRT load testing for you
-
-</div>
-
-
-You’ve downloaded the script, launched FFmpeg, and started publishing multiple SRT streams into your Ant Media Server. The terminal confirms each stream is active, and the dashboard reflects the increase in stream count.
-
-Now you have a reliable way to validate SRT publishing performance and ensure your server can handle the expected stream load.
+- [WebRTC Load Testing](/guides/load-testing/webrtc-load-testing/) — WebRTC publish/play load with the Enterprise test tool.
+- [HLS Load Testing](/guides/load-testing/hls-load-testing/) — simulate HLS viewers.
+- [RTMP Load Testing](/guides/load-testing/rtmp-load-testing/) — simulate multiple RTMP publishers.
+- [Publish with SRT](/guides/publish-live-stream/srt/srt/) — SRT ingest configuration.

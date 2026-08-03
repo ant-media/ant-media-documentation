@@ -1,71 +1,67 @@
 ---
-title: RTMP Load Testing 
-description: A simple guide to making a RTMP load test on your Ant Media Server.
+title: RTMP Load Testing
+description: Simulate multiple RTMP publishers on Ant Media Server using FFmpeg and the rtmp_publisher.sh load test script.
 keywords: [Ant Media Load Testing, RTMP load test, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 3
 ---
 
-This document outlines the steps to perform an RTMP publishing load test on Ant Media Server using the provided script with the help of FFmpeg.
+# RTMP Load Testing
 
-The script simulates a specified number of RTMP live streams published to the Ant Media Server.
+Simulate many **RTMP publishers** pushing the same MP4 file into Ant Media Server. The `rtmp_publisher.sh` script uses **FFmpeg** to open multiple publish connections with distinct stream IDs (`test_1`, `test_2`, …).
+
+For WebRTC load tests, see [WebRTC Load Testing](/guides/load-testing/webrtc-load-testing/).
+
+## What you'll accomplish
+
+By the end of this guide, you will:
+
+1. Download and run the **RTMP load test script** on a test machine.
+2. Publish multiple **RTMP streams** to an Ant Media Server application.
+3. Scale publisher count to measure ingest capacity.
 
 ## Prerequisites
 
-- A server or virtual machine running Ubuntu 20.04 or later
+Before you begin, confirm the following:
 
-- FFmpeg installed on the server
+- **Ubuntu 20.04 or later** on the test machine (or any Linux host with FFmpeg).
+- **FFmpeg** installed (`sudo apt install -y ffmpeg`).
+- An **MP4 file** on the test machine for looping publish.
+- Ant Media Server reachable at your **RTMP** endpoint (port **1935** by default, or RTMPS as configured).
 
-- The RTMP load test script
+## Step 1: Download the RTMP load test script
 
-### Step 1: Downloading the RTMP Load Test Script
+```bash
+sudo wget https://raw.githubusercontent.com/ant-media/Scripts/master/load-testing/rtmp_publisher.sh
+sudo chmod +x rtmp_publisher.sh
+```
 
-1. Open a terminal window on your Ubuntu server or virtual machine.
+## Step 2: Run the RTMP load test
 
-2. Navigate to the directory where you want to store the RTMP load test script.
+```bash
+sudo ./rtmp_publisher.sh /path/to/file.mp4 rtmp://domain-or-ip/AppName/streamId 10
+```
 
-3. Run the following command to download the rtmp_publisher.sh script and give it executable permission:
+Example:
 
-   ```bash
-   sudo wget https://raw.githubusercontent.com/ant-media/Scripts/master/load-testing/rtmp_publisher.sh && sudo chmod +x rtmp_publisher.sh
-   ```
+```bash
+sudo ./rtmp_publisher.sh /home/ubuntu/test.mp4 rtmp://rtmp.antmedia.io/LiveApp/test 10
+```
 
-### Step 2: Running the RTMP Load Test
+This publishes **10** streams with IDs `test_1`, `test_2`, … `test_10` in the `LiveApp` application.
 
-1. Open a terminal window on your Ubuntu server or virtual machine and go to the directory where you downloaded the `rtmp_publisher.sh` script.
+Replace the MP4 path, RTMP URL, application name, base stream ID, and publisher count as needed.
 
-2. Run the following command to start the RTMP load test:
+## Step 3: Stop the test
 
-   ```bash
-   sudo ./rtmp_publisher.sh /path/to/file.mp4 rtmp://domain-or-Ip/AppName/streamId 10
-   ```
+```bash
+sudo pkill ffmpeg
+```
 
-   Example command:
+Increase the final number argument to simulate higher publish load. Watch active broadcasts and resource usage in the Ant Media Server dashboard.
 
-   ```bash
-   sudo ./rtmp_publisher.sh /home/ubuntu/test.mp4 rtmp://rtmp.antmedia.io/LiveApp/test 10
-   ```
-     
-   This command publishes 10 RTMP streams with stream IDs `test_1`, `test_2`, and so on in the LiveApp application of your Ant Media Server.
+## Related guides
 
-   Replace `file.mp4`with the actual MP4 file, update the URL with your Ant Media Server address, and change `10` to the number of RTMP streams you want to simulate.
-
-3. Wait for the test to complete.
-
-4. To stop the RTMP load test, run the following command:
-
-   ```bash
-   sudo pkill ffmpeg
-   ```
-
-Similarly, you can increase the number of RTMP streams to simulate higher loads.
-
-
-<div align="center">
-
-### RTMP load testing for you
-
-</div>
-
-You’ve downloaded the script, started publishing with FFmpeg, and simulated multiple RTMP streams flowing into your Ant Media Server. The dashboard shows the active streams increasing in line with the number you set, confirming that the load test is working.
-
-Now you have a dependable way to validate RTMP publishing performance and ensure your server can handle the desired stream load.
+- [WebRTC Load Testing](/guides/load-testing/webrtc-load-testing/) — WebRTC publish/play load with the Enterprise test tool.
+- [HLS Load Testing](/guides/load-testing/hls-load-testing/) — simulate HLS viewers.
+- [SRT Load Testing](/guides/load-testing/srt-load-testing/) — simulate multiple SRT publishers.
+- [Publish with RTMP](/guides/publish-live-stream/rtmp/publish-with-obs/) — RTMP ingest configuration.
