@@ -22,7 +22,7 @@ Webhooks let Ant Media Server notify your backend when something happens on the 
 | **Stream authorization** | Accept or reject publish/play requests — see [Webhook stream authorization](/guides/stream-security/webhook-stream-authorization/) |
 | **Per-stream integrations** | Set a different webhook URL per broadcast via `listenerHookURL` for tenant-specific workflows |
 
-Webhooks complement the [REST API](/category/rest-api-guide/) and [client SDKs](/guides/developer-sdk-and-api/sdk-integration/): SDKs handle real-time media on the client; REST controls the server on demand; webhooks push server-side events to your app as they happen.
+Webhooks complement the [REST API](/guides/developer-sdk-and-api/rest-api-guide/) and [client SDKs](/guides/developer-sdk-and-api/sdk-integration/): SDKs handle real-time media on the client; REST controls the server on demand; webhooks push server-side events to your app as they happen.
 
 ## How it works
 

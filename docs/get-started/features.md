@@ -151,7 +151,7 @@ See [Stream Security](/category/stream-security/) for the full set.
 
 If you call the REST API from other hosts, configure IP allowlisting and/or JWT. Keep `127.0.0.1` in the IP filter—the web panel itself uses localhost access. Removing it breaks the panel.
 
-Details: [Securing REST APIs](/guides/developer-sdk-and-api/rest-api-guide/securing-rest-apis/) · [REST API](/category/rest-api-guide/)
+Details: [Securing REST APIs](/guides/developer-sdk-and-api/rest-api-guide/securing-rest-apis/) · [REST API](/guides/developer-sdk-and-api/rest-api-guide/)
 
 ![](@site/static/img/dashboard-features/dashboardRestAPI.png)
 

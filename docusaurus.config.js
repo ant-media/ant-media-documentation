@@ -687,7 +687,84 @@ scripts: [
         },
 	{
           from: '/guides/developer-sdk-and-api/rest-api-guide/REST-API-examples/',
-          to: '/guides/developer-sdk-and-api/rest-api-guide/rest-apis-examples/'
+          to: '/guides/developer-sdk-and-api/rest-api-guide/api-catalog/'
+        },
+	{
+          from: '/guides/developer-sdk-and-api/rest-api-guide/rest-apis-examples/',
+          to: '/guides/developer-sdk-and-api/rest-api-guide/api-catalog/'
+        },
+	{
+          from: '/guides/developer-sdk-and-api/rest-api-guide/examples/',
+          to: '/guides/developer-sdk-and-api/rest-api-guide/api-catalog/'
+        },
+	{
+          from: '/2.17/guides/developer-sdk-and-api/rest-api-guide/REST-API-examples/',
+          to: '/2.17/guides/developer-sdk-and-api/rest-api-guide/api-catalog/'
+        },
+	{
+          from: '/2.17/guides/developer-sdk-and-api/rest-api-guide/rest-apis-examples/',
+          to: '/2.17/guides/developer-sdk-and-api/rest-api-guide/api-catalog/'
+        },
+	{
+          from: '/2.17/guides/developer-sdk-and-api/rest-api-guide/examples/',
+          to: '/2.17/guides/developer-sdk-and-api/rest-api-guide/api-catalog/'
+        },
+	{
+          from: '/2.16/guides/developer-sdk-and-api/rest-api-guide/REST-API-examples/',
+          to: '/2.16/guides/developer-sdk-and-api/rest-api-guide/api-catalog/'
+        },
+	{
+          from: '/2.16/guides/developer-sdk-and-api/rest-api-guide/rest-apis-examples/',
+          to: '/2.16/guides/developer-sdk-and-api/rest-api-guide/api-catalog/'
+        },
+	{
+          from: '/2.16/guides/developer-sdk-and-api/rest-api-guide/examples/',
+          to: '/2.16/guides/developer-sdk-and-api/rest-api-guide/api-catalog/'
+        },
+	{
+          from: '/3.0/guides/developer-sdk-and-api/rest-api-guide/REST-API-examples/',
+          to: '/guides/developer-sdk-and-api/rest-api-guide/api-catalog/'
+        },
+	{
+          from: '/3.0/guides/developer-sdk-and-api/rest-api-guide/rest-apis-examples/',
+          to: '/guides/developer-sdk-and-api/rest-api-guide/api-catalog/'
+        },
+	{
+          from: '/3.0/guides/developer-sdk-and-api/rest-api-guide/examples/',
+          to: '/guides/developer-sdk-and-api/rest-api-guide/api-catalog/'
+        },
+	{
+          from: '/guides/developer-sdk-and-api/rest-api-guide/rest-api-guide/',
+          to: '/guides/developer-sdk-and-api/rest-api-guide/getting-started/',
+        },
+	{
+          from: '/2.17/guides/developer-sdk-and-api/rest-api-guide/rest-api-guide/',
+          to: '/2.17/guides/developer-sdk-and-api/rest-api-guide/getting-started/',
+        },
+	{
+          from: '/2.16/guides/developer-sdk-and-api/rest-api-guide/rest-api-guide/',
+          to: '/2.16/guides/developer-sdk-and-api/rest-api-guide/getting-started/',
+        },
+	{
+          from: '/3.0/guides/developer-sdk-and-api/rest-api-guide/rest-api-guide/',
+          to: '/guides/developer-sdk-and-api/rest-api-guide/getting-started/',
+        },
+	// REST API category index → overview doc
+	{
+          from: '/category/rest-api-guide/',
+          to: '/guides/developer-sdk-and-api/rest-api-guide/',
+        },
+	{
+          from: '/2.17/category/rest-api-guide/',
+          to: '/2.17/guides/developer-sdk-and-api/rest-api-guide/',
+        },
+	{
+          from: '/2.16/category/rest-api-guide/',
+          to: '/2.16/guides/developer-sdk-and-api/rest-api-guide/',
+        },
+	{
+          from: '/3.0/category/rest-api-guide/',
+          to: '/guides/developer-sdk-and-api/rest-api-guide/',
         },
 	{
           from: '/guides/advanced-usage/using-nvidia-hardware-based-encoder-on-docker/',

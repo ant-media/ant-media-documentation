@@ -26,7 +26,7 @@ Work through this list before going live.
 
 - [ ] SSL is configured with a valid certificate for your domain — start in [Installation](/category/installation/).
 - [ ] Default Web Panel credentials are changed and [user roles](/user-management/) are assigned.
-- [ ] REST API is secured (IP filtering or JWT) — see [REST API](/category/rest-api-guide/).
+- [ ] REST API is secured (IP filtering or JWT) — see [REST API](/guides/developer-sdk-and-api/rest-api-guide/).
 - [ ] Stream security is enabled where needed (JWT tokens, one-time tokens, webhook authorization, undefined-stream policy, CORS) — see [Stream Security](/category/stream-security/).
 - [ ] Cluster port 5000 and MongoDB port 27017 are **not** reachable from the public internet.
 
@@ -77,7 +77,7 @@ Start with the [Troubleshooting](/guides/troubleshooting/) guide. Common product
 | High CPU / memory / "Resource Usage is High" | [Troubleshooting](/guides/troubleshooting/) — thread/heap dumps, `server.cpu_limit` |
 | WebRTC publish/play failures | SSL, UDP 50000–60000, [TURN Server Installation](/category/turn-server-installation/), [STUN/TURN Server Configuration](/guides/configuration-and-testing/configuring-stun-turn-addresses/), [Publish Live Streams](/category/publish-live-streams/), [Play Live Streams](/category/play-live-streams/) |
 | Cluster: stream on origin but not on edge | [Clustering and Scaling](/category/clustering-and-scaling/) — TCP 5000, shared MongoDB |
-| REST API 401/403 | [REST API](/category/rest-api-guide/), [FAQ](/faq/) |
+| REST API 401/403 | [REST API](/guides/developer-sdk-and-api/rest-api-guide/), [FAQ](/faq/) |
 | Recording / S3 404 | [Recording Live Streams](/category/recording-live-streams/), [Cloud Storage Integration](/category/s3-recording-and-integration/) |
 
 Also search the [FAQ](/faq/) and [GitHub Discussions Q&A](https://github.com/orgs/ant-media/discussions/categories/q-a).

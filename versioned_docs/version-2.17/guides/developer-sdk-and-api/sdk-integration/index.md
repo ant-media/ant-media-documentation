@@ -82,4 +82,4 @@ WebSocket message formats are documented in [WebRTC WebSocket messaging referenc
 
 ## REST API and webhooks
 
-SDKs cover **client-side** WebRTC. For server control—create broadcasts, list streams, manage recordings—use the [REST API](/category/rest-api-guide/) and [Webhooks](/guides/developer-sdk-and-api/webhooks/).
+SDKs cover **client-side** WebRTC. For server control—create broadcasts, list streams, manage recordings—use the [REST API](/guides/developer-sdk-and-api/rest-api-guide/) and [Webhooks](/guides/developer-sdk-and-api/webhooks/).

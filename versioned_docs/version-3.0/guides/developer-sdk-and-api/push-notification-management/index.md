@@ -30,7 +30,7 @@ Each device receives a unique **registration token** from FCM or APNs. Your clie
 | **Conference invitations** | Alert participants to join a room |
 | **Custom app events** | Send arbitrary JSON payloads with titles and metadata |
 
-Push notifications complement [Webhooks](/guides/developer-sdk-and-api/webhooks/) and the [REST API](/category/rest-api-guide/): webhooks notify your backend of server events; push notifications reach end-user devices in real time.
+Push notifications complement [Webhooks](/guides/developer-sdk-and-api/webhooks/) and the [REST API](/guides/developer-sdk-and-api/rest-api-guide/): webhooks notify your backend of server events; push notifications reach end-user devices in real time.
 
 ## How it works
 

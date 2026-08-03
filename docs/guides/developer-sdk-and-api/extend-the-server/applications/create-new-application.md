@@ -54,7 +54,7 @@ sudo service antmedia restart
 
 ## REST API
 
-Create or delete applications via the [Management REST API](/guides/developer-sdk-and-api/rest-api-guide/management-rest-apis/).
+Create or delete applications via the [Web Panel API](/guides/developer-sdk-and-api/rest-api-guide/management-rest-apis/).
 
 **Create:**
 

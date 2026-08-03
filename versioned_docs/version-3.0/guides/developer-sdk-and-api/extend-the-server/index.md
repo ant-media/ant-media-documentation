@@ -26,6 +26,6 @@ Go beyond default AMS configuration when you need to customize the server itself
 
 ## Related guides
 
-- [REST API](/category/rest-api-guide/) — manage applications and streams programmatically
+- [REST API](/guides/developer-sdk-and-api/rest-api-guide/) — manage applications and streams programmatically
 - [Webhooks](/guides/developer-sdk-and-api/webhooks/) — receive server events in your backend
 - [SDK Integration](/guides/developer-sdk-and-api/sdk-integration/) — client-side WebRTC integration
