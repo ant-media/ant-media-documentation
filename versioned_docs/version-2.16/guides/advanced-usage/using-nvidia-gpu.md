@@ -1,71 +1,106 @@
 ---
 title: Using NVIDIA GPU
-description: To enhance encoding performance with GPU Encoder or GPU intence encoding, you may leverage Nvidia Graphics Cards. It is also helpful with Video Encode and Decode GPU Support Matrix.
+description: Enable NVIDIA NVENC/NVDEC hardware encoding in Ant Media Server with CUDA 12.6 for faster transcoding and adaptive bitrate streaming.
 keywords: [Using Nvidia GPUs, Nvidia GPUs for Encoding, Enhance Encoding Performance with GPU Encoder, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 7
 ---
 
 # Using NVIDIA GPU
 
-Ant Media Server can use NVIDIA GPU’s hardware encoder (NVENC/NVDEC) for high-performance streaming.. If you have an NVIDIA GPU, you can see if it has a hardware-based encoder in the [Video Encode and Decode GPU Support Matrix](https://developer.nvidia.com/video-encode-decode-gpu-support-matrix).
+Ant Media Server can offload video encoding and decoding to **NVIDIA GPUs** through dedicated hardware blocks called **NVENC** (encode) and **NVDEC** (decode). Instead of burning CPU cycles on software encoders, the GPU handles transcoding—especially useful when you run **adaptive bitrate (ABR)** profiles or high-resolution streams at scale.
+
+With **CUDA 12.6** installed, Ant Media Server detects a supported GPU at startup and uses it automatically—no extra application settings are required.
+
+Not every NVIDIA card includes a hardware encoder. Check your model in the [Video Encode and Decode GPU Support Matrix](https://developer.nvidia.com/video-encode-decode-gpu-support-matrix) before you install drivers.
+
+## What you'll accomplish
+
+By the end of this guide, you will:
+
+1. Understand when GPU encoding is worth the setup.
+2. Install **CUDA 12.6** on Ubuntu (20.04, 22.04, or 24.04).
+3. Verify the GPU with `nvidia-smi` and confirm Ant Media Server is using it during transcoding.
 
 ## Why use the NVIDIA GPU encoder?
 
-The primary reason is performance. In demanding scenarios such as multiple ABRs or high resolutions, GPU encoding can be up to 5× faster than CPU encoders like `x264` or `openh264`. In the absence of a GPU on the system, Ant Media Server by default uses the ```openh264``` encoder from version 2.5.1 onwards. Prior to that, the x264 encoder was the default choice for AMS.
+Think of CPU encoding as a general-purpose worker and NVENC as a specialist built for one job: turning video frames into compressed streams, fast.
 
-The utilization of a GPU is advised for demanding transcoding tasks. If you want to publish numerous streams featuring multiple ABRs, using a GPU-optimized server rather than a CPU-optimized one would be a good decision. For instance, a single 4-core CPU-optimized server would struggle to manage a single stream with four ABRs (1080, 720, 480, and 360), and this approach is not recommended. However, a single 4-core GPU-optimized server can effortlessly handle 5–6 streams that have the same ABRs enabled.
+| Scenario | CPU-only server | GPU-enabled server |
+|----------|-----------------|-------------------|
+| Single stream, four ABR renditions (1080p → 360p) | A 4-core CPU box often struggles with one stream | A 4-core GPU box can handle **5–6** similar streams |
+| Multiple ABRs or 1080p+ transcoding | Software encoders (`openh264`, `x264`) lag under load | GPU encoding can be up to **5× faster** in demanding workloads |
+
+Without a GPU, Ant Media Server uses **openh264** for software H.264 encoding (default since v2.5.1; **x264** before that). That works for light workloads, but once you stack ABR profiles or publish many streams, the CPU becomes the bottleneck long before your network does.
+
+A GPU-optimized instance pays off when you:
+
+- Transcode streams into **multiple bitrates** for ABR playback.
+- Run **several concurrent publishers** on one origin node.
+- Need headroom for **1080p or higher** without dropping frames.
 
 ![](@site/static/img/gpu.png)
 
-## Install the CUDA toolkit
+:::info
+For GPU encoding in Docker, see [Using NVIDIA Hardware-based Encoder on Docker](/guides/clustering-and-scaling/docker/using-nvidia-hardware-based-encoder-on-docker/).
+:::
 
-Once you have confirmed the existence of a hardware-based encoder in your GPU, the only remaining step is to install the CUDA toolkit onto your system.
+## Prerequisites
 
-### Installation on Ubuntu 20.04, 22.04 and 24.04
+Before you begin, confirm the following:
 
-Ant Media Server now automatically utilizes the GPU with CUDA version 12.6, which is why it is necessary to install it. 
+- An NVIDIA GPU with **NVENC** support (see the [support matrix](https://developer.nvidia.com/video-encode-decode-gpu-support-matrix)).
+- **Ubuntu 20.04, 22.04, or 24.04** on x86_64 (Ant Media Server officially supports Ubuntu 22.04 on v2.6 and later).
+- Root or `sudo` access to install CUDA packages and reboot the host.
 
-To install, follow [this link](https://developer.nvidia.com/cuda-12-6-0-download-archive) and select the settings according to your operating system and architecture. You can then use the commands provided to complete the installation. Refer to the screenshot below for further guidance.
+## Step 1: Install CUDA 12.6
+
+Ant Media Server uses **CUDA 12.6**. Install the runtime packages below instead of the full `cuda` metapackage to save disk space and installation time.
+
+You can also use NVIDIA’s interactive installer at the [CUDA 12.6 download archive](https://developer.nvidia.com/cuda-12-6-0-download-archive)—select your OS and architecture, then compare the commands it generates with the blocks for your Ubuntu version.
 
 ![](@site/static/img/adavanced-usage/using-nvidia-gpu/cuda-11.8.png)
 
-Instead of using ```sudo apt-get -y install cuda``` command to download whole CUDA package, we will just install the limited package of CUDA 12.6 to decrease installation time and space.
+### Ubuntu version differences
 
-#### Ubuntu 20.04
+| Ubuntu version | CUDA packages to install | Notes |
+|----------------|--------------------------|-------|
+| **20.04** | `cuda-runtime-12-6` | Minimal runtime install |
+| **22.04** | `cuda-runtime-12-6` | Recommended for Ant Media Server v2.6+ |
+| **24.04** | `cuda-toolkit-12-6` + `cuda-drivers` | Requires the toolkit and driver packages (not `cuda-runtime-12-6` alone) |
+
+### Ubuntu 20.04
 
 ```bash
 sudo wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-keyring_1.1-1_all.deb
 sudo dpkg -i cuda-keyring_1.1-1_all.deb
 sudo apt-get update
-sudo apt-get install cuda-runtime-12-6
+sudo apt-get install -y cuda-runtime-12-6
 sudo reboot
 ```
 
-#### Ubuntu 22.04
-Ant Media Server officially supports Ubuntu 22.04 on versions 2.6 and higher.
+### Ubuntu 22.04
 
 ```bash
 sudo wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb
 sudo dpkg -i cuda-keyring_1.1-1_all.deb
 sudo apt-get update
-sudo apt-get install cuda-runtime-12-6
+sudo apt-get install -y cuda-runtime-12-6
 sudo reboot
 ```
 
-#### Ubuntu 24.04
+### Ubuntu 24.04
 
 ```bash
-wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-keyring_1.1-1_all.deb
+sudo wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-keyring_1.1-1_all.deb
 sudo dpkg -i cuda-keyring_1.1-1_all.deb
 sudo apt-get update
-sudo apt-get -y install cuda-toolkit-12-6
-sudo apt-get install -y cuda-drivers
+sudo apt-get install -y cuda-toolkit-12-6 cuda-drivers
 sudo reboot
 ```
 
-### NVIDIA A10 Tensor Core GPU
+## Step 2: Install GRID drivers for Azure A10 (optional)
 
-If you are using a GPU instance of the ```NV4as_v4/NV6ads``` family from Azure Marketplace, which features the NVIDIA A10 Tensor Core GPU, you may need to install the NVIDIA GRID drivers to ensure proper GPU functionality.
+If you run an Azure **NV4as_v4** or **NV6ads** instance with an **NVIDIA A10** GPU, install the **NVIDIA GRID** driver so the GPU is exposed correctly to the guest OS.
 
 ```bash
 sudo wget https://storage.googleapis.com/nvidia-drivers-us-public/GRID/vGPU15.2/NVIDIA-Linux-x86_64-525.105.17-grid.run
@@ -74,48 +109,60 @@ sudo ./NVIDIA-Linux-x86_64-525.105.17-grid.run
 sudo reboot
 ```
 
-## Check the usage of GPU
+## Step 3: Verify the GPU
 
-After installation of CUDA toolkit, you can run the command below to see the status of your GPU.
+After reboot, confirm the driver and GPU are available:
 
 ```bash
 nvidia-smi
 ```
 
-You can install Ant Media Server using the usual method, or if you have already installed it, you can restart the Ant Media Server.
+You should see your GPU model, driver version, and memory usage. If the command is not found, recheck the CUDA installation for your Ubuntu version.
+
+Install Ant Media Server using the [Linux installation guide](/guides/installing-on-linux/installing-ams-on-linux/), or restart an existing installation:
 
 ```bash
 sudo service antmedia restart
 ```
- 
-You will see output below if the GPU is in use.
+
+## Step 4: Confirm Ant Media Server is using the GPU
+
+When **CUDA 12.6** is present, Ant Media Server checks for a hardware encoder at startup and selects it automatically—no dashboard toggle is required.
+
+Start or republish a stream that triggers transcoding (for example, **ABR** with multiple renditions). Then run `nvidia-smi` again while the stream is active. You should see GPU utilization similar to the example below.
 
 ![](@site/static/img/adavanced-usage/using-nvidia-gpu/gpu-use.png)
 
+## CUDA compatibility packages
 
-## Using NVIDIA hardware based encoder
-
-When using CUDA 12.6, Ant Media Server will verify and record the presence of a hardware-based GPU encoder during startup, and will use it automatically without requiring any additional action.
-
-If you've already installed another CUDA version and it does not work with AMS, you may install compatibility packages.
+If another CUDA version is already installed and Ant Media Server does not detect the GPU, add the **12.6** compatibility packages:
 
 ```bash
-sudo apt-get install cuda-cudart-12-6
-sudo apt-get install cuda-compat-12-6
+sudo apt-get install -y cuda-cudart-12-6 cuda-compat-12-6
+sudo reboot
 ```
 
-After installing packages, reboot the server once.
+## Other operating systems
 
-If you need more information for installing on other systems, please check [NVIDIA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html) docs and [CUDA downloads](https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=1604&target_type=debnetwork) pages.
+For non-Ubuntu Linux or other architectures, follow NVIDIA’s official guides:
 
-<br /><br />
----
+- [CUDA Installation Guide for Linux](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html)
+- [CUDA Downloads](https://developer.nvidia.com/cuda-downloads)
 
-<div align="center">
-<h2> 🚀 GPU Mode On: Streams Accelerated, Latency Reduced! ⚡️ </h2>
-</div>
+## Related guides
 
-With NVIDIA GPU support enabled via CUDA 12.6, your server now offloads **heavy encoding work to the GPU** — smoother ABRs, lower CPU usage, and better performance under load.
+- [Adaptive Bitrate Streaming](/guides/adaptive-bitrate/adaptive-bitrate-streaming/) — when GPU acceleration matters most.
+- [H.264 Codec](/guides/configuration-and-testing/video-codecs/#h264-codec) — uses **h264_nvenc** on supported NVIDIA GPUs.
+- [Using NVIDIA Hardware-based Encoder on Docker](/guides/clustering-and-scaling/docker/using-nvidia-hardware-based-encoder-on-docker/) — GPU encoding in container deployments.
 
-Your streaming infrastructure is now **battle-tested, fast, and ready for many high-quality streams!** 🎯
+## Troubleshooting
 
+| Symptom | What to check |
+|---------|----------------|
+| `nvidia-smi: command not found` | CUDA packages installed for your **Ubuntu version**; host rebooted after install. On **24.04**, confirm both `cuda-toolkit-12-6` and `cuda-drivers` are installed—not `cuda-runtime-12-6` alone. |
+| `nvidia-smi` works but GPU stays at 0% during streaming | Transcoding must be active—enable **ABR** or another profile that re-encodes. **SFU** mode forwards streams without GPU transcoding. Restart AMS after CUDA install: `sudo service antmedia restart`. |
+| Ant Media Server still uses CPU encoding | **CUDA 12.6** is required; install [compatibility packages](#cuda-compatibility-packages) if another CUDA version is present. Check AMS logs for GPU encoder detection at startup. |
+| GPU not listed in `nvidia-smi` on Azure | **NVIDIA A10** instances (`NV4as_v4`, `NV6ads`) may need [GRID drivers](#step-2-install-grid-drivers-for-azure-a10-optional). |
+| Encoder errors or missing NVENC | GPU model supports hardware encode in the [NVIDIA support matrix](https://developer.nvidia.com/video-encode-decode-gpu-support-matrix). Consumer and datacenter cards differ—confirm **NVENC** is listed for your SKU. |
+| `apt-get install` fails for CUDA packages | Correct **keyring `.deb`** for your Ubuntu release (`ubuntu2004`, `ubuntu2204`, or `ubuntu2404`); run `sudo apt-get update` after adding the repo. |
+| Docker container cannot access GPU | Host CUDA is not enough—follow [Using NVIDIA Hardware-based Encoder on Docker](/guides/clustering-and-scaling/docker/using-nvidia-hardware-based-encoder-on-docker/) to install **nvidia-container-toolkit** and pass the GPU into the container. |
