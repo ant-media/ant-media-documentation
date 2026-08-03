@@ -61,30 +61,40 @@ Enable additional codecs only when you have a clear reason—extra codecs can me
 
 The sections below explain how to enable and configure each codec in different scenarios.
 
-## Enable and Configure H.264 & VP8 Codecs
+## H.264 Codec
 
-In this section, learn about the H264 and VP8 video codecs.
+**H.264** is the most widely supported video codec across browsers, devices, and hardware platforms. It is the default and most reliable choice for streaming in Ant Media Server.
 
-### Enable H.264 and VP8 Codec Together
+### Enable only H.264
 
-Both H.264 & VP8 can be enabled in the basic application settings.
-
-![h264andvp8](https://github.com/user-attachments/assets/37123332-5f07-4350-ac11-09b64a433cb2)
-
-- **SFU Mode (No adaptive bitrate):** Ant Media Server ingests a WebRTC stream in either H.264 or VP8; if both are available, H.264 is prioritized. The original stream is forwarded to players without transcoding.
-
-- **Adaptive Bitrate Mode (if you have at least one adaptive bitrate):** If at least one adaptive bitrate is enabled, the stream is transcoded into multiple bitrates for both H.264 and VP8. This ensures compatibility across devices that support either codec. See [Adaptive streaming](https://antmedia.io/docs/guides/adaptive-bitrate/adaptive-bitrate-streaming/) for details.
-
-### Enable Only H.264 Codec
+1. Log in to the Ant Media Server dashboard.
+2. Select your application.
+3. Open the **Settings** tab.
+4. Enable **H.264** (disable VP8 if you want H.264 only) and save.
 
 ![h264](https://github.com/user-attachments/assets/cfe26a24-6b8e-4a5f-94d9-68bfc260fc47)
 
-- **SFU Mode:**: Only H.264 streams are ingested and forwarded without transcoding.
-- **Adaptive Bitrate Mode:** The stream is transcoded into multiple H.264 bitrates. Devices that support H.264 can play the stream.
+When only H.264 is enabled:
 
-You can check if your device supports H.264 [at this link](https://mozilla.github.io/webrtc-landing/pc_test_no_h264.html).
+- **SFU mode:** Only H.264 streams are ingested and forwarded without transcoding.
+- **Adaptive bitrate (ABR) mode:** The stream is transcoded into multiple H.264 bitrates. Devices that support H.264 can play the stream.
 
-### Enable Only VP8 Codec
+Verify H.264 support on a client: [WebRTC H.264 test](https://mozilla.github.io/webrtc-landing/pc_test_no_h264.html).
+
+### Enable H.264 and VP8 together
+
+Both H.264 and VP8 can be enabled in basic application settings when you need broader WebRTC browser coverage.
+
+![h264andvp8](https://github.com/user-attachments/assets/37123332-5f07-4350-ac11-09b64a433cb2)
+
+- **SFU mode:** Ant Media Server ingests WebRTC in H.264 or VP8; if both are available, H.264 is prioritized. The original stream is forwarded without transcoding.
+- **ABR mode:** With at least one adaptive bitrate enabled, the stream is transcoded into multiple bitrates for both H.264 and VP8. See [Adaptive Bitrate Streaming](/guides/adaptive-bitrate/adaptive-bitrate-streaming/) for details.
+
+## Enable and Configure VP8 Codec
+
+In this section, learn about the VP8 video codec.
+
+### Enable only VP8
 
 ![vp8](https://github.com/user-attachments/assets/c8900114-0f74-4cba-9dd9-c5b0da5b757a)
 
