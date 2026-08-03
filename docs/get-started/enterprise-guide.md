@@ -34,7 +34,7 @@ Work through this list before going live.
 
 - [ ] Adaptive bitrate resolutions/bitrates match your content and audience networks — see [Adaptive Bitrate Streaming (Transcoding)](/category/adaptive-bitrate/).
 - [ ] If transcoding at scale, GPU acceleration is configured on origin nodes — see [Using NVIDIA GPU](/guides/advanced-usage/using-nvidia-gpu/).
-- [ ] For viewers on restricted networks, a TURN server is deployed — see [TURN Server Installation](/category/turn-server-installation/) and [STUN/TURN Server Configuration](/guides/configuration-and-testing/configuring-stun-turn-addresses/).
+- [ ] For viewers on restricted networks, a TURN server is deployed — see [TURN Server Installation](/guides/advanced-usage/turn-installation/) and [STUN/TURN Server Configuration](/guides/configuration-and-testing/configuring-stun-turn-addresses/).
 - [ ] Recording and object storage are configured if recordings are required — see [Recording Live Streams](/category/recording-live-streams/) and [Cloud Storage Integration](/category/s3-recording-and-integration/).
 
 ### Operations
@@ -75,7 +75,7 @@ Start with the [Troubleshooting](/guides/troubleshooting/) guide. Common product
 | ------- | ------------- |
 | Pixelated or choppy video | [Troubleshooting](/guides/troubleshooting/) — bitrate, ABR, B-frames, network test tool |
 | High CPU / memory / "Resource Usage is High" | [Troubleshooting](/guides/troubleshooting/) — thread/heap dumps, `server.cpu_limit` |
-| WebRTC publish/play failures | SSL, UDP 50000–60000, [TURN Server Installation](/category/turn-server-installation/), [STUN/TURN Server Configuration](/guides/configuration-and-testing/configuring-stun-turn-addresses/), [Publish Live Streams](/category/publish-live-streams/), [Play Live Streams](/category/play-live-streams/) |
+| WebRTC publish/play failures | SSL, UDP 50000–60000, [TURN Server Installation](/guides/advanced-usage/turn-installation/), [STUN/TURN Server Configuration](/guides/configuration-and-testing/configuring-stun-turn-addresses/), [Publish Live Streams](/category/publish-live-streams/), [Play Live Streams](/category/play-live-streams/) |
 | Cluster: stream on origin but not on edge | [Clustering and Scaling](/category/clustering-and-scaling/) — TCP 5000, shared MongoDB |
 | REST API 401/403 | [REST API](/guides/developer-sdk-and-api/rest-api-guide/), [FAQ](/faq/) |
 | Recording / S3 404 | [Recording Live Streams](/category/recording-live-streams/), [Cloud Storage Integration](/category/s3-recording-and-integration/) |

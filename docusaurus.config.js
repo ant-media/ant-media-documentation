@@ -603,11 +603,15 @@ scripts: [
         },
 	{
           from: '/category/turn--stun-installation/',
-          to: '/category/turn-server-installation/'
+          to: '/guides/advanced-usage/turn-installation/'
+        },
+	{
+          from: '/category/turn-server-installation/',
+          to: '/guides/advanced-usage/turn-installation/'
         },
 	{
           from: '/guides/advanced-usage/turn-and-stun-installation/setting-up-turn-using-coturn/',
-          to: '/category/turn-server-installation/'
+          to: '/guides/advanced-usage/turn-installation/'
         },
 	{
           from: '/guides/publish-live-stream/introduction/',
