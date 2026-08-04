@@ -16,15 +16,16 @@ For architecture, components, and how origin/edge clustering works, see [Cluster
 
 | You should stay on a **single server** when… | You should **cluster** when… |
 | --- | --- |
-| You are prototyping or load is small | Concurrent publishers/viewers exceed one instance |
-| Ops simplicity matters more than HA | You need high availability across nodes |
-| Cost must stay minimal | You need independent scale for ingest (origin) and playback (edge) |
+| Concurrent publishers or viewers fit comfortably on one AMS | Concurrent publishers or viewers are too large for a single AMS |
+| You are prototyping or load is small | You need high availability across nodes |
+| Ops simplicity matters more than HA | You need independent scale for ingest (origin) and playback (edge) |
+| Cost must stay minimal | You are planning growth beyond one machine |
 
-Clustering keeps the same publish/play protocols. Clients usually talk to a **load balancer**; origin nodes ingest, edge nodes play.
+Clustering keeps the same publish/play protocols. Clients talk to a **load balancer**; origin nodes ingest, edge nodes play.
 
 You can **start single and move to a cluster later** when metrics (CPU, bandwidth, stream count) show you need it. Use the [cost calculator](https://antmedia.io/cost-calculator/) to estimate.
 
-## Recommended defaults (opinionated)
+## Recommendations
 
 | If you are on… | Prefer this first | Alternatives |
 | --- | --- | --- |

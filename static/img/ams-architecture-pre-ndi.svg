@@ -7,7 +7,7 @@
     </marker>
   </defs>
 
-  <!-- Publishers -->
+  <!-- Publishers (no NDI) -->
   <rect x="12" y="8" width="696" height="92" rx="12" fill="#f6f3e8" stroke="#d4cbb0"/>
   <g transform="translate(28,14)" fill="none" stroke="#5a4d7a" stroke-width="1.5" stroke-linejoin="round">
     <rect x="0" y="3" width="16" height="12" rx="1.5"/>
@@ -15,21 +15,17 @@
   </g>
   <text x="56" y="28" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#333">Publishers</text>
 
-  <rect x="36" y="40" width="144" height="46" rx="8" fill="#e9e5f4" stroke="#8f87ad"/>
-  <text x="108" y="58" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" font-weight="600" fill="#1a1a1a">Web Browser</text>
-  <text x="108" y="74" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="10" fill="#555">WebRTC · WHIP · MoQ</text>
+  <rect x="90" y="40" width="160" height="46" rx="8" fill="#e9e5f4" stroke="#8f87ad"/>
+  <text x="170" y="58" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" font-weight="600" fill="#1a1a1a">Web Browser</text>
+  <text x="170" y="74" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="10" fill="#555">WebRTC · WHIP · MoQ</text>
 
-  <rect x="204" y="40" width="144" height="46" rx="8" fill="#e9e5f4" stroke="#8f87ad"/>
-  <text x="276" y="58" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" font-weight="600" fill="#1a1a1a">Encoder</text>
-  <text x="276" y="74" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="10" fill="#555">RTMP · SRT · WHIP</text>
+  <rect x="280" y="40" width="160" height="46" rx="8" fill="#e9e5f4" stroke="#8f87ad"/>
+  <text x="360" y="58" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" font-weight="600" fill="#1a1a1a">Encoder</text>
+  <text x="360" y="74" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="10" fill="#555">RTMP · SRT · WHIP</text>
 
-  <rect x="372" y="40" width="144" height="46" rx="8" fill="#e9e5f4" stroke="#8f87ad"/>
-  <text x="444" y="58" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" font-weight="600" fill="#1a1a1a">IP Camera</text>
-  <text x="444" y="74" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="10" fill="#555">RTSP · ONVIF</text>
-
-  <rect x="540" y="40" width="144" height="46" rx="8" fill="#e9e5f4" stroke="#8f87ad"/>
-  <text x="612" y="58" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" font-weight="600" fill="#1a1a1a">NDI Source</text>
-  <text x="612" y="74" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="10" fill="#555">NDI</text>
+  <rect x="470" y="40" width="160" height="46" rx="8" fill="#e9e5f4" stroke="#8f87ad"/>
+  <text x="550" y="58" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" font-weight="600" fill="#1a1a1a">IP Camera</text>
+  <text x="550" y="74" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="10" fill="#555">RTSP · ONVIF</text>
 
   <line x1="360" y1="86" x2="360" y2="112" stroke="#5a5a5a" stroke-width="1.6" marker-end="url(#ah)"/>
 
@@ -48,16 +44,13 @@
   <line x1="360" y1="234" x2="360" y2="252" stroke="#5a5a5a" stroke-width="1.6"/>
   <path d="M250 252 H470" stroke="#5a5a5a" stroke-width="1.6" fill="none"/>
 
-  <!-- Live branch -->
   <line x1="250" y1="252" x2="250" y2="300" stroke="#5a5a5a" stroke-width="1.6" marker-end="url(#ah)"/>
 
-  <!-- Record → VoD branch -->
   <line x1="470" y1="252" x2="470" y2="264" stroke="#5a5a5a" stroke-width="1.6" marker-end="url(#ah)"/>
   <rect x="390" y="264" width="160" height="28" rx="6" fill="#fff7e0" stroke="#c49a3c"/>
   <text x="470" y="283" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" font-weight="600" fill="#1a1a1a">Recording</text>
   <line x1="470" y1="292" x2="470" y2="300" stroke="#5a5a5a" stroke-width="1.6" marker-end="url(#ah)"/>
 
-  <!-- Playback -->
   <rect x="140" y="300" width="440" height="96" rx="8" fill="#fff7e0" stroke="#c49a3c"/>
   <text x="360" y="322" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="13" font-weight="600" fill="#1a1a1a">Playback</text>
 
@@ -73,7 +66,6 @@
 
   <line x1="360" y1="396" x2="360" y2="440" stroke="#5a5a5a" stroke-width="1.6" marker-end="url(#ah)"/>
 
-  <!-- Players -->
   <rect x="12" y="442" width="696" height="122" rx="12" fill="#f6f3e8" stroke="#d4cbb0"/>
   <g transform="translate(28,450)" fill="none" stroke="#5a4d7a" stroke-width="1.5" stroke-linejoin="round">
     <rect x="0" y="2" width="18" height="14" rx="1.5"/>

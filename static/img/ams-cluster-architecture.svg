@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 520" role="img" aria-labelledby="clusterTitle clusterDesc">
   <title id="clusterTitle">Ant Media Server origin-edge cluster architecture</title>
-  <desc id="clusterDesc">Publishers and viewers connect through a load balancer to origin and edge node groups that share MongoDB metadata over TCP 5000.</desc>
+  <desc id="clusterDesc">Publishers (camera) and viewers (play) connect through a load balancer to origin and edge node groups that share MongoDB metadata over TCP 5000.</desc>
   <defs>
     <marker id="clusterArrow" markerWidth="7" markerHeight="7" refX="5.5" refY="3.5" orient="auto">
       <path d="M0,0 L6,3.5 L0,7 Z" fill="#5a5a5a"/>
@@ -17,17 +17,28 @@
   <rect x="16" y="16" width="848" height="100" rx="14" fill="url(#panelGrad)" stroke="#d4cbb0"/>
   <text x="36" y="42" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#333" letter-spacing="0.04em">CLIENTS</text>
 
-  <rect x="56" y="56" width="160" height="44" rx="8" fill="#e9e5f4" stroke="#8f87ad"/>
-  <text x="136" y="76" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="13" font-weight="600" fill="#1a1a1a">Publishers</text>
-  <text x="136" y="92" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="11" fill="#555">WebRTC / RTMP / SRT</text>
+  <!-- Publishers with camera icon -->
+  <rect x="56" y="56" width="180" height="44" rx="8" fill="#e9e5f4" stroke="#8f87ad"/>
+  <g transform="translate(72,64)" fill="none" stroke="#5a4d7a" stroke-width="1.6" stroke-linejoin="round">
+    <rect x="0" y="4" width="22" height="16" rx="2"/>
+    <path d="M22 8 L30 4 L30 20 L22 16 Z"/>
+    <circle cx="11" cy="12" r="3.5"/>
+  </g>
+  <text x="146" y="74" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="13" font-weight="600" fill="#1a1a1a">Publishers</text>
+  <text x="146" y="90" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="11" fill="#555">WebRTC / RTMP / SRT</text>
 
-  <rect x="664" y="56" width="160" height="44" rx="8" fill="#e9e5f4" stroke="#8f87ad"/>
-  <text x="744" y="76" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="13" font-weight="600" fill="#1a1a1a">Viewers</text>
-  <text x="744" y="92" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="11" fill="#555">WebRTC / HLS / DASH</text>
+  <!-- Viewers with play-on-device icon -->
+  <rect x="644" y="56" width="180" height="44" rx="8" fill="#e9e5f4" stroke="#8f87ad"/>
+  <g transform="translate(660,64)" fill="none" stroke="#5a4d7a" stroke-width="1.6" stroke-linejoin="round">
+    <rect x="0" y="2" width="24" height="18" rx="2"/>
+    <path d="M9 7 L9 15 L17 11 Z" fill="#5a4d7a" stroke="none"/>
+  </g>
+  <text x="744" y="74" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="13" font-weight="600" fill="#1a1a1a">Viewers</text>
+  <text x="744" y="90" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="11" fill="#555">WebRTC / HLS / DASH</text>
 
-  <line x1="136" y1="100" x2="136" y2="138" stroke="#5a5a5a" stroke-width="1.6" marker-end="url(#clusterArrow)"/>
-  <line x1="744" y1="100" x2="744" y2="138" stroke="#5a5a5a" stroke-width="1.6" marker-end="url(#clusterArrow)"/>
-  <path d="M136 138 H744" stroke="#5a5a5a" stroke-width="1.6" fill="none"/>
+  <line x1="146" y1="100" x2="146" y2="138" stroke="#5a5a5a" stroke-width="1.6" marker-end="url(#clusterArrow)"/>
+  <line x1="734" y1="100" x2="734" y2="138" stroke="#5a5a5a" stroke-width="1.6" marker-end="url(#clusterArrow)"/>
+  <path d="M146 138 H734" stroke="#5a5a5a" stroke-width="1.6" fill="none"/>
   <line x1="440" y1="138" x2="440" y2="158" stroke="#5a5a5a" stroke-width="1.6" marker-end="url(#clusterArrow)"/>
 
   <rect x="280" y="158" width="320" height="52" rx="10" fill="#fff7e0" stroke="#c49a3c" stroke-width="1.5"/>

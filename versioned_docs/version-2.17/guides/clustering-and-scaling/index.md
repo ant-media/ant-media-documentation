@@ -8,7 +8,7 @@ sidebar_position: 0
 
 # Clustering and Scaling
 
-A single Ant Media Server instance can handle a surprising amount of traffic—but concurrent publishers, adaptive bitrates, and global viewers eventually outgrow one box. **Cluster mode** lets multiple Ant Media Server nodes share stream state so you can **publish on one node and play on another**, scaling ingest and playback independently.
+When one Ant Media Server cannot carry all of your publishers and viewers, a **cluster** spreads them across multiple nodes—so ingest and playback can grow independently without putting everything on a single box.
 
 :::tip Community Edition
 **Ant Media Server Community Edition does not support clustering.** Cluster mode, origin/edge roles, and shared-database deployments require **Enterprise Edition**. See [How licensing works in a cluster](#how-licensing-works-in-a-cluster).
@@ -18,7 +18,9 @@ Use this page to learn how clustering works. When you are ready to deploy, conti
 
 ## What is a cluster?
 
-In cluster mode, Ant Media Server nodes register with a shared database and cooperate as one logical streaming platform. You split nodes into an **origin** group (ingest) and an **edge** group (playback). A load balancer in front of the cluster sends **publish** traffic to origins and **play** traffic to edges. The database keeps stream metadata consistent so every edge can find the origin that holds a given stream.
+A cluster lets you **distribute publishers and viewers across more than one Ant Media Server**—publish on one node, play on another—so concurrent streams and audience size are not limited to a single instance.
+
+In cluster mode, nodes register with a shared database and cooperate as one logical streaming platform. You split them into an **origin** group (ingest) and an **edge** group (playback). A load balancer in front of the cluster sends **publish** traffic to origins and **play** traffic to edges. The database keeps stream metadata consistent so every edge can find the origin that holds a given stream.
 
 ![Ant Media Server origin-edge cluster: publishers and viewers through a load balancer to origin and edge groups sharing MongoDB](@site/static/img/ams-cluster-architecture.svg)
 

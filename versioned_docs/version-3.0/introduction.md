@@ -1,7 +1,7 @@
 ---
 title: Introduction
 slug: /
-description: Ant Media Server is a self-hosted live streaming platform for ultra-low latency WebRTC, adaptive HLS/DASH, and large-scale delivery. Start here to understand the platform and choose your path.
+description: Ant Media Server is a live streaming platform for ultra-low latency WebRTC, adaptive HLS/DASH, and large-scale delivery. Start here to understand the platform and choose your path.
 keywords: [Ant Media Server, WebRTC streaming, live streaming server, ultra-low latency, HLS, clustering]
 sidebar_position: 1
 sidebar_label: Introduction to Ant Media Server
@@ -9,20 +9,35 @@ sidebar_label: Introduction to Ant Media Server
 
 # Introduction to Ant Media Server
 
-**Ant Media Server (AMS)** is a self-hosted live streaming platform for ultra-low latency WebRTC, adaptive HLS/DASH delivery, and large-scale audience reach. Run it on your own infrastructure—on-premises, in air-gapped environments, or on public cloud—so you control ingest, transcoding, security, and playback end to end.
+**Ant Media Server (AMS)** is a live streaming platform for ultra-low latency WebRTC, adaptive HLS/DASH delivery, and large-scale audience reach. You run AMS yourself—on-premises, in air-gapped environments, or on public cloud—so you control ingest, transcoding, security, and playback end to end.
 
 AMS is built for **developers** integrating streaming into apps, **platform teams** deploying and scaling production workloads, and **organizations** that need full control over their video stack without vendor lock-in.
 
 ## How Ant Media Server works
 
-Publishers push live video into AMS. The server ingests, optionally transcodes for adaptive bitrate, then delivers streams to players at the latency your use case needs.
+Publishers push live video into AMS. After ingest, the server can optionally transcode (ABR). Recording works with or without transcoding. The playback layer then serves **live** streams and **VoD** (from that recording or from files you upload) to players.
 
-![Ant Media Server architecture: publishers to Ant Media Server to players](/img/ams-architecture.svg)
+
+![Ant Media Server architecture: publishers to Ant Media Server to players](/img/ams-architecture-pre-ndi.svg)
 
 ### Key concepts
 
 - **Applications** — Isolated streaming contexts, each with its own settings, sample pages, and configuration. See [Applications](/dashboard-features/) in the Dashboard Features guide.
 - **Publish and play** — Ingest live streams from encoders, cameras, or SDKs, then deliver to browsers and devices. Start with [Publish Live Streams](/category/publish-live-streams/) and [Play Live Streams](/category/play-live-streams/).
+- **Where you run AMS** — AMS is always software you operate (not a fully managed streaming SaaS). How you get it running differs:
+
+| | **Self-hosted** | **Cloud marketplace** |
+| --- | --- | --- |
+| **What you do** | Install AMS yourself on a machine you control | Launch a ready-made AMS image from AWS, Azure, or GCP Marketplace |
+| **Where it runs** | On-premises, a private data center, **or** VMs/Kubernetes in your own cloud account | The cloud provider’s marketplace instance (still in your account) |
+| **Billing** | You pay Ant Media for the license (Community is free); you pay the cloud only for the VM if you use one | License/usage often billed through the marketplace, plus the cloud instance cost |
+| **Who operates the server** | You | You — marketplace mainly simplifies purchase and launch |
+
+:::tip
+Running AMS on a cloud VM you created and installed yourself is still **self-hosted**. That is different from launching AMS through the **cloud marketplace**.
+:::
+
+See [Quick Start](./quick-start) to install yourself, or [Enterprise Deployment Hub](/enterprise-guide/) for marketplace and production paths.
 - **Standalone vs cluster** — Run a single server for development and small deployments, or scale horizontally with clustering for thousands of concurrent publishers and viewers. See [Clustering and Scaling](/guides/clustering-and-scaling/).
 
 ## Choose your path
@@ -43,10 +58,10 @@ New to streaming? Start with [Quick Start](./quick-start), then explore [Dashboa
 
 ## Core capabilities
 
-- **Latency modes** — WebRTC (~500 ms with Enterprise Edition), LL-HLS/LL-DASH, and standard HLS/DASH for large audiences
-- **Ingest** — WebRTC, RTMP, SRT, RTSP, WHIP, and NDI (beta)
+- **Latency modes** — WebRTC (~500 ms with Enterprise Edition), MoQ, LL-HLS/LL-DASH, and standard HLS/DASH for large audiences
+- **Ingest** — WebRTC, RTMP, SRT, RTSP, WHIP, and MoQ
 - **Codecs** — H.264, H.265, VP8, and AV1. See [Video Codecs](./guides/configuration-and-testing/video-codec/) for details.
-- **Deployment** — Linux, Docker, and Kubernetes; available on AWS, Azure, GCP, and other cloud marketplaces
+- **Deployment** — Self-hosted (on-prem or your cloud) or via AWS, Azure, and GCP marketplaces
 - **SDKs** — JavaScript, iOS, Android, Flutter, React Native, and Unity
 
 AMS is available in two editions:
