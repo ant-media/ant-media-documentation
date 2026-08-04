@@ -467,7 +467,71 @@ scripts: [
         },
 	{
           from: '/v1/docs/clustering/',
-          to: '/category/clustering-and-scaling/'
+          to: '/guides/clustering-and-scaling/'
+        },
+	{
+          from: '/category/clustering-and-scaling/',
+          to: '/guides/clustering-and-scaling/'
+        },
+	{
+          from: '/2.17/category/clustering-and-scaling/',
+          to: '/2.17/guides/clustering-and-scaling/'
+        },
+	{
+          from: '/2.16/category/clustering-and-scaling/',
+          to: '/2.16/guides/clustering-and-scaling/'
+        },
+	{
+          from: '/3.0/category/clustering-and-scaling/',
+          to: '/guides/clustering-and-scaling/'
+        },
+	{
+          from: '/category/load-balancing/',
+          to: '/guides/clustering-and-scaling/load-balancing/'
+        },
+	{
+          from: '/2.17/category/load-balancing/',
+          to: '/2.17/guides/clustering-and-scaling/load-balancing/'
+        },
+	{
+          from: '/2.16/category/load-balancing/',
+          to: '/2.16/guides/clustering-and-scaling/load-balancing/'
+        },
+	{
+          from: '/3.0/category/load-balancing/',
+          to: '/guides/clustering-and-scaling/load-balancing/'
+        },
+	{
+          from: '/category/supported-databases/',
+          to: '/guides/clustering-and-scaling/supported-databases/'
+        },
+	{
+          from: '/2.17/category/supported-databases/',
+          to: '/2.17/guides/clustering-and-scaling/supported-databases/'
+        },
+	{
+          from: '/2.16/category/supported-databases/',
+          to: '/2.16/guides/clustering-and-scaling/supported-databases/'
+        },
+	{
+          from: '/3.0/category/supported-databases/',
+          to: '/guides/clustering-and-scaling/supported-databases/'
+        },
+	{
+          from: '/category/docker/',
+          to: '/guides/clustering-and-scaling/docker/'
+        },
+	{
+          from: '/2.17/category/docker/',
+          to: '/2.17/guides/clustering-and-scaling/docker/'
+        },
+	{
+          from: '/2.16/category/docker/',
+          to: '/2.16/guides/clustering-and-scaling/docker/'
+        },
+	{
+          from: '/3.0/category/docker/',
+          to: '/guides/clustering-and-scaling/docker/'
         },
 	{
           from: '/v1/docs/getting-started-with-ant-media-server/',
@@ -507,7 +571,7 @@ scripts: [
         }),
 	{
           from: '/v1/docs/clustering-and-scaling-ant-media-server/',
-          to: '/category/clustering-and-scaling/'
+          to: '/guides/clustering-and-scaling/'
         },
 	{
           from: '/v1/docs/how-to-enable-ip-filter-for-ant-media-servers-behind-load-balancer-in-aws/',
@@ -774,6 +838,23 @@ scripts: [
           from: '/guides/advanced-usage/using-nvidia-hardware-based-encoder-on-docker/',
           to: '/guides/clustering-and-scaling/docker/using-nvidia-hardware-based-encoder-on-docker/'
         },
+	{
+          from: '/guides/clustering-and-scaling/docker/choose-docker-deployment/',
+          to: '/guides/clustering-and-scaling/docker/'
+        },
+	{
+          from: '/3.0/guides/clustering-and-scaling/docker/choose-docker-deployment/',
+          to: '/guides/clustering-and-scaling/docker/'
+        },
+	{
+          from: '/2.17/guides/clustering-and-scaling/docker/choose-docker-deployment/',
+          to: '/2.17/guides/clustering-and-scaling/docker/'
+        },
+	{
+          from: '/2.16/guides/clustering-and-scaling/docker/choose-docker-deployment/',
+          to: '/2.16/guides/clustering-and-scaling/docker/'
+        },
+
 	{
           from: '/guides/advanced-usage/circle-component-usage/',
           to: '/guides/developer-sdk-and-api/extend-the-server/applications/circle-component-usage/'
@@ -1293,7 +1374,7 @@ scripts: [
               },
               {
                 label: 'Clustering & Scaling',
-                to: '/category/clustering-and-scaling/',
+                to: '/guides/clustering-and-scaling/',
               },
               {
                 label: 'Adaptive Bitrate Streaming (Transcoding)',

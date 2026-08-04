@@ -175,7 +175,7 @@ See [Adaptive Bitrate Streaming](/guides/adaptive-bitrate/adaptive-bitrate-strea
 
 ## How to configure auto-scaling and clustering with Ant Media Server?
 
-Please refer to the auto-scaling documentation [here](https://docs.antmedia.io/category/clustering-and-scaling/).
+Please refer to the auto-scaling documentation [here](/guides/clustering-and-scaling/).
 
 ## What is the difference between the LiveApp, WebRTCAppEE and live?
 

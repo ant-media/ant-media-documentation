@@ -16,7 +16,7 @@ Let us show how to use Ant Media Server with Kubernetes.
 
 The scope of this document is to give you the basics about how to run the Ant Media Server Kubernetes Cluster. If you're not familiar with [Kubernetes](https://kubernetes.io/docs/home/) then you can get started with Kubernetes and follow [interactive tutorials.](https://kubernetes.io/docs/tutorials/kubernetes-basics/create-cluster/cluster-intro/)
 
-Running the Ant Media Server in Kubernetes is fully about clustering. If you are unfamiliar with Ant Media Server Clustering & Scaling, please read the [Cluster & Scaling documentation](https://antmedia.io/docs/category/clustering-and-scaling/).
+Running the Ant Media Server in Kubernetes is fully about clustering. If you are unfamiliar with Ant Media Server Clustering & Scaling, please read the [Cluster & Scaling documentation](/guides/clustering-and-scaling/).
 
 You should have some prerequisites to deploy the Ant Media Server Cluster on Kubernetes.
 

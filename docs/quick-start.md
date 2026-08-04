@@ -121,7 +121,7 @@ Play the live stream with WebRTC using the sample WebRTC player page, which is a
 | Explore the dashboard | [Dashboard Features](/dashboard-features/) |
 | Run Enterprise in production | [Enterprise Deployment Hub](/enterprise-guide/) |
 | Install with more options | [Installing AMS on Linux](/guides/installing-on-linux/installing-ams-on-linux/) |
-| Scale beyond one server | [Clustering and Scaling](/category/clustering-and-scaling/) |
+| Scale beyond one server | [Clustering and Scaling](/guides/clustering-and-scaling/) |
 
 ## Getting help
 

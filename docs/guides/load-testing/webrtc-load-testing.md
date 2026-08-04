@@ -25,7 +25,7 @@ Before you begin, confirm the following:
 
 - An **Ant Media Server Enterprise** account with access to the WebRTC Load Test Tool download.
 - A **test server** (Linux recommended) separate from the SUT, with **Java 17** installed.
-- A deployed **SUT**: [standalone Ant Media Server](/guides/installing-on-linux/installing-ams-on-linux/) or an [Ant Media cluster](/category/clustering-and-scaling/).
+- A deployed **SUT**: [standalone Ant Media Server](/guides/installing-on-linux/installing-ams-on-linux/) or an [Ant Media cluster](/guides/clustering-and-scaling/).
 - An **MP4** test file with **H.264** video and **Opus** audio for publisher mode.
 
 ## Step 1: Prepare the system under test
@@ -64,7 +64,7 @@ The SUT is an **origin + edge** cluster behind a load balancer. Publishers typic
               +-----------+  Edge 1        Edge 2    ...    Edge N
 ```
 
-Deploy the cluster using [Clustering and Scaling](/category/clustering-and-scaling/) guides.
+Deploy the cluster using [Clustering and Scaling](/guides/clustering-and-scaling/) guides.
 
 ## Step 2: Install the WebRTC Load Test Tool
 
@@ -133,4 +133,4 @@ The MP4 source file must contain **H.264** video and **Opus** audio.
 - [HLS Load Testing](/guides/load-testing/hls-load-testing/) — simulate HLS viewers with FFmpeg.
 - [RTMP Load Testing](/guides/load-testing/rtmp-load-testing/) — RTMP publish load tests.
 - [Installing AMS on Linux](/guides/installing-on-linux/installing-ams-on-linux/) — standalone SUT setup.
-- [Clustering and Scaling](/category/clustering-and-scaling/) — origin/edge cluster SUT setup.
+- [Clustering and Scaling](/guides/clustering-and-scaling/) — origin/edge cluster SUT setup.

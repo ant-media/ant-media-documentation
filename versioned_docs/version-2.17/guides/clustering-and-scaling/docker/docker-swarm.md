@@ -1,34 +1,43 @@
 ---
-title: Docker Swarm 
-description: Docker Swarm
-keywords: [Docker Swarm, Ant Media Server Documentation, Ant Media Server Tutorials]
+title: Docker Swarm
+description: Deploy an Ant Media Server cluster on Docker Swarm with Nginx load balancing.
+keywords: [Docker Swarm, Ant Media Server cluster, Ant Media Server Documentation]
 sidebar_position: 2
 sidebar_label: Docker Swarm
 ---
 
 # Docker Swarm
 
-Docker Swarm is a container orchestration tool. It is a cluster management tool that manages and scales virtual servers as a cluster and ensures the continuity of services without interruption. In this post, I will explain how to run Ant Media Server onto the docker swarm.
+Docker Swarm orchestrates AMS containers across multiple hosts—a manager node controls scheduling and worker nodes run the services. This guide walks through a minimal three-node Swarm with Nginx in front.
+
+See [Docker](/guides/clustering-and-scaling/docker/) for how container clustering relates to the wider AMS architecture, and [Databases](/guides/clustering-and-scaling/supported-databases/) for the shared backend URI.
 
 ![](@site/static/img/image-1648753338859.png)
 
-### Prerequisites:
+## What you'll accomplish
 
-First, let’s create a total of 3 instances, one Manager and 2 worker nodes.
+- Install Docker CE on one manager and two worker nodes
+- Initialize a Swarm and join workers
+- Deploy Nginx as the entry-point service
+- Deploy AMS in cluster mode with a shared database URI
 
-```shell
-192.168.1.230 Manager
-192.168.1.231 Node1
-192.168.1.232 Node2
+## Prerequisites
+
+Plan three hosts—for example:
+
+```text
+192.168.1.230  Manager
+192.168.1.231  Worker (Node1)
+192.168.1.232  Worker (Node2)
 ```
 
-Docker Swarm is easy to install. You can divide it into two parts as Manager Node and Worker Node.
+- Ubuntu with Docker CE support
+- A MongoDB or Redis URI reachable from all nodes
+- Ant Media Server Enterprise Docker image (or build your own)
 
-1- Manager Nodes: This node manages the Docker Swarm..
+## Step 1: Install Docker CE on all nodes
 
-2- Worker Nodes: These nodes run the services/tasks assigned to them..
-
-Install the Docker CE on all of the nodes by following the steps below.
+Run on the manager and both workers:
 
 ```shell
 sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
@@ -36,36 +45,41 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
 sudo apt update && sudo apt install docker-ce -y
 sudo systemctl enable docker
-``` 
+```
 
-### Docker Swarm Cluster Installation
+## Step 2: Initialize the Swarm
 
-In order to create a Docker Swarm cluster, you have to start the swarm mode first.
-
-Run the command below to initialize Docker swarm node on the manager.
+On the **manager**:
 
 ```shell
 sudo docker swarm init --advertise-addr 192.168.1.230
 ```
 
-Run the following command on node1 and node2.
+The command prints a `docker swarm join` token. Run that command on **Node1** and **Node2**.
+
+Example join command (use the token from your manager output):
 
 ```shell
 sudo docker swarm join --token SWMTKN-1-2jxta71638d1pyioznb9jo4hi4u5ppd8t7lc90linwi9acu54s-aef4mqdy23ktrkcxsp57uyoma 192.168.1.230:2377
 ```
 
-The all nodes you added will show up in the **docker node ls** command’s output.
+Confirm all nodes appear:
+
+```shell
+docker node ls
+```
 
 ![](@site/static/img/image-1648753377587.png)
 
-### Nginx Load Balancer Installation
+## Step 3: Deploy Nginx load balancer
 
-Create a directory called **/opt/nginx** on all nodes and save the following lines as **default.conf.**
+Create `/opt/nginx/default.conf` on the manager (adjust worker IPs):
 
 ```shell
 mkdir /opt/nginx
 vim /opt/nginx/default.conf
 ```
+
 ```conf
 server {
     listen 80;
@@ -78,17 +92,19 @@ upstream backend {
     server 192.168.1.231:5080; #node1 ip address
     server 192.168.1.232:5080; #node2 ip address
 }
-```  
-
-Let’s complete the deployment on master.
-
-```shell
-docker service create --name nginx --mount type=bind,source=/opt/nginx/,target=/etc/nginx/conf.d --constraint node.hostname==master  --publish 80:80 nginx
 ```
 
-### Ant Media Server Installation
+Deploy Nginx as a Swarm service pinned to the manager:
 
-On the master node, save the following lines as stack.yml. Don't forget to change the host addresses in the image and entrypoint according to your system.
+```shell
+docker service create --name nginx --mount type=bind,source=/opt/nginx/,target=/etc/nginx/conf.d --constraint node.hostname==master --publish 80:80 nginx
+```
+
+For production, add TLS and separate origin/edge upstreams—see [Nginx Load Balancer](/guides/clustering-and-scaling/load-balancing/nginx-load-balancer/).
+
+## Step 4: Deploy Ant Media Server
+
+On the manager, create `stack.yml`. Replace the image URL, MongoDB/Redis address, and resource limits:
 
 ```yaml
 version: "3.9"
@@ -111,25 +127,34 @@ networks:
   host:
     name: host
     external: true
-``` 
+```
 
-Then deploy the stack by running the command below.
+Deploy the stack:
 
 ```shell
 docker stack deploy -c stack.yml ant-media-server
-```   
+```
 
-You can monitor running services/containers using `docker service ls` or `docker ps`
+Monitor services:
 
-Now, you can access your cluster via the master URL.
+```shell
+docker service ls
+docker ps
+```
+
+## Verify
+
+Open the manager URL in a browser and confirm the AMS web panel loads.
 
 ![](@site/static/img/image-1648753399871.png)
 
-<div align="center">
-  <h2> 🐳 AMS + Docker Swarm — Streaming at Scale, the Easy Way! 🚀 </h2>
-</div>
+Publish a test stream and play it back through the Nginx front end. Check the **Cluster** view in the web panel to confirm containers registered with the shared database.
 
-And there it is — your Ant Media Server cluster is **alive and thriving inside Docker Swarm!** Services are humming, containers are collaborating, and scaling is just a heartbeat away.
+## Related guides
 
-You’ve built a streaming powerhouse from simple containers. **Now go ahead — launch those live events**, grow your audience, and let Swarm keep everything in perfect sync. 🎥🌊
-
+| Topic | Guide |
+|-------|-------|
+| Docker overview | [Docker](/guides/clustering-and-scaling/docker/) |
+| Database connection | [Databases](/guides/clustering-and-scaling/supported-databases/) |
+| Full Nginx LB setup | [Nginx Load Balancer](/guides/clustering-and-scaling/load-balancing/nginx-load-balancer/) |
+| Kubernetes alternative | [Kubernetes](/guides/clustering-and-scaling/kubernetes/prepare-environment-to-deploy-ams-at-kubernetes/) |

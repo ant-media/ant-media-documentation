@@ -23,7 +23,7 @@ Publishers push live video into AMS. The server ingests, optionally transcodes f
 
 - **Applications** — Isolated streaming contexts, each with its own settings, sample pages, and configuration. See [Applications](/dashboard-features/) in the Dashboard Features guide.
 - **Publish and play** — Ingest live streams from encoders, cameras, or SDKs, then deliver to browsers and devices. Start with [Publish Live Streams](/category/publish-live-streams/) and [Play Live Streams](/category/play-live-streams/).
-- **Standalone vs cluster** — Run a single server for development and small deployments, or scale horizontally with clustering for thousands of concurrent publishers and viewers. See [Clustering and Scaling](/category/clustering-and-scaling/).
+- **Standalone vs cluster** — Run a single server for development and small deployments, or scale horizontally with clustering for thousands of concurrent publishers and viewers. See [Clustering and Scaling](/guides/clustering-and-scaling/).
 
 ## Choose your path
 
@@ -33,7 +33,7 @@ Publishers push live video into AMS. The server ingests, optionally transcodes f
 | Run Enterprise in production | [Enterprise Deployment Hub](/enterprise-guide/) |
 | Explore the web panel | [Dashboard Features](/dashboard-features/) |
 | Build a mobile or web app | [Developer Guides](/category/developer-guides/) |
-| Deploy at scale | [Clustering and Scaling](/category/clustering-and-scaling/) |
+| Deploy at scale | [Clustering and Scaling](/guides/clustering-and-scaling/) |
 | Secure streams | [Stream Security](/category/stream-security/) |
 | Compare editions | [Community and Enterprise Edition comparison](#community-and-enterprise-edition-comparison) |
 

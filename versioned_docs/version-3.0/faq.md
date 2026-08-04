@@ -6,6 +6,40 @@ sidebar_position: 90
 ---
 # Frequently Asked Questions
 
+## Table of Contents
+
+- [How can I install SSL on an AWS EC2 instance?](#how-can-i-install-ssl-on-an-aws-ec2-instance)
+- [How do I upgrade Ant Media Server (AMS)?](#how-do-i-upgrade-ant-media-server-ams)
+- [Where can I download the JavaScript SDK?](#where-can-i-download-the-javascript-sdk)
+- [Can I use Docker to deploy Ant Media Server?](#can-i-use-docker-to-deploy-ant-media-server)
+- [I cannot login to AMS dashboard after upgrading](#i-cannot-login-to-ams-dashboard-after-upgrading)
+- [How can I reset the admin password?](#how-can-i-reset-the-admin-password)
+- [What is HLS?](#what-is-hls)
+- [How can I reduce the latency for RTMP to HLS streaming](#how-can-i-reduce-the-latency-for-rtmp-to-hls-streaming)
+- [How can I enable SSL for Ant Media Server?](#how-can-i-enable-ssl-for-ant-media-server)
+- [How can I remove port forwarding?](#how-can-i-remove-port-forwarding)
+- [How can I fix "Make sure that your domain name was entered correctly and the DNS A/AAAA record(s)" error?](#how-can-i-fix-make-sure-that-your-domain-name-was-entered-correctly-and-the-dns-aaaaa-records-error)
+- [How can I fix "NotSupportedError" while publishing ?](#how-can-i-fix-notsupportederror-while-publishing-)
+- [WebRTC stream stops after a few seconds.](#webrtc-stream-stops-after-a-few-seconds)
+- [How can I fix a 403 Forbidden error when using Ant Media APIs?](#how-can-i-fix-a-403-forbidden-error-when-using-ant-media-apis)
+- [How can I prevent streams from stuttering when publishing in Ant Media Server?](#how-can-i-prevent-streams-from-stuttering-when-publishing-in-ant-media-server)
+- [How does adaptive bitrate work (ABR)?](#how-does-adaptive-bitrate-work-abr)
+- [How to configure auto-scaling and clustering with Ant Media Server?](#how-to-configure-auto-scaling-and-clustering-with-ant-media-server)
+- [What is the difference between the LiveApp, WebRTCAppEE and live?](#what-is-the-difference-between-the-liveapp-webrtcappee-and-live)
+- [How can I improve WebRTC bitrate?](#how-can-i-improve-webrtc-bitrate)
+- [What latencies can I achieve with Ant Media Server Enterprise Edition?](#what-latencies-can-i-achieve-with-ant-media-server-enterprise-edition)
+- [How many different bitrates are possible with Ant Media Server Enterprise Edition?](#how-many-different-bitrates-are-possible-with-ant-media-server-enterprise-edition)
+- [Does ultra-low latency streaming support adaptive bit rates?](#does-ultra-low-latency-streaming-support-adaptive-bit-rates)
+- [Does Ant Media Server have an Embedded SDK?](#does-ant-media-server-have-an-embedded-sdk)
+- [How can I configure the location for MP4 recordings?](#how-can-i-configure-the-location-for-mp4-recordings)
+- [How to use Self-Signed Certificate on Ant Media Server?](#how-to-use-self-signed-certificate-on-ant-media-server)
+- [How can I install a custom SSL by building a chain certificate?](#how-can-i-install-a-custom-ssl-by-building-a-chain-certificate)
+- [How can I change the default HTTP port (5080)?](#how-can-i-change-the-default-http-port-5080)
+- [Where can I get WebRTC viewers information?](#where-can-i-get-webrtc-viewers-information)
+- [How to set Apache Reverse Proxy settings for Ant Media Server?](#how-to-set-apache-reverse-proxy-settings-for-ant-media-server)
+- [How can I install the Ant Media Server on Ubuntu 18.04 with ARM64?](#how-can-i-install-the-ant-media-server-on-ubuntu-1804-with-arm64)
+- [How can I use Web Player or Javascript SDK in Next.js?](#how-can-i-use-web-player-or-javascript-sdk-in-nextjs)
+
 ## How can I install SSL on an AWS EC2 instance?
 
 1.  Configure an Elastic IP address.
@@ -141,7 +175,7 @@ See [Adaptive Bitrate Streaming](/guides/adaptive-bitrate/adaptive-bitrate-strea
 
 ## How to configure auto-scaling and clustering with Ant Media Server?
 
-Please refer to the auto-scaling documentation [here](https://docs.antmedia.io/category/clustering-and-scaling/).
+Please refer to the auto-scaling documentation [here](/guides/clustering-and-scaling/).
 
 ## What is the difference between the LiveApp, WebRTCAppEE and live?
 

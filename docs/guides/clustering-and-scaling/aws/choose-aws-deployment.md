@@ -71,4 +71,4 @@ Gather these before choosing:
 - **Most users:** [Scale with CloudFormation](/guides/clustering-and-scaling/aws/aws-cloudformation/scale-with-aws-cloudformation/)
 - **Minimal ops:** [Auto Managed Service](/guides/clustering-and-scaling/aws/aws-auto-managed/auto-managed-service-on-aws/)
 - **Containers:** [Deploy on ECS](/guides/clustering-and-scaling/aws/aws-ecs/running-ams-container-at-ecs/)
-- **Understand cluster roles first:** [Cluster Installation](/guides/clustering-and-scaling/manual-configuration/cluster-installation/) (origin, edge, database, load balancer)
+- **Understand cluster roles first:** [Clustering and Scaling](/guides/clustering-and-scaling/) (origin, edge, database, load balancer, licensing)

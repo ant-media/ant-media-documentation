@@ -20,7 +20,7 @@ Work through this list before going live.
 - [ ] Instance meets the minimum sizing: **4 vCPUs (compute-optimized), 8 GB RAM, SSD storage** for a single server. Validate real capacity with [Load Testing](/category/load-testing/).
 - [ ] Operating system is supported (Ubuntu 20.04/22.04/24.04, CentOS/Rocky/Alma 8-9, RHEL 9) — see [Introduction](/) and [Choose your path](/#choose-your-path).
 - [ ] Required ports are open: 5080 (HTTP panel), 5443 (HTTPS), 1935 (RTMP), UDP 50000–60000 (WebRTC media), and TCP 5000 between cluster nodes only.
-- [ ] For expected growth, deployment model is chosen deliberately: [Installation](/category/installation/) (standalone / Docker), [Clustering and Scaling](/category/clustering-and-scaling/), or [Kubernetes](/category/kubernetes/).
+- [ ] For expected growth, deployment model is chosen deliberately: [Installation](/category/installation/) (standalone / Docker), [Clustering and Scaling](/guides/clustering-and-scaling/), or [Kubernetes](/category/kubernetes/).
 
 ### Security hardening
 
@@ -53,11 +53,11 @@ For anything beyond a single server, Ant Media Server scales with an **origin-ed
 | Origin nodes | Ingest publishers, transcoding/transmuxing |
 | Edge nodes | Fetch from origins and serve viewers |
 | MongoDB | Shared stream metadata and node registry |
-| Load balancer (Nginx/HAProxy) | Single entry point; routes publish vs play traffic |
+| Load balancer | Single entry point; routes publish vs play traffic |
 
 ![Ant Media Server origin-edge cluster: publishers and viewers through a load balancer to origin and edge groups sharing MongoDB](@site/static/img/ams-cluster-architecture.svg)
 
-Start with [Clustering and Scaling](/category/clustering-and-scaling/), then pick a platform path: [AWS](/category/aws/), [Azure](/category/azure/), [GCP](/category/gcp/), or [Kubernetes](/category/kubernetes/). For traffic entry points, see [Load Balancing](/category/load-balancing/).
+Start with [Clustering and Scaling](/guides/clustering-and-scaling/), then pick a platform path: [AWS](/category/aws/), [Azure](/category/azure/), [GCP](/category/gcp/), or [Kubernetes](/category/kubernetes/). For traffic entry points, see [Load Balancing](/guides/clustering-and-scaling/load-balancing/).
 
 ## Upgrade and rollback
 
@@ -76,7 +76,7 @@ Start with the [Troubleshooting](/guides/troubleshooting/) guide. Common product
 | Pixelated or choppy video | [Troubleshooting](/guides/troubleshooting/) — bitrate, ABR, B-frames, network test tool |
 | High CPU / memory / "Resource Usage is High" | [Troubleshooting](/guides/troubleshooting/) — thread/heap dumps, `server.cpu_limit` |
 | WebRTC publish/play failures | SSL, UDP 50000–60000, [TURN Server Installation](/guides/advanced-usage/turn-installation/), [STUN/TURN Server Configuration](/guides/configuration-and-testing/configuring-stun-turn-addresses/), [Publish Live Streams](/category/publish-live-streams/), [Play Live Streams](/category/play-live-streams/) |
-| Cluster: stream on origin but not on edge | [Clustering and Scaling](/category/clustering-and-scaling/) — TCP 5000, shared MongoDB |
+| Cluster: stream on origin but not on edge | [Clustering and Scaling](/guides/clustering-and-scaling/) — TCP 5000, shared MongoDB |
 | REST API 401/403 | [REST API](/guides/developer-sdk-and-api/rest-api-guide/), [FAQ](/faq/) |
 | Recording / S3 404 | [Recording Live Streams](/category/recording-live-streams/), [Cloud Storage Integration](/category/s3-recording-and-integration/) |
 

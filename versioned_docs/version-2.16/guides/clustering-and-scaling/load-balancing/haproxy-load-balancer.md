@@ -1,31 +1,43 @@
 ---
 title: HAProxy Load Balancer
-description: Load Balancer with HAProxy SSL Termination
-keywords: [Load Balancer with HAProxy SSL Termination, Ant Media Server Documentation, Ant Media Server Tutorials]
+description: Configure HAProxy with SSL termination for an Ant Media Server cluster.
+keywords: [HAProxy Load Balancer, SSL termination, Ant Media Server cluster, Ant Media Server Documentation]
 sidebar_position: 2
 sidebar_label: HAProxy
 ---
 
-# Load Balancer with HAProxy SSL Termination
+# HAProxy Load Balancer
 
-The load balancer is the main part of the cluster. If you make Ant Media Server instances run in cluster mode, then a load balancer will be required to balance the load.
+HAProxy terminates SSL and distributes traffic across origin and edge nodes. It also exposes a stats page so you can monitor backend health.
 
-This guide walks you through setting up HAProxy as a load balancer for Ant Media Server, complete with SSL termination."
+See [Load Balancing](/guides/clustering-and-scaling/load-balancing/) for port layout and how this fits into the cluster.
 
 ![](@site/static/img/haproxyssltermination.png)
 
-## HAProxy Installation
+## What you'll accomplish
 
-Install HAProxy by executing the following commands:
+- Install HAProxy on an Ubuntu/Debian host
+- Create a combined PEM certificate for HAProxy
+- Configure origin, edge, dashboard, and RTMP frontends
+- Restart HAProxy and confirm dashboard and stats access
+
+## Prerequisites
+
+- One server for the load balancer
+- Origin and edge nodes in [cluster mode](/guides/clustering-and-scaling/manual-configuration/cluster-installation/)
+- IP addresses of all origin and edge nodes
+- A domain name pointing to the HAProxy host
+
+## Step 1: Install HAProxy
 
 ```bash
 sudo apt-get update
 sudo apt-get install haproxy
 ```
 
-## SSL Certificate Installation
+## Step 2: Install SSL certificate
 
-### Install the Certbot
+### Install Certbot
 
 ```bash
 sudo apt-get update
@@ -35,46 +47,44 @@ sudo apt-get update
 sudo apt-get install certbot
 ```
 
-### Get the Certificate
+### Obtain a certificate
 
-Replace `example.com` with your domain name:
+Replace `example.com` with your domain:
 
 ```bash
 sudo certbot certonly --standalone -d example.com -d www.example.com
 ```
 
-### Combine the PEM files
+### Combine PEM files for HAProxy
 
-Combine `fullchain.pem` and `privkey.pem` and save it to the `/etc/haproxy/certs` folder.
+HAProxy expects a single PEM file that contains the certificate chain and private key:
 
 ```bash
 sudo mkdir -p /etc/haproxy/certs
-DOMAIN='example.com' 
+DOMAIN='example.com'
 sudo -E bash -c "cat /etc/letsencrypt/live/$DOMAIN/fullchain.pem /etc/letsencrypt/live/$DOMAIN/privkey.pem > /etc/haproxy/certs/$DOMAIN.pem"
 sudo chmod -R go-rwx /etc/haproxy/certs
 ```
 
-A valid pem file is now available under `/etc/haproxy/certs`, ready for use by HAProxy.
+The combined file is available at `/etc/haproxy/certs/example.com.pem`.
 
-## Configure HAProxy
+## Step 3: Configure HAProxy
 
-Now, HAProxy will be set up as a load balancer.
-
-### Backup default configuration file
+Back up the default configuration:
 
 ```bash
 sudo mv /etc/haproxy/haproxy.cfg{,_backup}
 ```
 
-### Create new configuration file
+Create a new configuration:
 
 ```bash
 sudo nano /etc/haproxy/haproxy.cfg
 ```
 
-### HAProxy configuration as Load Balancer
+Replace `{AMS_ORIGIN1_IP}`, `{AMS_ORIGIN2_IP}`, `{AMS_EDGE1_IP}`, and `$DOMAIN` with your values. Update the stats username and password.
 
-```bash
+```
 global
     log 127.0.0.1 local0 notice
     maxconn 2000
@@ -95,7 +105,7 @@ defaults
     timeout client-fin 5000
     errorfile 400 /etc/haproxy/errors/400.http
     errorfile 403 /etc/haproxy/errors/403.http
-    errorfile 408 /etc/haproxy/errors/408.http 
+    errorfile 408 /etc/haproxy/errors/408.http
     errorfile 500 /etc/haproxy/errors/500.http
     errorfile 502 /etc/haproxy/errors/502.http
     errorfile 503 /etc/haproxy/errors/503.http
@@ -104,7 +114,7 @@ defaults
 # Put the username and password for authentication
 
 listen stats
-    bind :6080 
+    bind :6080
     mode http
     stats enable
     stats hide-version
@@ -113,7 +123,7 @@ listen stats
     stats auth username:password
 
 frontend rtmp_lb
-    bind *:1935 
+    bind *:1935
     mode tcp
     default_backend backend_rtmp
 
@@ -127,7 +137,7 @@ frontend http_lb_origin
     mode http
     http-request add-header X-Forwarded-Proto http
     default_backend origin_backend_http
-  
+
 frontend http_lb_edge
     bind *:5080
     mode http
@@ -169,32 +179,27 @@ backend dashboard_backend_http
     server dashboard2 {AMS_EDGE1_IP}:5080 check cookie dashboard2
 ```
 
-## Start HAProxy
-
-When everything is complete, restart the HAProxy
+## Step 4: Start HAProxy
 
 ```bash
 sudo systemctl restart haproxy
 ```
 
-## Access Ant Media Server
+## Verify
 
-You can access the Ant Media Server dashboard at https://haproxy-domain:4444
+| Check | URL |
+|-------|-----|
+| Web panel | `https://<your-domain>:4444` |
+| HAProxy stats | `http://<your-domain>:6080/haproxy_stats` (use the credentials from the config) |
 
-## Access the HAProxy web panel
- 
-You can view status of the Ant Media Server backend through 
-`http://haproxy-domain:6080/haproxy_stats` URL.
+![](@site/static/img/haproxy_monitoring.png)
 
-You need to use the username and password as defined in the configuration above.
+Publish a test stream through port `443` and play it through port `5443`. Healthy backends appear in the stats page.
 
- ![](@site/static/img/haproxy_monitoring.png)
+## Related guides
 
- <div align="center">
-  <h2> ⚡ HAProxy Load Balancer — Secure, Scalable, and Stream-Ready! 🛠️ </h2>
-</div>
-
-Success! Your Ant Media Server cluster is now **fronted by HAProxy**, handling traffic efficiently with SSL termination and optimized routing.
-
-This setup **ensures your streams are distributed reliably across origins and edges.** Your infrastructure is now ready for high-traffic scenarios, failover, and smooth streaming experiences. 🚀📡
-
+| Topic | Guide |
+|-------|-------|
+| Load balancing overview | [Load Balancing](/guides/clustering-and-scaling/load-balancing/) |
+| Nginx alternative | [Nginx Load Balancer](/guides/clustering-and-scaling/load-balancing/nginx-load-balancer/) |
+| Cluster install | [Self-Managed Cluster](/guides/clustering-and-scaling/manual-configuration/cluster-installation/) |
