@@ -1,47 +1,42 @@
 ---
-title: Nginx Load Balancer 
-description: Load Balancer with Nginx proxy
-keywords: [Installing with Nginx load balancer, Nginx Load Balancer, Ant Media Server Documentation, Ant Media Server Tutorials]
+title: Nginx Load Balancer
+description: Configure Nginx as the entry point for an Ant Media Server cluster with origin/edge upstreams and SSL termination.
+keywords: [Nginx Load Balancer, Ant Media Server cluster, SSL termination, Ant Media Server Documentation]
 sidebar_position: 1
 sidebar_label: Nginx
 ---
 
-# Installing with Nginx load balancer
+# Nginx Load Balancer
 
-### What is Nginx?
----------------
+Use Nginx to terminate SSL and route **publish** traffic to origin nodes and **play** traffic to edge nodes. You can install and configure everything with the official script, or follow the manual steps below.
 
-Nginx started out as an open-source web server designed for maximum performance and stability. Today, however, it also serves as a reverse proxy, HTTP load balancer, and email proxy for IMAP, POP3, and SMTP.
+See [Load Balancing](/guides/clustering-and-scaling/load-balancing/) for port layout and how this fits into the cluster.
 
-#### Prerequisites
+## What you'll accomplish
 
-- One server with Ubuntu 20.04 installed for Nginx Load Balancer.
-- One server with Ubuntu 20.04 installed for MongoDB Server (Optional).
+- Install Nginx on a dedicated Ubuntu/Debian host
+- Optionally obtain a Let's Encrypt certificate
+- Define origin, edge, dashboard, and RTMP upstreams
+- Verify the configuration and restart Nginx
 
-> This document is compatible with all Debian-based OS (Debian, Ubuntu, etc.)
+## Prerequisites
 
-You can do this setup in two ways:
+- One server running Ubuntu 20.04 or another Debian-based OS for the load balancer
+- Origin and edge nodes already in [cluster mode](/guides/clustering-and-scaling/manual-configuration/cluster-installation/)
+- IP addresses of all origin and edge nodes
+- A domain name pointing to the Nginx host (required for HTTPS)
 
-1. Using the installation script
-2. Manual (step-by-step) installation
+## Option 1: Installation script
 
-## 1. Using the installing script
+The script installs Nginx, optionally configures Let's Encrypt, and generates the origin/edge configuration from your node IPs.
 
-**Installation Steps**
-
-With this script, you can easily set up and configure an Nginx Load Balancer with just a single command by providing the Edge/Origin IP addresses.
-
-You can achieve the following actions with this script.
-- Install Nginx
-- Set up SSL with Let's Encrypt
-- Configure Nginx for Ant Media Server
-
-> This script is compatible with Ubuntu 20.04.
+Download the script:
 
 ```bash
 wget https://raw.githubusercontent.com/ant-media/Scripts/master/nginx/install_and_configure_nginx.sh && chmod +x install_and_configure_nginx.sh
 ```
-Run the script without parameters to see usage.
+
+Run without arguments to see usage:
 
 ```bash
 ./install_and_configure_nginx.sh
@@ -71,89 +66,85 @@ Usage Examples:
    install_and_configure_nginx.sh -o "10.0.1.1,10.0.1.2,10.0.1.3" -e "10.0.0.1,10.0.0.2,10.0.0.3" -d example.com -m user@example.com
 ```
 
-**Example:**
-
-When you run the script as shown below, it will perform the following tasks: Nginx installation, SSL installation with Let's Encrypt, and configuration of Origin/Edge.
+Example with Nginx install, SSL, and origin/edge configuration:
 
 ```bash
 ./install_and_configure_nginx.sh -o "192.168.1.201" -e "192.168.1.202,192.168.1.203" -d example.com
 ```
 
-## 2. Manual (step-by-step) Installation:
+The script is tested on Ubuntu 20.04.
 
-1.  [Install Nginx](#nginx-installation)
-2.  [Install LetsEncrypt](#lets-encrypt-for-nginx-ssl-termination)
-3.  [Nginx Load balancer with SSL termination](#configure-nginx-as-a-load-balancer)
+## Option 2: Manual installation
 
- **![](@site/static/img/origin_edge.png)**
+![](@site/static/img/ams-cluster-architecture.svg)
 
-### Nginx Installation
+### Step 1: Install Nginx
 
-Install the prerequisites
+Install prerequisites:
 
 ```bash
 sudo apt install curl ca-certificates lsb-release -y
 ```
 
-To set up the apt repository for stable nginx packages, run the following command:
+Add the official Nginx package repository:
 
 ```bash
 echo "deb http://nginx.org/packages/`lsb_release -d | awk '{print $2}' | tr '[:upper:]' '[:lower:]'` `lsb_release -cs` nginx" | sudo tee /etc/apt/sources.list.d/nginx.list
 ```
 
-Import an official Nginx signing key.
+Import the Nginx signing key:
 
 ```bash
 curl -fsSL https://nginx.org/keys/nginx_signing.key | sudo apt-key add -
 ```
 
-Run the following commands to install Nginx
+Install Nginx:
 
 ```bash
 apt update && apt install nginx -y
 ```
 
-#### Let's Encrypt for Nginx SSL Termination
+### Step 2: Configure SSL with Let's Encrypt
 
-Run the following commands to install Certbot:
+Install Certbot:
 
 ```bash
 sudo apt install certbot python3-certbot-nginx -y
 ```
 
-Run the following commands to create certificate
+Create a certificate (replace with your domain):
 
 ```bash
 certbot --nginx -d yourdomain.com -d www.yourdomain.com
 ```
 
-Edit crontab file
+Schedule renewal in crontab:
 
 ```bash
 crontab -e
 ```
 
-add the below line to renew the certificate every 80 days.
+Add:
 
 ```
 0 0 */80 * * root certbot -q renew --nginx
 ```
 
-### Configure NGINX as a Load Balancer
+### Step 3: Configure Nginx as a load balancer
 
-Backup default nginx configuration
+Back up the default configuration:
 
 ```bash
 mv /etc/nginx/nginx.conf{,_bck}
 ```
 
-Create a new nginx.conf file with your favorite editor
+Create a new `nginx.conf`:
 
 ```bash
 vim /etc/nginx/nginx.conf
 ```
 
-In that file, copy the following contents. Please change the content in curl brackets '{' '}' with your own values.
+Replace placeholders in curly braces with your origin/edge IPs and domain name:
 
 ```
     # RTMP stream configuration
@@ -214,7 +205,7 @@ In that file, copy the following contents. Please change the content in curl bra
           server {AMS_ORIGIN2_IP}:5080;
         }
     
-    # Change {AMS_EDGE1_IP} and {AMS_EDGE2_IP} with your origin Ant Media Server instance addresses  
+    # Change {AMS_EDGE1_IP} and {AMS_EDGE2_IP} with your edge Ant Media Server instance addresses  
         #Ant Media Edge
         upstream antmedia_edge {
           least_conn;
@@ -340,34 +331,41 @@ In that file, copy the following contents. Please change the content in curl bra
     }
 ```
 
-Save and close that file.
+:::info
+When Nginx fronts the cluster, open the web panel at **`https://yourdomain.com:4444`**.
+:::
 
-> When you use Nginx as a Load Balancer, you must use `port 4444` to access Dashboard.
-
-On our server, we have to remove the symbolic link to default in the `/etc/nginx/sites-enabled` folder.
+Remove the default site symlink:
 
 ```bash
 sudo rm -f /etc/nginx/sites-enabled/default
 ```
 
-Check your configuration for any Error using the following command.
+Validate the configuration:
 
 ```bash
 nginx -t
 ```
 
-Enable and restart nginx service
+Enable and restart Nginx:
 
 ```bash
 systemctl enable nginx
 systemctl restart nginx
 ```
 
+## Verify
 
-<div align="center">
-  <h2> 🎉 Nginx + AMS — Your Streams Are Now in Safe Hands! 🚀 </h2>
-</div>
+1. Open `https://yourdomain.com:4444` and sign in to the web panel.
+2. Publish a test stream through `https://yourdomain.com` (origin listener).
+3. Play the stream through `https://yourdomain.com:5443` (edge listener).
 
-And there you have it! Nginx is now **directing traffic like a pro**, with your origin and edge nodes coordinated behind the scenes.
+If publish and play both succeed, Nginx is routing traffic to the correct upstreams.
 
-Your streams are ready for the spotlight — **balanced, secure, and flowing smoothly**. Go ahead, launch your live events, and let the load balancer handle the heavy lifting! 🎥✨
+## Related guides
+
+| Topic | Guide |
+|-------|-------|
+| Load balancing overview | [Load Balancing](/guides/clustering-and-scaling/load-balancing/) |
+| HAProxy alternative | [HAProxy Load Balancer](/guides/clustering-and-scaling/load-balancing/haproxy-load-balancer/) |
+| Cluster install | [Self-Managed Cluster](/guides/clustering-and-scaling/manual-configuration/cluster-installation/) |

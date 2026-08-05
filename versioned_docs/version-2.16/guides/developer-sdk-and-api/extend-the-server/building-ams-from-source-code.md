@@ -1,101 +1,70 @@
 ---
-title: Building AMS Source Code 
-description: Building an Ant Media Server from source code for contribution or further development.
-keywords: [Building AMS from Source Code, Ant Media Server Documentation, Ant Media Server Tutorials]
+title: Build from Source
+description: Build Ant Media Server from source for contribution or custom development.
+keywords: [Building AMS from Source Code, Ant Media Server Documentation]
 sidebar_position: 1
+sidebar_label: Build from Source
 ---
 
-# Building AMS from Source Code
+# Build from Source
 
-#### Linux (Ubuntu)
+Build Ant Media Server from source to contribute, test patches, or create a custom distribution.
 
-A couple of common repos should be cloned and built with Maven.
+## Prerequisites
 
-*   Go to a directory where you will clone repos
-*   Clone and build `ant-media-server-parent`
-    
-    ```bash
-    $ git clone https://github.com/ant-media/ant-media-server-parent.git
-    $ cd ant-media-server-parent/
-    $ mvn clean install -Dgpg.skip=true
-    $ cd ..
-    ```
+- Ubuntu Linux (recommended)
+- Java JDK and Maven
+- Node.js and Angular CLI (for the management console)
+- Git
 
-#### Building Community Edition
+## Linux (Ubuntu)
 
-*   Build the Web Panel
-    *   Install Node
-        
-        ```bash
-        $ wget https://nodejs.org/dist/v20.11.1/node-v20.11.1-linux-x64.tar.xz
-        $ tar -xJf node-v20.11.1-linux-x64.tar.xz
-        $ echo 'export PATH=$PATH:'`pwd`'/node-v20.11.1-linux-x64/bin' >> ~/.bashrc
-        $ npm install -g @angular/cli
-        ```
-        
-    *   Build
-        ```bash
-        $ git clone https://github.com/ant-media/Ant-Media-Management-Console.git
-        $ cd Ant-Media-Management-Console
-        $ npm install
-        $ ng build --prod
-        $ cp -a ./dist/. ../Ant-Media-Server/src/main/server/webapps/root/
-         ```
-       
-   *   Clone, build and package Ant-Media-Server
-   
-       ```bash
-       $ git clone https://github.com/ant-media/Ant-Media-Server.git
-       $ cd Ant-Media-Server
-       $ mvn clean install -Dmaven.javadoc.skip=true -Dmaven.test.skip=true -Dgpg.skip=true
-       $ ./repackage_community.sh
-        ```
-        
-### Building Enterprise Edition
+Clone and build the shared parent Maven project first:
 
-*   Clone and build Ant-Media-Server
-    ```bash   
-    $ git clone https://github.com/ant-media/Ant-Media-Server.git
-    $ cd Ant-Media-Server
-    $ mvn clean install -Dmaven.javadoc.skip=true -Dmaven.test.skip=true -Dgpg.skip=true
-    ```
-    
-*   Build Ant-Media-Enterprise Source code of Ant-Media-Enterprise is provided to the Enterprise users
+```bash
+git clone https://github.com/ant-media/ant-media-server-parent.git
+cd ant-media-server-parent/
+mvn clean install -Dgpg.skip=true
+cd ..
+```
 
-    ```bash
-    $ cd /where/you/download/enterprise/repo
-    $ ./redeploy.sh
-    ```
-*   Build the Filter Plugin
-    ```bash
-    $ git clone https://github.com/ant-media/Plugins.git
-    $ cd Plugins/FilterPlugin
-    $ mvn install -Dmaven.test.skip=true -Dgpg.skip=true
-    ```
-    
-*   Build the Web Panel
-    *   Install Node
-        ```bash
-        $ wget https://nodejs.org/dist/v20.11.1/node-v20.11.1-linux-x64.tar.xz
-        $ tar -xJf node-v20.11.1-linux-x64.tar.xz
-        $ echo 'export PATH=$PATH:'`pwd`'/node-v20.11.1-linux-x64/bin' >> ~/.bashrc
-        $ npm install -g @angular/cli 
-        ```
-        
-    *   Build
-        ```bash
-        $ git clone https://github.com/ant-media/Ant-Media-Management-Console.git
-        $ cd Ant-Media-Management-Console
-        $ npm install
-        $ ng build --prod
-        $ cp -a ./dist/. ../Ant-Media-Server/src/main/server/webapps/root/
-        ```
-    *   Package Enterprise Edition
-        ```bash
-        $ cd Ant-Media-Server
-        $ ./repackage_enterprise.sh
-        ```
+## Building Community Edition
 
-## Congratulations!
+### Clone the repositories
 
-If all steps are completed successfully, a new packaged Ant Media Server (ant-media-server-x.x.x.zip) will be available in the `Ant-Media-Server/target` directory. You can now deploy, test, or contribute to the server, explore the source code, and extend its functionality. Your development environment is ready, and you’re all set to dive into AMS customization and feature enhancements!
+```bash
+git clone https://github.com/ant-media/Ant-Media-Server.git
+git clone https://github.com/ant-media/Ant-Media-Management-Console.git
+```
+
+### Build the web panel
+
+```bash
+cd Ant-Media-Management-Console
+npm install
+# Need this to use older SSL when building the web panel
+export NODE_OPTIONS=--openssl-legacy-provider
+ng build --prod
+cp -a ./dist/. ../Ant-Media-Server/src/main/server/webapps/root/
+cd ..
+```
+
+### Build and package Ant Media Server
+
+```bash
+cd Ant-Media-Server
+mvn clean install -Dmaven.javadoc.skip=true -Dmaven.test.skip=true -Dgpg.skip=true
+# Optionally: this script builds and redeploys community to an existing installation
+# ./repackage_community.sh
+```
+
+When packaging succeeds, `ant-media-server-x.x.x.zip` is available in `Ant-Media-Server/target/`.
+
+## Building Enterprise Edition
+
+If you are building Enterprise Edition, [contact Ant Media](https://antmedia.io/contact-us/) for the latest instructions.
+
+## Next steps
+
+- Create an [application](/guides/developer-sdk-and-api/extend-the-server/applications/create-new-application/) on your built server
+- Develop a [plugin](/guides/developer-sdk-and-api/plugins/developing-plugins/) to extend functionality

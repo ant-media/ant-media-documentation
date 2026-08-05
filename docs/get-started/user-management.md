@@ -33,7 +33,7 @@ After you sign in as the new user, the dashboard reflects that user’s applicat
 
 ## Manage users with the REST API
 
-Management user APIs require authentication. See [Management REST APIs](/guides/developer-sdk-and-api/rest-api-guide/management-rest-apis/).
+Management user APIs require authentication. See [Web Panel API](/guides/developer-sdk-and-api/rest-api-guide/management-rest-apis/).
 
 :::info
 - `scope` — `system` for server-wide access, or an application name such as `LiveApp` to limit the user to that app.

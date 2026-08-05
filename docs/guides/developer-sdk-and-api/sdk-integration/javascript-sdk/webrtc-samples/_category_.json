@@ -3,6 +3,7 @@
   "position": 2,
   "link": {
     "type": "generated-index",
-    "description": "Ant Media Server JavaScript SDK WebRTC Samples"
+    "description": "JavaScript SDK samples for publish, play, conference, P2P, data channel, and screen sharing.",
+    "slug": "/category/javascript-sdk-samples"
   }
 }

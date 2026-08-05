@@ -1,9 +1,8 @@
 {
   "label": "Extend the Server",
-  "position": 5,
+  "position": 6,
   "link": {
-    "type": "generated-index",
-    "description": "Build Ant Media Server from source, create custom applications, and develop plugins.",
-    "slug": "/category/extend-the-server"
+    "type": "doc",
+    "id": "guides/developer-sdk-and-api/extend-the-server/index"
   }
 }

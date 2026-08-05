@@ -3,6 +3,6 @@
   "position": 2,
   "link": {
     "type": "generated-index",
-    "description": "Learn how to create and manage applications in Ant Media Server, including integration guides for the Circle conference application."
+    "description": "Create AMS applications and embed the Circle conference component."
   }
 }

@@ -1,64 +1,81 @@
 ---
 title: Active License in Restricted Regions
-description: Activate Ant Media Server from within restricted geo locations
+description: Activate Ant Media Server Enterprise licenses from regions where Google license verification is blocked, using Ant Media's proxy or a self-hosted Squid server.
 keywords: [Activate AMS within self-hosted proxy server, restricted geo locations, proxy server, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 12
 ---
 
 # Active License in Restricted Regions
 
-Ant Media uses Google services to verify the license key, which are banned in China and Hong Kong. 
+Ant Media Server verifies **Enterprise licenses** through **Google Cloud** endpoints. In some regions— notably **China and Hong Kong**— those services are unreachable, so license activation fails from the dashboard.
 
-For this reason, it’s not possible to verify the Ant Media license key using Google services.
+Use one of two proxy paths: Ant Media's **free Enterprise proxy**, or a **self-hosted Squid** server in an unrestricted region that forwards verification traffic for you.
 
-In this article, I'll provide two options to get around these restrictions and explain them step by step.
+![License verification through a proxy server](@site/static/img/ams-proxy.png)
 
-![image](https://raw.githubusercontent.com/ant-media/ant-media-documentation/fc3a808ccea9a2df81d716a6a988ca5774128a64/static/img/ams-proxy.png)
+## What you'll accomplish
 
-The two options are:
+By the end of this guide, you will:
 
-- A proxy service, provided free for Ant Media Enterprise users.
-- A self-hosted proxy server
+1. Choose between Ant Media's **Enterprise proxy** and a **self-hosted Squid** proxy.
+2. Configure `proxy.address` in Ant Media Server so license checks route through the proxy.
+3. Confirm license verification works from a restricted network.
 
-## 1. Free Proxy service for Enterprise Users
+## When you need a proxy
 
-Ant Media offers this to Enterprise users for free. To access the free service, simply send an email to support@antmedia.io to receive a username and password.
+You need proxy-based license verification when:
 
-After receiving a username and password, run the following command, then restart the Ant Media Server.
+- Ant Media Server runs in a region where **Google services are blocked or restricted**.
+- Entering a license key in the dashboard fails with connectivity or verification errors.
+- Direct access to `us-central1-ant-media-server-license.cloudfunctions.net` is not available from your server.
 
+## Prerequisites
+
+Before you begin, confirm the following:
+
+- An **Ant Media Server Enterprise** installation with a valid license key.
+- Root or `sudo` access to edit `/usr/local/antmedia/conf/red5.properties` and restart Ant Media Server.
+- For the **self-hosted** option: an **Ubuntu 20.04 or 22.04** server in an **unrestricted region** to run Squid.
+
+## Option A: Ant Media Enterprise proxy (recommended)
+
+Ant Media provides a hosted proxy **free for Enterprise customers**.
+
+1. Email [support@antmedia.io](mailto:support@antmedia.io) to request proxy credentials (username and password).
+2. Add the proxy setting on your Ant Media Server host:
+
+```bash
+echo "proxy.address=username:password@license-verification.antmedia.io:80" | sudo tee -a /usr/local/antmedia/conf/red5.properties
+sudo systemctl restart antmedia
 ```
-echo "proxy.address=username:password@license-verification.antmedia.io:80" >> /usr/local/antmedia/conf/red5.properties
-systemctl restart antmedia
+
+Replace `username` and `password` with the values from Ant Media support.
+
+3. Open the Ant Media Server dashboard, go to license settings, and enter your license key.
+
+## Option B: Self-hosted Squid proxy
+
+Run Squid on a server outside the restricted region, then point Ant Media Server at it.
+
+### Step 1: Install Squid
+
+On Ubuntu 20.04 or 22.04 in an unrestricted region:
+
+```bash
+sudo apt update
+sudo apt install -y squid apache2-utils
 ```
 
-That's it! You can now verify your license over a restricted network. 
+### Step 2: Back up and edit Squid configuration
 
-## 2. Self-Hosted Proxy Server
-
-We are going to use Squid as the proxy server. 
-
-To get started, first have Ubuntu 22.04 or Ubuntu 20.04 server installed in an unrestricted region.
-
-Once you've got a running Ubuntu installation, continue to install Squid proxy with the below steps. 
-
-#### 1. Installing Squid server 
+```bash
+sudo mv /etc/squid/squid.conf /etc/squid/squid.conf_bck
+sudo vim /etc/squid/squid.conf
 ```
-apt update
-apt install squid apache2-utils -y
-```
-#### 2. Backup existing configuration.
 
-`mv /etc/squid/squid.conf{,_bck}`
+Add the following configuration:
 
-#### 3. Modify the squid configuration
-
-Open the `squid.conf` file located at `/etc/squid/squid.conf` with an editor
-
-`vim /etc/squid/squid.conf`
-
-Add the following lines into squid.conf file.
-
-```
+```text
 acl whitelist dstdomain us-central1-ant-media-server-license.cloudfunctions.net
 acl SSL_ports port 443
 http_access deny !Safe_ports
@@ -84,45 +101,52 @@ refresh_pattern \/(Translation-.*)(|\.bz2|\.gz|\.xz)$ 0 0% 0 refresh-ims
 refresh_pattern .		0	20%	4320
 ```
 
-Save and close the editor.
+Squid listens on port **3199** and allows authenticated access only to the license verification domain.
 
-#### 4. Create a username and password for authentication
+### Step 3: Create proxy credentials
 
-htpasswd -c /etc/squid/passwords username
-
-Now, Let's restart the squid service as follows.
-
-```
-systemctl restart squid
+```bash
+sudo htpasswd -c /etc/squid/passwords username
+sudo systemctl restart squid
 ```
 
-#### 5. Test the installation
+Replace `username` with your chosen proxy user and set a strong password when prompted.
 
-Use the following curl command to check that everything is working correctly.
+### Step 4: Test the proxy
+
+From a host that can reach the proxy server, run:
+
+```bash
+curl -x "http://username:password@your_proxy_server:3199" -X POST \
+  -H "Content-Type: application/json" \
+  https://us-central1-ant-media-server-license.cloudfunctions.net/license_valid \
+  -d '{"key":"your_license_key"}' -w "\n"
 ```
-curl -x "http://username:password@your_proxy_server:port_number" -X POST -H "Content-Type:application/json" https://us-central1-ant-media-server-license.cloudfunctions.net/license_valid -d '{"key":"your_license_key"}' -w "\n"
+
+A response containing `"valid"` confirms the proxy can reach the license endpoint.
+
+### Step 5: Configure Ant Media Server
+
+On the Ant Media Server host in the restricted region, add your **self-hosted** proxy (not the Enterprise hostname):
+
+```bash
+echo "proxy.address=username:password@your_proxy_server:3199" | sudo tee -a /usr/local/antmedia/conf/red5.properties
+sudo systemctl restart antmedia
 ```
-If the output of the above command returns a "valid" value, your license can be verified.
 
-#### 6. Add the settings for Ant Media Server.
-```
-echo "proxy.address=username:password@license-verification.antmedia.io:80" >> /usr/local/antmedia/conf/red5.properties
-```
-Finally, restart the Ant Media Server.
-```
-systemctl restart antmedia
-```
-You can now go to the Dashboard and enter your license key in the settings. 
+Replace `username`, `password`, and `your_proxy_server` with your Squid credentials and server address.
 
-<br /><br />
----
+Enter your license key in the dashboard settings.
 
-<div align="center">
-<h2> 🔓 License Verified, Barriers Bypassed! 🌍 </h2>
-</div>
+## Related guides
 
-You’ve enabled **proxy support** (either free or self-hosted) so your Ant Media Server can verify its **license—even from within restricted regions**. No more blocked verification, no more frustration.
+- [Enterprise Deployment Hub](/enterprise-guide/) — production checklist including licensing.
+- [WebRTC in Restricted Networks](/guides/advanced-usage/overcoming-restricted-networks-webrtc-ams/) — streaming connectivity in locked-down networks (separate from license verification).
 
-Your setup is now licensed, connected, and unstoppable — wherever you are! 🚀
+## Troubleshooting
 
-
+| Symptom | What to check |
+|---------|----------------|
+| License verification still fails after adding proxy | `proxy.address` syntax is `user:pass@host:port`; Ant Media Server restarted; proxy host reachable from the AMS server on the configured port. |
+| Squid `curl` test returns error or timeout | Squid running (`sudo systemctl status squid`); port **3199** open; credentials match `/etc/squid/passwords`; whitelist domain unchanged. |
+| Dashboard accepts key on unrestricted network but not in restricted region | Proxy option configured and active; use Enterprise proxy or confirm self-hosted Squid runs outside the restricted region. |

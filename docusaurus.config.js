@@ -296,8 +296,16 @@ scripts: [
           ];
         }),
 	{
-          from: '/guides/developer-sdk-and-api/sdk-integration/android-sdk/',
-          to: '/category/android-sdk/'
+          from: '/category/android-sdk/',
+          to: '/guides/developer-sdk-and-api/sdk-integration/android-sdk/'
+        },
+	{
+          from: '/category/ios-sdk/',
+          to: '/guides/developer-sdk-and-api/sdk-integration/ios-sdk/'
+        },
+	{
+          from: '/category/sdk-integration/',
+          to: '/guides/developer-sdk-and-api/sdk-integration/'
         },
 	{
           from: '/guides/clustering-and-scaling/kubernetes/kubernetes-services/installing-ams-on-aws-eks/',
@@ -459,7 +467,71 @@ scripts: [
         },
 	{
           from: '/v1/docs/clustering/',
-          to: '/category/clustering-and-scaling/'
+          to: '/guides/clustering-and-scaling/'
+        },
+	{
+          from: '/category/clustering-and-scaling/',
+          to: '/guides/clustering-and-scaling/'
+        },
+	{
+          from: '/2.17/category/clustering-and-scaling/',
+          to: '/2.17/guides/clustering-and-scaling/'
+        },
+	{
+          from: '/2.16/category/clustering-and-scaling/',
+          to: '/2.16/guides/clustering-and-scaling/'
+        },
+	{
+          from: '/3.0/category/clustering-and-scaling/',
+          to: '/guides/clustering-and-scaling/'
+        },
+	{
+          from: '/category/load-balancing/',
+          to: '/guides/clustering-and-scaling/load-balancing/'
+        },
+	{
+          from: '/2.17/category/load-balancing/',
+          to: '/2.17/guides/clustering-and-scaling/load-balancing/'
+        },
+	{
+          from: '/2.16/category/load-balancing/',
+          to: '/2.16/guides/clustering-and-scaling/load-balancing/'
+        },
+	{
+          from: '/3.0/category/load-balancing/',
+          to: '/guides/clustering-and-scaling/load-balancing/'
+        },
+	{
+          from: '/category/supported-databases/',
+          to: '/guides/clustering-and-scaling/supported-databases/'
+        },
+	{
+          from: '/2.17/category/supported-databases/',
+          to: '/2.17/guides/clustering-and-scaling/supported-databases/'
+        },
+	{
+          from: '/2.16/category/supported-databases/',
+          to: '/2.16/guides/clustering-and-scaling/supported-databases/'
+        },
+	{
+          from: '/3.0/category/supported-databases/',
+          to: '/guides/clustering-and-scaling/supported-databases/'
+        },
+	{
+          from: '/category/docker/',
+          to: '/guides/clustering-and-scaling/docker/'
+        },
+	{
+          from: '/2.17/category/docker/',
+          to: '/2.17/guides/clustering-and-scaling/docker/'
+        },
+	{
+          from: '/2.16/category/docker/',
+          to: '/2.16/guides/clustering-and-scaling/docker/'
+        },
+	{
+          from: '/3.0/category/docker/',
+          to: '/guides/clustering-and-scaling/docker/'
         },
 	{
           from: '/v1/docs/getting-started-with-ant-media-server/',
@@ -499,7 +571,7 @@ scripts: [
         }),
 	{
           from: '/v1/docs/clustering-and-scaling-ant-media-server/',
-          to: '/category/clustering-and-scaling/'
+          to: '/guides/clustering-and-scaling/'
         },
 	{
           from: '/v1/docs/how-to-enable-ip-filter-for-ant-media-servers-behind-load-balancer-in-aws/',
@@ -529,74 +601,43 @@ scripts: [
           from: '/guides/advanced-usage/turn-and-stun-installation/coturn-quick-installation/',
           to: '/guides/advanced-usage/turn-installation/coturn-quick-installation/'
         },
-	// Push Notification moved under Developer SDKs & API
+	// Push Notifications — refactored under Developer Guides
 	...(() => {
-          // Overview doc is served at the folder URL (not .../push-notification-management/push-notification-management/).
-          const pushPages = [
-            'Android SDK/configure-ant-media-server/',
-            'Android SDK/configure-manifest/',
-            'Android SDK/create-android-project/',
-            'Android SDK/create-required-classes/',
-            'Android SDK/dependency/',
-            'Android SDK/sending-notification/',
-            'Android SDK/setting-up-firebase/',
-            'iOS SDK/configure-ant-media-server/',
-            'iOS SDK/configure-your-ios-project/',
-            'iOS SDK/prerequirements/',
-            'iOS SDK/sending-notification/',
-            'iOS SDK/setting-up-apn-certificates/',
+          const pushBase = '/guides/developer-sdk-and-api/push-notification-management';
+          const pathMap = {
+            'push-notification-management/': '',
+            'Android SDK/setting-up-firebase/': 'android/setup-firebase/',
+            'Android SDK/create-android-project/': 'android/create-project/',
+            'Android SDK/dependency/': 'android/add-dependencies/',
+            'Android SDK/configure-manifest/': 'android/configure-manifest/',
+            'Android SDK/create-required-classes/': 'android/implement-handlers/',
+            'Android SDK/configure-ant-media-server/': 'server-setup/',
+            'Android SDK/sending-notification/': 'send-notifications/',
+            'iOS SDK/prerequirements/': 'ios/prerequisites/',
+            'iOS SDK/setting-up-apn-certificates/': 'ios/setup-apn/',
+            'iOS SDK/configure-your-ios-project/': 'ios/configure-xcode/',
+            'iOS SDK/configure-ant-media-server/': 'server-setup/',
+            'iOS SDK/sending-notification/': 'send-notifications/',
+          };
+          const prefixes = [
+            { from: '/guides/developing-antmedia-server/push-notification-management/', to: pushBase + '/' },
+            { from: '/3.0/guides/developing-antmedia-server/push-notification-management/', to: pushBase + '/' },
+            { from: '/2.17/guides/developing-antmedia-server/push-notification-management/', to: '/2.17' + pushBase + '/' },
+            { from: '/2.16/guides/developing-antmedia-server/push-notification-management/', to: '/2.16' + pushBase + '/' },
+            { from: pushBase + '/', to: pushBase + '/' },
+            { from: '/3.0' + pushBase + '/', to: pushBase + '/' },
+            { from: '/2.17' + pushBase + '/', to: '/2.17' + pushBase + '/' },
+            { from: '/2.16' + pushBase + '/', to: '/2.16' + pushBase + '/' },
           ];
           const redirects = [
-            {
-              from: '/guides/developing-antmedia-server/push-notification-management/',
-              to: '/category/push-notification/',
-            },
-            {
-              from: '/guides/developing-antmedia-server/push-notification-management/push-notification-management/',
-              to: '/guides/developer-sdk-and-api/push-notification-management/',
-            },
-            {
-              from: '/3.0/guides/developing-antmedia-server/push-notification-management/',
-              to: '/category/push-notification/',
-            },
-            {
-              from: '/3.0/guides/developing-antmedia-server/push-notification-management/push-notification-management/',
-              to: '/guides/developer-sdk-and-api/push-notification-management/',
-            },
-            {
-              from: '/2.17/guides/developing-antmedia-server/push-notification-management/',
-              to: '/2.17/category/push-notification/',
-            },
-            {
-              from: '/2.17/guides/developing-antmedia-server/push-notification-management/push-notification-management/',
-              to: '/2.17/guides/developer-sdk-and-api/push-notification-management/',
-            },
-            {
-              from: '/2.16/guides/developing-antmedia-server/push-notification-management/',
-              to: '/2.16/category/push-notification/',
-            },
-            {
-              from: '/2.16/guides/developing-antmedia-server/push-notification-management/push-notification-management/',
-              to: '/2.16/guides/developer-sdk-and-api/push-notification-management/',
-            },
+            { from: '/category/push-notification/', to: pushBase + '/' },
+            { from: '/2.17/category/push-notification/', to: '/2.17' + pushBase + '/' },
+            { from: '/2.16/category/push-notification/', to: '/2.16' + pushBase + '/' },
           ];
-          for (const page of pushPages) {
-            redirects.push({
-              from: `/guides/developing-antmedia-server/push-notification-management/${page}`,
-              to: `/guides/developer-sdk-and-api/push-notification-management/${page}`,
-            });
-            redirects.push({
-              from: `/3.0/guides/developing-antmedia-server/push-notification-management/${page}`,
-              to: `/guides/developer-sdk-and-api/push-notification-management/${page}`,
-            });
-            redirects.push({
-              from: `/2.17/guides/developing-antmedia-server/push-notification-management/${page}`,
-              to: `/2.17/guides/developer-sdk-and-api/push-notification-management/${page}`,
-            });
-            redirects.push({
-              from: `/2.16/guides/developing-antmedia-server/push-notification-management/${page}`,
-              to: `/2.16/guides/developer-sdk-and-api/push-notification-management/${page}`,
-            });
+          for (const { from, to } of prefixes) {
+            for (const [oldPath, newPath] of Object.entries(pathMap)) {
+              redirects.push({ from: from + oldPath, to: to + newPath });
+            }
           }
           return redirects;
         })(),
@@ -626,11 +667,15 @@ scripts: [
         },
 	{
           from: '/category/turn--stun-installation/',
-          to: '/category/turn-server-installation/'
+          to: '/guides/advanced-usage/turn-installation/'
+        },
+	{
+          from: '/category/turn-server-installation/',
+          to: '/guides/advanced-usage/turn-installation/'
         },
 	{
           from: '/guides/advanced-usage/turn-and-stun-installation/setting-up-turn-using-coturn/',
-          to: '/category/turn-server-installation/'
+          to: '/guides/advanced-usage/turn-installation/'
         },
 	{
           from: '/guides/publish-live-stream/introduction/',
@@ -710,12 +755,106 @@ scripts: [
         },
 	{
           from: '/guides/developer-sdk-and-api/rest-api-guide/REST-API-examples/',
-          to: '/guides/developer-sdk-and-api/rest-api-guide/rest-apis-examples/'
+          to: '/guides/developer-sdk-and-api/rest-api-guide/api-catalog/'
+        },
+	{
+          from: '/guides/developer-sdk-and-api/rest-api-guide/rest-apis-examples/',
+          to: '/guides/developer-sdk-and-api/rest-api-guide/api-catalog/'
+        },
+	{
+          from: '/guides/developer-sdk-and-api/rest-api-guide/examples/',
+          to: '/guides/developer-sdk-and-api/rest-api-guide/api-catalog/'
+        },
+	{
+          from: '/2.17/guides/developer-sdk-and-api/rest-api-guide/REST-API-examples/',
+          to: '/2.17/guides/developer-sdk-and-api/rest-api-guide/api-catalog/'
+        },
+	{
+          from: '/2.17/guides/developer-sdk-and-api/rest-api-guide/rest-apis-examples/',
+          to: '/2.17/guides/developer-sdk-and-api/rest-api-guide/api-catalog/'
+        },
+	{
+          from: '/2.17/guides/developer-sdk-and-api/rest-api-guide/examples/',
+          to: '/2.17/guides/developer-sdk-and-api/rest-api-guide/api-catalog/'
+        },
+	{
+          from: '/2.16/guides/developer-sdk-and-api/rest-api-guide/REST-API-examples/',
+          to: '/2.16/guides/developer-sdk-and-api/rest-api-guide/api-catalog/'
+        },
+	{
+          from: '/2.16/guides/developer-sdk-and-api/rest-api-guide/rest-apis-examples/',
+          to: '/2.16/guides/developer-sdk-and-api/rest-api-guide/api-catalog/'
+        },
+	{
+          from: '/2.16/guides/developer-sdk-and-api/rest-api-guide/examples/',
+          to: '/2.16/guides/developer-sdk-and-api/rest-api-guide/api-catalog/'
+        },
+	{
+          from: '/3.0/guides/developer-sdk-and-api/rest-api-guide/REST-API-examples/',
+          to: '/guides/developer-sdk-and-api/rest-api-guide/api-catalog/'
+        },
+	{
+          from: '/3.0/guides/developer-sdk-and-api/rest-api-guide/rest-apis-examples/',
+          to: '/guides/developer-sdk-and-api/rest-api-guide/api-catalog/'
+        },
+	{
+          from: '/3.0/guides/developer-sdk-and-api/rest-api-guide/examples/',
+          to: '/guides/developer-sdk-and-api/rest-api-guide/api-catalog/'
+        },
+	{
+          from: '/guides/developer-sdk-and-api/rest-api-guide/rest-api-guide/',
+          to: '/guides/developer-sdk-and-api/rest-api-guide/getting-started/',
+        },
+	{
+          from: '/2.17/guides/developer-sdk-and-api/rest-api-guide/rest-api-guide/',
+          to: '/2.17/guides/developer-sdk-and-api/rest-api-guide/getting-started/',
+        },
+	{
+          from: '/2.16/guides/developer-sdk-and-api/rest-api-guide/rest-api-guide/',
+          to: '/2.16/guides/developer-sdk-and-api/rest-api-guide/getting-started/',
+        },
+	{
+          from: '/3.0/guides/developer-sdk-and-api/rest-api-guide/rest-api-guide/',
+          to: '/guides/developer-sdk-and-api/rest-api-guide/getting-started/',
+        },
+	// REST API category index → overview doc
+	{
+          from: '/category/rest-api-guide/',
+          to: '/guides/developer-sdk-and-api/rest-api-guide/',
+        },
+	{
+          from: '/2.17/category/rest-api-guide/',
+          to: '/2.17/guides/developer-sdk-and-api/rest-api-guide/',
+        },
+	{
+          from: '/2.16/category/rest-api-guide/',
+          to: '/2.16/guides/developer-sdk-and-api/rest-api-guide/',
+        },
+	{
+          from: '/3.0/category/rest-api-guide/',
+          to: '/guides/developer-sdk-and-api/rest-api-guide/',
         },
 	{
           from: '/guides/advanced-usage/using-nvidia-hardware-based-encoder-on-docker/',
           to: '/guides/clustering-and-scaling/docker/using-nvidia-hardware-based-encoder-on-docker/'
         },
+	{
+          from: '/guides/clustering-and-scaling/docker/choose-docker-deployment/',
+          to: '/guides/clustering-and-scaling/docker/'
+        },
+	{
+          from: '/3.0/guides/clustering-and-scaling/docker/choose-docker-deployment/',
+          to: '/guides/clustering-and-scaling/docker/'
+        },
+	{
+          from: '/2.17/guides/clustering-and-scaling/docker/choose-docker-deployment/',
+          to: '/2.17/guides/clustering-and-scaling/docker/'
+        },
+	{
+          from: '/2.16/guides/clustering-and-scaling/docker/choose-docker-deployment/',
+          to: '/2.16/guides/clustering-and-scaling/docker/'
+        },
+
 	{
           from: '/guides/advanced-usage/circle-component-usage/',
           to: '/guides/developer-sdk-and-api/extend-the-server/applications/circle-component-usage/'
@@ -730,7 +869,23 @@ scripts: [
         },
 	{
           from: '/guides/advanced-usage/Plugins-for-Ant-Media-Server/',
-          to: '/guides/developer-sdk-and-api/extend-the-server/plugins/plugins-for-ant-media-server/'
+          to: '/guides/developer-sdk-and-api/plugins/plugins-for-ant-media-server/'
+        },
+	{
+          from: '/guides/developer-sdk-and-api/extend-the-server/plugins/getting-started/',
+          to: '/guides/developer-sdk-and-api/plugins/getting-started/',
+        },
+	{
+          from: '/guides/developer-sdk-and-api/extend-the-server/plugins/plugin-architecture/',
+          to: '/guides/developer-sdk-and-api/plugins/plugin-architecture/',
+        },
+	{
+          from: '/guides/developer-sdk-and-api/extend-the-server/plugins/developing-plugins/',
+          to: '/guides/developer-sdk-and-api/plugins/developing-plugins/',
+        },
+	{
+          from: '/guides/developer-sdk-and-api/extend-the-server/plugins/plugins-for-ant-media-server/',
+          to: '/guides/developer-sdk-and-api/plugins/plugins-for-ant-media-server/',
         },
 	{
           from: '/guides/publish-live-stream/webrtc-peer-to-peer-communication/',
@@ -755,14 +910,102 @@ scripts: [
         },
 	// 2.16 still has video-codecs.md — do not redirect that version.
 	{
+          from: '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/react-native-publish-sample/',
+          to: '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/webrtc-samples/publish/',
+        },
+	{
+          from: '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/react-native-play-sample/',
+          to: '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/webrtc-samples/play/',
+        },
+	{
+          from: '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/react-native-p2p-sample/',
+          to: '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/webrtc-samples/p2p/',
+        },
+	{
+          from: '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/react-native-conference-sample/',
+          to: '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/webrtc-samples/conference/',
+        },
+	{
+          from: '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/react-native-data-channel-sample/',
+          to: '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/webrtc-samples/data-channel/',
+        },
+	{
+          from: '/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/webrtc-samples/javascript-sdk-publish-sample/',
+          to: '/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/webrtc-samples/publish/',
+        },
+	{
+          from: '/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/webrtc-samples/javascript-sdk-play-sample/',
+          to: '/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/webrtc-samples/play/',
+        },
+	{
+          from: '/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/webrtc-samples/javascript-sdk-conference-sample/',
+          to: '/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/webrtc-samples/conference/',
+        },
+	{
+          from: '/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/webrtc-samples/javascript-sdk-p2p-sample/',
+          to: '/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/webrtc-samples/p2p/',
+        },
+	{
+          from: '/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/webrtc-samples/javascript-sdk-datachannel-sample/',
+          to: '/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/webrtc-samples/data-channel/',
+        },
+	{
+          from: '/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/webrtc-samples/screen-sharing-with-webrtc/',
+          to: '/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/webrtc-samples/screen-sharing/',
+        },
+	{
+          from: '/guides/developer-sdk-and-api/sdk-integration/flutter-sdk/webrtc-samples/flutter-publish-sample/',
+          to: '/guides/developer-sdk-and-api/sdk-integration/flutter-sdk/webrtc-samples/publish/',
+        },
+	{
+          from: '/guides/developer-sdk-and-api/sdk-integration/flutter-sdk/webrtc-samples/flutter-play-sample/',
+          to: '/guides/developer-sdk-and-api/sdk-integration/flutter-sdk/webrtc-samples/play/',
+        },
+	{
+          from: '/guides/developer-sdk-and-api/sdk-integration/flutter-sdk/webrtc-samples/flutter-conference-sample/',
+          to: '/guides/developer-sdk-and-api/sdk-integration/flutter-sdk/webrtc-samples/conference/',
+        },
+	{
+          from: '/guides/developer-sdk-and-api/sdk-integration/flutter-sdk/webrtc-samples/flutter-p2p-sample/',
+          to: '/guides/developer-sdk-and-api/sdk-integration/flutter-sdk/webrtc-samples/p2p/',
+        },
+	{
+          from: '/guides/developer-sdk-and-api/sdk-integration/flutter-sdk/webrtc-samples/flutter-data-channel-sample/',
+          to: '/guides/developer-sdk-and-api/sdk-integration/flutter-sdk/webrtc-samples/data-channel/',
+        },
+	{
+          from: '/category/webrtc-samples/',
+          to: '/category/javascript-sdk-samples/'
+        },
+	{
           from: [
-            '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/react-native-p2p-sample/',
-            '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/react-native-conference-sample/',
-            '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/react-native-play-sample/',
-	    '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/react-native-data-channel-sample/',
-            '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/react-native-publish-sample/'
+            '/guides/developing-antmedia-server/webrtc-publish-page-creation-tutorial/',
+            '/3.0/guides/developing-antmedia-server/webrtc-publish-page-creation-tutorial/',
           ],
-          to: '/category/webrtc-samples/'
+          to: '/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/webrtc-samples/publish/',
+        },
+	{
+          from: [
+            '/guides/developing-antmedia-server/webrtc-play-page-creation-tutorial/',
+            '/3.0/guides/developing-antmedia-server/webrtc-play-page-creation-tutorial/',
+          ],
+          to: '/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/webrtc-samples/play/',
+        },
+	{
+          from: '/2.17/guides/developing-antmedia-server/webrtc-publish-page-creation-tutorial/',
+          to: '/2.17/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/webrtc-samples/publish/',
+        },
+	{
+          from: '/2.17/guides/developing-antmedia-server/webrtc-play-page-creation-tutorial/',
+          to: '/2.17/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/webrtc-samples/play/',
+        },
+	{
+          from: '/2.16/guides/developing-antmedia-server/webrtc-publish-page-creation-tutorial/',
+          to: '/2.16/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/webrtc-samples/publish/',
+        },
+	{
+          from: '/2.16/guides/developing-antmedia-server/webrtc-play-page-creation-tutorial/',
+          to: '/2.16/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/webrtc-samples/play/',
         },
 	{
           from: '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/react-native-pre-requisite/',
@@ -899,20 +1142,24 @@ scripts: [
         },
 	// Developer Guides section: nest former server-extension docs + move Webhooks
 	...(() => {
-          const nestedPages = [
+          const extendPages = [
             'building-ams-from-source-code/',
             'applications/circle-component-usage/',
             'applications/create-new-application/',
-            'plugins/developing-plugins/',
-            'plugins/getting-started/',
-            'plugins/plugin-architecture/',
-            'plugins/plugins-for-ant-media-server/',
+          ];
+          const pluginPages = [
+            'developing-plugins/',
+            'getting-started/',
+            'plugin-architecture/',
+            'plugins-for-ant-media-server/',
           ];
           // 2.16 kept a flatter developing-antmedia-server layout
-          const flat216Pages = [
+          const flat216ExtendPages = [
             'building-ams-from-source-code/',
             'circle-component-usage/',
             'create-new-application/',
+          ];
+          const flat216PluginPages = [
             'introduction-plugin-structure/',
             'plugins-for-ant-media-server/',
           ];
@@ -949,19 +1196,19 @@ scripts: [
             },
             {
               from: '/guides/developing-antmedia-server/',
-              to: '/category/extend-the-server/',
+              to: '/guides/developer-sdk-and-api/extend-the-server/',
             },
             {
               from: '/3.0/guides/developing-antmedia-server/',
-              to: '/category/extend-the-server/',
+              to: '/guides/developer-sdk-and-api/extend-the-server/',
             },
             {
               from: '/2.17/guides/developing-antmedia-server/',
-              to: '/2.17/category/extend-the-server/',
+              to: '/2.17/guides/developer-sdk-and-api/extend-the-server/',
             },
             {
               from: '/2.16/guides/developing-antmedia-server/',
-              to: '/2.16/category/extend-the-server/',
+              to: '/2.16/guides/developer-sdk-and-api/extend-the-server/',
             },
             // Short paths used in older absolute links
             {
@@ -989,7 +1236,7 @@ scripts: [
               to: '/2.17/guides/developer-sdk-and-api/extend-the-server/applications/circle-component-usage/',
             },
           ];
-          for (const page of nestedPages) {
+          for (const page of extendPages) {
             redirects.push({
               from: `/guides/developing-antmedia-server/${page}`,
               to: `/guides/developer-sdk-and-api/extend-the-server/${page}`,
@@ -1003,10 +1250,35 @@ scripts: [
               to: `/2.17/guides/developer-sdk-and-api/extend-the-server/${page}`,
             });
           }
-          for (const page of flat216Pages) {
+          for (const page of pluginPages) {
+            redirects.push({
+              from: `/guides/developing-antmedia-server/plugins/${page}`,
+              to: `/guides/developer-sdk-and-api/plugins/${page}`,
+            });
+            redirects.push({
+              from: `/3.0/guides/developing-antmedia-server/plugins/${page}`,
+              to: `/guides/developer-sdk-and-api/plugins/${page}`,
+            });
+            redirects.push({
+              from: `/2.17/guides/developing-antmedia-server/plugins/${page}`,
+              to: `/2.17/guides/developer-sdk-and-api/plugins/${page}`,
+            });
+            redirects.push({
+              from: `/guides/developer-sdk-and-api/extend-the-server/plugins/${page}`,
+              to: `/guides/developer-sdk-and-api/plugins/${page}`,
+            });
+          }
+          for (const page of flat216ExtendPages) {
             redirects.push({
               from: `/2.16/guides/developing-antmedia-server/${page}`,
-              to: `/2.16/guides/developer-sdk-and-api/extend-the-server/${page}`,
+              to: `/2.16/guides/developer-sdk-and-api/extend-the-server/${page === 'circle-component-usage/' ? 'applications/circle-component-usage/' : page === 'create-new-application/' ? 'applications/create-new-application/' : page}`,
+            });
+          }
+          for (const page of flat216PluginPages) {
+            const target = page === 'introduction-plugin-structure/' ? 'plugin-architecture/' : page;
+            redirects.push({
+              from: `/2.16/guides/developing-antmedia-server/${page}`,
+              to: `/2.16/guides/developer-sdk-and-api/plugins/${target}`,
             });
           }
           return redirects;
@@ -1102,7 +1374,7 @@ scripts: [
               },
               {
                 label: 'Clustering & Scaling',
-                to: '/category/clustering-and-scaling/',
+                to: '/guides/clustering-and-scaling/',
               },
               {
                 label: 'Adaptive Bitrate Streaming (Transcoding)',

@@ -1,99 +1,184 @@
 ---
 title: Scaling with Redis Database
-description: Using Redis Database with AMS
-keywords: [Using Redis with AMS, Redis Database, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 1
+description: Install Redis on Ubuntu or Docker and connect Ant Media Server for cluster or standalone deployments.
+keywords: [Redis, Ant Media Server cluster, Ant Media Server Documentation]
+sidebar_position: 2
 sidebar_label: Redis
 ---
 
-AMS already supports databases like MapDB for standalone server deployments and [MongoDB](https://antmedia.io/docs/guides/clustering-and-scaling/manual-configuration/cluster-installation/#installing-the-mongodb-database) (including [MongoDB Atlas](https://antmedia.io/docs/guides/clustering-and-scaling/supported-databases/scaling-with-mongodb-atlas/)) for both standalone and cluster environments; the recent addition of Redis integration with AMS EE presents new opportunities for optimizing streaming workflows. With its unique advantages, Redis offers distinct benefits over MongoDB and MapDB in certain use cases.
+# Scaling with Redis
 
-## Why Use Redis?
+Redis is an in-memory data store that Ant Media Server Enterprise supports as a cluster backend alongside MongoDB and MapDB. It suits workloads that benefit from low latency, caching, and pub/sub messaging.
 
-Redis, a high-performance in-memory database system, brings several advantages to the table when integrated with AMS:
+See [Databases](/guides/clustering-and-scaling/supported-databases/) for how shared backends fit into clustering.
 
-- **Speed and Low Latency:**
-Redis's in-memory data storage enables lightning-fast performance and minimal latency, ideal for real-time applications like live video streaming.
-- **Advanced Caching Capabilities:**
-Redis provides robust caching functionality, reducing the load on primary data sources and improving read operation speed, enhancing AMS performance.
-- **Pub/Sub Messaging:**
-Redis's Pub/Sub messaging system enables real-time communication and event-driven architectures, beneficial for live chat, analytics, and signaling in live video streaming.
-- **Scalability and High Availability:**
-Redis supports standalone and clustered deployments, ensuring scalability and high availability. Clustered deployments distribute data across nodes, providing fault tolerance for uninterrupted streaming services.
+## Why Redis?
 
-By integrating Redis with AMS, users can enhance their live video streaming workflows, leveraging its speed, caching capabilities, Pub/Sub messaging, and scalability features."
+| Benefit | What it means for AMS |
+|---------|----------------------|
+| **Speed** | In-memory storage keeps read/write latency low for real-time streaming |
+| **Caching** | Offloads hot data from primary sources and speeds repeated lookups |
+| **Pub/Sub** | Event-driven messaging for live chat, analytics, and signaling |
+| **Availability** | Standalone or clustered Redis deployments with fault tolerance |
 
-## How to deploy Redis?
+For a broader comparison of database options, see [Databases supported by Ant Media Server](https://antmedia.io/databases-supported-by-ant-media-server/).
 
-There are various Redis deployment options:
+## Ports to open
 
-1. **Self-Managed Deployment:**
-You can manually install and configure Redis on local machine or dedicated cloud servers for complete control. Please Refer to the [Redis documentation](https://redis.io/docs/getting-started/) for guidance on self-managed Redis deployments on your preferred OS.
+| Port | Protocol | Direction | Purpose |
+|------|----------|-----------|---------|
+| **6379** | TCP | AMS nodes → Redis host | Redis connections (default port) |
 
-2. **Cloud-Based Deployment:**
-We can Utilize managed Redis services provided by cloud platforms for simplified deployment and management. AWS offers [MemoryDB for Redis](https://aws.amazon.com/memorydb/) and [ElasticCache for Redis](https://aws.amazon.com/elasticache/redis/), Microsoft Azure has [Azure Cache for Redis](https://azure.microsoft.com/en-in/products/cache/), and GCP offers [Google Cloud Memorystore](https://cloud.google.com/memorystore).
+Keep **6379** closed to the public internet. Allow it only from AMS node IPs (or a private subnet / security group). If you use a custom port or TLS listener, open that port instead.
 
-3. **Containerized Deployment:**
-Deploy Redis using containerization platforms like Docker. This pulls the Redis container image from a registry, configure it, and launches [Redis containers](https://redis.io/download/#redis-downloads).
+## Deploy Redis
 
-## How to use Redis with Ant Media Server?
+Choose the deployment model that fits your environment:
 
-The Redis integration with AMS can be achieved using two different approaches: using the `./start.sh` script or the `./change_server_mode.sh script`.
+1. **Self-managed on Ubuntu** — Quick install below
+2. **Managed cloud** — [AWS MemoryDB](https://aws.amazon.com/memorydb/) or [ElastiCache for Redis](https://aws.amazon.com/elasticache/redis/), [Azure Cache for Redis](https://azure.microsoft.com/en-in/products/cache/), or [Google Cloud Memorystore](https://cloud.google.com/memorystore)
+3. **Containers** — Official [Redis Docker image](https://hub.docker.com/_/redis)
 
-The `./start.sh` script is suitable when you manually start and stop AMS, providing flexibility in managing your streaming server. It allows you to utilize Redis in both standalone and cluster modes.
+### Option A: Quick install on Ubuntu
 
-**For standalone mode:**
+Install Redis from the Ubuntu package repositories:
+
+```bash
+sudo apt update
+sudo apt install redis-server -y
+```
+
+Enable and start the service:
+
+```bash
+sudo systemctl enable redis-server
+sudo systemctl start redis-server
+```
+
+By default Redis listens only on `127.0.0.1`. Open the config so AMS nodes on other hosts can connect:
+
+```bash
+sudo nano /etc/redis/redis.conf
+```
+
+Set (or uncomment) the bind address and confirm the port:
+
+```
+bind 0.0.0.0
+port 6379
+```
+
+For production, set a password:
+
+```
+requirepass your-strong-password
+```
+
+Restart Redis:
+
+```bash
+sudo systemctl restart redis-server
+sudo systemctl status redis-server
+```
+
+Confirm Redis responds locally:
+
+```bash
+redis-cli ping
+```
+
+If you set `requirepass`, authenticate first:
+
+```bash
+redis-cli
+AUTH your-strong-password
+PING
+```
+
+:::warning
+Do not expose Redis to the public internet. Bind to a private interface when possible, enforce a password, and restrict **TCP 6379** with a firewall to AMS node IPs only.
+:::
+
+### Option B: Docker
+
+Run the official image from [Docker Hub](https://hub.docker.com/_/redis):
+
+```bash
+docker run -d --name redis -p 6379:6379 redis
+```
+
+With a password:
+
+```bash
+docker run -d --name redis -p 6379:6379 redis redis-server --requirepass your-strong-password
+```
+
+Map the host port only on a private network, or put Redis behind a firewall that allows AMS nodes only.
+
+### Option C: Managed cloud
+
+Use your cloud provider’s managed Redis service and copy the endpoint URI (host, port, and credentials) for the AMS connection steps below.
+
+## Connect AMS to Redis
+
+Use `change_server_mode.sh` when AMS runs as a service, or `start.sh` when you start AMS manually or in containers. Run from `/usr/local/antmedia` on every node.
+
+### Using start.sh
+
+**Standalone:**
 
 ```bash
 sudo ./start.sh -m standalone -h redis://[username:password@]host:port
 ```
 
-**For cluster mode:**
+**Cluster:**
 
 ```bash
 sudo ./start.sh -m cluster -h redis://[username:password@]host:port
 ```
 
-On the other hand, the `./change_server_mode.sh` script is designed for AMS running as a service, simplifying the process of switching between standalone and cluster modes.
+### Using change_server_mode.sh
 
-**For standalone mode:**
+**Standalone:**
 
 ```bash
 sudo ./change_server_mode.sh standalone redis://[username:password@]host:port
 ```
 
-**For cluster mode:**
+**Cluster:**
 
 ```bash
 sudo ./change_server_mode.sh cluster redis://[username:password@]host:port
 ```
 
-:::info
-Note on TLS support:
+Example with password on the default port:
 
-If your Redis server is configured with TLS, simply use the rediss:// scheme instead of redis://:
-:::
+```bash
+sudo ./change_server_mode.sh cluster redis://:your-strong-password@192.168.1.50:6379
+```
+
+:::info TLS
+If your Redis server uses TLS, replace `redis://` with `rediss://`:
 
 ```bash
 sudo ./change_server_mode.sh standalone rediss://[username:password@]host:port
 ```
+:::
 
-When deploying Ant Media Server (AMS) with Kubernetes, you can use Redis by passing your specific database parameters in the [Kubernetes deployment](https://github.com/ant-media/Scripts/blob/master/kubernetes/ams-k8s-deployment-origin.yaml#L46) file. By modifying the deployment configuration, you can configure the host, port, and optional username/password credentials for Redis.
+### Kubernetes
 
-```bash
--h
-- redis://[username:password@]host:port
-```
+Pass the Redis URI via the `-h` flag in your deployment manifest. See the [Kubernetes origin deployment example](https://github.com/ant-media/Scripts/blob/master/kubernetes/ams-k8s-deployment-origin.yaml#L46).
 
-Also, you can refer to this blogpost in we have discussed about using different [databases with Ant Media Server](https://antmedia.io/databases-supported-by-ant-media-server/).
+## Verify
 
-In this document we discussed Redis integration with AMS, covering use cases, implementation strategies, and best practices. Understanding the benefits of Redis integration helps you make informed decisions for your live video streaming infrastructure, whether you're using MongoDB, MapDB, or Redis.
+1. From an AMS node, confirm **TCP 6379** reaches the Redis host.
+2. Open the web panel **Cluster** view. All nodes using the same Redis URI should register successfully.
 
-<div align="center">
-  <h2> 🎉 Redis + AMS — Faster Streams, Happier Viewers! 🚀 </h2>
-</div>
+## Related guides
 
-Your Ant Media Server is now integrated with **Redis**, leveraging its **speed, caching, and Pub/Sub capabilities to optimize streaming workflows**
-
-Your audience will enjoy **smooth, reliable viewing, and you can relax knowing your infrastructure scales effortlessly.** Go ahead — let the streaming magic happen! 🎥✨
-
+| Topic | Guide |
+|-------|-------|
+| Database overview | [Databases](/guides/clustering-and-scaling/supported-databases/) |
+| Self-managed MongoDB | [Scaling with Self-Managed MongoDB](/guides/clustering-and-scaling/supported-databases/scaling-with-mongodb/) |
+| MongoDB Atlas | [Scaling with MongoDB Atlas](/guides/clustering-and-scaling/supported-databases/scaling-with-mongodb-atlas/) |
+| Self-managed cluster | [Cluster Installation](/guides/clustering-and-scaling/manual-configuration/cluster-installation/) |

@@ -1,123 +1,140 @@
 ---
 title: Amazon CloudFront
-description: Ant Media Server Integration with Amazon CloudFront CDN
+description: Configure Amazon CloudFront to deliver HLS and LL-HLS streams from Ant Media Server at scale.
 keywords: [Amazon CloudFront, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 2
+sidebar_label: Amazon CloudFront
 ---
 
 # Amazon CloudFront Integration with Ant Media Server
 
-A content delivery network (CDN) is a geographically distributed network of proxy servers and data centers. The goal of a CDN is to provide high availability and performance by distributing content closer to end users.
+Deliver live **[HLS](/guides/playing-live-stream/hls-playing/)** and **[LL-HLS](/guides/playing-live-stream/ll-hls/)** streams through **Amazon CloudFront**. CloudFront caches playlists and segments at AWS edge locations so viewers get lower latency and your origin handles less traffic.
 
-This guide explains how to configure Amazon CloudFront to deliver [HLS](https://antmedia.io/docs/guides/playing-live-stream/hls-playing/) and [LL-HLS](https://antmedia.io/docs/guides/playing-live-stream/ll-hls/) streams from Ant Media Server.
+## What you'll accomplish
 
-## What is Amazon CloudFront?
+By the end of this guide, you will:
 
-[Amazon CloudFront](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html) is a web service that speeds up the distribution of static and dynamic web content. CloudFront delivers content through a global network of edge locations, automatically routing requests to the nearest location to reduce latency.
+1. Create a **CloudFront distribution** with Ant Media Server as the origin.
+2. Configure **error page caching** for live HLS playback.
+3. Publish a live stream to Ant Media Server.
+4. Play the stream through CloudFront using **HLS** or **LL-HLS**.
+
+## How CloudFront works with Ant Media Server
+
+Ant Media Server generates HLS segments on your origin instance. CloudFront pulls content from that origin and caches it at edge locations worldwide. Viewers request the CloudFront domain name; edge servers respond from cache when possible.
+
+Set the **origin path** to your Ant Media Server application name (for example, `live`). Playback URLs then use the CloudFront domain directly without repeating the application path.
 
 ## Prerequisites
 
-Before configuring CloudFront, ensure you have:
+Before you begin, confirm the following:
 
-- An [AWS account](https://aws.amazon.com/console/)
-- A running instance of Ant Media Server, either launched from the [AWS Marketplace](https://aws.amazon.com/marketplace/pp/prodview-464ritgzkzod6?sr=0-1&ref_=beagle&applicationId=AWSMPContessa) or [installed manually](https://antmedia.io/docs/guides/installing-on-linux/installing-ams-on-linux/)
-- [HLS enabled](https://antmedia.io/docs/guides/playing-live-stream/hls-playing/#enable-hls) on your Ant Media Server instance
-- The [LL-HLS plugin](https://antmedia.io/docs/guides/playing-live-stream/ll-hls/#how-to-enable-ll-hls-in-ant-media-server) installed if you want to play streams with LL-HLS
+- An [AWS account](https://aws.amazon.com/console/).
+- Ant Media Server running on AWS — from [AWS Marketplace](https://aws.amazon.com/marketplace/pp/prodview-464ritgzkzod6) or [installed manually](/guides/installing-on-linux/installing-ams-on-linux/).
+- [HLS enabled](/guides/playing-live-stream/hls-playing/) on your Ant Media Server application.
+- The [LL-HLS plugin](/guides/playing-live-stream/ll-hls/) installed if you plan to test LL-HLS playback.
+- [SSL configured](/guides/installing-on-linux/setting-up-ssl/) on the origin if you use HTTPS (`5443`) as the origin protocol.
 
-## Configure Amazon CloudFront
+## Step 1: Create a CloudFront distribution
 
-### Create a Distribution
+1. Sign in to the AWS console and open **CloudFront**.
+2. Click **Create distribution**.
 
-1. Log in to your AWS account and open the Amazon CloudFront console.
-2. Click **Create Distribution**.
+   ![](@site/static/img/cdn-integration/cloudfront-console.png)
 
-   ![cloudFront-console](https://github.com/user-attachments/assets/d31380e5-fd0d-4776-96c4-f66be4e7212d)
+3. Configure the **origin**:
+   - **Origin domain:** your Ant Media Server hostname or IP
+   - **Protocol:** HTTP on port `5080` or HTTPS on port `5443`
+   - **Origin path:** your application name (for example, `live`)
 
-4. Configure the origin:
+   ![](@site/static/img/cdn-integration/cloudfront-origin.png)
 
-   ![origin](https://github.com/user-attachments/assets/4483bda9-207e-4dd9-824e-7f696376ebf6)
+   See [Create a new application](/guides/developer-sdk-and-api/extend-the-server/applications/create-new-application/) if you need a dedicated app for CDN playback.
 
-   - **Origin domain**: Enter the domain name of your Ant Media Server instance.
-   - **Protocol**: Choose HTTP (5080) or HTTPS (5443). If you select HTTPS, ensure [SSL is enabled](https://antmedia.io/docs/guides/installing-on-linux/setting-up-ssl/).
-   - **Origin path**: Enter the name of your Ant Media Server [application](https://antmedia.io/docs/guides/developer-sdk-and-api/extend-the-server/create-new-application/) (e.g., `live`).
-   
-5. Configure the default cache behavior:
-   - Set cache behavior settings and policies as needed.
+4. Configure the **default cache behavior** and attach cache and origin request policies as needed.
 
-     ![default-cache](https://github.com/user-attachments/assets/21018812-c11d-4920-a6e9-7682689b3068)
+   ![](@site/static/img/cdn-integration/cloudfront-default-cache.png)
 
-   - Attach a cache policy and origin request policy.
+   ![](@site/static/img/cdn-integration/cloudfront-cache-policy.png)
 
-     ![cache-policy](https://github.com/user-attachments/assets/dbbc3bc8-2b63-457a-abf4-1cc32b42f66d)
+5. Disable **WAF** for this distribution if you do not need web application firewall protection.
 
-6. Disable the Web Application Firewall (WAF) protection for this distribution if not required.
+   ![](@site/static/img/cdn-integration/cloudfront-disable-waf.png)
 
-   ![disable-waf](https://github.com/user-attachments/assets/a89e8863-27af-4630-b3ab-fed24c876393)
+6. Create the distribution and wait until the status is **Deployed**.
 
-7. Complete creation of the distribution and wait for it to deploy.
+## Step 2: Configure error pages
 
-### Configuring Error Pages
+Live HLS players request new playlist files frequently. Configure a short TTL for 404 responses so CloudFront does not cache missing segments for too long.
 
-1. In the CloudFront console, open your distribution and go to the **Error Pages** tab.
+1. Open your distribution and go to the **Error pages** tab.
 
-   ![error-pages](https://github.com/user-attachments/assets/533c17e0-4a72-4b1a-8f6b-43dd0d1ea402)
+   ![](@site/static/img/cdn-integration/cloudfront-error-pages.png)
 
 2. Create a custom error response for **404: Not Found**.
-   - Set **Error Caching Minimum TTL** to **3 seconds**.
+3. Set **Error Caching Minimum TTL** to **3** seconds.
 
-     ![custom-error-response](https://github.com/user-attachments/assets/0d2641b8-3e0c-4f16-b722-f5c0307367ac)
+   ![](@site/static/img/cdn-integration/cloudfront-custom-error-response.png)
 
+4. Note your **CloudFront domain name** when deployment completes.
 
-3. Once deployed, note your CloudFront domain name.
+   ![](@site/static/img/cdn-integration/cloudfront-distribution.png)
 
-   ![cloudfront](https://github.com/user-attachments/assets/424dfb36-02ca-4e39-871a-979bb938ce0d)
+:::tip Live HLS caching
+Use short TTL values for `.m3u8` playlist files. Segment files (`.ts`) can use longer cache durations depending on your cache policy.
+:::
 
+## Step 3: Publish a live stream
 
-## Publish a Live Stream with Ant Media Server
+1. Publish a stream to Ant Media Server. For this example, use [OBS](/guides/publish-live-stream/rtmp/publish-with-obs/) to send an RTMP publish.
+2. Confirm the stream is live in the Ant Media Server web panel before testing playback.
 
-1. Follow the [Publish Live Stream guide](https://antmedia.io/docs/category/publish-live-stream/) to start a stream.
-2. For this example, publish an RTMP stream using [OBS](https://antmedia.io/docs/guides/publish-live-stream/rtmp/publish-with-obs/).
+## Step 4: Play through CloudFront with HLS
 
-## Play the Live Stream with HLS
+Build the playback URL using your **CloudFront domain** and **stream ID**:
 
-Use the following format for HLS playback:
-
-```html
-http://your_cloud_front_domain_name/play.html?id=your_stream_id&playOrder=hls
+```text
+http://{CLOUDFRONT_DOMAIN}/play.html?id={STREAM_ID}&playOrder=hls
 ```
 
 Example:
-```html
+
+```text
 http://d3m1pdd4lln4vj.cloudfront.net/play.html?id=stream01&playOrder=hls
 ```
 
-![cloudfront-play](https://github.com/user-attachments/assets/c48f610b-e974-4d48-8746-4aefed6944e2)
+Open the URL in a browser. If CloudFront and HLS are configured correctly, the stream plays through the CDN.
 
+![](@site/static/img/cdn-integration/cloudfront-hls-playback.webp)
 
-## Play the Live Stream with LL-HLS
+## Step 5: Play through CloudFront with LL-HLS (optional)
 
-Use the following format for LL-HLS playback:
+If the LL-HLS plugin is installed and enabled, use `playOrder=ll-hls`:
 
-```html
-http://your_cloud_front_domain_name/play.html?id=your_stream_id&playOrder=ll-hls
+```text
+http://{CLOUDFRONT_DOMAIN}/play.html?id={STREAM_ID}&playOrder=ll-hls
 ```
 
 Example:
-```html
+
+```text
 http://d3m1pdd4lln4vj.cloudfront.net/play.html?id=stream001&playOrder=ll-hls
 ```
 
-![ll-hls-play](https://github.com/user-attachments/assets/d6b637ea-b2cd-4e21-bfc3-632da88aaf1e)
+![](@site/static/img/cdn-integration/cloudfront-ll-hls-playback.webp)
+
+The screenshots above show HLS and LL-HLS playback through CloudFront after a successful publish.
 
 ---
 
-## Congratulations! 
+## Troubleshooting
 
-By completing these steps, you have:
+| Symptom | What to check |
+|---------|----------------|
+| Playback URL does not load | Distribution status is **Deployed**, origin domain and port are correct, security groups allow traffic to Ant Media Server. |
+| Stream not found | Stream is publishing, origin path matches your application name, stream ID in the URL is correct. |
+| Stale or frozen playlist | 404 error caching TTL is set to 3 seconds; cache policy TTL for `.m3u8` files is not too high. |
+| LL-HLS playback fails | [LL-HLS plugin](/guides/playing-live-stream/ll-hls/) is installed and enabled on the origin. |
+| HTTPS origin errors | [SSL is configured](/guides/installing-on-linux/setting-up-ssl/) on Ant Media Server and origin protocol is HTTPS (`5443`). |
 
-- Deployed Ant Media Server on AWS.
-- Configured Amazon CloudFront to deliver HLS and LL-HLS streams.
-- Published and tested playback of live streams through CloudFront.
-
-You can now deliver live video globally with reduced latency and improved reliability using Amazon’s CDN infrastructure.
-
+For HLS and LL-HLS setup details, see [HLS playing](/guides/playing-live-stream/hls-playing/) and [LL-HLS](/guides/playing-live-stream/ll-hls/).

@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 300" role="img" aria-labelledby="turnTitle turnDesc">
+  <title id="turnTitle">WebRTC with and without a TURN server</title>
+  <desc id="turnDesc">Without TURN, firewalls and NAT block direct WebRTC paths. With TURN, media relays through a TURN server to reach Ant Media Server.</desc>
+  <defs>
+    <marker id="arrowGreen" markerWidth="7" markerHeight="7" refX="5.5" refY="3.5" orient="auto">
+      <path d="M0,0 L6,3.5 L0,7 Z" fill="#2e7d4f"/>
+    </marker>
+  </defs>
+
+  <rect x="10" y="10" width="390" height="280" rx="12" fill="#fdf6f5" stroke="#e8c4bf"/>
+  <text x="205" y="38" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="15" font-weight="700" fill="#8b2e2e">Without TURN</text>
+  <text x="205" y="58" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" fill="#666">Direct path blocked by NAT or firewall</text>
+
+  <rect x="36" y="110" width="110" height="54" rx="8" fill="#e9e5f4" stroke="#8f87ad"/>
+  <text x="91" y="134" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#1a1a1a">Browser</text>
+  <text x="91" y="152" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#555">Viewer / Publisher</text>
+
+  <rect x="155" y="98" width="90" height="78" rx="8" fill="#fce8e6" stroke="#c62828" stroke-dasharray="4 3"/>
+  <text x="200" y="128" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#8b2e2e">Firewall</text>
+  <text x="200" y="144" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#8b2e2e">and NAT</text>
+  <text x="200" y="162" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#666">UDP blocked</text>
+
+  <rect x="254" y="110" width="120" height="54" rx="8" fill="#e3f0e8" stroke="#6b9e78"/>
+  <text x="314" y="134" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#1a1a1a">Ant Media</text>
+  <text x="314" y="152" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#555">Server</text>
+
+  <line x1="146" y1="137" x2="158" y2="137" stroke="#c62828" stroke-width="2"/>
+  <circle cx="152" cy="137" r="8" fill="#fce8e6" stroke="#c62828" stroke-width="1.5"/>
+  <text x="152" y="141" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#c62828">X</text>
+  <line x1="245" y1="137" x2="257" y2="137" stroke="#c62828" stroke-width="2"/>
+  <circle cx="251" cy="137" r="8" fill="#fce8e6" stroke="#c62828" stroke-width="1.5"/>
+  <text x="251" y="141" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#c62828">X</text>
+
+  <text x="205" y="210" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#8b2e2e">WebRTC session fails - no media path</text>
+
+  <rect x="420" y="10" width="390" height="280" rx="12" fill="#f3faf5" stroke="#b8dcc4"/>
+  <text x="615" y="38" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="15" font-weight="700" fill="#2e7d4f">With TURN</text>
+  <text x="615" y="58" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" fill="#666">Media relayed when direct ICE fails</text>
+
+  <rect x="446" y="110" width="110" height="54" rx="8" fill="#e9e5f4" stroke="#8f87ad"/>
+  <text x="501" y="134" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#1a1a1a">Browser</text>
+  <text x="501" y="152" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#555">Viewer / Publisher</text>
+
+  <rect x="578" y="110" width="100" height="54" rx="8" fill="#fff3e0" stroke="#e6a23c"/>
+  <text x="628" y="134" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#1a1a1a">TURN</text>
+  <text x="628" y="152" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#555">Coturn relay</text>
+
+  <rect x="700" y="110" width="90" height="54" rx="8" fill="#e3f0e8" stroke="#6b9e78"/>
+  <text x="745" y="134" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#1a1a1a">Ant Media</text>
+  <text x="745" y="152" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#555">Server</text>
+
+  <line x1="556" y1="137" x2="576" y2="137" stroke="#2e7d4f" stroke-width="2" marker-end="url(#arrowGreen)"/>
+  <line x1="678" y1="137" x2="698" y2="137" stroke="#2e7d4f" stroke-width="2" marker-end="url(#arrowGreen)"/>
+
+  <text x="615" y="210" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#2e7d4f">WebRTC session succeeds - media flows through relay</text>
+
+  <rect x="10" y="248" width="800" height="36" rx="8" fill="#f6f3e8" stroke="#d4cbb0"/>
+  <text x="410" y="270" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#444">STUN discovers public addresses first. TURN relays media only when the direct path still cannot be established.</text>
+</svg>

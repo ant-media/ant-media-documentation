@@ -196,7 +196,7 @@ curl -X 'DELETE' \
 You can get more information in the following [REST API](https://antmedia.io/rest/#/BroadcastRestService/removeEndpointV2).
 
 
-Click for more detail about the [REST API Guide](/category/rest-api-guide/).
+Click for more detail about the [REST API Guide](/guides/developer-sdk-and-api/rest-api-guide/).
 
 **PS:** To use the Rest APIs, please add your IP address to the ```Enable IP Filter for RESTful API``` option in the application Settings.
 

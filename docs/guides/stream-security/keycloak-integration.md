@@ -87,18 +87,27 @@ The appName should be the same as the application name we are configuring. Also,
 
 ## Stream Testing with Keycloak Integration
 
-- Try to publish a WebRTC stream through a sample publish page.
+Once Keycloak integration is complete and enabled, opening a sample publish or player page redirects you to the Keycloak login screen:
 
-  `https://{AMS-URL}:5443/{APP-NAME}/samples/publish_webrtc.html`
+![](@site/static/img/stream-security/keycloak-login.png)
 
-- Try to play a stream through the sample play page:
+After you sign in with a user that has the required role, you are redirected back to the requested page and can continue publishing or playing normally.
 
-  `https://{AMS-URL}:5443/{APP-NAME}/player.html`
+#### Publish page
+![](@site/static/img/publish-live-stream/WebRTC/WebRTC-publishing/WebRTC-page.png)
 
-- When you try to publish or play, it will first ask you to authenticate with the keycloak user that we created.
+#### Player page
+![](@site/static/img/playing-live-streams/webrtc-playing/webrtc-player.png)
 
-  ![](@site/static/img/stream-security/keycloak-login.png)
+## Congratulations!
 
-  Once you authenticate, you will be able to publish the stream via sample page.
+You have successfully integrated Keycloak with Ant Media Server. Your sample pages are now protected by single sign-on (SSO). When you open a sample page, Keycloak prompts you to sign in. Only authenticated users with the required role can access the streaming UI.
 
-With Keycloak in front of your sample pages, only signed-in users reach publish and play—SSO for your streaming UI without reinventing login.
+From here, you can:
+
+* Add more users and roles in Keycloak to control who can publish or play.
+* Apply the same configuration to other applications beyond the default samples.
+* Combine SSO with [JWT Stream Token](/guides/stream-security/jwt-stream-security-filter/) or [Webhook Authorization](/guides/stream-security/webhook-stream-authorization/) for additional stream-level controls.
+* Extend Keycloak with MFA, social login, or federation using the [Keycloak documentation](https://www.keycloak.org/documentation).
+
+

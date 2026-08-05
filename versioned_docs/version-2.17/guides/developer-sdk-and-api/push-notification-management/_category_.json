@@ -1,9 +1,8 @@
 {
   "label": "Push Notifications",
-  "position": 4,
+  "position": 5,
   "link": {
-    "type": "generated-index",
-    "description": "Send push notifications from Ant Media Server.",
-    "slug": "/category/push-notification"
+    "type": "doc",
+    "id": "guides/developer-sdk-and-api/push-notification-management/index"
   }
 }

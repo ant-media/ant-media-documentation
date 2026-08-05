@@ -1,58 +1,31 @@
 ---
-title: Project Setup for JavaScript SDK Integration
-description: Setting up project for JavaScript SDK Integration
+title: Project Setup
+description: Set up a project for the Ant Media JavaScript SDK.
 keywords: [JavaScript SDK User Guide, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 2
+sidebar_label: Project Setup
 ---
 
-Now that we have the pre-requisites installed, let's set up a project to use the Ant Media Server JavaScript SDK.
+# Project Setup
 
-### Step 1: Create Project Folder
+Create a local project and install the JavaScript SDK.
 
-- Create a new folder for your project:
+## Create the project folder
 
-  ```
-  mkdir jssdk-examples
-  ```
-
-- Switch into the newly created folder:
-
-  ```
-  cd jssdk-examples
-  ```
-
-### Step 2: Install Dependencies
-
-Open your terminal and run **npm install** to install the necessary dependencies:
-
+```bash
+mkdir jssdk-examples
+cd jssdk-examples
 ```
+
+## Install the SDK
+
+```bash
 npm i @antmedia/webrtc_adaptor
 ```
 
-This installs the WebRTC Adaptor package needed for streaming with Ant Media Server.
+## Verify the setup
 
-### Step 3: Start HTTP Server
-
-To preview HTML files locally, we need an HTTP server. You can use Python’s built-in server:
-
-For Python 3:
-```bash
-python3 -m http.server
-```
-For Python 2:
-```bash
-python -m http.server
-```
-
-By default, the server runs at http://localhost:8000.
-
-### Step 4: Testing the Setup
-
-Before starting with streaming, let’s make sure the setup works:
-
-1. Create a file named `test.html` inside your project folder.
-
-2. Paste the following content into `test.html`:
+1. Create `test.html` in the project folder:
 
 ```html
 <!DOCTYPE html>
@@ -67,15 +40,14 @@ Before starting with streaming, let’s make sure the setup works:
 </html>
 ```
 
-3. Open the file through the HTTP server in your browser:
+2. Start a local HTTP server in the same directory:
 
+```bash
+python3 -m http.server
 ```
-http://localhost:8000/test.html
-```
 
-4. Press F12 to open console logs and verify that there are no errors.
+3. Open `http://localhost:8000/test.html` and check the browser console (F12) for import errors.
 
+## Next step
 
-## Congratulations!
-
-Your JavaScript SDK project is now ready. The environment is set up, dependencies are installed, and your HTTP server is running. You can now confidently start developing live streaming applications using the Ant Media Server JavaScript SDK.
+Continue with the [Publish](/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/webrtc-samples/publish/) sample or other [JavaScript SDK samples](/category/javascript-sdk-samples/).
