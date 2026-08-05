@@ -144,12 +144,12 @@ sudo cp css/* /usr/local/antmedia/webapps/live/css/
 
 **Path exists** — confirm the file is actually there:
 ```bash
-ls -la /usr/local/antmedia/webapps/WebRTCAppEE/videojs-doverunner-sample.html
+ls -la /usr/local/antmedia/webapps/live/videojs-doverunner-sample.html
 ```
 
 Then run:
 ```bash
-sudo sed -i 's|\.\./\.\./css/|./css/|g; s|\.\./\.\./shared/js/|./js/|g; s|\.\./\.\./media/|./media/|g' /usr/local/antmedia/webapps/WebRTCAppEE/videojs-doverunner-sample.html
+sudo sed -i 's|\.\./\.\./css/|./css/|g; s|\.\./\.\./shared/js/|./js/|g; s|\.\./\.\./media/|./media/|g' /usr/local/antmedia/webapps/live/videojs-doverunner-sample.html
 ```
 
 ### Step 3: Publish a WebRTC Stream
