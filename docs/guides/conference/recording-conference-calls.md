@@ -168,10 +168,12 @@ You now have the Media Push plugin installed, all participants merged via `multi
 
 ## Troubleshooting
 
-- **Merged stream isn't capturing all participants** — confirm the room ID in the `multitrack-play.html` URL (the `?id=roomid` parameter) matches your actual conference room ID exactly.
-- **`Incoming url: <URL> is not a valid url`** — returned by the `media-push/start` call above if the URL you passed isn't well-formed; double-check it, especially the room ID query parameter.
-- **`Session with the same streamId: <ID> already exists. Please stop it first`** — you tried to start Media Push again for a room that's already being captured; stop the existing session first, using the same streamId the original `start` call returned.
-- **`Driver does not exist for stream id: <ID>`** — returned when stopping (or checking on) a Media Push session whose streamId isn't currently active — it may have already ended, or the ID doesn't match what `start` returned.
+| Symptom | Fix |
+|---|---|
+| Merged stream isn't capturing all participants | Confirm the room ID in the `multitrack-play.html` URL (the `?id=roomid` parameter) matches your actual conference room ID exactly. |
+| `Incoming url: <URL> is not a valid url` | Returned by the `media-push/start` call above if the URL you passed isn't well-formed; double-check it, especially the room ID query parameter. |
+| `Session with the same streamId: <ID> already exists. Please stop it first` | You tried to start Media Push again for a room already being captured; stop the existing session first, using the streamId the original `start` call returned. |
+| `Driver does not exist for stream id: <ID>` | Returned when stopping (or checking on) a session whose streamId isn't currently active — it may have already ended, or the ID doesn't match what `start` returned. |
 
 ## Need Help?
 

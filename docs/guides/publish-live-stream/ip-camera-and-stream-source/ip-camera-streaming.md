@@ -41,6 +41,10 @@ If you want to use a secured domain instead of an IP address, make sure to prepe
 `https://dynamic.dns.net:443`
 :::
 
+Once added, the camera's stream appears under **Live Streams** as `Broadcasting`. Click the **Play** button to confirm it's coming through before moving on.
+
+![](@site/static/img/publish-live-stream/IP-Camera-and-External-Sources/IP-Camera-Play.png)
+
 ## Add IP Camera - RTSP URL 
 
 If the IP camera does not support the ONVIF, then a direct RTSP URL can also be used to pull the stream directly on the Ant Media Server.
@@ -57,6 +61,10 @@ To add an IP camera with an RTSP URL, follow these steps:
 *   As the stream starts to pull, you can watch it from the AMS panel.
 
 ![](@site/static/img/publish-live-stream/IP-Camera-and-External-Sources/Stream-Source.png)
+
+Once it's pulling, the stream shows as `Broadcasting` under **Live Streams**, the same as any other stream:
+
+![](@site/static/img/publish-live-stream/IP-Camera-and-External-Sources/Stream-Source-Broadcasting.png)
 
 You can learn more about Stream Source in the next section.
 
@@ -78,14 +86,6 @@ Under the application's Advanced settings, there is the below property:
 If the camera is accessible via FFMPEG or VLC but still does not start pulling on the AMS, try changing this parameter.
 :::
 
-## IP Camera Playback
-
-If IP cameras are accessible and properly configured, Ant Media Server adds their streams as a live stream and begins to pull streams from them. The management panel displays its current status. To watch the stream, click the **Play button**.
-
-![](@site/static/img/publish-live-stream/IP-Camera-and-External-Sources/IP-Camera-Play.png)
-
-The IP camera stream can be monitored with any output protocol, like `WebRTC`, `HLS`, `DASH`, and `LL-HLS`. Check out the [playback section](/category/play-live-streams/) for more details, or the [recording documentation](/category/recording-live-streams/) to record the IP camera streams.
-
 ## Rest API to add IP Camera Stream
 
 This [Rest API](https://antmedia.io/rest/#/default/createBroadcast) can be used to create the live stream.
@@ -95,7 +95,7 @@ curl -X POST -H "Content-Type: application/json" "https://<DOMAIN_NAME>:5443/<AP
 "type":"ipCamera","name":"test","streamId":"test","ipAddr":  "<CAMERA_IP>:<ONVIF_PORT>","username": "<CAMERA_USERNAME>","password":"<CAMERA_PASSWORD>"}'
 ```
 
-You've now connected an IP camera to Ant Media Server and it's live and accessible via WebRTC, HLS, DASH, or LL-HLS.
+You've now connected an IP camera to Ant Media Server and it's live and accessible via WebRTC, HLS, DASH, or LL-HLS. Check out the [playback section](/category/play-live-streams/) for more on watching it, or the [recording documentation](/category/recording-live-streams/) to record it.
 
 ## Need Help?
 

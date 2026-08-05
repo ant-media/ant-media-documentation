@@ -104,9 +104,11 @@ You now have token security enabled on your conference room, with participants r
 
 ## Troubleshooting
 
-- **JWT enabled for only one of publish or play** — AMS tracks publish-side and play-side JWT enforcement as separate settings, so enabling it for only one direction leaves the other reachable without a token at all, rather than failing safely. Step 1 above says to enable both for exactly this reason.
-- **Room ID typed into the join form doesn't match the token's `streamId` claim** — the JWT was generated for a specific room ID, and you must join with that exact same room ID; a mismatch (even a small typo) causes the join to fail.
-- **`Invalid JWT Token` (HTTP 403) when accessing a recorded room's HLS, DASH, or VoD file directly** — this is AMS's own play-side token check rejecting the request; confirm the token hasn't expired and that its `streamId` claim matches the file's stream ID.
+| Symptom | Fix |
+|---|---|
+| JWT enabled for only one of publish or play | AMS tracks publish-side and play-side JWT enforcement as separate settings — enabling only one direction leaves the other reachable without a token at all, rather than failing safely (this is why Step 1 says to enable both). |
+| Room ID typed into the join form doesn't match the token's `streamId` claim | The JWT was generated for a specific room ID, and you must join with that exact same room ID; even a small typo causes the join to fail. |
+| `Invalid JWT Token` (HTTP 403) when accessing a recorded room's HLS, DASH, or VoD file directly | This is AMS's own play-side token check rejecting the request; confirm the token hasn't expired and its `streamId` claim matches the file's stream ID. |
 
 ## Need Help?
 

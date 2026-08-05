@@ -117,9 +117,11 @@ Check out [WebRTC Publishing](/guides/publish-live-stream/webrtc/) to publish a 
 
 ## Troubleshooting
 
-- If you can't access AMS at `http://localhost:5080`, check if the WSL instance is running and that AMS is started: `wsl -l -v` from PowerShell, then `sudo service antmedia status` inside WSL.
-- Make sure ports are not blocked by your firewall or antivirus.
-- If the install script fails partway through with an error mentioning `systemctl` or "Failed to connect to bus", see the systemd note in [step 3](#3-install-ant-media-server) above.
+| Symptom | Fix |
+|---|---|
+| Can't access AMS at `http://localhost:5080` | Check if the WSL instance is running and that AMS is started: `wsl -l -v` from PowerShell, then `sudo service antmedia status` inside WSL. |
+| AMS unreachable even though the service is running | Make sure ports are not blocked by your firewall or antivirus. |
+| Install script fails partway through with an error mentioning `systemctl` or "Failed to connect to bus" | See the systemd note in [step 3](#3-install-ant-media-server) above. |
 
 ## Need Help?
 

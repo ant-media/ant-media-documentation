@@ -323,12 +323,17 @@ SSL is now enabled on your Ant Media Server and verified working. From here, [pu
 
 ## Troubleshooting
 
+| Symptom | Fix |
+|---|---|
+| The script exits asking for a license, or `The license key is invalid.` | The [free antmedia.cloud subdomain method](#get-a-free-subdomain-and-install-ssl-with-lets-encrypt) requires a valid Enterprise license key already configured on the server; check it under License in the web panel. |
+| `The domain exists, please re-run the enable_ssl.sh script.` | A previous run already registered an `ams-XXXXX.antmedia.cloud` subdomain for this server. Just re-running the same command generates a new random subdomain and retries — this isn't a sign anything is broken. |
+| Running AMS inside a Docker container | `enable_ssl.sh` detects this automatically and skips `service antmedia restart` at the end, printing a message asking you to restart the container yourself instead. If the certificate installs but HTTPS still isn't reachable, restart the container. |
+| Checking whether your certificate is close to expiring | AMS also installs a systemd timer (`antmedia-ssl-renew.timer`) that checks expiry daily and renews once you're within 30 days. Check its status with `systemctl status antmedia-ssl-renew.timer`. |
+
+Two errors need more context than a table row allows:
+
 - **`Port 80 is currently in use by <SERVICE>...`** — this is `enable_ssl.sh`'s own port check, and it applies to every method above except importing your own certificate. Stop whatever's using port 80 (see the note near the top of Option 2) and re-run the same command.
 - **`Missing full chain or private key file. Please provide both or neither of them` / `Missing chain file...`** — you passed some but not all of the `-f`/`-p`/`-c` flags when [importing a custom certificate](#import-your-custom-certificate). All three are required together. If you're not sure how to build a full chain file from what your provider gave you, see [this FAQ entry](https://github.com/ant-media/Ant-Media-Server/wiki/Frequently-Asked-Questions#how-to-install-custom-ssl-by-building-full-chain-certificate-).
-- **The script exits asking for a license, or `The license key is invalid.`** — the [free antmedia.cloud subdomain method](#get-a-free-subdomain-and-install-ssl-with-lets-encrypt) requires a valid Enterprise license key already configured on the server; check it under License in the web panel.
-- **`The domain exists, please re-run the enable_ssl.sh script.`** — a previous run already registered an `ams-XXXXX.antmedia.cloud` subdomain for this server. Just re-running the same command generates a new random subdomain and retries; this isn't a sign anything is broken.
-- **Running AMS inside a Docker container** — `enable_ssl.sh` detects this automatically and skips `service antmedia restart` at the end, printing a message asking you to restart the container yourself instead. If the certificate seems to install successfully but HTTPS still isn't reachable, restart the container.
-- **Checking whether your certificate is close to expiring** — beyond the cron-based renewal described above, AMS also installs a systemd timer (`antmedia-ssl-renew.timer`) that checks your certificate's expiry daily and renews automatically once you're within 30 days of it. Check its status with `systemctl status antmedia-ssl-renew.timer`.
 
 ## Need Help?
 

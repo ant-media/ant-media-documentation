@@ -32,8 +32,6 @@ In AMS versions 2.5.3 and later, the stream auto-fetcher is disabled by default.
 "startStreamFetcherAutomatically": true,
 ```
 
-Check out the [recording documentation](/category/recording-live-streams/) to record the source streams on the Ant Media Server.
-
 ### Add RTSP Source with Video or Audio Only
 
 The `allowed_media_types` parameter can be added as the parameter with the RTSP URL to enable audio/video only.

@@ -201,13 +201,15 @@ You now have the Media Push Plugin installed and can broadcast, record, and scri
 
 ## Troubleshooting
 
-- **Install script exits with `Unsupported Linux distribution: $ID` or `Cannot detect the Linux distribution.`** — `install_media-push-plugin.sh` only recognizes a specific set of distros; check the script's output against your actual OS.
-- **Install script exits with `There is a problem in getting the version of the media push plugin.` or `Latest media push plugin version could not be determined.`** — the script couldn't resolve a release version from GitHub (it first tries the release URL, then falls back to a snapshot URL). This usually points to a network issue reaching GitHub from the server rather than anything wrong locally.
-- **Install script exits with `There is a problem in downloading the media push plugin. Please send the log of this console to support@antmedia.io`** — the plugin download itself failed after the version was resolved; re-run the script, and if it persists, send the console output to support as the message suggests.
-- **`Incoming url: <URL> is not a valid url`** — the Start request's `url` field isn't a well-formed URL; double-check it before retrying.
-- **`Session with the same streamId: <ID> already exists. Please stop it first`** — you called Start with a `streamId` that already has an active Media Push session; stop it first or omit the ID to let AMS generate one.
-- **`Driver does not exist for stream id: <ID>`** — returned by Stop (or by sending a JS command) when the given stream ID has no active session, either because it already ended or never started successfully.
-- **A broadcast won't start, or the captured page appears blank** — check the Chrome switches and confirm the target URL loads correctly outside of Media Push first.
+| Symptom | Fix |
+|---|---|
+| Install script exits with `Unsupported Linux distribution: $ID` or `Cannot detect the Linux distribution.` | `install_media-push-plugin.sh` only recognizes a specific set of distros; check the script's output against your actual OS. |
+| Install script exits with `There is a problem in getting the version of the media push plugin.` or `Latest media push plugin version could not be determined.` | The script couldn't resolve a release version from GitHub (it tries the release URL, then falls back to a snapshot URL) — usually a network issue reaching GitHub, not something wrong locally. |
+| Install script exits with `There is a problem in downloading the media push plugin. Please send the log of this console to support@antmedia.io` | The plugin download failed after the version was resolved; re-run the script, and if it persists, send the console output to support as the message suggests. |
+| `Incoming url: <URL> is not a valid url` | The Start request's `url` field isn't a well-formed URL; double-check it before retrying. |
+| `Session with the same streamId: <ID> already exists. Please stop it first` | You called Start with a `streamId` that already has an active Media Push session; stop it first or omit the ID to let AMS generate one. |
+| `Driver does not exist for stream id: <ID>` | Returned by Stop (or by sending a JS command) when the stream ID has no active session — it already ended or never started successfully. |
+| A broadcast won't start, or the captured page appears blank | Check the Chrome switches and confirm the target URL loads correctly outside of Media Push first. |
 
 ## Need Help?
 

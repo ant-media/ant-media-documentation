@@ -62,7 +62,9 @@ If nothing appears, confirm both machines are on the same network and that `avah
 
 ## Step 4: Configure ndiSources in AMS
 
-Each NDI source is picked up by exactly one AMS application, mapped through the `ndiSources` parameter in that application's `red5-web.properties` file.
+Each NDI source is picked up by exactly one AMS application, mapped through the `ndiSources` parameter in that application's `red5-web.properties` file. You can set this either by editing the file directly over SSH, or from the web panel — pick whichever you're more comfortable with.
+
+**Option A: Edit the file directly**
 
 ```bash
 sudo nano /usr/local/antmedia/webapps/<APP_NAME>/WEB-INF/red5-web.properties
@@ -73,6 +75,10 @@ Add a line mapping the NDI source name from Step 2 to the stream ID you want AMS
 ```
 ndiSources={"<SENDER_HOSTNAME> (Test Pattern)": "<STREAM_ID>"}
 ```
+
+**Option B: Use the Management Panel**
+
+`ndiSources` isn't one of the properties shown by default under the application's **Settings → Advanced**, but AMS lets you append any setting there that isn't already listed — it's written into `red5-web.properties` the same as editing the file directly. Add a new property with key `ndiSources` and the same value shown above. See [AMS Application Configuration](/guides/configuration-and-testing/ams-application-configuration/#adding-additional-settings) for the general steps.
 
 :::info
 To match multiple sources by pattern instead of listing them individually, use a regex key — `ndiSources={"regex:studio-camera-(\d+)": "cam-$1"}` maps `studio-camera-1` to `cam-1`, `studio-camera-2` to `cam-2`, and so on.

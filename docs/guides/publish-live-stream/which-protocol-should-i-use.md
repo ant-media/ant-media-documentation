@@ -22,7 +22,7 @@ flowchart TD
     B -->|"A hardware or software encoder (OBS, Wirecast, XSplit, Teradek, vMix...)"| E{"Network reliability?"}
     E -->|"Unreliable — satellite, cellular, long-haul"| SRTN["SRT"]
     E -->|"Reliable, encoder supports WHIP (Enterprise)"| WHIPB["WHIP"]
-    E -->|"Reliable, standard encoder"| RTMPN["RTMP & RTMPS"]
+    E -->|"Reliable, standard encoder"| RTMPN["RTMP, RTMPS & Enhanced RTMP"]
     B -->|"Local production gear on the same network (cameras, switchers speaking NDI)"| NDIN["NDI"]
 ```
 
@@ -36,7 +36,7 @@ flowchart TD
 
 Most encoders — OBS, Wirecast, XSplit, Teradek, vMix, and virtually every hardware encoder on the market — speak RTMP by default, which is why it's still the most broadly compatible option and the one most social platforms require on their end too.
 
-- **[RTMP, RTMPS & Enhanced RTMP](/guides/publish-live-stream/rtmp/)** — the default for encoder-based publishing. If you're not sure which to pick, start here.
+- **[RTMP, RTMPS & Enhanced RTMP](/guides/publish-live-stream/rtmp/)** — the default for encoder-based publishing. If you're not sure which to pick, start here. Plain RTMP only supports the older H.264 codec — if your encoder can produce HEVC (H.265), [Enhanced RTMP](/guides/publish-live-stream/rtmp/enhanced-rtmp/) is worth using instead for better quality at a lower bitrate, at the cost of more limited playback support (WebRTC and some browsers don't play back H.265 yet).
 - **[SRT](/guides/publish-live-stream/srt/)** — choose this instead if you're contributing over an unreliable network (satellite, cellular, long-haul internet). SRT's error correction handles packet loss RTMP can't.
 - **[WHIP](/guides/publish-live-stream/webrtc/whip/)** — if your encoder specifically supports it (OBS 30+ does) and you're on Enterprise, WHIP gets you WebRTC's latency from a traditional encoder.
 
