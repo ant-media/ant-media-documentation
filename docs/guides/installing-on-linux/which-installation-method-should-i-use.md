@@ -11,17 +11,17 @@ Ant Media Server (AMS) can be installed several different ways. Use this to find
 
 ```mermaid
 %%{init: {'flowchart': {'curve': 'linear'}}}%%
-flowchart LR
-    A{"Cloud Marketplace listing? (AWS, Azure, GCP)"}
-    A -->|"Yes"| CM["Launch pre-installed"]
-    A -->|"No, installing myself"| B{"OS?"}
-    B -->|"Windows, dev/test"| WSL["WSL"]
-    B -->|"macOS, dev/test"| DOCKERMAC["Docker"]
-    B -->|"Linux"| C{"Scaling beyond one server?"}
-    C -->|"Yes"| CLUSTER["Cluster"]
-    C -->|"No"| D{"What do you need?"}
-    D -->|"Quick evaluation"| DOCKER["Docker"]
-    D -->|"Repeatable setup"| COMPOSE["Docker Compose"]
+flowchart TD
+    A{"Launching from a Cloud Marketplace listing? (AWS, Azure, GCP)"}
+    A -->|"Yes"| CM["Launch it from your Cloud Marketplace — comes pre-installed"]
+    A -->|"No, installing it myself"| B{"What's your OS?"}
+    B -->|"Windows, local dev/test"| WSL["WSL"]
+    B -->|"macOS, local dev/test"| DOCKERMAC["Docker"]
+    B -->|"Linux"| C{"Single server, or scaling beyond one?"}
+    C -->|"Scaling beyond one server"| CLUSTER["Cluster"]
+    C -->|"Single server"| D{"What do you need?"}
+    D -->|"Evaluate or try AMS quickly"| DOCKER["Docker"]
+    D -->|"Repeatable, version-controlled setup"| COMPOSE["Docker Compose"]
     D -->|"Production"| NATIVE["Native Linux Install"]
 ```
 
