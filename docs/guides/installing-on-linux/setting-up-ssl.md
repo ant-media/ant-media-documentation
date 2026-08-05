@@ -7,24 +7,23 @@ sidebar_position: 6
 
 # How to Enable SSL
 
-SSL is mandatory for secure access to the camera and microphone in the browser, and for WebSocket Secure (WSS) connections in WebRTC — most modern browsers require it. AMS offers several ways to get an SSL certificate; use this to find the one that fits your situation:
+SSL is mandatory for secure access to the camera and microphone in the browser, and for WebSocket Secure (WSS) connections in WebRTC — most modern browsers require it. Most AMS users should start with the **Web Panel** — it's the fastest way to get a standard setup working. The terminal is there for everything else: enterprise deployments, cluster/load-balancer setups, scripting and automation, and a couple of cases the panel doesn't handle at all.
 
 By the end of this guide, SSL will be enabled on your server and you'll be able to confirm it's working over HTTPS.
 
 ```mermaid
 %%{init: {'flowchart': {'curve': 'linear'}}}%%
 flowchart TD
-    A{Prefer the terminal?}
-    A -->|No| B["Web Panel: Settings > SSL"]
-    A -->|Yes| C{What do you have?}
-    C -->|A certificate file already| D["Import Your Custom Certificate<br/>enable_ssl.sh -f FULL_CHAIN_FILE -p PRIVATE_KEY_FILE -c CHAIN_FILE -d DOMAIN_NAME"]
-    C -->|Just local dev, no public domain| E["Self-Signed Certificate<br/>enable_ssl.sh -f ams.crt -p ams.key -c ams.crt -d SERVER_IP"]
-    C -->|Need a Let's Encrypt cert| F{Can port 80 be reached from the internet?}
-    F -->|Yes, and I have a domain| G["Let's Encrypt, HTTP-01<br/>enable_ssl.sh -d DOMAIN_NAME"]
-    F -->|Yes, but no domain yet| H["Free antmedia.cloud Subdomain<br/>enable_ssl.sh"]
+    A["Enable SSL from the Web Panel: Settings > SSL<br/>(fastest path for a standard setup)"]
+    A --> B{"Need more control? (enterprise, cluster/load balancer, scripting)"}
+    B -->|A certificate file already| D["Import Your Custom Certificate — terminal<br/>enable_ssl.sh -f FULL_CHAIN_FILE -p PRIVATE_KEY_FILE -c CHAIN_FILE -d DOMAIN_NAME"]
+    B -->|Just local dev, no public domain| E["Self-Signed Certificate — terminal<br/>enable_ssl.sh -f ams.crt -p ams.key -c ams.crt -d SERVER_IP"]
+    B -->|Need a Let's Encrypt cert via terminal| F{Can port 80 be reached from the internet?}
+    F -->|Yes, and I have a domain| G["Let's Encrypt, HTTP-01 — terminal<br/>enable_ssl.sh -d DOMAIN_NAME"]
+    F -->|Yes, but no domain yet| H["Free antmedia.cloud Subdomain — terminal<br/>enable_ssl.sh"]
     F -->|No, port 80 is blocked or unavailable| I{Using AWS Route 53 for DNS?}
-    I -->|Yes| J["Let's Encrypt DNS-01 + Route 53<br/>enable_ssl.sh -d DOMAIN_NAME -v route53"]
-    I -->|No| K["Let's Encrypt DNS-01, manual<br/>enable_ssl.sh -d DOMAIN_NAME -v custom"]
+    I -->|Yes| J["Let's Encrypt DNS-01 + Route 53 — terminal<br/>enable_ssl.sh -d DOMAIN_NAME -v route53"]
+    I -->|No| K["Let's Encrypt DNS-01, manual — terminal<br/>enable_ssl.sh -d DOMAIN_NAME -v custom"]
 ```
 
 :::info
@@ -33,7 +32,7 @@ To avoid any issue later, make sure that your server has a **static/fixed IP add
 If the IP is dynamic/changed, then the server will not be accessible on a previously generated subdomain.
 :::
 
-## Option 1: Enable SSL from the Web Panel
+## Option 1: Enable SSL from the Web Panel (Recommended)
 
 In previous versions, configuring SSL involved intricate steps, such as accessing the server through SSH and executing the `enable_ssl.sh` script from the installation directory `/usr/local/antmedia`.
 
@@ -52,9 +51,9 @@ However, starting with AMS version 2.6.2, this process is streamlined so you can
 - The AMS instance will restart and the server can now be accessed securely with SSL enabled.
 ![](@site/static/img/ssl-webpanel/ssl-status.png)
 
-## Option 2: Install SSL using Terminal
+## Option 2: Install SSL Using the Terminal
 
-Apart from the web panel, SSL for AMS can also be installed using the terminal, and there are a number of ways to do it depending on your specific use case and requirements.
+The terminal covers everything the Web Panel does — your own domain, the free antmedia.cloud subdomain, importing a certificate — plus two cases the panel doesn't handle at all: a **self-signed certificate** for local development, and a **DNS-01 challenge** when port 80 isn't reachable from the internet. It's the natural choice for enterprise deployments, cluster/load-balancer setups, or scripting and automating server setup instead of clicking through the UI.
 
 :::info
 Every method below that requests a new Let's Encrypt certificate — everything except importing your own certificate — needs port 80 free on the server (nothing else listening on it), even the DNS-01 methods that don't need port 80 open to the internet. `enable_ssl.sh` checks this and exits if something else, like Apache or Nginx, is already using it. Stop or disable that service first, for example: `sudo service apache2 stop`.
