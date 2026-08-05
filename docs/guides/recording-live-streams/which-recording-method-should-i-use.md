@@ -10,6 +10,7 @@ sidebar_position: 1
 Ant Media Server can record what's happening in more than one way, and the right method depends on what you're actually capturing and how you need the result to come out. Use this to find your path before diving into a specific guide:
 
 ```mermaid
+%%{init: {'flowchart': {'curve': 'linear'}}}%%
 flowchart TD
     A{"What do you want to record?"}
     A -->|"A web page, browser overlay, or conference room — not a live stream"| MP["Media Push Plugin"]

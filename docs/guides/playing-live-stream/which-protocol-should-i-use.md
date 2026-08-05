@@ -10,6 +10,7 @@ sidebar_position: 1
 Ant Media Server can deliver the same live stream through several playback protocols at once, and the right one for a given viewer depends on how much latency you can tolerate and what has to play the stream. Use this to find your path before diving into a specific guide:
 
 ```mermaid
+%%{init: {'flowchart': {'curve': 'linear'}}}%%
 flowchart TD
     A{"What matters most for this viewer?"}
     A -->|"Absolute lowest latency (~0.5s), interactive use"| WEBRTC["WebRTC Playback (Enterprise)"]
