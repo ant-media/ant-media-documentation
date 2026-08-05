@@ -12,7 +12,7 @@ SSL is mandatory for secure access to the camera and microphone in the browser, 
 By the end of this guide, SSL will be enabled on your server and you'll be able to confirm it's working over HTTPS.
 
 ```mermaid
-%%{init: {'flowchart': {'curve': 'linear'}}}%%
+%%{init: {'flowchart': {'curve': 'linear', 'nodeSpacing': 80, 'rankSpacing': 80}}}%%
 flowchart TD
     A["Enable SSL from the Web Panel: Settings > SSL<br/>(fastest path for a standard setup)"]
     A --> B{"Need more control? (enterprise, cluster/load balancer, scripting)"}

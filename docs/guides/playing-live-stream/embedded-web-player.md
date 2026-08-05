@@ -12,7 +12,7 @@ Ant Media Server ships with a ready-made video player, so you don't have to buil
 By the end of this guide, you'll have a stream embedded in your own website, either via a quick `<iframe>` or the customizable Web Player component.
 
 ```mermaid
-%%{init: {'flowchart': {'curve': 'linear'}}}%%
+%%{init: {'flowchart': {'curve': 'linear', 'nodeSpacing': 80, 'rankSpacing': 80}}}%%
 flowchart TD
     A{"How much control do you need over the player?"}
     A -->|"Just show the stream, minimal setup"| IFRAME["iframe Embed"]

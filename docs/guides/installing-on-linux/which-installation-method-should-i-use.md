@@ -10,7 +10,7 @@ sidebar_position: 1
 Ant Media Server (AMS) can be installed several different ways. Use this to find your path before diving into a specific guide:
 
 ```mermaid
-%%{init: {'flowchart': {'curve': 'linear'}}}%%
+%%{init: {'flowchart': {'curve': 'linear', 'nodeSpacing': 80, 'rankSpacing': 80}}}%%
 flowchart TD
     A{"Launching from a Cloud Marketplace listing? (AWS, Azure, GCP)"}
     A -->|"Yes"| CM["Launch it from your Cloud Marketplace — comes pre-installed"]

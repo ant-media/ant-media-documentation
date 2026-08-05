@@ -20,7 +20,7 @@ Make sure you have SSH access to your AMS instance with sudo/root privileges.
 The right method depends on your deployment type — most people are self-hosted and should use `upgrade.sh`:
 
 ```mermaid
-%%{init: {'flowchart': {'curve': 'linear'}}}%%
+%%{init: {'flowchart': {'curve': 'linear', 'nodeSpacing': 80, 'rankSpacing': 80}}}%%
 flowchart TD
     A{What's your deployment type?}
     A -->|Self-hosted: Community or self-licensed Enterprise| E{Need a specific version, not latest?}

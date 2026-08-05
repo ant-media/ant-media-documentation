@@ -10,7 +10,7 @@ sidebar_position: 1
 Ant Media Server accepts a stream in several different ways, and the right one depends less on personal preference than on what you're actually publishing from and what you need out of it. Use this to find your path before diving into a specific guide:
 
 ```mermaid
-%%{init: {'flowchart': {'curve': 'linear'}}}%%
+%%{init: {'flowchart': {'curve': 'linear', 'nodeSpacing': 80, 'rankSpacing': 80}}}%%
 flowchart TD
     A{"Is the stream already flowing somewhere else that AMS should pull from — an IP camera, RTSP feed, or existing stream URL?"}
     A -->|Yes| PULL["IP Camera & Stream Sources"]
