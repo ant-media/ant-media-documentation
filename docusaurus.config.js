@@ -626,15 +626,14 @@ scripts: [
 	theme: prismThemes.github,
 	darkTheme: prismThemes.dracula,
       },
-    /*  announcementBar: {
-        id: 'announcement-bar',
+      announcementBar: {
+        id: 'v2-docs-announcement-excited',
         content:
-          `<div style="font-size:16px;">
-          </div>`,
+          'Our new documentation just dropped! Jump into the v2 docs at <a target="_blank" rel="noopener noreferrer" href="https://docs.antmedia.io/v2">docs.antmedia.io/v2</a> and check it out',
         backgroundColor: '#fff5bd',
         textColor: '#091E42',
-        isCloseable: false,
-      },*/
+        isCloseable: true,
+      },
     }),
 };
 

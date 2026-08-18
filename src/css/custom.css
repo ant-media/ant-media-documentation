@@ -250,3 +250,13 @@ h1, article h1, article header h1 {
 .navbar-free-trial:hover {
   background-color: #e64a19;
 }
+
+div[class*='announcementBar'] a {
+  font-weight: 700;
+  text-decoration: underline;
+  color: #091E42;
+}
+
+div[class*='announcementBar'] a:hover {
+  color: #a10310;
+}
