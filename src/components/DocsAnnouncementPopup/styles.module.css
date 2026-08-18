@@ -1,0 +1,87 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgba(15, 15, 16, 0.55);
+  backdrop-filter: blur(4px);
+}
+
+.modal {
+  position: relative;
+  width: min(520px, 100%);
+  padding: 2.5rem 2rem 1.85rem;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.28);
+  color: #1b1b1d;
+  text-align: center;
+}
+
+.closeButton {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  background: transparent;
+  color: #6b6b70;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.closeButton:hover,
+.closeButton:focus {
+  color: #1b1b1d;
+}
+
+.message {
+  margin: 0 0 1.5rem;
+  font-size: 1.15rem;
+  line-height: 1.65;
+}
+
+.message a {
+  color: #df0517;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.cta {
+  display: inline-block;
+  background-color: #df0517;
+  color: #ffffff !important;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-weight: 700;
+  text-decoration: none !important;
+  transition: background-color 0.3s ease;
+}
+
+.cta:hover {
+  background-color: #e64a19;
+  color: #ffffff !important;
+}
+
+html[data-theme='dark'] .modal {
+  background: #1e1e1f;
+  color: #f5e6e7;
+}
+
+html[data-theme='dark'] .closeButton {
+  color: #bcbfc9;
+}
+
+html[data-theme='dark'] .closeButton:hover,
+html[data-theme='dark'] .closeButton:focus {
+  color: #ffffff;
+}
+
+html[data-theme='dark'] .message a {
+  color: #ff6b78;
+}
