@@ -1,11 +1,15 @@
 ---
-title: Social-Media/RTMP Restreaming
-description: Social-Media/RTMP Restreaming
+title: Social Media / RTMP Restreaming
+description: Push a live stream from Ant Media Server to Facebook, YouTube, Twitch, or another RTMP endpoint.
 keywords: [Simulcasting to social media channels, Restreaming, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 1
 ---
 
+# Social Media / RTMP Restreaming
+
 This guide will show you how to use Ant Media Server to push your live stream to social media channels like Facebook, YouTube, Twitch, and other third-party RTMP endpoints.
+
+By the end of this guide, you'll be simulcasting an existing AMS live stream out to one or more RTMP destinations, either from the web panel or the REST API.
 
 ## How to Publish Live Stream on Facebook
 
@@ -30,7 +34,7 @@ This guide will show you how to use Ant Media Server to push your live stream to
 If you want to use a persistent stream key, you just need to enable **Persistent Stream key** in the Advanced settings option.
 :::
 
-The Facebook RTMPs Endpoint URL that will be used in Ant Media Server will be of the format: ```server-URL/stream-key```
+The Facebook RTMPs Endpoint URL that will be used in Ant Media Server will be of the format: ```<SERVER_URL>/<STREAM_KEY>```
 
 example:
 
@@ -78,7 +82,7 @@ Then copy the **Stream URL** and **Stream Key.**
 
 ![](@site/static/img/youtube-studio-stream-url-stream-key.png)
 
-The YouTube RTMP Endpoint URL that will be used in Ant Media Server will be of the format: ```stream-URL/stream-key```
+The YouTube RTMP Endpoint URL that will be used in Ant Media Server will be of the format: ```<STREAM_URL>/<STREAM_KEY>```
 
 example
 
@@ -119,7 +123,7 @@ Congratulations! The stream is live on YouTube.
 
 ![](@site/static/img/publish-live-stream/simulcasting/twitch-ingest.png)
 
-Twitch RTMP Endpoint URL that will be used in Ant Media Server will be of the format: ```ingest-endpoint/stream-key```
+Twitch RTMP Endpoint URL that will be used in Ant Media Server will be of the format: ```<INGEST_ENDPOINT>/<STREAM_KEY>```
 
 example
 
@@ -161,11 +165,11 @@ This option is for advanced users by making an API request to the rtmp-endpoint.
 
 ```bash
 curl -X 'POST' \
-  'https://AMS-domain:5443/App-Name/rest/v2/broadcasts/streamId/rtmp-endpoint' \
+  'https://<DOMAIN_NAME>:5443/<APP_NAME>/rest/v2/broadcasts/<STREAM_ID>/rtmp-endpoint' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
   -d '{
-  "rtmpUrl": "rtmp://endpoint-URL/StreamKey"
+  "rtmpUrl": "rtmp://<ENDPOINT_URL>/<STREAM_KEY>"
       }
 ```
 After adding the endpoint, you will receive one random ```dataId``` that will be used to remove the added endpoint using the remove rtmp-endpoint Rest API described in next step.
@@ -185,24 +189,19 @@ You can get more information in the following [REST API](https://antmedia.io/res
 Now, that ```dataId``` will be used to remove the added RTMP Endpoint.
 ```bash
 curl -X 'DELETE' \
-  'https://AMS-domain:5443/App-Name/rest/v2/broadcasts/streamId/rtmp-endpoint?endpointServiceId=dataId-from-add-endpoint-response' \
+  'https://<DOMAIN_NAME>:5443/<APP_NAME>/rest/v2/broadcasts/<STREAM_ID>/rtmp-endpoint?endpointServiceId=<DATA_ID>' \
   -H 'accept: application/json'
 ```
 
 You can get more information in the following [REST API](https://antmedia.io/rest/#/BroadcastRestService/removeEndpointV2).
 
 
-Click for more detail about [REST API Guide](https://antmedia.io/docs/category/rest-api-guide/).
+Click for more detail about the [REST API Guide](/guides/developer-sdk-and-api/rest-api-guide/).
 
 **PS:** To use the Rest APIs, please add your IP address to the ```Enable IP Filter for RESTful API``` option in the application Settings.
 
-<br /><br />
----
+You're now simulcasting a live stream from Ant Media Server out to Facebook, YouTube, Twitch, or any other RTMP destination.
 
-<div align="center">
-<h2> Simulcasting Time! 🌟 </h2>
-</div>
+## Need Help?
 
-Congratulations! You've successfully set up **simulcasting** with Ant Media Server. Your live stream is now reaching audiences across multiple platforms simultaneously, expanding your reach and engagement.
-
-Your content is now accessible to a **wider audience, enhancing visibility and interaction**. Well done — your simulcasting setup is live and ready to shine!
+If the destination platform doesn't show the stream as live, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).

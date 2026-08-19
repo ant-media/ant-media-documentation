@@ -5,7 +5,11 @@ keywords: [Creating a playlist, Ant Media Server Documentation, Ant Media Server
 sidebar_position: 2
 ---
 
+# Creating a Playlist
+
 Ant Media Server (AMS) allows you to create and manage playlists, enabling seamless playback of multiple Video on Demand (VoD) files in a specified order. This feature is available in both the Community and Enterprise editions of AMS.
+
+By the end of this guide, you'll have a playlist of VoD files created and streaming on Ant Media Server.
 
 ## VoD files
 
@@ -43,13 +47,13 @@ Furthermore, uploading MP4 files to your Ant Media Server is optional. Ant Media
 You can upload MP4 files to Ant Media Server using the REST API with the following API call:
 
 ```bash
-curl -X POST -F "file=@<YOUR-FILE-PATH>;type=video/*" https://AMS_URL:5443/live/rest/v2/vods/create?name=YOUR-FILE-NAME.mp4
+curl -X POST -F "file=@<FILE_PATH>;type=video/*" https://<DOMAIN_NAME>:5443/live/rest/v2/vods/create?name=<FILE_NAME>.mp4
 ```
 
 Here is the curl sample:
 
 ```bash
-curl -X POST -F "file=@test.mp4;type=video/*" https://AMS_URL:5443/WebRTCAppEE/rest/v2/vods/create?name=test.mp4
+curl -X POST -F "file=@test.mp4;type=video/*" https://<DOMAIN_NAME>:5443/WebRTCAppEE/rest/v2/vods/create?name=test.mp4
 ```
 
 The uploaded file will be located in `antmedia/webapps/live/streams` directory. The MP4 file name will be changed to a random VOD ID, which you can find in the VOD section of the web panel application page.
@@ -59,13 +63,13 @@ You can use the [Get VOD list](https://antmedia.io/rest/#/default/getVodList) re
  You can access the uploaded VOD file through the below URL format:
 
 ```
-https://domain_or_IP:5443/AppName/streams/VOD-ID.mp4
+https://<DOMAIN_NAME>:5443/<APP_NAME>/streams/<VOD_ID>.mp4
 ```
 
 Example:
 
 ```
-https://AMS_URL:5443/WebRTCAppEE/streams/722484094956241856650105.mp4
+https://<DOMAIN_NAME>:5443/WebRTCAppEE/streams/722484094956241856650105.mp4
 ```
 
 ## Creating the Playlist
@@ -90,7 +94,7 @@ If you have the VoD URL handy or are adding external VoDs, you can use this opti
 
 #### Get the VoD URL
 
-- The sample path of a VoD file uploaded to the Ant Media Server VoD section is like `http(s)://ams-server-url:5080(5443)/LiveApp/streams/vod_id.mp4`
+- The sample path of a VoD file uploaded to the Ant Media Server VoD section is like `http(s)://<DOMAIN_NAME>:5080(5443)/LiveApp/streams/<VOD_ID>.mp4`
 
 - To get the VOD URL, click on the hamburger icon, which is located on the right side of the screen, and then click `Copy VoD URL`
 
@@ -99,8 +103,8 @@ If you have the VoD URL handy or are adding external VoDs, you can use this opti
 - Now we have the VoDs accessible through the links below.
 
 ```
-https://AMS_URL:5443/LiveApp/streams/044283659243035008593467.mp4
-https://AMS_URL:5443/LiveApp/streams/127700726123231884567831.mp4
+https://<DOMAIN_NAME>:5443/LiveApp/streams/044283659243035008593467.mp4
+https://<DOMAIN_NAME>:5443/LiveApp/streams/127700726123231884567831.mp4
 ```
 
 - Add all the playlist items and then click `Create`.
@@ -119,7 +123,7 @@ https://AMS_URL:5443/LiveApp/streams/127700726123231884567831.mp4
 
 ![playlist-streaming](https://github.com/user-attachments/assets/44ef7735-163e-4105-a179-ac1b2b22bfeb)
 
-###  Add From VODs
+### Add From VODs
 This option is more useful if all the VoD files you want to stream are on your Ant Media Server itself under the VoD section.
 
 ![add-from-vod](https://github.com/user-attachments/assets/a430d1b8-36a3-4a14-9c1c-4e69265ff076)
@@ -169,7 +173,7 @@ Starting from Ant Media server version 2.10.0, you can schedule your playlist to
 Please make sure that your server time is in sync with the NTP.
 :::
 
-- At the scheduled time, your playlist will start :)
+- At the scheduled time, your playlist will start.
 
 ![playlist-scheduled](https://github.com/user-attachments/assets/b8471730-eba7-42d2-afcb-f9345072551c)
 
@@ -197,15 +201,9 @@ Now that we have learned how to create a playlist, let's make some configuration
 
 - Save the changes and start/restart the playlist to apply the changes.
 
+You've now created a playlist of VoD files and it's streaming on Ant Media Server. From here, see [Managing the Playlist Programmatically](/guides/publish-live-stream/playlist/managing-playlist-programmatically/) to control it via the REST API.
 
-<br /><br />
----
+## Need Help?
 
-<div align="center">
-<h2> BOOM! You're a Playlist Pro! 🎉 </h2>
-</div>
-
-Congratulations! You've successfully **created and streamed a playlist** in Ant Media Server. Whether it's for continuous content delivery, event broadcasting, or creating a dynamic viewing experience, your playlist is now live and ready to engage your audience.
-
-Your content is now **seamlessly delivered**, keeping your viewers **entertained and engaged**. Well done — your playlist is live and ready to shine!
+If a playlist won't start or an item fails to play, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
 

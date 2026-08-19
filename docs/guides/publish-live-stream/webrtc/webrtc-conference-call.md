@@ -5,22 +5,25 @@ keywords: [Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 4
 ---
 
-Ant Media Server offers robust support for conference calls. In this tutorial, we will see how to use the Basic Conference sample page.   
-   
+# WebRTC Conference Call
+
+Ant Media Server offers robust support for conference calls. In this tutorial, we will see how to use the Basic Conference sample page.
+
 If you are looking for a ready-to-use conference solution, please check out our in-house [Circle Conference tool](https://antmedia.io/marketplace/circle-video-conferencing-tool) with all necessary features.
+
+**Requirements:** Ant Media Server Enterprise Edition — the WebRTC conference feature isn't available on Community Edition.
+
+By the end of this guide, you'll have multiple participants publishing and playing in the same conference room, and know how to integrate join/publish/play into your own app.
 
 ## Conference Call Sample Page
 
-Go to ```https://your-domain-name:5443/live/conference.html``` for conference call sample page.
-
-The WebRTC conference feature is only available in the Enterprise Edition of Ant Media Server
+Go to `https://<DOMAIN_NAME>:5443/live/conference.html` for conference call sample page.
 
 If you have Ant Media Server installed on your local machine, you can also go to `http://localhost:5080/live/conference.html`.
 
-Click the ```Join Room``` the button, then open the same page in multiple tabs or on different devices to join from there. You’ll immediately start receiving streams from the other participants. 
+Click the ```Join Room``` the button, then open the same page in multiple tabs or on different devices to join from there. You’ll immediately start receiving streams from the other participants.
 
 ![](@site/static/img/publish-live-stream/WebRTC/WebRTC-publishing/Conference-page.png)
-
 
 ## Join Conference Room
 
@@ -96,16 +99,13 @@ Here are the conference-related notifications that callback is invoked for. Plea
 *   ```publish_started```: Called when stream is published to the room.
 *   ```play_started```: Called when starting to play the remote streams.
 
-To learn more about the Ant Media Server Conference, visit [**here**](https://antmedia.io/docs/category/conference-room/).
+These are the same notifications documented at the JSON/wire level in the [WebRTC WebSocket Messaging Reference](/guides/publish-live-stream/webrtc/webrtc-websocket-messaging-reference/) — check there if you're implementing signaling directly instead of through the JavaScript SDK.
 
-<br /><br />
----
+To learn more about Ant Media Server's conference features, see the [Conference](/category/conference/) section.
 
-<div align="center">
-<h2> 🎥 Your Conference is NOW LIVE 🎥 </h2>
-</div>
+You now have a working WebRTC conference room with multiple participants publishing and playing to each other. From here, head to the [Conference](/category/conference/) section for recording, security, and the ready-made Circle Conference tool.
 
-You’ve just launched a **WebRTC conference room in AMS**. You joined the room, saw **remote streams from peers**, used **controls** like mute and **camera toggles**—and all in **real time.**  
+## Need Help?
 
-Nice work — your conference setup is seating everyone **around the same (digital) table**! 🪑📡
+If participants can't join or streams aren't appearing, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
 

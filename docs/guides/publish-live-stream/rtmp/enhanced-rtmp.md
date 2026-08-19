@@ -11,6 +11,8 @@ Enhanced RTMP significantly advances video streaming by supporting modern video 
 
 For example, using Enhanced RTMP with Ant Media Server enables streaming with HEVC, which delivers better video quality than H.264 at the same bitrate, greatly reducing bandwidth consumption without sacrificing clarity. This is ideal for bandwidth-constrained scenarios like mobile streaming or large-scale broadcasting, making Enhanced RTMP a more adaptable and future-proof solution for modern streaming needs. Please note that **AV1 & VP9** support will be introduced in future releases of Ant Media Server
 
+By the end of this guide, your encoder will be pushing an HEVC-encoded RTMP stream into Ant Media Server, and you'll know what to watch out for on playback.
+
 ## How to use Enhanced RTMP with Ant Media Server?
 
 Starting with version 2.11.0, Ant Media Server includes Enhanced RTMP support by default, enabling you to stream using modern encoders like HEVC (H.265) without any additional server configuration. By simply broadcasting HEVC-encoded content through your **preferred encoder**, you can benefit from significantly improved video quality at lower bitrates, reducing bandwidth usage and costs. 
@@ -21,7 +23,9 @@ This screenshot is from the Windows system having the NVIDIA Graphic card so the
 
 ![](@site/static/img/obs-rtmp-image/obs_hevc_enhanced_rtmp.png)
 
-After encoder is set, you can publish as you do in RTMP.
+After encoder is set, you can publish as you do in RTMP. Check the **live** application in your Ant Media Server web panel — the stream should show as **Broadcasting**, just like a standard RTMP stream.
+
+![](@site/static/img/publish-live-stream/ams-broadcasting-status.png)
 
 ## Limitations of HEVC (H265)
 
@@ -29,20 +33,15 @@ HEVC (H.265) offers better compression and video quality, but it has some limita
 
 WebRTC doesn't yet support H.265, making it unsuitable for some live streaming or interactive video use cases. Additionally, not all browsers, including Chrome, fully support HEVC playback, leading to compatibility issues. If you use HEVC for RTMP publishing, you might encounter issues when trying to play it via WebRTC or HLS across different browsers.
 
-To address this, [server-side transcoding](https://antmedia.io/docs/guides/adaptive-bitrate/adaptive-bitrate-streaming/) can convert H.265 streams to H.264, ensuring broader compatibility. 
+To address this, [server-side transcoding](/guides/adaptive-bitrate/adaptive-bitrate-streaming/) can convert H.265 streams to H.264, ensuring broader compatibility. 
 
 If you are not using WebRTC or HLS playback on your browser, you do not need to worry about this. Make sure that your player and device support the H265 playback.
 
 For HEVC support on different platforms, refer to [this page](https://caniuse.com/hevc). 
 
-<br /><br />
----
+You're now publishing an HEVC-encoded RTMP stream to Ant Media Server. From here, head to the [playback guide](/category/play-live-streams/) to view your stream — keeping the HEVC limitations above in mind.
 
-<div align="center">
-<h2> Enhanced Quality Unleashed 🏅 </h2>
-</div>
+## Need Help?
 
-You have now used **Enhanced RTMP**: streaming with a modern encoder like HEVC (H.265), saving bandwidth while keeping great visual quality. Although VP9 & AV1 are coming soon, your stream is future-ready and more efficient right now.  
-
-Good work — your output is **sharper, leaner, and built for the next gen of streaming!** 🎯
+If your HEVC stream publishes but won't play back, remember WebRTC and some browsers don't support H.265 — use [server-side transcoding](/guides/adaptive-bitrate/adaptive-bitrate-streaming/) to convert to H.264. Otherwise, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
 

@@ -2,95 +2,62 @@
 title: Google Cloud Storage
 description: Record streams to Google Cloud Storage
 keywords: [S3 Integration with Ant Media Server, S3 Integration, Record streams to Google Cloud Storage, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 5
+sidebar_position: 2
 ---
 
-# Record Streams To Google Cloud Storage
+# Record Streams to Google Cloud Storage
 
-Google Cloud is another cloud provider that is preferred by many Ant Media Server users. You could integrate your Google Cloud cloud instance easily with S3 cloud storage. Let’s see how it can be done with a few steps!
+Google Cloud Storage (GCS) exposes an S3-compatible interoperability API, so Ant Media Server can record straight to a GCS bucket the same way it does with AWS S3.
 
-1. Firstly, you need to create a Bucket. Just click the Create button and fill in the blanks. You should choose the access level to be `Fine-grained`
+By the end of this guide, you'll have a GCS bucket, an HMAC access key for it, and Ant Media Server configured to upload recordings there automatically.
+
+## Create a Bucket
+
+In the GCS console, create a new bucket. Choose **Fine-grained** access control.
 
 ![](@site/static/img/image-1665067750280.png)
 
-2. Go to the bucket and create a folder named `streams`
+Inside the bucket, create a folder named `streams`.
 
-![](@site/static/img/image-1665067824644.png )
+![](@site/static/img/image-1665067824644.png)
 
-3. Go to the `Settings` on the left and select `Interoperability` tab. On the `User Account HMAC` section, choose the default project for interoperability access.
- 
-![](@site/static/img/image-1665067873135.png)
+## Generate an HMAC Access Key
 
-4. Create an access key for the user account  
-![](@site/static/img/image-1665067947615.png )
+GCS's S3-compatible API authenticates with HMAC keys rather than native Google credentials.
 
-5. **Configure Ant Media Server**
-   - Log in to your Ant Media Server panel at `http://your_ams_server:5080`.
-   - Navigate to **Applications** > **live** > **Settings**.
-   - Enable **Record Live Streams as MP4** and **Enable S3 Recording**.
-   - Enter the following **S3** credentials:
-     - **Access Key**: `your_access_key`
-     - **Secret Key**: `your_secret_key`
-     - **Bucket Name**: `your_space_name`
-   - **Save** the settings.
+1. Go to **Settings → Interoperability**, and under **User Account HMAC**, confirm the default project for interoperability access.
+2. Create an access key for your user account. GCS generates both an Access Key and a Secret — copy them somewhere secure, since the secret is only shown once.
 
-![](@site/static/img/image-1665068031722.png )
+:::important
+Treat the HMAC Access Key and Secret like a password. Don't commit them to a repository, paste them into a screenshot, or share them outside of Ant Media Server's own credential fields.
+:::
 
-Congrats, your MP4 and preview files will be uploaded to your **Google Cloud Storage Bucket** automatically.
+## Configure Ant Media Server
 
+1. Log in to your Ant Media Server panel at `https://<DOMAIN_NAME>:5443`.
+2. Navigate to **Applications** and select your application (e.g., `live`).
+3. Go to **Settings**, enable **Record Live Streams as MP4**, then enable **S3 Recording**.
+4. Enter the HMAC Access Key and Secret, and your bucket name.
+5. Set **Endpoint** to `https://storage.googleapis.com`.
+6. Click **Save**.
+
+Your MP4 and preview files now upload to the bucket automatically once a stream finishes.
 
 ## Enable HTTP Forwarding for Playback
 
-After uploading to Google Cloud Storage, your files will no longer be available in the Ant Media Server local storage. If you try to access them using an AMS URL, you may encounter a **404 Not Found** error.
+Once files upload to GCS, they're no longer served from Ant Media Server's local storage, so requesting them by the usual AMS URL returns a 404 until you configure forwarding. See [HTTP Forwarding](/guides/recording-live-streams/http-forwarding/) for the full setup — the bucket URL pattern for GCS is:
 
-To resolve this, enable **HTTP Forwarding** so Ant Media Server automatically redirects requests to your OVH Object Storage.
-
-### Steps to Enable HTTP Forwarding
-
-1. Log in to the Ant Media Server Management Panel
-2. Navigate to your application (e.g., `live`) and go to **Application Settings → Advanced Settings**.  
-3. Set the following properties:
-
-   ```bash
-   httpForwardingExtension: mp4,m3u8  
-   httpForwardingBaseURL: https://storage.googleapis.com/{bucket-name}  
-   ```
-
-   Example:  
-
-   ```bash
-   httpForwardingExtension: mp4,m3u8  
-   httpForwardingBaseURL: https://storage.googleapis.com/mybucket  
-   ```
-
-4. Save your settings
-
-
-## Playback
-
-Once forwarding is configured, your VOD files stored in Google Cloud Storage can be played directly using AMS URLs.  
-The media will be served from Google Cloud, while viewers continue to use your Ant Media Server domain.
-
-Now, when you access:
-
-```bash
-https://your-domain:5443/live/streams/recording.mp4  
+```
+https://storage.googleapis.com/<BUCKET_NAME>
 ```
 
-Ant Media Server will forward the request to:
+You now have Ant Media Server recording live streams directly to Google Cloud Storage, with playback working through HTTP Forwarding.
 
-```bash
-https://storage.googleapis.com/mybucket/streams/recording.mp4  
-```
+## Troubleshooting
 
-<br /><br />
----
+- **Uploads fail, or files never appear in the bucket** — check the AMS server logs for `AmazonS3StorageClient` entries. A successful upload logs `File upload has started with key: ...` at INFO; a failed one logs `S3 - Error: Upload failed with key ...` at ERROR along with the underlying error, which tells you whether AMS is even reaching GCS or failing on Google's side.
+- **The error points to a permissions problem** — double-check the HMAC key is still active under Settings → Interoperability, and that the Access Key and Secret entered in the AMS panel match it.
 
-<div align="center">
-<h2> Your Streams, Your Cloud! ☁️🚀 </h2>
-</div>
+## Need Help?
 
-Congratulations! You've successfully configured Ant Media Server to record live streams directly to **Google Cloud Storage**. Your MP4 and preview files are now automatically **uploaded and ready for on-demand playback.**
-
-Tada!! — your streams have officially taken rest in the cloud! 🎬✨
-
+If the steps above don't resolve it, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).

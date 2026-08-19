@@ -1,5 +1,6 @@
 ---
-title: iOS Dependency
+title: Add Dependency
+sidebar_label: Add Dependency
 description: We will add the WebRTC iOS SDK Dependency to the project
 keywords: [iOS SDK User Guide, Download the WebRTC iOS SDK, iOS SDK Dependency, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 3
@@ -28,11 +29,3 @@ Click Add Package, then on the next screen, click Add Package again to confirm.
 ![](@site/static/img/ios-SDK/ios-package.png)
 
 4. Success
-
-## Congratulations!
-
- You have successfully added the WebRTC-iOS-SDK dependency to your project.
-
-![](@site/static/img/ios-SDK/repo-added.png)
-
-Now your project is ready to use the WebRTC-iOS-SDK.

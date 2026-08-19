@@ -2,12 +2,14 @@
 title: Stream Failover Playback
 description: Stream Failover Playback with Web Player
 keywords: [Backup Playback, WebRTC playback with Ant Media Server, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 6
+sidebar_position: 7
 ---
 
 # Stream Failover Playback
 
 Ant Media Server introduces the concept of primary and backup streams to enhance the reliability and continuity of live streaming.
+
+By the end of this guide, you'll have a backup stream configured so the player automatically switches over if the primary stream drops.
 
 The **Primary-Backup Stream** concept involves using two streams—one as the **primary (main) stream** and another as the **backup (failover) stream** to ensure reliability and continuity in live streaming.
 
@@ -39,7 +41,7 @@ Publish the main stream using WebRTC, RTMP, or any other protocol.
 For example, publish one RTMP stream with streamId `main` using the FFMPEG.
 
 ```bash
-ffmpeg -re -i test.mp4 -c copy -f flv rtmp://IP-address/live/primary
+ffmpeg -re -i test.mp4 -c copy -f flv rtmp://<DOMAIN_NAME>/live/primary
 ```
 
 ### Step-2: Publish the Backup Stream
@@ -49,7 +51,7 @@ Publish the main stream using WebRTC, RTMP, or any other protocol.
 For example, publish another RTMP stream with streamId `backup` using the FFMPEG.
 
 ```bash
-ffmpeg -re -i test.mp4 -c copy -f flv rtmp://IP-address/live/backup
+ffmpeg -re -i test.mp4 -c copy -f flv rtmp://<DOMAIN_NAME>/live/backup
 ```
 
 ### Step-3: Test Failover Scenario
@@ -59,7 +61,7 @@ ffmpeg -re -i test.mp4 -c copy -f flv rtmp://IP-address/live/backup
 - Suppose you are playing the stream with WebRTC playback with the below URL.
 
   ```
-  https://domain:5443/live/play/html?name=primary&playOrder=webrtc
+  https://<DOMAIN_NAME>:5443/live/play.html?name=primary&playOrder=webrtc
   ```
 
   In this case, it only plays the primary stream and will not switch to the backup stream if primary fails.
@@ -69,7 +71,7 @@ ffmpeg -re -i test.mp4 -c copy -f flv rtmp://IP-address/live/backup
   In this case, the streamId is `backup`.
 
   ```
-  https://domain:5443/live/play.html?name=primary&backupStreamId=backup&playOrder=webrtc
+  https://<DOMAIN_NAME>:5443/live/play.html?name=primary&backupStreamId=backup&playOrder=webrtc
   ```
 
 Now you can stop publishing the primary stream and check that the player will switch to the backup stream within a few seconds.
@@ -78,16 +80,11 @@ Now you can stop publishing the primary stream and check that the player will sw
 The great part is that it works in reverse mode as well. If the backup goes down after some time and primary is up, then the player will switch back to the primary stream.
 :::
 
-To learn more about Web Player, check [this document](https://antmedia.io/docs/guides/playing-live-stream/embedded-web-player/).
+To learn more about Web Player, check [this document](/guides/playing-live-stream/embedded-web-player/).
 
+You now have a backup stream configured, and the player will automatically switch over if the primary stream drops — and switch back once it recovers.
 
-<br /><br />
----
+## Need Help?
 
-<div align="center">
-<h2> Interruption free Streaming 🎥 </h2>
-</div>
-
-**Congratulations!** You've successfully configured **stream failover playback** with Ant Media Server. Your viewers can now enjoy **uninterrupted live streaming experiences**, even in the event of stream failures. By implementing primary and backup streams, you've enhanced the reliability of your live broadcasts, ensuring a seamless viewing experience for your audience.
-Well done — your failover-enabled streaming solution is **live and ready to impress!**
+If the player doesn't switch to the backup stream, confirm both streams are reaching the server and that `backupStreamId` matches the backup's actual stream ID, then reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
 

@@ -1,79 +1,41 @@
 ---
-title: Pre-Requisite For React Native SDK
-description: Pre-Requisite for React Native SDK
-keywords: [React Native SDK User Guide, Ant Media Server Documentation, Ant Media Server Tutorials]
+title: Prerequisites
+description: Node.js, Android Studio, and React Native environment setup for the Ant Media React Native SDK.
+keywords: [React Native SDK User Guide, Ant Media Server Documentation]
 sidebar_position: 1
+sidebar_label: Prerequisites
 ---
 
-### Software Requirements
+# Prerequisites
 
-*   Android Studio (IDE)
-*   Android SDK
-*   Java
-*   NodeJs
-*   NPM
-*   React Native CLI
+Install the following before building with the React Native SDK.
 
-First, you need Node.js installed on your system. If Node.js is already installed, you can skip this step.
+## Software requirements
 
-### Node JS Installation
+| Requirement | Purpose |
+|-------------|---------|
+| **Node.js & npm** | Install packages and run Metro |
+| **Android Studio** | Android SDK, emulator, or device |
+| **JDK** | Compatible with your React Native version |
+| **Xcode** | iOS builds (macOS only) |
 
-![](@site/static/img/image(83).png)
+### Node.js
 
-Download the latest Node.js from: [nodejs.org/en](http://nodejs.org/en).
+Download from [nodejs.org](https://nodejs.org/) and verify:
 
-Once the setup is downloaded on your system, run the .msi downloaded file and follow the prompt instructions to install the application.
-
-Furthermore, make ascertain that the Node and NPM have been installed.
-
-Use the below commands to check the version:
-
-```shell
+```bash
 node -v
-```    
-```shell
-npm –v
-```   
-
-### React Native CLI
-
-Use the below command to install React Native CLI.
-
-```shell
- npm install -g react-native-cli
+npm -v
 ```
 
-### Android Development Environment
+### Android Studio
 
-Download & Install the Android Studio [https://developer.android.com/studio/install.html](https://developer.android.com/studio/install.html)
+Install [Android Studio](https://developer.android.com/studio/install) and configure an emulator or connect a physical device.
 
-![](@site/static/img/image(84).png)
+### Verify React Native
 
-The Android Studio lets you run the Reactive Native application in an emulator and test the application.
+Follow the [React Native environment setup](https://reactnative.dev/docs/environment-setup). When `npx react-native run-android` succeeds on a blank app, your environment is ready for the Ant Media samples.
 
-### Verify React Native Installation
+## Next step
 
-We’ll be building a sample project using React Native by running the following command:
-
-```shell
-react-native init MySampleApp
-```
-
-Now, run below commands in the terminal from the folder where you have created the application.
-
-```shell
-react-native start
-``` 
-
-```shell
-react-native run-android
-```
-
-Make sure you’ve started the emulator on your machine. This is what the sample project will look like in the emulator:
-
-![](@site/static/img/image(85).png)
-
-
-### Congratulations!
-
-At this point, your development environment for the React Native SDK is fully set up.
+Continue to [Download Samples](/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/getting-started/download-react-native-samples/).

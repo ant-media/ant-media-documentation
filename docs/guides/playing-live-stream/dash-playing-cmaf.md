@@ -2,16 +2,18 @@
 title: CMAF (DASH) Playback
 description: Common Media Application Format (CMAF) is essentially a new format to reduce HTTP delivery latency, as it aims to reduce the cost, complexity, and latency of streaming.
 keywords: [Dash playing, Common Media Application Format, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 4
+sidebar_position: 5
 ---
 
-# Dash Playback with CMAF
+# CMAF (DASH) Playback
 
 ## What Is CMAF (Common Media Application Format)?
 
 - The Common Media Application Format (CMAF) is a standard designed to reduce HTTP delivery latency, typically to around 3-5 seconds. It aims to lower the cost, complexity, and latency of streaming. CMAF can be utilized with both DASH (Dynamic Adaptive Streaming over HTTP) and HLS (HTTP Live Streaming).
 
 - Ant Media Server fully supports LL-DASH (Low Latency DASH) through CMAF and LL-HLS (Low Latency HLS).
+
+By the end of this guide, you'll have DASH streaming enabled and be playing a stream back with CMAF.
 
 ![](@site/static/img/126611-CMAF-Fig1-ORG.jpg)
 
@@ -37,7 +39,7 @@ You can use the embedded player `play.html` to play the streams with DASH.
 - To play a stream with DASH, provide `streamId` as the id and `dash` as the playOrder parameter in the URL shown below.
 
    ```
-   https://AMS-domain-name:5443/live/play.html?id=test&playOrder=dash
+   https://<DOMAIN_NAME>:5443/live/play.html?id=test&playOrder=dash
    ```
 
 - The dash playback will start automatically when the stream is live.
@@ -51,7 +53,7 @@ Assume Dash muxing is enabled and a stream is published to the Ant Media Server.
 The default MPEG-DASH (.mpd) URL will be as follows:
 
 ```
-https://AMS-domain-name:5443/live/streams/streamId/streamId.mpd
+https://<DOMAIN_NAME>:5443/live/streams/<STREAM_ID>/<STREAM_ID>.mpd
 ```
   
 :::info
@@ -103,3 +105,9 @@ If you're using Dash streaming with ABR enabled, make sure the following propert
 
 The value is false by default. Check [here](https://antmedia.io/javadoc/io/antmedia/AppSettings.html#forceAspectRatioInTranscoding) for more information on this property.
 :::
+
+You now have DASH streaming enabled and are playing a stream back with CMAF.
+
+## Need Help?
+
+If DASH playback doesn't start or the `.mpd` file 404s, confirm DASH streaming is enabled in the application settings, then reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
