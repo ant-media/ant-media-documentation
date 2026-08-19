@@ -13,6 +13,7 @@
 }
 
 :root {
+  --biel-primary-color: #df0517;
   --ifm-color-primary: #a10310;
   --ifm-color-primary-dark: #85030d;
   --ifm-color-primary-darker: #66030b;
@@ -372,3 +373,10 @@ h1, article h1, article header h1 {
 .markdown table {
   width: 100%;
 }
+
+.navbar-biel-search {
+  display: flex;
+  align-items: center;
+  margin-left: 0.5rem;
+}
+
