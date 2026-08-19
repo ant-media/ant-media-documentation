@@ -60,7 +60,7 @@ export default function DocsAnnouncementPopup() {
           ×
         </button>
         <p id="docs-announcement-title" className={styles.message}>
-          Our new documentation just dropped! Jump into the v2 docs at{' '}
+          Our v2 docs are live!{' '}
           <a href={V2_DOCS_URL} target="_blank" rel="noopener noreferrer">
             docs.antmedia.io/v2
           </a>{' '}
