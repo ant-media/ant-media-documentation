@@ -1,129 +1,85 @@
 ---
 title: Thumbnails
-description: Enable thumbnails (preview) on the fly with adaptive bitrate streaming.
-keywords: [Generating Thumbnails from streams, Generated Preview Images, Ant Media Server Documentation, Ant Media Server Tutorials]
+description: Generate live stream preview images with ABR in Ant Media Server—format, quality, interval, and URL access.
+keywords: [Thumbnails, generatePreview, stream preview, ABR, Ant Media Server Documentation]
 sidebar_position: 3
+sidebar_label: Thumbnails
 ---
 
 # Thumbnails
 
-Thumbnails are small, lightweight versions of images or videos, used as previews to represent larger files. They help users quickly browse content while saving bandwidth and loading time. Commonly used in galleries, video platforms, and file explorers.
+Ant Media Server can capture preview images from live streams while ABR is active. Thumbnails are useful in channel lists, dashboards, and VOD-style browsing without loading full video.
 
-## Enable Thumbnails
+## Prerequisites
 
-Ant Media Server can generate thumbnails (previews) of the incoming streams on the fly. This guide will help you learn configuration parameters for generating and using thumbnails.
-
-- To activate thumbnail generation, add at least one adaptive bitrate. You can do that in the dashboard using ```Application > live > Settings > Add New Bitrate```
+Add at least one adaptive bitrate profile (**Application → Your app → Settings → Adaptive Streaming → Add New Bitrate**).
 
 ![](@site/static/img/preview_1.png)
 
-- Enable the thumbnail feature from the web panel settings by checking the 'Generate Preview' checkbox:
+## Enable thumbnail generation
 
- ![](@site/static/img/enable-preview.png)
+**Web panel:** enable **Generate Preview** under application settings.
 
-- You can also enable it via Advanced application settings as well.
-- Go to the ```Application > Your App > Settings > click on basic > Switch to Advanced``` and search for `generatePreview` and set it to true.
+![](@site/static/img/enable-preview.png)
 
-  ```js
-  "generatePreview": true,
-  ```
+**Advanced settings:** set `generatePreview` to `true`:
 
-- After making the changes, save the settings.
+```js
+"generatePreview": true,
+```
 
+Save after changing settings.
 
-## Configuration Parameters
+## Configuration parameters
 
-Similarly, you can add/change other preview-related properties in the Advance settings of the application we changed above.
+Adjust these in **Application Settings → Advanced**:
 
-- ```previewFormat```: By default, the thumbnail image is saved in **png** format. If you prefer a different image format, you can update the corresponding parameter in the advanced settings. The supported formats include **jpg**, **png**, and **webp**. 
+| Property | Description |
+|----------|-------------|
+| `previewFormat` | Image format: `png` (default), `jpg`, or `webp` |
+| `previewQuality` | For JPG: `2`–`31` (lower = better quality; recommended `5`). For WEBP: `0`–`100` (recommended `75`). Not used for PNG. |
+| `previewHeight` | Thumbnail height in pixels (default `480`) |
+| `createPreviewPeriod` | Interval between captures in ms (default `5000`; use `1000` for one per second) |
+| `previewOverwrite` | `false` (default): new stream with same ID gets `_N` suffix; `true`: overwrite existing file |
+| `addDateTimeToMp4FileName` | Add date-time to recorded file names when `true` |
 
-  To achieve the desired format, ensure you select the appropriate option based on your requirements, such as file size, quality, and compatibility with your application. Adjusting this setting allows for greater flexibility in how the preview images are generated and used.
+Examples:
 
-  ```js
-  "previewFormat": "png",
-  ```
+```js
+"previewFormat": "png",
+"previewQuality": 5,
+"previewHeight": 480,
+"createPreviewPeriod": 1000,
+"previewOverwrite": false,
+"addDateTimeToMp4FileName": false,
+```
 
-- ```previewQuality```: Specify the preview quality for JPG and WEBP formats. Note that the preview quality isn't available for the PNG format.
-
-  - For `JPG`, the quality range is from 2 to 31, where 2 provides the best quality with the largest file size, and 31 delivers the lowest quality with the smallest file size. The recommended value for JPG is 5. 
- 
-    ```js
-    "previewQuality": 5,
-    ```
-  - For `WEBP`, the quality range is from 0 to 100, where 0 provides the lowest quality with the smallest file size, and 100 delivers the best quality with the largest file size. The recommended value for WEBP is 75. 
-
-    ```js
-    "previewQuality": 75,
-    ```
-
-
-- ```previewHeight```: The thumbnail image is saved as 480p by default. If you want to increase the resolution, change the following parameter in the advance settings.
-
-  ```js
-  "previewHeight": 480,
-  ```
-
-- ```createPreviewPeriod```: The default value for the thumbnail generation is 5000 ms. As an example, if you change it as follows, it will create a thumbnail every second.
-
-  ```js
-  "createPreviewPeriod": 1000,
-  ```
-
-- ```previewOverwrite```: The default value is false. If it is false, when a new stream is received with the same stream ID, the `_N (increasing number)` suffix is added to the thumbnail file name. If it is true, a new preview file will overwrite the old one.
-
-  ```js
-  "previewOverwrite": false,
-  ```
-
-- ```addDateTimeToMp4FileName```: The default value is false. If true, it adds a date-time value to file names. If false, it does not add date-time values to file names.
-
-  ```js
-  "addDateTimeToMp4FileName": false,
-  ```
-
-As an alternative, you can also enable this feature on the web panel by enabling the check box under ```Application >` Your App >` Settings >` Add Date-Time to Record File Names``` and saving the settings.
+You can also enable **Add Date-Time to Record File Names** from the web panel:
 
 ![](@site/static/img/preview_2.png)
 
-## Preview Thumbnail
+## Access preview URLs
 
-Access the generated thumbnails via the following URL template:
+While the stream is live:
 
-```html
+```
 http://<SERVER_NAME>:5080/live/previews/<STREAM_ID>.png
-
 http://<SERVER_NAME>:5080/live/previews/<STREAM_ID>.jpg
-
 http://<SERVER_NAME>:5080/live/previews/<STREAM_ID>.webp
 ```
 
-**With v2.4.3** and later, the `_finished` suffix is added to the PNG file after streaming has finished. So that it will be in the following template
+From **v2.4.3**, after the stream ends, the final image uses a `_finished` suffix:
 
-```html
+```
 http://<SERVER_NAME>:5080/live/previews/<STREAM_ID>_finished.png
-
-http://<SERVER_NAME>:5080/live/previews/<STREAM_ID>_finished.jpg
-
-http://<SERVER_NAME>:5080/live/previews/<STREAM_ID>_finished.webp
 ```
 
-The absolute path of the preview image is as follows:
+On disk, files are stored under:
 
 ```bash
 /usr/local/antmedia/webapps/live/previews/
 ```
 
-In addition to this, you can also upload thumbnail images to the S3 buckets. Please [check out the instructions for S3 Integration](https://antmedia.io/docs/category/s3-recording-and-integration/).
+Previews can also be uploaded to object storage with [S3 recording and integration](/category/s3-recording-and-integration/).
 
-
-<br /><br />
----
-
-<div align="center">
-<h2> 📸 Thumbnails delivered 🎯 </h2>
-</div>
-
-With **thumbnail previews enabled**, your viewers get a sneak peek before they dive in. Whether it's a **snapshot** of the action or a glimpse of the content, these **previews** enhance the browsing experience.
-
-Your streams are now not just watched; **they're previewed, engaged with, and remembered!** 🚀
-
+Thumbnails update on the interval you configure—use them anywhere you need a lightweight still from an active or recently finished stream.

@@ -1,134 +1,128 @@
 ---
 title: Webinar in Action
-description: Webinar in Action
-keywords: [Ant Media Conference, Ant Media Webinar, webinar tool installation, ant media conferencing, Publish, Multitrack conference, Ant Media Server Documentation, Ant Media Server Tutorials]
+description: Learn Circle Webinar roles and run a host, speaker, and listener session on Ant Media Server.
+keywords: [Circle Webinar usage, webinar host speaker listener, raise hand, Ant Media Server Documentation]
 sidebar_position: 3
+sidebar_label: Usage
 ---
 
-Before proceeding, let's first learn about the basic roles of the Circle Webinar solution:
+# Webinar in Action
 
-## Webinar Roles
+This guide walks through Circle Webinar roles and a typical session flow. Replace `YOUR_DOMAIN` and the app name (`webinar`) with your own values. Examples use room `room1`.
 
-A webinar typically involves three main roles:
+## Roles
 
-### 1. **Host (or Moderator)**
+| Role | Responsibility |
+| --- | --- |
+| **Host** (moderator) | Runs the session: visibility, mute/camera controls, approve speaker requests, demote temporary speakers |
+| **Speaker** (presenter) | Shares video, audio, or screen; usually a small set chosen by the host |
+| **Listener** (attendee) | Watches and listens; may use chat/Q&A; cannot broadcast unless the host promotes them |
 
--   Responsible for managing the webinar session.
--   Make the participants visible by the listeners
--   Controls muting/unmuting participants and turning off camera
--   Can accept listeners' requests to become a publisher
--   Can make the listener (temp speaker) listener again 
-    
+Listeners often receive **WebRTC** for interactivity or **HLS/DASH** when you need broader scale.
 
-### 2. **Speaker (or Panelist / Presenter)**
+## Join a room
 
--   Delivers the main content of the webinar (video, audio, or shared screen).
--   Can present slides, share the screen, and interact with the host and attendees in real time.
--   Typically limited to a few selected participants chosen by the host.
-    
-    
-### 3. **Listener (or Attendee / Participant)**
+### Host
 
--   Joins the webinar mainly to watch and listen.
--   Usually receives the stream with **WebRTC** (for interactivity) or **HLS/DASH** (for scalability).
--   Can interact through chat, Q&A, polls, or other audience engagement tools, depending on permissions given by the host.
--   Cannot directly broadcast audio/video unless promoted by the host. 
+```text
+https://YOUR_DOMAIN:5443/webinar/room1?role=host&streamName=host&skipSpeedTest=true
+```
 
-## Usage
+The host can see every speaker in the room.
 
-- Visit `https://domain:5443/webinar/room1?role=host&streamName=host&skipSpeedTest=true` to join as a **host**.
+![](@site/static/img/conference/webinar/host.webp)
 
-  The host can see every speaker in the room.
+### Speaker
 
-  ![](@site/static/img/conference/webinar/host.webp)
+```text
+https://YOUR_DOMAIN:5443/webinar/room1?role=speaker&streamName=speaker&skipSpeedTest=true
+```
 
+By default the speaker can also see the host. Visibility between roles is controlled by scope settings (below).
 
-- Visit `https://domain:5443/webinar/room1?role=speaker&streamName=speaker&skipSpeedTest=true`
+![](@site/static/img/conference/webinar/speaker.webp)
 
-  The speaker can also see the host but by changing the scope, it can be changed. We will discuss it further.
+### Listener
 
-  ![](@site/static/img/conference/webinar/speaker.webp)
+```text
+https://YOUR_DOMAIN:5443/webinar/room1?role=listener&streamName=listener&skipSpeedTest=true&playOnly=true
+```
 
+In `playOnly` mode, listeners typically do not see speakers until the host makes someone visible. They can still use the chat.
 
-- Visit `https://ovh36.antmedia.io:5443/webinar/room1?role=listener&streamName=listener&skipSpeedTest=true&playOnly=true` to join as a listener in `playOnly` mode.
+![](@site/static/img/conference/webinar/listener.webp)
 
-  It means the listener cannot see anyone when joining by default but he/she can still ask the questions via the chat box.
+## Make a speaker visible to listeners
 
-  ![](@site/static/img/conference/webinar/listener.webp)
+The host can allow a speaker to be watched by every listener. Use the control highlighted below:
 
+![](@site/static/img/conference/webinar/active-speaker.webp)
 
-- Now, the host has a control to allow the speaker to be visible to the listeners.
+Listeners then see that speaker in the room.
 
-  Check out the highlighted item in the below image to allow the speaker to be watched by every listener.
+## Promote a listener to speaker
 
-  ![](@site/static/img/conference/webinar/active-speaker.webp)
+1. The listener raises their hand:
 
+![](@site/static/img/conference/webinar/request-for-publisher.webp)
 
-- Now, you will see that the listener is able to see the speaker in a room.
+2. The host approves or denies the request:
 
-- Now if the listener wants to become a speaker, the listener needs to raise their hand.
+![](@site/static/img/conference/webinar/publisher-request.webp)
 
-  ![](@site/static/img/conference/webinar/request-for-publisher.webp)
+That is the core webinar loop: stage presenters, open the floor when needed, and keep the audience in sync.
 
+## Role visibility (scope)
 
-- After that, the request goes to the host and now the host can allow/deny the listener's request. Check out the below image for reference:
-
-  ![](@site/static/img/conference/webinar/publisher-request.webp)
-
-In this way, the basic webinar usage is done using AMS and the Circle Webinar Solution.
-
-## Scope of Roles
-
-The scope of roles can be changed via application advanced settings under the below property
+Who can see whom is defined in application **Advanced Settings** under:
 
 ```json
-"participantVisibilityMatrix":
+"participantVisibilityMatrix"
 ```
 
 :::info
-- The main roles are `host`, `speaker`, `listener` and `active speaker (the one when host allow speaker to be visible by listener)`
-
-- The other roles are not important in the basic webinar case, but can be used for advanced purposes.
+Core roles for a basic webinar are `host`, `speaker`, `listener`, and `active_speaker` (a speaker the host has made visible to listeners). Other roles exist for advanced setups.
 :::
 
-- The **host** can see everyone:
+**Host** can see everyone:
 
-  ```json
-   "host": [
-      "host",
-      "active_host",
-      "speaker",
-      "active_speaker",
-      "listener",
-      "temp_listener",
-      "active_temp_listener"
-    ],
-  ```
+```json
+"host": [
+  "host",
+  "active_host",
+  "speaker",
+  "active_speaker",
+  "listener",
+  "temp_listener",
+  "active_temp_listener"
+]
+```
 
-- The **speaker** can also see everyone but you can change the scope as per the requirements:
+**Speaker** can see a broad set (adjust as needed):
 
-  ```json
-   "speaker": [
-      "host",
-      "active_host",
-      "speaker",
-      "active_speaker",
-      "temp_listener",
-      "active_temp_listener"
-    ],
-  ```
+```json
+"speaker": [
+  "host",
+  "active_host",
+  "speaker",
+  "active_speaker",
+  "temp_listener",
+  "active_temp_listener"
+]
+```
 
-- The **listener** can only see limited users:
+**Listener** sees only activated stage roles:
 
-  ```json
-   "listener": [
-      "active_host",
-      "active_speaker",
-      "active_temp_listener"
-    ]
-  ```
+```json
+"listener": [
+  "active_host",
+  "active_speaker",
+  "active_temp_listener"
+]
+```
 
+## Try it live
 
-Visit [**here**](https://meet.antmedia.io/webinar/) to test the Circle Webinar Solution using the URL format described above.
+Test the same URL pattern on the public demo: [meet.antmedia.io/webinar](https://meet.antmedia.io/webinar/).
 
-Stay tuned with Ant Media Server for upcoming features! :)
+You now have roles, join links, and visibility under control. Open a room, bring a speaker on stage, and invite your audience—your webinar is ready to go live.

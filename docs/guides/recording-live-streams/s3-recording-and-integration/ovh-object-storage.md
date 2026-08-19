@@ -2,7 +2,7 @@
 title: OVH Object Storage
 description: Record streams to OVH Object Storage
 keywords: [S3 Integration with Ant Media Server, S3 Integration, Record streams to OVH Object Storage, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 # Record Streams To OVH Object Storage

@@ -1,77 +1,125 @@
 ---
-title: API Security (JWT) 
-description: This document contains guide for JWT REST API filter, JWT tokens and JWT token with expiration time.
-keywords: [JWT REST API filter, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 2
+title: Secure with JWT
+description: Protect Ant Media Server application REST APIs with JWT Bearer tokens or JWKS.
+keywords: [JWT REST API Filter, JWT Token, JWKS, Ant Media Server Documentation]
+sidebar_position: 3
+sidebar_label: Secure with JWT
 ---
 
-# JWT REST API Filter Guide
+# Secure with JWT
 
-This guide will walk you through the steps to use the JWT REST API Filter in Ant Media Server.
+Use JWT when clients outside a fixed IP set need to call application REST APIs (`/{application}/rest/v2/...`). Tokens are sent in the `Authorization` header and verified with a shared secret (HMAC-SHA256) or JWKS.
 
-## Step 1: Introduction
+Learn more about JWT at [jwt.io](https://jwt.io).
 
-Understand that by default, the JWT REST API Filter is disabled and the REST API IP Filter is enabled in Ant Media Server. The JWT Filter can be used when you consume the REST API from different endpoints. For more information about JWT, visit [jwt.io](https://jwt.io).
+:::info
+IP filter is enabled by default. Prefer a clear security model: for remote JWT access, allow the caller IP or disable conflicting IP restrictions so JWT can take effect as intended.
+:::
 
-## Step 2: Enable JWT Filter
+## Enable the JWT REST filter
 
-The first step is to enable the JWT REST API Filter in Ant Media Server. Go to the web panel, find the setting for JWT REST API Filter, and enable it. Also, enter the Secret key which will be used for encrypting with `HMAC-SHA256` in the JWT REST API Filter.
+1. Open the web panel → your application → settings.
+2. Enable **JWT REST API Filter**.
+3. Set a **Secret key** used for HMAC-SHA256 signing.
 
 ![](@site/static/img/jwt-filter-enable.png)
 
-## Step 3: Generate a JWT Token
+## Generate a JWT Token
 
-Next, generate a JWT token. For this example, let's assume our secret key is `zautXStXM9iW3aD3FuyPH0TdK4GHPmHq`. There are plenty of libraries available for JWT token creation, which can be found at [Libraries for JWT](https://jwt.io/libraries/). For this example, we'll use the [Debugger at JWT](https://jwt.io/#debugger-io).
+Use any JWT library, or the [JWT Debugger](https://jwt.io/#debugger-io) encoder.
 
-![](@site/static/img/generate_jwt_token.png)
+### Parameters
 
-Use the `HS256` algorithm and the secret key `zautXStXM9iW3aD3FuyPH0TdK4GHPmHq` to generate the token. This will be our JWT token to access the REST API:
+| Field | Value |
+|-------|-------|
+| **Algorithm** | `HS256` |
+| **Secret** | `exMtFMuF7NmMkbkzhWXjtsTXa1jYUiXP` |
+| **Payload** | Include an `exp` claim (Unix epoch seconds) so the token expires |
+
+**Header:**
+
+```json
+{
+  "alg": "HS256",
+  "typ": "JWT"
+}
+```
+
+**Payload (with expiration):**
+
+```json
+{
+  "exp": 1785508841
+}
+```
+
+`exp` is a Unix timestamp in **seconds**. After that time, AMS rejects the token. Convert dates to epoch (and back) with an [Epoch timestamp converter](https://www.epochconverter.com/).
+
+![](@site/static/img/rest-api/jwt-token.png)
+
+### Example encoded token
+
+The debugger produces a token like:
 
 ```
-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0b2tlbiIsImlhdCI6MTUxNjIzOTAyMn0.OESIxgNsnD_JwByKTXcrw9Ov4GaOUZw66QxMfmudhKQ
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3ODU1MDg4NDF9.eA9ZDF9ZyjeSo0s-zkI9mvxoyxl4DhSrU9yM4skknhk
 ```
 
-## Step 4: Generate JWT Token with Expiration Time(Optional)
+Use the **same secret** in the JWT Debugger that you configured in the application JWT REST API Filter settings.
 
-It is also possible to generate a JWT token with an expiration time. For this, you can use the exp option in JWT. The token's expiration time is a Unix timestamp, and the token will become invalid once it expires.
+## Call the API with the token
 
-![](@site/static/img/rest-api/generate-jwt-expire-time.png)
-
-## Step 5: Use JWT Token for Accessing REST Filter API
-
-To use the JWT token, simply add it to the `Authorization` header as shown below:
+Pass the JWT as a Bearer token in the `Authorization` header:
 
 ```bash
-curl -X POST -H "accept: application/json" -H "Content-Type: application/json" -H "Authorization: Bearer {JWTToken}" "https://{domain:5443}/{application}/rest/v2/broadcasts/create" -d '{"name":"streamName"}'
+curl -X POST \
+  -H "Accept: application/json" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer {JWTToken}" \
+  "https://{domain:5443}/{application}/rest/v2/broadcasts/create" \
+  -d '{"name":"streamName"}'
 ```
 
-Replace `{JWTToken}` with your actual JWT token when making requests.
+Example:
 
-## Step 6: Enable JWKS (Optional)
-
-If you want to use the JSON Web Key Set (JWKS) feature, you need to have an OAuth server like auth0.com. You can also build your own OAuth server system with [Hydra](https://www.ory.sh/hydra/docs/install). For JWKS configurations, add parameters to the `/usr/local/antmedia/webapps/{App-Name}/WEB-INF/red5-web.properties` file:
-
+```bash
+curl -X POST \
+  -H "Accept: application/json" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3ODU1MDg4NDF9.eA9ZDF9ZyjeSo0s-zkI9mvxoyxl4DhSrU9yM4skknhk" \
+  "https://test.antmedia.io:5443/live/rest/v2/broadcasts/create" \
+  -d '{"name":"test"}'
 ```
-settings.jwtControlEnabled=true
-settings.jwksURL=YOUR_JWKS_URL
-```
 
-**For example:**
+![](@site/static/img/rest-api/jwt-api-call.png)
 
-```
+## Optional: JWKS
+
+For tokens issued by an OAuth provider (for example Auth0 or [Hydra](https://www.ory.sh/hydra/docs/install)), configure JWKS in the application properties file:
+
+`/usr/local/antmedia/webapps/{App-Name}/WEB-INF/red5-web.properties`
+
+```properties
 settings.jwtControlEnabled=true
 settings.jwksURL=https://antmedia.us.auth0.com
 ```
 
-Ant Media Server using JWKS needs the public keys used by the signing party to validate signatures. A JWKS's structure looks like this: [https://antmedia.us.auth0.com/.well-known/jwks.json](https://antmedia.us.auth0.com/.well-known/jwks.json).
+AMS loads public keys from the provider’s JWKS document (for example `https://antmedia.us.auth0.com/.well-known/jwks.json`) to verify signatures.
 
-Once you're finished adding properties, restart the Ant Media Server instance.
+Restart after changing properties:
 
 ```bash
 sudo service antmedia restart
 ```
-After these configurations are applied, you can start taking advantage of the JWKS feature in your structure, just like with JWT Filter.
 
-## Congratulations!
+## Troubleshooting
 
-You now have a fully secured REST API using JWT or JWKS, allowing flexible and safe access to your Ant Media Server from multiple endpoints. Your tokens are in place, and your API calls are protected — you’re ready to manage broadcasts, VODs, and server configurations with confidence!
+| Symptom | Likely cause | Fix |
+|---------|--------------|-----|
+| `401` / unauthorized | Wrong secret or algorithm | Regenerate the token with HS256 and the exact secret from settings |
+| Token works in debugger but not AMS | Extra whitespace / wrong header name | Use `Authorization: Bearer <token>` with no line breaks |
+| Expired token | `exp` in the past | Issue a new token with a future `exp` ([epoch converter](https://www.epochconverter.com/)) |
+| Still blocked after enabling JWT | IP filter rejects the client | Allow the client IP or adjust IP filter settings |
+| JWKS verification fails | Wrong `jwksURL` or unreachable IdP | Confirm the JWKS URL in a browser; check server can reach it |
+
+Once tokens validate cleanly, your backends can create and manage streams from anywhere without opening the REST API to the public internet by IP alone.

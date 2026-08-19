@@ -2,7 +2,7 @@
 title: Digital Ocean Spaces
 description: Record streams to Digital Ocean Spaces
 keywords: [S3 Integration with Ant Media Server, S3 Integration, Record streams to Digital Ocean Spaces, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 3
+sidebar_position: 9
 ---
 
 # Record Streams To Digital Ocean Spaces Object Storage

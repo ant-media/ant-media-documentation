@@ -1,5 +1,5 @@
 ---
-title: Room Security
+title: Conference Room Security
 description: Video Conference Room Security with AMS
 keywords: [Conference Ant Media, Ant Media conference room security, ant media conference token, ant media conference room password, ant media conference room, ant media video conference room security, Ant Media video conference, ant media conferencing, Publish, Multitrack conference, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 3
@@ -7,7 +7,7 @@ sidebar_position: 3
 
 # Room Security
 
-In Ant Media Server, each participant and the conference room itself are treated as individual broadcasts. This means that all [Stream Security](https://antmedia.io/docs/category/stream-security/) features apply to both on the conferencing as well.
+In Ant Media Server, each participant and the conference room itself are treated as individual broadcasts. This means that all [Stream Security](/category/stream-security/) features apply to both on the conferencing as well.
 
 ## Secure Rooms With Tokens
 
@@ -15,13 +15,13 @@ To secure a conference room, enable token security settings for both publishing 
 
 The generated publish token must be passed to both ```.publish()``` and ```.play()``` functions in conferencing. Otherwise, the participant won't be able to join the room.
 
-A generated token can be a [JWT](https://antmedia.io/docs/guides/stream-security/jwt-stream-security-filter/) or [One Time Token](https://antmedia.io/docs/guides/stream-security/one-time-token-control/). We use the JWT token for this document.
+A generated token can be a [JWT](/guides/stream-security/jwt-stream-security-filter/) or [One-Time Token](/guides/stream-security/one-time-token-control/). We use the JWT token for this document.
 
 ### Security with JSON Web Tokens
 
 #### Step 1: Enable JWT Security
 
-Go to the Ant Media Server web panel and enable JWT for both publish and play. For more details on how to do that, check [JWT Stream Security](https://antmedia.io/docs/guides/stream-security/jwt-stream-security-filter/) document.
+Go to the Ant Media Server web panel and enable JWT for both publish and play. For more details on how to do that, check the [JWT Stream Token](/guides/stream-security/jwt-stream-security-filter/) document.
 
 #### Step 2: Generate JWT with Room ID
 
