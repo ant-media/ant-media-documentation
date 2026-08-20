@@ -1,15 +1,22 @@
 ---
-title: JWT Stream Security Filter
-description: This guide explains stream security options in Ant Media Server, and how you can Enable Disable, or Accept Undefined Streams.
-keywords: [Enable or Disable Undefined Streams, Accept Undefined Streams, One Time Token Control, Stream security, Ant Media Server Documentation, Ant Media Server Tutorials]
+title: JWT Stream Token
+description: Protect publish and play with JWT tokens that support configurable expiration in Ant Media Server.
+keywords: [JWT Stream Token, JWT filter, Stream Security, Ant Media Server Documentation]
 sidebar_position: 3
+sidebar_label: JWT Stream Token
 ---
 
-You can enable JWT Stream Security Filter for publishing and playing from the application's settings via the AMS web panel. You have the option to use both the publish and playback tokens simultaneously or just one at a time.
+# JWT Stream Token
+
+Enable JWT stream security for publish and/or play from the application settings in the web panel. You can require a JWT for publish only, play only, or both.
 
 ![](@site/static/img/ant-media-server-jwt-stream-security-filter-dashboard.png)
 
 Sending a token parameter with every publish request and play request is required if the JWT token is enabled. There will be an unauthorized access error if there is no token.
+
+:::tip
+A JWT can be used any number of times before its expire time. After it expires, generate a new token.
+:::
 
 ## Generate JWT Token
 
@@ -53,114 +60,132 @@ curl -X 'GET' 'https://IP-address-or-domain:5443/live/rest/v2/broadcasts/streamI
 
 Expire Date format is in Unix Timestamp. You can get the timestamp [here](https://www.epochconverter.com/).
 
-## JWT Token usage with streaming protocols
+## Use the token with streaming protocols
 
-In this section, we will look at how to use the JWT token with various streaming protocols for publishing and playback.
+Pass the JWT as the `token` query parameter (or WebSocket field) on publish and play requests.
 
-### RTMP, SRT and WebRTC Publish URL usage
+### Publish
 
-**RTMP:**
-`rtmp://IP-address-or-domain/live/StreamId?token=tokenId`
+#### RTMP
 
-**SRT:** 
-`srt://IP-address-or-domain:4200?streamid=live/your-streamId,token=tokenId`
+```
+rtmp://IP-address-or-domain/live/StreamId?token=tokenId
+```
 
-**WebRTC:**
-`https://domain:5443/live?id=streamId&token=tokenId`
+#### SRT
 
-Above is the URL if you are using the [webrtc sample page](https://antmedia.io/docs/guides/publish-live-stream/webrtc/) for publishing.
+```
+srt://IP-address-or-domain:4200?streamid=live/your-streamId,token=tokenId
+```
 
-If you are using the WebSocket URL to connect with the server, then token parameter should be inserted to WebSocket message. Also please have a look at the principles described in the [WebRTC publishing page](https://antmedia.io/docs/guides/publish-live-stream/webrtc/webrtc-websocket-messaging-reference/#publishing-webrtc-stream).
+#### WebRTC
+
+If using the [WebRTC sample page](/guides/publish-live-stream/webrtc/):
+
+```
+https://domain:5443/live?id=streamId&token=tokenId
+```
+
+If connecting over WebSocket, include `token` in the publish message. See the [WebRTC publishing reference](/guides/publish-live-stream/webrtc/webrtc-websocket-messaging-reference/#publish-webrtc-stream).
 
 ```shell
-# Secure WebSocket: 
+# Secure WebSocket
 wss://{ant-media-server}:5443/live/websocket
 
-# Non Secure WebSocket: 
+# Non-secure WebSocket
 ws://{ant-media-server}:5080/live/websocket
 ```
 
 ```json
 {
-  command : "publish",
-  streamId : "stream1",
-  streamName : "streamName",
-  token : "token",
+  "command": "publish",
+  "streamId": "stream1",
+  "streamName": "streamName",
+  "token": "token"
 }
 ```
 
-### VoD, HLS, CMAF (DASH) and WebRTC Playback URL usage
+### Play
 
-**VOD:**
+#### VoD
 
-If using the embedded (play.html) player URL:
+If using the embedded (`play.html`) player:
+
 ```
 https://IP-address-or-domain:5443/Application_Name/play.html?id=streams/stream_id.mp4&playOrder=vod&token=tokenId
 ```
-If you directly want to use mp4 URL then it will be as follows:
+
+If using the MP4 URL directly:
+
 ```
 https://IP-address-or-domain:5443/Application_Name/streams/stream_id.mp4?token=tokenId
 ```
-**HLS:**
 
-If using the embedded (play.html) player URL:
+#### HLS
+
+If using the embedded (`play.html`) player:
+
 ```
 https://IP-address-or-domain:5443/Application_Name/play.html?id=stream_id&playOrder=hls&token=tokenId
 ```
 
-If you directly want to use m3u8 URL then it will be as follows:
+If using the `.m3u8` URL directly:
 
 ```
 https://IP-address-or-domain:5443/Application_Name/streams/stream_id.m3u8?token=tokenId
 ```
 
-**CMAF (DASH):**
+:::info
+If **Adaptive Bitrate (ABR)** is enabled and the stream is published over **WebRTC**, the original `.m3u8` (for example `streamId.m3u8`) is not generated. Use an adaptive or resolution-specific playlist instead:
 
-If using the embedded (play.html) player URL:
+```
+https://<server>:5443/live/streams/<streamId>_adaptive.m3u8?token=<token>
+```
+
+```
+https://<server>:5443/live/streams/<streamId>_480p1000kbps.m3u8?token=<token>
+```
+:::
+
+#### CMAF (DASH)
+
+If using the embedded (`play.html`) player:
+
 ```
 https://IP-address-or-domain:5443/Application_Name/play.html?id=stream_id&playOrder=dash&token=tokenId
 ```
 
-If you directly want to use mpd URL then it will be as follows:
+If using the `.mpd` URL directly:
 
 ```
 https://IP-address-or-domain:5443/Application_Name/streams/streamId/streamId.mpd?token=tokenId
 ```
 
-**WebRTC:**
+#### WebRTC
 
-If using the embedded (play.html) player URL:
+If using the embedded (`play.html`) player:
 
-`https://IP-address-or-domain:5443/Application_Name/play.html?id=streamId&token=tokenId`
+```
+https://IP-address-or-domain:5443/Application_Name/play.html?id=streamId&token=tokenId
+```
 
-If you are using the WebSocket URL to connect with the server, then token parameter should be inserted to WebSocket message. Also please have a look at the principles described in the [WebRTC playing page](https://antmedia.io/docs/guides/publish-live-stream/webrtc/webrtc-websocket-messaging-reference/#playing-webrtc-stream).
+If connecting over WebSocket, include `token` in the play message. See the [WebRTC playing reference](/guides/publish-live-stream/webrtc/webrtc-websocket-messaging-reference/#play-webrtc-stream).
 
 ```shell
-# Secure WebSocket: 
+# Secure WebSocket
 wss://{ant-media-server}:5443/live/websocket
 
-# Non Secure WebSocket: 
+# Non-secure WebSocket
 ws://{ant-media-server}:5080/live/websocket
 ```
 
 ```json
 {
-  command : "play",
-  streamId : "stream1",
-  streamName : "streamName",
-  token : "token",
+  "command": "play",
+  "streamId": "stream1",
+  "streamName": "streamName",
+  "token": "token"
 }
 ```
 
-<br /><br />
----
-
-<div align="center">
-<h2> 🔑 Access Granted Only to the Rightful Heir(Token)! 🎯 </h2>
-</div>
-
-With the **JWT Stream Security Filter enabled**, only streams accompanied by valid tokens can publish or play. Unauthorized attempts are blocked automatically, giving you full control over who can access your content and unlike One-Time Token control, which generates a **new token for each session** and expires after a single use, **JWT tokens are more flexible**, allowing for **configurable expiration times** and supporting multiple streaming scenarios with a single token.  
-
-Your streams are now fortified with token-based security — **smart, seamless, and fully under your control!** 🔐🚀
-
-
+JWT lets you set how long access lasts and reuse a token within that window—ideal when one-time tokens are too strict for your workflow.

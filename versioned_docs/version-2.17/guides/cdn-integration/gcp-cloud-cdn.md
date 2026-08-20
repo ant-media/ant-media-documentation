@@ -1,89 +1,121 @@
 ---
-
 title: Google Cloud CDN
-description: Ant Media Server Integration with Google Cloud CDN
+description: Deploy Ant Media Server on Google Cloud and deliver HLS streams through Cloud CDN with a load balancer origin.
 keywords: [Google Cloud CDN, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 1
+sidebar_label: Google Cloud CDN
 ---
 
 # Google Cloud CDN Integration with Ant Media Server
 
-Streaming high-quality video content to a large audience demands robust infrastructure. This guide explains how to use Google Cloud CDN with Ant Media Server to deliver HLS streams at scale.
+Deliver live **HLS** streams to a global audience by placing **Google Cloud CDN** in front of Ant Media Server. Viewers request segments from nearby edge caches instead of your origin server, which reduces latency and improves playback at scale.
 
-## What is Google Cloud CDN?
+## What you'll accomplish
 
-[Google Cloud CDN](https://cloud.google.com/cdn?hl=en) is a global network of edge servers distributed worldwide. By caching content at these edge locations, it reduces latency and improves content delivery performance for end users.
+By the end of this guide, you will:
+
+1. Deploy **Ant Media Server Enterprise Edition** from Google Cloud Marketplace.
+2. Configure **Cloud CDN** with a load balancer pointing to your Ant Media Server origin.
+3. Publish a live stream to Ant Media Server.
+4. Play the stream through the Cloud CDN load balancer URL.
+
+## How Cloud CDN works with Ant Media Server
+
+Ant Media Server generates HLS segments on the origin instance. Cloud CDN caches those segments at edge locations worldwide. When a viewer plays a stream, requests are served from the nearest cache whenever possible.
+
+The load balancer is the public entry point. Cloud CDN caches HLS playlists and segments from your Ant Media Server origin on port **5080** (HTTP) or **5443** (HTTPS).
 
 ## Prerequisites
 
-Before beginning, make sure the following services are enabled in your Google Cloud account:
+Before you begin, confirm the following:
 
-- Google Cloud Marketplace
-- Compute Engine
-- Load Balancing
-- Cloud CDN
+- A [Google Cloud account](https://console.cloud.google.com/) with billing enabled.
+- These APIs/services enabled: **Compute Engine**, **Load Balancing**, and **Cloud CDN**.
+- Access to [Google Cloud Marketplace](https://console.cloud.google.com/marketplace).
+- [HLS enabled](/guides/playing-live-stream/hls-playing/) on your Ant Media Server application.
 
-## Launch Ant Media Server Enterprise Edition
+:::info
+This guide uses **Ant Media Server Enterprise Edition** from Google Cloud Marketplace. You need Enterprise for production CDN deployments at scale.
+:::
 
-Ant Media Server Enterprise Edition is available on Google Cloud Marketplace.
+## Step 1: Launch Ant Media Server on Google Cloud
 
-1. Open [Google Cloud Marketplace](https://console.cloud.google.com/marketplace) and locate **Ant Media Server Enterprise Edition**.
+1. Open [Google Cloud Marketplace](https://console.cloud.google.com/marketplace) and search for **Ant Media Server Enterprise Edition**.
 
-![ams-gcp-marketplace](@site/static/img/cdn-integration/ams-gcp-marketplace.webp)
+   ![](@site/static/img/cdn-integration/ams-gcp-marketplace.webp)
 
-2. Click **Launch** to start the installation.
+2. Click **Launch** and complete the deployment wizard.
 
-![ams-gcp-launch](@site/static/img/cdn-integration/ams-gcp-launch.webp)
+   ![](@site/static/img/cdn-integration/ams-gcp-launch.webp)
 
-3. After deployment, note the **External IP address** of the instance. This will be required in later steps.
+3. After deployment finishes, open the VM instance and note its **External IP address**. You will use this as the Cloud CDN origin.
 
-![ams-gcp-instance](@site/static/img/cdn-integration/ams-gcp-instance.webp)
+   ![](@site/static/img/cdn-integration/ams-gcp-instance.webp)
 
+## Step 2: Configure Cloud CDN
 
-## Configure Google Cloud CDN
+1. In the Google Cloud console, open **Network Services → Cloud CDN** and click **Add origin**.
 
-After launching Ant Media Server on Google Cloud, configure Cloud CDN:
+   ![](@site/static/img/cdn-integration/gcp-cloud-cdn.webp)
 
-1. Navigate to the **Cloud CDN** service and select **Add Origin**.
+2. Select **Custom origin** and enter:
+   - **Origin address:** the Ant Media Server **External IP**
+   - **Port:** `5080` for HTTP (or `5443` if SSL is configured on the origin)
+   - **Origin name:** a descriptive label (for example, `ams-origin`)
 
-![gcp-cloud-cdn](@site/static/img/cdn-integration/gcp-cloud-cdn.webp)
+   ![](@site/static/img/cdn-integration/cloud-cdn-origin-configuration.webp)
 
-2. Choose **Custom Origin** and enter the **External IP address** of the Ant Media Server Enterprise instance with port **5080**. Provide an origin name and continue.
+3. Choose **Create new load balancer**, enter a name, and continue.
 
-![cloud-cdn-origin-configuration](@site/static/img/cdn-integration/cloud-cdn-origin-configuration.webp)
+   ![](@site/static/img/cdn-integration/cloud-cdn-load-balancer.webp)
 
-3. Select **Create new load balancer**, enter a name for it, and continue.
+4. Configure **TTL settings** for your caching policy. Defaults work for most HLS live streaming setups. Complete the wizard.
 
-![cloud-cdn-load-balancer](@site/static/img/cdn-integration/cloud-cdn-load-balancer.webp)
+   ![](@site/static/img/cdn-integration/cloud-cdn-cache-configuration.webp)
 
-4. Configure **TTL settings** as needed. Leave other settings at default and complete the setup.
+5. Note the **load balancer IP address** when provisioning completes. This is the public URL viewers will use.
 
-![cloud-cdn-cache-configuration](@site/static/img/cdn-integration/cloud-cdn-cache-configuration.webp)
+:::tip Live HLS caching
+Use short TTL values for live `.m3u8` playlists and longer TTLs for `.ts` segments if your Cloud CDN policy allows split rules. This keeps playlists fresh while still benefiting from segment caching.
+:::
 
+## Step 3: Publish a live stream
 
-## Publish Live Stream with Ant Media Server
+1. Publish a stream to Ant Media Server. For this example, use [OBS](/guides/publish-live-stream/rtmp/publish-with-obs/) to send an RTMP publish.
+2. Confirm the stream is live in the Ant Media Server web panel before testing playback.
+3. Use your application name in playback URLs — for example, `live`.
 
-Once the Cloud CDN is configured, you can broadcast a live stream with Ant Media Server:
+See the [Publish Live Stream](/guides/publish-live-stream/webrtc/) guides for other ingest options.
 
-1. Follow the [Publish Live Stream](https://antmedia.io/docs/category/publish-live-stream/) guide to broadcast. For this example, publish an RTMP stream using [OBS](https://antmedia.io/docs/guides/publish-live-stream/rtmp/publish-with-obs/).
+## Step 4: Play through Cloud CDN
 
-2. Create an HLS playback URL using the Cloud CDN load balancer IP address:
+Build the HLS playback URL using your **load balancer IP**, **application name**, and **stream ID**:
 
-```html
-http://your_cloudcdn_load_balancer_ip_address/live/play.html?id=your_stream_Id&playOrder=hls
+```text
+http://{LOAD_BALANCER_IP}/{YOUR_APP}/play.html?id={STREAM_ID}&playOrder=hls
 ```
 
-3. Open the URL in your browser to test playback.
+Example:
+
+```text
+http://203.0.113.10/live/play.html?id=stream01&playOrder=hls
+```
+
+Open the URL in a browser. If Cloud CDN and HLS are configured correctly, the stream plays through the CDN edge network.
+
+![](@site/static/img/cdn-integration/cloud-cdn-playback.webp)
+
+The screenshot above shows HLS playback through the Cloud CDN load balancer after a successful publish.
 
 ---
 
-## Congratulations! 
+## Troubleshooting
 
-By completing these steps, you have:
+| Symptom | What to check |
+|---------|----------------|
+| Playback URL does not load | Load balancer IP is correct, origin port is open (`5080` or `5443`), firewall rules allow traffic to Ant Media Server. |
+| Stream not found | Stream is publishing, application name in URL matches your app (for example, `live`), stream ID is correct. |
+| Buffering or stale playlist | TTL may be too high for live `.m3u8` files; reduce playlist cache duration in Cloud CDN settings. |
+| Origin errors in CDN logs | Ant Media Server is running, HLS is enabled, and the origin IP/port in Cloud CDN matches the VM. |
 
-- Deployed Ant Media Server Enterprise on Google Cloud.
-- Configured Google Cloud CDN with a load balancer in front of Ant Media Server.
-- Published and played back an HLS stream delivered via Cloud CDN.
-
-You can now scale video delivery to a global audience with reduced latency and improved reliability using Google Cloud’s infrastructure.
-
+For HLS setup details, see [HLS playing](/guides/playing-live-stream/hls-playing/).

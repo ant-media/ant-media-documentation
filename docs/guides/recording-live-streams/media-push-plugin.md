@@ -2,258 +2,215 @@
 title: Media Push Plugin
 description: This guide explains how to stream and record any specific web page using the media push plugin
 keywords: [Media Push Plugin, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 6
+sidebar_position: 8
 ---
 
 # Media Push Plugin
-  
-Explore the simplicity of recording and live streaming advanced scenarios such as conference call, Player Kill and more, with [Ant Media Server’s](https://github.com/ant-media/Ant-Media-Server/) Media Push Plugin🚀. This user-friendly tool lets you stream any web page. Simply provide a URL to the plugin, and the plugin loads the web page on the server side and streams it in real time. You can then record 🎥 or re-stream the video if needed.
-  
 
-## How Media Push Works  
+The Media Push Plugin lets Ant Media Server stream any web page — a conference call, a browser-based overlay, a custom dashboard — by loading it server-side and capturing it in real time. Give it a URL, and it streams that page back into Ant Media Server, where you can record it, re-stream it, or play it back like any other stream.
 
-Media Push opens up Headless Chrome on the server side. A user can send a REST request with the URL of the page that is desired to be recorded. When the request is received on the server side, a new Chrome tab is opened with the URL. As soon as the page gets loaded, the screen is recorded using Media Stream APIs and re-streamed back to Ant Media Server, from where you can record the stream or play back the stream using WebRTC HLS or Dash.  
-  
+By the end of this guide, you'll have the plugin installed and be broadcasting, recording, and optionally scripting a web page through it.
 
-## Features  
-  
+## How Media Push Works
 
-### 1. Broadcast the URL
-  
-Broadcast the URL, including all animations and overlays, by capturing the view and audio in real time.
-  
+Media Push runs a headless Chrome instance on the server side. When you send a REST request with the URL of the page you want captured, AMS opens a new Chrome tab at that URL. Once the page loads, the screen is captured using Media Stream APIs and re-streamed back into Ant Media Server — from there, you can record the stream or play it back over WebRTC, HLS, or DASH like any other stream.
 
-### 2. Record All Activities in the URL
-  
-You can record the broadcast if needed. But you need to start the recording manually with the REST API or via the Ant Media Server Dashboard.
+## What It Can Do
 
-### 3. Play the Stream
+- **Broadcast the URL** — capture the page's view and audio in real time, including animations and overlays.
+- **Record the broadcast** — optional, and started manually via the REST API or the AMS dashboard.
+- **Play the stream** — in real time over WebRTC, or at low latency over HLS, DASH, or CMAF.
 
-Play the stream in real-time (WebRTC) or with low latency (HLS, DASH, CMAF).
+## Install the Plugin
 
-## How to Install
-
- - Connect your Ant Media Server Instance via terminal  
-    
- - Get the installation script   
+1. Connect to your Ant Media Server instance via terminal.
+2. Download the installation script:
 
    ```bash
    wget -O install_media-push-plugin.sh https://raw.githubusercontent.com/ant-media/Plugins/master/MediaPushPlugin/src/main/script/install_media-push-plugin.sh && chmod 755 install_media-push-plugin.sh
-   ```  
-    
- - Run the installation script  
+   ```
 
-   ```bash  
-   sudo ./install_media-push-plugin.sh  
-   ```  
+3. Run it:
 
- - New file need antmedia ownership so run below command
+   ```bash
+   sudo ./install_media-push-plugin.sh
+   ```
+
+4. Fix ownership on the newly installed files:
 
    ```bash
    sudo chown -R antmedia:antmedia /usr/local/antmedia
    ```
 
- - Restart the service  
+5. Restart the service:
 
    ```bash
    sudo service antmedia restart
    ```
-  
 
-## How to Use  
-  
-The Media Push Plugin includes a REST API that allows you to control the plugin remotely. This API can be used to manage settings, initiate broadcasts, and interact with other features provided by the plugin programmatically.  
+## Using the Plugin
 
-### Start the broadcast  
-  
-To have the Ant Media Server broadcast a web page, use the REST method described below. You must provide the URL of the web page you wish to broadcast. Optionally, you can specify a streamId by including it as a query parameter.
+The plugin exposes a REST API to start, stop, and control broadcasts programmatically.
 
-```bash  
-curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "https://ant-media-server-domain:5443/live/rest/v1/media-push/start?streamId=mediapush" -d '{"url": "URL_TO_RECORD", "width": 1280, "height": 720}'  
-```  
-  
-Expected Response Upon successful execution, the server should respond as follows. Note that the `dataId` field represents the generated streamId that we mentioned as a query parameter.
+### Start a Broadcast
+
+Provide the URL of the page to broadcast. You can optionally specify a stream ID as a query parameter.
 
 ```bash
-HTTP/1.1 200 
-Content-Type: Application/json
-Content-Length: 80
-Date: Mon, 05 Feb 2024 15:23:42 GMT {"success":true,"message":null,"dataId":"mediapush","errorId":0}
+curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "https://<DOMAIN_NAME>:5443/<APP_NAME>/rest/v1/media-push/start?streamId=<STREAM_ID>" -d '{"url": "<URL_TO_RECORD>", "width": 1280, "height": 720}'
 ```
 
-This output confirms that the broadcast has started, and provides the streamId (dataId), which can be used for further operations related to this stream.
+On success:
 
-### Stop the broadcast  
-  
-To stop a broadcast on the Ant Media Server using a specified streamId, use the REST method as outlined below. Ensure you have the streamId `(dataId)` from a previous broadcast session to correctly identify the stream you wish to stop.
+```
+HTTP/1.1 200
+Content-Type: Application/json
+Content-Length: 80
+Date: Mon, 05 Feb 2024 15:23:42 GMT {"success":true,"message":null,"dataId":"<STREAM_ID>","errorId":0}
+```
 
-```bash  
-curl -i -X POST -H "Accept: Application/json" "https://ant-media-server-domain:5443/live/rest/v1/media-push/stop/{streamId}"
-``` 
+The `dataId` field echoes the stream ID, which you'll need for the operations below.
 
-This command will instruct the Ant Media Server to stop broadcasting the stream associated with the provided streamId. Make sure the STREAM_ID matches the one you obtained when initiating the broadcast.
+### Stop a Broadcast
+
+```bash
+curl -i -X POST -H "Accept: Application/json" "https://<DOMAIN_NAME>:5443/<APP_NAME>/rest/v1/media-push/stop/<STREAM_ID>"
+```
+
+Use the same stream ID (`dataId`) you got back when starting the broadcast.
 
 ### Record the Broadcast
 
-To record the broadcast in addition to streaming, you can include the recordType option in your REST API call. This option specifies the format in which the broadcast should be recorded. Here's how you can modify the previous start broadcast command to include recording:
+Add `recordType` to the start request to record alongside streaming:
 
 ```bash
-curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "https://ant-media-server-domain:5443/live/rest/v1/media-push/start" -d  '{"url": "URL_TO_RECORD", "width": 1280, "height": 720, "recordType":"mp4"}'
+curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "https://<DOMAIN_NAME>:5443/<APP_NAME>/rest/v1/media-push/start" -d '{"url": "<URL_TO_RECORD>", "width": 1280, "height": 720, "recordType":"mp4"}'
 ```
 
-This command will initiate the broadcast of the specified URL and simultaneously record it in MP4 format. Ensure to replace `URL_TO_RECORD` with the actual URL you want to broadcast and record.
-
 :::info
-Please check out [**this blog post**](https://antmedia.io/conference-call-recording/) to learn how to use Media Push to record the conference rooms.
+See [this blog post](https://antmedia.io/conference-call-recording/) for a walkthrough of using Media Push to record conference rooms.
 :::
 
-## Media Push Quick Demo
+## Quick Demo
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/gyog1t9cQNs?si=uiXqrbpsn81pjzrW" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
 
 ### Add Chrome Switches
 
-To incorporate extra Chrome switches into your REST API request for broadcasting a web page with the Ant Media Server, specify them in the  `extraChromeSwitches`  field of your JSON payload. These should be listed in a comma-separated format. Here’s a refined version of your command that includes extra Chrome switches:
+Pass extra Chrome command-line switches as a comma-separated list in `extraChromeSwitches`:
 
 ```bash
-curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "https://ant-media-server-domain:5443/live/rest/v1/media-push/start" -d  '{"url": "URL_TO_RECORD", "width": 1280, "height": 720, "recordType":"mp4", "extraChromeSwitches":"--start-fullscreen,--disable-gpu"}'
+curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "https://<DOMAIN_NAME>:5443/<APP_NAME>/rest/v1/media-push/start" -d '{"url": "<URL_TO_RECORD>", "width": 1280, "height": 720, "recordType":"mp4", "extraChromeSwitches":"--start-fullscreen,--disable-gpu"}'
 ```
 
-This command configures the Chrome instance that captures the web page with the following switches:
+This example configures Chrome with two switches:
 
--   `--start-fullscreen`: Starts Chrome in fullscreen mode.
--   `--disable-gpu`: Disables GPU hardware acceleration. These switches can help optimize the browser environment for specific server configurations or broadcasting needs.
+- `--start-fullscreen` — starts Chrome in fullscreen mode.
+- `--disable-gpu` — disables GPU hardware acceleration, which can help on certain server configurations.
 
-For the default Chrome switches used by the Media Push Plugin, you can refer to the `MediaPushPlugin.java` file and look for the  `CHROME_DEFAULT_SWITCHES`  field. This will provide you with the preset configurations applied to the Chrome instance by the plugin.
+The plugin's default switches are defined in `MediaPushPlugin.java` under `CHROME_DEFAULT_SWITCHES`. For the full range of available switches, see [Chromium Command Line Switches](https://peter.sh/experiments/chromium-command-line-switches/).
 
-Additionally, a comprehensive list of all available Chrome command-line switches can be found on the following website:  [Chromium Command Line Switches](https://peter.sh/experiments/chromium-command-line-switches/). This resource is valuable for understanding the full range of options you can utilize to customize the behavior of Chrome through the Media Push Plugin.
+### Run JavaScript on the Page
 
-### Run Javascript in the URL
-
-To send a JavaScript command to a specific stream on the Ant Media Server using the stream ID provided in the start method, use the following REST API call. Replace placeholders with your actual server domain, web application name, stream ID, and the JavaScript command you wish to execute.
+Send a JavaScript command to a running Media Push stream by its stream ID:
 
 ```bash
-curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "https://ant-media-server-domain:5443/live/rest/v1/media-push/send-command?streamId={streamId}"  -d '{"jsCommand": "{javascript_command_which_is_executed}"}'  
-```  
-
-In the below example, we are using ` document.write(\" hello how are you this is the text which is displayed on the browser  \") ` which will overwrite the content of the browser window with the message.  
-
-```bash
-curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "http://localhost:5080/live/rest/v1/media-push/send-command?streamId=stream111"  -d '{"jsCommand": "document.write(\" hello how are you this is the text which is displayed on the browser  \")"}'  
+curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "https://<DOMAIN_NAME>:5443/<APP_NAME>/rest/v1/media-push/send-command?streamId=<STREAM_ID>" -d '{"jsCommand": "<JS_COMMAND>"}'
 ```
-  
 
-## Composite Layout  
+For example, this overwrites the page's content with a message:
 
-The composite layout is an HTML page that has a canvas where you can place multiple video streams, text, and images together. Using simple commands, you can adjust what's displayed on this canvas in real-time. Media Push can record this HTML page, and then it becomes a live stream on Ant Media, offering lots of possibilities like adding text, images, and arranging videos however you like. It's a handy tool for creating dynamic and customized visuals without any complicated technical frameworks.  
-  
+```bash
+curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "http://localhost:5080/live/rest/v1/media-push/send-command?streamId=stream111" -d '{"jsCommand": "document.write(\"hello, this text is now displayed on the page\")"}'
+```
 
-## How Composite Layout works  
+## Composite Layout
 
-A composite layout is an HTML page that gets loaded on the server side with the Media Push Plugin. We can specify a `Conference room` name that you join as a URL parameter to the Composite Layout page, then it joins the room and waits for the instructions.  
-  
-The composite layout page contains a canvas on which streams can be added; by default, nothing is displayed on the canvas. To display a stream from the room onto the canvas, call the REST API by specifying the ID of the room participant.
+Composite Layout is an HTML page with a canvas that Media Push can capture as its own live stream — useful for combining multiple video streams, text, and images into one custom visual without building a full rendering pipeline yourself.
 
+The page joins a conference room (passed as a URL parameter) and waits for instructions. Nothing appears on the canvas by default; you add streams to it by calling the REST API with the room participant's ID.
 
-### How to add Composite Layout  
-  
+### Set Up Composite Layout
 
- - Download the composite_layout.html file  
-  
-   ```bash  
+1. Download `composite_layout.html`:
+
+   ```bash
    wget https://github.com/ant-media/Plugins/raw/master/MediaPushPlugin/build/composite_layout.html
    ```
-    
- - Copy the composite_layout.html file into the application folder  
+
+2. Copy it into your application folder:
 
    ```bash
-   sudo cp media_push.html /usr/local/antmedia/webapps/live/composite_layout.html
+   sudo cp composite_layout.html /usr/local/antmedia/webapps/<APP_NAME>/composite_layout.html
    ```
-  
- 
-### How to use Composite Layout
 
-- Start the Composite Layout
+### Use Composite Layout
 
-  Call the REST Method below to let Ant Media Server with the stream id you specified in the start method. You should pass the url, width and height in the body.
+**Start it** — pass the composite layout page's URL as the `url` to broadcast. `<PUBLISHER_ID>` can be any identifier you choose, e.g. `test`.
 
-  **composite-layout-publisher-id:**  It can be any random Id like  `test`
+```bash
+curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "https://<DOMAIN_NAME>:5443/<APP_NAME>/rest/v1/media-push/start" -d '{"url": "https://<DOMAIN_NAME>:5443/<APP_NAME>/composite_layout.html?roomId=<ROOM_NAME>&publisherId=<PUBLISHER_ID>", "width": 1280, "height": 720}'
+```
 
-  ```bash
-  curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "https://ant-media-server-domain:5443/live/rest/v1/media-push/start"  -d '{"url": "https://ant-media-server-domain:5443/live/composite_layout.html?roomId=<room-name>&publisherId=<composite-layout-publisher-id>", "width": 1280, "height": 720}'
-  ```
+**Stop it** — using the same publisher ID:
 
-- Stop the Composite Layout
+```bash
+curl -i -X POST -H "Accept: Application/json" "https://<DOMAIN_NAME>:5443/<APP_NAME>/rest/v1/media-push/stop/<PUBLISHER_ID>"
+```
 
-  Call the REST method below to let Ant Media Server with the streamId you specified in the stop method.
+**Update the layout on the fly** — add or rearrange participant streams on the canvas:
+
+```bash
+curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "https://<DOMAIN_NAME>:5443/<APP_NAME>/rest/v2/broadcasts/<PUBLISHER_ID>/data" -d '{"streamId":"<PUBLISHER_ID>","layoutOptions": {"canvas": {"width": 640,"height": 640},"layout": [{"streamId": "<PARTICIPANT_ID>","region": {"xPos": 20,"yPos": 0,"zIndex": 1,"width": 200,"height": 200},"fillMode": "fill","placeholderImageUrl": "https://cdn-icons-png.flaticon.com/512/149/149071.png"}]}}'
+```
+
+## Building from Source
+
+1. Clone the repository:
 
    ```bash
-   curl -i -X POST -H "Accept: Application/json" "https://ant-media-server-domain:5443/live/rest/v1/media-push/stop/{composite-layout-publisher-id}"
+   git clone https://github.com/ant-media/Plugins.git
    ```
 
-- Update the Composite Layout UI
-
-  Call the REST Method below to update the layout on the fly.
-
-  For updating the layout and adding streams to the canvas, call the below REST API by specifying the stream id of the participants in the room.
+2. Go to the plugin's directory:
 
    ```bash
-   curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "https://ant-media-server-domain:5443/live/rest/v2/broadcasts/<composite-layout-publisher-id>/data" -d '{"streamId":"streamId1","layoutOptions": {"canvas": {"width": 640,"height": 640},"layout": [{"streamId": "<room-participant-id>","region": {"xPos": 20,"yPos": 0,"zIndex": 1,"width": 200,"height": 200},"fillMode": "fill","placeholderImageUrl": "https://cdn-icons-png.flaticon.com/512/149/149071.png"}]}}'
+   cd Plugins/MediaPushPlugin
    ```
-  
-  
-## How to Build from Source Code  
-  
-- Clone the repository  
-  
-  ```bash
-  git clone https://github.com/ant-media/Plugins.git  
-  ```
-  
-- Go to the Media Push Plugin directory  
-  
-  ```bash
-  cd Plugins/MediaPushPlugin  
-  ```  
-  
-- Modify the redeploy.sh file with your Ant Media Server installation path  
-  
-  ```bash 
-  Change AMS_DIR=/usr/local/antmedia/  
-  ```  
-  
-- Build & install the plugin  
-  
-  ```bash
-  chmod +x redeploy.sh  
-  ./redeploy.sh  
-  ```  
-  
-- Restart Ant Media Server  
-  
-  ```bash 
-  sudo service antmedia restart  
-  ```  
-  
 
-### How to Customize  
+3. Edit `redeploy.sh` to point `AMS_DIR` at your installation path (default `/usr/local/antmedia/`).
 
-You can modify the code and build the plugin yourself to make it work according to your own needs. For example, you can play the video or login to the web page with your own credentials before starting the broadcast.
+4. Build and install:
 
-Go to the MediaPushPlugin and modify the customModification method as you wish. Then build the plugin with the following command:.    
+   ```bash
+   chmod +x redeploy.sh
+   ./redeploy.sh
+   ```
 
-  ```bash  
-  chmod +x redeploy.sh  
-  ./redeploy.sh  
-  ```  
+5. Restart Ant Media Server:
 
-<br /><br />
----
+   ```bash
+   sudo service antmedia restart
+   ```
 
-<div align="center">
-<h2> 🎬 Next-Gen Recording ⏺️ </h2>
-</div>
+### Customizing the Plugin
 
-You've successfully configured the **Media Push Plugin on Ant Media Server.** Whether it's broadcasting a conference call, recording a live auction, or streaming a custom web page, your setup is now capable of capturing and delivering dynamic content in real-time. With support for MP4/WebM recording, RTMP re-streaming, and customizable layouts, the possibilities are endless.
+To change how pages are captured — for example, logging in with credentials before the broadcast starts — modify the `customModification` method in `MediaPushPlugin`, then rebuild with the same `redeploy.sh` command above.
 
-**Maestro Stuff** 👏 your live streaming setup is now **more versatile than ever!** 🚀
+You now have the Media Push Plugin installed and can broadcast, record, and script any web page through Ant Media Server.
+
+## Troubleshooting
+
+| Symptom | Fix |
+|---|---|
+| Install script exits with `Unsupported Linux distribution: $ID` or `Cannot detect the Linux distribution.` | `install_media-push-plugin.sh` only recognizes a specific set of distros; check the script's output against your actual OS. |
+| Install script exits with `There is a problem in getting the version of the media push plugin.` or `Latest media push plugin version could not be determined.` | The script couldn't resolve a release version from GitHub (it tries the release URL, then falls back to a snapshot URL) — usually a network issue reaching GitHub, not something wrong locally. |
+| Install script exits with `There is a problem in downloading the media push plugin. Please send the log of this console to support@antmedia.io` | The plugin download failed after the version was resolved; re-run the script, and if it persists, send the console output to support as the message suggests. |
+| `Incoming url: <URL> is not a valid url` | The Start request's `url` field isn't a well-formed URL; double-check it before retrying. |
+| `Session with the same streamId: <ID> already exists. Please stop it first` | You called Start with a `streamId` that already has an active Media Push session; stop it first or omit the ID to let AMS generate one. |
+| `Driver does not exist for stream id: <ID>` | Returned by Stop (or by sending a JS command) when the stream ID has no active session — it already ended or never started successfully. |
+| A broadcast won't start, or the captured page appears blank | Check the Chrome switches and confirm the target URL loads correctly outside of Media Push first. |
+
+## Need Help?
+
+If the steps above don't resolve it, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).

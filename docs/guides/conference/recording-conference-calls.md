@@ -2,14 +2,16 @@
 title: Conference Call Recording
 description: Recording Conference Calls With Ant Media Server Using Media Push
 keywords: [Conference call recording, Ant Media video conference, Media push plugin, Circle]
-sidebar_position: 3
+sidebar_position: 4
 ---
 
 # Conference Call Recording
 
 Unlike regular broadcast streams, conference calls have multiple participants, each with a unique streamId. Therefore, the regular recording mechanism cannot be used in conference calls. Instead of recording each participant's stream individually, we need a solution to merge all the streams and record the entire room.
 
-- In this document, we will learn how to easily record Ant Media Server conference calls using the sample page [multitrack-play.html](https://github.com/ant-media/StreamApp/blob/master/src/main/webapp/multitrack-play.html) and the [Media Push plugin](https://antmedia.io/docs/guides/recording-live-streams/media-push-plugin/).
+By the end of this guide, you'll have the Media Push plugin installed and know how to merge, capture, and record a conference room as a single file.
+
+In this document, we will learn how to easily record Ant Media Server conference calls using the sample page [multitrack-play.html](https://github.com/ant-media/StreamApp/blob/master/src/main/webapp/multitrack-play.html) and the [Media Push plugin](https://antmedia.io/docs/guides/recording-live-streams/media-push-plugin/).
 
 ## Media Push Plugin
 
@@ -22,17 +24,17 @@ The [Media Push plugin](https://github.com/ant-media/Plugins/tree/master/MediaPu
 - Connect your Ant Media Server instance via terminal.
 - Download the installation script:
 
-  ```js
+  ```bash
   wget -O install_media-push-plugin.sh https://raw.githubusercontent.com/ant-media/Plugins/master/MediaPushPlugin/src/main/script/install_media-push-plugin.sh && chmod 755 install_media-push-plugin.sh
   ```
 - Run the installation script:
 
-  ```js
+  ```bash
   sudo ./install_media-push-plugin.sh
   ```
 - Restart the service:
 
-  ```js
+  ```bash
   sudo service antmedia restart
   ```
 
@@ -50,7 +52,7 @@ Now, let's discuss all these steps individually and see how they are done.
 
 There are various ways to join a conference call from different devices and platforms, such as the Web i.e., from the sample conference page [conference.html](https://github.com/ant-media/StreamApp/blob/master/src/main/webapp/conference.html) or using the mobile SDKs like [Android](https://github.com/ant-media/WebRTC-Android-SDK) or [iOS](https://github.com/ant-media/WebRTC-iOS-SDK), etc.
 
-- Let's join the conference room with `roomid' as `room1`, also known as the `maintrack`.
+- Let's join the conference room with `roomid` as `room1`, also known as the `maintrack`.
 
   ![join-coference](https://github.com/user-attachments/assets/a764c2e9-1396-4147-b304-b3700fe01b11)
 
@@ -82,7 +84,7 @@ You do not need to explicitly open this sample page in the browser to merge the 
 
 The Media Push plugin can be called with a REST API to capture the sample page `multitrack-play.html` & stream it back to the Ant Media Server.
 
-```js
+```bash
 curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "https://server-url:5443/live/rest/v1/media-push/start"  -d '{"url": "https://server-url:5443/live/multitrack-play.html?id=room1", "width": 1280, "height": 720}'
 ```
 
@@ -100,7 +102,7 @@ curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json
 
 Now that we have the merged stream, we can make the API call to start recording the stream with MP4.
 
-```js
+```bash
 curl -X PUT -H "Content-Type: application/json" "https://server-url:5443/live/rest/v2/broadcasts/JQzivjSFdVTJ1738919890828/recording/true"
 ```
 
@@ -112,13 +114,13 @@ Alternatively, the recording can also be started from the web panel.
 
 - To stop the MP4 recording, again you can make the REST call.
 
-  ```js
+  ```bash
   curl -X PUT -H "Content-Type: application/json" "https://server-url:5443/live/rest/v2/broadcasts/JQzivjSFdVTJ1738919890828/recording/false"
   ```
 
 - To record the broadcast in addition to streaming, you can include the recordType option in your REST API call. This option specifies the format in which the broadcast should be recorded. Here's how you can modify the previous start broadcast command to include recording:
 
-  ```js
+  ```bash
   curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "${ANT_MEDIA_SERVER_BASE_URL}/${APP_NAME}/rest/v1/media-push/start" -d  '{"url": "'"${URL_TO_RECORD}"'", "width": 1280, "height": 720, "recordType":"mp4"}'
   ```
 
@@ -129,7 +131,7 @@ Alternatively, the recording can also be started from the web panel.
 
 Once the conference ends, to stop the media push created broadcast on the Ant Media Server, you can call the REST method as outlined below.
 
-```js
+```bash
 curl -i -X POST -H "Accept: Application/json" -H "Content-Type: application/json" "https://server-url:5443/live/rest/v1/media-push/stop/JQzivjSFdVTJ1738919890828"
 ```
 
@@ -162,14 +164,18 @@ This is how you can record the conference call on the Ant Media Server with the 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/8KNLfMTr6Jo?si=uZp5NwvSxqQV3Q91" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
 
+You now have the Media Push plugin installed, all participants merged via `multitrack-play.html` (or `merge_streams.html`), and the conference room recorded as MP4 (or HLS, if you need it), available in VoD for review or archive.
 
-<br /><br />
----
+## Troubleshooting
 
-<div align="center">
-<h2> Recording, Rolled Out! 🎙️ </h2>
-</div>
+| Symptom | Fix |
+|---|---|
+| Merged stream isn't capturing all participants | Confirm the room ID in the `multitrack-play.html` URL (the `?id=roomid` parameter) matches your actual conference room ID exactly. |
+| `Incoming url: <URL> is not a valid url` | Returned by the `media-push/start` call above if the URL you passed isn't well-formed; double-check it, especially the room ID query parameter. |
+| `Session with the same streamId: <ID> already exists. Please stop it first` | You tried to start Media Push again for a room already being captured; stop the existing session first, using the streamId the original `start` call returned. |
+| `Driver does not exist for stream id: <ID>` | Returned when stopping (or checking on) a session whose streamId isn't currently active — it may have already ended, or the ID doesn't match what `start` returned. |
 
-You’ve installed the Media Push plugin, merged all participants via `multitrack-play.html` (or `merge_streams.html`), and recorded the conference room stream using MP4 (or HLS if needed). Your merged stream is now available in VoD for review or archive.
-Kudos 👏 — you can now keep **every conversation, every presentation, every meeting on record, effortlessly!** 📁
+## Need Help?
+
+If the steps above don't resolve it, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
 

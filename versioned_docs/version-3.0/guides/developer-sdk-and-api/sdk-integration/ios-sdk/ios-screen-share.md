@@ -1,5 +1,6 @@
 ---
-title: iOS Screen Share using Broadcast Extension
+title: Screen Share
+sidebar_label: Screen Share
 description: Implementing Screen Share in iOS using Broadcast extension 
 keywords: [iOS SDK User Guide, iOS Screen Share, Broadcast Extension, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 6
@@ -108,8 +109,3 @@ Once you’ve added the provided code, the `RPSystemBroadcastPickerView` will be
 
 - You can now stream your device screen with audio.
 ![](@site/static/img/ios-screen-share/ios-be25.png)
-
-## Congratulations!
-
-You have successfully implemented iOS screen sharing using the Ant Media iOS SDK and WebRTC via Broadcast Extension. Your app can now stream the device screen in real-time, opening possibilities for collaboration, live presentations, and interactive sessions.
-

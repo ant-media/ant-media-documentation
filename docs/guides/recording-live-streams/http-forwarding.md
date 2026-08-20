@@ -7,141 +7,74 @@ sidebar_position: 6
 
 # HTTP Forwarding
 
-HTTP Forwarding allows Ant Media Server (AMS) to forward incoming HTTP requests to an external storage system.  
-This is typically used when recordings or VOD files are automatically uploaded to a bucket (e.g., **Amazon S3**, **DigitalOcean Spaces**, or another S3-compatible storage).
+HTTP Forwarding lets Ant Media Server redirect incoming HTTP requests to an external storage bucket, so a recording that's actually sitting in S3, GCS, or another provider can still be requested through your Ant Media Server URL.
 
-Without forwarding, accessing a file uploaded to the bucket from Ant Media Server may result in a **404 Not Found error**. HTTP Forwarding ensures seamless redirection of those requests.
+By the end of this guide, you'll have HTTP Forwarding configured and tested against your storage bucket.
 
----
+## Why You Need This
 
-## When to Use HTTP Forwarding
+Once [Cloud Storage Integration](/category/s3-recording-and-integration) uploads your recordings to a bucket, they're no longer served from the Ant Media Server's local disk. If you or a viewer requests a recording using the usual Ant Media Server URL at that point, you'll get a **404 Not Found** — the file moved, but nothing told Ant Media Server where. HTTP Forwarding fixes this by transparently redirecting that request to the bucket instead, so viewers never need to know or care where the file actually lives.
 
-- You are uploading recordings or assets directly from Ant Media Server to a storage bucket.
-- You want users to access files using the same Ant Media Server URL, without needing to manually provide the bucket link.
-- You need a smooth fallback mechanism to avoid 404 errors after uploads.
-
----
+Set this up any time you're uploading recordings or VOD files directly from Ant Media Server to a bucket, before you need it — not after the first 404 shows up in production.
 
 ## Step 1: Configure HTTP Forwarding in the AMS Management Panel
 
-1. Log in to the **Ant Media Server Management Panel**.  
-2. Navigate to **Applications** and select your application (e.g., `live`).  
-3. Go to **Application Settings → Advanced Settings**.  
-4. Locate the HTTP Forwarding section and set the following properties depending on your settings:
+1. Log in to the Ant Media Server Management Panel.
+2. Navigate to **Applications** and select your application (e.g., `live`).
+3. Go to **Application Settings → Advanced Settings**.
+4. Locate the HTTP Forwarding section and set the following properties:
 
    ```bash
-   httpForwardingExtension: mp4,m3u8,png 
-   httpForwardingBaseURL: https://BUCKET_URL
+   httpForwardingExtension: mp4,m3u8,png
+   httpForwardingBaseURL: https://<BUCKET_URL>
    ```
 
 :::info
-- **httpForwardingExtension**: A comma-separated list of file extensions to forward.  
-
-- **httpForwardingBaseURL**: The base URL of your bucket (without trailing slash).  
+- **httpForwardingExtension**: A comma-separated list of file extensions to forward.
+- **httpForwardingBaseURL**: The base URL of your bucket, without a trailing slash.
 :::
 
 :::important
-Do **not** include leading or trailing spaces in these fields.
+Do not include leading or trailing spaces in either field.
 :::
-
----
 
 ## Step 2: Find the Correct Bucket URL
 
-The format of your `httpForwardingBaseURL` depends on the storage provider:
+The value of `httpForwardingBaseURL` depends on which storage provider you're using. If you've already set up one of the [Cloud Storage Integration](/category/s3-recording-and-integration) guides, use the matching pattern below.
 
-- **AWS S3**  
-  
-Pattern:
-  
-```bash 
-  https://s3BucketName.s3.awsRegion.amazonaws.com
-```  
+| Provider | URL Pattern | Example |
+| --- | --- | --- |
+| AWS S3 | `https://<BUCKET_NAME>.s3.<AWS_REGION>.amazonaws.com` | `https://myvideos.s3.us-east-1.amazonaws.com` |
+| Google Cloud Storage | `https://storage.googleapis.com/<BUCKET_NAME>` | `https://storage.googleapis.com/myvideos` |
+| DigitalOcean Spaces | `https://<BUCKET_NAME>.<REGION>.digitaloceanspaces.com` | `https://myvideos.nyc3.digitaloceanspaces.com` |
+| Wasabi | `https://<BUCKET_NAME>.s3.<REGION>.wasabisys.com` | `https://myvideos.s3.us-east-1.wasabisys.com` |
+| Cloudflare R2 | The bucket's Public Development URL, or a custom domain if you've configured one | `https://pub-xxxx.r2.dev` |
+| OVH Object Storage | `https://<BUCKET_NAME>.<REGION>.cloud.ovh.net` | `https://myvideos.gra.cloud.ovh.net` |
+| MinIO (self-hosted) | `http://<YOUR_MINIO_DOMAIN>:<PORT>/<BUCKET_NAME>` | `http://minio.example.com:9000/myvideos` |
 
-Example:  
-  
-```bash
-https://myvideos.s3.us-east-1.amazonaws.com
-```
+:::info
+Azure Blob Storage doesn't use HTTP Forwarding. It mounts directly onto the server's filesystem with `blobfuse`, so recordings are already local from Ant Media Server's point of view — see [Azure Blob Storage](/guides/recording-live-streams/s3-recording-and-integration/azure-blob-storage/) for that setup instead.
+:::
 
-- **DigitalOcean Spaces**  
-  
-Pattern:
+## Step 3: Save and Test
 
-```bash
-https://s3BucketName.region.digitaloceanspaces.com
-```  
-  
-Example:
+1. Click **Save Settings**.
+2. Restart any currently running streams for the change to take effect.
+3. Request a file through Ant Media Server to confirm forwarding works:
 
-```bash
-https://myvideos.nyc3.digitaloceanspaces.com
-```
+   ```bash
+   https://<DOMAIN_NAME>:5443/<APP_NAME>/streams/sample.mp4
+   ```
 
-- **Google Cloud Storage (GCS)**
-
-Pattern:
-
-```bash
-https://storage.googleapis.com/s3BucketName
-```
-
-Example:
-
-```bash
-https://storage.googleapis.com/myvideos
-```
-
----
-
-## Step 3: Save and Apply Changes
-
-After entering the details:
-
-1. Click **Save Settings**.  
-2. Restart the current streams for the changes to take effect.
-
----
-
-## Step 4: Test HTTP Forwarding
-
-Once configured, try accessing a file via Ant Media Server. For example:
-
-```bash
-https://your-domain:5443/live/streams/sample.mp4
-```
-
-If forwarding is working, AMS will automatically serve the file from your bucket:
-
-```bash
-https://s3BucketName.s3.awsRegion.amazonaws.com/streams/sample.mp4  
-```
-
----
+   If forwarding is working, Ant Media Server serves it from your bucket instead of returning a 404 — for example, transparently redirecting to something like `https://myvideos.s3.us-east-1.amazonaws.com/streams/sample.mp4`.
 
 ## Troubleshooting
 
-- **Getting 404 errors?**
-  - Verify the file is actually in the bucket at the expected path.  
-  - Double-check there are no typos or spaces in your `httpForwardingBaseURL`.  
-  - Ensure your bucket has the correct permissions for public or signed access.  
+- **Still getting 404s?** Confirm the file actually exists in the bucket at the expected path, double-check `httpForwardingBaseURL` for typos or stray spaces, and make sure the bucket's permissions allow the access pattern you're using (public or signed).
+- **Files not forwarding at all?** Confirm the file's extension is included in `httpForwardingExtension`, and that you restarted the application after saving settings.
 
-- **Files not forwarding?**
-  - Make sure the file extension is included in `httpForwardingExtension`.  
-  - Check if your AMS application was restarted after saving settings.
+You now have HTTP Forwarding configured, so requests for recordings stored in your bucket resolve through Ant Media Server without 404s.
 
----
+## Need Help?
 
-With HTTP Forwarding enabled, Ant Media Server seamlessly redirects requests to your storage bucket, ensuring uninterrupted playback and access for your users.
-
-<br /><br />
----
-
-<div align="center">
-<h2> 🔄 Seamless Playback at your service 🌐 </h2>
-</div>
-
-You've successfully configured **HTTP Forwarding in Ant Media Server.** Now, when users request files like MP4 or M3U8, AMS will seamlessly **redirect them to your storage bucket**, ensuring uninterrupted playback. Whether you're using AWS S3, DigitalOcean Spaces, or another S3-compatible service, your setup is optimized for smooth delivery.
-
-Keep it up 🫡 — your live streaming setup is now more **seamless than ever!** 🚀
-
+If forwarding still 404s after checking the steps above, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).

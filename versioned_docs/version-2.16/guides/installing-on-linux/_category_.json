@@ -1,8 +1,8 @@
 {
-  "label": "Installing on Linux",
+  "label": "Installation",
   "position": 1,
   "link": {
     "type": "generated-index",
-    "description": "Installation Guide for Ant Media Server at Linux."
+    "description": "Installation guides for Ant Media Server."
   }
 }

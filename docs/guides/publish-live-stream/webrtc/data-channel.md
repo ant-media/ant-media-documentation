@@ -9,11 +9,13 @@ sidebar_position: 3
 
 Data channel is another channel in WebRTC besides video and audio. Using a data channel, you can send any kind of data to the other clients. Data channels can be utilized in various use cases, including chat, control messages or file sharing. Ant Media Server provides a generic data channel mechanism that can be used in all use cases.
 
+By the end of this guide, you'll have data channel messaging working between two clients, and know how to send messages from your own SDK, REST API, or webhook.
+
 ## Enable Data Channel
 
 To use data channel functionality, first enable it from the AMS dashboard. This will allow you to send and receive data via data channel with SDKs.
 
-![](@site/static/img/image-1645113575789.png)
+![](@site/static/img/publish-live-stream/webrtc/enabling-data-channel.png)
 
 There are some data delivery options for data channels you can choose:
 
@@ -24,14 +26,13 @@ There are some data delivery options for data channels you can choose:
 ## Data Channel Sample Page
 
 Go to 
-```https://your-domain-name:5443/live/datachannel.html``` to use the data channel sample.
+```https://<DOMAIN_NAME>:5443/live/datachannel.html``` to use the data channel sample.
 
 If you have AntMedia Server installed on your local machine, you can also go to ```http://localhost:5080/live/datachannel.html```.
 
 Open the same page on another tab or another system and join with the same streamId there. Once you join from two or more tabs, you can send messages between peers.
 
 ![](@site/static/img/publish-live-stream/WebRTC/WebRTC-publishing/Datachannel-page.png)
-
 
 ## Send & Receive Data with JS SDK
 
@@ -61,7 +62,8 @@ callback: function (info, obj) {
 }
 ```
 
-## Send & Receive Data with Android SDK
+<details>
+<summary><strong>Send & Receive Data with Android SDK</strong></summary>
 
 Exchanging data through WebRTC data channels is also straightforward with the AMS Android WebRTC SDK. Your activity should implement the ```IDataChannelObserver``` interface as shown below:
 
@@ -135,7 +137,10 @@ public void onMessage(DataChannel.Buffer buffer, String dataChannelLabel)
 
 In this example, we show the incoming text in a toast message.
 
-## Send & Receive Data with iOS SDK
+</details>
+
+<details>
+<summary><strong>Send & Receive Data with iOS SDK</strong></summary>
 
 ### Initialization
 
@@ -173,6 +178,8 @@ func dataReceivedFromDataChannel(streamId: String, data: Data, binary: Bool) {
 ```
 
 Take a look at the following ```VideoViewController.swift``` in order to see how to use data channels.
+
+</details>
 
 ## Send Data with REST API
 
@@ -224,19 +231,12 @@ Refer to the [Circle Conference Application](https://github.com/ant-media/confer
 *   ```AUDIO_TRACK_ASSIGNMENT```: Used to manage audio track assignments for different participants.
 *   ```TRACK_LIST_UPDATED```: Triggered when the list of active tracks (audio or video) is updated.
 *   ```MESSAGE_RECEIVED```: Used to notify when a chat message is received during the conference.
-    ```UPDATE_AUDIO_LEVEL```: Used to receive participants audio level through data channel. Audio Level between 0 and 127. 0 means max, and 127 means min. Contains audioLevel and streamId of the participant. You can use this to show a speaking indicator on client side.
+*   ```UPDATE_AUDIO_LEVEL```: Used to receive participants audio level through data channel. Audio Level between 0 and 127. 0 means max, and 127 means min. Contains audioLevel and streamId of the participant. You can use this to show a speaking indicator on client side.
 *   ```UPDATE_PARTICIPANT_ROLE```: Used to update the role of a participant in the conference (e.g., from attendee to moderator).
 
+You now have data channel messaging enabled and working. From here, integrate `sendData` and the `data_received` callback into your own SDK code, or head to [WebRTC Conference](/guides/publish-live-stream/webrtc/webrtc-conference-call/) to see data channel messages driving a real conference UI.
 
+## Need Help?
 
-<br /><br />
----
-
-<div align="center">
-<h2> Connection Established 🔗 </h2>
-</div>
-
-You’ve now **enabled Data Channel** support in AMS and in your SDK, tried out the **sample page**, and seen messages **flow peer-to-peer**. Your setup can handle chat, control messages, or file sharing right alongside your WebRTC stream.  
-
-PS: It’s real-time, flexible, and works **without extra plugins** — your app just got smarter! 💬
+If messages aren't arriving, confirm the data channel is enabled in both the AMS dashboard and your SDK initialization — both sides need it on. Otherwise, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
 

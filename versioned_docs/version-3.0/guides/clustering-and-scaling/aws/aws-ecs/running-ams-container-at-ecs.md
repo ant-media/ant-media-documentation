@@ -3,6 +3,7 @@ title: Deploy AMS Cluster on AWS ECS
 description: Deploy AMS Cluster on AWS ECS
 keywords: [ECS in cluster mode, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 1
+sidebar_label: Deploy on ECS
 ---
 
 # Run Ant Media Server Enterprise Edition container on Amazon Elastic Container Service (ECS) in cluster mode

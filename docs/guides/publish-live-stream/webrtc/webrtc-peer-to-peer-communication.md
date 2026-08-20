@@ -5,21 +5,24 @@ keywords: [WebRTC Peer to Peer Communication, Ant Media Server Documentation, An
 sidebar_position: 5
 ---
 
+# WebRTC Peer to Peer Communication
+
 In this documentation, we're going to explain how to implement WebRTC peer-to-peer communication with JavaScript SDK. 
+
+By the end of this guide, you'll have two browser tabs connected directly to each other in P2P mode, and know how to fall back to a TURN server when a direct connection isn't possible.
 
 ## Navigate to P2P Sample Page
 
 There is already a working demo for this in the `peer.html` file.
 
-Go to ⁣`https://your-domain-name:5443/live/peer.html` for a sample page.
+Go to `https://<DOMAIN_NAME>:5443/live/peer.html` for a sample page.
 
 If you have Ant Media Server installed on your local machine, you can also go to ```http://localhost:5080/live/peer.html```
 
-![](@site/static/img/publish-live-stream/WebRTC/WebRTC-publishing/WebRTC-peer.png)
-
 - Input the streamId and click the join button.
-- Now open the same page in a new browser tab or any other machine and click join. Congratulations! You're now using WebRTC to connect in P2P mode from your browser!
+- Now open the same page in a new browser tab or any other machine and click join. You're now connected in P2P mode directly from your browser.
 
+![](@site/static/img/publish-live-stream/WebRTC/WebRTC-publishing/WebRTC-peer.png)
 
 ### Join P2P Communication
 
@@ -71,9 +74,18 @@ The JavaScript SDK provides several auxiliary methods to provide enough flexibil
 
 In some cases, peer-to-peer communication cannot be established and a relay server is required for video/audio transmission. For this requirement, TURN servers are needed to relay the video/audio.
 
-![](@site/static/img/dataPathways.png)
+```mermaid
+flowchart LR
+    P1["Peer A"] <-- Signaling --> S(("Signaling Server"))
+    S <-- Signaling --> P2["Peer B"]
+    P1 <-- "Data (direct)" --> P2
+    P1 <-- Data --> T["TURN Relay Server"]
+    T <-- Data --> P2
+```
 
-Check out this [**TURN server document**](https://antmedia.io/docs/guides/advanced-usage/turn-instalation/coturn-quick-installation/) for the configuration.
+Signaling always goes through the server so both peers can exchange connection details. Media only takes the direct path when NAT/firewall traversal succeeds — otherwise it falls back to relaying through the TURN server.
+
+Check out this [**TURN server document**](/guides/advanced-usage/turn-installation/coturn-quick-installation/) for the configuration.
 
 You can configure TURN server credentials in [peer.html](https://github.com/ant-media/StreamApp/blob/master/src/main/webapp/peer.html) as follows.
 
@@ -89,13 +101,8 @@ var pc_config =
 };
 ```
 
-<br /><br />
----
+You now have two peers connected directly over WebRTC, with a TURN server configured as a fallback for when direct connections fail. From here, integrate the `join`/`leave` calls above into your own application.
 
-<div align="center">
-<h2> P2P Success ✅ </h2>
-</div>
+## Need Help?
 
-You’ve now used **Ant Media’s WebRTC Peer-to-Peer mode**: connected via the sample page, joined with **WebRTCAdaptor**, **exchanged streams** directly **between peers**, and (if needed) configured **TURN server** fallback.  
-
-Your connection is now **lean, fast, and minimizes lag** — pure peer-to-peer streaming magic! 🎯
+If two peers can't connect directly, that's usually a NAT/firewall issue — see the TURN server section above. Otherwise, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).

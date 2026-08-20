@@ -2,94 +2,56 @@
 title: Digital Ocean Spaces
 description: Record streams to Digital Ocean Spaces
 keywords: [S3 Integration with Ant Media Server, S3 Integration, Record streams to Digital Ocean Spaces, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 3
+sidebar_position: 4
 ---
 
-# Record Streams To Digital Ocean Spaces Object Storage
+# Record Streams to DigitalOcean Spaces
 
-DigitalOcean is another cloud provider that is preferred by many Ant Media Server users. You could integrate your DigitalOcean cloud instance easily with S3 cloud storage. Let’s see how it can be done with a few steps!
+DigitalOcean Spaces is an S3-compatible object storage service, so Ant Media Server can record to it the same way it does with AWS S3.
 
-Firstly, you need to create Spaces. Just click the Space button and fill in the blanks.
+By the end of this guide, you'll have a Space, an API key pair for it, and Ant Media Server configured to upload recordings there automatically.
 
-![image.png](@site/static/img/image-285629.png)
+## Create a Space
 
-After creating Spaces you need to create API keys for Access and Secret keys. Just click the API button on the left side and then click Generate New Key.
+In the DigitalOcean control panel, click **Spaces**, then **Create a Space**, and fill in the region and name.
 
-![image.png](@site/static/img/image-285729.png)
+![](@site/static/img/image-285629.png)
 
-Just type the Name parameter and click the Create button.
+## Generate an API Key
 
-![image.png](@site/static/img/image-285829.png)
+Go to **API** in the left sidebar, and under **Spaces access keys**, click **Generate New Key**. Give it a name and create it — DigitalOcean shows the Access Key and Secret Key once, so copy both immediately.
 
-After generating Access keys and Secret keys, there is only one step left.
+![](@site/static/img/image-285829.png)
 
-![image.png](@site/static/img/image-285929.png)
+:::important
+Treat the Access Key and Secret Key like a password. Don't commit them to a repository, paste them into a screenshot, or share them outside of Ant Media Server's own credential fields.
+:::
 
-Then, Log in to your Ant Media Server panel at `http://your_ams_server:5080`.
-   - Navigate to **Applications** > **live** > **Settings**.
-   - Enable **Record Live Streams as MP4** and **Enable S3 Recording**.
-   - Enter the following S3 credentials:
-     - **Access Key**: `your_access_key`
-     - **Secret Key**: `your_secret_key`
-     - **Bucket Name**: `your_space_name`
-   - **Save** the settings.
+## Configure Ant Media Server
 
-![image.png](@site/static/img/image-286029.png)
+1. Log in to your Ant Media Server panel at `https://<DOMAIN_NAME>:5443`.
+2. Navigate to **Applications** and select your application (e.g., `live`).
+3. Go to **Settings**, enable **Record Live Streams as MP4**, then enable **S3 Recording**.
+4. Enter the Access Key, Secret Key, and your Space's name as the bucket name.
+5. Click **Save**.
 
-Your MP4 and Preview files will be uploaded to your **Digital Ocean Spaces** automatically.
-
+Your MP4 and preview files now upload to the Space automatically once a stream finishes.
 
 ## Enable HTTP Forwarding for Playback
 
-When your stream (mp4, m3u8 or preview) files are uploaded to DigitalOcean Spaces, they are removed from Ant Media Server local storage. If you try to access them using the AMS URL, you may encounter a **404 Not Found** error.
+Once files upload to your Space, they're no longer served from Ant Media Server's local storage, so requesting them by the usual AMS URL returns a 404 until you configure forwarding. See [HTTP Forwarding](/guides/recording-live-streams/http-forwarding/) for the full setup — the bucket URL pattern for DigitalOcean Spaces is:
 
-To resolve this, enable **HTTP Forwarding** so Ant Media Server automatically redirects requests to your OVH Object Storage.
-
-### Steps to Enable HTTP Forwarding
-
-1. Log in to the Ant Media Server Management Panel
-2. Navigate to your application (e.g., `live`) and go to **Application Settings → Advanced Settings**.  
-3. Set the following properties:
-
-   ```bash
-   httpForwardingExtension: mp4,m3u8  
-   httpForwardingBaseURL: https://{s3BucketName}.{region}.digitaloceanspaces.com  
-   ```
-
-   Example:  
-
-   ```bash
-   httpForwardingExtension: mp4,m3u8  
-   httpForwardingBaseURL: https://mybucket.nyc3.digitaloceanspaces.com  
-   ```
-
-4. Save your settings
-
-## Playback
-
-With forwarding enabled, your VOD files stored in DigitalOcean Spaces can be played directly from AMS URLs, while the files are actually served from your DigitalOcean Space.
-
-Now when you access:
-
-```bash
-https://your-domain:5443/live/streams/recording.mp4  
+```
+https://<SPACE_NAME>.<REGION>.digitaloceanspaces.com
 ```
 
-Ant Media Server will forward the request to:
+You now have Ant Media Server recording live streams directly to DigitalOcean Spaces, with playback working through HTTP Forwarding.
 
-```bash
-https://mybucket.nyc3.digitaloceanspaces.com/streams/recording.mp4  
-```
+## Troubleshooting
 
-<br /><br />
----
+- **Uploads fail, or files never appear in the Space** — check the AMS server logs for `AmazonS3StorageClient` entries. A successful upload logs `File upload has started with key: ...` at INFO; a failed one logs `S3 - Error: Upload failed with key ...` at ERROR along with the underlying error, which tells you whether AMS is even reaching DigitalOcean or failing on their side.
+- **The error points to a permissions problem** — double-check the API key's permissions and that the Access Key and Secret Key entered in the AMS panel are current.
 
-<div align="center">
-<h2> Your Streams, Docked Safely! 🛳️☁️ </h2>
-</div>
+## Need Help?
 
-You’ve successfully configured Ant Media Server to record live streams directly to **DigitalOcean Spaces**. Every MP4 you capture now sails smoothly to the cloud, securely stored and ready for on-demand playback.  
-
-**Impresionante!!** — your streams are **officially docked and cruising in the DigitalOcean cloud!** 🌊🚀
-
-
+If the steps above don't resolve it, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).

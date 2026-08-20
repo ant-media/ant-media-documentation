@@ -1,50 +1,59 @@
 ---
-title: Play Recorded Files 
+title: Play Recorded Files
 description: Playback of Recorded live streams
 keywords: [Live Stream Recording, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 3
+sidebar_position: 5
 ---
 
-In previous section, you have already gone through recording of live streams. In this particular section, we will learn about playing these recorded files and some VOD-related APIs.
+# Play Recorded Files
 
-## Play VOD files with MP4
+You've just gone through the ways Ant Media Server can record a live stream — MP4, WebM, HLS, and periodic clips. This guide covers the other half: playing those recordings back, plus a few VOD-related APIs.
 
-First, make sure that MP4 recording is enabled in your application settings on the Web panel.
+By the end of this guide, you'll know how to play back MP4, WebM, and general VOD recordings directly by URL or through the embedded player.
 
-For example, if a live stream with streamId ```stream1``` is published to the ```live``` application on Ant Media Server, the MP4 file will be generated automatically once the stream finishes publishing.
+## Play VOD Files with MP4
 
- * In both the Community and Enterprise Editions of AMS, the default MP4 file can be accessed at the following URL:
- 
-   * `https://domain-or-IP:5443/LiveApp/streams/Stream_Id.mp4`
+First, make sure MP4 recording is enabled in your application settings on the Web panel.
 
- * In Enterprise Edition, if Adaptive streaming is enabled in the application, then MP4 recording for different bitrates will be generated. Assuming you have 480p and 240p resolution enabled in adaptive streaming settings, you will have two MP4 files with the following format:
+For example, if a live stream with stream ID `stream1` is published to the `live` application, the MP4 file is generated automatically once the stream finishes publishing.
 
-    *  `https://domain-or-IP:5443/LiveApp/streams/stream1_240p500kbps.mp4`
+- In both the Community and Enterprise Editions, the default MP4 file can be accessed at:
 
-    *   ```https://domain-or-IP:5443/LiveApp/streams/stream1_480p1000kbps.mp4```
+  `https://<DOMAIN_NAME>:5443/<APP_NAME>/streams/<STREAM_ID>.mp4`
 
-## Play VOD files with WEBM
+- In the Enterprise Edition, if adaptive bitrate is enabled, MP4 recordings are generated per bitrate. With 480p and 240p enabled, for example, you'd get two files:
 
-First, confirm that your application has WEBM recording enabled. It can be enabled in the application settings on the Web panel. WEBM can be recorded if the VP8 codec is enabled in the application's settings.
+  - `https://<DOMAIN_NAME>:5443/<APP_NAME>/streams/stream1_240p500kbps.mp4`
+  - `https://<DOMAIN_NAME>:5443/<APP_NAME>/streams/stream1_480p1000kbps.mp4`
 
-Assume that there is a live stream with streamId `stream1` publishing to the `live` application of the Ant Media Server. After publishing is finished, the WEBM file will be created.
+## Play VOD Files with WebM
 
- * In the Community Edition, the VP8 codec is not available so WEBM cannot be recorded.
+First, confirm WebM recording is enabled in your application settings — this requires the VP8 codec, which is only available in the Enterprise Edition.
 
- * In Enterprise Edition, if adaptive streaming is enabled in the application, then WEBM recording for different bitrates will be generated. Assuming you have 480p and 240p resolution enabled in adaptive streaming settings, you will have two WEBM files with the following format:
+- In the Community Edition, VP8 isn't available, so WebM can't be recorded.
+- In the Enterprise Edition, adaptive bitrate produces one WebM file per resolution, the same way MP4 does:
 
-    *  `https://domain-or-IP:5443/LiveApp/streams/stream1_240p500kbps.webm`
+  - `https://<DOMAIN_NAME>:5443/<APP_NAME>/streams/stream1_240p500kbps.webm`
+  - `https://<DOMAIN_NAME>:5443/<APP_NAME>/streams/stream1_480p1000kbps.webm`
 
-    *   ```https://domain-or-IP:5443/LiveApp/streams/stream1_480p1000kbps.webm```
+## Play VOD Streams with the Embedded Player
 
-## Play VoD streams with an embedded player
+Both Editions include the [embedded player](/guides/playing-live-stream/embedded-web-player/) (`play.html`), which plays live and VOD (recorded or uploaded) streams alike.
 
-There is embedded player (play.html) in both the Community and Enterprise Editions of Ant Media Server. Both live and VoD (recorded or uploaded) streams can be played by this player. Check out the [embedded player](https://deploy-preview-254--ant-media.netlify.app/guides/playing-live-stream/embedded-web-player/) document.
+Once a stream finishes, play its recording with:
 
-When the live stream is over, the recorded MP4 file with an embedded player can be viewed at the URL below.
+```
+https://<DOMAIN_NAME>:5443/<APP_NAME>/play.html?name=<STREAM_ID>&playOrder=vod
+```
 
-`https://domain-or-IP:5443/LiveApp/play.html?name=streamId&playOrder=vod`
+For an uploaded VOD instead of a recording, use its VOD ID the same way:
 
-If the VOD is uploaded, then below will be the URL.
+```
+https://<DOMAIN_NAME>:5443/<APP_NAME>/play.html?name=<VOD_ID>&playOrder=vod
+```
 
-`https://domain-or-IP:5443/LiveApp/play.html?name=vod-Id&playOrder=vod`
+You now know how to play back MP4, WebM, and uploaded VOD recordings, either directly by URL or through the embedded player.
+
+## Need Help?
+
+If a recording won't play or 404s, confirm the corresponding recording type was actually enabled when the stream was published, then reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).

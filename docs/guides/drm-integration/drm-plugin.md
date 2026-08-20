@@ -1,73 +1,132 @@
 ---
 title: DRM Plugin for Ant Media Server
-description: Installation and Configuration of DRM Plugin with Ant Media Server
+description: Install, configure, and test the DRM Plugin with CPIX-based key management for Widevine, FairPlay, and PlayReady.
 keywords: [DRM, DRM Plugin, DRM Plugin for Ant Media Server, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 1
+sidebar_label: DRM Plugin
 ---
 
 # DRM Plugin for Ant Media Server
 
-The Digital Rights Management (DRM) Plugin for Ant Media Server enables secure streaming by integrating with the CPIX (Content Protection Information Exchange) API. It ensures that only authorized users can access your content through encryption and multi-DRM support (**Widevine, FairPlay, and PlayReady**).
+Protect live and on-demand streams with **Digital Rights Management (DRM)**. The DRM Plugin integrates Ant Media Server with your key management service through the **CPIX (Content Protection Information Exchange) API**, encrypting **HLS** and **DASH** output so only authorized viewers can play your content.
 
-## Key Features
+Supported DRM systems:
 
-- Seamless integration with CPIX API for content key management.
-- Support for Dash and HLS output.
-- Multi-DRM support: Widevine, FairPlay, PlayReady.
+| Platform | DRM system |
+|----------|------------|
+| Chrome, Android, Firefox | **Widevine** |
+| Safari, iOS, tvOS | **FairPlay** |
+| Edge, Smart TVs, Xbox | **PlayReady** |
 
-## Installation
+## What you'll accomplish
 
-### Pre-requisites
-Ensure the Ant Media Server is already running on your machine or instance.
+By the end of this guide, you will:
 
-### Step 1: Purchase and Install the DRM Plugin
+1. Install the DRM Plugin and Shaka Packager on your Ant Media Server.
+2. Connect the plugin to a CPIX-compatible key management service.
+3. Publish a live stream and confirm encrypted manifests are generated.
+4. Play the stream in a DRM-enabled player and verify protection is active.
 
-1. **Purchase the Plugin**  
-   - [Get the DRM Plugin](https://antmedia.io/product/drm-plugin/) on a monthly subscription basis.  
-   - Alternatively, send an email to contact@antmedia.io.
+## How DRM works with Ant Media Server
 
-2. **Install the DRM Plugin**  
-   - Download and copy the plugin JAR file to your Ant Media `plugins` directory.
+When a stream is published, the DRM Plugin requests encryption keys from your **Key Management Server (KMS)**, packages segments with **Shaka Packager**, and serves protected **HLS** and **DASH** manifests. Viewers need a license token from your DRM provider before playback can start.
+
+The diagram below shows the main components and how they connect:
+
+```mermaid
+flowchart LR
+  subgraph ingest [Ingest]
+    pub[Publisher]
+  end
+
+  subgraph ams [Ant Media Server]
+    plugin[DRM Plugin]
+    packager[Shaka Packager]
+    out[HLS / DASH output]
+    plugin --> packager --> out
+  end
+
+  subgraph kms [Key management]
+    cpix[CPIX / KMS]
+  end
+
+  subgraph playback [Playback]
+    player[DRM player]
+    view[Authorized viewer]
+    player --> view
+  end
+
+  pub --> plugin
+  plugin <-->|Encryption keys| cpix
+  out --> player
+  player <-->|License token| cpix
+```
+
+Encryption keys are fetched when the stream is packaged. At playback, the DRM player validates a license with the same KMS before decrypting the stream.
+
+## Prerequisites
+
+Before you begin, confirm the following:
+
+- Ant Media Server is installed and running.
+- You have a valid [DRM Plugin subscription](https://antmedia.io/product/drm-plugin/).
+- You have shell access to the server (`sudo` for file operations).
+- You use a CPIX-compatible DRM provider (this guide uses **DoveRunner** as an example; other providers work with the same `keyManagementServerURL` pattern).
+
+:::info
+Need the plugin? [Purchase the DRM Plugin](https://antmedia.io/product/drm-plugin/) or email contact@antmedia.io.
+:::
+
+## Step 1: Install the DRM Plugin
+
+1. Download **DRM-Plugin-bundle.jar** after purchase.
+2. Copy the JAR into the Ant Media Server plugins directory:
 
    ```bash
-   sudo cp DRM-Plugin-bundle.jar /usr/local/antmedia/plugins
+   sudo cp DRM-Plugin-bundle.jar /usr/local/antmedia/plugins/
    ```
 
-   - Restart the Ant Media Server to apply changes:
+3. Restart Ant Media Server to load the plugin:
 
    ```bash
    sudo service antmedia restart
    ```
 
-### Step 2: Install Shaka Packager
+The plugin is active after restart. No additional enable flag is required beyond the configuration in the next section.
 
-1. Download the Shaka Packager binary:
+## Step 2: Install Shaka Packager
+
+Shaka Packager encrypts media segments and builds DRM-ready manifests. Install it once on the server:
+
+1. Download the binary:
 
    ```bash
    wget https://github.com/shaka-project/shaka-packager/releases/download/v3.4.1/packager-linux-x64 -O shakapackager
    ```
 
-2. Move it to the bin and make it executable:
+2. Move it to your PATH and make it executable:
 
    ```bash
    sudo cp shakapackager /usr/local/bin/
    sudo chmod +x /usr/local/bin/shakapackager
    ```
 
-## Configuration
+3. Confirm it runs:
 
-DRM plugin settings are added under the `customSettings` in the application settings in Ant Media Server.
+   ```bash
+   shakapackager --version
+   ```
 
-### Step 1: Navigate to Custom Settings
+## Step 3: Configure the DRM Plugin
+
+DRM settings live under **`customSettings`** in your application configuration.
 
 1. Open the Ant Media Server web panel.
-2. Click your application on the left sidebar (e.g., `live`).
-3. Go to the **Settings** tab and select **Advanced**.
-4. Locate the `customSettings` property.
+2. Select your application on the left (for example, `live` or `WebRTCAppEE`).
+3. Go to **Settings → Advanced**.
+4. Locate **`customSettings`** and add the DRM plugin block.
 
-### Step 2: Add DRM Settings
-
-Minimal required configuration:
+### Minimal configuration
 
 ```json
 "customSettings": {
@@ -80,143 +139,163 @@ Minimal required configuration:
 }
 ```
 
-Multiple DRM systems can also be passed:
+### Multiple DRM systems
+
+Enable more than one system in the same application:
 
 ```json
 "enabledDRMSystems": [
-  "Widevine","PlayReady"
+  "Widevine",
+  "PlayReady"
 ]
 ```
 
-### Available Configuration Fields
+:::tip FairPlay and encryption scheme
+Use **`cbcs`** (default) when FairPlay is enabled. The **`cenc`** scheme does not support FairPlay.
+:::
 
-- **`keyManagementServerURL`** (Required): URL to obtain encryption keys from your DRM provider using the CPIX API.
-- **`enabledDRMSystems`** (Required): JSON array of DRM systems: ["Widevine", "FairPlay", "PlayReady"].
-- **`encryptionScheme`**: "cbcs" (default) or "cenc". `cbcs` supports all systems; `cenc` doesn’t support FairPlay.
-- **`hlsPlayListType`**: "LIVE" (default), "VOD", or "EVENT".
-- **`segmentDurationSecs`**: Segment duration in seconds. Default is 2.
-- **`timeShiftBufferDepthSecs`**: Buffer duration for live streams. Default is 60.
-- **`segmentsOutsideLiveWindow`**: Extra segments outside the buffer window. Default is 5.
+5. Save the settings.
 
-## DoveRunner Multi-DRM Integration (Widevine Example)
+### Configuration reference
 
-### Step 1: Get a KMS Token from DoveRunner
+| Field | Required | Description |
+|-------|----------|-------------|
+| **`keyManagementServerURL`** | Yes | CPIX endpoint URL from your DRM provider. |
+| **`enabledDRMSystems`** | Yes | Array of `"Widevine"`, `"FairPlay"`, and/or `"PlayReady"`. |
+| **`encryptionScheme`** | No | `"cbcs"` (default) or `"cenc"`. |
+| **`hlsPlayListType`** | No | `"LIVE"` (default), `"VOD"`, or `"EVENT"`. |
+| **`segmentDurationSecs`** | No | Segment length in seconds. Default: `2`. |
+| **`timeShiftBufferDepthSecs`** | No | Live buffer depth. Default: `60`. |
+| **`segmentsOutsideLiveWindow`** | No | Extra segments outside the live window. Default: `5`. |
 
-1. Log in to your [DoveRunner Web Panel](https://doverunner.com/).
-2. Navigate to Multi-DRM > DRM Settings.
-3. Copy your KMS Token.
-4. Construct the `keyManagementServerURL`:
+## Step 4: Connect DoveRunner (Widevine example)
 
-   ```bash
-   https://kms.pallycon.com/v2/cpix/pallycon/getKey/{REPLACE_WITH_YOUR_KMS_TOKEN}
+This section walks through a complete **Widevine** setup with [DoveRunner](https://doverunner.com/). Replace provider-specific values if you use a different KMS.
+
+### 4.1 Get your KMS URL
+
+1. Log in to the [DoveRunner Web Panel](https://contentsecurity.doverunner.com/).
+2. Go to [Multi-DRM → DRM Settings](https://contentsecurity.doverunner.com/drm/setting).
+3. Copy your **KMS Token**.
+4. Build the CPIX URL:
+
+   ```text
+   https://kms.pallycon.com/v2/cpix/pallycon/getKey/{YOUR_KMS_TOKEN}
    ```
 
-5. Update your `customSettings` in the Ant Media Server web panel:
+5. Update `customSettings` in the Ant Media Server web panel:
 
    ```json
    "plugin.drm-plugin": {
      "enabledDRMSystems": [
        "Widevine"
      ],
-     "keyManagementServerURL": "https://kms.pallycon.com/v2/cpix/pallycon/getKey/{REPLACE_WITH_YOUR_KMS_TOKEN}"
+     "keyManagementServerURL": "https://kms.pallycon.com/v2/cpix/pallycon/getKey/{YOUR_KMS_TOKEN}"
    }
    ```
 
 6. Save the settings.
 
-### Step 2: Add Video.js Player for Playback
+### 4.2 Set up a DRM-enabled player
 
-Clone DoveRunner's sample HTML5 player:
+Clone DoveRunner's sample HTML5 player and copy it into your application web directory. Replace `{YOUR_APP}` with your application name (for example, `live`):
 
 ```bash
 git clone https://github.com/doverunner/html5-player-drm-samples
-```
-
-Copy the files to your `live` app’s web directory:
-
-```bash
 cd html5-player-drm-samples
-sudo cp basic/videojs/index.html /usr/local/antmedia/webapps/live/videojs-doverunner-sample.html
-sudo cp basic/videojs/js/videojs-sample.js /usr/local/antmedia/webapps/live/js/
-sudo cp shared/js/doverunner-base-helper.js /usr/local/antmedia/webapps/live/js/
-sudo cp css/* /usr/local/antmedia/webapps/live/css/
+sudo cp basic/videojs/index.html /usr/local/antmedia/webapps/{YOUR_APP}/videojs-doverunner-sample.html
+sudo cp basic/videojs/js/videojs-sample.js /usr/local/antmedia/webapps/{YOUR_APP}/js/
+sudo cp shared/js/doverunner-base-helper.js /usr/local/antmedia/webapps/{YOUR_APP}/js/
+sudo cp css/* /usr/local/antmedia/webapps/{YOUR_APP}/css/
 ```
 
-**Path exists** — confirm the file is actually there:
+Fix relative paths in the sample HTML file:
+
 ```bash
-ls -la /usr/local/antmedia/webapps/WebRTCAppEE/videojs-doverunner-sample.html
+sudo sed -i 's|\.\./\.\./css/|./css/|g; s|\.\./\.\./shared/js/|./js/|g; s|\.\./\.\./media/|./media/|g' \
+  /usr/local/antmedia/webapps/{YOUR_APP}/videojs-doverunner-sample.html
 ```
 
-Then run:
+Confirm the player page exists:
+
 ```bash
-sudo sed -i 's|\.\./\.\./css/|./css/|g; s|\.\./\.\./shared/js/|./js/|g; s|\.\./\.\./media/|./media/|g' /usr/local/antmedia/webapps/WebRTCAppEE/videojs-doverunner-sample.html
+ls -la /usr/local/antmedia/webapps/{YOUR_APP}/videojs-doverunner-sample.html
 ```
 
-### Step 3: Publish a WebRTC Stream
+## Step 5: Publish and verify encrypted output
 
-1. Publish a WebRTC stream from Chrome using your Ant Media Server sample publish page. See the [WebRTC Publish guide](https://antmedia.io/docs/guides/publish-live-stream/webrtc/).
-2. Use `stream007` as the `streamId` in this example. Verify that the stream directory has been created:
-
-   ```bash
-   sudo ls /usr/local/antmedia/webapps/live/streams/drm/stream007/
-   ```
-
-   You should see `master.mpd` and `master.m3u8`, confirming the stream is DRM-protected.
-
-3. Example playback URLs:
+1. Publish a **WebRTC** stream from Chrome using the sample publish page. See the [WebRTC Publish guide](/guides/publish-live-stream/webrtc/).
+2. Use a clear **stream ID** — for example, `stream007`.
+3. After publishing starts, check that encrypted manifests were created:
 
    ```bash
-   DASH: https://{YOUR_ANTMEDIA_SERVER}:5443/live/streams/drm/stream123/master.mpd
-   HLS:  https://{YOUR_ANTMEDIA_SERVER}:5443/live/streams/drm/stream123/master.m3u8
+   sudo ls /usr/local/antmedia/webapps/{YOUR_APP}/streams/drm/stream007/
    ```
 
-### Step 4: Generate Widevine Token
+   You should see **`master.mpd`** and **`master.m3u8`**. These files confirm the DRM Plugin is packaging encrypted output.
 
-1. Visit [DoveRunner Token Generator](https://devconsole.doverunner.com/drm-tools/license-token/#token-generator).
-2. Fill in the following:
-   - **SITE ID, SITE Key, ACCESS Key**: From DRM Settings on DoveRunner.
-   - **DRM Type**: `Widevine`.
-   - **CID**: Your streamId (e.g., `stream007`).
-   - **USER ID**: Any unique identifier (e.g., `1234`).
-   - Click **Refresh Timestamp** and keep the default values for the rest.
-3. Click **Generate Token** and copy the result.
-4. Edit the following file:
+4. Note your playback URLs (replace `{YOUR_ANTMEDIA_SERVER}` and `{YOUR_APP}`):
+
+   ```text
+   DASH: https://{YOUR_ANTMEDIA_SERVER}:5443/{YOUR_APP}/streams/drm/stream007/master.mpd
+   HLS:  https://{YOUR_ANTMEDIA_SERVER}:5443/{YOUR_APP}/streams/drm/stream007/master.m3u8
+   ```
+
+:::info
+Manifests appear under `streams/drm/{streamId}/` only after the stream is live and the plugin has retrieved keys from your KMS.
+:::
+
+## Step 6: Generate a license token and play
+
+DRM playback requires a **license token** tied to the stream and viewer.
+
+1. Open the [DoveRunner Token Generator](https://devconsole.doverunner.com/drm-tools/license-token/#token-generator).
+2. Enter:
+   - **SITE ID, SITE Key, ACCESS Key** — from [DoveRunner DRM Settings](https://contentsecurity.doverunner.com/drm/setting).
+   - **DRM Type** — `Widevine`.
+   - **CID** — your stream ID (for example, `stream007`).
+   - **USER ID** — any unique viewer identifier (for example, `1234`).
+3. Click **Refresh Timestamp**, then **Generate Token**, and copy the result.
+4. Edit the player helper file:
 
    ```bash
-   sudo nano /usr/local/antmedia/webapps/live/js/doverunner-base-helper.js
+   sudo nano /usr/local/antmedia/webapps/{YOUR_APP}/js/doverunner-base-helper.js
    ```
 
-   Replace:
+   Set your DASH manifest URL and token:
 
    ```js
-   dashUri = "https://{YOUR_ANTMEDIA_SERVER}:5443/live/streams/drm/stream007/master.mpd";
+   dashUri = "https://{YOUR_ANTMEDIA_SERVER}:5443/{YOUR_APP}/streams/drm/stream007/master.mpd";
    widevineToken = '{PASTE_YOUR_GENERATED_TOKEN_HERE}';
    ```
 
 5. Save and exit.
 
-### Step 5: Play Stream in Chrome
+6. Open the sample player in **Chrome** (Widevine support):
 
-Open the following URL in Chrome (Widevine is supported):
+   ```text
+   https://{YOUR_ANTMEDIA_SERVER}:5443/{YOUR_APP}/videojs-doverunner-sample.html
+   ```
 
-```html
-https://{YOUR_ANTMEDIA_SERVER}:5443/live/videojs-doverunner-sample.html
-```
+7. Click **Play**. The stream should start with DRM-protected Widevine playback.
 
-Click Play. If successful, the stream will play as DRM-protected video using Widevine with Ant Media Server.
+### Confirm DRM is active
 
-To confirm DRM protection, attempt to take a screenshot. If the captured screen is blank, DRM is active.
+Take a screenshot while the video is playing. If DRM encryption is working, the captured video area is typically **blank or black** — that means content is protected from unauthorized capture.
+
+![](@site/static/img/drm-test.webp)
+
+The screenshot above shows DRM protection in action: playback works for authorized viewers, but the video frame cannot be captured.
 
 ---
 
-## Congratulations!
+## Troubleshooting
 
-By completing these steps, you have:
+| Symptom | What to check |
+|---------|----------------|
+| No `master.mpd` / `master.m3u8` | Plugin JAR present in `/usr/local/antmedia/plugins/`, server restarted, valid `keyManagementServerURL`, stream is publishing. |
+| Playback fails immediately | License token matches stream ID (CID), token not expired, correct DRM type selected. |
+| Shaka Packager errors | Binary is executable at `/usr/local/bin/shakapackager` and on the server PATH. |
+| FairPlay not working | Use `"cbcs"` encryption scheme and include `"FairPlay"` in `enabledDRMSystems`. |
 
-- Installed and configured the DRM Plugin for Ant Media Server.
-- Integrated the plugin with DoveRunner for Widevine DRM.
-- Published a DRM-protected live stream.
-- Successfully tested playback through a DRM-enabled player.
-
-Your streams are now protected, ensuring that only authorized users can access the content.
-
+For plugin architecture details, see [Available Plugins](/guides/developer-sdk-and-api/plugins/plugins-for-ant-media-server/#drm-plugin).

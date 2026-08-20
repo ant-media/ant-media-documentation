@@ -1,11 +1,15 @@
 ---
 title: SRT Restreaming
-description: SRT Restreaming
+description: Forward a live stream from Ant Media Server to a remote SRT destination.
 keywords: [Simulcasting to social media channels, Restreaming, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 2
 ---
 
+# SRT Restreaming
+
 SRT Restreaming allows you to forward a stream from Ant Media Server to an SRT endpoint.
+
+By the end of this guide, you'll be forwarding an existing AMS live stream to a remote SRT destination.
 
 You can publish streams to **Ant Media Server** using protocols such as WebRTC, RTMP, SRT, or RTSP, and then restream the same content to a remote SRT destination. This helps when downstream systems or broadcast workflows require SRT for reliable low-latency delivery.
 
@@ -17,10 +21,10 @@ Follow the below steps to see SRT restreaming in action:
 
 For example, we will publish the WebRTC stream to AMS and use a `live` application for it.
 
-Check out this [WebRTC publishing document](https://docs.antmedia.io/guides/publish-live-stream/webrtc/) for reference.
+Check out this [WebRTC publishing document](/guides/publish-live-stream/webrtc/) for reference.
 
 ```html
-https://domain:5443/live/?id=test
+https://<DOMAIN_NAME>:5443/live/?id=test
 ```
 
 Here `test` is the streamId
@@ -51,7 +55,7 @@ But you can use any other SRT endpoint as well.
 
     ```bash
     curl -X 'POST' \
-    'https://domain:5443/live/rest/v2/broadcasts/test/endpoint' \
+    'https://<DOMAIN_NAME>:5443/live/rest/v2/broadcasts/test/endpoint' \
     -H 'accept: application/json' \
     -H 'Content-Type: application/json' \
     -d '{
@@ -71,7 +75,7 @@ But you can use any other SRT endpoint as well.
 
     ```bash
     curl -X 'DELETE' \
-    'https://domain:5443/live/rest/v2/broadcasts/test/endpoint?endpointServiceId=customm4ugat' \
+    'https://<DOMAIN_NAME>:5443/live/rest/v2/broadcasts/test/endpoint?endpointServiceId=customm4ugat' \
     -H 'accept: application/json'
     ```
 
@@ -82,3 +86,9 @@ After publishing the stream and adding the endpoint, check out the destination t
 In this case, we will check the LiveApp application to check the restream.
 
 ![](@site/static/img/publish-live-stream/simulcasting/srt-restreaming.png)
+
+You're now forwarding a live stream from Ant Media Server to a remote SRT destination.
+
+## Need Help?
+
+If the destination server doesn't receive the stream, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).

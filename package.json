@@ -11,7 +11,11 @@
     "clear": "docusaurus clear",
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
-    "write-heading-ids": "docusaurus write-heading-ids"
+    "write-heading-ids": "docusaurus write-heading-ids",
+    "generate:api-catalog": "node scripts/generate-rest-endpoint-catalog.mjs --sync-versions",
+    "generate:api-catalog:offline": "node scripts/generate-rest-endpoint-catalog.mjs --offline --sync-versions",
+    "generate:rest-examples": "npm run generate:api-catalog",
+    "generate:rest-examples:offline": "npm run generate:api-catalog:offline"
   },
   "dependencies": {
     "@docusaurus/core": "^3.10.1",
@@ -19,9 +23,10 @@
     "@docusaurus/plugin-sitemap": "^3.10.1",
     "@docusaurus/preset-classic": "^3.10.1",
     "@docusaurus/theme-classic": "^3.10.1",
+    "@docusaurus/theme-mermaid": "^3.10.1",
     "@mdx-js/react": "^3.0.1",
-    "classnames": "^2.5.1",
     "clsx": "^2.1.1",
+    "docusaurus-biel": "^1.0.12",
     "docusaurus-lunr-search": "^3.5.0",
     "prism-react-renderer": "^2.4.0",
     "react": "^18.3.1",
