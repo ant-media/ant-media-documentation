@@ -64,6 +64,30 @@ In such cases, the system IP address is used as the streamId and it is published
 ![](@site/static/img/publish-live-stream/srt/srt-stream.png)
 
 
+## Encrypt SRT ingest with a passphrase
+
+SRT can encrypt the stream between the publisher and the server with a shared passphrase. Both sides need the same one. If they don't match, the connection is rejected and nothing gets published. The passphrase must be 10 to 80 characters.
+
+Set it per stream when you create the broadcast:
+
+```bash
+curl -X POST -H "Content-Type: application/json" \
+  -d '{"streamId":"stream1","srtPassphrase":"yourpassphrase"}' \
+  https://example.com:5443/LiveApp/rest/v2/broadcasts/create
+```
+
+Then publish with the same passphrase in the URL:
+
+```bash
+ffmpeg -re -i {INPUT} -vcodec libx264 -profile:v baseline -g 60 -acodec aac -f mpegts "srt://ant.media.server.address:4200?streamid=LiveApp/stream1&passphrase=yourpassphrase"
+```
+
+To cover a whole application instead, set `srtPassphrase` in the application settings. Every SRT stream published to that application then needs it. A stream with its own `srtPassphrase` uses that one instead, and if both are empty SRT ingest stays unencrypted like before.
+
+:::tip
+If you want to block anything you didn't set up yourself, put a long random string in the application `srtPassphrase` and give each stream its own passphrase. Nobody knows the application one, so only the streams you configured can publish.
+:::
+
 ## Play SRT with Ant Media Server
 
 Once the SRT stream has been published, it can be viewed using WebRTC, HLS, or CMAF (Dash). Please see the document [here](https://antmedia.io/docs/category/playing-live-streams/) for more information.
