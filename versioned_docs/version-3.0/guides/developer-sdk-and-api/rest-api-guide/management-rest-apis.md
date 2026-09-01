@@ -5,15 +5,15 @@ keywords: [JWT Tokens, REST API, Management Panel REST API Services, Ant Media S
 sidebar_position: 4
 ---
 
-# Management Panel REST API Services
+# Management Panel REST API
 
-Some REST commands that are not application-specific, such as creating and deleting an app, creating a new user, etc., require authentication by logging into the management panel.
+Some REST API endpoints, such as creating or deleting applications and managing users, operate at the Management Panel level rather than within a specific application. These endpoints require authentication before they can be accessed.
 
 This can be limiting for users who want to automate REST API calls without manually accessing the web panel every time.
 
 :::info
 
-There are two authentication methods to access the web panel using the REST API: **JWT Token** or **Username and password**.
+There are two supported authentication methods for accessing the Management Panel REST API:: **JWT Token** or **Username and password**.
 
 :::
 
@@ -21,7 +21,7 @@ In earlier versions of Ant Media Server, using the JWT API Filter required editi
 
 ## JWT Token Authentication
 
-First, open the `conf/red5.properties` file and update the following lines:
+Enable JWT authentication by updating the following properties in `conf/red5.properties`:
 
 ```
 server.jwtServerControlEnabled=false 
@@ -46,9 +46,9 @@ The REST API for the web panel is listed under [Management REST Service](https:/
 
 ### Generate JWT Token
 
-Assume the secret key is (`cizvvh7f6ys0w3x0s1gzg6c2qzpk0gb9`). Generate the JWT Token at [JWT Debugger](https://jwt.io/#debugger-io). using the secret key and leaving the payload empty. 
+Generate a JWT token using your configured secret key. You can use the [JWT Debugger](https://jwt.io/#debugger-io) for testing purposes. Leave the payload empty and sign the token using the HS256 algorithm. Assume the secret key is (`cizvvh7f6ys0w3x0s1gzg6c2qzpk0gb9`).
 
-The resulting token can be used to access the REST API: 
+Example JWT token can be used to access the REST API: 
 
 ```eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.e30.tA6sZwz_MvD9Nocf3Xv_DXhJaeTNgfsHPlg3RHEoZRk```
 
@@ -72,7 +72,7 @@ To authenticate using username and password, use the [AuthenticateUser](https://
 
 ### Convert Password to MD5 Hash
 
-The password must be encrypted using MD5. You can use [MD5 encryption](https://www.md5online.org/md5-encrypt.html) to generate the MD5 hash of your password.
+The password must be hashed using MD5. You can use [MD5 hash generator](https://www.md5online.org/md5-encrypt.html) to generate the MD5 hash of your password.
 
 ### Payload
 
@@ -88,11 +88,11 @@ Here is the Curl Sample to Authenticate the user:
 curl -X POST 'https://example.com:5443/rest/v2/users/authenticate' -H 'Content-Type: application/json' -d '{"email":"test@example.com", "password":"05a671c66aefea124cc08b76ea6d30bb"}' --cookie-jar cookies.txt
 ```
 
-We save the JESSIONID into the cookie file and use the same to call the further APIs to not encounter any issue.
+The command stores the JSESSIONID cookie in `cookies.txt`. Use the same cookie file when making subsequent Management Panel REST API requests.
 
 ### Curl Sample for Management API
 
-Once authenticated using username and password, you can access Dashboard REST Services. For example, to get the list of [Applications](https://antmedia.io/rest/#/ManagementRestService/getApplications):
+Once authenticated using username and password, you can access Management Panel REST API endpoints. For example, to get the list of [Applications](https://antmedia.io/rest/#/ManagementRestService/getApplications):
 
 ```
 curl -X GET -H "Content-Type: application/json" "https://example.com:5443/rest/v2/applications" --cookie cookies.txt
