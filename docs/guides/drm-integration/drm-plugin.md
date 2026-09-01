@@ -97,6 +97,7 @@ Multiple DRM systems can also be passed:
 - **`segmentDurationSecs`**: Segment duration in seconds. Default is 2.
 - **`timeShiftBufferDepthSecs`**: Buffer duration for live streams. Default is 60.
 - **`segmentsOutsideLiveWindow`**: Extra segments outside the buffer window. Default is 5.
+- **`customShakaArguments`**: Extra CLI arguments to be passed directly to [Shaka](https://github.com/shaka-project/shaka-packager) packager
 
 ## DoveRunner Multi-DRM Integration (Widevine Example)
 
