@@ -31,21 +31,6 @@ Yes, AMS can be deployed using the Docker.
 
 Utilizing a Docker image is a very common way of deploying Ant Media Server. Check the [Installation](https://antmedia.io/docs/guides/clustering-and-scaling/docker/docker-and-docker-compose-installation/) and the official Ant Media Server Docker images [here](https://hub.docker.com/u/antmedia).
 
-## I cannot login to AMS dashboard after upgrading
-
-Starting from version 2.2, Ant Media stores passwords with MD5 encryption. For this reason, you need to change your passwords to MD5 encryption. You can encrypt your password using any MD5 encryption tool like: [hmd5online.org](https://www.md5online.org/md5-encrypt.html)
-
-Here are the steps:
-
-1.  Login to MongoDB
-2.  Run the commands below:
-
-    ```js
-    use serverdb
-    db.getCollection('User').find() //Get User details```
-    db.User.updateOne({"_id": "5e978ef3c9e77c0001228040"},    {$set:{password: "md5Password"}}) //Use User ID in updateOne section and use password with MD5 protection 
-    ```
-
 ## How can I reset the admin password?
 
 *   Stop the server using ```service antmedia stop```.
@@ -57,9 +42,9 @@ If you're using ```mongodb``` as the database, your password will be stored in t
 *   Connect to your ```mongodb``` server with ```mongo``` client.
 *   Type ```use serverdb;```
 *   Type ```db.User.find()``` and it shows you the output like below. ```{ "_id" : ObjectId("5ea486690f09e71c2462385a"), "className" : "io.antmedia.rest.model.User", "email" : "test@antmedia.io", "password" : "...", "userType" : "ADMIN" }```
-*   You can update the password with a command something like below. Change the parameters below according to the your case. ```db.User.updateOne( { email:"test@antmedia.io" }, { $set: { "password" : "..." }})```
+*   You can update the password with a command something like below. Change the parameters below according to the your case. Use Argon2 for hashing the new password. ```db.User.updateOne( { email:"test@antmedia.io" }, { $set: { "password" : "..." }})```
 *   Alternatively, you can delete the user with a command something like below. Change the parameters below according to the your case. ```db.user.deleteOne( { "email": "test@antmedia.io" } )```
-*   As of version 2.3.2, passwords should be hashed with MD5.
+*   As of version 3.1.0, passwords should be hashed with Argon2.
 
 ## What is HLS?
 
