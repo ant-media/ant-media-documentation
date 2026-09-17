@@ -26,26 +26,27 @@ const MGMT_FIXTURE = path.join(
   "scripts/fixtures/swagger-3.0.3-management.json",
 );
 
+const DOC_VERSIONS = JSON.parse(
+  fs.readFileSync(path.join(ROOT, "versions.json"), "utf8"),
+);
+
 const CATALOG_DIR = path.join(
   ROOT,
   "docs/guides/developer-sdk-and-api/rest-api-guide/api-catalog",
 );
 
-const VERSIONED_CATALOG_DIRS = [
-  "versioned_docs/version-3.0/guides/developer-sdk-and-api/rest-api-guide/api-catalog",
-  "versioned_docs/version-2.17/guides/developer-sdk-and-api/rest-api-guide/api-catalog",
-  "versioned_docs/version-2.16/guides/developer-sdk-and-api/rest-api-guide/api-catalog",
-];
+const VERSIONED_CATALOG_DIRS = DOC_VERSIONS.map(
+  (v) =>
+    `versioned_docs/version-${v}/guides/developer-sdk-and-api/rest-api-guide/api-catalog`,
+);
 
 const LEGACY_PATHS = [
   "docs/guides/developer-sdk-and-api/rest-api-guide/rest-apis-examples.md",
   "docs/guides/developer-sdk-and-api/rest-api-guide/examples",
-  "versioned_docs/version-3.0/guides/developer-sdk-and-api/rest-api-guide/rest-apis-examples.md",
-  "versioned_docs/version-2.17/guides/developer-sdk-and-api/rest-api-guide/rest-apis-examples.md",
-  "versioned_docs/version-2.16/guides/developer-sdk-and-api/rest-api-guide/rest-apis-examples.md",
-  "versioned_docs/version-3.0/guides/developer-sdk-and-api/rest-api-guide/examples",
-  "versioned_docs/version-2.17/guides/developer-sdk-and-api/rest-api-guide/examples",
-  "versioned_docs/version-2.16/guides/developer-sdk-and-api/rest-api-guide/examples",
+  ...DOC_VERSIONS.flatMap((v) => [
+    `versioned_docs/version-${v}/guides/developer-sdk-and-api/rest-api-guide/rest-apis-examples.md`,
+    `versioned_docs/version-${v}/guides/developer-sdk-and-api/rest-api-guide/examples`,
+  ]),
 ];
 
 const HTTP_METHODS = ["get", "post", "put", "delete", "patch"];
@@ -214,7 +215,7 @@ function parseArgs(argv) {
     else if (a === "--help" || a === "-h") {
       console.log(`Usage: node scripts/generate-rest-endpoint-catalog.mjs [options]
   --offline           Use scripts/fixtures only (no network)
-  --sync-versions     Also copy api-catalog/ to versioned_docs 3.0 / 2.17 / 2.16`);
+  --sync-versions     Also copy api-catalog/ to versioned_docs for every frozen version`);
       process.exit(0);
     } else {
       console.error(`Unknown argument: ${a}`);

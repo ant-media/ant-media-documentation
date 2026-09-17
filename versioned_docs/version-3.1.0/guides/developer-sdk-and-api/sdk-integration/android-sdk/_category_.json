@@ -1,0 +1,8 @@
+{
+  "label": "Android SDK",
+  "position": 1,
+  "link": {
+    "type": "doc",
+    "id": "guides/developer-sdk-and-api/sdk-integration/android-sdk/android-sdk"
+  }
+}

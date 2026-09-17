@@ -20,11 +20,11 @@ function versionRecency(version) {
     if (/next/i.test(label) || label === "current") {
         return Number.MAX_SAFE_INTEGER;
     }
-    const match = label.match(/(\d+)\.(\d+)/);
+    const match = label.match(/(\d+)\.(\d+)(?:\.(\d+))?/);
     if (!match) {
         return 0;
     }
-    return Number(match[1]) * 1_000_000 + Number(match[2]) * 1_000;
+    return Number(match[1]) * 1_000_000 + Number(match[2]) * 1_000 + Number(match[3] || 0);
 }
 
 /** Strip version prefix so the same page across releases can be deduped. */
@@ -33,7 +33,7 @@ function normalizeUrl(url) {
         return "";
     }
     const [path, hash] = url.split("#");
-    const normalizedPath = path.replace(/^\/\d+\.\d+(?=\/|$)/, "") || "/";
+    const normalizedPath = path.replace(/^\/\d+(?:\.\d+)+(?=\/|$)/, "") || "/";
     return hash ? `${normalizedPath}#${hash}` : normalizedPath;
 }
 

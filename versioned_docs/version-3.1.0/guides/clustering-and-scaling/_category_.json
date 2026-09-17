@@ -1,0 +1,8 @@
+{
+  "label": "Clustering and Scaling",
+  "position": 10,
+  "link": {
+    "type": "doc",
+    "id": "guides/clustering-and-scaling/index"
+  }
+}

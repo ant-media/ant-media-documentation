@@ -1,0 +1,8 @@
+{
+  "label": "Restreaming",
+  "position": 8,
+  "link": {
+    "type": "generated-index",
+    "description": "Restreaming to RTMP/SRT Endpoints."
+  }
+}

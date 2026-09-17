@@ -1,0 +1,8 @@
+{
+  "label": "SDKs",
+  "position": 1,
+  "link": {
+    "type": "doc",
+    "id": "guides/developer-sdk-and-api/sdk-integration/index"
+  }
+}

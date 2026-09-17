@@ -28,6 +28,27 @@ function getNextVersionName() {
   return 'Next';
 }
 
+/** Empty for lastVersion (served at site root); `/x.y` for older frozen versions. */
+function versionUrlPrefix(version) {
+  const name = String(version ?? '').replace(/\/$/, '');
+  if (!name || name === getLastStableVersion()) {
+    return '';
+  }
+  return `/${name}`;
+}
+
+/** Unversioned latest plus every frozen version key (`''`, `'3.1.0/'`, ...). */
+function allVersionPathKeys() {
+  return ['', ...versions.map((v) => `${v}/`)];
+}
+
+function redirectsForAllVersions(fromSuffix, toSuffix) {
+  return versions.map((ver) => ({
+    from: `/${ver}${fromSuffix}`,
+    to: `${versionUrlPrefix(ver)}${toSuffix}`,
+  }));
+}
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Ant Media Documentation',
@@ -109,7 +130,7 @@ scripts: [
           lastVersion:
               isDev ? 'current' : getLastStableVersion(),
           onlyIncludeVersions: (() => {
-                return [ ...(isDev ? ['current'] : []), ...versions.slice(0, 3)]; // return only the last 4 
+                return [ ...(isDev ? ['current'] : []), ...versions.slice(0, 4)];
             })(),
           versions: {
              current: {
@@ -281,10 +302,10 @@ scripts: [
           ],
           to: '/guides/stream-security/totp/'
         },
-	// 3.0 is lastVersion (unversioned); 2.17/2.16 keep version prefixes.
-	...['3.0/', '2.17/', '2.16/'].flatMap((ver) => {
+	// lastVersion is unversioned; older frozen versions keep their prefix.
+	...versions.map((v) => `${v}/`).flatMap((ver) => {
           const fromPrefix = `/${ver.replace(/\/$/, '')}`;
-          const toPrefix = ver === '3.0/' ? '' : fromPrefix;
+          const toPrefix = versionUrlPrefix(ver);
           return [
             {
               from: [
@@ -332,8 +353,8 @@ scripts: [
           to: '/guides/publish-live-stream/webrtc/webrtc-conference-call/',
         },
 	// Webinar / Circle: fix nested relative-link mistakes and duplicate folder URLs
-	...['', '3.0/', '2.17/', '2.16/'].flatMap((ver) => {
-          const toPrefix = ver === '3.0/' || ver === '' ? '' : `/${ver.replace(/\/$/, '')}`;
+	...allVersionPathKeys().flatMap((ver) => {
+          const toPrefix = versionUrlPrefix(ver);
           const fromPrefix = ver === '' ? '' : `/${ver.replace(/\/$/, '')}`;
           return [
             {
@@ -390,7 +411,7 @@ scripts: [
           from: '/guides/configuration-and-testing/webrtc-load-testing/',
           to: '/category/load-testing/'
         },
-	// Versioned load-testing moves (3.0 latest is unversioned)
+	// Versioned load-testing moves (lastVersion is unversioned)
 	...['2.17', '2.16'].flatMap((ver) => [
           {
             from: `/${ver}/guides/configuration-and-testing/load-testing/`,
@@ -421,38 +442,44 @@ scripts: [
             to: `/${ver}/guides/load-testing/srt-loadt-testing/`,
           },
         ]),
-	{
-          from: '/3.0/guides/configuration-and-testing/load-testing/',
-          to: '/category/load-testing/',
-        },
-	{
-          from: '/3.0/guides/configuration-and-testing/load-testing/webrtc-load-testing/',
-          to: '/guides/load-testing/webrtc-load-testing/',
-        },
-	{
-          from: '/3.0/guides/configuration-and-testing/load-testing/hls-load-testing/',
-          to: '/guides/load-testing/hls-load-testing/',
-        },
-	{
-          from: '/3.0/guides/configuration-and-testing/load-testing/rtmp-load-testing/',
-          to: '/guides/load-testing/rtmp-load-testing/',
-        },
-	{
-          from: '/3.0/guides/configuration-and-testing/load-testing/rtsp-load-testing/',
-          to: '/guides/load-testing/rtsp-load-testing/',
-        },
-	{
-          from: '/3.0/guides/configuration-and-testing/load-testing/srt-loadt-testing/',
-          to: '/guides/load-testing/srt-load-testing/',
-        },
-	{
-          from: '/3.0/guides/configuration-and-testing/load-testing/srt-load-testing/',
-          to: '/guides/load-testing/srt-load-testing/',
-        },
-	{
-          from: '/3.0/guides/load-testing/srt-loadt-testing/',
-          to: '/guides/load-testing/srt-load-testing/',
-        },
+	...versions.filter((ver) => ver !== '2.17' && ver !== '2.16').flatMap((ver) => {
+          const fromPrefix = `/${ver}`;
+          const toPrefix = versionUrlPrefix(ver);
+          return [
+            {
+              from: `${fromPrefix}/guides/configuration-and-testing/load-testing/`,
+              to: `${toPrefix}/category/load-testing/`,
+            },
+            {
+              from: `${fromPrefix}/guides/configuration-and-testing/load-testing/webrtc-load-testing/`,
+              to: `${toPrefix}/guides/load-testing/webrtc-load-testing/`,
+            },
+            {
+              from: `${fromPrefix}/guides/configuration-and-testing/load-testing/hls-load-testing/`,
+              to: `${toPrefix}/guides/load-testing/hls-load-testing/`,
+            },
+            {
+              from: `${fromPrefix}/guides/configuration-and-testing/load-testing/rtmp-load-testing/`,
+              to: `${toPrefix}/guides/load-testing/rtmp-load-testing/`,
+            },
+            {
+              from: `${fromPrefix}/guides/configuration-and-testing/load-testing/rtsp-load-testing/`,
+              to: `${toPrefix}/guides/load-testing/rtsp-load-testing/`,
+            },
+            {
+              from: `${fromPrefix}/guides/configuration-and-testing/load-testing/srt-loadt-testing/`,
+              to: `${toPrefix}/guides/load-testing/srt-load-testing/`,
+            },
+            {
+              from: `${fromPrefix}/guides/configuration-and-testing/load-testing/srt-load-testing/`,
+              to: `${toPrefix}/guides/load-testing/srt-load-testing/`,
+            },
+            {
+              from: `${fromPrefix}/guides/load-testing/srt-loadt-testing/`,
+              to: `${toPrefix}/guides/load-testing/srt-load-testing/`,
+            },
+          ];
+        }),
 	{
           from: '/2.17/guides/configuration-and-testing/load-testing/rtsp-load-testing/',
           to: '/2.17/guides/load-testing/rtsp-load-testing/',
@@ -473,66 +500,22 @@ scripts: [
           from: '/category/clustering-and-scaling/',
           to: '/guides/clustering-and-scaling/'
         },
-	{
-          from: '/2.17/category/clustering-and-scaling/',
-          to: '/2.17/guides/clustering-and-scaling/'
-        },
-	{
-          from: '/2.16/category/clustering-and-scaling/',
-          to: '/2.16/guides/clustering-and-scaling/'
-        },
-	{
-          from: '/3.0/category/clustering-and-scaling/',
-          to: '/guides/clustering-and-scaling/'
-        },
+	...redirectsForAllVersions('/category/clustering-and-scaling/', '/guides/clustering-and-scaling/'),
 	{
           from: '/category/load-balancing/',
           to: '/guides/clustering-and-scaling/load-balancing/'
         },
-	{
-          from: '/2.17/category/load-balancing/',
-          to: '/2.17/guides/clustering-and-scaling/load-balancing/'
-        },
-	{
-          from: '/2.16/category/load-balancing/',
-          to: '/2.16/guides/clustering-and-scaling/load-balancing/'
-        },
-	{
-          from: '/3.0/category/load-balancing/',
-          to: '/guides/clustering-and-scaling/load-balancing/'
-        },
+	...redirectsForAllVersions('/category/load-balancing/', '/guides/clustering-and-scaling/load-balancing/'),
 	{
           from: '/category/supported-databases/',
           to: '/guides/clustering-and-scaling/supported-databases/'
         },
-	{
-          from: '/2.17/category/supported-databases/',
-          to: '/2.17/guides/clustering-and-scaling/supported-databases/'
-        },
-	{
-          from: '/2.16/category/supported-databases/',
-          to: '/2.16/guides/clustering-and-scaling/supported-databases/'
-        },
-	{
-          from: '/3.0/category/supported-databases/',
-          to: '/guides/clustering-and-scaling/supported-databases/'
-        },
+	...redirectsForAllVersions('/category/supported-databases/', '/guides/clustering-and-scaling/supported-databases/'),
 	{
           from: '/category/docker/',
           to: '/guides/clustering-and-scaling/docker/'
         },
-	{
-          from: '/2.17/category/docker/',
-          to: '/2.17/guides/clustering-and-scaling/docker/'
-        },
-	{
-          from: '/2.16/category/docker/',
-          to: '/2.16/guides/clustering-and-scaling/docker/'
-        },
-	{
-          from: '/3.0/category/docker/',
-          to: '/guides/clustering-and-scaling/docker/'
-        },
+	...redirectsForAllVersions('/category/docker/', '/guides/clustering-and-scaling/docker/'),
 	{
           from: '/v1/docs/getting-started-with-ant-media-server/',
           to: '/dashboard-features/'
@@ -542,8 +525,8 @@ scripts: [
           to: '/dashboard-features/'
         },
 	// Flattened Get Started docs now use root-level slugs.
-	...['', '3.0/', '2.17/', '2.16/'].flatMap((ver) => {
-          const toPrefix = ver === '3.0/' || ver === '' ? '' : `/${ver.replace(/\/$/, '')}`;
+	...allVersionPathKeys().flatMap((ver) => {
+          const toPrefix = versionUrlPrefix(ver);
           const fromPrefix = ver === '' ? '' : `/${ver.replace(/\/$/, '')}`;
           // 2.16 never had Dashboard Features / enterprise-guide
           const pairs = [
@@ -555,7 +538,7 @@ scripts: [
           if (ver !== '2.16/') {
             pairs.unshift(['/get-started/features/', '/dashboard-features/']);
           }
-          if (ver === '' || ver === '3.0/') {
+          if (ver !== '2.16/') {
             pairs.push(['/get-started/enterprise-guide/', '/enterprise-guide/']);
           }
           const redirects = pairs.map(([fromSuffix, toSuffix]) => ({
@@ -593,10 +576,10 @@ scripts: [
           from: '/guides/advanced-usage/turn-installation/configuring-stun-turn-addresses/',
           to: '/guides/configuration-and-testing/configuring-stun-turn-addresses/',
         },
-	{
-          from: '/3.0/guides/advanced-usage/turn-installation/configuring-stun-turn-addresses/',
-          to: '/guides/configuration-and-testing/configuring-stun-turn-addresses/',
-        },
+	...redirectsForAllVersions(
+          '/guides/advanced-usage/turn-installation/configuring-stun-turn-addresses/',
+          '/guides/configuration-and-testing/configuring-stun-turn-addresses/',
+        ),
 	{
           from: '/guides/advanced-usage/turn-and-stun-installation/coturn-quick-installation/',
           to: '/guides/advanced-usage/turn-installation/coturn-quick-installation/'
@@ -621,18 +604,22 @@ scripts: [
           };
           const prefixes = [
             { from: '/guides/developing-antmedia-server/push-notification-management/', to: pushBase + '/' },
-            { from: '/3.0/guides/developing-antmedia-server/push-notification-management/', to: pushBase + '/' },
-            { from: '/2.17/guides/developing-antmedia-server/push-notification-management/', to: '/2.17' + pushBase + '/' },
-            { from: '/2.16/guides/developing-antmedia-server/push-notification-management/', to: '/2.16' + pushBase + '/' },
             { from: pushBase + '/', to: pushBase + '/' },
-            { from: '/3.0' + pushBase + '/', to: pushBase + '/' },
-            { from: '/2.17' + pushBase + '/', to: '/2.17' + pushBase + '/' },
-            { from: '/2.16' + pushBase + '/', to: '/2.16' + pushBase + '/' },
+            ...versions.map((ver) => ({
+              from: `/${ver}/guides/developing-antmedia-server/push-notification-management/`,
+              to: `${versionUrlPrefix(ver)}${pushBase}/`,
+            })),
+            ...versions.map((ver) => ({
+              from: `/${ver}${pushBase}/`,
+              to: `${versionUrlPrefix(ver)}${pushBase}/`,
+            })),
           ];
           const redirects = [
             { from: '/category/push-notification/', to: pushBase + '/' },
-            { from: '/2.17/category/push-notification/', to: '/2.17' + pushBase + '/' },
-            { from: '/2.16/category/push-notification/', to: '/2.16' + pushBase + '/' },
+            ...versions.map((ver) => ({
+              from: `/${ver}/category/push-notification/`,
+              to: `${versionUrlPrefix(ver)}${pushBase}/`,
+            })),
           ];
           for (const { from, to } of prefixes) {
             for (const [oldPath, newPath] of Object.entries(pathMap)) {
@@ -757,83 +744,43 @@ scripts: [
           from: '/guides/developer-sdk-and-api/rest-api-guide/REST-API-examples/',
           to: '/guides/developer-sdk-and-api/rest-api-guide/api-catalog/'
         },
+	...redirectsForAllVersions(
+          '/guides/developer-sdk-and-api/rest-api-guide/REST-API-examples/',
+          '/guides/developer-sdk-and-api/rest-api-guide/api-catalog/',
+        ),
 	{
           from: '/guides/developer-sdk-and-api/rest-api-guide/rest-apis-examples/',
           to: '/guides/developer-sdk-and-api/rest-api-guide/api-catalog/'
         },
+	...redirectsForAllVersions(
+          '/guides/developer-sdk-and-api/rest-api-guide/rest-apis-examples/',
+          '/guides/developer-sdk-and-api/rest-api-guide/api-catalog/',
+        ),
 	{
           from: '/guides/developer-sdk-and-api/rest-api-guide/examples/',
           to: '/guides/developer-sdk-and-api/rest-api-guide/api-catalog/'
         },
-	{
-          from: '/2.17/guides/developer-sdk-and-api/rest-api-guide/REST-API-examples/',
-          to: '/2.17/guides/developer-sdk-and-api/rest-api-guide/api-catalog/'
-        },
-	{
-          from: '/2.17/guides/developer-sdk-and-api/rest-api-guide/rest-apis-examples/',
-          to: '/2.17/guides/developer-sdk-and-api/rest-api-guide/api-catalog/'
-        },
-	{
-          from: '/2.17/guides/developer-sdk-and-api/rest-api-guide/examples/',
-          to: '/2.17/guides/developer-sdk-and-api/rest-api-guide/api-catalog/'
-        },
-	{
-          from: '/2.16/guides/developer-sdk-and-api/rest-api-guide/REST-API-examples/',
-          to: '/2.16/guides/developer-sdk-and-api/rest-api-guide/api-catalog/'
-        },
-	{
-          from: '/2.16/guides/developer-sdk-and-api/rest-api-guide/rest-apis-examples/',
-          to: '/2.16/guides/developer-sdk-and-api/rest-api-guide/api-catalog/'
-        },
-	{
-          from: '/2.16/guides/developer-sdk-and-api/rest-api-guide/examples/',
-          to: '/2.16/guides/developer-sdk-and-api/rest-api-guide/api-catalog/'
-        },
-	{
-          from: '/3.0/guides/developer-sdk-and-api/rest-api-guide/REST-API-examples/',
-          to: '/guides/developer-sdk-and-api/rest-api-guide/api-catalog/'
-        },
-	{
-          from: '/3.0/guides/developer-sdk-and-api/rest-api-guide/rest-apis-examples/',
-          to: '/guides/developer-sdk-and-api/rest-api-guide/api-catalog/'
-        },
-	{
-          from: '/3.0/guides/developer-sdk-and-api/rest-api-guide/examples/',
-          to: '/guides/developer-sdk-and-api/rest-api-guide/api-catalog/'
-        },
+	...redirectsForAllVersions(
+          '/guides/developer-sdk-and-api/rest-api-guide/examples/',
+          '/guides/developer-sdk-and-api/rest-api-guide/api-catalog/',
+        ),
 	{
           from: '/guides/developer-sdk-and-api/rest-api-guide/rest-api-guide/',
           to: '/guides/developer-sdk-and-api/rest-api-guide/getting-started/',
         },
-	{
-          from: '/2.17/guides/developer-sdk-and-api/rest-api-guide/rest-api-guide/',
-          to: '/2.17/guides/developer-sdk-and-api/rest-api-guide/getting-started/',
-        },
-	{
-          from: '/2.16/guides/developer-sdk-and-api/rest-api-guide/rest-api-guide/',
-          to: '/2.16/guides/developer-sdk-and-api/rest-api-guide/getting-started/',
-        },
-	{
-          from: '/3.0/guides/developer-sdk-and-api/rest-api-guide/rest-api-guide/',
-          to: '/guides/developer-sdk-and-api/rest-api-guide/getting-started/',
-        },
+	...redirectsForAllVersions(
+          '/guides/developer-sdk-and-api/rest-api-guide/rest-api-guide/',
+          '/guides/developer-sdk-and-api/rest-api-guide/getting-started/',
+        ),
 	// REST API category index → overview doc
 	{
           from: '/category/rest-api-guide/',
           to: '/guides/developer-sdk-and-api/rest-api-guide/',
         },
-	{
-          from: '/2.17/category/rest-api-guide/',
-          to: '/2.17/guides/developer-sdk-and-api/rest-api-guide/',
-        },
-	{
-          from: '/2.16/category/rest-api-guide/',
-          to: '/2.16/guides/developer-sdk-and-api/rest-api-guide/',
-        },
-	{
-          from: '/3.0/category/rest-api-guide/',
-          to: '/guides/developer-sdk-and-api/rest-api-guide/',
-        },
+	...redirectsForAllVersions(
+          '/category/rest-api-guide/',
+          '/guides/developer-sdk-and-api/rest-api-guide/',
+        ),
 	{
           from: '/guides/advanced-usage/using-nvidia-hardware-based-encoder-on-docker/',
           to: '/guides/clustering-and-scaling/docker/using-nvidia-hardware-based-encoder-on-docker/'
@@ -842,18 +789,10 @@ scripts: [
           from: '/guides/clustering-and-scaling/docker/choose-docker-deployment/',
           to: '/guides/clustering-and-scaling/docker/'
         },
-	{
-          from: '/3.0/guides/clustering-and-scaling/docker/choose-docker-deployment/',
-          to: '/guides/clustering-and-scaling/docker/'
-        },
-	{
-          from: '/2.17/guides/clustering-and-scaling/docker/choose-docker-deployment/',
-          to: '/2.17/guides/clustering-and-scaling/docker/'
-        },
-	{
-          from: '/2.16/guides/clustering-and-scaling/docker/choose-docker-deployment/',
-          to: '/2.16/guides/clustering-and-scaling/docker/'
-        },
+	...redirectsForAllVersions(
+          '/guides/clustering-and-scaling/docker/choose-docker-deployment/',
+          '/guides/clustering-and-scaling/docker/',
+        ),
 
 	{
           from: '/guides/advanced-usage/circle-component-usage/',
@@ -899,15 +838,10 @@ scripts: [
           from: '/guides/configuration-and-testing/video-codecs/',
           to: '/guides/configuration-and-testing/video-codec/',
         },
-	{
-          // 3.0 is lastVersion (served unversioned); keep /3.0/ bookmarks working.
-          from: '/3.0/guides/configuration-and-testing/video-codecs/',
-          to: '/guides/configuration-and-testing/video-codec/',
-        },
-	{
-          from: '/2.17/guides/configuration-and-testing/video-codecs/',
-          to: '/2.17/guides/configuration-and-testing/video-codec/',
-        },
+	...versions.filter((ver) => ver !== '2.16').map((ver) => ({
+          from: `/${ver}/guides/configuration-and-testing/video-codecs/`,
+          to: `${versionUrlPrefix(ver)}/guides/configuration-and-testing/video-codec/`,
+        })),
 	// 2.16 still has video-codecs.md — do not redirect that version.
 	{
           from: '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/react-native-publish-sample/',
@@ -978,35 +912,21 @@ scripts: [
           to: '/category/javascript-sdk-samples/'
         },
 	{
-          from: [
-            '/guides/developing-antmedia-server/webrtc-publish-page-creation-tutorial/',
-            '/3.0/guides/developing-antmedia-server/webrtc-publish-page-creation-tutorial/',
-          ],
+          from: '/guides/developing-antmedia-server/webrtc-publish-page-creation-tutorial/',
           to: '/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/webrtc-samples/publish/',
         },
+	...redirectsForAllVersions(
+          '/guides/developing-antmedia-server/webrtc-publish-page-creation-tutorial/',
+          '/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/webrtc-samples/publish/',
+        ),
 	{
-          from: [
-            '/guides/developing-antmedia-server/webrtc-play-page-creation-tutorial/',
-            '/3.0/guides/developing-antmedia-server/webrtc-play-page-creation-tutorial/',
-          ],
+          from: '/guides/developing-antmedia-server/webrtc-play-page-creation-tutorial/',
           to: '/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/webrtc-samples/play/',
         },
-	{
-          from: '/2.17/guides/developing-antmedia-server/webrtc-publish-page-creation-tutorial/',
-          to: '/2.17/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/webrtc-samples/publish/',
-        },
-	{
-          from: '/2.17/guides/developing-antmedia-server/webrtc-play-page-creation-tutorial/',
-          to: '/2.17/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/webrtc-samples/play/',
-        },
-	{
-          from: '/2.16/guides/developing-antmedia-server/webrtc-publish-page-creation-tutorial/',
-          to: '/2.16/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/webrtc-samples/publish/',
-        },
-	{
-          from: '/2.16/guides/developing-antmedia-server/webrtc-play-page-creation-tutorial/',
-          to: '/2.16/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/webrtc-samples/play/',
-        },
+	...redirectsForAllVersions(
+          '/guides/developing-antmedia-server/webrtc-play-page-creation-tutorial/',
+          '/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/webrtc-samples/play/',
+        ),
 	{
           from: '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/react-native-pre-requisite/',
           to: '/guides/developer-sdk-and-api/sdk-integration/react-native-sdk/getting-started/react-native-pre-requisite/',
@@ -1073,9 +993,9 @@ scripts: [
           to: '/guides/clustering-and-scaling/aws/aws-cloudformation/scale-with-self-hosted-license/',
         },
 	// Versioned docs: kubernetes-services flattened + self-hosted moved under CloudFormation.
-	// Latest stable (3.0) is served without a version prefix, so redirect targets must omit it.
-	...['3.0', '2.17', '2.16'].flatMap((ver) => {
-          const toPrefix = ver === getLastStableVersion() ? '' : `/${ver}`;
+	// lastVersion is served without a version prefix, so redirect targets must omit it.
+	...versions.flatMap((ver) => {
+          const toPrefix = versionUrlPrefix(ver);
           return [
             {
               from: `/${ver}/guides/clustering-and-scaling/kubernetes/kubernetes-services/installing-ams-on-aws-eks/`,
@@ -1123,19 +1043,19 @@ scripts: [
           from: '/guides/clustering-and-scaling/aws/aws-wavelenght/aws-wavelength-cluster-deployment/',
           to: '/guides/clustering-and-scaling/aws/aws-wavelength/aws-wavelength-cluster-deployment/',
         },
-	// 3.0 lastVersion is unversioned; keep /3.0/ typo bookmarks working.
-	{
-          from: '/3.0/guides/clustering-and-scaling/aws/aws-wavelenght/deploying-ams-at-aws-wavelength/',
-          to: '/guides/clustering-and-scaling/aws/aws-wavelength/deploying-ams-at-aws-wavelength/',
-        },
-	{
-          from: '/3.0/guides/clustering-and-scaling/aws/aws-wavelenght/aws-wavelength-standalone-deployment/',
-          to: '/guides/clustering-and-scaling/aws/aws-wavelength/aws-wavelength-standalone-deployment/',
-        },
-	{
-          from: '/3.0/guides/clustering-and-scaling/aws/aws-wavelenght/aws-wavelength-cluster-deployment/',
-          to: '/guides/clustering-and-scaling/aws/aws-wavelength/aws-wavelength-cluster-deployment/',
-        },
+	// lastVersion is unversioned; keep 3.x typo bookmarks working.
+	...redirectsForAllVersions(
+          '/guides/clustering-and-scaling/aws/aws-wavelenght/deploying-ams-at-aws-wavelength/',
+          '/guides/clustering-and-scaling/aws/aws-wavelength/deploying-ams-at-aws-wavelength/',
+        ).filter((r) => !r.from.startsWith('/2.')),
+	...redirectsForAllVersions(
+          '/guides/clustering-and-scaling/aws/aws-wavelenght/aws-wavelength-standalone-deployment/',
+          '/guides/clustering-and-scaling/aws/aws-wavelength/aws-wavelength-standalone-deployment/',
+        ).filter((r) => !r.from.startsWith('/2.')),
+	...redirectsForAllVersions(
+          '/guides/clustering-and-scaling/aws/aws-wavelenght/aws-wavelength-cluster-deployment/',
+          '/guides/clustering-and-scaling/aws/aws-wavelength/aws-wavelength-cluster-deployment/',
+        ).filter((r) => !r.from.startsWith('/2.')),
 	{
           from: '/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/',
           to: '/category/javascript-sdk/',
@@ -1182,87 +1102,59 @@ scripts: [
               from: '/guides/advanced-usage/webhooks/',
               to: '/guides/developer-sdk-and-api/webhooks/',
             },
-            {
-              from: '/3.0/guides/advanced-usage/webhooks/',
-              to: '/guides/developer-sdk-and-api/webhooks/',
-            },
-            {
-              from: '/2.17/guides/advanced-usage/webhooks/',
-              to: '/2.17/guides/developer-sdk-and-api/webhooks/',
-            },
-            {
-              from: '/2.16/guides/advanced-usage/webhooks/',
-              to: '/2.16/guides/developer-sdk-and-api/webhooks/',
-            },
+            ...redirectsForAllVersions(
+              '/guides/advanced-usage/webhooks/',
+              '/guides/developer-sdk-and-api/webhooks/',
+            ),
             {
               from: '/guides/developing-antmedia-server/',
               to: '/guides/developer-sdk-and-api/extend-the-server/',
             },
-            {
-              from: '/3.0/guides/developing-antmedia-server/',
-              to: '/guides/developer-sdk-and-api/extend-the-server/',
-            },
-            {
-              from: '/2.17/guides/developing-antmedia-server/',
-              to: '/2.17/guides/developer-sdk-and-api/extend-the-server/',
-            },
-            {
-              from: '/2.16/guides/developing-antmedia-server/',
-              to: '/2.16/guides/developer-sdk-and-api/extend-the-server/',
-            },
+            ...redirectsForAllVersions(
+              '/guides/developing-antmedia-server/',
+              '/guides/developer-sdk-and-api/extend-the-server/',
+            ),
             // Short paths used in older absolute links
             {
               from: '/guides/developing-antmedia-server/create-new-application/',
               to: '/guides/developer-sdk-and-api/extend-the-server/applications/create-new-application/',
             },
-            {
-              from: '/3.0/guides/developing-antmedia-server/create-new-application/',
-              to: '/guides/developer-sdk-and-api/extend-the-server/applications/create-new-application/',
-            },
-            {
-              from: '/2.17/guides/developing-antmedia-server/create-new-application/',
-              to: '/2.17/guides/developer-sdk-and-api/extend-the-server/applications/create-new-application/',
-            },
+            ...redirectsForAllVersions(
+              '/guides/developing-antmedia-server/create-new-application/',
+              '/guides/developer-sdk-and-api/extend-the-server/applications/create-new-application/',
+            ).filter((r) => !r.from.startsWith('/2.16/')),
             {
               from: '/guides/developing-antmedia-server/circle-component-usage/',
               to: '/guides/developer-sdk-and-api/extend-the-server/applications/circle-component-usage/',
             },
-            {
-              from: '/3.0/guides/developing-antmedia-server/circle-component-usage/',
-              to: '/guides/developer-sdk-and-api/extend-the-server/applications/circle-component-usage/',
-            },
-            {
-              from: '/2.17/guides/developing-antmedia-server/circle-component-usage/',
-              to: '/2.17/guides/developer-sdk-and-api/extend-the-server/applications/circle-component-usage/',
-            },
+            ...redirectsForAllVersions(
+              '/guides/developing-antmedia-server/circle-component-usage/',
+              '/guides/developer-sdk-and-api/extend-the-server/applications/circle-component-usage/',
+            ).filter((r) => !r.from.startsWith('/2.16/')),
           ];
           for (const page of extendPages) {
             redirects.push({
               from: `/guides/developing-antmedia-server/${page}`,
               to: `/guides/developer-sdk-and-api/extend-the-server/${page}`,
             });
-            redirects.push({
-              from: `/3.0/guides/developing-antmedia-server/${page}`,
-              to: `/guides/developer-sdk-and-api/extend-the-server/${page}`,
-            });
-            redirects.push({
-              from: `/2.17/guides/developing-antmedia-server/${page}`,
-              to: `/2.17/guides/developer-sdk-and-api/extend-the-server/${page}`,
-            });
+            for (const ver of versions.filter((v) => v !== '2.16')) {
+              redirects.push({
+                from: `/${ver}/guides/developing-antmedia-server/${page}`,
+                to: `${versionUrlPrefix(ver)}/guides/developer-sdk-and-api/extend-the-server/${page}`,
+              });
+            }
           }
           for (const page of pluginPages) {
             redirects.push({
               from: `/guides/developing-antmedia-server/plugins/${page}`,
               to: `/guides/developer-sdk-and-api/plugins/${page}`,
             });
-            redirects.push({
-              from: `/3.0/guides/developing-antmedia-server/plugins/${page}`,
-              to: `/guides/developer-sdk-and-api/plugins/${page}`,
-            });
-            redirects.push({
-              from: `/2.17/guides/developing-antmedia-server/plugins/${page}`,
-              to: `/2.17/guides/developer-sdk-and-api/plugins/${page}`,
-            });
+            for (const ver of versions.filter((v) => v !== '2.16')) {
+              redirects.push({
+                from: `/${ver}/guides/developing-antmedia-server/plugins/${page}`,
+                to: `${versionUrlPrefix(ver)}/guides/developer-sdk-and-api/plugins/${page}`,
+              });
+            }
             redirects.push({
               from: `/guides/developer-sdk-and-api/extend-the-server/plugins/${page}`,
               to: `/guides/developer-sdk-and-api/plugins/${page}`,
