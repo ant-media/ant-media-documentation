@@ -6,6 +6,9 @@ import {themes as prismThemes} from 'prism-react-renderer';
 import versions from './versions.json';
 
 const isDev = process.env.NODE_ENV === 'development';
+// GitHub Actions / containerized builds often look "outside" a Git worktree to
+// git-eager (ownership / missing .git metadata), which hard-fails the build.
+const isCi = Boolean(process.env.CI);
 
 function isPrerelease(version) {
   return (
@@ -59,8 +62,9 @@ const config = {
   onBrokenLinks: 'warn', // replace with 'throw' to stop building if broken links
   // Force real git last-update dates even in --dev builds.
   // Default "default-v1" uses a hardcoded 2018-10-14 date in development for perf.
+  // Skip git-eager in CI: it throws "outside any Git worktree" in containers.
   future: {
-    experimental_vcs: 'git-eager',
+    experimental_vcs: isCi ? 'default-v1' : 'git-eager',
   },
   markdown: {
     mermaid: true,
