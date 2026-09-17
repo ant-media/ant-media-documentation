@@ -1,5 +1,6 @@
 ---
-title: Creating iOS App Project in Xcode
+title: Create Project
+sidebar_label: Create Project
 description: We will first create an iOS App Project in Xcode
 keywords: [iOS SDK User Guide, iOS Project, Xcode, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 2

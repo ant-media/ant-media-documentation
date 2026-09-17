@@ -1,13 +1,14 @@
 ---
-title: Webhook Authorization 
-description: Webhook Authorization
-keywords: [Webhook authentication, Webhook authorization, Stream Security, Ant Media Server Documentation, Ant Media Server Tutorials, authentication, stream authentication, play authentication, play security, publish security, publish authentication]
+title: Webhook Authorization
+description: Authorize publish and play by calling your own webhook endpoint from Ant Media Server.
+keywords: [Webhook Authorization, stream authentication, Stream Security, Ant Media Server Documentation]
 sidebar_position: 8
+sidebar_label: Webhook Authorization
 ---
 
 # Webhook Authorization
 
-If the built-in [Security options for Publishing and Playing Streams](https://antmedia.io/docs/category/stream-security/) available in Ant Media Server don’t meet your needs and you want full control, you can use webhooks to authorize publishing or playback. 
+When built-in [Stream Security](/category/stream-security/) options are not enough, use webhooks so Ant Media Server asks your endpoint before allowing publish or play. 
 
 ## Webhook Publish Authorization
 
@@ -15,7 +16,7 @@ If you enable this feature, whenever a client attempts to publish a stream, the 
 
 Based on this request, you can parse and process that information on your end and send a response. If the response code is 200, the server will authorize the stream and allow it to begin publishing. If the response code is different from 200, the server will refuse to publish the stream.
 
-To enable publish webhook auth, go to the Web Panel → Application Settings → Advanced Settings, and set the webhookAuthenticateURL property.
+To enable publish webhook auth, go to the **Web Panel → Selected Application → Application Settings → Advanced Settings**, and set the `webhookAuthenticateURL` property.
 
 ```js
   "webhookAuthenticateURL": "",
@@ -58,7 +59,7 @@ Starting with Ant Media Server version 2.9.1, you can enable webhook play author
 
 When a client attempts to play a stream using WebRTC, Ant Media Server will send a POST request to your specified webhook endpoint. If your application server responds with a 200 status code, the viewer will be authorized to view the stream. If any other response code is returned, the viewer will not be authorized, and playback will not start.
 
-To start using this feature, go to your Ant Media Server web panel application's advanced settings and set your webhook API endpoint to the below property.
+To start using this feature, go to the **Web Panel → Selected Application → Application Settings → Advanced Settings** and set your webhook API endpoint to the property below.
 
 ```js
  "webhookPlayAuthUrl":
@@ -159,15 +160,4 @@ With this flag, Tomcat will allow us to fetch the user's IP address through thei
 }
 ```
 
-<br /><br />
----
-
-<div align="center">
-<h2>  🎯 Your Streams Tend the Webhook's Way! 🔗 </h2>
-</div>
-
-With **Webhook stream authorization enabled**, your server now asks your own endpoint for **permission** before any stream is published or played. Respond with 200 → go live; anything else → access blocked.
-
-Your streaming setup is now completely under your control. **You decide who gets in.** 🔒🚀
-
-
+When your webhook returns 200 only for trusted clients, publish and play stay under your application’s own rules—flexible security without changing the server binary.

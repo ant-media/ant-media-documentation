@@ -33,6 +33,8 @@
   --menu-link: #1b1b1d;
   --menu-link-hover: #070707;
   --doc-sidebar-width: 330px;
+  --sidebar-section-label: #6b7280;
+  --sidebar-section-divider: #e5e7eb;
 }
 
 
@@ -50,6 +52,23 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
   --menu-link: #c7c7d1;
   --menu-link-hover: #ffffff;
+  --sidebar-section-label: #9ca3af;
+  --sidebar-section-divider: #2e2e2e;
+  /* Keep in-content links distinct from body text (primary is near-white in dark mode). */
+  --ifm-link-color: #ff6b7a;
+  --ifm-link-hover-color: #ff8f9a;
+}
+
+/* Make markdown hyperlinks obvious in both themes. */
+.markdown a:not(.card):not(.hash-link) {
+  color: var(--ifm-link-color);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: 1px;
+}
+
+.markdown a:not(.card):not(.hash-link):hover {
+  color: var(--ifm-link-hover-color, var(--ifm-color-primary-dark));
 }
 
 article{
@@ -63,28 +82,18 @@ article{
   border: 1px solid #e3e3e3;
 }
 
-.infobox-title{
-  font-weight:bold;
-  font-size: 18px;
-}
-
-.infobox-title svg{
-  width: 20px;
-}
-
-.infoBox {
-  background-color: #ddf7ff;
-  border-radius: 5px;
-  color: #006a8a;
-  margin-bottom: 1rem;
-  padding: 0.75rem 1.25rem;
-  position: relative;
-}
-
+/* Content screenshots vary wildly in native resolution (some 785px wide,
+   some 1900px+). Without a shared treatment they read as randomly sized and
+   left-aligned down the page. Centering + a max-width cap + a consistent
+   card-like border unifies them regardless of source resolution. */
 p img{
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1.5rem auto;
   border: 1px solid #eae7e7;
-  border-radius: 0px;
-  margin: 15px 0;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
 }
 
 nav{
@@ -157,6 +166,64 @@ html, article{
   -webkit-font-smoothing: antialiased;
 }
 
+/* Separate expanded top-level sidebar sections so groups don't blend together. */
+.theme-doc-sidebar-item-category-level-1:not(:first-child) {
+  margin-top: 0.85rem;
+  padding-top: 0.65rem;
+  border-top: 1px solid var(--sidebar-section-divider);
+}
+
+/* Single top-level docs (e.g. Troubleshooting) need the same divider when they follow a category. */
+.theme-doc-sidebar-item-category-level-1 + .theme-doc-sidebar-item-link-level-1 {
+  margin-top: 0.85rem;
+  padding-top: 0.65rem;
+  border-top: 1px solid var(--sidebar-section-divider);
+}
+
+.theme-doc-sidebar-item-category-level-1 > .menu__list-item-collapsible > .menu__link {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--sidebar-section-label);
+}
+
+.theme-doc-sidebar-item-category-level-1 > .menu__list-item-collapsible > .menu__link:hover {
+  color: var(--menu-link-hover);
+}
+
+/* Nested subcategories (e.g. Manual Configuration under Clustering) stay distinct when expanded. */
+.theme-doc-sidebar-item-category-level-2 {
+  margin-top: 0.25rem;
+}
+
+.theme-doc-sidebar-item-category-level-2 > .menu__list-item-collapsible > .menu__link {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--menu-link);
+}
+
+.theme-doc-sidebar-item-category-level-2 > .menu__list-item-collapsible > .menu__link:hover {
+  color: var(--menu-link-hover);
+}
+
+.theme-doc-sidebar-item-category-level-2 > .menu__list {
+  margin: 0.15rem 0 0.4rem 0.15rem;
+  padding-left: 0.55rem;
+  border-left: 1px solid var(--sidebar-section-divider);
+}
+
+.theme-doc-sidebar-item-category-level-3 > .menu__list-item-collapsible > .menu__link {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.theme-doc-sidebar-item-category-level-3 > .menu__list {
+  margin: 0.1rem 0 0.3rem 0.1rem;
+  padding-left: 0.45rem;
+  border-left: 1px solid var(--sidebar-section-divider);
+}
+
 .theme-doc-sidebar-item-link-level-1 a{
   font-size: 14px;
 }
@@ -164,10 +231,10 @@ html, article{
   font-size: 14px;
 }
 .theme-doc-sidebar-item-link-level-3 div a{
-  font-size: 12px;
+  font-size: 13px;
 }
 .theme-doc-sidebar-item-link-level-4 div a{
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .navbar__toggle{
@@ -249,4 +316,59 @@ h1, article h1, article header h1 {
 
 .navbar-free-trial:hover {
   background-color: #e64a19;
+}
+
+/* Architecture diagram on Introduction */
+.markdown img[src*="ams-architecture"] {
+  display: block;
+  width: 100%;
+  max-width: 760px;
+  height: auto;
+  margin: 1.25rem auto 1.75rem;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 10px;
+  background: #faf9f5;
+  padding: 0.5rem;
+  box-shadow: none;
+}
+
+/* SDK docs: keep reference tables full-width with matching column splits */
+.markdown table.sdk-api-table {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.markdown table.sdk-api-table th:first-child,
+.markdown table.sdk-api-table td:first-child {
+  width: 40%;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+.markdown table.sdk-api-table th:last-child,
+.markdown table.sdk-api-table td:last-child {
+  width: 60%;
+}
+
+.markdown table.sdk-full-table {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.markdown table.sdk-full-table th:first-child,
+.markdown table.sdk-full-table td:first-child {
+  width: 30%;
+  word-break: break-word;
+}
+
+.markdown table.sdk-full-table th:last-child,
+.markdown table.sdk-full-table td:last-child {
+  width: 70%;
+}
+
+/* Keep markdown tables in SDK docs from shrinking below content column */
+.markdown table {
+  width: 100%;
 }

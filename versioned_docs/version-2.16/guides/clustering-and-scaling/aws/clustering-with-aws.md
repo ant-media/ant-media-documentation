@@ -2,7 +2,8 @@
 title: Clustering with AWS 
 description: Clustering with AWS
 keywords: [Clustering with AWS, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 6
+sidebar_position: 7
+sidebar_label: Clustering with AWS
 ---
 
 # Clustering with AWS

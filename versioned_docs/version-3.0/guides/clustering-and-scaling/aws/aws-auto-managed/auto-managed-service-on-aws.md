@@ -3,6 +3,7 @@ title: Auto Managed Service on AWS
 description: Deploy Ant Media Server Auto Managed Service on AWS
 keywords: [Auto Managed Service, Pay As You Go, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 1
+sidebar_label: Auto Managed Service
 ---
 
 # Auto-Managed Service: Live Streaming, Simplified

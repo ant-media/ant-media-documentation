@@ -3,6 +3,7 @@ title: Deploy Ant Media Server at AWS Wavelength
 description: Deploy Ant Media Server at AWS Wavelength
 keywords: [Deploying Ant Media Server at AWS Wavelength, AWS Wavelength, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 1
+sidebar_label: Overview
 ---
 
 # Deploy Ant Media Server at AWS Wavelength
@@ -21,5 +22,5 @@ You can use Ant Media Server v2.4.1 and later for AWS Wavelength Deployments.
 
 *   [Install SSL](/guides/installing-on-linux/setting-up-ssl)
 *   [Configure STUN Server](https://antmedia.io/docs/guides/configuration-and-testing/configuring-stun-turn-addresses/)
-*   [Standalone Server Deployment with Cloudformation](/guides/clustering-and-scaling/aws/aws-wavelenght/aws-wavelength-standalone-deployment/)
-*   [Auto-Scalable Cluster Deployment with Cloudformation](/guides/clustering-and-scaling/aws/aws-wavelenght/aws-wavelength-cluster-deployment/)
+*   [Standalone Server Deployment with Cloudformation](/guides/clustering-and-scaling/aws/aws-wavelength/aws-wavelength-standalone-deployment/)
+*   [Auto-Scalable Cluster Deployment with Cloudformation](/guides/clustering-and-scaling/aws/aws-wavelength/aws-wavelength-cluster-deployment/)

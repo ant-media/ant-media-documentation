@@ -19,11 +19,7 @@ Google Cloud is another cloud provider that is preferred by many Ant Media Serve
 
 3. Go to the `Settings` on the left and select `Interoperability` tab. On the `User Account HMAC` section, choose the default project for interoperability access.
  
-![](@site/static/img/image-1665067873135.png)
-
 4. Create an access key for the user account  
-![](@site/static/img/image-1665067947615.png )
-
 5. **Configure Ant Media Server**
    - Log in to your Ant Media Server panel at `http://your_ams_server:5080`.
    - Navigate to **Applications** > **live** > **Settings**.
@@ -33,8 +29,6 @@ Google Cloud is another cloud provider that is preferred by many Ant Media Serve
      - **Secret Key**: `your_secret_key`
      - **Bucket Name**: `your_space_name`
    - **Save** the settings.
-
-![](@site/static/img/image-1665068031722.png )
 
 Congrats, your MP4 and preview files will be uploaded to your **Google Cloud Storage Bucket** automatically.
 

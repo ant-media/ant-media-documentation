@@ -1,79 +1,81 @@
 ---
 title: Scaling with AWS DocumentDB
-description: Using AWS DocumentDB with AMS
-keywords: [Using DocumentDB with AMS, AWS DocumentDB, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 11
+description: Use Amazon DocumentDB as the shared MongoDB-compatible database for Ant Media Server clustering.
+keywords: [AWS DocumentDB, Ant Media Server cluster, Ant Media Server Documentation]
+sidebar_position: 4
+sidebar_label: AWS DocumentDB
 ---
 
-AWS DocumentDB is a managed database service designed for scalability, high availability, and compatibility with MongoDB workloads. It simplifies the deployment and management of databases while providing the flexibility to build robust and performant global applications on AWS.
+# Scaling with AWS DocumentDB
 
-In this document, we'll explain how to use AWS DocumentDB with Ant Media Server.
+Amazon DocumentDB is a managed, MongoDB-compatible database on AWS. Run AMS cluster nodes in the same VPC as your DocumentDB cluster for low-latency, private connectivity.
 
-### Prerequisites
+See [Databases](/guides/clustering-and-scaling/supported-databases/) for general connection guidance.
 
-- Your AMS (standalone or cluster) server should operate on the same VPC as your DocumentDB.
-- TLS must be disabled in DocumentDB.
+## Prerequisites
 
-## Creating AWS DocumentDB
+- AMS nodes (standalone or cluster) in the **same VPC** as DocumentDB
+- **TLS disabled** on the DocumentDB cluster (required for current AMS DocumentDB integration)
 
-Follow below steps to create Document DB cluster and connect AMS to the database.
+## Step 1: Create a parameter group with TLS disabled
 
-### Create Parameter Groups
-
-First, open the Amazon DocumentDB service and go to the `Parameter groups` sections, as shown below.
+Open Amazon DocumentDB and go to **Parameter groups**.
 
 ![](@site/static/img/aws-documentdb/aws-documentdb-1.png)
 
-Now, create Parameter Groups to disable TLS.
+Create a new cluster parameter group.
 
 ![](@site/static/img/aws-documentdb/aws-documentdb-2.png)
 
-Select `tls` from the cluster parameters, click Edit and disable TLS.
+Select the `tls` parameter, click **Edit**, and set TLS to **disabled**.
 
 ![](@site/static/img/aws-documentdb/aws-documentdb-3.png)
 
+## Step 2: Create the DocumentDB cluster
 
-### Create Document DB cluster
-
-Now go to the Clusters tab and click the Create button to create a new cluster. Select the instance class and number of instances as required.
+Go to **Clusters** and click **Create**. Choose instance class and instance count.
 
 ![](@site/static/img/aws-documentdb/aws-documentdb-4.png)
 
-There is no need to change any parameter. Define your username and password for authentication and then go to advanced settings.
+Set a master username and password, then open **Advanced settings**.
 
 ![](@site/static/img/aws-documentdb/aws-documentdb-5.png)
 
-In advance settings, choose the Cluster Parameter Group you created in the previous step, and click Create to create your cluster.
+Select the parameter group you created (TLS disabled) and click **Create**.
 
 ![](@site/static/img/aws-documentdb/aws-documentdb-6.png)
 
-Once the DocumentDB setup is complete, select your cluster, go to the Connectivity & Security tab, and obtain the connection string. 
+## Step 3: Copy the connection string
 
-You can now use this information in the Ant Media Server.
+When the cluster is available, open **Connectivity & security** and copy the connection string.
 
 ![](@site/static/img/aws-documentdb/aws-documentdb-7.png)
 
+## Step 4: Connect AMS
 
-### Connect AMS to Document DB cluster
-
-To connect AMS with Document DB, you need to use the `mongodb+srv` connection string copied from the cluster in the above steps.
-
-Now go to `/usr/local/antmedia` directory and run the below command:
+From `/usr/local/antmedia` on each node:
 
 ```bash
 sudo ./change_server_mode.sh cluster mongodb+srv://username:password@url
 ```
 
-Here is the sample command to connect with Document DB.
+Example with a standard MongoDB URI:
 
 ```bash
 sudo ./change_server_mode.sh cluster "mongodb://testadmin:password@docdb-2024-08-25-19-28-55.cluster-crg1b1lxnbdb.ap-south-1.docdb.amazonaws.com:27017/?replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false"
 ```
 
-<div align="center">
-  <h2> 🎉 AWS DocumentDB Integration — Your Streams Are Now Scalable and Resilient! 🚀 </h2>
-</div>
+For containers or Kubernetes, pass the same URI via `start.sh -h` instead.
 
-Congratulations! You've successfully integrated **AWS DocumentDB with Ant Media Server,** enhancing your streaming infrastructure with scalability, high availability, and MongoDB compatibility.
+## Verify
 
-With DocumentDB handling your **data layer, your system is now optimized for high-performance streaming**. Whether you're scaling up for a **major event or ensuring smooth delivery for a global audience,** your setup is ready to deliver exceptional experiences. 🎬✨
+Open the web panel **Cluster** view and confirm all nodes registered against DocumentDB.
+
+## Related guides
+
+| Topic | Guide |
+|-------|-------|
+| Database overview | [Databases](/guides/clustering-and-scaling/supported-databases/) |
+| Self-managed MongoDB | [Scaling with Self-Managed MongoDB](/guides/clustering-and-scaling/supported-databases/scaling-with-mongodb/) |
+| MongoDB Atlas | [Scaling with MongoDB Atlas](/guides/clustering-and-scaling/supported-databases/scaling-with-mongodb-atlas/) |
+| AWS deployment | [Choose AWS Deployment](/guides/clustering-and-scaling/aws/choose-aws-deployment/) |

@@ -3,6 +3,7 @@ title: Scale AMS with AWS CloudFormation
 description: Scale AMS with AWS CloudFormation
 keywords: [Scale AMS with AWS CloudFormation, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 1
+sidebar_label: Scale with CloudFormation
 ---
 
 # Scale AMS with AWS CloudFormation

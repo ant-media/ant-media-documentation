@@ -1,0 +1,9 @@
+{
+  "label": "iOS",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "Set up APNs and Firebase Messaging in your iOS app.",
+    "slug": "/category/push-notifications-ios"
+  }
+}

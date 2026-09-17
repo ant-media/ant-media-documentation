@@ -1,55 +1,78 @@
 ---
-title: API Security (IP)
-description: This guide explains how to control REST API security on Ant Media Server. You could secure your REST services with the IP Filter feature.
-keywords: [IP Filter for the REST API, Securing the REST API, IP Filter for the Web Panel, Ant Media Server Documentation, Ant Media Server Tutorials]
+title: Secure with IP Filter
+description: Restrict Ant Media Server REST API and web panel access to trusted IP addresses.
+keywords: [IP Filter REST API, Securing REST API, Web Panel IP Filter, Ant Media Server Documentation]
 sidebar_position: 2
+sidebar_label: Secure with IP Filter
 ---
 
-# Securing the REST API
+# Secure with IP Filter
 
-This guide explains how to control REST API security on Ant Media Server. You can secure your REST services using the IP Filter feature.
+IP filtering limits who can call the application REST API and who can open the web panel. It is the default security model for REST on Ant Media Server.
 
-## IP Filter for the REST API
+## Application REST API
 
-If you want only certain IP addresses to access REST APIs, add IPs or IP ranges in the `Dashboard > {Application} > Settings > IP Filter Settings` panel.
+Allow only specific IPs or CIDR ranges to call `/{application}/rest/v2/...` endpoints.
+
+1. Open the Ant Media Server web panel.
+2. Select your application.
+3. Go to **Settings → IP Filter Settings**.
+4. Add trusted IPs or ranges, then save.
 
 ![](@site/static/img/rest-api/rest-api-ip-filter.png)
 
-**If `127.0.0.1` is removed, requests from the server (localhost) will be blocked. Devices on the same network can still access the REST API, but external devices cannot unless explicitly added.**
+:::warning
+If you remove `127.0.0.1`, local scripts and tools running on the server cannot call the REST API. Keep localhost allowed unless you intentionally block it.
+:::
 
-
-**Here is a demo of how to configure the IP filter**
+Devices on an allowed network can reach the API; others cannot until you add their address.
 
 ![](@site/static/img/rest-api/rest-api-ip-filtering-demo.gif)
 
+## Web panel access
 
-## IP Filter for the Web Panel Access
+Control which IPs can open the management dashboard by editing server properties:
 
-To control which IPs can access the Web Panel:
+1. Open `/usr/local/antmedia/conf/red5.properties`.
+2. Find `server.allowed_dashboard_CIDR`.
 
-1. Open `/usr/local/antmedia/conf/red5.properties` file using SSH.
+Default (all IPs):
 
-2. By default, all IPs have access:
+```properties
+server.allowed_dashboard_CIDR=0.0.0.0/0
+```
 
-   ```js
-   server.allowed_dashboard_CIDR=0.0.0.0/0
-   ```
+Restrict to specific CIDRs (comma-separated):
 
-3. Update the configuration according to your CIDR notation. You can also use multiple comma-separated CIDRs:
+```properties
+server.allowed_dashboard_CIDR=13.197.23.11/16,87.22.34.66/8
+```
 
-   ```js
-   server.allowed_dashboard_CIDR=13.197.23.11/16,87.22.34.66/8
-   ```
+3. Save the file and restart:
 
-4. Save the file and restart the Ant Media Server:
+```bash
+sudo service antmedia restart
+```
 
-   ```
-   sudo service antmedia restart
-   ```
+Only clients inside those CIDR blocks can access the web panel afterward.
 
-Now only IPs within the specified CIDR blocks can access the Web Panel.
+## When to use IP filter vs JWT
 
+| Scenario | Prefer |
+|----------|--------|
+| Scripts on the same host or VPC | IP filter |
+| Fixed office / NAT egress IPs | IP filter |
+| Backends in changing cloud IPs | [JWT filter](/guides/developer-sdk-and-api/rest-api-guide/jwt-rest-api-filter/) |
+| Third-party systems calling AMS | JWT filter |
 
-## Congratulations!
+## Troubleshooting
 
-With the IP Filter configured, your Ant Media Server is now more secure. Only trusted IPs can access the REST API and Web Panel, protecting your server from unauthorized access while still allowing legitimate management and control. Your setup is now safe, flexible, and ready for production use.
+| Symptom | Likely cause | Fix |
+|---------|--------------|-----|
+| API silent from your laptop | Your public IP is not listed | Add your current egress IP (check what AMS sees) |
+| Broke after removing `127.0.0.1` | Localhost blocked | Add `127.0.0.1` back to the application IP filter |
+| Web panel unreachable | Dashboard CIDR too strict | Temporarily set `0.0.0.0/0`, restart, then tighten again |
+| Works in browser but not curl | Different source IP (proxy/VPN) | Align filter with the IP that actually hits the server |
+| Behind a load balancer | AMS sees the LB IP, not the client | Allow the load balancer / proxy IP, or terminate auth at the edge |
+
+With trusted IPs configured, your REST surface is limited to known networks — a solid default before you automate broadcast and VoD operations from those hosts.

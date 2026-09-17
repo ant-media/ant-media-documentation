@@ -1,8 +1,8 @@
 {
   "label": "React Native SDK",
-  "position": 15,
+  "position": 5,
   "link": {
     "type": "generated-index",
-    "description": "Ant Media Server React Native SDK Integration."
+    "description": "Cross-platform mobile WebRTC with @antmedia/react-native-ant-media."
   }
 }

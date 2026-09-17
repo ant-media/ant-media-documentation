@@ -1,27 +1,43 @@
 ---
-title: JavaScript SDK Usage
-description: JavaScript SDK Usage 
+title: SDK Usage
+description: Install and use the Ant Media JavaScript SDK (WebRTCAdaptor).
 keywords: [JavaScript SDK User Guide, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 3
+sidebar_label: SDK Usage
 ---
 
-Before moving forward with using the WebRTC JavaScript SDK, we highly recommend starting with the sample project. It’s useful to understand the dependencies and how the SDK works in general.
+# SDK Usage
 
-### Install @antmedia/webrtc_adaptor package from **[npm.js](https://www.npmjs.com/package/@antmedia/webrtc_adaptor)**
+Install `@antmedia/webrtc_adaptor`, initialize `WebRTCAdaptor` with your WebSocket URL, then call `publish()` or `play()`. For a working example first, see [JavaScript SDK samples](/category/javascript-sdk-samples/) or the [SDK overview](/guides/developer-sdk-and-api/sdk-integration/).
 
-    ```npm install @antmedia/webrtc_adaptor```
+## Install
 
-    or 
+```bash
+npm install @antmedia/webrtc_adaptor
+```
 
-    ```yarn add @antmedia/webrtc_adaptor```
+Or with Yarn:
 
-**Import and initialize the WebRTCAdaptor from JavaScript SDK**
+```bash
+yarn add @antmedia/webrtc_adaptor
+```
+
+## Initialize WebRTCAdaptor
+
+Set `websocket_url` to your Ant Media Server application endpoint:
+
+| Protocol | Example | Notes |
+|----------|---------|-------|
+| **WSS** | `wss://your-domain:5443/live/websocket` | Required for browser publish/play in production — [enable SSL](/guides/installing-on-linux/setting-up-ssl/) first (port **5443**) |
+| **WS** | `ws://your-ip:5080/live/websocket` | Local development without SSL (port **5080**) |
+
+Replace `live` with your application name. All publish, play, and other samples use this connection.
 
 ```
     import { WebRTCAdaptor } from '@antmedia/webrtc_adaptor';
 
     const webRTCAdaptor = new WebRTCAdaptor({
-      websocket_url: "wss://your-domain.tld:5443/WebRTCAppEE/websocket",
+      websocket_url: "wss://your-domain:5443/live/websocket",
       mediaConstraints: {
           video: true,
           audio: true,
@@ -36,8 +52,8 @@ Before moving forward with using the WebRTC JavaScript SDK, we highly recommend 
       localVideoId: "id-of-video-element", // <video id="id-of-video-element" autoplay muted></video>
       bandwidth: int|string, // default is 900 kbps, string can be 'unlimited'
       dataChannelEnabled: true|false, // enable or disable data channel
-      callback: (info, obj) => {}, // check info callbacks bellow
-      callbackError: function(error, message) {}, // check error callbacks bellow
+      callback: (info, obj) => {}, // check info callbacks below
+      callbackError: function(error, message) {}, // check error callbacks below
     });
 ```
 
@@ -57,11 +73,10 @@ In another part of your script:
     webRTCAdaptor.play(streamId);
 ```
 
-### Tutorial for Creating Publish and Play Page using JS SDK
+### Create publish and play pages
 
-- [Publish page creation using JS SDK](https://antmedia.io/docs/guides/developing-antmedia-server/webrtc-publish-page-creation-tutorial/)
-
-- [Play page creation using JS SDK](https://antmedia.io/docs/guides/developing-antmedia-server/webrtc-play-page-creation-tutorial/)
+- [Publish sample](/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/webrtc-samples/publish/)
+- [Play sample](/guides/developer-sdk-and-api/sdk-integration/javascript-sdk/webrtc-samples/play/)
 
 ## WebRTCAdaptor methods
 

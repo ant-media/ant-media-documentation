@@ -3,6 +3,6 @@
   "position": 3,
   "link": {
     "type": "generated-index",
-    "description": "Ant Media Server JavaScript SDK Integration."
+    "description": "WebRTC publish, play, conference, and data channel in web apps with @antmedia/webrtc_adaptor."
   }
 }

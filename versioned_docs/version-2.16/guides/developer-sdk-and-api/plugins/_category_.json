@@ -1,0 +1,8 @@
+{
+  "label": "Plugins",
+  "position": 4,
+  "link": {
+    "type": "doc",
+    "id": "guides/developer-sdk-and-api/plugins/index"
+  }
+}

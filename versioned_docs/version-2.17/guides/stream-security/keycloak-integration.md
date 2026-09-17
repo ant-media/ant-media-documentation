@@ -1,8 +1,9 @@
 ---
 title: Keycloak Integration
-description: This guide explains how you can integrate your streaming application with Keycloak Identity Management to make WebRTC pages secure.
-keywords: [Keycloak, Stream security, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 7
+description: Secure Ant Media Server WebRTC sample pages with Keycloak single sign-on.
+keywords: [Keycloak, SSO, Stream Security, Ant Media Server Documentation]
+sidebar_position: 9
+sidebar_label: Keycloak Integration
 ---
 
 # Keycloak Integration
@@ -22,6 +23,10 @@ In this documentation, we will go through Keycloak and Ant Media Side configurat
 3. Create an **Open ID Client** in the Realm (**antmedia**). Let's name it **stream-application**. Then set the URL as in the image below.
 
 ![](@site/static/img/stream-security/keycloak-client-creation.png)
+
+:::tip
+You can use any name you need as the **Client ID**. Set the **Root URL** to your Ant Media Server URL (for example `https://your-ams-domain:5443`).
+:::
 
 4. Create a role in the client (**stream-application**). Let's make a role name **user**.
 
@@ -96,13 +101,4 @@ The appName should be the same as the application name we are configuring. Also,
 
   Once you authenticate, you will be able to publish the stream via sample page.
 
-<br /><br />
----
-
-<div align="center">
-<h2> 🔍 Who's Behind the Cloak? Only Authorized Users!㊙️ </h2>
-</div>
-
-By integrating **Keycloak with your Ant Media Server**, you've implemented **Single Sign-On (SSO) authentication** for your WebRTC streams. Only users authenticated through Keycloak are permitted to publish or play streams, enhancing security and control.
-
-Your streaming environment is now **fully protected with Keycloak-managed access!** 🚀
+With Keycloak in front of your sample pages, only signed-in users reach publish and play—SSO for your streaming UI without reinventing login.

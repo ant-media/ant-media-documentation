@@ -1,8 +1,8 @@
 {
-  "label": "Publish Live Stream",
+  "label": "Publish Live Streams",
   "position": 2,
   "link": {
     "type": "generated-index",
-    "description": "Publish Live Stream with Ultra-low latency with Ant Media Server."
+    "description": "Publish live streams with ultra-low latency using Ant Media Server."
   }
 }
