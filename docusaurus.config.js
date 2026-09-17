@@ -37,7 +37,7 @@ function versionUrlPrefix(version) {
   return `/${name}`;
 }
 
-/** Unversioned latest plus every frozen version key (`''`, `'3.1.0/'`, ...). */
+/** Unversioned latest plus every frozen version key (`''`, `'3.1/'`, ...). */
 function allVersionPathKeys() {
   return ['', ...versions.map((v) => `${v}/`)];
 }
@@ -246,6 +246,17 @@ scripts: [
   [
     '@docusaurus/plugin-client-redirects',
     {
+      createRedirects(existingPath) {
+        // Keep /3.1.0/... bookmarks after renaming the frozen version to 3.1.
+        if (
+          existingPath.startsWith('/2.') ||
+          existingPath.startsWith('/3.0/') ||
+          existingPath.startsWith('/3.1/')
+        ) {
+          return undefined;
+        }
+        return [`/3.1.0${existingPath}`];
+      },
       redirects: [
         {
           to: '/guides/clustering-and-scaling/supported-databases/scaling-with-redis/',
