@@ -1,0 +1,8 @@
+{
+  "label": "Push Notifications",
+  "position": 5,
+  "link": {
+    "type": "doc",
+    "id": "guides/developer-sdk-and-api/push-notification-management/index"
+  }
+}

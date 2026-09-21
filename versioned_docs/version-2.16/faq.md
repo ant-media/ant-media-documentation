@@ -2,9 +2,43 @@
 title: Frequently Asked Questions
 description: Ant Media Server Frequently Asked Questions and Solutions
 keywords: [Ant Media Server Frequently Asked Questions and Solutions, Ant Media Server FAQ, Deploy Ant Media Server, Tutorial to deploy Ant Media Server, Support Ant Media]
-sidebar_position: 4
+sidebar_position: 90
 ---
 # Frequently Asked Questions
+
+## Table of Contents
+
+- [How can I install SSL on an AWS EC2 instance?](#how-can-i-install-ssl-on-an-aws-ec2-instance)
+- [How do I upgrade Ant Media Server (AMS)?](#how-do-i-upgrade-ant-media-server-ams)
+- [Where can I download the JavaScript SDK?](#where-can-i-download-the-javascript-sdk)
+- [Can I use Docker to deploy Ant Media Server?](#can-i-use-docker-to-deploy-ant-media-server)
+- [I cannot login to AMS dashboard after upgrading](#i-cannot-login-to-ams-dashboard-after-upgrading)
+- [How can I reset the admin password?](#how-can-i-reset-the-admin-password)
+- [What is HLS?](#what-is-hls)
+- [How can I reduce the latency for RTMP to HLS streaming](#how-can-i-reduce-the-latency-for-rtmp-to-hls-streaming)
+- [How can I enable SSL for Ant Media Server?](#how-can-i-enable-ssl-for-ant-media-server)
+- [How can I remove port forwarding?](#how-can-i-remove-port-forwarding)
+- [How can I fix "Make sure that your domain name was entered correctly and the DNS A/AAAA record(s)" error?](#how-can-i-fix-make-sure-that-your-domain-name-was-entered-correctly-and-the-dns-aaaaa-records-error)
+- [How can I fix "NotSupportedError" while publishing ?](#how-can-i-fix-notsupportederror-while-publishing-)
+- [WebRTC stream stops after a few seconds.](#webrtc-stream-stops-after-a-few-seconds)
+- [How can I fix a 403 Forbidden error when using Ant Media APIs?](#how-can-i-fix-a-403-forbidden-error-when-using-ant-media-apis)
+- [How can I prevent streams from stuttering when publishing in Ant Media Server?](#how-can-i-prevent-streams-from-stuttering-when-publishing-in-ant-media-server)
+- [How does adaptive bitrate work (ABR)?](#how-does-adaptive-bitrate-work-abr)
+- [How to configure auto-scaling and clustering with Ant Media Server?](#how-to-configure-auto-scaling-and-clustering-with-ant-media-server)
+- [What is the difference between the LiveApp, WebRTCAppEE and live?](#what-is-the-difference-between-the-liveapp-webrtcappee-and-live)
+- [How can I improve WebRTC bitrate?](#how-can-i-improve-webrtc-bitrate)
+- [What latencies can I achieve with Ant Media Server Enterprise Edition?](#what-latencies-can-i-achieve-with-ant-media-server-enterprise-edition)
+- [How many different bitrates are possible with Ant Media Server Enterprise Edition?](#how-many-different-bitrates-are-possible-with-ant-media-server-enterprise-edition)
+- [Does ultra-low latency streaming support adaptive bit rates?](#does-ultra-low-latency-streaming-support-adaptive-bit-rates)
+- [Does Ant Media Server have an Embedded SDK?](#does-ant-media-server-have-an-embedded-sdk)
+- [How can I configure the location for MP4 recordings?](#how-can-i-configure-the-location-for-mp4-recordings)
+- [How to use Self-Signed Certificate on Ant Media Server?](#how-to-use-self-signed-certificate-on-ant-media-server)
+- [How can I install a custom SSL by building a chain certificate?](#how-can-i-install-a-custom-ssl-by-building-a-chain-certificate)
+- [How can I change the default HTTP port (5080)?](#how-can-i-change-the-default-http-port-5080)
+- [Where can I get WebRTC viewers information?](#where-can-i-get-webrtc-viewers-information)
+- [How to set Apache Reverse Proxy settings for Ant Media Server?](#how-to-set-apache-reverse-proxy-settings-for-ant-media-server)
+- [How can I install the Ant Media Server on Ubuntu 18.04 with ARM64?](#how-can-i-install-the-ant-media-server-on-ubuntu-1804-with-arm64)
+- [How can I use Web Player or Javascript SDK in Next.js?](#how-can-i-use-web-player-or-javascript-sdk-in-nextjs)
 
 ## How can I install SSL on an AWS EC2 instance?
 
@@ -23,7 +57,7 @@ The JavaScript SDK is available for Ant Media Server and can be accessed via ```
 
 Its file location is ```/usr/local/antmedia/webapps/live/js/webrtc_adaptor.js``` and the source code is available [here](https://github.com/ant-media/StreamApp/blob/fb37558823769f3145be7a777343502ffd6793e4/src/main/webapp/samples/publish_webrtc.html#L509)
 
-Check out the [Java Script SDK documentation](https://antmedia.io/docs/category/javascript-sdk/) here for more details and implementation.
+Check out the [JavaScript SDK documentation](https://antmedia.io/docs/category/javascript-sdk/) here for more details and implementation.
 
 ## Can I use Docker to deploy Ant Media Server?
 
@@ -56,8 +90,8 @@ If you're using ```mongodb``` as the database, your password will be stored in t
 
 *   Connect to your ```mongodb``` server with ```mongo``` client.
 *   Type ```use serverdb;```
-*   Type ```db.User.find()``` and it shows you the output like below. ```{ "_id" : ObjectId("5ea486690f09e71c2462385a"), "className" : "io.antmedia.rest.model.User", "email" : "test@antmedia.io", "password" : "1234567", "userType" : "ADMIN" }```
-*   You can update the password with a command something like below. Change the parameters below according to the your case. ```db.User.updateOne( { email:"test@antmedia.io" }, { $set: { "password" : "test123" }})```
+*   Type ```db.User.find()``` and it shows you the output like below. ```{ "_id" : ObjectId("5ea486690f09e71c2462385a"), "className" : "io.antmedia.rest.model.User", "email" : "test@antmedia.io", "password" : "...", "userType" : "ADMIN" }```
+*   You can update the password with a command something like below. Change the parameters below according to the your case. ```db.User.updateOne( { email:"test@antmedia.io" }, { $set: { "password" : "..." }})```
 *   Alternatively, you can delete the user with a command something like below. Change the parameters below according to the your case. ```db.user.deleteOne( { "email": "test@antmedia.io" } )```
 *   As of version 2.3.2, passwords should be hashed with MD5.
 
@@ -124,7 +158,7 @@ A 403 error usually indicates insufficient permissions or authentication issues 
 
 ## How can I prevent streams from stuttering when publishing in Ant Media Server?
 
-To prevent stuttering in streams, ensure your network bandwidth is stable and sufficient for the bitrate you're streaming. Additionaly, please adjust these settings on your encoders (like OBS and etc).
+To prevent stuttering in streams, ensure your network bandwidth is stable and sufficient for the bitrate you're streaming. Additionally, please adjust these settings on your encoders (like OBS and etc).
 - Avoid **B-frames (Must)**
 - Set the profile to **baseline** for better compatibility.
 - Use a low-latency encoding preset.
@@ -137,11 +171,11 @@ Ant Media Server dynamically measures the client's bandwidth and selects the mos
 
 For example, if three bitrate options are available—2000Kbps, 1500Kbps, and 1000Kbps—and the client’s bandwidth is 1700Kbps, the server will automatically deliver the 1500Kbps stream to ensure smooth playback.
 
-Click [here](https://antmedia.io/docs/guides/adaptive-bitrate/adaptive-bitrate-streaming/) for more details on ABR. 
+See [Adaptive Bitrate Streaming](/guides/adaptive-bitrate/adaptive-bitrate-streaming/) for more on ABR. 
 
 ## How to configure auto-scaling and clustering with Ant Media Server?
 
-Please refer to the auto-scaling documentation [here](https://docs.antmedia.io/category/clustering-and-scaling/).
+Please refer to the auto-scaling documentation [here](/guides/clustering-and-scaling/).
 
 ## What is the difference between the LiveApp, WebRTCAppEE and live?
 
@@ -410,4 +444,4 @@ const VideoPlayerComponent = dynamic(
    }
  );
 ```
-Now you shouldnt get any errors and SDK should work as expected.
+Now you shouldn't get any errors and SDK should work as expected.

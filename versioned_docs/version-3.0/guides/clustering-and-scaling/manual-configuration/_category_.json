@@ -1,8 +1,8 @@
 {
-  "label": "Manual Configuration",
-  "position": 6,
+  "label": "Self-Managed Cluster",
+  "position": 2,
   "link": {
     "type": "generated-index",
-    "description": "These guides explain how you can install a cluster manually to deploy Ant Media Server"
+    "description": "Install Ant Media Server Enterprise yourself: nodes, shared database, cluster mode, and load balancer. For architecture and licensing, see the Clustering and Scaling overview."
   }
 }

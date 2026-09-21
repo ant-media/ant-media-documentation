@@ -1,190 +1,162 @@
 ---
 title: Cluster Installation
-description: AMS can run in cluster mode to increase the number of viewers and publishers. You can publish a live stream to one node of AMS in the cluster and you can watch the stream in another node in the cluster.
-keywords: [Ant Media Cluster Mode, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 2
+description: Install Ant Media Server Enterprise on multiple nodes, configure a shared database, switch to cluster mode, and place a load balancer in front of the cluster.
+keywords: [Ant Media Cluster Mode, self-managed cluster installation, origin edge setup, Ant Media Server Documentation]
+sidebar_position: 1
+sidebar_label: Cluster Installation
 ---
 
 # Cluster Installation
 
-Ant Media Server (AMS) can be deployed in a cluster configuration to enhance scalability and reliability. This setup allows multiple AMS nodes to work together, thereby increasing the number of viewers and publishers that can be supported. In simple terms, you can publish a live stream to one AMS node within the cluster, and that stream can be viewed from another node within the same cluster.
+This guide walks through a **self-managed** Ant Media Server cluster on your own servers: set up a shared database, install Enterprise Edition on each node, switch every node to cluster mode, and put a load balancer in front.
 
-![](@site/static/img/origin_edge.png)
+For what a cluster is, how origin and edge roles work, and licensing, see [Clustering and Scaling](/guides/clustering-and-scaling/).
 
-## Components of AMS Cluster
-
-To better understand how an AMS cluster operates, it's essential to know the roles of its key components:
-
-1. **Database (MongoDB):**
-
-The database is central to the AMS cluster, storing all stream-related information. This data includes bitrates, settings, the origin node of the stream, and additional metadata necessary for stream management. The database ensures that all nodes in the cluster have consistent access to this information, facilitating seamless streaming across different nodes.
-
-2. **Origin Group:**
-
-The origin group consists of AMS nodes responsible for ingesting live streams. These nodes perform various tasks such as transcoding (converting streams to different formats or bitrates) and transmuxing (changing the container format of the stream). Once processed, the streams are distributed to nodes within the edge group. Importantly, viewers do not connect directly to origin group nodes for playback. It is recommended that nodes in this group be equipped with a GPU, especially if adaptive bitrate streaming is enabled.
-
-3. **Edge Group:**
-
-The edge group contains AMS nodes that receive streams from the origin group nodes and deliver them to viewers. Unlike origin nodes, edge nodes do not ingest streams or perform tasks such as transcoding or transmuxing. Their sole purpose is to fetch the stream from an origin node and forward it to the viewers, ensuring efficient distribution of content.
-
-4. **Load Balancer (Nginx or HAProxy):**
-
-The load balancer acts as the entry point for both viewers and publishers. It receives user requests and intelligently directs them to an appropriate node in either the origin or edge group, based on the current load and availability of resources. The load balancer is crucial for distributing traffic evenly across the cluster, thereby optimizing performance and avoiding overloading any single node.
-
-## Basics of Clustering
-
-The following steps outline the basic operations of an AMS cluster:
-
-- **Instance Registration:** Each AMS node registers itself with the MongoDB database upon startup.
-- **Stream Origin Assignment:** When a node begins receiving a live stream, it registers itself as the origin node for that stream in the database.
-- **Load Balancer Operations:** When the load balancer receives a playback request, it forwards the request to an edge group node:
-  1. The edge node retrieves the stream's origin information from MongoDB.
-  2. The edge node then fetches the stream from the origin node.
-  3. Finally, the edge node distributes the stream to the requesting viewers.
-
-:::info
-Ensure TCP port **5000** is open for internal network communication when running in Cluster mode. For security reasons, this port should remain inaccessible from the public internet.
+:::tip Community Edition
+**Community Edition does not support clustering.** You need an **Enterprise** license—preferably a [cluster license](/guides/clustering-and-scaling/#how-licensing-works-in-a-cluster) when running multiple nodes.
 :::
 
+## What you'll accomplish
 
-## Install Ant Media Server
+By the end of this guide, you will:
 
-Before configuring AMS for cluster mode, you first need to install AMS on each server (node) that will be part of the cluster. Follow these steps:
+1. Install and harden **MongoDB** (or another supported database) as the shared cluster backend.
+2. Install Ant Media Server **Enterprise Edition** on every node that will join the cluster.
+3. Switch each node to **cluster mode** with `change_server_mode.sh`.
+4. Create the web panel account and confirm nodes in the dashboard.
+5. Install a **load balancer** (Nginx or HAProxy) in front of the cluster.
 
-### Download Installation Script
+## Prerequisites
 
-Download and prepare the AMS installation script by running the following command:
+Before you begin, confirm the following:
+
+- Two or more Linux hosts (Ubuntu recommended) with `sudo` access and network connectivity between them.
+- A host (or managed service) for the shared database—often a dedicated MongoDB server.
+- Firewall rules that allow the required traffic between nodes and clients. Open the ports listed under [Server ports](/guides/installing-on-linux/installing-ams-on-linux/#server-ports), including **TCP 5000** for internal cluster communication (keep it closed to the public internet). For the database, open **TCP 27017** (MongoDB) or **TCP 6379** (Redis) from AMS nodes only.
+- An Ant Media Server **Enterprise license key**. For multi-node clusters, use a [cluster license](/guides/clustering-and-scaling/#how-licensing-works-in-a-cluster) so the same key can run on every instance.
+- Familiarity with the [cluster components](/guides/clustering-and-scaling/#cluster-components) (database, origin, edge, load balancer).
+
+:::tip Prefer a managed path?
+Most teams on AWS, Azure, GCP, or Kubernetes should start with [Choose a Deployment Option](/guides/clustering-and-scaling/choose-deployment-option/) instead of a fully self-managed install.
+:::
+
+## Step 1: Install the shared database
+
+Cluster nodes need a shared database before you switch them to cluster mode. MongoDB is the default; Redis and managed MongoDB-compatible services are also supported.
+
+Follow the full install and hardening guide:
+
+**[Scaling with Self-Managed MongoDB](/guides/clustering-and-scaling/supported-databases/scaling-with-mongodb/)**
+
+That guide covers the install script, process limits, binding on **TCP 27017**, and firewall guidance.
+
+Alternatives:
+
+| Backend | Guide |
+|---------|-------|
+| Redis | [Scaling with Redis](/guides/clustering-and-scaling/supported-databases/scaling-with-redis/) |
+| MongoDB Atlas | [Scaling with MongoDB Atlas](/guides/clustering-and-scaling/supported-databases/scaling-with-mongodb-atlas/) |
+| Other managed options | [Databases](/guides/clustering-and-scaling/supported-databases/) |
+
+When the database is reachable from every AMS host, continue to the next step.
+
+## Step 2: Install Ant Media Server on each node
+
+Install Ant Media Server **Enterprise Edition** on every server that will be an origin or edge. Nodes start in **standalone** mode; you switch them to cluster mode after the database is ready.
+
+### 2.1 Download the installation script
 
 ```bash
-wget -O install_ant-media-server.sh https://raw.githubusercontent.com/ant-media/Scripts/master/install_ant-media-server.sh && sudo chmod 755 install_ant-media-server.sh
+wget -O install_ant-media-server.sh https://raw.githubusercontent.com/ant-media/Scripts/master/install_ant-media-server.sh
+sudo chmod 755 install_ant-media-server.sh
 ```
 
-### Run the Installation Script
-
-Execute the script to install Ant Media Server:
-
-- Community Edition
-
-```bash
-sudo ./install_ant-media-server.sh
-```
-
-- Enterprise Edition
+### 2.2 Run the Enterprise installation
 
 ```bash
 sudo ./install_ant-media-server.sh -l 'your-license-key'
 ```
 
-This will install AMS in standalone mode by default. Repeat this process on each server you intend to include in the cluster. Check out [this link](https://antmedia.io/docs/guides/installing-on-linux/installing-ams-on-linux/) for more details.
+Replace `your-license-key` with your Enterprise (or cluster) license key. Repeat on each node.
 
+For options and troubleshooting, see [Installing Ant Media Server on Linux](/guides/installing-on-linux/installing-ams-on-linux/).
 
-## Install MongoDB
+## Step 3: Switch each node to cluster mode
 
-MongoDB acts as the central database for your AMS cluster, storing stream-related data that ensures consistency across all nodes.
+With Ant Media Server installed on every node and the database reachable, enable cluster mode on each Ant Media Server host.
 
-### Download MongoDB Installation Script
-
-Download the MongoDB installation script with the following command:
-
-```bash
-wget https://raw.githubusercontent.com/ant-media/Scripts/master/install_mongodb.sh && sudo chmod +x install_mongodb.sh
-```
-
-### Install MongoDB
-
-Run the script to install the latest version of MongoDB:
-
-```bash
-sudo ./install_mongodb.sh
-```
-
-**Optional:** To enable authentication (highly recommended for security), use the `--auto-create` parameter. This generates a random username and password for your MongoDB server:
-
-```bash
-sudo ./install_mongodb.sh --auto-create
-```
-
-### Configure MongoDB Limits
-
-If you are using MongoDB 4.4 or later, ensure that the open files limit (ulimit) is set appropriately to avoid startup errors. Add the following lines to `/etc/security/limits.conf`:
-
-```bash
-root soft       nproc          65535  
-root hard       nproc          65535   
-root soft       nofile         65535   
-root hard       nofile         65535
-mongodb soft    nproc          65535
-mongodb hard    nproc          65535
-mongodb soft    nofile         65535
-mongodb hard    nofile         65535
-```
-
-### Bind MongoDB to All Network Interfaces
-
-Modify the `/etc/mongod.conf` file to set the bind address to `0.0.0.0`. This allows MongoDB to listen on all available network interfaces. Ensure you secure your MongoDB instance, especially if you don’t have a firewall, to avoid unauthorized access.
-
-
-## Switching AMS to Cluster Mode
-
-Once AMS is installed on all servers and MongoDB is set up, you can configure AMS to run in cluster mode.
-
-### Switch to Cluster Mode:
-
-To configure each AMS node to operate in cluster mode, run the following command:
-
-#### Without MongoDB Credentials
+### 3.1 Without MongoDB credentials
 
 ```bash
 cd /usr/local/antmedia
-sudo ./change_server_mode.sh cluster mongodb://@[url]
+sudo ./change_server_mode.sh cluster mongodb://[mongodb-server-address]
 ```
+
+Replace `[mongodb-server-address]` with the MongoDB host or IP.
 
 :::info
-To avoid unexpected issues, we recommend that you secure MongoDB using a username and a password.
-
-The MongoDB connection string with login and password is mentioned below.
+Use a username and password for MongoDB in production. The connection string formats below include credentials.
 :::
 
-#### With MongoDB Credentials
-
-If you set up MongoDB with authentication, include the credentials in the command:
+### 3.2 With MongoDB credentials
 
 ```bash
 cd /usr/local/antmedia
-sudo ./change_server_mode.sh cluster mongodb://[username]:[password]@[url]
+sudo ./change_server_mode.sh cluster mongodb://[username]:[password]@[mongodb-server-address]
 ```
 
-#### Use MongoDB Atlas
-
-For MongoDB Atlas or other cloud-based MongoDB instances, provide the full connection string:
+### 3.3 MongoDB Atlas or other `mongodb+srv` hosts
 
 ```bash
-sudo ./change_server_mode.sh cluster mongodb+srv://<username>:<password>@<url>/<name>?<params>
+cd /usr/local/antmedia
+sudo ./change_server_mode.sh cluster mongodb+srv://<username>:<password>@<cluster-url>/<database>?<params>
 ```
 
-Repeat this process on every node in the cluster.
+### 3.4 Redis
 
-### Monitor Cluster Nodes
+```bash
+cd /usr/local/antmedia
+sudo ./change_server_mode.sh cluster redis://[username:password@]host:port
+```
 
-Once all nodes are configured in cluster mode, you can monitor them through the AMS dashboard by visiting the following URL on any node:
+See [Scaling with Redis](/guides/clustering-and-scaling/supported-databases/scaling-with-redis/) for Ubuntu install, Docker, and TLS (`rediss://`).
 
-```html
+Run the appropriate command on **every** Ant Media Server node in the cluster.
+
+### 3.5 Open the web panel and create an account
+
+Open the web panel on any node:
+
+```text
 http://<ANT_MEDIA_SERVER_NODE_IP>:5080
 ```
 
-## Install the load balancer
+The first time you open the dashboard, create your account (first name, last name, email, and password):
 
-Install the load balancer using either one of the below two options. AMS uses Nginx by default, but you can also use HAProxy as your load balancer. You can read how to install either of these options in the documents below.
+![](/img/clustering-and-scaling/aws-cloudformation/create-account.webp)
 
-- [Nginx Load Balancer](https://antmedia.io/docs/guides/clustering-and-scaling/load-balancing/nginx-load-balancer/)
+After you sign in, open the **Cluster** view to confirm that your nodes have registered with the database.
 
-- [HAProxy Load Balancer](https://antmedia.io/docs/guides/clustering-and-scaling/load-balancing/haproxy-load-balancer/)
+:::info
+Keep **TCP port 5000** open between cluster nodes for internal communication, and closed to the public internet. See [How clustering works](/guides/clustering-and-scaling/#how-clustering-works) and [Server ports](/guides/installing-on-linux/installing-ams-on-linux/#server-ports).
+:::
 
+## Step 4: Install a load balancer
 
-<div align="center">
-  <h2> 🌍 AMS Cluster — A Streaming Engine You Built Yourself! 💪 </h2>
-</div>
+Publishers and players should connect through a load balancer, not directly to individual nodes.
 
-Look at what you’ve achieved — **from bare servers to a fully functioning Ant Media cluster**, every piece now works in harmony to deliver seamless, scalable streaming.
+| Option | Guide |
+|--------|-------|
+| **Nginx** (common for self-managed setups) | [Nginx Load Balancer](/guides/clustering-and-scaling/load-balancing/nginx-load-balancer/) |
+| **HAProxy** | [HAProxy Load Balancer](/guides/clustering-and-scaling/load-balancing/haproxy-load-balancer/) |
 
-This isn’t just a setup; it’s the backbone of a **powerful, resilient media platform** — You built it. Now let it shine. 🌟🚀
+After the load balancer is in place, publish a test stream to an origin and play it from an edge through the balancer to confirm the cluster path.
+
+## Related guides
+
+| Topic | Guide |
+|-------|-------|
+| Architecture, components, and licensing | [Clustering and Scaling](/guides/clustering-and-scaling/) |
+| Choose AWS, Azure, GCP, Kubernetes, or Docker | [Choose a Deployment Option](/guides/clustering-and-scaling/choose-deployment-option/) |
+| Multi-region origin/edge | [Multi-Level Cluster](/guides/clustering-and-scaling/manual-configuration/multi-level-cluster/) |
+| Databases | [Databases](/guides/clustering-and-scaling/supported-databases/) |

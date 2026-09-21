@@ -2,7 +2,7 @@
 title: Install with Docker Compose
 description: AMS Docker Compose Installation
 keywords: [Docker, Docker Compose, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 7
+sidebar_position: 3
 ---
 
 Docker Compose offers a simpler way to manage Ant Media Server compared to running a single container with `docker run`. With Compose, you can:

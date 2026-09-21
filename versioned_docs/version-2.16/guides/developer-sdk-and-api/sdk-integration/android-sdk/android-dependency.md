@@ -1,5 +1,6 @@
 ---
-title: Android Dependency
+title: Add Dependency
+sidebar_label: Add Dependency
 description: We will add the WebRTC Android SDK Dependency to the project
 keywords: [Android SDK User Guide, Download the WebRTC Android SDK, Android SDK Dependency, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 2

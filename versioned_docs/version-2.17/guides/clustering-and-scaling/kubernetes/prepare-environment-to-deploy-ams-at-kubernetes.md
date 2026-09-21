@@ -2,7 +2,8 @@
 title: K8s Preparation 
 description: Preparation of Kubernetes Environment for AMS Deployment
 keywords: [Kubernetes Environment for AMS Deployment, Ant Media Server Deployment, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 1
+sidebar_position: 2
+sidebar_label: Prepare Environment
 ---
 
 # Preparation of Kubernetes Environment for AMS Deployment
@@ -15,7 +16,7 @@ Let us show how to use Ant Media Server with Kubernetes.
 
 The scope of this document is to give you the basics about how to run the Ant Media Server Kubernetes Cluster. If you're not familiar with [Kubernetes](https://kubernetes.io/docs/home/) then you can get started with Kubernetes and follow [interactive tutorials.](https://kubernetes.io/docs/tutorials/kubernetes-basics/create-cluster/cluster-intro/)
 
-Running the Ant Media Server in Kubernetes is fully about clustering. If you are unfamiliar with Ant Media Server Clustering & Scaling, please read the [Cluster & Scaling documentation](https://antmedia.io/docs/category/clustering-and-scaling/).
+Running the Ant Media Server in Kubernetes is fully about clustering. If you are unfamiliar with Ant Media Server Clustering & Scaling, please read the [Cluster & Scaling documentation](/guides/clustering-and-scaling/).
 
 You should have some prerequisites to deploy the Ant Media Server Cluster on Kubernetes.
 
@@ -61,7 +62,7 @@ You can create your own Kubernetes Cluster [on your servers.](https://antmedia.
 
 You can have a Kubernetes Cluster on the cloud services. You will find blog posts about how to create such a Kubernetes cluster below.
 
-* [AWS EKS](/guides/clustering-and-scaling/kubernetes/kubernetes-services/installing-ams-on-aws-eks/)
+* [AWS EKS](/guides/clustering-and-scaling/kubernetes/installing-ams-on-aws-eks/)
 * [Digital Ocean](https://antmedia.io/how-to-create-kubernetes-cluster-on-digital-ocean/) 
 * [OVH](https://antmedia.io/auto-scaling-streaming-server-with-kubernetes/)
 

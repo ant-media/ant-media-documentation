@@ -1,8 +1,8 @@
 {
   "label": "Kubernetes",
-  "position": 4,
+  "position": 6,
   "link": {
     "type": "generated-index",
-    "description": "This guide will help you to deploy Ant Media Server with Kubernetes by setting-up correct enviroment. Also, achive auto-Scaling and set-up SSL for Kubernetes."
+    "description": "Start with Choose a Deployment Option to pick Helm vs manual vs managed EKS/AKS/GKE. Helm is preferred for most teams."
   }
 }

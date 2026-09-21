@@ -1,5 +1,6 @@
 ---
-title: Publish WebRTC Stream
+title: Publish
+sidebar_label: Publish
 description: Publishing WebRTC Live stream Using Android SDK 
 keywords: [Android SDK User Guide, Android SDK Publish, Publish Stream from your Android device, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 3
@@ -122,20 +123,8 @@ Run the app on an Android emulator or a physical device. Grant permissions when 
 
 To view the live stream from your Android app:
 
-1. Open [Ant Media’s Test WebRTC Player](https://antmedia.io/webrtc-samples/webrtc-player)
-
-2. Enter 'stream1' in the input box.
-
-3. click **Start Playing**
+1. Open a [WebRTC player](/guides/playing-live-stream/webrtc-playback/) (for example Ant Media’s [Test WebRTC Player](https://antmedia.io/webrtc-samples/webrtc-player)).
+2. Enter `stream1` in the input box.
+3. Click **Start Playing**.
 
 ![](@site/static/img/sdk-integration/android-sdk/webrtc-android-publish-application-test-1.png)
-
-## Congratulations!
-
-Your WebRTC Android Publish Application is now live.
-
-- You successfully created the UI, implemented the publishing logic, and configured your manifest.
-
-- You can now stream live video directly from your Android device to Ant Media Server.
-
-On the next page we will explore playing a webrtc stream in a bit more detail.

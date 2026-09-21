@@ -1,34 +1,45 @@
 ---
-title: React Native SDK Usage
-description: React Native SDK Usage 
+title: SDK Usage
+description: Install and use the Ant Media React Native SDK.
 keywords: [React Native SDK User Guide, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 3
+sidebar_label: SDK Usage
 ---
 
-Before moving forward with using WebRTC React Native SDK, we highly recommend using the sample project to get started with your application. It's good to know the dependencies and how it works in general.
+# SDK Usage
 
-### Install react-native-ant-media Package
+Use the sample apps first to learn the flow, then integrate `@antmedia/react-native-ant-media` into your project. See [React Native samples](/category/react-native-sdk-samples/).
 
-**```npm```**
+## Install
 
-```shell
+```bash
 npm i @antmedia/react-native-ant-media react-native-webrtc
 ```
 
-**```yarn```**
+Or with Yarn:
 
-```shell
+```bash
 yarn add @antmedia/react-native-ant-media react-native-webrtc
 ```
 
-### Initialize useAntMedia Adaptor
+## Configure the WebSocket URL
 
+Set `url` when initializing `useAntMedia`:
+
+| Protocol | Example | When to use |
+|----------|---------|-------------|
+| **WSS** | `wss://your-domain:5443/live/websocket` | Production — requires [SSL](/guides/installing-on-linux/setting-up-ssl/) (port **5443**) |
+| **WS** | `ws://your-ip:5080/live/websocket` | Local HTTP without SSL (port **5080**) |
+
+Replace `live` with your application name. All publish, play, and other samples use this connection.
+
+## Initialize the adaptor
 
 ```js
 import { useAntMedia, rtc_view } from "@antmedia/react-native-ant-media";
 
 const adaptor = useAntMedia({
-  url: 'wss://<your_server_domain_>/<application_name>/websocket', // your web socket server URL
+  url: "wss://your-domain:5443/live/websocket",
   mediaConstraints: {
     audio: true,
     video: {
@@ -45,133 +56,73 @@ const adaptor = useAntMedia({
     console.error("Error message: ", errorMessage, "Data: ", data);
   },
   peer_connection_config: {
-    iceServers: [{ urls: 'stun:stun.l.google.com:19302' }],
+    iceServers: [{ urls: "stun:stun.l.google.com:19302" }],
   },
   debug: true,
-  onlyDataChannel: false, // for using only data channel not audio and video
+  onlyDataChannel: false,
 });
 ```
-    
-The example above is taken from [ WebRTC-React-Native-SDK](https://github.com/ant-media/WebRTC-React-Native-SDK/blob/main/example/src/App.tsx)
 
-### Publish Stream
+Reference: [example/src/App.tsx](https://github.com/ant-media/WebRTC-React-Native-SDK/blob/main/example/src/App.tsx).
 
-The method below is used to publish a stream:
+## Methods
 
-```js    
-adaptor.publish(streamName);
-```
+<table className="sdk-api-table">
+  <thead>
+    <tr><th>Method</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>adaptor.publish(streamName)</code></td><td>Start publishing</td></tr>
+    <tr><td><code>adaptor.play(streamName)</code></td><td>Start playing</td></tr>
+    <tr><td><code>adaptor.stop(streamName)</code></td><td>Stop publish or play</td></tr>
+    <tr><td><code>adaptor.join(streamName)</code></td><td>Join a P2P room</td></tr>
+    <tr><td><code>adaptor.leave(streamName)</code></td><td>Leave a P2P room</td></tr>
+    <tr><td><code>adaptor.joinRoom(room)</code></td><td>Join a conference room</td></tr>
+    <tr><td><code>adaptor.leaveFromRoom(room)</code></td><td>Leave a conference room</td></tr>
+    <tr><td><code>adaptor.sendData(streamId, message)</code></td><td>Send a data channel message</td></tr>
+  </tbody>
+</table>
 
-The method below is used to stop the stream:
-
-```js 
-adaptor.stop(streamName);
-```
-
-Detailed code can be viewed at [WebRTC-React-Native-SDK Publish](https://github.com/ant-media/WebRTC-React-Native-SDK/blob/main/example/src/App.tsx)
-
-### Play Stream
-
-The method below is used to play a stream:
-
-```js
-adaptor.play(streamName);
-```
-    
-Detailed code can be viewed at [WebRTC-React-Native-SDK Play](https://github.com/ant-media/WebRTC-React-Native-SDK/blob/main/example/src/Play.tsx)
-
-### Use Peer-To-Peer
-
-The method method is used to join a room:
+## Render a stream
 
 ```js
-adaptor.join(streamName);
+rtc_view(stream, { width: 100, height: 100 });
 ```
 
-The method below is used to leave a room:
-
-```js
-adaptor.leave(streamName);
-```
-
-Detailed code can be viewed at [WebRTC-React-Native-SDK p2p](https://github.com/ant-media/WebRTC-React-Native-SDK/blob/main/example/src/Peer.tsx)
-
-### Use Conference
-
-The method below is used to join a room:
-
-```js
-adaptor.joinRoom(room);
-```
-
-The method below is used to leave a room:
-
-```js
-adaptor.leaveFromRoom(room);
-```
-    
-Detailed code can be viewed at [WebRTC-React-Native-SDK Conference](https://github.com/ant-media/WebRTC-React-Native-SDK/blob/main/example/src/Conference.tsx)
-
-### Use The Data Channel
-
-The method below is used to send messages:
-
-```js
-adaptor.sendData(streamId, message);
-```
-    
-Detailed code can be viewed in [WebRTC-React-Native-SDK Data Channel](https://github.com/ant-media/WebRTC-React-Native-SDK/blob/main/example/src/Chat.tsx)
-
-### Render Stream
-
-To display a local or remote video stream, use the `rtc_view` component.
-
-```js
-rtc_view(stream, /*custom style*/{ width: 100, height: 100 });
-```
-
-### Switch Camera
-
-You need to get video track to switch camera.
+## Switch camera
 
 ```js
 let isFrontCam = true;
 
 try {
-	// Taken from above, we don't want to flip if we don't have another camera.
-	if ( cameraCount < 2 ) { return; };
-
-	const videoTrack = adaptor.localStream.current.getVideoTracks()[0];
-	videoTrack._switchCamera();
-
-	isFrontCam = !isFrontCam;
-} catch( err ) {
-	// Handle Error
-};
+  if (cameraCount < 2) { return; }
+  const videoTrack = adaptor.localStream.current.getVideoTracks()[0];
+  videoTrack._switchCamera();
+  isFrontCam = !isFrontCam;
+} catch (err) {
+  // Handle error
+}
 ```
 
-### Toggle The Microphone
-
-You can mute/unmute microphone by toggling the track enabled value. It can be applied to local microphone and remote audio tracks.
+## Mute / unmute microphone
 
 ```js
 let isMuted = false;
 
 try {
-	const audioTrack = await adaptor.localStream.current.getAudioTracks()[0];
-	audioTrack.enabled = !audioTrack.enabled;
-
-	isMuted = !isMuted;
-} catch( err ) {
-	// Handle Error
-};
+  const audioTrack = await adaptor.localStream.current.getAudioTracks()[0];
+  audioTrack.enabled = !audioTrack.enabled;
+  isMuted = !isMuted;
+} catch (err) {
+  // Handle error
+}
 ```
 
-### Change Remote Audio Tracks Volume Level
+## Remote audio volume
 
 ```js
 const audioTrack = remoteMediaStream.getAudioTracks()[0];
 audioTrack._setVolume(0.5);
 ```
 
-For more information about the React Native SDK, check [the repository](https://github.com/ant-media/WebRTC-React-Native-SDK)
+For more details, see the [React Native SDK repository](https://github.com/ant-media/WebRTC-React-Native-SDK).

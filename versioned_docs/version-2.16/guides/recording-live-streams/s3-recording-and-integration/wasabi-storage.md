@@ -11,11 +11,7 @@ Wasabi is another cloud provider that is preferred by many Ant Media Server user
 
 Firstly, you need to create a new access key in your Wasabi account.
 
-![image.png](@site/static/img/image-286129.png)
-
 After generating Access keys and Secret keys, you need to create a bucket. Just click the Create Bucket button on the right side.
-
-![image.png](@site/static/img/image-286229.png)
 
 Then Log in to your Ant Media Server panel at `http://your_ams_server:5080`.
    - Navigate to **Applications** > **live** > **Settings**.
@@ -25,8 +21,6 @@ Then Log in to your Ant Media Server panel at `http://your_ams_server:5080`.
      - **Secret Key**: `your_secret_key`
      - **Bucket Name**: `your_space_name`
    - **Save** the settings.
-![](@site/static/img/image-1648581984499.png )
-
 Your MP4 and Preview files will be uploaded to your **Wasabi storage** automatically.
 
 ---

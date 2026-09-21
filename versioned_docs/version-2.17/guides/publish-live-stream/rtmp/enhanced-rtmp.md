@@ -29,7 +29,7 @@ HEVC (H.265) offers better compression and video quality, but it has some limita
 
 WebRTC doesn't yet support H.265, making it unsuitable for some live streaming or interactive video use cases. Additionally, not all browsers, including Chrome, fully support HEVC playback, leading to compatibility issues. If you use HEVC for RTMP publishing, you might encounter issues when trying to play it via WebRTC or HLS across different browsers.
 
-To address this, [server-side transcoding](https://antmedia.io/docs/guides/adaptive-bitrate/adaptive-bitrate-streaming/) can convert H.265 streams to H.264, ensuring broader compatibility. 
+To address this, [server-side transcoding](/guides/adaptive-bitrate/adaptive-bitrate-streaming/) can convert H.265 streams to H.264, ensuring broader compatibility. 
 
 If you are not using WebRTC or HLS playback on your browser, you do not need to worry about this. Make sure that your player and device support the H265 playback.
 

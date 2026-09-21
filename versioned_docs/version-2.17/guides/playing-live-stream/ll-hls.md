@@ -120,7 +120,7 @@ If you are using hardware encoding (e.g., `h264_nvenc`), you must configure the 
 
 ## Customize LL-HLS
 
-You can fine-tune LL-HLS settings in the [Advanced section of the application settings](https://antmedia.io/docs/guides/configuration-and-testing/ams-application-configuration/#management-panel-settings) of the Ant Media Server web panel. These settings allow you to adjust the behavior of LL-HLS to meet specific needs, like controlling segment durations or playlist updates.
+You can fine-tune LL-HLS settings in the [Advanced section of the application settings](https://antmedia.io/docs/guides/configuration-and-testing/ams-application-configuration/#management-panel-application-settings) of the Ant Media Server web panel. These settings allow you to adjust the behavior of LL-HLS to meet specific needs, like controlling segment durations or playlist updates.
 
 ### Customization Parameters
 

@@ -40,7 +40,7 @@ Let's understand it step by step:
 
 - **```token```:** The ```token``` field is required if any stream security (token control) is enabled.
 
-  If the user has enabled [stream-security](https://antmedia.io/docs/guides/advanced-usage/stream-security/), they need to fill in the ```token``` field with the correct token.
+  If the user has enabled [stream-security](/category/stream-security/), they need to fill in the ```token``` field with the correct token.
 
 - **```subscriberId``` and ```subscriberCode```:** These are the values for the Time-based One-time Password (TOTP). If the user is using the TOTP mechanism, they need to pass the ```subscriberId``` and ```subscriberCode```.
 
@@ -155,7 +155,7 @@ If ```enableVideo``` is false and ```enbleAudio``` is true, then it means it's a
 
 - If a stream has sub-tracks, ```trackList``` is enabled by default. If there are 2 tracks on the stream, the user can specify both and both tracks will be played. To get all tracks in a stream you can take a look in ```getTrackList``` command that is in the [miscellaneous](#miscellaneous-websocket-methods) part.
 
-- ```viewerInfo``` is a kind of ```metaData``` used to collect informations.
+- ```viewerInfo``` is a kind of ```metaData``` used to collect information.
 
 3. If the Server accepts the stream, it replies with the offer command.
 
