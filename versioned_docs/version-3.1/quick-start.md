@@ -8,7 +8,23 @@ sidebar_label: Quick Start
 
 # Quick Start
 
-Get Ant Media Server running on Linux in a few steps: install the server, enable SSL, open the web panel, then publish and play a WebRTC stream.
+Get a single Ant Media Server running, enable SSL, open the web panel, then publish and play a WebRTC stream.
+
+## Choose your installation path
+
+Choose how you will install AMS before running any commands:
+
+| I want to… | Start here |
+| --- | --- |
+| Install on my own hardware or company infrastructure | Prepare a supported Linux server, then follow [step 1](#1-download-the-installation-script) below |
+| Install on a cloud VM I create and manage | Prepare a supported Linux VM in your cloud account, then follow [step 1](#1-download-the-installation-script) below |
+| Launch a ready-made Cloud Marketplace image | Follow [Cloud marketplace installations](#cloud-marketplace-installations); AMS comes pre-installed, so skip steps 1 and 2 |
+
+Installing AMS yourself on a cloud VM is still **self-hosted**. A **Cloud Marketplace** image provides AMS pre-installed in your cloud account; you still operate the server.
+
+The commands below are for a **single Linux server**. For local development on macOS or Windows, or to choose Docker, see [Which Installation Method Should I Use?](/guides/installing-on-linux/which-installation-method-should-i-use/). Run the commands on the server that will host AMS, even if you connect to it from a Mac or Windows computer.
+
+Need multiple servers for capacity or high availability? Start with [Choose a Deployment Option](/guides/clustering-and-scaling/choose-deployment-option/).
 
 :::tip
 Before you proceed, review the [Enterprise Deployment Hub](/enterprise-guide/) for a production checklist, cluster architecture, and upgrade guidance.
@@ -44,21 +60,6 @@ sudo ./install_ant-media-server.sh -i <ANT_MEDIA_SERVER_ZIP_FILE>
 - For the Enterprise Edition ZIP file, download it from your antmedia.io account or ask the support team.
 
 For more installation options, run: `./install_ant-media-server.sh -h`
-
-### Cloud marketplace installations
-
-Prefer a one-click cloud image? Use AWS or Azure Marketplace:
-
-<div style={{display: 'flex', justifyContent: 'space-between', textAlign: 'center', fontWeight:'bold', height: 'auto'}}>
-  <div  style={{width: '49%', height:'300px'}}>
-      <iframe className="border border-rounded m-3" width="100%" height="250" src="https://www.youtube.com/embed/1yQT-D8gPUo?si=CoXX6jXFZQ0j9xI2" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
-      Video tutorial of AWS marketplace installation
-  </div>
-  <div  style={{width: '49%', height:'300px'}}>
-      <iframe className="border border-rounded m-3" width="100%" height="250" src="https://www.youtube.com/embed/uE8uzWhKSBE" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
-      Video tutorial of Azure marketplace installation
-  </div>
-</div>
 
 For a full Linux install walkthrough, see [Installing AMS on Linux](/guides/installing-on-linux/installing-ams-on-linux/).
 
@@ -107,6 +108,25 @@ Publish a WebRTC live stream from the sample webrtc publish page, which is avail
 Play the live stream with WebRTC using the sample WebRTC player page, which is available at ```https://domain-name:5443/live/player.html```
 
 ![play](https://github.com/user-attachments/assets/dad6d64e-6462-408e-849b-4b25c590ca96)
+
+## Cloud marketplace installations
+
+Launch an Ant Media Server image from your cloud provider's Marketplace. For AWS and Azure, follow the video tutorials below. For GCP, open [Google Cloud Marketplace](https://console.cloud.google.com/marketplace), search for **Ant Media Server Enterprise Edition**, and follow the listing's launch instructions.
+
+These images already include AMS. **Skip the installation script and ZIP commands in steps 1 and 2.** Once your instance is running and its required ports are open, continue with [step 3: Configure SSL](#3-configure-ssl), then log in and publish your first stream.
+
+For a cluster instead of a single instance, use [Choose a Deployment Option](/guides/clustering-and-scaling/choose-deployment-option/) before launching resources.
+
+<div style={{display: 'flex', justifyContent: 'space-between', textAlign: 'center', fontWeight:'bold', height: 'auto'}}>
+  <div  style={{width: '49%', height:'300px'}}>
+      <iframe className="border border-rounded m-3" width="100%" height="250" src="https://www.youtube.com/embed/1yQT-D8gPUo?si=CoXX6jXFZQ0j9xI2" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+      Video tutorial of AWS marketplace installation
+  </div>
+  <div  style={{width: '49%', height:'300px'}}>
+      <iframe className="border border-rounded m-3" width="100%" height="250" src="https://www.youtube.com/embed/uE8uzWhKSBE" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+      Video tutorial of Azure marketplace installation
+  </div>
+</div>
 
 ## Sample tools and applications
 
