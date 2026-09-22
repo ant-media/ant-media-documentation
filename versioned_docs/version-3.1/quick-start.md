@@ -52,6 +52,16 @@ sudo ./install_ant-media-server.sh
 
 ### Install a specific version
 
+For an **Enterprise Edition ZIP**, pass both the ZIP file and your license key:
+
+```bash
+sudo ./install_ant-media-server.sh -i <ANT_MEDIA_SERVER_ZIP_FILE> -l 'your-license-key'
+```
+
+The `-i` option selects the downloaded ZIP; `-l` configures the Enterprise license during installation. Downloading the Enterprise ZIP does not activate a license by itself. If you installed without `-l`, follow the [license configuration instructions](/guides/installing-on-linux/installing-ams-on-linux/#run-the-installation-script).
+
+For a **Community Edition ZIP**, no license key is needed:
+
 ```bash
 sudo ./install_ant-media-server.sh -i <ANT_MEDIA_SERVER_ZIP_FILE>
 ```
