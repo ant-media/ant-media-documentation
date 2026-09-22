@@ -87,9 +87,22 @@ sudo ./install_ant-media-server.sh -u
 ```
 #### Run the installation script
 
+For a fresh **Enterprise Edition** installation from a ZIP, provide your license key with `-l`:
+
+```shell
+sudo ./install_ant-media-server.sh -i <ANT_MEDIA_SERVER_ZIP_FILE> -l 'your-license-key'
+```
+
+The installer uses the ZIP selected by `-i` and writes the key to `server.licence_key` in `/usr/local/antmedia/conf/red5.properties` before starting AMS. The ZIP alone does not activate your Enterprise license.
+
+If you already installed Enterprise without `-l`, edit that file, set `server.licence_key=your-license-key`, and restart AMS with `sudo service antmedia restart`. Use a valid Enterprise key, or a cluster key when licensing multiple instances.
+
+For **Community Edition**, omit `-l`; no license key is required:
+
 ```shell
 sudo ./install_ant-media-server.sh -i <ANT_MEDIA_SERVER_ZIP_FILE>
 ```
+
 For more command line options, type `sudo ./install_ant-media-server.sh -h`
 
 ### Verify the Installation

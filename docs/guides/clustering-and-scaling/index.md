@@ -73,6 +73,16 @@ Clustering is an **Enterprise Edition** capability. Community Edition cannot run
 
 You *can* put a **different** license key on each node. That works for a fixed, small cluster. It does **not** work well for **auto scaling**—new nodes need a key without manual steps, so a **cluster license** (same key on every node, or baked into the image) is the right approach.
 
+### How many instances do I license?
+
+**Count every AMS origin and edge instance.** For example, **2 origins + 3 edges = 5 AMS instances** requiring license coverage. With standard Enterprise licenses, that means five separate keys. With a cluster license, the nodes share one key, but the license must cover all five instances: **one key does not mean one instance's fee covers the entire cluster**.
+
+A dedicated database or load balancer that does not run AMS does not need an AMS license. Its infrastructure and any third-party software charges are separate.
+
+When autoscaling adds AMS nodes, those instances also need coverage. For hourly plans, estimate usage from each instance's running time; for subscriptions or custom cluster agreements, confirm the covered instance count and scaling terms with [Ant Media Sales](mailto:contact@antmedia.io). See [current pricing](https://antmedia.io/pricing/) for the applicable plan.
+
+### Where do I buy and pay for licenses?
+
 **Self-hosted licenses:** buy a plan on [antmedia.io/pricing](https://antmedia.io/pricing/) (hourly, monthly, annual, or perpetual), then install the key on each node—or use one cluster key across the fleet.
 
 **Cloud Marketplace:** AWS, Azure, and GCP Marketplace images bill the Ant Media license through the cloud provider (often hourly with the instance). You launch the Marketplace AMI/image, and licensing is handled by that billing model—no separate self-hosted key install for that path. Follow the [AWS](/guides/clustering-and-scaling/aws/choose-aws-deployment/), [Azure](/guides/clustering-and-scaling/azure/choose-azure-deployment/), or [GCP](/guides/clustering-and-scaling/gcp/choose-gcp-deployment/) guide for your platform.
