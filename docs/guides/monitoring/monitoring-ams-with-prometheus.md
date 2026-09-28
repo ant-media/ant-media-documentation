@@ -33,6 +33,10 @@ Three programs run on your AMS machine:
 2. **Prometheus** is a free tool that reads those numbers every 15 seconds and saves them, so you can see history and trends. It only listens inside the server, on port **9091**.
 3. **Grafana** is a free tool that turns the saved numbers into graphs. You open it in your browser on port **3000**.
 
+:::info Running more than one server?
+This guide runs everything on your AMS server, which is fine for a single server. For a cluster, or for production, put monitoring on a separate server. That way it keeps working if an AMS server goes down, and it doesn't use resources your streams need. See [Monitoring an Ant Media Server Cluster with Prometheus](/guides/monitoring/monitoring-ams-cluster-with-prometheus/).
+:::
+
 ## Before you begin
 
 Make sure you have:
@@ -192,6 +196,10 @@ systemctl is-active prometheus
 active
 ```
 
+:::info Small disk?
+Prometheus uses up to 15 GB of disk for history. Check free space with `df -h /`. If less than about 20 GB is free, lower the limit to half of the free space: replace `15GB` with, for example, `5GB` in `/etc/systemd/system/prometheus.service`, then run `sudo systemctl daemon-reload && sudo systemctl restart prometheus`.
+:::
+
 Wait about **20 seconds** so Prometheus can collect its first readings, then check that it can reach AMS:
 
 ```bash title="Run on your server"
@@ -323,6 +331,8 @@ While it runs, look at the dashboard. Within about 15–30 seconds, **Live strea
 Open the stream in the AMS web panel (**LiveApp → Live Streams → test-stream**) and play it. The **viewer** counters go up as well. After two minutes the test stream stops by itself, and the counters return to 0.
 
 **Congratulations!** Your Ant Media Server is now monitored. Prometheus keeps collecting in the background, even after reboots, and you can come back to this dashboard any time to check how your server is doing.
+
+When you grow to more than one server, continue with [Monitoring an Ant Media Server Cluster with Prometheus](/guides/monitoring/monitoring-ams-cluster-with-prometheus/). The same dashboard then shows all your nodes, and new nodes are added automatically.
 
 ---
 
