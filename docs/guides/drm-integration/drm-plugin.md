@@ -167,7 +167,7 @@ Use **`cbcs`** (default) when FairPlay is enabled. The **`cenc`** scheme does no
 | **`segmentDurationSecs`** | No | Segment length in seconds. Default: `2`. |
 | **`timeShiftBufferDepthSecs`** | No | Live buffer depth. Default: `60`. |
 | **`segmentsOutsideLiveWindow`** | No | Extra segments outside the live window. Default: `5`. |
-| **`customShakaArguments`**: | No | Extra CLI arguments to be passed directly to [Shaka](https://github.com/shaka-project/shaka-packager) packager. |
+| **`customShakaArguments`** | No | Extra CLI arguments to be passed directly to [Shaka](https://github.com/shaka-project/shaka-packager) packager. |
 
 ## Step 4: Connect DoveRunner (Widevine example)
 
