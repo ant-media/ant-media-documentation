@@ -108,7 +108,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "up{job=\"antmedia\",instance=~\"$instance\"}",
+          "expr": "max by (instance) (up{job=\"antmedia\",instance=~\"$instance\"})",
           "legendFormat": "{{instance}}"
         }
       ],
@@ -354,7 +354,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "process_cpu_usage{job=\"antmedia\",instance=~\"$instance\"}",
+          "expr": "max by (instance) (process_cpu_usage{job=\"antmedia\",instance=~\"$instance\"})",
           "legendFormat": "{{instance}}"
         }
       ],
@@ -395,7 +395,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "system_cpu_usage{job=\"antmedia\",instance=~\"$instance\"}",
+          "expr": "max by (instance) (system_cpu_usage{job=\"antmedia\",instance=~\"$instance\"})",
           "legendFormat": "{{instance}}"
         }
       ],
@@ -436,7 +436,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "system_cpu_count{job=\"antmedia\",instance=~\"$instance\"}",
+          "expr": "max by (instance) (system_cpu_count{job=\"antmedia\",instance=~\"$instance\"})",
           "legendFormat": "{{instance}}"
         }
       ],
@@ -477,7 +477,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "antmedia_gpu_count{job=\"antmedia\",instance=~\"$instance\"}",
+          "expr": "max by (instance) (antmedia_gpu_count{job=\"antmedia\",instance=~\"$instance\"})",
           "legendFormat": "{{instance}}"
         }
       ],
@@ -518,7 +518,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "process_uptime_seconds{job=\"antmedia\",instance=~\"$instance\"}",
+          "expr": "max by (instance) (process_uptime_seconds{job=\"antmedia\",instance=~\"$instance\"})",
           "legendFormat": "{{instance}}"
         }
       ],
@@ -559,7 +559,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "process_start_time_seconds{job=\"antmedia\",instance=~\"$instance\"} * 1000",
+          "expr": "max by (instance) (process_start_time_seconds{job=\"antmedia\",instance=~\"$instance\"} * 1000)",
           "legendFormat": "{{instance}}"
         }
       ],
@@ -613,7 +613,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "antmedia_streams_live{job=\"antmedia\",instance=~\"$instance\"}",
+          "expr": "max by (instance) (antmedia_streams_live{job=\"antmedia\",instance=~\"$instance\"})",
           "legendFormat": "all {{instance}}"
         },
         {
@@ -622,7 +622,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "antmedia_streams_webrtc_live{job=\"antmedia\",instance=~\"$instance\"}",
+          "expr": "max by (instance) (antmedia_streams_webrtc_live{job=\"antmedia\",instance=~\"$instance\"})",
           "legendFormat": "webrtc {{instance}}"
         }
       ],
@@ -673,7 +673,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "antmedia_viewers_webrtc{job=\"antmedia\",instance=~\"$instance\"}",
+          "expr": "max by (instance) (antmedia_viewers_webrtc{job=\"antmedia\",instance=~\"$instance\"})",
           "legendFormat": "WebRTC {{instance}}"
         },
         {
@@ -682,7 +682,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "antmedia_viewers_hls{job=\"antmedia\",instance=~\"$instance\"}",
+          "expr": "max by (instance) (antmedia_viewers_hls{job=\"antmedia\",instance=~\"$instance\"})",
           "legendFormat": "HLS {{instance}}"
         },
         {
@@ -691,7 +691,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "antmedia_viewers_dash{job=\"antmedia\",instance=~\"$instance\"}",
+          "expr": "max by (instance) (antmedia_viewers_dash{job=\"antmedia\",instance=~\"$instance\"})",
           "legendFormat": "DASH {{instance}}"
         }
       ],
@@ -736,7 +736,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "antmedia_encoders_blocked{job=\"antmedia\",instance=~\"$instance\"}",
+          "expr": "max by (instance) (antmedia_encoders_blocked{job=\"antmedia\",instance=~\"$instance\"})",
           "legendFormat": "blocked {{instance}}"
         },
         {
@@ -745,7 +745,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "antmedia_encoders_not_opened{job=\"antmedia\",instance=~\"$instance\"}",
+          "expr": "max by (instance) (antmedia_encoders_not_opened{job=\"antmedia\",instance=~\"$instance\"})",
           "legendFormat": "not opened {{instance}}"
         }
       ],
@@ -790,7 +790,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "antmedia_publish_timeout_errors{job=\"antmedia\",instance=~\"$instance\"}",
+          "expr": "max by (instance) (antmedia_publish_timeout_errors{job=\"antmedia\",instance=~\"$instance\"})",
           "legendFormat": "{{instance}}"
         }
       ],
@@ -835,7 +835,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "antmedia_db_query_average_duration_milliseconds{job=\"antmedia\",instance=~\"$instance\"}",
+          "expr": "max by (instance) (antmedia_db_query_average_duration_milliseconds{job=\"antmedia\",instance=~\"$instance\"})",
           "legendFormat": "{{instance}}"
         }
       ],
@@ -880,7 +880,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "antmedia_vertx_worker_queue_size{job=\"antmedia\",instance=~\"$instance\"}",
+          "expr": "max by (instance, pool) (antmedia_vertx_worker_queue_size{job=\"antmedia\",instance=~\"$instance\"})",
           "legendFormat": "{{pool}} {{instance}}"
         }
       ],
@@ -925,7 +925,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "antmedia_gpu_count{job=\"antmedia\",instance=~\"$instance\"}",
+          "expr": "max by (instance) (antmedia_gpu_count{job=\"antmedia\",instance=~\"$instance\"})",
           "legendFormat": "{{instance}}"
         }
       ],
@@ -983,7 +983,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "process_cpu_usage{job=\"antmedia\",instance=~\"$instance\"}",
+          "expr": "max by (instance) (process_cpu_usage{job=\"antmedia\",instance=~\"$instance\"})",
           "legendFormat": "process {{instance}}"
         },
         {
@@ -992,7 +992,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "system_cpu_usage{job=\"antmedia\",instance=~\"$instance\"}",
+          "expr": "max by (instance) (system_cpu_usage{job=\"antmedia\",instance=~\"$instance\"})",
           "legendFormat": "system {{instance}}"
         }
       ],
@@ -1037,7 +1037,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "system_load_average_1m{job=\"antmedia\",instance=~\"$instance\"}",
+          "expr": "max by (instance) (system_load_average_1m{job=\"antmedia\",instance=~\"$instance\"})",
           "legendFormat": "load {{instance}}"
         },
         {
@@ -1046,7 +1046,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "system_cpu_count{job=\"antmedia\",instance=~\"$instance\"}",
+          "expr": "max by (instance) (system_cpu_count{job=\"antmedia\",instance=~\"$instance\"})",
           "legendFormat": "cores {{instance}}"
         }
       ],
@@ -1091,7 +1091,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "rate(process_cpu_time_ns_total{job=\"antmedia\",instance=~\"$instance\"}[1m]) / 1e9",
+          "expr": "max by (instance) (rate(process_cpu_time_ns_total{job=\"antmedia\",instance=~\"$instance\"}[1m]) / 1e9)",
           "legendFormat": "{{instance}}"
         }
       ],
@@ -1137,7 +1137,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "system_memory_used_bytes{job=\"antmedia\",instance=~\"$instance\"}",
+          "expr": "max by (instance) (system_memory_used_bytes{job=\"antmedia\",instance=~\"$instance\"})",
           "legendFormat": "used {{instance}}"
         },
         {
@@ -1146,7 +1146,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "system_memory_free_bytes{job=\"antmedia\",instance=~\"$instance\"}",
+          "expr": "max by (instance) (system_memory_free_bytes{job=\"antmedia\",instance=~\"$instance\"})",
           "legendFormat": "free {{instance}}"
         },
         {
@@ -1155,7 +1155,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "system_memory_total_bytes{job=\"antmedia\",instance=~\"$instance\"}",
+          "expr": "max by (instance) (system_memory_total_bytes{job=\"antmedia\",instance=~\"$instance\"})",
           "legendFormat": "total {{instance}}"
         }
       ],
@@ -1200,7 +1200,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "disk_total_bytes{job=\"antmedia\",instance=~\"$instance\"} - disk_free_bytes{job=\"antmedia\",instance=~\"$instance\"}",
+          "expr": "max by (instance) (disk_total_bytes{job=\"antmedia\",instance=~\"$instance\"} - disk_free_bytes{job=\"antmedia\",instance=~\"$instance\"})",
           "legendFormat": "used {{instance}}"
         },
         {
@@ -1209,7 +1209,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "disk_free_bytes{job=\"antmedia\",instance=~\"$instance\"}",
+          "expr": "max by (instance) (disk_free_bytes{job=\"antmedia\",instance=~\"$instance\"})",
           "legendFormat": "free {{instance}}"
         },
         {
@@ -1218,7 +1218,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "disk_total_bytes{job=\"antmedia\",instance=~\"$instance\"}",
+          "expr": "max by (instance) (disk_total_bytes{job=\"antmedia\",instance=~\"$instance\"})",
           "legendFormat": "total {{instance}}"
         }
       ],
@@ -1263,7 +1263,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "process_files_open_files{job=\"antmedia\",instance=~\"$instance\"}",
+          "expr": "max by (instance) (process_files_open_files{job=\"antmedia\",instance=~\"$instance\"})",
           "legendFormat": "open {{instance}}"
         },
         {
@@ -1272,7 +1272,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "process_files_max_files{job=\"antmedia\",instance=~\"$instance\"}",
+          "expr": "max by (instance) (process_files_max_files{job=\"antmedia\",instance=~\"$instance\"})",
           "legendFormat": "max {{instance}}"
         }
       ],
@@ -1317,7 +1317,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "process_uptime_seconds{job=\"antmedia\",instance=~\"$instance\"}",
+          "expr": "max by (instance) (process_uptime_seconds{job=\"antmedia\",instance=~\"$instance\"})",
           "legendFormat": "{{instance}}"
         }
       ],
@@ -1498,7 +1498,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "jvm_memory_used_bytes{job=\"antmedia\",instance=~\"$instance\"}",
+          "expr": "max by (instance, id) (jvm_memory_used_bytes{job=\"antmedia\",instance=~\"$instance\"})",
           "legendFormat": "{{id}}"
         }
       ],
@@ -1543,7 +1543,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "jvm_memory_max_bytes{job=\"antmedia\",instance=~\"$instance\"} > 0",
+          "expr": "max by (instance, id) (jvm_memory_max_bytes{job=\"antmedia\",instance=~\"$instance\"} > 0)",
           "legendFormat": "{{id}}"
         }
       ],
@@ -1588,7 +1588,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "jvm_memory_committed_bytes{job=\"antmedia\",instance=~\"$instance\"}",
+          "expr": "max by (instance, id) (jvm_memory_committed_bytes{job=\"antmedia\",instance=~\"$instance\"})",
           "legendFormat": "{{id}}"
         }
       ],
@@ -1633,7 +1633,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "jvm_memory_usage_after_gc{job=\"antmedia\",instance=~\"$instance\"}",
+          "expr": "max by (instance, pool) (jvm_memory_usage_after_gc{job=\"antmedia\",instance=~\"$instance\"})",
           "legendFormat": "{{pool}} {{instance}}"
         }
       ],
@@ -1678,7 +1678,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "jvm_buffer_memory_used_bytes{job=\"antmedia\",instance=~\"$instance\"}",
+          "expr": "max by (instance, id) (jvm_buffer_memory_used_bytes{job=\"antmedia\",instance=~\"$instance\"})",
           "legendFormat": "{{id}}"
         }
       ],
@@ -1723,7 +1723,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "jvm_buffer_total_capacity_bytes{job=\"antmedia\",instance=~\"$instance\"}",
+          "expr": "max by (instance, id) (jvm_buffer_total_capacity_bytes{job=\"antmedia\",instance=~\"$instance\"})",
           "legendFormat": "{{id}}"
         }
       ],
@@ -1768,7 +1768,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "jvm_buffer_count_buffers{job=\"antmedia\",instance=~\"$instance\"}",
+          "expr": "max by (instance, id) (jvm_buffer_count_buffers{job=\"antmedia\",instance=~\"$instance\"})",
           "legendFormat": "{{id}}"
         }
       ],
@@ -1826,7 +1826,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "rate(jvm_gc_pause_seconds_sum{job=\"antmedia\",instance=~\"$instance\"}[1m])",
+          "expr": "max by (instance, gc, cause) (rate(jvm_gc_pause_seconds_sum{job=\"antmedia\",instance=~\"$instance\"}[1m]))",
           "legendFormat": "{{gc}} / {{cause}}"
         }
       ],
@@ -1872,7 +1872,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "rate(jvm_gc_pause_seconds_count{job=\"antmedia\",instance=~\"$instance\"}[1m])",
+          "expr": "max by (instance, gc, cause) (rate(jvm_gc_pause_seconds_count{job=\"antmedia\",instance=~\"$instance\"}[1m]))",
           "legendFormat": "{{gc}} / {{cause}}"
         }
       ],
@@ -1917,7 +1917,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "jvm_gc_pause_seconds_max{job=\"antmedia\",instance=~\"$instance\"}",
+          "expr": "max by (instance, gc, cause) (jvm_gc_pause_seconds_max{job=\"antmedia\",instance=~\"$instance\"})",
           "legendFormat": "{{gc}} / {{cause}}"
         }
       ],
@@ -1962,7 +1962,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "rate(jvm_gc_concurrent_phase_time_seconds_sum{job=\"antmedia\",instance=~\"$instance\"}[1m])",
+          "expr": "max by (instance, gc) (rate(jvm_gc_concurrent_phase_time_seconds_sum{job=\"antmedia\",instance=~\"$instance\"}[1m]))",
           "legendFormat": "{{gc}}"
         }
       ],
@@ -2007,7 +2007,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "rate(jvm_gc_concurrent_phase_time_seconds_count{job=\"antmedia\",instance=~\"$instance\"}[1m])",
+          "expr": "max by (instance, gc) (rate(jvm_gc_concurrent_phase_time_seconds_count{job=\"antmedia\",instance=~\"$instance\"}[1m]))",
           "legendFormat": "{{gc}}"
         }
       ],
@@ -2052,7 +2052,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "jvm_gc_concurrent_phase_time_seconds_max{job=\"antmedia\",instance=~\"$instance\"}",
+          "expr": "max by (instance, gc) (jvm_gc_concurrent_phase_time_seconds_max{job=\"antmedia\",instance=~\"$instance\"})",
           "legendFormat": "{{gc}}"
         }
       ],
@@ -2097,7 +2097,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "jvm_gc_overhead{job=\"antmedia\",instance=~\"$instance\"}",
+          "expr": "max by (instance) (jvm_gc_overhead{job=\"antmedia\",instance=~\"$instance\"})",
           "legendFormat": "{{instance}}"
         }
       ],
@@ -2142,7 +2142,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "rate(jvm_gc_memory_allocated_bytes_total{job=\"antmedia\",instance=~\"$instance\"}[1m])",
+          "expr": "max by (instance) (rate(jvm_gc_memory_allocated_bytes_total{job=\"antmedia\",instance=~\"$instance\"}[1m]))",
           "legendFormat": "allocated {{instance}}"
         },
         {
@@ -2151,7 +2151,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "rate(jvm_gc_memory_promoted_bytes_total{job=\"antmedia\",instance=~\"$instance\"}[1m])",
+          "expr": "max by (instance) (rate(jvm_gc_memory_promoted_bytes_total{job=\"antmedia\",instance=~\"$instance\"}[1m]))",
           "legendFormat": "promoted {{instance}}"
         }
       ],
@@ -2196,7 +2196,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "jvm_gc_live_data_size_bytes{job=\"antmedia\",instance=~\"$instance\"}",
+          "expr": "max by (instance) (jvm_gc_live_data_size_bytes{job=\"antmedia\",instance=~\"$instance\"})",
           "legendFormat": "live {{instance}}"
         },
         {
@@ -2205,7 +2205,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "jvm_gc_max_data_size_bytes{job=\"antmedia\",instance=~\"$instance\"}",
+          "expr": "max by (instance) (jvm_gc_max_data_size_bytes{job=\"antmedia\",instance=~\"$instance\"})",
           "legendFormat": "max {{instance}}"
         }
       ],
@@ -2263,7 +2263,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "jvm_threads_live_threads{job=\"antmedia\",instance=~\"$instance\"}",
+          "expr": "max by (instance) (jvm_threads_live_threads{job=\"antmedia\",instance=~\"$instance\"})",
           "legendFormat": "live {{instance}}"
         },
         {
@@ -2272,7 +2272,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "jvm_threads_daemon_threads{job=\"antmedia\",instance=~\"$instance\"}",
+          "expr": "max by (instance) (jvm_threads_daemon_threads{job=\"antmedia\",instance=~\"$instance\"})",
           "legendFormat": "daemon {{instance}}"
         },
         {
@@ -2281,7 +2281,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "jvm_threads_peak_threads{job=\"antmedia\",instance=~\"$instance\"}",
+          "expr": "max by (instance) (jvm_threads_peak_threads{job=\"antmedia\",instance=~\"$instance\"})",
           "legendFormat": "peak {{instance}}"
         }
       ],
@@ -2332,7 +2332,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "jvm_threads_states_threads{job=\"antmedia\",instance=~\"$instance\"}",
+          "expr": "max by (instance, state) (jvm_threads_states_threads{job=\"antmedia\",instance=~\"$instance\"})",
           "legendFormat": "{{state}}"
         }
       ],
@@ -2377,7 +2377,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "rate(jvm_threads_started_threads_total{job=\"antmedia\",instance=~\"$instance\"}[1m])",
+          "expr": "max by (instance) (rate(jvm_threads_started_threads_total{job=\"antmedia\",instance=~\"$instance\"}[1m]))",
           "legendFormat": "{{instance}}"
         }
       ],
@@ -2422,7 +2422,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "jvm_classes_loaded_classes{job=\"antmedia\",instance=~\"$instance\"}",
+          "expr": "max by (instance) (jvm_classes_loaded_classes{job=\"antmedia\",instance=~\"$instance\"})",
           "legendFormat": "{{instance}}"
         }
       ],
@@ -2467,7 +2467,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "rate(jvm_classes_unloaded_classes_total{job=\"antmedia\",instance=~\"$instance\"}[5m])",
+          "expr": "max by (instance) (rate(jvm_classes_unloaded_classes_total{job=\"antmedia\",instance=~\"$instance\"}[5m]))",
           "legendFormat": "{{instance}}"
         }
       ],
@@ -2512,7 +2512,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "rate(jvm_compilation_time_ms_total{job=\"antmedia\",instance=~\"$instance\"}[1m])",
+          "expr": "max by (instance) (rate(jvm_compilation_time_ms_total{job=\"antmedia\",instance=~\"$instance\"}[1m]))",
           "legendFormat": "{{instance}}"
         }
       ],
@@ -2558,7 +2558,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "jvm_info{job=\"antmedia\",instance=~\"$instance\"}",
+          "expr": "max by (instance, vendor, runtime, version) (jvm_info{job=\"antmedia\",instance=~\"$instance\"})",
           "legendFormat": "{{vendor}} {{runtime}} {{version}}",
           "format": "table",
           "instant": true
