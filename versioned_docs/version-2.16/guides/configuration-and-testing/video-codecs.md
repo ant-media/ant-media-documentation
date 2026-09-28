@@ -1,112 +1,161 @@
 ---
-title: Video codecs 
-description: Simplified understanding of H.264, VP8, and H.265 codecs used with Ant Media Server. This guide also explains how to enable H.264, VP8, and H.265.
+title: Video Codecs Overview
+description: Overview of H.264, VP8, and H.265 codecs in Ant Media Server and how to choose the right one.
 keywords: [Enable H.264, VP8, and H.265, WebRTC codecs, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 6
 ---
 
-# Video Codecs
+# Video Codecs Overview
 
-In this guide, we’ll explain how to use H.264, VP8, and H.265 (HEVC) video codecs in Ant Media Server.
+Ant Media Server supports **H.264**, **VP8**, and **H.265 (HEVC)** for live streaming. The codec you enable affects browser compatibility, bandwidth use, latency, and which protocols you can use.
 
-Currently, WebRTC relies on specific codecs for video streaming, and Ant Media Server supports H.264 and VP8 for it.
+## What you'll accomplish
 
-Protocols like HLS, LL-HLS, and CMAF (DASH) support H.265 codec to provide maximum compatibility and quality options. WebRTC does not officially support H.265 yet.
+By the end of this overview, you will:
 
-- While H.264 & VP8 codecs can be enabled directly from the basic application settings, H.265 codec must be enabled from Advanced settings.
+1. Understand which codecs Ant Media Server supports and where each fits (WebRTC vs HLS/DASH).
+2. Know **which codec to start with** as a new user.
+3. See how to enable codecs from the application settings in the web panel.
 
-![codec-support](https://github.com/user-attachments/assets/951a04d9-eaf2-4377-8793-95cced896736)
+## Supported codecs
+
+| Codec | WebRTC | HLS / LL-HLS / DASH | Notes |
+|-------|--------|---------------------|-------|
+| H.264 | Yes | Yes | Default choice; widest device and browser support. |
+| VP8 | Yes | Limited | Open, royalty-free; good WebRTC fallback. |
+| H.265 (HEVC) | No (not official in WebRTC) | Yes | Better compression for HLS/DASH; limited browser WebRTC support. |
+
+WebRTC publishing and playback rely on **H.264** and **VP8**. **H.265** is mainly for **HLS**, **LL-HLS**, and **CMAF (DASH)** delivery where you want lower bitrate at the same quality.
 
 :::info
-VP8 and H.264 are mandatory in WebRTC as per RFC 7742. However, not all browsers support these codecs at the same time.
+VP8 and H.264 are mandatory in WebRTC per [RFC 7742](https://datatracker.ietf.org/doc/html/rfc7742). Not every browser supports both at the same time, which is why many deployments enable more than one codec.
 :::
 
-- Each codec can be enabled or disabled based on your requirements. This guide will cover how to enable and configure these codecs in different scenarios.
+## Which codec should I choose?
 
-## Enable and Configure H.264 & VP8 Codecs
+**Start with H.264.** It is the safest default for most Ant Media Server projects:
 
-In this section, learn about the H264 and VP8 video codecs.
+- Works across the major browsers, mobile devices, and embedded platforms.
+- Supported for **WebRTC**, **RTMP**, **SRT**, and adaptive streaming workflows.
+- Hardware acceleration is widely available, which helps keep latency and CPU use low.
 
-### Enable H.264 and VP8 Codec Together
+Use this simple decision guide:
 
-Both H.264 & VP8 can be enabled in the basic application settings.
+| Your goal | Recommended starting point | Why |
+|-----------|------------------------------|-----|
+| First WebRTC live stream | **H.264 only** | Easiest path; works on the largest share of clients. |
+| Mixed browsers (Chrome, Firefox, Safari) | **H.264 + VP8** | Covers clients that prefer one WebRTC codec over the other. |
+| HLS or DASH to save bandwidth | **H.264 + H.265** | H.265 improves compression for HTTP-based playback; keep H.264 for WebRTC. |
+| Maximum compatibility, minimal setup | **H.264 only** | Avoid extra transcoding and compatibility surprises. |
 
-![h264andvp8](https://github.com/user-attachments/assets/37123332-5f07-4350-ac11-09b64a433cb2)
+Enable additional codecs only when you have a clear reason—extra codecs can mean more transcoding, CPU load, and testing across players.
 
-- **SFU Mode (No adaptive bitrate):** Ant Media Server ingests a WebRTC stream in either H.264 or VP8; if both are available, H.264 is prioritized. The original stream is forwarded to players without transcoding.
+## Codec configuration
 
-- **Adaptive Bitrate Mode (if you have at least one adaptive bitrate):** If at least one adaptive bitrate is enabled, the stream is transcoded into multiple bitrates for both H.264 and VP8. This ensures compatibility across devices that support either codec. See [Adaptive streaming](https://antmedia.io/docs/guides/adaptive-bitrate/adaptive-bitrate-streaming/) for details.
+**H.264** and **VP8** can be enabled from basic application settings. **H.265** must be enabled from **Advanced settings** in Ant Media Server v2.16.
 
-### Enable Only H.264 Codec
+1. Log in to the Ant Media Server dashboard.
+2. Select your application.
+3. Open the **Settings** tab (basic settings for H.264/VP8, **Advanced** for H.265).
+4. Enable or disable the codecs you need, then save.
+
+The sections below explain how to enable and configure each codec in different scenarios.
+
+## H.264 Codec
+
+**H.264** is the most widely supported video codec across browsers, devices, and hardware platforms. It is the default and most reliable choice for streaming in Ant Media Server.
+
+### Enable only H.264
+
+1. Log in to the Ant Media Server dashboard.
+2. Select your application.
+3. Open the **Settings** tab.
+4. Enable **H.264** (disable VP8 if you want H.264 only) and save.
 
 ![h264](https://github.com/user-attachments/assets/cfe26a24-6b8e-4a5f-94d9-68bfc260fc47)
 
-- **SFU Mode:**: Only H.264 streams are ingested and forwarded without transcoding.
-- **Adaptive Bitrate Mode:** The stream is transcoded into multiple H.264 bitrates. Devices that support H.264 can play the stream.
+When only H.264 is enabled:
 
-You can check if your device supports H.264 [at this link](https://mozilla.github.io/webrtc-landing/pc_test_no_h264.html).
+- **SFU mode:** Only H.264 streams are ingested and forwarded without transcoding.
+- **Adaptive bitrate (ABR) mode:** The stream is transcoded into multiple H.264 bitrates. Devices that support H.264 can play the stream.
 
-### Enable Only VP8 Codec
+Verify H.264 support on a client: [WebRTC H.264 test](https://mozilla.github.io/webrtc-landing/pc_test_no_h264.html).
+
+### Enable H.264 and VP8 together
+
+Both H.264 and VP8 can be enabled in basic application settings when you need broader WebRTC browser coverage.
+
+![h264andvp8](https://github.com/user-attachments/assets/37123332-5f07-4350-ac11-09b64a433cb2)
+
+- **SFU mode:** Ant Media Server ingests WebRTC in H.264 or VP8; if both are available, H.264 is prioritized. The original stream is forwarded without transcoding.
+- **ABR mode:** With at least one adaptive bitrate enabled, the stream is transcoded into multiple bitrates for both H.264 and VP8. See [Adaptive Bitrate Streaming](/guides/adaptive-bitrate/adaptive-bitrate-streaming/) for details.
+
+## VP8 Codec
+
+**VP8** is an open-source, royalty-free video codec widely used in WebRTC. Use it when you prefer open standards or need a WebRTC fallback alongside H.264.
+
+### Enable only VP8
+
+1. Log in to the Ant Media Server dashboard.
+2. Select your application.
+3. Open the **Settings** tab.
+4. Enable **VP8** (disable H.264 if you want VP8 only) and save.
 
 ![vp8](https://github.com/user-attachments/assets/c8900114-0f74-4cba-9dd9-c5b0da5b757a)
 
-- **SFU Mode:** Only VP8 streams are ingested and forwarded.
-- **Adaptive Bitrate Mode:** VP8 is transcoded into multiple bitrates.
+When only VP8 is enabled:
+
+- **SFU mode:** Only VP8 streams are ingested and forwarded.
+- **ABR mode:** VP8 is transcoded into multiple bitrates.
 
 :::info
-HLS and MP4 recording require H.264 codec. Enabling only VP8 will limit recording (WebM) and playback (WebRTC) options.
+HLS and MP4 recording require the H.264 codec. Enabling only VP8 limits recording to WebM and playback primarily to WebRTC.
 :::
 
-## Enable and Configure H.265 (HEVC) Codec
+## H.265 (HEVC) Codec
 
-HEVC (H.265) provides better video quality at the same bitrate, making it ideal for bandwidth-sensitive environments.
+**H.265 (HEVC)** delivers better video quality at lower bitrates than H.264, making it ideal for bandwidth-sensitive **HLS**, **LL-HLS**, and **DASH** delivery. WebRTC does not officially support H.265 in most browsers.
 
- 1. **Enable H.265 in Configuration**
+### Enable H.265
 
-H.265 is disabled by default. Enable it via Advanced settings:
+H.265 is disabled by default. Enable it via **Advanced settings**:
 
-- Go to the advanced application settings & set
+1. Log in to the Ant Media Server dashboard.
+2. Select your application.
+3. Open **Settings → Advanced**.
+4. Set `h265Enabled` to `true` and save.
 
-   ```js
-   "h265Enabled": true,
-  ```
-  
-- If H.264 & VP8 are also true, AMS will accept streams with all three codecs.
-- If H.264 & VP8 are false, AMS will only accept streams with H.265:
-  
-```js
-"h264Enabled": false,
-"vp8Enabled": false,
-"h265Enabled": true,
+```properties
+h265Enabled=true
+```
+
+If H.264 and VP8 remain enabled, Ant Media Server accepts all three codecs. For H.265-only ingest:
+
+```properties
+h264Enabled=false
+vp8Enabled=false
+h265Enabled=true
 ```
 
 ![h265](https://github.com/user-attachments/assets/a41545a1-9ec9-43ff-b41b-8e0aa88f159b)
 
-- Scroll down and save after making changes.
+### Publish and play H.265
 
-2. **Send an RTMP Stream to Ant Media Server**
+- Publish with **Enhanced RTMP**, **SRT**, or **RTSP** (for example OBS with H.265). See [Enhanced RTMP](/guides/publish-live-stream/rtmp/enhanced-rtmp/).
+- **Android** devices typically play H.265 via HLS, LL-HLS, and DASH.
+- **Desktop:** use VLC or other third-party players.
+- **Browsers:** limited H.265 support — see [caniuse.com — H.265](https://caniuse.com/?search=H.265).
 
-- Use a tool like OBS to send an RTMP stream with H.265 video codec. See the [Enhanced RTMP document](https://antmedia.io/docs/guides/publish-live-stream/rtmp/enhanced-rtmp/) for details.
+### H.265 with H.264 and ABR
 
-3. **Play H.265 Stream**
+Enable **H.264** alongside H.265 and at least one adaptive bitrate so Ant Media Server transcodes H.265 to H.264 for browser clients:
 
-- Most Android devices natively support H.265 playback via HLS, LL-HLS, and DASH.
-- You can also use VLC or third-party players for H.265 playback.
-
-4. **Play H.265 Stream on browsers**
-
-Most browsers do not yet support H.265 playback. Check [H.265 supported browsers](https://caniuse.com/?search=H.265).
-
-5. **Play H.265 transcoded streams with H.264**
-
-- Since H.265 support is limited in browsers/WebRTC, enable H.264 alongside H.265 and use Adaptive streaming:
-
-```js
-"h264Enabled": true,
-"h265Enabled": true,
+```properties
+h264Enabled=true
+h265Enabled=true
 ```
 
-- Enable at least one adaptive bitrate. AMS will transcode incoming H.265 streams to H.264, ensuring browser and SDK compatibility.
+See [Adaptive Bitrate Streaming](/guides/adaptive-bitrate/adaptive-bitrate-streaming/) for details.
 
 ![h265andh264](https://github.com/user-attachments/assets/366e921c-8ab1-4235-a9d9-5062b8c109a3)
 

@@ -25,15 +25,11 @@ You can change OS distribution and version in the command as per your requiremen
 
 Select your subscription and resource group, and define the name of your storage account and region. It is preferable to use the same region in which your Ant Media Server is hosted to have better read/write speed.
 
-![](@site/static/img/recording-live-streams/s3-integration/azure-blob-storage/blob-storage-account.png)
-
 - After the storage account is created, go to `Containers` under Data Storage and create one container with default settings.
 
 ![](@site/static/img/recording-live-streams/s3-integration/azure-blob-storage/blob-storage-container.png)
 
 - Once the container has been created, now move to the `Access Keys` under security & networking and copy the access key somewhere. It will be required in next steps.
-
-![](@site/static/img/recording-live-streams/s3-integration/azure-blob-storage/blob-storage-access-key.png)
 
 ## Step-3: Azure Blob Fuse Configuration File
 

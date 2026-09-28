@@ -1,87 +1,103 @@
 ---
 title: AV1
-description: Learn how to enable and use the AV1 codec in Ant Media Server. Understand its advantages, limitations, and when to use it for modern streaming workflows.
+description: Enable and use the AV1 codec in Ant Media Server for royalty-free WebRTC streaming and WebM recording.
 keywords: [AV1 codec, WebRTC AV1, Ant Media Server AV1, next generation codec, video compression, AMS codecs]
 sidebar_position: 5
 ---
 
 # AV1 Codec
 
-AV1 is a next-generation, open-source video codec designed to deliver significantly better compression efficiency than H.264 and H.265. It enables high-quality video at lower bitrates, making it ideal for bandwidth-optimized streaming.
+**AV1** is a royalty-free, open-source codec that typically delivers better compression than H.264, VP8, and H.265 at similar visual quality. It suits bandwidth-optimized **WebRTC** workflows and **WebM** recording.
 
----
+For a comparison with other codecs, see [Video Codecs Overview](/guides/configuration-and-testing/video-codec/).
 
-## Why Use AV1?
+## What you'll accomplish
 
-- **Excellent Compression Efficiency:** Delivers better compression than H.264, VP8, and H.265 at similar visual quality
-- **Lower Bandwidth Consumption:** Ideal for high-quality streaming over limited bandwidth connections
-- **High-Quality Video Streaming:** Well suited for HD, 4K, and next-generation video delivery
-- **Royalty-Free Codec:** Developed as an open and royalty-free alternative to H.265
-- **Future-Focused Codec:** Increasingly adopted by modern browsers, platforms, and streaming services
+By the end of this guide, you will:
 
----
+1. Understand when AV1 is the right codec for your use case.
+2. Enable AV1 from application settings in the web panel.
+3. Publish and play AV1 over **WebRTC** and **WHIP**.
+4. Configure **AV1 + H.264 with ABR** for HLS/DASH and broader browser coverage.
 
 ## Limitations
 
-- **High Encoding Complexity:** Requires significantly more CPU/GPU resources for encoding  
-- **Limited Hardware Acceleration:** Hardware encoding and decoding support is still evolving on some devices  
-- **Higher Latency Risk:** Software-based AV1 encoding may introduce additional latency in real-time streaming  
-- **Device Compatibility Variations:** Older devices and browsers may not fully support AV1 playback  
-- **WebRTC Support Limitations:** AV1 support in WebRTC depends on browser, device, and hardware capabilities
+| Limitation | Details |
+|------------|---------|
+| Encoding cost | Higher CPU/GPU use than H.264; software encoding can add latency. |
+| Hardware support | Hardware AV1 encode/decode is still limited on some devices. |
+| Browser coverage | Requires recent browsers for WebRTC AV1 (see compatibility below). |
+| HLS / DASH | AV1 is not natively output to HLS or DASH; use H.264 transcoding via ABR. |
 
----
+:::info
+AV1 WebRTC playback requires **Chrome 90+**, **Firefox 93+**, or **Edge 90+**. See [caniuse.com — AV1](https://caniuse.com/av1) for details.
+:::
 
-## Enable AV1 Codec
+## When to use AV1
 
-AV1 is a royalty-free codec with better compression than H.264 and VP8 at equivalent quality. It is supported for WebRTC streaming and WebM recording and disabled by default.
+Choose AV1 when you need:
 
-The AV1 codec can be enabled from application settings via the web panel.
+- **Lower bandwidth** for HD or 4K **WebRTC** streaming on supported browsers.
+- A **royalty-free** alternative to H.265 with strong compression efficiency.
+- **WebM recording** with AV1 video.
+- A **future-focused** codec alongside H.264 for mixed client environments.
+
+Keep **H.264 enabled** alongside AV1 when you must support older browsers or deliver **HLS/DASH**—use adaptive bitrate (ABR) to transcode AV1 to H.264 for those clients.
+
+## Protocol support
+
+| Area | Support |
+|------|---------|
+| WebRTC publish | Yes |
+| WebRTC playback | Yes (modern browsers) |
+| WHIP | Yes |
+| WebM recording | Yes |
+| HLS / LL-HLS / DASH | Via H.264 transcoding (ABR) |
+| RTMP / SRT | No |
+
+## Step 1: Enable AV1
+
+AV1 is **disabled by default**. Starting with **Ant Media Server v3.0.1**, enable it from **Application → Settings** in the web panel.
+
+1. Log in to the Ant Media Server dashboard.
+2. Select your application.
+3. Open the **Settings** tab.
+4. Enable **AV1** and save.
 
 ![](@site/static/img/configuration-and-testing/AV1.webp)
 
-- **SFU mode** — AV1 is ingested and forwarded to players without transcoding.
-- **Adaptive Bitrate mode** — The stream is transcoded into multiple AV1 bitrates, allowing playback across different network conditions and devices. The stream can be transcoded with any other codec as well like H264 etc.
+When AV1 is enabled:
 
----
+- **SFU mode:** AV1 streams are ingested and forwarded to players without transcoding.
+- **ABR mode:** The stream is transcoded into multiple AV1 bitrates (and can be transcoded to other codecs such as H.264 when ABR profiles are configured).
 
-## Streaming and Playback with AV1
+## Step 2: Publish AV1 streams
 
----
+In Ant Media Server, AV1 is supported for:
 
-### Publish AV1 Stream
+- [WebRTC publishing](/guides/publish-live-stream/webrtc/)
+- [WHIP](/guides/publish-live-stream/whip/)
 
-In AMS, the AV1 codec can be used with [WebRTC](https://docs.antmedia.io/guides/publish-live-stream/webrtc/) and [WHIP](https://docs.antmedia.io/guides/publish-live-stream/whip/) publishing protocols.
+## Step 3: Play AV1 streams
 
----
+| Delivery | Behavior |
+|----------|----------|
+| **WebRTC** | Modern browsers play AV1 natively. In SFU mode, the stream is forwarded without transcoding. |
+| **WebM recording** | AV1 streams record to `.webm` when recording is enabled—no extra codec configuration required. |
+| **HLS / DASH** | Not native from AV1 alone. Enable H.264 alongside AV1 and configure ABR so AMS transcodes to H.264 for HTTP-based playback. |
 
-### Play AV1 Stream
+Verify browser support: [caniuse.com — AV1](https://caniuse.com/?search=AV1)
 
-**WebRTC** — Modern browsers play AV1 natively. In SFU mode, the stream is forwarded as-is without transcoding.
+## Step 4: Enable AV1 with H.264 and ABR (recommended for broad playback)
 
-**WebM recording** — AV1 streams are recorded to `.webm` automatically when recording is enabled. No extra configuration needed.
-
-**HLS / DASH** — AV1 is not natively output to HLS or DASH. To serve HLS/DASH from an AV1 source, enable H.264 alongside AV1 and configure at least one adaptive bitrate profile. AMS will transcode the AV1 stream to H.264 for HLS/DASH delivery.
-
----
-
-### Compatibility Check
-
-:::info
-AV1 WebRTC playback requires Chrome 90+, Firefox 93+, or Edge 90+. See the [AV1 browser support table](https://caniuse.com/av1) for details.
-:::
-
-Check browser compatibility here:  
-👉 https://caniuse.com/?search=AV1
-
----
-
-### Play AV1 Transcoded Streams with H.264
-
-Since AV1 support is limited in browsers, enable H.264 alongside AV1 and use adaptive bitrate (ABR) streaming:
+Because AV1 support varies by browser and HLS/DASH require H.264 in most setups, enable **H.264** alongside AV1 and turn on **adaptive bitrate (ABR)**.
 
 :::info
-At least one adaptive bitrate (ABR) must be enabled. Without ABR, Ant Media Server will not transcode AV1 streams into H264, and playback will fail on browsers that do not support AV1.
+At least one adaptive bitrate must be enabled. Without ABR, Ant Media Server will not transcode AV1 streams to H.264, and playback will fail on clients that do not support AV1.
 :::
 
-![AV1 + H264 with ABR](/img/configuration-and-testing/AV1andH264.webp)
+Enable at least one adaptive bitrate in your application. See [Adaptive Bitrate Streaming](/guides/adaptive-bitrate/adaptive-bitrate-streaming/) for details.
 
+![](@site/static/img/configuration-and-testing/AV1andH264.webp)
+
+For general WebRTC fallback patterns, see [H.264 Codec](/guides/configuration-and-testing/video-codec/h264/).

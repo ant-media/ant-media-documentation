@@ -1,59 +1,49 @@
 ---
-title: Download and install Flutter WebRTC sample projects
-description: Download and install Flutter WebRTC sample projects 
+title: Download Samples
+description: Clone and run the Ant Media Flutter WebRTC sample projects.
 keywords: [Flutter SDK User Guide, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 2
+sidebar_label: Download Samples
 ---
 
-WebRTC Flutter samples are free to download. You can download/clone them via [Flutter SDK Github repository](https://github.com/ant-media/WebRTC-Flutter-SDK/).
+# Download Samples
 
-Open SDK in Android Studio, and make sure you have installed the Flutter and Dart plugins. 
+Clone the free Flutter samples from [WebRTC-Flutter-SDK](https://github.com/ant-media/WebRTC-Flutter-SDK/).
 
-Make sure that the paths of Flutter and Dart SDK are correctly configured in the Android Studio Language and Frameworks settings, as shown below.
+## Open in Android Studio
 
-**Open Settings > Languages & Frameworks**
+1. Open the cloned SDK in Android Studio with Flutter and Dart plugins installed.
+2. Confirm Flutter and Dart SDK paths under **Settings → Languages & Frameworks**.
 
-![Screenshot 2025-01-15 141914](https://github.com/user-attachments/assets/ca2a0bb9-8d19-424e-a73a-5b5ec6b9c4c2)
+![Flutter SDK paths](https://github.com/user-attachments/assets/ca2a0bb9-8d19-424e-a73a-5b5ec6b9c4c2)
 
-If these plugins have been installed and the locations of Flutter and Dart SDK are configured correctly, then the options to run the samples will appear automatically after source code indexing. Please refer to the below screenshot.
+After indexing, run targets appear automatically:
 
-![Screenshot 2025-01-15 225112](https://github.com/user-attachments/assets/91e1a5d4-3877-4e83-b6f0-7228e0cbcf29)
+![Run targets](https://github.com/user-attachments/assets/91e1a5d4-3877-4e83-b6f0-7228e0cbcf29)
 
-### Install dependencies and run the sample project
+## Install dependencies
 
-In the project navigator, you will find a folder named `examples`. In the example folder, there is a `SampleProject` that uses the ant_media_flutter dependency with all options (Publish, Play, P2P, Conference, and DataChannel) to test. 
+Under `examples/`:
 
-In the same examples folder, there are separate projects to test Publish, Play, Peer, Conference, and DataChannel individually.
+- `SampleProject` — all modes in one app (Publish, Play, P2P, Conference, DataChannel)
+- Separate projects for each mode individually
 
-All projects use [Ant Media Flutter](https://pub.dev/packages/ant_media_flutter ) dependency, which is added to the **pubspec.yaml** file. 
+All projects depend on [`ant_media_flutter`](https://pub.dev/packages/ant_media_flutter). Open `pubspec.yaml` and click **Pub get**.
 
-Click on the **Pub get** button to install the dependency in the project. The pub get button appears only when **pubspec.yaml** file is opened in the editor.
+![Pub get](https://github.com/user-attachments/assets/2a37ce38-4d95-4e91-a861-86d59bb31117)
 
-![Screenshot 2025-01-15 225447](https://github.com/user-attachments/assets/2a37ce38-4d95-4e91-a861-86d59bb31117)
+## Run on Android
 
-### Run the WebRTC Flutter sample apps
+1. Enable developer options and USB debugging on your device.
+2. Connect the device — it appears in the device list.
+3. Select the sample project and click **Run**.
 
-To run the sample apps on Android, you need to connect the Android device to your workstation. For that, make sure you have enabled the developer options and USB debugging on your device. On Android 4.1 and lower, the Developer options screen is available by default. To get the developer options screen on Android 4.2 and higher, follow the below steps:
+![Device connected](https://github.com/user-attachments/assets/e7fd0647-9441-4d83-8c84-d53c6f7690d2)
 
-*   Open the Settings app
-*   Select System
-*   Select About phone
-*   Scroll to the build number and tap it 7 times
-*   Return to the previous screen to find Developer options near the bottom
-*   Scroll down and enable USB debugging
+After install, the sample app launches:
 
-If USB debugging is enabled on your device, then your device name will automatically be available in the list of devices.
+![Sample app](https://github.com/user-attachments/assets/a8f14bfd-a6ca-419f-ba1c-98c9dc31c09c)
 
-Just select the device, select the sample project from the target list, and click on the run button. The Gradle task will start and wait for some time until the app builds. After the building is complete, a confirmation popup will appear on your device for installation.
+## Next step
 
-![Screenshot 2025-01-15 233410](https://github.com/user-attachments/assets/e7fd0647-9441-4d83-8c84-d53c6f7690d2)
-
-- After the build is successful, the app will be installed and launched on your connected Android mobile device.
-- For this demonstration, we are going to run the example application.
-
-![Screenshot 2025-01-15 234344](https://github.com/user-attachments/assets/a8f14bfd-a6ca-419f-ba1c-98c9dc31c09c)
-
-## Congratulations!
-
-You have successfully downloaded, installed, and run the Flutter WebRTC sample projects. Your development environment is now ready to explore all the features including Publish, Play, P2P, Conference, and DataChannel. Enjoy experimenting with real-time streaming on your Android device, and happy coding with Flutter WebRTC!
-
+Configure the WebSocket URL and try [Publish](/guides/developer-sdk-and-api/sdk-integration/flutter-sdk/webrtc-samples/publish/) or other [Flutter samples](/category/flutter-sdk-samples/).

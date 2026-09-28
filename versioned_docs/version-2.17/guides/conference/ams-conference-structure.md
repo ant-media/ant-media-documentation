@@ -1,5 +1,5 @@
 ---
-title: AMS Conference Structure
+title: Conference Structure
 description: Ant Media Conference Structure with Demo Application
 keywords: [Conference Ant Media, Ant Media video conference, ant media conferencing, Publish, Multitrack conference, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 2

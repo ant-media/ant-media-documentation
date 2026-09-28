@@ -2,7 +2,8 @@
 title: Manual Deployment 
 description: Deploy Ant Media Server on Kubernetes
 keywords: [Deploy Ant Media Server on Kubernetes, Kubernetes, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 2
+sidebar_position: 3
+sidebar_label: Manual Deployment
 ---
 
 # Deploy Ant Media Server on Kubernetes 

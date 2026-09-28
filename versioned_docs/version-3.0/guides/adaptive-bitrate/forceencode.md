@@ -1,56 +1,70 @@
 ---
 title: Force Encode
-description: Force Encode in ABR streaming
-keywords: [Adaptive Bitrate Streaming, ABR, multi-bitrate streaming, live stream quality switching, on demand transcoding]
+description: Control whether Ant Media Server re-transcodes a rendition when the publish resolution already matches an ABR profile.
+keywords: [Force Encode, forceEncode, ABR, transcoding, Ant Media Server Documentation]
 sidebar_position: 4
+sidebar_label: Force Encode
 ---
 
-ForceEncode is an ABR feature that ensures all resolutions are transcoded on the server by default, providing consistent quality across all streams.
+# Force Encode
 
-By default, if two ABRs are enabled, such as 1080p and 720p, and the user publishes the RTMP stream in 1080p, the HLS will include all three resolutions, including the original one, resulting in two 1080p, including the transcoded one.
+`forceEncode` controls whether the server **always transcodes** each ABR profile, even when the incoming stream already matches that resolution.
 
-This increases the server overhead by transcoding the 1080p resolution again, which consumes a significant amount of CPU resources.
+:::info
+Force Encode behavior described on this page applies to **HLS** playback today. Use HLS to verify playlist changes after adjusting `forceEncode`.
+:::
 
-Force encoding can now be disabled for enabled ABRs starting with Ant Media Server v2.14.0. This will help to save the server resources and provide better flexibility.
+By default, with profiles such as 1080p and 720p enabled, a 1080p RTMP publish can produce **two** 1080p entries in the HLS master playlist—the original mux (`streamId.m3u8`) and a transcoded 1080p variant (`streamId_1080p2500kbps.m3u8`)—which uses extra CPU.
 
-Let us go through this step by step:
+From **Ant Media Server 2.14.0**, set `forceEncode: false` on a profile to skip re-encoding when the source already matches that height.
 
-### Step-1: Enable ABRs on the server
+:::info
+- If `forceEncode` is `false` for **all** profiles but the source is **higher** than any enabled height, lower renditions are still transcoded; the original is included.
+- If the source is **lower** (for example 480p) and all `forceEncode` values are `false`, the server does not upscale. Set `forceEncode: true` on higher profiles when you need every ladder step regardless of source resolution.
+:::
 
-Enable three ABRs in application settings: 1080p, 720p and 480p.
+## Configure forceEncode
 
-### Step-2: Configure forceEncode
+### 1. Enable ABR profiles
 
-Go to the advanced application settings, and make the **forceEncode** false for the 1080p in the below property:
+In application settings, enable the ladder you need—for example 1080p, 720p, and 480p.
+
+### 2. Set forceEncode per profile
+
+In **Application Settings → Advanced**, adjust `encoderSettings`. Example: do not force 1080p; still transcode 720p and 480p:
 
 ```js
- "encoderSettings": [
-    {
-      "height": 1080,
-      "videoBitrate": 2500000,
-      "audioBitrate": 256000,
-      "forceEncode": false
-    },
-    {
-      "height": 720,
-      "videoBitrate": 2000000,
-      "audioBitrate": 128000,
-      "forceEncode": true
-    },
-    {
-      "height": 480,
-      "videoBitrate": 1000000,
-      "audioBitrate": 96000,
-      "forceEncode": true
-    }
-  ]
+"encoderSettings": [
+  {
+    "height": 1080,
+    "videoBitrate": 2500000,
+    "audioBitrate": 256000,
+    "forceEncode": false
+  },
+  {
+    "height": 720,
+    "videoBitrate": 2000000,
+    "audioBitrate": 128000,
+    "forceEncode": true
+  },
+  {
+    "height": 480,
+    "videoBitrate": 1000000,
+    "audioBitrate": 96000,
+    "forceEncode": true
+  }
+]
 ```
 
-### Step-3: Publish Stream
+### 3. Publish and compare HLS playlists
 
-Now publish the RTMP or SRT stream with 1080p to the server and play the stream with HLS.
+Publish RTMP or SRT at 1080p and play via HLS.
 
-Now, as per default behavior, it transcodes the 1080p again and both the original and the transcoded resolutions are included in the HLS.
+#### With default forceEncode (1080p transcoded again)
+
+When `forceEncode` is `true` for 1080p, the server transcodes 1080p again even though the publisher already sends 1080p. That is why the playlist lists **two** 1080p variants—the original ingest and the transcoded profile.
+
+This adds CPU load and can cause HLS issues: the original and transcoded 1080p streams may use different keyframe intervals, bitrates, or other encoding settings, so players may struggle when switching between them.
 
 ```bash
 #EXTM3U
@@ -64,7 +78,9 @@ test.m3u8
 test_1080p2500kbps.m3u8
 ```
 
-Since we disabled the forceEncode for 1080p, it will not transcode the stream to 1080p again, and only the original resolution will be added to the HLS other than 720p and 480p.
+#### With `forceEncode: false` for 1080p
+
+With `forceEncode: false` at 1080p, the server does **not** create a second transcoded 1080p when the source is already 1080p. The original publish is used for that rung (`streamId.m3u8`), and only 720p and 480p are transcoded—saving CPU and avoiding a duplicate 1080p entry.
 
 ```bash
 #EXTM3U
@@ -76,21 +92,10 @@ test_720p2000kbps.m3u8
 test.m3u8
 ```
 
-:::info
-- If the forceEncode is false for all enabled ABRs and the incoming resolution is higher than the enabled resolutions, then still lower resolutions will be transcoded to have multiple ABRs, including the original one.
-- If the incoming resolution is low like 480p and forceEncode is false for all enabled ABRs, then the server will not transcode to higher resolutions. But if the forceEncode is true, then all resolutions will be forced to transcode.
+:::warning Original vs transcoded encoding
+The original mux (`streamId.m3u8`) is still included in the playlist when `addOriginalMuxerIntoHLSPlaylist` is `true` (default). It often uses different keyframe interval or other encoding parameters than transcoded renditions. That mismatch can cause playback or quality-switching issues in HLS.
+
+If you see such problems, set `addOriginalMuxerIntoHLSPlaylist` to `false` and add the resolutions you need as ABR profiles so every playlist entry is transcoded with consistent settings. See [Include the original stream in HLS playlists](/guides/adaptive-bitrate/adaptive-bitrate-streaming/#include-the-original-stream-in-hls-playlists).
 :::
 
-Using this feature allows you to save bandwidth and resources.
-
-<br /><br />
----
-
-<div align="center">
-<h2> 🎯 You are a Smart Encoder ⚙️ </h2>
-</div>
-
-With ForceEncode, you have the power to optimize your server's performance. By **selectively transcoding streams**, you can balance quality and resource usage effectively.
-
-Your streaming setup is now more efficient, **delivering high-quality content without overloading your server!** 🚀
-
+Use `forceEncode` to cut redundant HLS transcodes when publish resolution already matches a profile—especially on high rungs of the ladder.

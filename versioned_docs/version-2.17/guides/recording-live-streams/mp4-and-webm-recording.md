@@ -125,7 +125,7 @@ Once the recording is completed, the record file name will be `streamId9666-2024
 
 ### Recording with different resolutions and bitrates
 
-One of the main features of Ant Media Server is [Adaptive Bitrate Streaming](https://antmedia.io/docs/guides/adaptive-bitrate/adaptive-bitrate-streaming/), which makes a difference when it comes to recording. If you enable any kind of recording with adaptive bitrate settings, the server will record the stream in each resolution, like:
+One of the main features of Ant Media Server is [Adaptive Bitrate Streaming](/guides/adaptive-bitrate/adaptive-bitrate-streaming/), which makes a difference when it comes to recording. If you enable any kind of recording with adaptive bitrate settings, the server will record the stream in each resolution, like:
 
 `stream1_240p500kbps.mp4` or `stream1_240p500kbps.webm`
 

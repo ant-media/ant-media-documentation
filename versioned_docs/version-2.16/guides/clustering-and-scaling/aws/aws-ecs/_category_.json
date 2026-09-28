@@ -1,8 +1,8 @@
 {
   "label": "AWS ECS",
-  "position": 3,
+  "position": 4,
   "link": {
     "type": "generated-index",
-    "description": "Deploy Ant Media Server at AWS with AWS ECS."
+    "description": "Deploy and scale Ant Media Server on AWS ECS."
   }
 }

@@ -18,15 +18,11 @@ Once the installation is done and you are able to access the MinIO console on yo
 
 - Once the region is set, go to Access Keys and generate one access key to use on the Ant Media Server to access the bucket.
 
-![](@site/static/img/recording-live-streams/s3-integration/minio-bucket-integration/minio-access-key.png)
-
 - Now, go to the buckets and create one S3 bucket. After the bucket is created, make sure that it is public.
 
 ![](@site/static/img/recording-live-streams/s3-integration/minio-bucket-integration/minio-bucket.png)
  
 - Now, in order to record the stream to the MinIO bucket, enable the S3 recording option in application settings and add the required details according to your bucket information.
-
-![](@site/static/img/recording-live-streams/s3-integration/minio-bucket-integration/ams-settings.png)
 
 - Once the stream is published and stopped, the recording will be uploaded to the bucket under the streams folder.
 

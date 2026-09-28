@@ -3,6 +3,7 @@ title: AWS Wavelength Standalone Deployment
 description: AWS Wavelength Standalone Deployment
 keywords: [AWS Wavelength Standalone Deployment, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 2
+sidebar_label: Standalone
 ---
 
 # AWS Wavelength Standalone Deployment
