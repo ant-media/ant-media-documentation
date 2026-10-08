@@ -248,6 +248,19 @@ scripts: [
     maxHits: 10,
   }],
   [
+    'docusaurus-biel',
+    {
+      project: '1hpdpuqdec',
+      version: 'latest',
+      enable: true,
+      bielButtonText: 'Ask AI',
+      headerTitle: 'Ask AI',
+      buttonPosition: 'bottom-right',
+      modalPosition: 'sidebar-right',
+      buttonStyle: 'rounded',
+    },
+  ],
+  [
     '@docusaurus/plugin-client-redirects',
     {
       createRedirects(existingPath) {
