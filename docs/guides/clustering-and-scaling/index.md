@@ -1,6 +1,6 @@
 ---
 title: Clustering and Scaling
-description: Understand Ant Media Server clustering — what a cluster is, how origin and edge nodes work, licensing in a cluster, and the components that make scalable streaming possible.
+description: Understand Ant Media Server clustering: what a cluster is, how origin and edge nodes work, licensing in a cluster, and the components that make scalable streaming possible.
 keywords: [Ant Media Server clustering, origin edge architecture, scale live streaming, cluster license, Ant Media Server Documentation]
 sidebar_label: Overview
 sidebar_position: 0
@@ -8,7 +8,7 @@ sidebar_position: 0
 
 # Clustering and Scaling
 
-When one Ant Media Server cannot carry all of your publishers and viewers, a **cluster** spreads them across multiple nodes—so ingest and playback can grow independently without putting everything on a single box.
+When one Ant Media Server cannot carry all of your publishers and viewers, a **cluster** spreads them across multiple nodes. That way, ingest and playback can grow independently without putting everything on a single box.
 
 :::tip Community Edition
 **Ant Media Server Community Edition does not support clustering.** Cluster mode, origin/edge roles, and shared-database deployments require **Enterprise Edition**. See [How licensing works in a cluster](#how-licensing-works-in-a-cluster).
@@ -18,7 +18,7 @@ Use this page to learn how clustering works. When you are ready to deploy, conti
 
 ## What is a cluster?
 
-A cluster lets you **distribute publishers and viewers across more than one Ant Media Server**—publish on one node, play on another—so concurrent streams and audience size are not limited to a single instance.
+A cluster lets you **distribute publishers and viewers across more than one Ant Media Server**. Streams are published on one node and played from another, so concurrent streams and audience size are not limited to a single instance.
 
 In cluster mode, nodes register with a shared database and cooperate as one logical streaming platform. You split them into an **origin** group (ingest) and an **edge** group (playback). A load balancer in front of the cluster sends **publish** traffic to origins and **play** traffic to edges. The database keeps stream metadata consistent so every edge can find the origin that holds a given stream.
 
@@ -28,10 +28,10 @@ In cluster mode, nodes register with a shared database and cooperate as one logi
 
 | Component | Role |
 |-----------|------|
-| **Database** (MongoDB or Redis) | Stores stream metadata—bitrates, settings, which node is the origin for each stream, and related state—so every node sees the same picture |
+| **Database** (MongoDB or Redis) | Stores stream metadata (bitrates, settings, which node is the origin for each stream, and related state) so every node sees the same picture |
 | **Origin group** | Nodes dedicated to **ingest**. They receive publish traffic, can transcode and transmux, and feed edges. Viewers do not connect here for playback. Prefer GPU capacity when adaptive bitrate is enabled |
 | **Edge group** | Nodes dedicated to **playback**. They fetch streams from origins and deliver them to viewers. Edges do not ingest or transcode; they distribute efficiently |
-| **Load balancer** | Entry point for publishers and players. Routes **publish** requests to the origin group and **play** requests to the edge group. The product you use depends on the environment—see below |
+| **Load balancer** | Entry point for publishers and players. Routes **publish** requests to the origin group and **play** requests to the edge group. The product you use depends on the environment (see below) |
 
 ### Load balancer by environment
 
@@ -49,14 +49,14 @@ The idea is the same everywhere: publishers land on origins, players land on edg
 
 ## How clustering works
 
-Origin and edge are **roles you assign by how traffic is routed**—not roles nodes pick at random. In a self-managed cluster you list origin and edge IPs in Nginx or HAProxy. In the cloud you attach instances (or pods) to origin and edge target groups / backend pools. In Kubernetes you expose distinct Services for each group.
+Origin and edge are **roles you assign by how traffic is routed**. Nodes don't pick them at random. In a self-managed cluster you list origin and edge IPs in Nginx or HAProxy. In the cloud you attach instances (or pods) to origin and edge target groups / backend pools. In Kubernetes you expose distinct Services for each group.
 
 Once that routing is in place, a live session looks like this:
 
-1. **Nodes join the cluster** — Each Ant Media Server starts in cluster mode, connects to the shared database, and registers itself so the cluster can see it.
-2. **Publish goes to an origin** — The load balancer receives a publish request and forwards it to a node in the **origin** group (by upstream, target group, or Service). That origin ingests the stream and stores stream metadata in the database, including that **this node is the origin for this `streamId`**.
-3. **Play goes to an edge** — The load balancer receives a play request and forwards it to a node in the **edge** group.
-4. **Edge pulls from the stream’s origin** — The edge reads the stream’s origin from the database, fetches the media from that origin over the internal network, and serves the viewer.
+1. **Nodes join the cluster.** Each Ant Media Server starts in cluster mode, connects to the shared database, and registers itself so the cluster can see it.
+2. **Publish goes to an origin.** The load balancer receives a publish request and forwards it to a node in the **origin** group (by upstream, target group, or Service). That origin ingests the stream and stores stream metadata in the database, including that **this node is the origin for this `streamId`**.
+3. **Play goes to an edge.** The load balancer receives a play request and forwards it to a node in the **edge** group.
+4. **Edge pulls from the stream’s origin.** The edge reads the stream’s origin from the database, fetches the media from that origin over the internal network, and serves the viewer.
 
 :::info
 Open **TCP port 5000** between cluster nodes for internal origin–edge communication. Keep it closed to the public internet. Full port list: [Server ports](/guides/installing-on-linux/installing-ams-on-linux/#server-ports).

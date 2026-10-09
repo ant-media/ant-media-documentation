@@ -108,7 +108,7 @@ Open the [WebRTC Trickle ICE sample](https://webrtc.github.io/samples/src/conten
 
 ## Step 7: Configure Ant Media Server
 
-1. [Install Ant Media Server](/guides/installing-on-linux/installing-ams-on-linux/) if needed, or use a [cloud marketplace deployment](/quick-start/#checkout-fast--easy-installations-on-cloud-marketplaces).
+1. [Install Ant Media Server](/guides/installing-on-linux/installing-ams-on-linux/) if needed, or use a [cloud marketplace deployment](/quick-start/#cloud-marketplace-installations).
 2. With [SSL configured](/guides/installing-on-linux/setting-up-ssl/), open the dashboard at `https://your-ams:5443`.
 3. Select your application → **Settings** → **Advanced**.
 4. Set:
