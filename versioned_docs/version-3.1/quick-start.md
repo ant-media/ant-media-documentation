@@ -8,23 +8,23 @@ sidebar_label: Quick Start
 
 # Quick Start
 
-Get a single Ant Media Server running, enable SSL, open the web panel, then publish and play a WebRTC stream.
+This guide takes you from a fresh server to a working WebRTC stream. You'll install a single Ant Media Server (AMS), enable SSL, log in to the web panel, and then publish and play a test stream.
 
 ## Choose your installation path
 
-Choose how you will install AMS before running any commands:
+Before you run any commands, decide where AMS will run:
 
 | I want to… | Start here |
 | --- | --- |
-| Install on my own hardware or company infrastructure | Prepare a supported Linux server, then follow [step 1](#1-download-the-installation-script) below |
-| Install on a cloud VM I create and manage | Prepare a supported Linux VM in your cloud account, then follow [step 1](#1-download-the-installation-script) below |
-| Launch a ready-made Cloud Marketplace image | Follow [Cloud marketplace installations](#cloud-marketplace-installations); AMS comes pre-installed, so skip steps 1 and 2 |
+| Install on my own hardware or company infrastructure | Prepare a supported Linux server, then go to [step 1](#1-download-the-installation-script) |
+| Install on a cloud VM that I create and manage | Prepare a supported Linux VM in your cloud account, then go to [step 1](#1-download-the-installation-script) |
+| Launch a ready-made Cloud Marketplace image | Go to [Cloud marketplace installations](#cloud-marketplace-installations). AMS is already installed, so you can skip steps 1 and 2 |
 
-Installing AMS yourself on a cloud VM is still **self-hosted**. A **Cloud Marketplace** image provides AMS pre-installed in your cloud account; you still operate the server.
+Installing AMS yourself on a cloud VM still counts as **self-hosted**. A **Cloud Marketplace** image saves you the installation step, but the server still runs in your cloud account and you are still the one operating it.
 
-The commands below are for a **single Linux server**. For local development on macOS or Windows, or to choose Docker, see [Which Installation Method Should I Use?](/guides/installing-on-linux/which-installation-method-should-i-use/). Run the commands on the server that will host AMS, even if you connect to it from a Mac or Windows computer.
+The commands in this guide are for a **single Linux server**. Run them on the server that will host AMS, even if you're connecting to it from a Mac or Windows computer. If you want to run AMS locally on macOS or Windows, or you'd rather use Docker, see [Which Installation Method Should I Use?](/guides/installing-on-linux/which-installation-method-should-i-use/)
 
-Need multiple servers for capacity or high availability? Start with [Choose a Deployment Option](/guides/clustering-and-scaling/choose-deployment-option/).
+If you need more than one server for capacity or high availability, start with [Choose a Deployment Option](/guides/clustering-and-scaling/choose-deployment-option/) instead.
 
 :::tip
 Before you proceed, review the [Enterprise Deployment Hub](/enterprise-guide/) for a production checklist, cluster architecture, and upgrade guidance.
@@ -33,7 +33,7 @@ Before you proceed, review the [Enterprise Deployment Hub](/enterprise-guide/) f
 ## 1. Download the installation script
 
 ```bash
-wget https://raw.githubusercontent.com/ant-media/Scripts/master/install_ant-media-server.sh -O install_ant-media-server.sh  && sudo chmod 755 install_ant-media-server.sh
+wget https://raw.githubusercontent.com/ant-media/Scripts/master/install_ant-media-server.sh -O install_ant-media-server.sh && sudo chmod 755 install_ant-media-server.sh
 ```
 
 ## 2. Install Ant Media Server
@@ -52,56 +52,56 @@ sudo ./install_ant-media-server.sh
 
 ### Install a specific version
 
+To install a specific version, download its ZIP file first:
+
+- **Community Edition:** download the ZIP from the [Ant Media Server releases page](https://github.com/ant-media/Ant-Media-Server/releases).
+- **Enterprise Edition:** download the ZIP from your antmedia.io account, or ask the support team for it.
+
 For an **Enterprise Edition ZIP**, pass both the ZIP file and your license key:
 
 ```bash
 sudo ./install_ant-media-server.sh -i <ANT_MEDIA_SERVER_ZIP_FILE> -l 'your-license-key'
 ```
 
-The `-i` option selects the downloaded ZIP; `-l` configures the Enterprise license during installation. Downloading the Enterprise ZIP does not activate a license by itself. If you installed without `-l`, follow the [license configuration instructions](/guides/installing-on-linux/installing-ams-on-linux/#run-the-installation-script).
+The `-i` option points the installer at the ZIP you downloaded, and `-l` sets your Enterprise license key during installation. The Enterprise ZIP doesn't activate a license on its own, so don't leave out `-l`. If you've already installed without it, follow the [license configuration instructions](/guides/installing-on-linux/installing-ams-on-linux/#run-the-installation-script).
 
-For a **Community Edition ZIP**, no license key is needed:
+For a **Community Edition ZIP**, you don't need a license key:
 
 ```bash
 sudo ./install_ant-media-server.sh -i <ANT_MEDIA_SERVER_ZIP_FILE>
 ```
 
-- You can get the specific version ZIP file of Community Edition from [here](https://github.com/ant-media/Ant-Media-Server/releases).
-- For the Enterprise Edition ZIP file, download it from your antmedia.io account or ask the support team.
-
-For more installation options, run: `./install_ant-media-server.sh -h`
-
-For a full Linux install walkthrough, see [Installing AMS on Linux](/guides/installing-on-linux/installing-ams-on-linux/).
+To see all installation options, run `sudo ./install_ant-media-server.sh -h`. For a complete walkthrough of the Linux installation, see [Installing AMS on Linux](/guides/installing-on-linux/installing-ams-on-linux/).
 
 ## 3. Configure SSL
 
-SSL is required for WebRTC (camera/microphone access and secure WebSockets). After [installing Ant Media Server](/guides/installing-on-linux/installing-ams-on-linux/), open the web panel and go to `SETTINGS > SSL`.
+WebRTC needs SSL, because browsers only allow camera and microphone access and secure WebSocket connections over HTTPS. Once AMS is installed, open the web panel and go to `SETTINGS > SSL`.
 
 ![](@site/static/img/ssl-webpanel/ssl-settings.png)
 
 :::info
-Before installing SSL, make sure that your server has a **static/fixed IP address** so that the domain can be mapped to a fixed IP.
+Before you enable SSL, make sure your server has a **static IP address** so that your domain always points to the right place.
 
-If the IP is dynamic or changes, the server may not be accessible on a previously generated subdomain.
+If the IP address changes, the server may no longer be reachable on a subdomain you generated earlier.
 :::
 
-In the **Type** drop-down, choose how to enable SSL—[your own domain](/guides/installing-on-linux/setting-up-ssl/#create-lets-encrypt-certificate-with-http-01-challenge), a [free antmedia.cloud subdomain](/guides/installing-on-linux/setting-up-ssl/#get-a-free-subdomain-and-install-ssl-with-lets-encrypt), or [import your own certificate](/guides/installing-on-linux/setting-up-ssl/#import-your-custom-certificate)—then click **Activate**. The server restarts with SSL enabled.
+In the **Type** drop-down, choose how you want to set up SSL. You can use [your own domain](/guides/installing-on-linux/setting-up-ssl/#create-lets-encrypt-certificate-with-http-01-challenge), a [free antmedia.cloud subdomain](/guides/installing-on-linux/setting-up-ssl/#get-a-free-subdomain-and-install-ssl-with-lets-encrypt), or [import your own certificate](/guides/installing-on-linux/setting-up-ssl/#import-your-custom-certificate). Then click **Activate**.
 
 ![](@site/static/img/ssl-webpanel/ssl-options.png)
 
-This starts enabling SSL for your Ant Media Server:
+AMS starts setting up SSL:
 
 ![](@site/static/img/ssl-webpanel/enabling-ssl.png)
 
-The Ant Media Server instance restarts and can be accessed securely with SSL enabled:
+When it's done, the server restarts and you can reach it securely over HTTPS:
 
 ![](@site/static/img/ssl-webpanel/ssl-status.png)
 
-To configure SSL from the command line instead, see [Enable SSL via the terminal](/guides/installing-on-linux/setting-up-ssl/#option-2-installing-ssl-using-the-terminal).
+If you'd rather configure SSL from the command line, see [Enable SSL via the terminal](/guides/installing-on-linux/setting-up-ssl/#option-2-installing-ssl-using-the-terminal).
 
 ## 4. Log in to the web panel
 
-Navigate to ```https://ant-media-server:5443``` and create the first user account.
+Go to `https://your-domain:5443` and create the first user account.
 
 ![management-panel](https://github.com/user-attachments/assets/8901d363-23b2-4f08-979c-6c7e6e15a7df)
 
@@ -109,23 +109,23 @@ Navigate to ```https://ant-media-server:5443``` and create the first user accoun
 
 ### Publish a live stream
 
-Publish a WebRTC live stream from the sample webrtc publish page, which is available at ```https://domain-name:5443/live ```
+Open the sample WebRTC publish page at `https://your-domain:5443/live` and start a stream.
 
 ![publish](https://github.com/user-attachments/assets/510d9d26-275a-459f-939c-0acec27b8632)
 
 ### Play a live stream
 
-Play the live stream with WebRTC using the sample WebRTC player page, which is available at ```https://domain-name:5443/live/player.html```
+To watch the stream, open the sample WebRTC player page at `https://your-domain:5443/live/player.html`.
 
 ![play](https://github.com/user-attachments/assets/dad6d64e-6462-408e-849b-4b25c590ca96)
 
 ## Cloud marketplace installations
 
-Launch an Ant Media Server image from your cloud provider's Marketplace. For AWS and Azure, follow the video tutorials below. For GCP, open [Google Cloud Marketplace](https://console.cloud.google.com/marketplace), search for **Ant Media Server Enterprise Edition**, and follow the listing's launch instructions.
+If you'd rather not install AMS yourself, you can launch it as a ready-made image from your cloud provider's Marketplace. For AWS and Azure, follow the video tutorials below. For GCP, open [Google Cloud Marketplace](https://console.cloud.google.com/marketplace), search for **Ant Media Server Enterprise Edition**, and follow the launch instructions on the listing.
 
-These images already include AMS. **Skip the installation script and ZIP commands in steps 1 and 2.** Once your instance is running and its required ports are open, continue with [step 3: Configure SSL](#3-configure-ssl), then log in and publish your first stream.
+These images come with AMS already installed, so **skip steps 1 and 2**. Once your instance is running and the required ports are open, go back to [step 3: Configure SSL](#3-configure-ssl) and continue from there.
 
-For a cluster instead of a single instance, use [Choose a Deployment Option](/guides/clustering-and-scaling/choose-deployment-option/) before launching resources.
+If you're planning a cluster rather than a single instance, read [Choose a Deployment Option](/guides/clustering-and-scaling/choose-deployment-option/) before you launch anything.
 
 <div style={{display: 'flex', justifyContent: 'space-between', textAlign: 'center', fontWeight:'bold', height: 'auto'}}>
   <div  style={{width: '49%', height:'300px'}}>
@@ -140,9 +140,8 @@ For a cluster instead of a single instance, use [Choose a Deployment Option](/gu
 
 ## Sample tools and applications
 
-- Access the [sample applications](/sample-applications/) via ```https://domain-name:5443/live/samples.html```.
-
-- Experience the sample pages [here](https://test.antmedia.io:5443/live/samples.html) now.
+- Your server comes with [sample applications](/sample-applications/) at `https://your-domain:5443/live/samples.html`.
+- Want to try them before installing anything? Open the [hosted sample pages](https://test.antmedia.io:5443/live/samples.html).
 
 ## Next steps
 
@@ -155,4 +154,4 @@ For a cluster instead of a single instance, use [Choose a Deployment Option](/gu
 
 ## Getting Help
 
-If you need help, visit [GitHub Discussions](https://github.com/orgs/ant-media/discussions), follow the [AMS Installation Guide](/guides/installing-on-linux/installing-ams-on-linux/), or use the [support escalation matrix](/enterprise-guide/#support-escalation-matrix) for production and Enterprise support channels.
+If you get stuck, ask on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or check the [AMS Installation Guide](/guides/installing-on-linux/installing-ams-on-linux/). For production and Enterprise support, see the [support escalation matrix](/enterprise-guide/#support-escalation-matrix).

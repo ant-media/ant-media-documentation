@@ -71,21 +71,21 @@ Clustering is an **Enterprise Edition** capability. Community Edition cannot run
 | **Standard Enterprise license** | One Ant Media Server instance at a time |
 | **Enterprise cluster license** | The same Enterprise features, with a key that can run on **many instances at once** |
 
-You *can* put a **different** license key on each node. That works for a fixed, small cluster. It does **not** work well for **auto scaling**—new nodes need a key without manual steps, so a **cluster license** (same key on every node, or baked into the image) is the right approach.
+You *can* put a **different** license key on each node. That works for a fixed, small cluster. It does **not** work well for **auto scaling**, because new nodes need a key without anyone stepping in manually. For that, a **cluster license** (the same key on every node, or baked into the image) is the right approach.
 
 ### How many instances do I license?
 
-**Count every AMS origin and edge instance.** For example, **2 origins + 3 edges = 5 AMS instances** requiring license coverage. With standard Enterprise licenses, that means five separate keys. With a cluster license, the nodes share one key, but the license must cover all five instances: **one key does not mean one instance's fee covers the entire cluster**.
+**Count every AMS origin and edge instance.** For example, **2 origins + 3 edges = 5 AMS instances** that need license coverage. With standard Enterprise licenses, that means five separate keys. With a cluster license, all five nodes share one key, but the license still has to cover all five instances. **Sharing one key doesn't mean you pay for only one instance.**
 
-A dedicated database or load balancer that does not run AMS does not need an AMS license. Its infrastructure and any third-party software charges are separate.
+A dedicated database or load balancer that doesn't run AMS doesn't need an AMS license. You pay for its infrastructure and any third-party software separately.
 
-When autoscaling adds AMS nodes, those instances also need coverage. For hourly plans, estimate usage from each instance's running time; for subscriptions or custom cluster agreements, confirm the covered instance count and scaling terms with [Ant Media Sales](mailto:contact@antmedia.io). See [current pricing](https://antmedia.io/pricing/) for the applicable plan.
+If autoscaling adds AMS nodes, those instances need coverage too. On an hourly plan, you can estimate usage from how long each instance runs. For subscriptions or custom cluster agreements, confirm the number of covered instances and the scaling terms with [Ant Media Sales](mailto:contact@antmedia.io). See [current pricing](https://antmedia.io/pricing/) for plan details.
 
 ### Where do I buy and pay for licenses?
 
-**Self-hosted licenses:** buy a plan on [antmedia.io/pricing](https://antmedia.io/pricing/) (hourly, monthly, annual, or perpetual), then install the key on each node—or use one cluster key across the fleet.
+**Self-hosted licenses:** buy a plan on [antmedia.io/pricing](https://antmedia.io/pricing/) (hourly, monthly, annual, or perpetual), then install the key on each node, or use one cluster key across all of them.
 
-**Cloud Marketplace:** AWS, Azure, and GCP Marketplace images bill the Ant Media license through the cloud provider (often hourly with the instance). You launch the Marketplace AMI/image, and licensing is handled by that billing model—no separate self-hosted key install for that path. Follow the [AWS](/guides/clustering-and-scaling/aws/choose-aws-deployment/), [Azure](/guides/clustering-and-scaling/azure/choose-azure-deployment/), or [GCP](/guides/clustering-and-scaling/gcp/choose-gcp-deployment/) guide for your platform.
+**Cloud Marketplace:** AWS, Azure, and GCP Marketplace images bill the Ant Media license through your cloud provider, usually hourly along with the instance. You launch the Marketplace AMI or image and the license is covered by that billing, so there's no separate key to install. Follow the [AWS](/guides/clustering-and-scaling/aws/choose-aws-deployment/), [Azure](/guides/clustering-and-scaling/azure/choose-azure-deployment/), or [GCP](/guides/clustering-and-scaling/gcp/choose-gcp-deployment/) guide for your platform.
 
 For edition comparison and education licenses, see [License information](/#license-information). Plans and pricing: [antmedia.io/pricing](https://antmedia.io/pricing/).
 
