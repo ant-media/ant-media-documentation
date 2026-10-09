@@ -13,6 +13,10 @@ By the end of this guide, you'll be pushing an SRT stream into Ant Media Server 
 
 To enable this feature, we utilized Haivision's official [SRT library](https://github.com/Haivision/srt) and created an SRT preset for [JavaCPP-Presets](https://github.com/bytedeco/javacpp-presets). We intend to submit a pull request for the JavaCPP-Presets repository.
 
+:::info
+Starting from Ant Media Server Enterprise Edition 3.1.0, SRT ingest supports multiple audio tracks.
+:::
+
 ## Publishing SRT streams with OBS
 
 If you don't have command-line experience and prefer a graphical interface, you can use OBS (Open Broadcaster Software) to push an SRT stream to Ant Media Server. If you are unfamiliar with OBS, you can look at this blog post [How to use OBS with Ant Media Server](https://antmedia.io/how-to-use-obs-with-ant-media-server/).
