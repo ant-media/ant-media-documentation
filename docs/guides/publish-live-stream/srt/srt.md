@@ -17,6 +17,10 @@ To enable this feature, we utilized Haivision's official [SRT library](https://g
 
 If you don't have command-line experience and prefer a graphical interface, you can use OBS (Open Broadcaster Software) to push an SRT stream to Ant Media Server. If you are unfamiliar with OBS, you can look at this blog post [How to use OBS with Ant Media Server](https://antmedia.io/how-to-use-obs-with-ant-media-server/).
 
+:::info
+Starting from Ant Media Server Enterprise Edition 3.1.0, SRT ingest supports multiple audio tracks.
+:::
+
 Just enter the SRT URL to the stream window as shown in the image below.
 
 ![](@site/static/img/Screen-Shot-2022-04-20-at-14.48.30-1024x811.png)
