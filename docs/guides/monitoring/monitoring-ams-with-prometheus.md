@@ -271,13 +271,19 @@ This part uses a self-managed MongoDB database. On Kubernetes, see [Collecting L
 
 ### Step 2: Create a read-only database login
 
-The program only needs to **read** the node list, so give it a login that can't change anything. On the **MongoDB server**, sign in as your MongoDB administrator:
+The discovery program needs its own MongoDB login to read the node list. You'll create a new login named **`ams_discovery`** that can **only read**, never change anything.
+
+**1. Sign in to MongoDB as the administrator.** On the **MongoDB server**, run this. Replace `ADMIN_USERNAME` with your MongoDB admin username; MongoDB then asks for the **admin password**:
 
 ```bash title="Run on the MongoDB server"
 mongosh "mongodb://127.0.0.1:27017/admin" -u ADMIN_USERNAME -p
 ```
 
-Paste this. It asks you to type a new password for the read-only login; write it down:
+:::info Where is the admin login?
+It was created when MongoDB was installed. If you used Ant Media's `install_mongodb.sh --auto-create`, both the username and the password are in the `mongo_credentials.txt` file the script created.
+:::
+
+**2. Create the read-only login.** Paste this into the MongoDB shell:
 
 ```javascript title="Paste into mongosh"
 db.getSiblingDB("admin").createUser({
@@ -287,7 +293,11 @@ db.getSiblingDB("admin").createUser({
 })
 ```
 
+MongoDB shows `Enter password:`. **Type a new password for `ams_discovery`** (the screen stays blank while you type), press **Enter**, and **write it down**. You'll need it in the next step.
+
 **You should see** `{ ok: 1 }`. Type `exit`.
+
+You now have a login with username **`ams_discovery`** and the password you just typed.
 
 ### Step 3: Install the discovery program
 
@@ -301,7 +311,11 @@ sudo install -d -o root -g prometheus -m 750 /etc/ams-discovery
 sudoedit /etc/ams-discovery/environment
 ```
 
-The last command opens an editor. Paste the following, put in your password from Step 2 and MongoDB's private IP, then save with **Ctrl+O**, **Enter**, **Ctrl+X**:
+The last command opens an editor. Paste the following and replace:
+- `DISCOVERY_PASSWORD` with the **`ams_discovery` password you typed in Step 2** (not the admin password)
+- `MONGODB_PRIVATE_IP` with your MongoDB server's private IP
+
+Then save with **Ctrl+O**, **Enter**, **Ctrl+X**:
 
 ```ini
 MONGODB_URI="mongodb://ams_discovery:DISCOVERY_PASSWORD@MONGODB_PRIVATE_IP:27017/?authSource=admin"
