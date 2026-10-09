@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="400" viewBox="0 0 1000 400" role="img" aria-labelledby="title description">
+  <title id="title">How the read-only MongoDB login is created and used</title>
+  <desc id="description">Step 2a: you generate a password. Step 2b: on the MongoDB server you sign in with the existing admin login and create the read-only login ams_discovery with that password. Step 3: you save the same username and password on the monitoring server. From then on, the discovery program signs in to MongoDB with ams_discovery every 30 seconds and only reads the node list.</desc>
+  <defs>
+    <marker id="b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2167a6"/>
+    </marker>
+    <marker id="g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#3f8f3a"/>
+    </marker>
+  </defs>
+  <rect width="1000" height="400" rx="16" fill="#ffffff"/>
+  <g font-family="Arial, Helvetica, sans-serif" text-anchor="middle" fill="#172b4d">
+
+    <!-- You -->
+    <rect x="390" y="20" width="220" height="70" rx="12" fill="#eaf7ee" stroke="#2e7d32" stroke-width="2"/>
+    <text x="500" y="48" font-size="18" font-weight="700">Step 2a: You</text>
+    <text x="500" y="72" font-size="14">generate one new password</text>
+
+    <!-- MongoDB server -->
+    <rect x="30" y="150" width="380" height="200" rx="14" fill="#eef7ea" stroke="#3f8f3a" stroke-width="2"/>
+    <text x="220" y="180" font-size="18" font-weight="700">MongoDB server</text>
+    <rect x="55" y="198" width="330" height="58" rx="10" fill="#ffffff" stroke="#62748a" stroke-width="1.5"/>
+    <text x="220" y="222" font-size="14" font-weight="700">Admin login (already exists)</text>
+    <text x="220" y="244" font-size="13">Step 2b: you sign in with it once</text>
+    <rect x="55" y="270" width="330" height="62" rx="10" fill="#ffffff" stroke="#3f8f3a" stroke-width="2.5"/>
+    <text x="220" y="294" font-size="14" font-weight="700">New login: ams_discovery</text>
+    <text x="220" y="316" font-size="13">+ your new password · can only read</text>
+
+    <!-- Monitoring server -->
+    <rect x="590" y="150" width="380" height="200" rx="14" fill="#f7f9fc" stroke="#62748a" stroke-width="2"/>
+    <text x="780" y="180" font-size="18" font-weight="700">Monitoring server</text>
+    <rect x="615" y="198" width="330" height="58" rx="10" fill="#ffffff" stroke="#2167a6" stroke-width="2.5"/>
+    <text x="780" y="222" font-size="14" font-weight="700">Settings file (Step 3)</text>
+    <text x="780" y="244" font-size="13">ams_discovery + the same password</text>
+    <rect x="615" y="270" width="330" height="62" rx="10" fill="#f3eefc" stroke="#6b46c1" stroke-width="2"/>
+    <text x="780" y="294" font-size="14" font-weight="700">Discovery program</text>
+    <text x="780" y="316" font-size="13">reads the settings file</text>
+
+    <!-- arrows from You -->
+    <path d="M 430 92 L 330 147" stroke="#2167a6" stroke-width="2.5" fill="none" marker-end="url(#b)"/>
+    <text x="270" y="118" font-size="13" fill="#2167a6">becomes ams_discovery's</text>
+    <text x="270" y="134" font-size="13" fill="#2167a6">password (Step 2b)</text>
+    <path d="M 570 92 L 670 147" stroke="#2167a6" stroke-width="2.5" fill="none" marker-end="url(#b)"/>
+    <text x="730" y="118" font-size="13" fill="#2167a6">saved in the settings</text>
+    <text x="730" y="134" font-size="13" fill="#2167a6">file (Step 3)</text>
+
+    <!-- settings -> program -->
+    <line x1="780" y1="257" x2="780" y2="268" stroke="#2167a6" stroke-width="2.5" marker-end="url(#b)"/>
+
+    <!-- program signs in -->
+    <path d="M 613 301 L 388 301" stroke="#3f8f3a" stroke-width="3" stroke-dasharray="8 5" fill="none" marker-end="url(#g)"/>
+    <text x="500" y="290" font-size="13" fill="#3f8f3a" font-weight="700">signs in every 30 s</text>
+    <text x="500" y="322" font-size="13" fill="#3f8f3a">reads the node list</text>
+
+    <text x="500" y="385" font-size="14" fill="#62748a">The same username and password exist in two places: inside MongoDB, and in the settings file.</text>
+  </g>
+</svg>

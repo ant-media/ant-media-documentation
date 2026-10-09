@@ -269,21 +269,60 @@ This part uses a self-managed MongoDB database. On Kubernetes, see [Collecting L
 2. Allow the monitoring server to reach MongoDB: in **MongoDB's** security group, allow **TCP 27017** from the monitoring server's security group.
 3. Run [Part 1, Step 2](#install) on the monitoring server.
 
-### Step 2: Create a read-only database login
+### Step 2: Create a login for the discovery program {#discovery-login}
 
-The discovery program needs its own MongoDB login to read the node list. You'll create a new login named **`ams_discovery`** that can **only read**, never change anything.
+The discovery program has to **sign in to MongoDB** to read the node list. You'll give it its **own login**, which can only read and never change anything.
 
-**1. Sign in to MongoDB as the administrator.** On the **MongoDB server**, run this. Replace `ADMIN_USERNAME` with your MongoDB admin username; MongoDB then asks for the **admin password**:
+Two logins are involved. Don't mix them up:
+
+| | **Admin login** | **Discovery login** |
+| --- | --- | --- |
+| Already exists? | Yes, it was created when MongoDB was installed | No, **you create it in this step** |
+| Username | Your MongoDB admin username | `ams_discovery` |
+| Password | Your MongoDB admin password | A new one you generate in **2a** |
+| Used by | **You**, once, in **2c** | **The discovery program**, every 30 seconds |
+| Saved where | Wherever you keep it | Inside MongoDB (2d), and in a settings file on the monitoring server (Step 3) |
+
+![The new password is created once, stored as the ams_discovery login in MongoDB, and saved in the monitoring server's settings file. The discovery program uses it to sign in every 30 seconds.](@site/static/img/monitoring/prometheus/discovery-login-flow.svg)
+
+#### 2a. Generate a password for `ams_discovery`
+
+```bash title="Run on any server"
+openssl rand -hex 16
+```
+
+**You should see** 32 random letters and numbers, for example `3f9c0a1b7d2e4f6a8b0c1d2e3f4a5b6c`. Copy it into a note or password manager labelled **"ams_discovery password"**. You'll paste it three times: in 2d, 2e and 3b.
+
+#### 2b. Find the admin login
+
+```bash title="Run on the MongoDB server"
+sudo cat /tmp/mongo_credentials.txt
+```
+
+**You should see:**
+
+```text
+MongoDB username: 1a2b3c4d5e6f
+MongoDB password: 0123456789abcdef01234567
+```
+
+:::info File not found?
+This file only exists if MongoDB was installed with Ant Media's `install_mongodb.sh --auto-create`, and it is deleted when the server restarts. If you saved the login elsewhere, use that. If your MongoDB has **no password at all**, run just `mongosh` in 2c.
+:::
+
+#### 2c. Sign in to MongoDB as the admin
+
+Replace `ADMIN_USERNAME` with the **MongoDB username** from 2b:
 
 ```bash title="Run on the MongoDB server"
 mongosh "mongodb://127.0.0.1:27017/admin" -u ADMIN_USERNAME -p
 ```
 
-:::info Where is the admin login?
-It was created when MongoDB was installed. If you used Ant Media's `install_mongodb.sh --auto-create`, both the username and the password are in the `mongo_credentials.txt` file the script created.
-:::
+At `Enter password:`, paste the **MongoDB password** from 2b and press **Enter**. Nothing appears while you paste; that's normal. **You should see** a prompt ending in `>`.
 
-**2. Create the read-only login.** Paste this into the MongoDB shell:
+#### 2d. Create the `ams_discovery` login
+
+Paste this:
 
 ```javascript title="Paste into mongosh"
 db.getSiblingDB("admin").createUser({
@@ -293,50 +332,66 @@ db.getSiblingDB("admin").createUser({
 })
 ```
 
-MongoDB shows `Enter password:`. **Type a new password for `ams_discovery`** (the screen stays blank while you type), press **Enter**, and **write it down**. You'll need it in the next step.
+At `Enter password:`, paste the **ams_discovery password** from 2a (not the admin password) and press **Enter**.
 
-**You should see** `{ ok: 1 }`. Type `exit`.
+**You should see** `{ ok: 1 }`. Type `exit` to leave.
 
-You now have a login with username **`ams_discovery`** and the password you just typed.
+#### 2e. Test the new login
+
+```bash title="Run on the MongoDB server"
+mongosh "mongodb://127.0.0.1:27017/clusterdb?authSource=admin" -u ams_discovery -p --quiet --eval 'db.clusternode.countDocuments()'
+```
+
+At `Enter password:`, paste the **ams_discovery password** again. **You should see** the number of running AMS nodes, for example `2`. The login works.
 
 ### Step 3: Install the discovery program
 
-On the **monitoring server**, install what the program needs:
+**3a. Install what the program needs.**
 
 ```bash title="Run on the monitoring server"
 sudo apt-get install -y python3-pymongo
 sudo useradd --system --no-create-home --shell /usr/sbin/nologin --gid prometheus ams-discovery
 sudo install -d -o ams-discovery -g prometheus -m 750 /var/lib/prometheus/file_sd
 sudo install -d -o root -g prometheus -m 750 /etc/ams-discovery
-sudoedit /etc/ams-discovery/environment
 ```
 
-The last command opens an editor. Paste the following and replace:
-- `DISCOVERY_PASSWORD` with the **`ams_discovery` password you typed in Step 2** (not the admin password)
-- `MONGODB_PRIVATE_IP` with your MongoDB server's private IP
+**3b. Save the `ams_discovery` login on the monitoring server.** Paste the whole block. It asks you two questions:
+1. **MongoDB server's private IP**: type it (run `hostname -I` on the MongoDB server if you don't know it) and press **Enter**.
+2. **ams_discovery password**: paste the password from 2a and press **Enter**. Nothing appears while you paste.
 
-Then save with **Ctrl+O**, **Enter**, **Ctrl+X**:
-
-```ini
-MONGODB_URI="mongodb://ams_discovery:DISCOVERY_PASSWORD@MONGODB_PRIVATE_IP:27017/?authSource=admin"
+```bash title="Run on the monitoring server"
+{
+read -p "MongoDB server's private IP: " MONGODB_IP
+read -s -p "ams_discovery password (from Step 2a): " DISCOVERY_PASSWORD; echo
+sudo tee /etc/ams-discovery/environment > /dev/null <<EOF
+MONGODB_URI="mongodb://ams_discovery:${DISCOVERY_PASSWORD}@${MONGODB_IP}:27017/?authSource=admin"
 MONGODB_DATABASE=clusterdb
 MONGODB_COLLECTION=clusternode
 AMS_METRICS_PORT=9090
 MAX_NODE_AGE_SECONDS=300
 TARGET_FILE=/var/lib/prometheus/file_sd/antmedia.json
+EOF
+sudo chown root:root /etc/ams-discovery/environment
+sudo chmod 600 /etc/ams-discovery/environment
+unset DISCOVERY_PASSWORD
+sudo grep -o 'mongodb://[^"]*' /etc/ams-discovery/environment | sed -E 's#(ams_discovery:)[^@]*@#\1********@#'
+}
 ```
 
-If the password contains `@ : / ? # %`, write them as `%40 %3A %2F %3F %23 %25`.
+**You should see** your saved connection, with the password hidden:
 
-Now install the program and its 30-second timer. Expand the block, copy it, and paste it as a whole:
+```text
+mongodb://ams_discovery:********@172.31.15.60:27017/?authSource=admin
+```
+
+The password is now stored in a file only the system can read. The discovery program reads it from there, so you never need to type it again.
+
+**3c. Install the program and its 30-second timer.** Expand the block, copy it, and paste it as a whole:
 
 <details>
 <summary><b>Show the install block</b></summary>
 
 ```bash title="Run on the monitoring server"
-sudo chown root:root /etc/ams-discovery/environment
-sudo chmod 600 /etc/ams-discovery/environment
-
 sudo tee /usr/local/bin/ams-prometheus-discovery.py > /dev/null <<'EOF'
 #!/usr/bin/python3
 import ipaddress
@@ -542,5 +597,5 @@ To see the raw numbers, run `curl -s http://127.0.0.1:9090/metrics` on any AMS s
 | **Save & test** fails in Grafana | The URL must be exactly `http://127.0.0.1:9091`, and `systemctl is-active prometheus` must say `active`. |
 | Dashboard says **No data** | Set **Instance** to **All** and the time range to **Last 15 minutes**. Make sure you picked the Prometheus data source when importing. |
 | `Discovery failed (ServerSelectionTimeoutError)` | The monitoring server can't reach MongoDB on 27017. Check MongoDB's security group. |
-| `Discovery failed (OperationFailure)` | Wrong password in `/etc/ams-discovery/environment`, or special characters not encoded. |
+| `Discovery failed (OperationFailure)` | The saved `ams_discovery` password is wrong. Check it with [Step 2e](#discovery-login), then run Step 3b again to save the right one. |
 | A security-group IP range doesn't work | The range must contain the servers' **private** IPs: `172.0.0.0/16` does **not** include `172.31.5.10`, but `172.31.0.0/16` does. Using a security group as the source avoids this. |
