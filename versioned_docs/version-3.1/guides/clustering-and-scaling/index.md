@@ -1,6 +1,6 @@
 ---
 title: Clustering and Scaling
-description: Understand Ant Media Server clustering: what a cluster is, how origin and edge nodes work, licensing in a cluster, and the components that make scalable streaming possible.
+description: Learn how Ant Media Server clustering works, including what a cluster is, how origin and edge nodes work, licensing in a cluster, and the components that make scalable streaming possible.
 keywords: [Ant Media Server clustering, origin edge architecture, scale live streaming, cluster license, Ant Media Server Documentation]
 sidebar_label: Overview
 sidebar_position: 0
