@@ -99,7 +99,12 @@ If you're installing Enterprise Edition and already have your license key, add i
 sudo ./install_ant-media-server.sh -i <ANT_MEDIA_SERVER_ZIP_FILE> -l 'your-license-key'
 ```
 
-The installer uses the ZIP you pass with `-i`, and before it starts AMS it writes your key to `server.licence_key` in `/usr/local/antmedia/conf/red5.properties`. If you install Enterprise without `-l`, you can add the key to that file later and restart AMS with `sudo service antmedia restart`.
+The installer uses the ZIP you pass with `-i`, and before it starts AMS it writes your key to `server.licence_key` in `/usr/local/antmedia/conf/red5.properties`.
+
+If you install Enterprise without `-l`, you can add your license key later in one of two ways:
+
+- **From the web panel (easiest):** once you've [logged in to the web panel](#accessing-the-web-panel), enter your key in **Server Settings** and save it. You don't need SSH access or a restart.
+- **From the terminal:** set `server.licence_key=your-license-key` in `/usr/local/antmedia/conf/red5.properties`, then restart AMS with `sudo service antmedia restart`.
 
 For more command line options, type `sudo ./install_ant-media-server.sh -h`
 
