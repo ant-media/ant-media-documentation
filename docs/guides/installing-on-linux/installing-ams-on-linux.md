@@ -22,11 +22,11 @@ Make sure you have:
 - **A supported OS**: Ubuntu 20.04, 22.04, or 24.04, CentOS 9, Rocky Linux 9, or Alma Linux 9 (x86-64 or Arm64)
 - **Enough hardware**: at least 4 vCPUs (compute-optimized) and 8 GB RAM for a single instance. SSD storage is recommended for smooth read/write performance
 - **Root or sudo access** on the server
-- **A license key**, only if you're installing the Enterprise Edition — skip this if you're using the Community Edition
+- **A license key**, only if you're installing the Enterprise Edition. You don't need one for the Community Edition.
 
 ## Download and Install Ant Media Server
 
-There are two ways to get AMS onto your server. **Most people should use Automatic** — it's a single command. Use **Manual** instead only if your server can't reach GitHub directly (for example, an offline or air-gapped environment), or you need to install a specific version rather than the latest.
+There are two ways to get AMS onto your server. **Most people should use Automatic**, since it's a single command. Use **Manual** instead only if your server can't reach GitHub directly (for example, an offline or air-gapped environment), or you need to install a specific version rather than the latest.
 
 ### Automatic Download and Install
 
@@ -59,7 +59,7 @@ Download and save the latest AMS Community Edition or Enterprise Edition package
 *   Community Edition can be downloaded from the GitHub [Releases](https://github.com/ant-media/Ant-Media-Server/releases) page.
 *   Enterprise Edition can be downloaded from your account after you get a license on [antmedia.io](https://antmedia.io/)
 
-If you downloaded the zip file locally, copy it to your AMS instance with `scp` (or any file-transfer method you prefer — this works the same from Linux, Windows, or Mac):
+If you downloaded the zip file locally, copy it to your AMS instance with `scp` or any other file-transfer method you prefer. This works the same way from Linux, Windows, or Mac:
 
 ```shell
 scp -i <SSH_KEY> <AMS_ZIP_FILE> <USERNAME>@<SERVER_IP>:/home/<USERNAME>
@@ -87,9 +87,25 @@ sudo ./install_ant-media-server.sh -u
 ```
 #### Run the installation script
 
+Run the installation script with the ZIP file you downloaded. This works for both Community Edition and Enterprise Edition:
+
 ```shell
 sudo ./install_ant-media-server.sh -i <ANT_MEDIA_SERVER_ZIP_FILE>
 ```
+
+If you're installing Enterprise Edition and already have your license key, add it with `-l` so it's saved automatically:
+
+```shell
+sudo ./install_ant-media-server.sh -i <ANT_MEDIA_SERVER_ZIP_FILE> -l 'your-license-key'
+```
+
+The installer uses the ZIP you pass with `-i`, and before it starts AMS it writes your key to `server.licence_key` in `/usr/local/antmedia/conf/red5.properties`.
+
+If you install Enterprise without `-l`, you can add your license key later in one of two ways:
+
+- **From the web panel (easiest):** once you've [logged in to the web panel](#accessing-the-web-panel), enter your key in **Server Settings** and save it. You don't need SSH access or a restart.
+- **From the terminal:** set `server.licence_key=your-license-key` in `/usr/local/antmedia/conf/red5.properties`, then restart AMS with `sudo service antmedia restart`.
+
 For more command line options, type `sudo ./install_ant-media-server.sh -h`
 
 ### Verify the Installation
@@ -135,7 +151,7 @@ The first time you access it, you'll be asked to create an admin account:
 
 ![](@site/static/img/ams-management-panel-create-account.png)
 
-By default this is plain HTTP. SSL is required for camera/microphone access in the browser and for secure WebSocket (WSS) connections, and most browsers expect HTTPS by default — the quickest way to enable it is from the panel itself, under **Settings > SSL**, no terminal needed. For terminal-based setup or a specific certificate type (Let's Encrypt, your own certificate, or self-signed for local development), see the [SSL Setup guide](/guides/installing-on-linux/setting-up-ssl/).
+By default this is plain HTTP. SSL is required for camera/microphone access in the browser and for secure WebSocket (WSS) connections, and most browsers expect HTTPS by default. The quickest way to enable it is from the panel itself, under **Settings > SSL**, with no terminal needed. For terminal-based setup or a specific certificate type (Let's Encrypt, your own certificate, or self-signed for local development), see the [SSL Setup guide](/guides/installing-on-linux/setting-up-ssl/).
 
 Once SSL is enabled, the server can also be reached at:
 
@@ -148,7 +164,7 @@ https://<DOMAIN_NAME>:5443
 By default, AMS listens on 5080 (HTTP) and 5443 (HTTPS). If you'd rather not include a port number in your URLs, you can forward the standard ports 80 and 443 to them with `iptables`.
 
 :::info
-This is entirely optional — skip this section if `<SERVER_IP_ADDRESS>:5080` (or your domain on 5443) works fine for you. Once SSL is enabled, make sure port 80 is free and not forwarded anywhere else.
+This is entirely optional. Skip this section if `<SERVER_IP_ADDRESS>:5080` (or your domain on 5443) works fine for you. Once SSL is enabled, make sure port 80 is free and not forwarded anywhere else.
 :::
 
 ### Forward 80 → 5080 and 443 → 5443
