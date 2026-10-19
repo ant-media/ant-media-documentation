@@ -2,7 +2,7 @@
 title: Stream Failover Playback
 description: Stream Failover Playback with Web Player
 keywords: [Backup Playback, WebRTC playback with Ant Media Server, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 7
+sidebar_position: 8
 ---
 
 # Stream Failover Playback

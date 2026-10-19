@@ -22,6 +22,7 @@ flowchart TD
 ## Sub-Second Latency
 
 - **[WebRTC Playback](/guides/playing-live-stream/webrtc-playback/)** — the lowest latency option at roughly half a second, playable directly in the browser. Requires Enterprise Edition and open UDP ports. Best for interactive use cases (auctions, gaming, remote control) where viewers need to react to what they see in real time.
+- **[WHEP](/guides/playing-live-stream/whep/)** — the same WebRTC transport, signaled over a standard HTTP-based protocol instead of AMS's own API. Worth it if you're integrating a third-party WHEP player or need interoperability across WebRTC servers. Requires Enterprise Edition (v4.0+).
 
 ## Low Latency, Standard Players
 
