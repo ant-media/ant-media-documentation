@@ -105,6 +105,7 @@ Install either edition with the commands in [Quick Start](./quick-start). Commun
 |         iOS & Android WebRTC SDK         | Publish only | ![false](@site/static/img/tick.png ) |
 |          VP8, H.265 & AV1 Codec Support        | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
 |                 WHIP                     | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
+|                 WHEP                     | ![false](@site/static/img/cross.png ) | ![false](@site/static/img/tick.png ) |
 |              JavaScript SDK              | ![false](@site/static/img/tick.png ) | ![false](@site/static/img/tick.png ) |
 |                   LL-DASH(CMAF)                 | ![false](@site/static/img/cross.png) | ![true](@site/static/img/tick.png ) |
 |     Stream Source Pull/Ingest      | RTMP, UDP, MP4, HLS, RTSP | RTMP, UDP, MP4, HLS, RTSP, SRT |
