@@ -1,26 +1,27 @@
 ---
 title: Publisher IP Filter
-description: This guide explains stream security options in Ant Media Server, and how you can Enable Disable, or Accept Undefined Streams.
-keywords: [Enable or Disable Undefined Streams, Accept Undefined Streams, One Time Token Control, Stream security, Ant Media Server Documentation, Ant Media Server Tutorials]
+description: Restrict RTMP publishing to allowed IP addresses using CIDR ranges in Ant Media Server.
+keywords: [Publisher IP Filter, RTMP IP allowlist, CIDR, Stream Security, Ant Media Server Documentation]
 sidebar_position: 6
+sidebar_label: Publisher IP Filter
 ---
 
+# Publisher IP Filter
+
 :::info
-Publisher IP Filter feature currently works only for the RTMP publishing.
+Publisher IP Filter currently applies to **RTMP** publishing only.
 :::
 
-Publisher IP filter feature allows you to specify the IP addresses allowed for publishing. You can define multiple allowed IPs in CIDR format as comma (,) separated.
+Use Publisher IP Filter to allow only specific publisher addresses. Enter one or more IPs or CIDR ranges, separated by commas.
 
-You can make changes in Publisher IP Filter from the application's advance settings via the AMS web panel.
+Set `allowedPublisherCIDR` in the application’s advanced settings from the web panel. See [AMS Application Configuration](/guides/configuration-and-testing/ams-application-configuration/#management-panel-application-settings).
 
-Now, all application settings can be changed from the AMS web panel itself. Please check [here](https://antmedia.io/docs/guides/configuration-and-testing/ams-application-configuration/#management-panel-settings) for more information.
-
-Example: 
+Example:
 
 ```json
 allowedPublisherCIDR=10.20.30.40/24,127.0.0.1
-``` 
+```
 
-It allows IPs 10.20.30.\[0-255\] and 127.0.0.1. You can define the range or you can allow single IP as well.
+This allows `10.20.30.0`–`10.20.30.255` and `127.0.0.1`. You can allow a single host or a range. Learn more about [CIDR notation](https://whatismyipaddress.com/cidr/).
 
-You can read more about CIDR notation [here](https://whatismyipaddress.com/cidr/).
+Combine IP allowlisting with token-based controls from [Stream Security](/category/stream-security/) when you need both network and credential checks on publish.

@@ -2,7 +2,8 @@
 title: GCP Installation 
 description: GCP Installation
 keywords: [GCP, GCP Installation, Ant Media Server Documentation, Ant Media Server Tutorials, Google Cloud Platform installation]
-sidebar_position: 1
+sidebar_position: 2
+sidebar_label: Cluster on GCP
 ---
 
 # Google Cloud Platform (GCP)

@@ -1,0 +1,8 @@
+{
+  "label": "Databases",
+  "position": 4,
+  "link": {
+    "type": "doc",
+    "id": "guides/clustering-and-scaling/supported-databases/index"
+  }
+}

@@ -1,5 +1,5 @@
 ---
-title: Room Security
+title: Conference Room Security
 description: Video Conference Room Security with AMS
 keywords: [Conference Ant Media, Ant Media conference room security, ant media conference token, ant media conference room password, ant media conference room, ant media video conference room security, Ant Media video conference, ant media conferencing, Publish, Multitrack conference, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 3
@@ -7,7 +7,9 @@ sidebar_position: 3
 
 # Room Security
 
-In Ant Media Server, each participant and the conference room itself are treated as individual broadcasts. This means that all [Stream Security](https://antmedia.io/docs/category/stream-security/) features apply to both on the conferencing as well.
+In Ant Media Server, each participant and the conference room itself are treated as individual broadcasts. This means that all [Stream Security](/category/stream-security/) features apply to both on the conferencing as well.
+
+By the end of this guide, you'll have token security enabled on a conference room and know how to generate and pass a token so only authorized participants can join.
 
 ## Secure Rooms With Tokens
 
@@ -15,13 +17,13 @@ To secure a conference room, enable token security settings for both publishing 
 
 The generated publish token must be passed to both ```.publish()``` and ```.play()``` functions in conferencing. Otherwise, the participant won't be able to join the room.
 
-A generated token can be a [JWT](https://antmedia.io/docs/guides/stream-security/jwt-stream-security-filter/) or [One Time Token](https://antmedia.io/docs/guides/stream-security/one-time-token-control/). We use the JWT token for this document.
+A generated token can be a [JWT](/guides/stream-security/jwt-stream-security-filter/) or [One-Time Token](/guides/stream-security/one-time-token-control/). We use the JWT token for this document.
 
 ### Security with JSON Web Tokens
 
 #### Step 1: Enable JWT Security
 
-Go to the Ant Media Server web panel and enable JWT for both publish and play. For more details on how to do that, check [JWT Stream Security](https://antmedia.io/docs/guides/stream-security/jwt-stream-security-filter/) document.
+Go to the Ant Media Server web panel and enable JWT for both publish and play. For more details on how to do that, check the [JWT Stream Token](/guides/stream-security/jwt-stream-security-filter/) document.
 
 #### Step 2: Generate JWT with Room ID
 
@@ -35,14 +37,15 @@ Generate a JWT with payload as below:
 }
 ```
 
-![](@site/static/img/conference/video-conference/room-security-1.png)
+You can either generate the JWT token with a JWT debugger tool (using your server's configured token secret) or via the REST API as defined in the [JWT Stream Token](/guides/stream-security/jwt-stream-security-filter/) document.
 
-
-You can either generate the JWT token with the JWT Debugger UI or via the Rest API as defined in the document.
+:::important
+Whatever secret you sign the token with, treat it like a password — don't paste it into a screenshot, commit it to a repository, or share it outside of your own tooling. Anyone with the secret can forge a valid token for any stream on your server.
+:::
 
 #### Step 3: Join The Room Using JWT
 
-In Ant Media Server, joining a video conference room involves both publishing to the room broadcast and playing that broadcast. Therefore, it's essential to pass the generated publish token to both the⁣ ```.publish()``` and ```.play()``` functions in the Ant Media Server SDKs.
+In Ant Media Server, joining a video conference room involves both publishing to the room broadcast and playing that broadcast. Therefore, it's essential to pass the generated publish token to both the ```.publish()``` and ```.play()``` functions in the Ant Media Server SDKs.
 
 :::info
 In conferencing, even though the token type is publish, it can be used for both publishing and playing.
@@ -71,9 +74,7 @@ In this step, we will use a conference sample to do a simple conference room sec
 
 Conference.html sample will get the token from query parameter and pass it to ```.publish()``` and ```.play()``` functions.
 
-Type room ID and click join room. 
-
-Remember, the room ID here must be the same as the ID you used while generating the JWT.
+Type room ID and click join room.
 
 You should be able to successfully join the room and publish; play should start.
 
@@ -99,14 +100,17 @@ In case, you are using the Circle Conference application, the token generation s
 
 ```https://test.antmedia.io:5443/Conference/test?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdHJlYW1JZCI6InRlc3QiLCJ0eXBlIjoicHVibGlzaCIsImV4cCI6OTk5OTk5OTk5OX0.AE9DiAxsA4N1tGbg08NC4ISnXlnPaybF84psMOoDDus```
 
+You now have token security enabled on your conference room, with participants required to present a valid JWT to join.
 
-<br /><br />
----
+## Troubleshooting
 
-<div align="center">
-<h2> Secure Rooms, Secure Voices! 🔐 </h2>
-</div>
+| Symptom | Fix |
+|---|---|
+| JWT enabled for only one of publish or play | AMS tracks publish-side and play-side JWT enforcement as separate settings — enabling only one direction leaves the other reachable without a token at all, rather than failing safely (this is why Step 1 says to enable both). |
+| Room ID typed into the join form doesn't match the token's `streamId` claim | The JWT was generated for a specific room ID, and you must join with that exact same room ID; even a small typo causes the join to fail. |
+| `Invalid JWT Token` (HTTP 403) when accessing a recorded room's HLS, DASH, or VoD file directly | This is AMS's own play-side token check rejecting the request; confirm the token hasn't expired and its `streamId` claim matches the file's stream ID. |
 
-You’ve now enabled **token security for your conference room**, generated a JWT tied to your room’s broadcast, and used it to join via `.publish()` and `.play()`. Unauthorized attempts without a valid token are denied.
-Nice job — your conference space is now locked down, **users only get in with tokens**, and your **stream room is as safe as it gets**! 🛡️
+## Need Help?
+
+If the steps above don't resolve it, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
 

@@ -2,24 +2,28 @@
 title: Install with Docker
 description: AMS Docker Installation
 keywords: [Docker, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 6
+sidebar_position: 3
 ---
 
-Docker provides an easy and portable way to run Ant Media Server without installing it directly on your host system. Using the official Docker images, you can quickly spin up a containerized AMS instance, test it on different environments, and manage upgrades or custom builds with minimal effort.
+# Install AMS with Docker
 
-To use the Ant Media Server Enterprise Edition [official Docker Hub image](https://hub.docker.com/r/antmedia/enterprise/tags), you can execute the following command, which will pull the latest version directly from Docker Hub and run the container.
+Docker provides an easy and portable way to run Ant Media Server (AMS) without installing it directly on your host system. Using the official Docker images, you can quickly spin up a containerized AMS instance, test it on different environments, and manage upgrades or custom builds with minimal effort.
+
+By the end of this guide, AMS will be running in a Docker container and you'll be able to reach its web panel in your browser.
+
+To use the AMS Enterprise Edition [official Docker Hub image](https://hub.docker.com/r/antmedia/enterprise/tags), execute the following command, which pulls the latest version directly from Docker Hub and runs the container.
 
 ```bash
 docker run --restart=always -d --name antmedia --network=host -it antmedia/enterprise:latest
 ```
 
-OR
+OR, if `--network=host` isn't available on your platform (for example, macOS — see the note under "Run Docker Container" below):
 
 ```bash
 docker run --restart=always -d --name antmedia -p 5080:5080 -it antmedia/enterprise:latest
 ```
 
-Once the container is running, reach out to the AMS dashboard and start streaming as explained below.
+Once the container is running, go to the AMS dashboard and start streaming as explained below.
 
 
 **For those who prefer creating their own AMS Docker image, here’s the process to follow:**
@@ -33,25 +37,25 @@ wget https://raw.githubusercontent.com/ant-media/Scripts/master/docker/Dockerfil
 
 ## 2. Build Docker Image
 
-You can perform the build process by entering your license key or having the zip file.
+There are two ways to build the image — use whichever one fits how you're licensing AMS. Don't combine them.
 
-1. Enter a license key as an argument as follows, and then the build process will start.
+### Option A: Build Using a License Key (Enterprise Only)
 
 :::info
-The license key is required in the case of Ant Media Server Enterprise Edition only.
-
-By default, it will directly fetch the current latest version image.
+By default, this fetches the current latest version image. Only use this option for the Enterprise Edition — Community Edition builds need the zip file instead (Option B).
 :::
 
 ```bash
-docker build --network=host -t antmediaserver --build-arg LicenseKey=<Your_License_Key> .
+docker build --network=host -t antmediaserver --build-arg LicenseKey=<YOUR_LICENSE_KEY> .
 ``` 
 
-2. Download and save the Ant Media Server ZIP file in the same directory as the Dockerfile. Then run the docker build command from the command line.
+### Option B: Build Using a Zip File
+
+Download and save the Ant Media Server ZIP file in the same directory as the Dockerfile. Then run the docker build command from the command line.
 
 #### Enterprise Edition:
 
-The AMS Enterprise Edition Zip file can be downloaded from your [Ant Media account](https://antmedia.io) after license purchase. 
+The AMS Enterprise Edition Zip file can be downloaded from the downloads section of your [antmedia.io account](https://antmedia.io/my-account/downloads/) after license purchase. 
 
 Example: **ant-media-server-enterprise-2.14.0-20250513_1544.zip.**
 
@@ -100,23 +104,45 @@ docker volume create antmedia_volume
 docker run -d --name antmedia --mount source=antmedia_volume,target=/usr/local/antmedia/ --network=host -it antmediaserver
 ```
 
+## Verify Ant Media Server Is Running
+
+Before opening the dashboard, confirm the container started and AMS is responding:
+
+```bash
+docker logs antmedia --tail 50
+```
+
+You should see log lines indicating the server has started, with no repeated errors or restart loops. You can also confirm the web panel itself is answering requests:
+
+```bash
+curl -I http://localhost:5080
+```
+
+Any HTTP response (not "connection refused" or a timeout) means AMS is up and listening.
+
 ## AMS Dashboard
 
-After the Docker container starts, reach out to `http://localhost:5080` or `http://host-IP:5080` to access the Ant Media Server dashboard.
+After the Docker container starts, go to `http://localhost:5080` or `http://host-IP:5080` to access the AMS dashboard.
 
-![](@site/static/img/docker-installation.webp)
+:::info Can't reach localhost:5080?
+If you ran the container with `--network=host`, `localhost` only resolves as expected on Linux — this is **not** the case on Docker Desktop for Mac or Windows, where `--network=host` is silently unsupported. There, use the `-p 5080:5080` (port-mapped) command instead, and connect to `http://localhost:5080`. If Docker is running on a remote Linux host, use that host's IP instead of `localhost`.
+:::
 
+The first time you access it, you'll be asked to create an admin account:
 
-Check out [here](https://antmedia.io/docs/guides/publish-live-stream/webrtc/) to publish a WebRTC stream for testing.
+![](@site/static/img/ams-management-panel-create-account.png)
 
-<br /><br />
----
+You've set up **Ant Media Server using Docker** — ran the official image (or built your own), mapped the ports you need (5080, and RTMP if applicable), and confirmed AMS is running. From here, check out [WebRTC Publishing](/guides/publish-live-stream/webrtc/) to publish a stream for testing.
 
-<div align="center">
-<h2> Nice job 🚀 </h2>
-</div>
+## Troubleshooting
 
-You have successfully set up **Ant Media Server using Docker** — you ran the official image (or built your own), mapped the necessary ports like 5080 (and RTMP if you needed it). You can now access the Dashboard and start streaming immediately.  
+| Symptom | Fix |
+|---|---|
+| Build fails with `Both AntMediaServer and LicenseKey arguments are not provided. Aborting the build process.` | Your `docker build` command didn't include either `--build-arg AntMediaServer=<ZIP_FILE>` or `--build-arg LicenseKey=<YOUR_LICENSE_KEY>`; see [Build Docker Image](#2-build-docker-image), you need exactly one. |
+| Provided both a zip file and a license key | Not a hard error, but only the zip file (`AntMediaServer`) is used and the license key is silently ignored. Use one or the other, not both. |
+| Container starts but the dashboard never loads | Check the container's logs first; see [Verify Ant Media Server Is Running](#verify-ant-media-server-is-running). If logs show it running but you still can't reach it in a browser, see the [Can't reach localhost:5080?](#ams-dashboard) note for the macOS/Windows networking case. |
 
-Bonus points: your setup is lightweight, quick to launch, and runs anywhere — that’s the Docker charm! 🎩
+## Need Help?
+
+If AMS isn't starting, or the container won't build, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
 

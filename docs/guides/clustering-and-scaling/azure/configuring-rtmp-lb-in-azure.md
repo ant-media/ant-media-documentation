@@ -2,7 +2,8 @@
 title: Configuring RTMP LB in Azure 
 description: Configuring RTMP Load Balancer in Azure in Ant Media Server Auto Scaling structure.
 keywords: [Configuring RTMP Load Balancer in Azure, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 2
+sidebar_position: 3
+sidebar_label: Configure RTMP LB
 ---
 
 # Configuring RTMP LB in Azure

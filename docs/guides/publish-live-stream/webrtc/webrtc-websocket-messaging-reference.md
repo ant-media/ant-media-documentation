@@ -5,11 +5,15 @@ keywords: [WebRTC WebSocket Messaging Reference, Ant Media Server Documentation,
 sidebar_position: 6
 ---
 
+# WebRTC WebSocket Messaging Reference
+
 This documentation is for developers who need to implement signaling between Ant Media Server and clients for publishing & playing streams. 
+
+By the end of this reference, you'll know the exact WebSocket commands and notifications for publish, play, conference, and peer-to-peer signaling, plus every error callback the server can send back.
 
 Let's understand it step by step:
 
-##  Publish WebRTC Stream
+## Publish WebRTC Stream
 
 1. To connect to the Ant Media Server, client can use WebSocket with a URL in the format: 
  
@@ -40,7 +44,7 @@ Let's understand it step by step:
 
 - **```token```:** The ```token``` field is required if any stream security (token control) is enabled.
 
-  If the user has enabled [stream-security](https://antmedia.io/docs/guides/advanced-usage/stream-security/), they need to fill in the ```token``` field with the correct token.
+  If the user has enabled [stream-security](/category/stream-security/), they need to fill in the ```token``` field with the correct token.
 
 - **```subscriberId``` and ```subscriberCode```:** These are the values for the Time-based One-time Password (TOTP). If the user is using the TOTP mechanism, they need to pass the ```subscriberId``` and ```subscriberCode```.
 
@@ -155,7 +159,7 @@ If ```enableVideo``` is false and ```enbleAudio``` is true, then it means it's a
 
 - If a stream has sub-tracks, ```trackList``` is enabled by default. If there are 2 tracks on the stream, the user can specify both and both tracks will be played. To get all tracks in a stream you can take a look in ```getTrackList``` command that is in the [miscellaneous](#miscellaneous-websocket-methods) part.
 
-- ```viewerInfo``` is a kind of ```metaData``` used to collect informations.
+- ```viewerInfo``` is a kind of ```metaData``` used to collect information.
 
 3. If the Server accepts the stream, it replies with the offer command.
 
@@ -496,7 +500,7 @@ When a new track, stream, or subTrack is dynamically added to the room during ru
   ```json
   {
    command : "error",
-   definition : "notSetRemoteDescriptio",
+   definition : "notSetRemoteDescription",
   }
   ```
 
@@ -533,9 +537,9 @@ This error can occur if a user attempts to re-publish a stream with the same `st
 
 - **```publishTimeoutError```:** The server sends the `publishTimeoutError` message when WebRTC publishing fails to start within a specified time period.
 
-  This may occur due to network issues, such as the lack of an established ICE connection or the failure to send video and audio streams to the server. The timeout value can be customized using the `settings.webrtc.client.start.timeoutMs` property in the [App-Configuration](https://antmedia.io/docs/guides/advanced-usage/turn-and-stun-installation/coturn-quick-installation/), with a default value of 5000 milliseconds.
+  This may occur due to network issues, such as the lack of an established ICE connection or the failure to send video and audio streams to the server. The timeout value can be customized using the `settings.webrtc.client.start.timeoutMs` property in the App-Configuration, with a default value of 5000 milliseconds.
 
-  Using a [TURN-server](https://antmedia.io/docs/guides/advanced-usage/turn-instalation/coturn-quick-installation/) helps mitigate these network-related issues.
+  Using a [TURN server](/guides/advanced-usage/turn-installation/coturn-quick-installation/) helps mitigate these network-related issues.
 
   ```json
   {
@@ -812,16 +816,9 @@ This error can occur if a user attempts to re-publish a stream with the same `st
   }
   ```
 
+You now have the full WebSocket command and notification reference for implementing signaling directly. If you'd rather use the higher-level JavaScript SDK instead of raw WebSocket messages, see [WebRTC Publishing](/guides/publish-live-stream/webrtc/).
 
+## Need Help?
 
-<br /><br />
----
-
-<div align="center">
-<h2> WSS-Messaging Ready 🔔 </h2>
-</div>
-
-You’ve now explored how **WebSocket signaling works in AMS**: connected via `wss://…/live/websocket`, sent the `**publish**` command, included **metadata**, managed **TOTP** or **token** fields if required, and understood the **optional** vs **mandatory** fields.  
-
-Your signaling layer is fully setup — **smooth**, **secure**, and ready to handle stream **control messages and status notifications**. Your WebRTC stack is talking properly now! 📡
+If a command isn't producing the notification you expect, check the error callback list above first — most signaling issues surface there. Otherwise, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
 

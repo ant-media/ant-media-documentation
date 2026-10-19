@@ -1,15 +1,17 @@
 ---
-title: HLS Recording 
+title: HLS Recording
 description: Recording live streams in HLS format
 keywords: [Recording live streams, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 # HLS Recording
 
-HLS streaming is a more cost-effective and secure method of streaming than video-on-demand (VOD). Furthermore, you can also record your live streams with HLS.
+Alongside MP4 and WebM, Ant Media Server can also retain a live stream's HLS segments as its recording format — useful if you'd rather keep the same `.m3u8`/`.ts` files viewers were served live, instead of muxing a separate MP4.
 
-To enable HLS recording for your live streams and store all the HLS `m3u8 and ts` files, just log in to your AMS Web Panel.
+By the end of this guide, you'll have HLS recording enabled and configured for how long files are retained, and know your options for pushing those files to a remote endpoint or S3-compatible bucket in real time.
+
+To enable HLS recording for your live streams and store all the HLS `m3u8` and `.ts` files, log in to your AMS Web Panel.
 
 Navigate to `Applications` -> `live` -> `Settings` -> `Advanced`, and configure the setting below:
 
@@ -26,11 +28,11 @@ To store HLS files permanently after the stream is ended:
 ```js
 "deleteHLSFilesOnEnded":false
 ```
-To avoid overwriting old HLS files when reusing the same streamId, set the ```append_list``` attribute in the ```hlsflags``` property.   
+To avoid overwriting old HLS files when reusing the same stream ID, set the `append_list` attribute in the `hlsflags` property.
 
-For example, if you streamed with ID ```teststream``` and the last generated file was ```teststream000001013.ts```, restarting the same stream without append_list would reset numbering from ```0``` and overwrite existing ```.ts``` files.
+For example, if you streamed with ID `teststream` and the last generated file was `teststream000001013.ts`, restarting the same stream without `append_list` would reset numbering from `0` and overwrite existing `.ts` files.
 
-When you set it to ```append_list```, the first generated .ts file will be named ```teststream000001014.ts```, ensuring that your existing .ts files stay intact and are not overwritten.
+When you set it to `append_list`, the first generated `.ts` file is named `teststream000001014.ts`, so your existing `.ts` files stay intact and aren't overwritten.
 
 ```js
 "hlsflags":"+append_list",
@@ -44,73 +46,45 @@ If you don't want the TS files to be appended to the previous recording, you may
 
 ![](@site/static/img/hls_datetime.png)
 
-After making the changes, you can scroll down and save the settings. Now, your streams will be recorded as HLS.
+After making the changes, scroll down and save the settings. Your streams will now be recorded as HLS.
 
-Additionally, it's also possible to push HLS files directly to a remote endpoint without generating them on the local server in real-time, or alternatively, upload them via the standard procedure to an S3 bucket once the stream has finished.
+You also have two options for getting those HLS files off the server in real time, instead of waiting for standard [Cloud Storage Integration](/category/s3-recording-and-integration) to upload the whole recording once the stream ends: pushing to any HTTP endpoint, or uploading directly to an S3-compatible bucket as segments are generated.
 
-## Record HLS files to Cloud Storage
+## Pushing HLS Files to a Remote Endpoint in Real Time
 
-Before uploading files to S3 or any other cloud storage in real time, let us first learn about the HTTP Endpoint.
+The HLS HTTP Endpoint feature pushes HLS `.m3u8`/`.ts` files to any HTTP endpoint — a CDN, an S3 bucket, or your own server — as they're generated, rather than waiting for the stream to finish.
 
-### HLS HTTP Endpoint
-
-HLS HTTP Endpoint is implemented to push the HLS `m3u8 and ts` files to any HTTP endpoint, such as CDN, S3 bucket, or your own HTTP endpoint. You can enable it with the following steps:
-
-- Open the management panel of your AMS. Go to the Application settings and switch to Advanced settings.
-
-- Find and edit the following property:
+1. Open the AMS Management Panel, go to the application's settings, and switch to Advanced Settings.
+2. Set the following property to your own HTTP endpoint:
 
    ```js
    hlsHttpEndpoint=https://example.com/hls-stream/
    ```
 
-   Kindly make sure to update the HTTP URL with your own. 
+3. Save to apply the settings.
 
-- Save to apply the settings.
-
-After that, just push a stream to Ant Media Server with test streamId `stream123`, and AMS will push the files to the following endpoints with the PUT method.
+Once a stream with ID `stream123` publishes, AMS pushes files to that endpoint with the PUT method:
 
 ```
 https://example.com/hls-stream/stream123.m3u8
 https://example.com/hls-stream/stream123_360p800kbps0001.ts
 https://example.com/hls-stream/stream123_360p800kbps0002.ts
 https://example.com/hls-stream/stream123_360p800kbps0003.ts
-https://example.com/hls-stream/stream123.m3u8
-. . .
 ```
 
-### Record HLS files to the S3 bucket
+### Uploading HLS Files to S3 in Real Time
 
-When you use standard S3 integration, your record will be uploaded as soon as the livestream is finished.
+If you'd rather push segments straight to an S3-compatible bucket (AWS, OVH, DigitalOcean, etc.) as they're generated — instead of waiting for the standard upload-on-finish behavior — use the `HLS Upload` servlet. First enter your S3 credentials into the management console as described in [Cloud Storage Integration](/category/s3-recording-and-integration), then point `hlsHttpEndpoint` at AMS's own upload servlet instead of an external URL:
 
-But if you want to upload your HLS files in real-time to the S3-compatible systems (AWS, OVH, Digital Ocean, etc.), you can use the `HLS Upload` servlet.
+```js
+hlsHttpEndpoint=http://<DOMAIN_NAME>:5080/<APP_NAME>/hls-upload
+```
 
-To be able to use the HLS Upload servlet first, you should enter S3 credentials into the management console as defined in s3 recording category. Then, you can use HLS HTTP Endpoint instructions with the following property:
+For testing on the same machine, `<DOMAIN_NAME>` can be `127.0.0.1`.
 
-- Open the management panel of your AMS, Go to the Application settings, and switch to Advanced settings.
+You now have HLS recording enabled, with retention and real-time delivery options available if you need them.
 
-- Locate the setting `hlsHttpEndpoint` and set it to:
+## Need Help?
 
-  ```js
-  hlsHttpEndpoint=http://Domain-or-IP:5080/live/hls-upload
-  ```
-
-  Here, live is the application name and you can replace it with your preferred application.
-
-- It can also be set as:
-
-  ```js
-  hlsHttpEndpoint=http://127.0.0.1:5080/live/hls-upload
-  ```
-
-  <br /><br />
----
-
-<div align="center">
-<h2> Streams Preserved, Playback Secured! 💾 </h2>
-</div>
-
-You’ve enabled **HLS recording**, configured **hlsPlayListType** to `event`, set the TS retention flags like `append_list`, and optionally enabled date-time in file names. Your HLS **`.m3u8` and `.ts`** files are now stored permanently (or pushed to your **HTTP/S3 endpoints** as configured).  
-
-**Excellent work** — your live streams are now archived for on-demand play, audits, or future reuse. 🎞️
+If HLS files aren't being retained or pushed as expected, confirm HLS muxing is enabled and double-check the `hlsHttpEndpoint` URL for typos, then reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
 

@@ -11,8 +11,6 @@ A video playlist is a curated collection of videos arranged in a specific order 
 
 The different sections of this guide describe how to create and stream a playlist using the Ant Media Server. The playlist feature is available in both the Community Edition and the Enterprise Edition of Ant Media Server.
 
-![image.png](@site/static/img/image(2).png)
-
 ## What is Linear Live Streaming?
 
 Linear live streaming, also known as pre-recorded live streaming or VoD streaming, is a method where a prerecorded video is broadcasted to give the illusion of a live stream.

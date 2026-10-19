@@ -1,8 +1,8 @@
 {
-  "label": "REST API Guide",
-  "position": 11,
+  "label": "REST API",
+  "position": 2,
   "link": {
-    "type": "generated-index",
-    "description": "Ant Media Server REST APIs Guide."
+    "type": "doc",
+    "id": "guides/developer-sdk-and-api/rest-api-guide/index"
   }
 }

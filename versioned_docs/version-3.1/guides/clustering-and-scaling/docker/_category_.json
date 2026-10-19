@@ -1,0 +1,8 @@
+{
+  "label": "Docker",
+  "position": 5,
+  "link": {
+    "type": "doc",
+    "id": "guides/clustering-and-scaling/docker/index"
+  }
+}

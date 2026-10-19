@@ -1,0 +1,8 @@
+{
+  "label": "Applications",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "Create AMS applications and embed the Circle conference component."
+  }
+}

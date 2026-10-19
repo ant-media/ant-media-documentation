@@ -1,24 +1,39 @@
 ---
 title: Webinar Installation
-description: Webinar App Installation
-keywords: [Ant Media Conference, Ant Media Webinar, webinar tool installation, ant media conferencing, Publish, Multitrack conference, Ant Media Server Documentation, Ant Media Server Tutorials]
+description: Install the Circle Webinar application on Ant Media Server from the web panel using the webinar WAR file.
+keywords: [Circle Webinar installation, webinar WAR, Ant Media Server webinar app, Ant Media Server Documentation]
 sidebar_position: 2
+sidebar_label: Installation
 ---
 
-## Installation of Circle Webinar on AMS
+# Webinar Installation
 
-Circle Webinar is a web application that runs on Ant Media Server. To install the webinar tool on Ant Media Server, you need to have a war file of the webinar application. You can download the latest war file from here.
+Circle Webinar runs as an application on Ant Media Server. Install it by uploading the webinar WAR file from the management panel.
 
-### Application Installation
+:::tip
+You need a current Circle Webinar WAR file before you start. Download the latest build from your Ant Media account or distribution channel, then follow the steps below.
+:::
 
-First, log in to the Ant Media Server Management Panel.
+## Install the application
 
-* **Step 1:** On the Dashboard page, click the New Application button.
-* **Step 2:** Click the Choose File button and browse the war file you downloaded.
-* **Step 3:** Give a name to the application (ex. webinar)
-* **Step 4:** Click the Create button. That's all.
-
+1. Sign in to the Ant Media Server web panel.
+2. On the dashboard, click **New Application**.
+3. Click **Choose File** and select the webinar WAR you downloaded.
+4. Enter an application name (for example, `webinar`).
+5. Click **Create**.
 
 ![](@site/static/img/conference/webinar/webinar-app.webp)
 
-After that, reach out  `https://domain:5443/webinar` and see if the webinar room page is loading successfully.
+## Verify the install
+
+Open the webinar app in your browser (replace the domain and app name if needed):
+
+```text
+https://YOUR_DOMAIN:5443/webinar
+```
+
+You should see the webinar room page load successfully:
+
+![](@site/static/img/conference/webinar/webinar.png)
+
+When that page appears, installation is complete. Next, walk through [Webinar in Action](/guides/webinar/webinar-usage/) to join as host, speaker, and listener—and run your first live session with confidence.

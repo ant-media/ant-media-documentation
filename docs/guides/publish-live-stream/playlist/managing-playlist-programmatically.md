@@ -5,7 +5,11 @@ keywords: [Managing the Playlist Programmatically, Ant Media Server Documentatio
 sidebar_position: 3
 ---
 
+# Managing the Playlist Programmatically
+
 In the previous sections, we learned how to create and manage playlists via the management panel/dashboard. The playlist can also be managed programmatically with the help of the Ant Media Server REST APIs offering flexibility for automation and integration.
+
+By the end of this guide, you'll be creating, starting, skipping items in, and stopping a playlist entirely through the REST API.
 
 ## Make Ant Media Server Respond to REST API calls
 
@@ -14,7 +18,7 @@ By default, Ant Media Server only allows REST API calls from ```localhost```. To
 For this demonstration to test the playlist programmatically, I will open the REST API for everyone.
 
 :::important 
-This configuration is suitable for testing purposes. For production environments, restrict access ONLY to trusted IPs. So, you should only open the REST calls to Truested IPs by [securing the REST APIs](https://antmedia.io/docs/guides/developer-sdk-and-api/rest-api-guide/securing-rest-apis/).
+This configuration is suitable for testing purposes. For production environments, restrict access ONLY to trusted IPs by [securing the REST APIs](/guides/developer-sdk-and-api/rest-api-guide/securing-rest-apis/).
 :::
 
 - Find `REST API Security` section under settings and add `0.0.0.0/0` to the text area within the `Enable IP Filter for RESTful API`.
@@ -120,7 +124,7 @@ If you give index query parameter when skipping an item in the PlayList, it will
 You can add index query parameters by just appending a question mark to the URL as follows:
 
 ```bash
-curl -X 'POST' "http://${MY_ANT_MEDIA_SERVER}:5080/live/rest/v2/broadcasts/playlists/${MY_PLAYLIST_ID}/next" ?index=0
+curl -X 'POST' "http://${MY_ANT_MEDIA_SERVER}:5080/live/rest/v2/broadcasts/playlists/${MY_PLAYLIST_ID}/next?index=0"
 ```
 
 - Check that the player has skipped the item. It may take about 10-15 seconds to see that the effect because HLS playback has this latency.
@@ -131,16 +135,9 @@ curl -X 'POST' "http://${MY_ANT_MEDIA_SERVER}:5080/live/rest/v2/broadcasts/playl
 curl -X 'POST' "http://${MY_ANT_MEDIA_SERVER}:5080/live/rest/v2/broadcasts/${MY_PLAYLIST_ID}/stop"
 ```
 
-Stay tuned for more new features to enhance the Playlist experience with Ant Media Server.
+You're now creating, starting, skipping items in, and stopping playlists entirely through the REST API.
 
-<br /><br />
----
+## Need Help?
 
-<div align="center">
-<h2> Managing the Playlist like a Techie! 🎉 </h2>
-</div>
-
-Congratulations! You've successfully **managed playlists programmatically** using Ant Media Server's REST APIs. This capability empowers you to **automate** and **integrate** playlist management into your workflows, enhancing the flexibility and efficiency of your streaming operations.
-
-Your content is now dynamically controlled, providing a seamless and engaging experience for your audience. Well done — your playlists are live and ready to impress!
+If a REST call is rejected or the playlist doesn't respond as expected, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
 

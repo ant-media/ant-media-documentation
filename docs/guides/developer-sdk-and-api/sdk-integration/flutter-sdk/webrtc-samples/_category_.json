@@ -3,6 +3,7 @@
   "position": 2,
   "link": {
     "type": "generated-index",
-    "description": "Flutter SDK WebRTC Samples"
+    "description": "Flutter SDK samples for publish, play, conference, P2P, and data channel.",
+    "slug": "/category/flutter-sdk-samples"
   }
 }

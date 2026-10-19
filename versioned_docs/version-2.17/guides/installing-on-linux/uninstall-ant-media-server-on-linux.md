@@ -2,7 +2,7 @@
 title: Uninstall on Linux
 description: Uninstall Ant Media Server
 keywords: [Uninstall Ant Media Server, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 4
+sidebar_position: 7
 ---
 
 This guide provides step-by-step instructions for uninstalling Ant Media Server from a Linux system. Follow the commands listed below to ensure the complete removal of the application.

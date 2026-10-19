@@ -1,0 +1,8 @@
+{
+  "label": "Load Balancing",
+  "position": 3,
+  "link": {
+    "type": "doc",
+    "id": "guides/clustering-and-scaling/load-balancing/index"
+  }
+}

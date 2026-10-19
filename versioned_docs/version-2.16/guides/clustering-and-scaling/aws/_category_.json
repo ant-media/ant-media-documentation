@@ -1,8 +1,8 @@
 {
   "label": "AWS",
-  "position": 2,
+  "position": 7,
   "link": {
     "type": "generated-index",
-    "description": "Deploy Ant Media Server at AWS."
+    "description": "Start with Choose a Deployment Option to decide cluster vs single instance and which AWS path fits you (CloudFormation recommended for most; Auto Managed for low ops; ECS for containers). Then follow the matching guide."
   }
 }

@@ -3,6 +3,7 @@ title: Deploy Ant Media Server Global Cluster On AWS
 description: Deploy Ant Media Server Global Cluster On AWS
 keywords: [AMS Global Cluster on AWS, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 3
+sidebar_label: Global Cluster
 ---
 
 # Ant Media Server Global Cluster
@@ -21,7 +22,7 @@ Before we start, make sure that you have an AWS account and have subscribed to [
 
 ## Step 1: Launching Ant Media Server Cluster
 
-As the first step, we will be using the [AWS cloudformation template](https://antmedia.io/docs/guides/clustering-and-scaling/aws/scale-with-aws-cloudformation/) to launch Ant Media autoscaling clusters in both regions.
+As the first step, we will be using the [AWS cloudformation template](https://antmedia.io/docs/guides/clustering-and-scaling/aws/aws-cloudformation/scale-with-aws-cloudformation/) to launch Ant Media autoscaling clusters in both regions.
 
 ### Launch a cluster in Frankfurt region
 
@@ -123,7 +124,7 @@ Once the cluster creation in both regions is completed, you can proceed with VPC
 
 - This will terminate the current nodes and increasing the capacity again will launch new nodes with the updated settings.
 
-- Now, when you will login to the Ant Media Server web panel, under Cluster tab all the nodes of both regions will be visible.
+- Now, when you log in to the Ant Media Server web panel, under the Cluster tab all the nodes of both regions will be visible.
 
   ![](@site/static/img/aws-global-cluster/cluster-nodes.png)
 

@@ -2,7 +2,7 @@
 title: Install with Docker
 description: AMS Docker Installation
 keywords: [Docker, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 6
+sidebar_position: 2
 ---
 
 Docker provides an easy and portable way to run Ant Media Server without installing it directly on your host system. Using the official Docker images, you can quickly spin up a containerized AMS instance, test it on different environments, and manage upgrades or custom builds with minimal effort.

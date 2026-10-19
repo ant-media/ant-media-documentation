@@ -1,0 +1,8 @@
+{
+  "label": "iOS SDK",
+  "position": 2,
+  "link": {
+    "type": "doc",
+    "id": "guides/developer-sdk-and-api/sdk-integration/ios-sdk/ios-sdk"
+  }
+}

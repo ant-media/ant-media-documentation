@@ -1,15 +1,22 @@
 ---
-title: One Time Token Control
-description: This guide explains stream security options in Ant Media Server, and how to Enable Disable, or Accept Undefined Streams.
-keywords: [Enable or Disable Undefined Streams, Accept Undefined Streams, One Time Token Control, Stream Security, Ant Media Server Documentation, Ant Media Server Tutorials]
+title: One-Time Token
+description: Require a one-time token on publish and play requests in Ant Media Server.
+keywords: [One-Time Token, stream token, Stream Security, Ant Media Server Documentation]
 sidebar_position: 2
+sidebar_label: One-Time Token
 ---
 
-You can enable One Time Token for publishing and playing from the application's settings. You have the option to use both the publish and playback tokens simultaneously or just one at a time.
+# One-Time Token
+
+Enable one-time tokens for publish and/or play in the application settings. You can require a token for publish only, play only, or both.
 
 ![onetime-token](https://github.com/ant-media/ant-media-documentation/assets/86982446/2f118822-f997-4326-a5cc-f367e548bcd8)
 
 Sending a token parameter with every publish request and play request is required if one-time token control is enabled. There will be an unauthorized access error if there is no token.
+
+:::tip
+A one-time token can be used only once per session. After it is used, it becomes invalid and you must generate a new token for the next publish or play.
+:::
 
 ## Generate One Time Token
 
@@ -31,129 +38,134 @@ curl -X 'GET' 'https://IP-address-or-domain:5443/live/rest/v2/broadcasts/streamI
 
 The expiration date should be provided as a Unix timestamp in seconds. You can convert dates to Unix timestamps using [epochconverter.com](https://www.epochconverter.com/).
 
-## One-time token usage with streaming protocols
+## Use the token with streaming protocols
 
-This section will look at how to use the One Time token with various streaming protocols for publishing and playback.
+Pass the `tokenId` from the generate step as the `token` query parameter (or WebSocket field) on publish and play requests.
 
-### RTMP, SRT, and WebRTC Publish URL usage
+### Publish
 
-**RTMP:**
-`rtmp://IP-address-or-domain/live/StreamId?token=tokenId`
+#### RTMP
 
-**SRT:** 
-`srt://IP-address-or-domain:4200?streamid=live/your-streamId,token=tokenId`
+```
+rtmp://IP-address-or-domain/live/StreamId?token=tokenId
+```
 
-**WebRTC:**
-`https://domain:5443/live?id=streamId&token=tokenId`
+#### SRT
 
-Above is the URL if you are using the [webrtc sample page](https://antmedia.io/docs/guides/publish-live-stream/webrtc/) for publishing.
+```
+srt://IP-address-or-domain:4200?streamid=live/your-streamId,token=tokenId
+```
 
-If you are using the WebSocket URL to connect with the server, then the token parameter should be inserted into WebSocket message. Also, please have a look at the principles described in the [WebRTC publishing page](https://antmedia.io/docs/guides/publish-live-stream/webrtc/webrtc-websocket-messaging-reference/#publishing-webrtc-stream).
+#### WebRTC
+
+If using the [WebRTC sample page](/guides/publish-live-stream/webrtc/):
+
+```
+https://domain:5443/live?id=streamId&token=tokenId
+```
+
+If connecting over WebSocket, include `token` in the publish message. See the [WebRTC publishing reference](/guides/publish-live-stream/webrtc/webrtc-websocket-messaging-reference/#publish-webrtc-stream).
 
 ```shell
-# Secure WebSocket: 
+# Secure WebSocket
 wss://{ant-media-server}:5443/live/websocket
 
-# Non Secure WebSocket: 
+# Non-secure WebSocket
 ws://{ant-media-server}:5080/live/websocket
 ```
 
 ```json
 {
-  command : "publish",
-  streamId : "stream1",
-  streamName : "streamName",
-  token : "token",
+  "command": "publish",
+  "streamId": "stream1",
+  "streamName": "streamName",
+  "token": "token"
 }
 ```
 
-### VoD, HLS, CMAF (DASH), and WebRTC Playback URL usage
+### Play
 
-**VOD:**
+#### VoD
 
-If using the embedded (play.html) player URL:
+If using the embedded (`play.html`) player:
+
 ```
 https://IP-address-or-domain:5443/Application_Name/play.html?id=streams/stream_id.mp4&playOrder=vod&token=tokenId
 ```
-If you directly want to use the mp4 URL, then it will be as follows:
+
+If using the MP4 URL directly:
+
 ```
 https://IP-address-or-domain:5443/Application_Name/streams/stream_id.mp4?token=tokenId
 ```
-**HLS:**
 
-If using the embedded (play.html) player URL:
+#### HLS
+
+If using the embedded (`play.html`) player:
+
 ```
 https://IP-address-or-domain:5443/Application_Name/play.html?id=stream_id&playOrder=hls&token=tokenId
 ```
 
-If you want to use the m3u8 URL directly, then it will be as follows:
+If using the `.m3u8` URL directly:
 
 ```
 https://IP-address-or-domain:5443/Application_Name/streams/stream_id.m3u8?token=tokenId
 ```
 
 :::info
+- If **Adaptive Bitrate (ABR)** is enabled and the stream is published over **WebRTC**, the original `.m3u8` (for example `streamId.m3u8`) is not generated. Use an adaptive or resolution-specific playlist instead:
 
-- If **Adaptive Bitrate (ABR)** is enabled and **WebRTC** stream is published, the original `.m3u8` file (e.g., `streamId.m3u8`) will **not be generated**. In such cases, use the `adaptive` or `resolution-specific` HLS playlists instead:
-   
 ```
 https://<server>:5443/live/streams/<streamId>_adaptive.m3u8?token=<token>
 ```
-(or)
 
 ```
 https://<server>:5443/live/streams/<streamId>_480p1000kbps.m3u8?token=<token>
 ```
 
-- In some scenarios, playback might still fail — especially if the **session ID changes** while loading, which can cause the **One-Time Token to expire**. In such cases, we recommend using **JWT token-based playback**, which provides more persistent and reliable access control for HLS
+- HLS playback can fail if the **session ID changes** while loading, which consumes the one-time token. For more reliable HLS access control, prefer [JWT Stream Token](/guides/stream-security/jwt-stream-security-filter/).
 :::
-  
-**CMAF (DASH):**
 
-If using the embedded (play.html) player URL:
+#### CMAF (DASH)
+
+If using the embedded (`play.html`) player:
+
 ```
 https://IP-address-or-domain:5443/Application_Name/play.html?id=stream_id&playOrder=dash&token=tokenId
 ```
 
-If you directly want to use the mpd URL, then it will be as follows:
+If using the `.mpd` URL directly:
 
 ```
 https://IP-address-or-domain:5443/Application_Name/streams/streamId/streamId.mpd?token=tokenId
 ```
 
-**WebRTC:**
+#### WebRTC
 
-If using the embedded (play.html) player URL:
+If using the embedded (`play.html`) player:
 
-`https://IP-address-or-domain:5443/Application_Name/play.html?id=streamId&token=tokenId`
+```
+https://IP-address-or-domain:5443/Application_Name/play.html?id=streamId&token=tokenId
+```
 
-If you are using the WebSocket URL to connect with the server, then the token parameter should be inserted into WebSocket message. Also, please have a look at the principles described in the [WebRTC playing page](https://antmedia.io/docs/guides/publish-live-stream/webrtc/webrtc-websocket-messaging-reference/#playing-webrtc-stream).
+If connecting over WebSocket, include `token` in the play message. See the [WebRTC playing reference](/guides/publish-live-stream/webrtc/webrtc-websocket-messaging-reference/#play-webrtc-stream).
 
 ```shell
-# Secure WebSocket: 
+# Secure WebSocket
 wss://{ant-media-server}:5443/live/websocket
 
-# Non Secure WebSocket: 
+# Non-secure WebSocket
 ws://{ant-media-server}:5080/live/websocket
 ```
 
 ```json
 {
-  command : "play",
-  streamId : "stream1",
-  streamName : "streamName",
-  token : "token",
+  "command": "play",
+  "streamId": "stream1",
+  "streamName": "streamName",
+  "token": "token"
 }
 ```
 
-<br /><br />
----
-
-<div align="center">
-<h2> 🔐 Access Denied Until Further Notice: Only Authorized Streams Pass! 🎥 </h2>
-</div>
-
-By enabling **One-Time Token Control**, you've ensured that only **authorized tokens can publish or play streams.** This enhances security by preventing unauthorized access and ensuring that only intended content goes live.
-
-Your streaming setup is **now more secure and streamlined**, focusing solely on authorized streams. Keep up the great work! 🚀
-
+With one-time tokens in place, each publish or play session needs a fresh credential—simple protection for controlled access.

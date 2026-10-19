@@ -2,7 +2,7 @@
 title: OVH Object Storage
 description: Record streams to OVH Object Storage
 keywords: [S3 Integration with Ant Media Server, S3 Integration, Record streams to OVH Object Storage, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 # Record Streams To OVH Object Storage
@@ -30,8 +30,6 @@ Then, Log in to your Ant Media Server panel at `http://your_ams_server:5080`.
      - **Secret Key**: `your_secret_key`  
      - **Bucket Name**: `your_bucket_name`  
    - **Save** the settings.
-
-![image.png](@site/static/img/image-285529.png)
 
 Your MP4 and Preview files will be uploaded to your **OVH Object Storage** automatically.
 

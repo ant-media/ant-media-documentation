@@ -2,8 +2,14 @@
 title: Publish RTMPS
 description: Publish stream with RTMPS
 keywords: [Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 1
+sidebar_position: 5
 ---
+
+# Publish RTMPS Stream
+
+RTMPS is standard RTMP wrapped in TLS, so your publish traffic is encrypted in transit.
+
+By the end of this guide, RTMPS will be enabled on your server and you'll be publishing an encrypted stream into Ant Media Server.
 
 ## Enable RTMPS
 
@@ -19,7 +25,7 @@ Follow below steps to enable/disable the RTMPS:
    cd /usr/local/antmedia/conf/
   ```
 
-- Edit the red5.properties file. “
+- Edit the red5.properties file.
 
 **Note**- If you’re upgrading from older version where RTMPS settings were in XML, the red5.properties approach takes precedence in v2.14+
 
@@ -43,22 +49,19 @@ Follow below steps to enable/disable the RTMPS:
 
 ## Publish RTMPS Stream
 
-To publish the RTMPS stream, follow this [OBS tutorial](https://antmedia.io/docs/guides/publish-live-stream/rtmp/publish-with-obs/) for reference and instead of using the simple RTMP endpoint, use the below RTMPS endpoint.
+To publish the RTMPS stream, follow the [OBS tutorial](/guides/publish-live-stream/rtmp/publish-with-obs/) for reference, and instead of using the simple RTMP endpoint, use the RTMPS endpoint below.
 
 ```json
-rtmps://domain-name:8443/live/streamId
+rtmps://<DOMAIN_NAME>:8443/live/<STREAM_ID>
 ```
 
-Check out the [playback guide](https://antmedia.io/docs/category/playing-live-streams/) to play your RTMPS stream with WebRTC, HLS etc.
+Once you're streaming, check the **live** application in your Ant Media Server web panel — the stream should show as **Broadcasting**.
 
-<br /><br />
----
+![](@site/static/img/publish-live-stream/ams-broadcasting-status.png)
 
-<div align="center">
-<h2> Secure Real-Time Stream Up ✅ </h2>
-</div>
+You're now publishing an encrypted RTMPS stream to Ant Media Server. From here, head to the [playback guide](/category/play-live-streams/) to view your stream with WebRTC, HLS, etc.
 
-You’ve now enabled **RTMPS** in your **server settings**, verified that it listens on **TCP port 8443**, and published a stream using an RTMPS endpoint.  
+## Need Help?
 
-Your stream is now **encrypted in transit** — more **secure**, **trusted**, and **compliant**. Nice move protecting your content! 🔐
+If the RTMPS endpoint won't connect, double-check port 8443 is open in your firewall and that `rtmps.enabled=true` is actually set in `red5.properties` after your last restart. Otherwise, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
 

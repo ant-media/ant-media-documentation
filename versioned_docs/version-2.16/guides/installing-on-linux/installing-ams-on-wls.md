@@ -2,7 +2,7 @@
 title: Install on WSL
 description: Install Ant Media Server on WSL (Windows Subsystem for Linux)
 keywords: [Install Ant Media Server on Windows, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 5
+sidebar_position: 4
 ---
 
 # Install AMS on WSL (Windows Subsystem for Linux)

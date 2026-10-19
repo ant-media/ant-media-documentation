@@ -1,40 +1,40 @@
 ---
-title: Cricle Webinar Solution
-description: Cricle Webinar Solution
-keywords: [Ant Media Conference, Ant Media Webinar, ant media conferencing, Publish, Multitrack conference, Ant Media Server Documentation, Ant Media Server Tutorials]
+title: Circle Webinar Solution
+description: Run scalable, ultra-low latency webinars on Ant Media Server with Circle Webinar—presenter and audience roles for events, training, and education.
+keywords: [Ant Media Webinar, Circle Webinar, ultra-low latency webinar, WebRTC webinar, Ant Media Server Documentation]
 sidebar_position: 1
+sidebar_label: Overview
 ---
 
 # Circle Webinar Solution
 
-**AMS Webinar Solution** is built on the same core technology as Ant Media Server’s **[Circle video conferencing tool](https://antmedia.io/docs/guides/conference/circle-video-conference-solution/)**, but extended to support large-scale webinar scenarios. While Circle provides interactive video conferencing for small to medium groups, Circle Webinars adds features such as audience scalability, presenter–attendee roles, and seamless integration with ultra-low latency streaming. This makes it ideal for online events, trainings, and broadcasts where a few presenters interact with a large number of participants.
+**Circle Webinar** builds on the same foundation as Ant Media Server’s [Circle video conferencing](/guides/conference/circle-video-conference-solution/), tuned for large audiences. A small set of presenters can run the room while many attendees watch and engage—ideal for online events, training, and classrooms.
 
-## What is Webinar?
+## What is a webinar?
 
-A **webinar** (web-based seminar) is an online event that allows one or more presenters to share video, audio, and content with a remote audience in real time. Webinars are widely used in various industries, including
+A webinar is a live online session where one or more presenters share video, audio, and content with a remote audience. Common uses include:
 
--   **Education** – Online classes, virtual classrooms, interactive lectures.
-    
--   **Corporate Training** – Employee training, workshops, onboarding sessions.
-    
--   **Online Events** – Product launches, conferences, panel discussions, live Q&A sessions.
-    
--   **Community & Nonprofit** – Awareness campaigns, public information sessions, knowledge sharing.
-    
-Webinars combine the reach of traditional live streaming with the interactivity of real-time communication, enabling direct engagement between presenters and participants.
+- **Education** — virtual classrooms and lectures
+- **Corporate training** — workshops and onboarding
+- **Events** — product launches, panels, and live Q&A
+- **Community** — public briefings and knowledge sharing
 
-## Why Ant Media Server for Webinars
+You get the reach of live streaming with the interactivity of real-time WebRTC.
 
-Ant Media Server provides a robust and flexible platform for hosting webinars of any size. Unlike traditional streaming solutions that suffer from high latency, Ant Media Server leverages **WebRTC technology** to achieve **ultra-low latency (less than 0.5 seconds)**, ensuring seamless interaction between presenters and attendees.
+## Why Ant Media Server
 
-Key advantages of using Ant Media Server for webinars include:
+AMS delivers webinars with **WebRTC ultra-low latency** (typically under 0.5 seconds), so hosts, speakers, and attendees stay in sync.
 
--   **Scalability** – Support for small meetings to large-scale webinars with thousands of participants.
-    
--   **Ultra-Low Latency** – Real-time video and audio delivery for interactive experiences.
-    
--   **Interactivity** – Features like screen sharing, multiple presenters, and real-time chat/Q&A.
-    
--   **Cross-Platform Support** – Works seamlessly on browsers, mobile devices, and desktop applications without requiring additional plugins.
-    
-By combining interactivity, scalability, and reliability, Ant Media Server empowers organizations to deliver engaging and professional webinar experiences.
+| Strength | What you get |
+| --- | --- |
+| **Scale** | From small sessions to thousands of viewers |
+| **Latency** | Real-time interaction between stage and audience |
+| **Roles** | Host, speaker, and listener workflows out of the box |
+| **Reach** | Works in modern browsers without plugins |
+
+## Get started
+
+1. [Install Circle Webinar](/guides/webinar/webinar-installation/) on your Ant Media Server
+2. [Run a session](/guides/webinar/webinar-usage/) as host, speaker, and listener
+
+When your room loads and the first speaker appears for the audience, you have a production-ready webinar stack—ready for your next class, launch, or town hall.

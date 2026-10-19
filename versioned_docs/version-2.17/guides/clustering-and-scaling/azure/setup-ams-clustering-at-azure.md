@@ -2,7 +2,8 @@
 title: Ant Media Server Cluster on Azure
 description: How to Setup Ant Media Server Cluster on Azure
 keywords: [Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 1
+sidebar_position: 2
+sidebar_label: Cluster on Azure
 ---
 
 # How to Setup Ant Media Server Cluster on Azure
@@ -17,7 +18,7 @@ To set up the Ant Media Server, having an Azure account and a ready AntMedia Ser
 
 - The architecture of the cluster setup can be found [here](https://antmedia.io/docs/guides/clustering-and-scaling/manual-configuration/cluster-installation/). 
 
-- Introduction to clustering with AntMedia Server can be found [here](https://antmedia.io/docs/category/clustering-and-scaling/).
+- Introduction to clustering with Ant Media Server can be found [here](/guides/clustering-and-scaling/).
 
 Let's proceed for the cluster deployment.
 

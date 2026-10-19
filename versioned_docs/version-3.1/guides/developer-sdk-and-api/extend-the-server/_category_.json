@@ -1,0 +1,8 @@
+{
+  "label": "Extend the Server",
+  "position": 6,
+  "link": {
+    "type": "doc",
+    "id": "guides/developer-sdk-and-api/extend-the-server/index"
+  }
+}

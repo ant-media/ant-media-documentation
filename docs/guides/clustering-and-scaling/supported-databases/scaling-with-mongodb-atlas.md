@@ -1,80 +1,81 @@
 ---
 title: Scaling with Mongodb Atlas
-description: Using MongoDB Atlas with AMS
-keywords: [Using MongoDB Atlas with AMS, MongoDB Atlas, Ant Media Server Documentation, Ant Media Server Tutorials]
+description: Use MongoDB Atlas as the shared database for an Ant Media Server cluster.
+keywords: [MongoDB Atlas, Ant Media Server cluster, Ant Media Server Documentation]
+sidebar_position: 3
+sidebar_label: MongoDB Atlas
 ---
 
-# Using MongoDB Atlas with AMS
+# Scaling with MongoDB Atlas
 
-MongoDB Atlas is a multi-cloud database service. It simplifies deploying and managing the databases while offering the versatility to build resilient and performant global applications on the cloud providers of your choice like AWS, Azure, etc.
+MongoDB Atlas is a fully managed MongoDB service on AWS, Azure, or GCP. Use it as the shared database when you want Atlas to handle backups, scaling, and multi-region replication.
 
-In this document we'll explain how to use MongoDB Atlas with Ant Media Server.
+See [Databases](/guides/clustering-and-scaling/supported-databases/) for connection patterns and how clustering uses a shared backend.
 
-Creating a MongoDB Atlas Database
----------------------------------
+## What you'll accomplish
 
-"Navigate to the 'Database' section of your Atlas account and click on **Create a database**.  
-  
+- Create a MongoDB Atlas cluster
+- Allow network access and create a database user
+- Connect every AMS node with the `mongodb+srv` URI
 
-![atlas0.png](@site/static/img/atlas0.png)
+## Step 1: Create an Atlas cluster
 
-  
+In the Atlas console, open **Database** and click **Create a database**.
 
-You can create the type of MongoDB cluster that you want by simply choosing any of the available options like Serverless, Dedicated or Shared in your choice of region of your cloud Provider.  
-  
+![Create database in Atlas](@site/static/img/atlas0.png)
+
+Choose **Serverless**, **Dedicated**, or **Shared** and pick your cloud provider and region.
 
 ![](@site/static/img/atlas1.png)
 
-After completing all necessary fields, click '**Create cluster**.' The database cluster will be ready in a few minutes.
-  
+Complete the required fields and click **Create cluster**. Provisioning takes a few minutes.
+
 **![](@site/static/img/Atlas3.png)**
 
+## Step 2: Configure network access
 
-Next, configure the IP addresses that can access the Atlas database by navigating to '**Add IP Address**' under 'Network Access.  
+Under **Network Access**, click **Add IP Address** and allow the IPs (or CIDR ranges) of your AMS nodes and load balancer.
 
-**![](@site/static/img/atlas4.png)**  
+**![](@site/static/img/atlas4.png)**
 
-Next, let’s create the database users for accessing the Atlas Database by clicking **Database Access**.  
-  
+## Step 3: Create a database user
+
+Under **Database Access**, create a user with read/write permissions on the database AMS will use.
 
 **![](@site/static/img/atlas6.png)**
 
-Using MongoDB Atlas with AMS Cluster
-------------------------------------
+Copy the **mongodb+srv** connection string from the cluster connection dialog.
 
-We can use MongoDB Atlas as the database for running AMS in cluster mode.
+## Step 4: Connect AMS
 
-There are different ways in which Atlas mongodb+srv URI can be used to switch to **cluster** from standalone mode by either using the **change\_server\_mode.sh** script or through **start.sh** script.
+Run one of the following from `/usr/local/antmedia` on **every** cluster node.
 
-Using start.sh script is better when using **Kubernetes** or **Docker based containers**. Whereas when running the AMS server as a **service**, using change\_server\_mode.sh is more suited.
+### change_server_mode.sh (AMS as a service)
 
-Using mongoDB+srv URI with change\_server\_mode.sh
---------------------------------------------------
+```bash
+sudo ./change_server_mode.sh cluster mongodb+srv://<username>:<password>@<url>
+```
 
-For MongoDB Atlas connections, you can directly give the mongodb+srv URI under **antmedia** directory as follows.
+### start.sh (manual or container start)
 
-    sudo ./change_server_mode.sh cluster mongodb+srv://`<username>`:`<password>`@`<url>`
+```bash
+sudo ./start.sh -m cluster -h mongodb+srv://username:password@url
+```
 
-Using mongoDB+srv URI with start.sh
------------------------------------
+:::info
+When the URI uses `mongodb://` or `mongodb+srv://`, you must include username and password in the connection string.
+:::
 
-In **start.sh** script there are some MongoDB parameters like:
+For Kubernetes or Docker, prefer `start.sh` or pass `-h` in your container entrypoint. For systemd services, use `change_server_mode.sh`.
 
-*   **\-h** for mongoDB host
-*   **\-u** for mongoDB username
-*   **\-p** for mongoDB password
+## Verify
 
-These parameters can be passed when starting Ant Media Server with **start.sh**  
+Sign in to the web panel and open the **Cluster** view. Each node connected to the same Atlas URI should appear in the cluster list.
 
-    sudo ./start.sh -m cluster -h mongodb+srv://username:password@url
+## Related guides
 
-One critical point to note is that when we specify the URL with MongoDB or monodb+srv, it's compulsory to provide the username and password.
-
-
-<div align="center">
-  <h2> 🌍 MongoDB Atlas Integration — Global Streaming, Effortless Delivery! 🚀 </h2>
-</div>
-
-Congratulations! Your Ant Media Server infrastructure now **leverages MongoDB Atlas**, enabling seamless global streaming with **resilience and speed**.
-
-This isn’t just an **integration** — it’s a **foundation for delivering world-class streaming experiences** to audiences anywhere, anytime. Your platform is now ready to shine globally! 🌐🎬
+| Topic | Guide |
+|-------|-------|
+| Database overview | [Databases](/guides/clustering-and-scaling/supported-databases/) |
+| Self-managed MongoDB | [Scaling with Self-Managed MongoDB](/guides/clustering-and-scaling/supported-databases/scaling-with-mongodb/) |
+| AWS DocumentDB | [Scaling with AWS DocumentDB](/guides/clustering-and-scaling/supported-databases/scaling-with-aws-documentdb/) |

@@ -2,7 +2,8 @@
 title: Manual Deployment 
 description: Deploy Ant Media Server on Kubernetes
 keywords: [Deploy Ant Media Server on Kubernetes, Kubernetes, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 2
+sidebar_position: 3
+sidebar_label: Manual Deployment
 ---
 
 # Deploy Ant Media Server on Kubernetes 
@@ -593,8 +594,8 @@ Here are the explanations for the common parameters and the changes parameters.
 **The following parameters are different according to the deployment type.**
 
 *   **hostNetwork:** true line above means that Ant Media Server uses the host network. It is required as there is a wide range of UDP and TCP ports are being used for WebRTC streaming. This also means that you can only use one pod of Ant Media Server in a host instance. Don't worry about where and how to deploy as K8s handles that. We're just letting you know this to determine total number of nodes in your cluster.
-*   **affinity: TODO**
-*   **labels:** for origin edge distinction TODO
+*   **affinity:** ensures that origin and edge pods are scheduled onto separate nodes. Because `hostNetwork: true` allows only one Ant Media Server pod per node, pod anti-affinity rules prevent two Ant Media Server pods from being placed on the same host.
+*   **labels:** distinguish origin and edge deployments (for example `app: ant-media-origin` and `app: ant-media-edge`). The corresponding Kubernetes services select pods by these labels, so publish traffic is routed to origin pods and play traffic to edge pods.
 
 
 <div align="center">

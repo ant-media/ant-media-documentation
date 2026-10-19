@@ -9,6 +9,8 @@ sidebar_position: 1
 
 Circle is a ready-to-use, open-source online video conferencing application built on top of Ant Media Server that can be deployed on-premises or on a private/public cloud. If you are concerned about privacy or being behind a network firewall, this is the best solution for you.
 
+By the end of this guide, you'll have Circle installed on your Ant Media Server and know how to join, customize, and embed it.
+
 ## Key Features
 
 * **Unlock the Number of Attendees:** Thanks to the Scalability of Ant Media Server. The Circle is built to scale the number of attendees.
@@ -47,7 +49,7 @@ After running the script, the `ConferenceCall.war` file should be in the `target
 First, log in to the Ant Media Server Management Panel.
 
 * **Step 1:** On the Dashboard page, click the New Application button.
-* **Step 2:** Click the Chose File button and browse the war file you downloaded.
+* **Step 2:** Click the Choose File button and browse the war file you downloaded.
 * **Step 3:** Give a name to the application.
 * **Step 4:** Click the Create button. That's all.
 
@@ -60,11 +62,8 @@ First, log in to the Ant Media Server Management Panel.
 * Click the **Create Meeting** button
   ![](@site/static/img/conference/circle/circle-room-creation.png)
   
-* Enter your name for yourself and join the meeting
-  ![](@site/static/img/conference/circle/circle-room-entrance.png)
-  
-* You are in the room now
-  ![](@site/static/img/conference/circle/circle-room.png)
+* Enter your name, then choose whether to enable your camera and microphone before you join
+* Click **I'm ready to join** — you're now in the room, and other participants can see and hear you
 
 ### Try Now
 
@@ -72,27 +71,21 @@ If you want to try the Circle conference application without any installation, v
 
 ## Advanced Topics (for Developers)
 
-### Customization:
+### Customization
 
 You can make any changes to the Circle code base and customize it for your own applications without any restriction.
 
-If you want to change only look and feel, for example, button availabilities, the ⁣`.env.production` file provides some configurations to customize general UI.
+If you want to change only look and feel, for example, button availabilities, the `.env.production` file provides some configurations to customize general UI.
 
 ### Embedding into Website
 
-If you want to embed Circle into your website as a component, please follow [this guide](https://antmedia.io/docs/guides/developing-antmedia-server/circle-component-usage/).
+If you want to embed Circle into your website as a component, please follow [this guide](https://antmedia.io/docs/guides/developer-sdk-and-api/extend-the-server/applications/circle-component-usage/).
 
-----------
+In the next document, we will learn in more detail about the Ant Media Server Conference solution structure.
 
-In the next document, we will learn in more detail about the Ant Media Server Conferece solution structure.
+You now have Circle installed and running on your Ant Media Server, with a working meeting room and a starting point for customizing or embedding it into your own site.
 
-<br /><br />
----
+## Need Help?
 
-<div align="center">
-<h2> Circle 🔴 Ready! 🏛️ </h2>
-</div>
-
-You’ve successfully deployed the **Circle video conferencing app** on your Ant Media Server, given it your **custom app name**, and **joined a meeting** — your conferencing setup is **now live** and under your control.  
-Nice move — full control, privacy, and scalability are locked in. **Your virtual meeting space is ready to host real conversation!** 🎙️
+If Circle isn't loading after installation, confirm the war file deployed correctly under Applications in the web panel, then reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
 

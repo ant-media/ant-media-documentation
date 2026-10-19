@@ -2,7 +2,8 @@
 title: Scale AMS with Azure ARM Template
 description: Scale AMS with Azure ARM Template
 keywords: [Scale AMS with Azure ARM Template, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 3
+sidebar_position: 4
+sidebar_label: Scale with ARM Template
 ---
 
 # Scale AMS with Azure ARM (Azure Resource Manager)

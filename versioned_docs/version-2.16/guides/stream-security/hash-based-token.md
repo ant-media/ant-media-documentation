@@ -1,13 +1,14 @@
 ---
 title: Hash-Based Token
-description: This guide explains stream security options in Ant Media Server, and how you can Enable Disable, or Accept Undefined Streams.
-keywords: [Enable or Disable Undefined Streams, Accept Undefined Streams, One Time Token Control, Stream security, Ant Media Server Documentation, Ant Media Server Tutorials]
+description: Authorize publish and play with a hash derived from stream ID, role, and a shared secret.
+keywords: [Hash-Based Token, tokenHashSecret, Stream Security, Ant Media Server Documentation]
 sidebar_position: 5
+sidebar_label: Hash-Based Token
 ---
 
-You can enable Hash-based token for publishing and playing from the application's Advanced settings via the AMS web panel. You have the option to use both the publish and playback tokens simultaneously or just one at a time.
+# Hash-Based Token
 
-Now, all application settings can be changed from the AMS web panel itself. Please check [here](https://antmedia.io/docs/guides/configuration-and-testing/ams-application-configuration/#management-panel-settings) for more information.
+Enable hash-based tokens for publish and/or play in the application’s advanced settings. Configure the secret and toggles in the web panel—see [Management Panel Application settings](/guides/configuration-and-testing/ams-application-configuration/#management-panel-application-settings).
 
 ```
   "tokenHashSecret": "",
@@ -15,161 +16,195 @@ Now, all application settings can be changed from the AMS web panel itself. Plea
   "hashControlPlayEnabled": false,
 ```
 
-By default, it is disabled but by setting it to true, it can be enabled. 
+By default, hash control is disabled. Set `hashControlPublishEnabled` and/or `hashControlPlayEnabled` to `true` to turn it on.
 
-:::warning
-Do not forget to define a secret key for generating a hash value.
+:::info
+`tokenHashSecret` can be any string you choose (for example `mySecretKey` or a long random value). Use a strong, private secret in production—anyone who knows it can generate valid hashes.
 :::
 
-### Evaluation of the Hash
+:::tip
+A hash-based token can be used any number of times. There is no expire time for the token—rotate your `tokenHashSecret` if you need to invalidate existing hashes.
+:::
 
-If related settings are enabled, Ant Media Server first generates hash values based on the formula sha256(STREAM\_ID + ROLE + SECRET) using streamId, role parameters and secret string which is defined in the settings.
+:::warning
+Do not leave `tokenHashSecret` empty when hash control is enabled. Without a secret, clients cannot generate a valid hash.
+:::
 
-Then compare this generated hash value with the client's hash value during authentication.
+## How hash validation works
 
-Once the hash is successfully validated by Ant Media Server, the client is granted either to publish or play according to application setting and user request.
+When hash control is enabled for publish or play, Ant Media Server checks each request as follows:
 
-But if the hash is not valid then below error will be generated.
+1. Reads the `token` value from the client (query parameter or WebSocket field).
+2. Builds the expected hash with:
 
-![](@site/static/img/stream-security/hash-invalid.png)  
+   ```
+   sha256(STREAM_ID + ROLE + SECRET)
+   ```
 
+   where `ROLE` is `publish` or `play`, and `SECRET` is your `tokenHashSecret`.
+3. Compares the expected hash to the client’s token.
+4. Allows the request if they match; otherwise it rejects the request.
 
-## Generate Hash-based Token
+![](@site/static/img/stream-security/hash-invalid.png)
 
- In order to generate the Hash token, go to [JavaScript SHA-256](https://geraintluff.github.io/sha256/).
-  
-You need to generate a hash value using the formula ```sha256(STREAM_ID+ROLE+SECRET)``` for your application and send to your clients. The values used for hash generation are:
+## Generate a hash-based token
+
+You can compute the hash with any SHA-256 tool, such as [JavaScript SHA-256](https://geraintluff.github.io/sha256/). Concatenate the three values with **no separators**, then hash:
 
 ```
-STREAM_ID: The streamId of stream, generated in Ant Media Server.
-ROLE: It is either "play or "publish"
-SECRET: This is tokenHashSecret (defined in the application settings above)
+STREAM_ID: Stream ID on Ant Media Server
+ROLE:      "publish" or "play"
+SECRET:    tokenHashSecret from application settings
 ```
 
-### The sample Hash token creation in the Publish Scenario
+Formula: `sha256(STREAM_ID + ROLE + SECRET)`
 
-Let's say ```STREAM_ID: stream1```, ```ROLE: publish```, ```SECRET: testtest``` Your hash is the result of this calculation: ```sha256(stream1publishtesttest)```
+### Publish hash example
 
+With `STREAM_ID: stream1`, `ROLE: publish`, `SECRET: testtest`:
 
-![](@site/static/img/stream-security/hash-publish.png)  
+```
+sha256(stream1publishtesttest)
+```
 
-### The sample Hash token creation in the Play Scenario
+![](@site/static/img/stream-security/hash-publish.png)
 
-Let's say ```STREAM_ID: stream1```, ```ROLE: play```, ```SECRET: testtest``` Your hash is the result of this calculation: ```sha256(stream1publishtesttest)```
+### Play hash example
 
+With `STREAM_ID: stream1`, `ROLE: play`, `SECRET: testtest`:
 
-![](@site/static/img/stream-security/hash-play.png)  
+```
+sha256(stream1playtesttest)
+```
 
+![](@site/static/img/stream-security/hash-play.png)
 
-## Hash-based token Usage with streaming protocols
+## Use Hash Token with streaming protocols
 
-In this section, we will look at how to use the Hash-based token with various streaming protocols for publishing and playback.
+Pass the hash as the `token` query parameter (or WebSocket field) on publish and play requests.
 
-### RTMP, SRT and WebRTC Publish URL usage
+### Publish
 
-**RTMP:**
-`rtmp://IP-address-or-domain/live/StreamId?token=tokenId`
+#### RTMP
 
-**SRT:** 
-`srt://IP-address-or-domain:4200?streamid=live/your-streamId,token=tokenId`
+```
+rtmp://IP-address-or-domain/live/StreamId?token=tokenId
+```
 
-**WebRTC:**
-`https://domain:5443/live?id=streamId&token=tokenId`
+#### SRT
 
-Above is the URL if you are using the [webrtc sample page](https://antmedia.io/docs/guides/publish-live-stream/webrtc/) for publishing.
+```
+srt://IP-address-or-domain:4200?streamid=live/your-streamId,token=tokenId
+```
 
-If you are using the WebSocket URL to connect with the server, then token parameter should be inserted to WebSocket message. Also please have a look at the principles described in the [WebRTC publishing page](https://antmedia.io/docs/guides/publish-live-stream/webrtc/webrtc-websocket-messaging-reference/#publishing-webrtc-stream).
+#### WebRTC
+
+If using the [WebRTC sample page](/guides/publish-live-stream/webrtc/):
+
+```
+https://domain:5443/live?id=streamId&token=tokenId
+```
+
+If connecting over WebSocket, include `token` in the publish message. See the [WebRTC publishing reference](/guides/publish-live-stream/webrtc/webrtc-websocket-messaging-reference/#publish-webrtc-stream).
 
 ```shell
-# Secure WebSocket: 
+# Secure WebSocket
 wss://{ant-media-server}:5443/live/websocket
 
-# Non Secure WebSocket: 
+# Non-secure WebSocket
 ws://{ant-media-server}:5080/live/websocket
 ```
 
 ```json
 {
-  command : "publish",
-  streamId : "stream1",
-  streamName : "streamName",
-  token : "token",
+  "command": "publish",
+  "streamId": "stream1",
+  "streamName": "streamName",
+  "token": "token"
 }
 ```
 
-### VoD, HLS, CMAF (DASH) and WebRTC Playback URL usage
+### Play
 
-**VOD:**
+#### VoD
 
-If using the embedded (play.html) player URL:
+If using the embedded (`play.html`) player:
+
 ```
 https://IP-address-or-domain:5443/Application_Name/play.html?id=streams/stream_id.mp4&playOrder=vod&token=tokenId
 ```
-If you directly want to use mp4 URL then it will be as follows:
+
+If using the MP4 URL directly:
+
 ```
 https://IP-address-or-domain:5443/Application_Name/streams/stream_id.mp4?token=tokenId
 ```
-**HLS:**
 
-If using the embedded (play.html) player URL:
+#### HLS
+
+If using the embedded (`play.html`) player:
+
 ```
 https://IP-address-or-domain:5443/Application_Name/play.html?id=stream_id&playOrder=hls&token=tokenId
 ```
 
-If you directly want to use m3u8 URL then it will be as follows:
+If using the `.m3u8` URL directly:
 
 ```
 https://IP-address-or-domain:5443/Application_Name/streams/stream_id.m3u8?token=tokenId
 ```
 
-**CMAF (DASH):**
+:::info
+If **Adaptive Bitrate (ABR)** is enabled and the stream is published over **WebRTC**, the original `.m3u8` (for example `streamId.m3u8`) is not generated. Use an adaptive or resolution-specific playlist instead:
 
-If using the embedded (play.html) player URL:
+```
+https://<server>:5443/live/streams/<streamId>_adaptive.m3u8?token=<token>
+```
+
+```
+https://<server>:5443/live/streams/<streamId>_480p1000kbps.m3u8?token=<token>
+```
+:::
+
+#### CMAF (DASH)
+
+If using the embedded (`play.html`) player:
+
 ```
 https://IP-address-or-domain:5443/Application_Name/play.html?id=stream_id&playOrder=dash&token=tokenId
 ```
 
-If you directly want to use mpd URL then it will be as follows:
+If using the `.mpd` URL directly:
 
 ```
-https://ant-media-server:5443/Application_Name/streams/streamId/streamId.mpd?token=tokenId
+https://IP-address-or-domain:5443/Application_Name/streams/streamId/streamId.mpd?token=tokenId
 ```
 
-**WebRTC:**
+#### WebRTC
 
-If using the embedded (play.html) player URL:
+If using the embedded (`play.html`) player:
 
-`https://domain:5443/live/play.html?id=streamId&token=tokenId`
+```
+https://IP-address-or-domain:5443/Application_Name/play.html?id=streamId&token=tokenId
+```
 
-If you are using the WebSocket URL to connect with the server, then token parameter should be inserted to WebSocket message. Also please have a look at the principles described in the [WebRTC playing page](https://antmedia.io/docs/guides/publish-live-stream/webrtc/webrtc-websocket-messaging-reference/#playing-webrtc-stream).
+If connecting over WebSocket, include `token` in the play message. See the [WebRTC playing reference](/guides/publish-live-stream/webrtc/webrtc-websocket-messaging-reference/#play-webrtc-stream).
 
 ```shell
-# Secure WebSocket: 
+# Secure WebSocket
 wss://{ant-media-server}:5443/live/websocket
 
-# Non Secure WebSocket: 
+# Non-secure WebSocket
 ws://{ant-media-server}:5080/live/websocket
 ```
 
 ```json
 {
-  command : "play",
-  streamId : "stream1",
-  streamName : "streamName",
-  token : "token",
+  "command": "play",
+  "streamId": "stream1",
+  "streamName": "streamName",
+  "token": "token"
 }
 ```
 
-
-<br /><br />
----
-
-<div align="center">
-<h2> 🔐 Trending Hash-Tags, Secure Hash-Tokens 🎯 </h2>
-</div>
-
-By implementing **Hash-Based Token authentication**, you've fortified your streaming setup with an **additional layer of security**. Only clients presenting the correct hash, derived from the **stream ID, role, and secret key**, are granted access to publish or play streams.
-
-This method ensures that **unauthorized users cannot easily guess or forge access credentials**, providing a robust mechanism to protect your live streams.
-
-Your streaming environment is **topping the charts in Security!!** 🚀
+Hash-based tokens keep publish and play tied to your shared secret—straightforward to generate on your backend and hard to forge without it.

@@ -1,111 +1,163 @@
 ---
-title: Web Panel REST API 
-description: This document helps you to access Management Panel REST API Services with JWT Tokens.
-keywords: [JWT Tokens, REST API, Management Panel REST API Services, Ant Media Server Documentation, Ant Media Server Tutorials]
+title: Web Panel API
+description: Call Ant Media Server dashboard APIs to manage server settings, applications, users, and system resources.
+keywords: [Web Panel REST API, Management REST API, Dashboard API, Ant Media Server Documentation]
 sidebar_position: 4
+sidebar_label: Web Panel API
 ---
 
-# Management Panel REST API Services
+# Web Panel API
 
-Some REST commands that are not application-specific, such as creating and deleting an app, creating a new user, etc., require authentication by logging into the management panel.
+The Web Panel API (Management REST Service) lets you automate what you normally do in the Ant Media Server dashboard — create or delete applications, change server and application settings (for example enable/disable MP4 recording), manage users, and read system resources.
 
-This can be limiting for users who want to automate REST API calls without manually accessing the web panel every time.
+These endpoints are **not** under an application path. They live at `/rest/v2` and require authentication.
 
-:::info
+Browse the full list in Swagger under **Management REST Service**. On [antmedia.io/rest](https://antmedia.io/rest/), open the definition dropdown and select a `*-management` version (for example `3.0.3-management`):
 
-There are two authentication methods to access the web panel using the REST API: **JWT Token** or **Username and password**.
+![](@site/static/img/rest-api/management-rest-api.png)
 
-:::
+Reference: [Management REST Service](https://antmedia.io/rest/#/ManagementRestService)
 
-In earlier versions of Ant Media Server, using the JWT API Filter required editing the `web.xml` file under the `conf` directory before making API requests. In recent versions, you can simultaneously use the JWT Filter and the Username/Password method.
+Authenticate with a **server JWT** (`ProxyAuthorization` header) or with your **dashboard username and password** (session cookie). Both work in recent AMS versions.
 
-## JWT Token Authentication
+## Authenticate with JWT
 
-First, open the `conf/red5.properties` file and update the following lines:
+### Enable server JWT control
 
-```
-server.jwtServerControlEnabled=false 
-server.jwtServerSecretKey=
-```
+Edit `/usr/local/antmedia/conf/red5.properties`:
 
-Change them to:
-
-```
+```properties
 server.jwtServerControlEnabled=true
-server.jwtServerSecretKey=your-secret-key-at-least-32-character
+server.jwtServerSecretKey=exMtFMuF7NmMkbkzhWXjtsTXa1jYUiXP
 ```
 
-Restart the Ant Media Server:
+Restart:
 
-```
+```bash
 sudo service antmedia restart
 ```
 
-The REST API for the web panel is listed under [Management REST Service](https://antmedia.io/rest/#/ManagementRestService).
+Use a secret of at least 32 characters.
 
+### Generate a JWT Token
 
-### Generate JWT Token
+Use any JWT library, or the [JWT Debugger](https://jwt.io/#debugger-io) encoder.
 
-Assume the secret key is (`cizvvh7f6ys0w3x0s1gzg6c2qzpk0gb9`). Generate the JWT Token at [JWT Debugger](https://jwt.io/#debugger-io). using the secret key and leaving the payload empty. 
+### Parameters
 
-The resulting token can be used to access the REST API: 
+| Field | Value |
+|-------|-------|
+| **Algorithm** | `HS256` |
+| **Secret** | `exMtFMuF7NmMkbkzhWXjtsTXa1jYUiXP` |
+| **Payload** | Include an `exp` claim (Unix epoch seconds) so the token expires |
 
-```eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.e30.tA6sZwz_MvD9Nocf3Xv_DXhJaeTNgfsHPlg3RHEoZRk```
+**Header:**
 
-![](@site/static/img/JWT_debugger_sample_for_web_panel_ant_media_server.png)
-
-### Make curl Request
-
-Use the JWT Token in the `ProxyAuthorization` header:
-
-```
-curl -X GET -H "Content-Type: application/json" -H "ProxyAuthorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.e30.tA6sZwz_MvD9Nocf3Xv_DXhJaeTNgfsHPlg3RHEoZRk" "https://example.com:5443/rest/v2/system-resources"
-```
-
-This will return system resource information such as CPU load and memory usage.
-
-
-
-## Username and Password Authentication
-
-To authenticate using username and password, use the [AuthenticateUser](https://antmedia.io/rest/#/ManagementRestService/authenticateUser) API call.
-
-### Convert Password to MD5 Hash
-
-The password must be encrypted using MD5. You can use [MD5 encryption](https://www.md5online.org/md5-encrypt.html) to generate the MD5 hash of your password.
-
-### Payload
-
-The request body should include your email and MD5 password:
-
-```
-{ "email": "your-email", "password": "05a671c66aefea124cc08b76ea6d30bb" }
+```json
+{
+  "alg": "HS256",
+  "typ": "JWT"
+}
 ```
 
-Here is the Curl Sample to Authenicate the user:
+**Payload (with expiration):**
+
+```json
+{
+  "exp": 1785508841
+}
+```
+
+`exp` is a Unix timestamp in **seconds**. After that time, AMS rejects the token. Convert dates to epoch (and back) with an [Epoch timestamp converter](https://www.epochconverter.com/).
+
+![](@site/static/img/rest-api/jwt-token.png)
+
+### Example encoded token
+
+The debugger produces a token like:
+
+```
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3ODU1MDg4NDF9.eA9ZDF9ZyjeSo0s-zkI9mvxoyxl4DhSrU9yM4skknhk
+```
+
+Use the **same secret** in the JWT Debugger that you set as `server.jwtServerSecretKey` in `red5.properties`.
+
+### Call the API with the token
+
+Use the `ProxyAuthorization` header (not `Authorization`):
 
 ```bash
-curl -X POST 'https://example.com:5443/rest/v2/users/authenticate' -H 'Content-Type: application/json' -d '{"email":"test@example.com", "password":"05a671c66aefea124cc08b76ea6d30bb"}' --cookie-jar cookies.txt
+curl -X GET \
+  -H "Content-Type: application/json" \
+  -H "ProxyAuthorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3ODU1MDg4NDF9.eA9ZDF9ZyjeSo0s-zkI9mvxoyxl4DhSrU9yM4skknhk" \
+  "https://your-domain:5443/rest/v2/system-resources"
 ```
 
-We save the JESSIONID into the cookie file and use the same to call the further APIs to not encounter any issue.
+This returns CPU, memory, and related system resource data.
 
-### Curl Sample for Management API
+## Authenticate with username and password
 
-Once authenticated using username and password, you can access Dashboard REST Services. For example, to get the list of [Applications](https://antmedia.io/rest/#/ManagementRestService/getApplications):
+Use the email and password you set for the Ant Media Server web panel (no hashing required). Authenticate once to get a session cookie, then reuse that cookie for Web Panel API calls.
 
+### Parameters
+
+| Field | Value |
+|-------|-------|
+| **Email** | Your web panel username (email) |
+| **Password** | Your web panel password |
+| **Cookie file** | Path used to store the session (for example `cookies.txt`) |
+
+### Authenticate
+
+```bash
+curl -X POST \
+  -H "Content-Type: application/json" \
+  "https://{domain:5443}/rest/v2/users/authenticate" \
+  -d '{"email":"{email}", "password":"{password}"}' \
+  --cookie-jar cookies.txt
 ```
-curl -X GET -H "Content-Type: application/json" "https://example.com:5443/rest/v2/applications" --cookie cookies.txt
+
+Example:
+
+```bash
+curl -X POST \
+  -H "Content-Type: application/json" \
+  "https://test.antmedia.io:5443/rest/v2/users/authenticate" \
+  -d '{"email":"admin@example.com", "password":"your-password"}' \
+  --cookie-jar cookies.txt
 ```
 
-The response should be something like
+### Call the API with the cookie
 
+```bash
+curl -X GET \
+  -H "Content-Type: application/json" \
+  "https://{domain:5443}/rest/v2/applications" \
+  --cookie cookies.txt
 ```
+
+Example:
+
+```bash
+curl -X GET \
+  -H "Content-Type: application/json" \
+  "https://test.antmedia.io:5443/rest/v2/applications" \
+  --cookie cookies.txt
+```
+
+Example response:
+
+```json
 {"applications":["live"]}
 ```
 
-You can now use all [Web panel REST methods](https://antmedia.io/rest/#/ManagementRestService) with the appropriate headers.
+## Troubleshooting
 
-## Congratulations!
+| Symptom | Likely cause | Fix |
+|---------|--------------|-----|
+| Management call returns unauthorized | Wrong header for JWT | Use `ProxyAuthorization`, not `Authorization` |
+| JWT rejected | Secret mismatch or expired `exp` | Use the exact `server.jwtServerSecretKey`; generate a token with a future `exp` |
+| Authenticate succeeds but next call fails | Cookie not sent | Pass `--cookie cookies.txt` (or equivalent) on every request |
+| `server.jwtServerControlEnabled` ignored | Server not restarted | Restart the `antmedia` service after editing `red5.properties` |
 
-With JWT tokens or username/password authentication in place, you can securely automate all Web Panel REST API calls. This allows you to manage applications, users, and system resources programmatically without manually logging into the web panel every time, giving you full control and flexibility over your Ant Media Server setup.
+With Web Panel authentication working, you can script dashboard operations — apps, settings, users, and monitoring — the same way you automate application broadcast APIs.

@@ -3,6 +3,7 @@ title: Enable IP Filter Behind AWS Load Balancer
 description: Enable IP filter behind AWS Load Balancer
 keywords: [Load Balancer, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 2
+sidebar_label: IP Filtering Behind LB
 ---
 
 # Enable IP Filter Behind AWS Load Balancer

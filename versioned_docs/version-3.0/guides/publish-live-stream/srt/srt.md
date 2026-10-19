@@ -49,7 +49,7 @@ If the publish type token is enabled, the SRT publishing URL will be in the foll
 srt://ant.media.server.address:4200?streamid=live/streamId,token=tokenId
 ```
 
-In order to generate the token, check out stream security [documentation](https://antmedia.io/docs/category/stream-security/).
+In order to generate the token, check out stream security [documentation](/category/stream-security/).
 
 ### Publishing SRT stream with OBS Without streamId
 

@@ -2,89 +2,58 @@
 title: Cloudflare R2 Object Storage
 description: Record streams to Cloudflare R2 Object Storage
 keywords: [S3 Integration with Ant Media Server, S3 Integration, Record streams to Cloudflare R2 Storage, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 8
+sidebar_position: 6
 ---
 
-# Record Streams To Cloudflare R2 Object Storage
+# Record Streams to Cloudflare R2 Object Storage
 
-Cloudflare is another cloud provider that is preferred by many Ant Media Server users. You could integrate your AMS instance easily with Cloudflare R2 object storage. Let’s see how it can be done with a few steps!
+Cloudflare R2 is an S3-compatible object storage service, so Ant Media Server can record to it the same way it does with AWS S3 — with the difference that R2 buckets aren't publicly reachable until you explicitly turn on a public URL for them.
 
-- Firstly, you need to create an R2 storage bucket. Just go to the R2 object storage in the Cloudflare panel and click on `Create Bucket`.
+By the end of this guide, you'll have an R2 bucket, an API token for it, and Ant Media Server configured to upload recordings there automatically.
 
-![image.png](@site/static/img/recording-live-streams/s3-integration/cloudflare-r2-storage/cloudflare-R2-bucket.png)
+## Create a Bucket
 
-You just need to put your bucket name and other settings as shown below:
+In the Cloudflare dashboard, go to **R2 Object Storage** and click **Create Bucket**, then fill in the name and settings.
 
-![image.png](@site/static/img/recording-live-streams/s3-integration/cloudflare-r2-storage/r2-bucket-create.png)
+![](@site/static/img/recording-live-streams/s3-integration/cloudflare-r2-storage/r2-bucket-create.png)
 
-- After creating the bucket, you need to create API token for Access and Secret keys. Just click the Manage API Token button.
+## Create an API Token
 
-![image.png](@site/static/img/recording-live-streams/s3-integration/cloudflare-r2-storage/manage-api-token.png)
+Go to **Manage API Tokens** and create an **Account API token** scoped to R2. Once created, Cloudflare shows the Access Key, Secret Key, and S3 API endpoint — copy all three immediately, since the secret is only shown once.
 
-- Under Manage API Token, you need to create the Account API token.
+![](@site/static/img/recording-live-streams/s3-integration/cloudflare-r2-storage/create-api-token.png)
 
-![image.png](@site/static/img/recording-live-streams/s3-integration/cloudflare-r2-storage/create-api-token.png)
+:::important
+Treat the Access Key and Secret Key like a password. Don't commit them to a repository, paste them into a screenshot, or share them outside of Ant Media Server's own credential fields.
+:::
 
-- After that, create the Account API token with the below settings:
+## Configure Ant Media Server
 
-![image.png](@site/static/img/recording-live-streams/s3-integration/cloudflare-r2-storage/api-token-settings.png)
+1. Log in to your Ant Media Server panel at `https://<DOMAIN_NAME>:5443`.
+2. Navigate to **Applications** and select your application (e.g., `live`).
+3. Go to **Settings**, enable **Record Live Streams as MP4**, then enable **S3 Recording**.
+4. Enter the Access Key, Secret Key, endpoint, and bucket name from the steps above.
+5. Click **Save**.
 
-- After generating the token, copy the Access key, Secret key and the Endpoint.
-
-![image.png](@site/static/img/recording-live-streams/s3-integration/cloudflare-r2-storage/api-token-access.png)
-
-- Then, log in to your AMS web panel and go to any application that you use, enable the Record Live Streams as MP4 and enable S3 Recording, enter the S3 credentials you have created, and save the settings.
-
-![image.png](@site/static/img/recording-live-streams/s3-integration/cloudflare-r2-storage/ams-bucket-settings.png)
-
-Your recording files will be uploaded to your Cloudflare R2 Object Storage automatically.
-
+Your MP4 and preview files now upload to the bucket automatically once a stream finishes.
 
 ## Enable HTTP Forwarding for Playback
 
-When your stream (mp4, m3u8 or preview) files are uploaded to R2 Object Storage, they are removed from Ant Media Server local storage. If you try to access them using the AMS URL, you may encounter a **404 Not Found** error.
+Once files upload to R2, they're no longer served from Ant Media Server's local storage, so requesting them by the usual AMS URL returns a 404 until you configure forwarding. R2 buckets are private by default, so first go to the bucket's **Settings** and enable a **Public Development URL** (or attach a custom domain) — this is the URL you'll forward to.
 
-To resolve this, enable **HTTP Forwarding** so Ant Media Server automatically redirects requests to your R2 Object Storage.
+See [HTTP Forwarding](/guides/recording-live-streams/http-forwarding/) for the full setup — for R2, `httpForwardingBaseURL` is that Public Development URL or custom domain, for example:
 
-### Steps to Enable HTTP Forwarding
-
-- Before enabling the HTTP forwarding, the bucket is not public so you need to generate the public development URL from bucket settings to make the bucket objects public.
-
-![image.png](@site/static/img/recording-live-streams/s3-integration/cloudflare-r2-storage/public-development-url.png)
-
-- After enabling the public development URL, copy it, as it will be needed in AMS settings. Following this:
-
- 1. Log in to the Ant Media Server Management Panel
-  2. Navigate to your application (e.g., `LiveApp`) and go to **Application Settings → Advanced Settings**.  
-  3. Set the following properties:
-
-     ```bash
-     httpForwardingExtension: mp4,m3u8  
-     httpForwardingBaseURL: https://pub-xxxx.r2.dev 
-     ```
-
-     Example:  
-
-     ```bash
-     "httpForwardingExtension": "m3u8,mp4",
-     "httpForwardingBaseURL": "https://pub-f6fd12cbd8f04a04a16547587df49ce4.r2.dev",
-     ```
-
-4. Save your settings
-
-## Playback
-
-With forwarding enabled, your VOD files stored in Cloudflare R2 Object Storage can be played directly from AMS URLs, while the files are actually served from your R2 storage.
-
-Now when you access the
-
-```bash
-https://your-domain:5443/AppName/streams/streamId.mp4  
+```
+https://pub-xxxx.r2.dev
 ```
 
-Ant Media Server will forward the request to:
+You now have Ant Media Server recording live streams directly to Cloudflare R2, with playback working through HTTP Forwarding.
 
-```bash
-https://pub-xxxx.r2.dev/streams/streamId.mp4
-```
+## Troubleshooting
 
+- **Uploads fail, or files never appear in the bucket** — check the AMS server logs for `AmazonS3StorageClient` entries. A successful upload logs `File upload has started with key: ...` at INFO; a failed one logs `S3 - Error: Upload failed with key ...` at ERROR along with the underlying error, which tells you whether AMS is even reaching R2 or failing on Cloudflare's side.
+- **The error points to a permissions problem** — double-check the API token is still scoped to R2 and hasn't expired, and that the Access Key, Secret Key, and endpoint entered in the AMS panel match what Cloudflare issued.
+
+## Need Help?
+
+If the steps above don't resolve it, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).

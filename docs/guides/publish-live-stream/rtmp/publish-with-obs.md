@@ -1,15 +1,15 @@
 ---
-title: Publish Using OBS 
+title: Publish Using OBS
 description: Publish RTMP stream using OBS
 keywords: [Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 2
+sidebar_position: 1
 ---
 
 # Publish RTMP stream using OBS
 
 OBS (Open Broadcaster Software) is a free and open source video recording and live streaming software. With OBS, you can use either your PC's embedded camera or an externally connected camera as a video source. Audio sources can also be set up.
 
-Let's go over how to use OBS for streaming step by step:
+By the end of this guide, OBS will be pushing an RTMP stream into Ant Media Server, and you'll be able to confirm it's live from the web panel. Let's go over how to use OBS for streaming step by step:
 
 ## Install the OBS
 
@@ -25,14 +25,14 @@ We assume that your Ant Media Server accepts all streams (e.g there is no securi
 
 *   Click ```Settings``` in the OBS Window and then Select ```Stream``` on the left side menu.
 *   Choose ```Custom Streaming Server``` in the ```Stream Type``` dropdown menu.
-*   In the URL box, type your RTMP URL without stream id. It's like ```rtmp://IP-or-server-domain-name/live```
+*   In the URL box, type your RTMP URL without stream id. It's like ```rtmp://<SERVER_IP_OR_DOMAIN_NAME>/live```
 *   In the Stream key, you can write any stream id because we assume that all stream Ids are allowed.
 
 :::warning
 The RTMP URL should not contain any port number. The RTMP protocol will automatically listen on port 1935 which should be open on your server.
 
- - **Wrong**: rtmp://AMS-Domain-Name:5443/live/
- - **Correct**:   rtmp://IP-or-AMS-Domain-Name/live/
+ - **Wrong**: `rtmp://<DOMAIN_NAME>:5443/live/`
+ - **Correct**: `rtmp://<SERVER_IP_OR_DOMAIN_NAME>/live/`
 :::
 
 ![](@site/static/img/obs-rtmp-image/OBS-Stream.png)
@@ -63,7 +63,9 @@ Close ```Settings``` window and just click the “Start Streaming” button in t
 
 ![](@site/static/img/obs-rtmp-image/OBS-Start-Stream.png)
 
-Congrats! You're publishing a live stream with OBS.
+Once you start streaming, check the **live** application in your Ant Media Server web panel — the stream should show as **Broadcasting**.
+
+![](@site/static/img/publish-live-stream/ams-broadcasting-status.png)
 
 ## Troubleshooting
 
@@ -85,14 +87,9 @@ If your PC cannot handle the stream with the parameters you set, this warning ap
 
 ![](@site/static/img/obs-rtmp-image/OBS-Warning.png)
 
-<br /><br />
----
+You're now publishing an RTMP stream to Ant Media Server with OBS. From here, head to the [playback guide](/category/play-live-streams/) to view your stream.
 
-<div align="center">
-<h2> Stream Live with OBS ✅ </h2>
-</div>
+## Need Help?
 
-You’ve configured **OBS**, connected your video/audio sources, set the **RTMP URL & stream key**, tuned for **low-latency (CBR + keyframe interval = 1)**, and hit “Start Streaming.” Compared to **browser streaming**, this method gives you **more control over bitrate, quality, and encoding settings**.  
-
-Nice work — your **live stream** is now broadcasting from **OBS to your Ant Media Server**! 🎬
+If OBS won't connect or the stream doesn't appear in AMS, double-check the RTMP URL has no port number and that port 1935 is open on your server. Otherwise, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
 

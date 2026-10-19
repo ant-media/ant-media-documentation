@@ -2,7 +2,8 @@
 title: Ant Media Server Azure Scale Set (VMSS) Upgrade
 description: Ant Media Server Azure Scale Set (VMSS) Upgrade
 keywords: [Ant Media Server Documentation, Ant Media Server Tutorials, Ant Media Server Azure Scale Set (VMSS) Upgrade Guide, Ant Media Server Azure Scale Set Upgrade]
-sidebar_position: 4
+sidebar_position: 5
+sidebar_label: Upgrade Scale Set
 ---
 
 # Ant Media Server Azure Scale Set (VMSS) Upgrade Guide

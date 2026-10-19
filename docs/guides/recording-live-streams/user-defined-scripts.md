@@ -2,62 +2,48 @@
 title: User Defined Scripts
 description: There are a few scripts to help you to automate Ant Media Instance, like MP4 muxing(recording), MP4 Muxing script usage instructions, VoD upload finish process, and VoD Upload script usage instructions.
 keywords: [MP4 muxing, MP4 recording, VoD Upload script, MP4 Muxing script usage instructions, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 8
+sidebar_position: 9
 ---
 
 # User Defined Scripts
 
-User-defined scripts are run automatically by the Ant Media Server after the MP4 Muxing process (recording) finishes or the VoD upload process finishes. It enables users to make some changes on the mp4 file. A few examples:
+User-defined scripts run automatically after Ant Media Server finishes MP4 muxing (recording) or a VoD upload, so you can act on the resulting file without any manual step. This reference covers the two hook points AMS provides, plus four ready-to-use scripts built on them: transcoding a VoD once instead of paying for adaptive bitrate on the fly, converting an uploaded VoD to HLS, stripping video from a recording, and auto-uploading manually-added VoDs to S3.
 
-1) Creating different resolutions for VoD serving ( Using adaptive bitrate on the fly will spend more resources; you can transcode once for each VoD with your own user-defined script after every muxing operation)
+There's no real limit to what a hook script can do — these are just the common cases. Both hooks are called after every matching recording or upload finishes.
 
-2) Merging VoDs with ffmpeg
+## MP4 Muxing Finish Process
 
-3) Adding some watermark to VoDs after the stream is saved.
+Runs after the MP4 muxing (recording) process finishes.
 
-You can get creative with user-defined scripts; there are no limits. They are called after each stream recording process or each VoD upload process is finished.
+### Define the Script Location in App Settings
 
-MP4 muxing(recording) finish process
-------------------------------------
+You can set up a custom post-processing script for MP4 recordings directly from the Advanced Settings in the Ant Media Web Panel.
 
- It will work after the MP4 Muxing(recording) process finishes. Let’s have a look at that step by step.
+1. Log into the Ant Media Server Web Panel (`http://<DOMAIN_NAME>:5080`).
+2. Navigate to Applications, select your app (e.g., `live`), and go to Advanced Settings.
+3. Locate the **muxerFinishScript** field and enter the script path (e.g., `/path/to/scriptFile.sh`).
+4. Save the settings.
 
-1.  [Define run script location in App Settings](#define-mp4-muxing-run-script-location-in-app-settings)
-2.  [Script running instructions](#mp4-muxing-script-usage-instructions)
+For example, if the script lives at `/usr/local/antmedia`, the setting looks like:
 
-### Define MP4 muxing run script location in App Settings
+```js
+"muxerFinishScript": "/usr/local/antmedia/scriptFile.sh",
+```
 
-You can set up a custom post-processing script for MP4 recordings directly from the Advanced Settings in the Ant Media Web Panel. 
-To do this:
-1. Log into the Ant Media Server Web Panel (http://YOUR_SERVER_IP:5080)
-2. Navigate to Applications, select your app (`live`), go to Advanced Settings
-3. Locate the MP4 **muxerFinishScript** field and enter the script path (e.g., /path/to/scriptFile.sh).
-4. Finally, save the settings.
-
-Usage:
-
-- For example, if the script is located at /usr/local/antmedia, then the setting would be as follows:
-
-  ```js
-  "muxerFinishScript": "/usr/local/antmedia/scriptFile.sh",
-  ```
-
-- The script should have executable permission
-
-  Mark the file as executable with code below:
-
-  ```shell
-  chmod +x scriptFile.sh
-  ```
-
-Setting References: [settings.muxerFinishScript Setting](/guides/configuration-and-testing/ams-application-configuration)
-
-### MP4 Muxing script usage instructions
-
-After the muxing process is finished, the AMS runs the following code snippets.
+The script needs executable permission:
 
 ```shell
-scriptFilePath fullPathOfMP4File
+chmod +x scriptFile.sh
+```
+
+See [settings.muxerFinishScript](/guides/configuration-and-testing/ams-application-configuration) for the full setting reference.
+
+### Script Usage
+
+After muxing finishes, AMS runs the script as:
+
+```shell
+<SCRIPT_PATH> <FULL_PATH_OF_MP4_FILE>
 ```
 
 Example:
@@ -66,255 +52,215 @@ Example:
 ~/test_script.sh /usr/local/antmedia/webapps/live/streams/test_stream.mp4
 ```
 
-When the script is successfully finished, AMS writes in the INFO log as below:
+On success, AMS logs:
 
 ```
 running muxer finish script: ~/test_script.sh /usr/local/antmedia/webapps/live/streams/test_stream.mp4
 ```
 
+## VoD Upload Finish Process
 
-## VoD upload finish process
+Runs after a VoD upload finishes.
 
-It will work after the VoD upload process finishes. Let’s have a look at that step by step.
+### Define the Script Location in App Settings
 
-1.  [Define run script location in App Settings](#define-vod-upload-run-script-location-in-app-settings)
-2.  [Script running instructions](#vod-upload-script-usage-instructions)
+Configure a custom post-processing script for VoD uploads the same way, from Advanced Settings in the Web Panel.
 
-### Define VoD upload run script location in App Settings
-
-You can configure a custom post-processing script for VOD uploads directly from the Advanced Settings in the Ant Media Web Panel.
-To do this:
-1. Log in to the Ant Media Server Web Panel (http://YOUR_SERVER_IP:5080)
-2. Navigate to Applications, select your app (`live`), go to Advanced Settings
-3. Locate the **vodUploadFinishScript** field and enter the script path (e.g., /path/to/scriptFile.sh).
-4. Finally, save the settings.
-
-Usage:
-
-- For example, if the script is located at /usr/local/antmedia, then the setting would be as follows:
+1. Log in to the Ant Media Server Web Panel (`http://<DOMAIN_NAME>:5080`).
+2. Navigate to Applications, select your app (e.g., `live`), and go to Advanced Settings.
+3. Locate the **vodUploadFinishScript** field and enter the script path.
+4. Save the settings.
 
 ```js
 "vodUploadFinishScript": "/usr/local/antmedia/scriptFile.sh",
 ```
 
-- The script should have executable permission.
-
-  Mark the file as executable with code below:
-
-  ```shell
-  chmod +x scriptFile.sh
-  ```
-
-Setting References: [settings.vodUploadFinishScript Setting](/guides/configuration-and-testing/ams-application-configuration)
-
-### VoD Upload script usage instructions
-
-After the VoD upload process is finished, the AMS runs the following code snippets.
-
+```shell
+chmod +x scriptFile.sh
 ```
-scriptFilePath fullPathOfMP4File
+
+See [settings.vodUploadFinishScript](/guides/configuration-and-testing/ams-application-configuration) for the full setting reference.
+
+### Script Usage
+
+After the VoD upload finishes, AMS runs the script the same way:
+
+```shell
+<SCRIPT_PATH> <FULL_PATH_OF_MP4_FILE>
 ```
 
 Example:
+
 ```
 ~/test_script.sh /usr/local/antmedia/webapps/live/streams/test_stream.mp4
 ```
 
-When the script finishes successfully, AMS writes in the INFO log as below:
+On success, AMS logs:
+
 ```
 running muxer finish script: ~/test_script.sh /usr/local/antmedia/webapps/live/streams/test_stream.mp4
 ```
 
+## Transcode an Uploaded VoD to HLS Without Broadcasting
 
+To convert an uploaded VoD into HLS at multiple bitrates:
 
-## Transcode and Play uploaded VoD files as HLS in AMS without Broadcasting.
+1. Download the transcoding script:
 
-To convert uploaded VOD to HLS with different bitrates, please follow the below steps:
+   ```bash
+   wget https://raw.githubusercontent.com/ant-media/Scripts/master/vod_transcode.sh
+   ```
 
-### 1. Download the VOD-to-HLS Transcoding Script
-Use the following command to download the script onto your server:
-```
-wget https://raw.githubusercontent.com/ant-media/Scripts/master/vod_transcode.sh
-```
+2. Make it executable:
 
-### 2. Grant Execute Permissions
-After downloading, provide execute permission to the script with this command:
-```
-chmod +x vod_transcode.sh
-``` 
+   ```bash
+   chmod +x vod_transcode.sh
+   ```
 
-### 3. Default Transcoding Settings
-By default, the script transcodes to 240p, 480p, and 720p resolutions, with the output stored in the following directory. You can adjust the resolutions and directory as needed:
-```
-/usr/local/antmedia/webapps/liveEE/streams/
-```
+3. By default, the script transcodes to 240p, 480p, and 720p, storing output under `/usr/local/antmedia/webapps/<APP_NAME>/streams/` — adjust resolutions and the output directory in the script as needed.
 
-### 4. Configure VOD Upload Script
-Update the advanced settings of your application by adding the following line to trigger the script after VOD uploads:
-```
-"vodUploadFinishScript"="/script-directory-path/vod_transcode.sh"
-```
+4. Trigger it after every VoD upload by setting:
 
-### 5. Upload a VOD File
-Upload your VOD file to the configured application. The script will automatically transcode it into HLS format and save it in your target directory.
+   ```
+   "vodUploadFinishScript"="/script-directory-path/vod_transcode.sh"
+   ```
 
-### 6. Access the Transcoded HLS Files
-In the target directory, you’ll find a **master M3U8 file** and **resolution-specific M3U8 files**. Use the following URL format to play the HLS stream:
-```
-https://domain:5443/app-name/target-directory/Vod_Id.m3u8
-```
+5. Upload a VoD file. The script transcodes it to HLS automatically and saves it to the target directory.
 
+6. In that directory, you'll find a master `.m3u8` file plus one per resolution. Play the HLS stream at:
 
+   ```
+   https://<DOMAIN_NAME>:5443/<APP_NAME>/<TARGET_DIRECTORY>/<VOD_ID>.m3u8
+   ```
 
-## Strip Video from a Stream Recording in Ant Media Server
+## Strip Video from a Recording
 
-### 1. Create the Script
-   
-**Location**:
-```
-/home/ubuntu/removevideo.sh
-```
-**Content**:
-```
-#create the bash script to remove video from the recorded file and save it with same id again
+Keep the audio track only, by stripping video from a recording once it finishes.
 
-# Don't forget to change the Ant Media Server App Name
-AMS_APP_NAME="live"
+1. Create the script at `/home/ubuntu/removevideo.sh`:
 
-file="$1"
-temp_file="${file%.mp4}_temp.mp4"
+   ```bash
+   #!/bin/bash
+   # Removes video from the recorded file and saves it back under the same name.
 
-cd /usr/local/antmedia/$AMS_APP_NAME/live/streams/
+   # Change this to your Ant Media Server application name.
+   AMS_APP_NAME="live"
 
-# Add metadata using ffmpeg
-ffmpeg -i "$file" -c copy -vn "$temp_file"
+   file="$1"
+   temp_file="${file%.mp4}_temp.mp4"
 
-# Replace the original file with the new file
-mv "$temp_file" "$file"
-```
+   cd /usr/local/antmedia/webapps/$AMS_APP_NAME/streams/
 
-### 2. Grant Execute Permission
-Make the script executable:
-```
-sudo chmod +x /home/ubuntu/removevideo.sh
-```
+   ffmpeg -i "$file" -c copy -vn "$temp_file"
+   mv "$temp_file" "$file"
+   ```
 
-### 3. Configure Ant Media Server
-Access the AMS Web Management Console. Navigate to your application's Advanced Settings and locate the muxerFinishScript property.
-```
-"muxerFinishScript": "/home/ubuntu/removevideo.sh"
-```
+2. Make it executable:
 
-### 4. Publish and Stop a Stream:
-- Use a tool or platform (e.g., OBS) to publish a stream to AMS.  
-- Stop the stream.  
-- Once stopped, the script will be triggered automatically.
+   ```bash
+   sudo chmod +x /home/ubuntu/removevideo.sh
+   ```
 
-### 5. Verify Script Execution:
-If successful, you should see a log entry similar to:
-```
-2024-07-02 20:53:29,777 [vert.x-worker-thread-86] INFO i.a.AntMediaApplicationAdapter - completing script: /home/ubuntu/removevideo.sh  /usr/local/antmedia/webapps/live/streams/test.mp4 with return value 0
-Verify the File: The original MP4 file should now only contain audio.
-```
+3. In the AMS Web Panel, go to your application's Advanced Settings and set:
 
+   ```
+   "muxerFinishScript": "/home/ubuntu/removevideo.sh"
+   ```
 
-## Automatically Transfer VoD Files to S3 Using Ant Media Server
-When S3 integration is enabled on AMS, recorded VODs are automatically uploaded to the S3 bucket. However, manually uploaded VOD files are not. You can use the script below to upload all VODs to S3.
+4. Publish and stop a stream. The script runs automatically once the stream stops.
 
-### 1. Install FFmpeg on Ant Media Server (AMS)
-Use the following commands to update your package list and install FFmpeg:
-```
-sudo apt-get update && sudo apt-get install ffmpeg -y
-```
+5. Confirm it worked — you should see a log entry like:
 
-### 2. Save and Configure the Script
-- **Download or Create the Script**
-Save the following script as `vod-upload-s3.sh` under `/usr/local/antmedia/`
-```
-#!/bin/bash
-#Installation Instructions
-#apt-get update && apt-get install ffmpeg -y
-#vim [AMS-DIR]/webapps/applications(live or etc.)/WEB-INF/red5-web.properties
-#settings.vodUploadFinishScript=/Script-DIR/vod-upload-s3.sh
-#sudo service antmedia restart
+   ```
+   2024-07-02 20:53:29,777 [vert.x-worker-thread-86] INFO i.a.AntMediaApplicationAdapter - completing script: /home/ubuntu/removevideo.sh /usr/local/antmedia/webapps/live/streams/test.mp4 with return value 0
+   ```
 
-#Check if AWS CLI is installed
-if [ -z "$(which aws)" ]; then
-    rm -r aws* > /dev/null 2>&1
-    echo "Installing AWS CLI..."
-    curl "https://d1vvhvl2y92vvt.cloudfront.net/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" > /dev/null 2>&1
-    unzip awscliv2.zip > /dev/null 2>&1
-    sudo ./aws/install
-    echo "AWS CLI installed."
-    rm -r aws*
-fi
+   The resulting MP4 file should now contain audio only.
 
-DELETE_LOCAL_FILE="Y"
-AWS_ACCESS_KEY=""
-AWS_SECRET_KEY=""
-AWS_REGION=""
-AWS_BUCKET_NAME=""
+## Automatically Upload Manually-Added VoDs to S3
 
-# AWS Configuration
-aws configure set aws_access_key_id $AWS_ACCESS_KEY
-aws configure set aws_secret_access_key $AWS_SECRET_KEY
-aws configure set region $AWS_REGION
-aws configure set output json
+With [Cloud Storage Integration](/category/s3-recording-and-integration) enabled, AMS uploads *recorded* VoDs to your bucket automatically — but VoD files you add manually aren't uploaded the same way. This script closes that gap.
 
-tmpfile=$1
-mv $tmpfile "${tmpfile%.*}.mp4_tmp"
-ffmpeg -i "${tmpfile%.*}.mp4_tmp" -c copy -map 0 -movflags +faststart $tmpfile
-rm "${tmpfile%.*}.mp4_tmp"
+1. Install FFmpeg:
 
-aws s3 cp $tmpfile s3://$AWS_BUCKET_NAME/streams/ --acl public-read
+   ```bash
+   sudo apt-get update && sudo apt-get install ffmpeg -y
+   ```
 
-if [ $? != 0 ]; then
-    logger "$tmpfile failed to copy file to S3."
-else
-    if [ "$DELETE_LOCAL_FILE" == "Y" ]; then
-        aws s3api head-object --bucket $AWS_BUCKET_NAME --key streams/$(basename $tmpfile)
-        if [ $? == 0 ]; then
-            rm -rf $tmpfile
-            logger "$tmpfile deleted."
-        fi
-    fi
-fi
-```
-- **Set Execute Permissions**
-Make the script executable by running:
-```
-sudo chmod +x /usr/local/antmedia/vod-upload-s3.sh
-```
-- **Add AWS Credentials**
-Open the script and replace the placeholders for AWS_ACCESS_KEY, AWS_SECRET_KEY, AWS_REGION, and AWS_BUCKET_NAME with your AWS credentials and bucket details.
+2. Save the following as `/usr/local/antmedia/vod-upload-s3.sh`, filling in your own AWS credentials and bucket name:
 
-### 3. Configure Ant Media Server to Use the Script
+   ```bash
+   #!/bin/bash
+   # Installation:
+   #   apt-get update && apt-get install ffmpeg -y
+   #   vim <AMS_DIR>/webapps/<APP_NAME>/WEB-INF/red5-web.properties
+   #   settings.vodUploadFinishScript=<SCRIPT_DIR>/vod-upload-s3.sh
+   #   sudo service antmedia restart
 
-- Open Ant Media Server's Web Panel.
-- Go to Applications → Advanced Settings.
-- Set the following property:
-```
-"vodUploadFinishScript": "/usr/local/antmedia/vod-upload-s3.sh"
-```
+   # Install the AWS CLI if it isn't already present.
+   if [ -z "$(which aws)" ]; then
+       rm -r aws* > /dev/null 2>&1
+       echo "Installing AWS CLI..."
+       curl "https://d1vvhvl2y92vvt.cloudfront.net/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" > /dev/null 2>&1
+       unzip awscliv2.zip > /dev/null 2>&1
+       sudo ./aws/install
+       echo "AWS CLI installed."
+       rm -r aws*
+   fi
 
-### 4. Restart Ant Media Server
-Restart the Ant Media Server to apply the changes:
-```
-sudo systemctl restart antmedia
-```
+   DELETE_LOCAL_FILE="Y"
+   AWS_ACCESS_KEY="<AWS_ACCESS_KEY>"
+   AWS_SECRET_KEY="<AWS_SECRET_KEY>"
+   AWS_REGION="<AWS_REGION>"
+   AWS_BUCKET_NAME="<AWS_BUCKET_NAME>"
 
-### 5. Upload and Test VoD Files
-Upload any VoD file to your application. The file will be automatically transcoded and uploaded to the specified S3 bucket.
+   aws configure set aws_access_key_id $AWS_ACCESS_KEY
+   aws configure set aws_secret_access_key $AWS_SECRET_KEY
+   aws configure set region $AWS_REGION
+   aws configure set output json
 
+   tmpfile=$1
+   mv $tmpfile "${tmpfile%.*}.mp4_tmp"
+   ffmpeg -i "${tmpfile%.*}.mp4_tmp" -c copy -map 0 -movflags +faststart $tmpfile
+   rm "${tmpfile%.*}.mp4_tmp"
 
-<br /><br />
----
+   aws s3 cp $tmpfile s3://$AWS_BUCKET_NAME/streams/ --acl public-read
 
-<div align="center">
-<h2> 🎬 You just streamlined- The World's Best Script ⚙️ </h2>
-</div>
+   if [ $? != 0 ]; then
+       logger "$tmpfile failed to copy file to S3."
+   else
+       if [ "$DELETE_LOCAL_FILE" == "Y" ]; then
+           aws s3api head-object --bucket $AWS_BUCKET_NAME --key streams/$(basename $tmpfile)
+           if [ $? == 0 ]; then
+               rm -rf $tmpfile
+               logger "$tmpfile deleted."
+           fi
+       fi
+   fi
+   ```
 
-You've successfully configured **User Defined Scripts in Ant Media Server**. Now, your live stream recordings and **VoD uploads trigger custom scripts automatically**, enabling seamless post-processing tasks such as transcoding, merging, or watermarking. This automation enhances your workflow, saving time and resources.
+3. Make it executable:
 
-**Mission Accomplished** 🤝 - With these scripts, your workflow is now faster, smarter, and unbeatable! 🫰
+   ```bash
+   sudo chmod +x /usr/local/antmedia/vod-upload-s3.sh
+   ```
 
+4. In the AMS Web Panel, go to Applications → Advanced Settings and set:
+
+   ```
+   "vodUploadFinishScript": "/usr/local/antmedia/vod-upload-s3.sh"
+   ```
+
+5. Restart Ant Media Server:
+
+   ```bash
+   sudo service antmedia restart
+   ```
+
+6. Upload a VoD file to test — it should transcode and land in the configured S3 bucket automatically.
+
+These hooks cover the common post-recording and post-upload automation needs; from here, [Cloud Storage Integration](/category/s3-recording-and-integration) and [HTTP Forwarding](/guides/recording-live-streams/http-forwarding/) cover the rest of the recording-to-storage pipeline.
+
+## Need Help?
+
+If a script isn't triggering, confirm it has executable permission and that the application was restarted after saving the setting, then reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).

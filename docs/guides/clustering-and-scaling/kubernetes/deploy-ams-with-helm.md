@@ -2,7 +2,8 @@
 title: Helm Deployment 
 description: Deploy Ant Media Server with Helm Charts
 keywords: [Deploy Ant Media Server with Helm Charts, Helm Charts, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 5
+sidebar_position: 4
+sidebar_label: Helm Deployment
 ---
 
 # Deploy Ant Media Server with Helm Charts

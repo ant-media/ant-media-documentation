@@ -1,86 +1,112 @@
 ---
-title: AMS application configuration
-description: Configure Ant Media Server through configuration file or management console.
+title: AMS Application Configuration
+description: Configure Ant Media Server applications through the Management Panel, properties file, or Management REST APIs.
 keywords: [Ant Media Configuration File, Ant Media Server Documentation, Ant Media Server Tutorials, Ant Media Management Panel, Ant Media Settings, Ant Media Configuration]
 sidebar_position: 1
 ---
 
-# AMS application configuration
+# AMS Application Configuration
 
-Ant Media Server can be configured either by editing a configuration file or through the application settings tab in the Management Panel. 
+Configure each Ant Media Server application through the **Management Panel**, the application properties file, or the **Management REST APIs**. Settings are per application and apply in both standalone and cluster mode.
 
-The configuration is set on the application level and is stored in a file located at ```<AMS_DIR>/webapps/{AppName}/WEB-INF/red5-web.properties```. 
+Application settings are stored in:
 
-The Management Panel allows changing all the application settings; however, the file is much more extensive. See the [Application Settings Javadoc](https://antmedia.io/javadoc/io/antmedia/AppSettings.html) to find a complete list of all available settings.
+```text
+/usr/local/antmedia/webapps/{AppName}/WEB-INF/red5-web.properties
+```
 
+The Management Panel covers the settings you use most often. For the full list of available options, see the [Application Settings Javadoc](https://antmedia.io/javadoc/io/antmedia/AppSettings.html).
 
-## Management Panel settings
+## What you'll accomplish
 
-Log in to the Ant Media Server dashboard and click on the application you want to configure from the left-hand menu. Then click on the **Settings** tab.
+By the end of this guide, you will:
 
-There are two options here: *Basic* and *Advanced*.
+1. Change application settings from the Management Panel (**Basic** and **Advanced**).
+2. Add a setting that is not yet present in the properties file or Advanced settings.
+3. Update application settings programmatically with the Management REST APIs.
 
-Basic settings include the most commonly used application settings, while the other application settings are under the *Advanced* option.
+## Management Panel Application settings
 
-Starting from Ant Media Server version 2.6.2, all the application settings for both Standalone mode and Cluster mode of Ant Media Server can be changed from the Management Panel itself.
+Log in to the Ant Media Server dashboard, select the application you want to configure from the left-hand menu, then open the **Settings** tab.
+
+You can choose **Basic** or **Advanced**:
+
+- **Basic** — the most commonly used application settings.
+- **Advanced** — the full set of application properties (same content as `red5-web.properties`).
+
+Starting with Ant Media Server **v2.6.2**, you can change all application settings from the Management Panel in both standalone and cluster mode.
 
 ![](@site/static/img/configuration-and-testing/application-settings.png)
 
-
 :::info
-
-If you change the application settings via Web Management Panel so there is no need to change from the backend via properties file.
-
+If you change application settings in the web Management Panel, you do not need to edit the properties file on the server as well.
 :::
 
-## Application properties file
+## Add an additional setting
 
-The application settings can also be modified by editing the configuration file directly. Navigate to the file located at ```<AMS_DIR>/webapps/{AppName}/WEB-INF/red5-web.properties``` and open it using your preferred editor.
-
-Highlighted below is how to enable VP8 encoding by editing the configuration file:
-
-![](@site/static/img/configuration-and-testing/application-settings-properties.png)
-
-
-## Adding additional settings
-
-If a configuration setting has not been added to the ```red5-web.properties``` file or under *Advanced* settings, simply append the setting to the configuration file or add it from the Management Panel.
-
-Follow the steps below to find and add an additional setting:
+If a setting is missing from `red5-web.properties` and from **Advanced** settings, add it in the Management Panel or append it to the properties file.
 
 ### 1. Find the setting
 
-Open the [Javadoc](https://antmedia.io/javadoc/io/antmedia/AppSettings.html) page and find the setting that needs to be added to the configuration file. 
+Open the [AppSettings Javadoc](https://antmedia.io/javadoc/io/antmedia/AppSettings.html) and locate the setting you want to add.
 
-### 2. Confirm the setting type and value
+### 2. Confirm the type and default value
 
-The description of each setting confirms the type and default value. For example, the setting  ```aacEncodingEnabled``` is of type boolean with a default value of ```true```:
+Each setting description includes the type and default value.
+
+For example, `aacEncodingEnabled` is a boolean with a default of `true`:
 
 ```java
-@Value("${settings.aacEncodingEnabled:true}") 
-private boolean aacEncodingEnabled 
+@Value("${settings.aacEncodingEnabled:true}")
+private boolean aacEncodingEnabled
 ```
 
-To confirm the function of the setting, additional information is provided in the description:
+### 3. Update Advanced settings or the properties file
 
-    If aacEncodingEnabled is true, AAC encoding will be active even if MP4 or HLS muxing is not enabled. If aacEncodingEnabled is false, AAC encoding is only activated if MP4 or HLS muxing is enabled in the settings. This value should be true if you're sending a stream to RTMP endpoints or enabling/disabling MP4 recording on the fly.
-        
+In the Management Panel, open the application **Settings** tab and go to **Advanced**. Append the property using the field name and value. For example:
 
-### 3. Update the configuration file
-
-To add an additional setting to the configuration file, open the application settings, navigate to Advanced Settings on the Management Panel, or go to red5-web.properties file located at ```<AMS_DIR>/webapps/{AppName}/WEB-INF/red5-web.properties```.
-
-Following the example of the ```aacEncodingEnabled``` setting, the below can be appended to the file:
-
-```java  
-settings.aacEncodingEnabled=false
+```properties
+aacEncodingEnabled=false
 ```
-<div align="center">
 
-### AMS configuration for you
+Save the settings so they apply to that application.
 
-</div>
+## Change application settings programmatically
 
-You’ve logged into the Management Panel, explored both Basic and Advanced settings, and even learned how to tweak the `red5-web.properties` file directly for fine-grained control.
+You can update application settings with the Management REST APIs in standalone or cluster mode.
 
-Tada, you now have full mastery over your Ant Media Server application settings, whether through the dashboard or configuration files, ensuring it runs exactly the way you need.
+### 1. Authenticate
+
+Authenticate before calling Management REST APIs. Use any method described in the [Management REST APIs](https://antmedia.io/docs/guides/developer-sdk-and-api/rest-api-guide/management-rest-apis/) guide.
+
+If you authenticate with a username and password, store the session cookie and send it with later API calls.
+
+### 2. Get the current settings
+
+Call the [Get Settings REST API](https://antmedia.io/rest/#/ManagementRestService/getSettings) for the target application (for example, `live`):
+
+```bash
+curl -X GET \
+  -H "Content-Type: application/json" \
+  "https://example.com:5443/rest/v2/applications/settings/live" \
+  --cookie cookies.txt
+```
+
+The response includes the full application settings object. Use that payload in the next step and change only the properties you need.
+
+### 3. Change the settings
+
+Call the [Change Settings REST API](https://antmedia.io/rest/#/ManagementRestService/changeSettings) with the settings from the previous response. Update the fields you want to change and keep the rest the same.
+
+For example, to disable HLS, set `hlsMuxingEnabled` to `false`:
+
+```bash
+curl --location 'https://example.com:5443/rest/v2/applications/settings/live' \
+  --header 'Content-Type: application/json' \
+  --cookie cookies.txt \
+  --data '{
+    "hlsMuxingEnabled": false
+  }'
+```
+
+Confirm the update in the Management Panel under the application **Settings** tab.

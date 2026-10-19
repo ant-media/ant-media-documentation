@@ -2,7 +2,8 @@
 title: Cluster with GCP Jinja Template
 description: Cluster Deployment with GCP Jinja Template
 keywords: [AMS Cluster Deployment on GCP, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 2
+sidebar_position: 3
+sidebar_label: Cluster with Jinja Template
 ---
 
 This guide demonstrates how to use Jinja Templates and Google Cloud Deployment Manager to streamline the deployment of Ant Media Server clusters on Google Cloud Platform (GCP). We’ll cover the essentials of both Jinja Templates and Deployment Manager, explore how these tools integrate seamlessly, and provide a step-by-step walkthrough to help you deploy an Ant Media Server cluster with confidence and ease.

@@ -1,106 +1,82 @@
 ---
-title: Ant Media Server Unity WebRTC SDK
-description: Ant Media Server Unity WebRTC SDK
-keywords: [Ant Media Server Unity WebRTC SDK, Unity WebRTC SDK, Ant Media Server Documentation, Ant Media Server Tutorials]
-sidebar_position: 6
+title: Unity SDK
+description: Publish, play, and peer WebRTC streams from Unity on Windows and Android.
+keywords: [Unity WebRTC SDK, Ant Media Server Documentation]
+sidebar_position: 7
+sidebar_label: Unity SDK
 ---
 
-# Ant Media Server Unity WebRTC SDK
+# Unity SDK
 
-Ant Media Server Unity WebRTC SDK is built on top of the WebRTC for Unity packages. The project includes a sample application demonstrating its use. This guide assumes Unity is already installed on your computer.
+The Unity SDK adds WebRTC publish, play, and peer modes to Unity apps. It ships with the **AMSStreamingSample** scene. Free and open source on [GitHub](https://github.com/ant-media/WebRTC-Unity-SDK).
 
-I assume that you have already installed Unity on your computer.
+:::info Codec
+The sample currently supports **VP8**. Configure your AMS application for VP8 before testing.
+:::
 
-## Setup The Project
+## Requirements
 
-1. Clone the Unity SDK project from github repository:
+- Unity installed locally
+- Ant Media Server (Community or Enterprise)
+- WebSocket URL for your application:
 
-   `git clone https://github.com/ant-media/WebRTC-Unity-SDK.git`
+| Protocol | Example | When to use |
+|----------|---------|-------------|
+| **WSS** | `wss://your-domain:5443/live/websocket` | Production — requires [SSL](/guides/installing-on-linux/setting-up-ssl/) (port **5443**) |
+| **WS** | `ws://your-ip:5080/live/websocket` | Local development without SSL (port **5080**) |
 
-2. Start Unity Hub
+Replace `live` with your application name.
 
-3. To open the project, click the Open button, then select the folder where you cloned the Unity SDK. Wait until the project opens in Unity.
+## Set up the project
 
-4. Navigate to the Project window and open the **AMSStreamingSample** scene from `Assets/AntMedia/Samples`.
-  ![Unity WebRTC SDK Assets](https://antmedia.io/wp-content/uploads/2023/02/AMSStreaming-Asset-1024x576.jpg)
+1. Clone the repository:
 
+```bash
+git clone https://github.com/ant-media/WebRTC-Unity-SDK.git
+```
 
-5. Edit AMSStreamingSamples.cs located in the same path.
-   - Set Ant Media Server websocket UURL according to your running AMS URL by editing the following line:
+2. Open Unity Hub → **Open** → select the cloned folder.
 
-   `string websocketUrl = "ws://localhost:5080/LiveApp/websocket";`
+3. In the Project window, open **AMSStreamingSample** under `Assets/AntMedia/Samples`.
 
-   - Set stream id by passing as the first parameter to the WebRTCClient constructor.
+4. Edit `AMSStreamingSamples.cs`:
+   - Set `websocketUrl` to your AMS WebSocket URL (see table above).
+   - Set the stream ID passed to the `WebRTCClient` constructor.
 
-## Build The Project
+![](https://antmedia.io/wp-content/uploads/2023/02/AMSStreaming-Asset-1024x576.jpg)
 
-Unity projects can be built for multiple platforms. Currently, **VP8** codec is supported (H.264 support will be added later). Ensure your AMS application is configured to use **VP8**.
+## Build and run
 
-![](@site/static/img/developer-guides/unity3.webp)
+### Windows
 
+1. **File → Build Settings**
+2. Select **Windows** as the platform
+3. Click **Build** and choose an output folder
+4. Run the executable and test publish or play against your server
 
-### Windows Build
-1. Navigate to File/Build settings
-
-2. Select Windows as the platform
-   ![Unity WebRTC SDK - Windows](https://antmedia.io/wp-content/uploads/2023/02/AMSUnitySDK-Windows-Build-1024x576.jpg)
-
-3. Click Build and select the folder that you want to create the executable file
-
-4. After building we can navigate to the folder we configured in the previous menu and run it, we should see the following:
+![](https://antmedia.io/wp-content/uploads/2023/02/AMSUnitySDK-Windows-Build-1024x576.jpg)
 
 ![](@site/static/img/developer-guides/unity1.webp)
 
-5. We can play it from the dashboard:
+### Android
 
-![](@site/static/img/developer-guides/unity2.webp)
+1. **File → Build Settings** → **Android** → **Switch Platform**
+2. **Player Settings → Publishing Settings** — create and assign a keystore
+3. **Other Settings** — Scripting Backend: **IL2CPP**, enable **ARM64**
+4. Connect a device, enable **Development Build**, then **Build and Run**
 
-### Android Build
-1. Navigate to File/Build settings
-2. Select Android as the platform and click the Switch Platform button
-   ![Unity WebRTC SDK Android](https://antmedia.io/wp-content/uploads/2023/02/AMSUnitySDK-Android-Build-1024x576.jpg)
+![](https://antmedia.io/wp-content/uploads/2023/02/AMSUnitySDK-Android-Build-1024x576.jpg)
 
-3. The click Player settings
-4. Expand Publisher Settings
-5. Create a Keystore via KeyStore Manager
-6. Then Select the created keystore as Custom Keystore and set the password that you determine while creating the keystore
-   ![Unity WebRTC SDK Android Build Settings](https://antmedia.io/wp-content/uploads/2023/02/AMSUnitySDK-Android-Build-Settings-1024x576.jpg)
-7. Expand Other Settings
-   - Set Scripting Backend to IL2CPP
-   - Check ARM64 checkbox
-   ![Unity WebRTC SDK Android Build Settings](https://antmedia.io/wp-content/uploads/2023/02/AMSUnitySDK-Android-Build-Settings-Other-1024x576.jpg)
+## Sample modes
 
-8. Go back to the Build window
-   - chose the device you want to install and run the application. Don't select to create the apk file without running it
-   - check the Development Build
-   ![Unity WebRTC SDK Android Build Settings](https://antmedia.io/wp-content/uploads/2023/02/AMSUnitySDK-Android-Build-Settings-Device-1024x576.jpg)
+Select a mode from the dropdown in the sample UI.
 
-9. Click Build or Build and Run button and select the folder that you want to create the apk file
+| Mode | Behavior |
+|------|----------|
+| **Publish** | Captures the camera and publishes to AMS. Play at `https://{host}:5443/{app}/play.html?id={streamId}` |
+| **Play** | Plays an existing stream (publish elsewhere with the same stream ID first) |
+| **Peer** | Publishes locally and plays a remote peer. Join a second peer from `{host}/peer.html` with the same stream ID |
 
-## Run The Project
+![](@site/static/img/developer-guides/unity3.webp)
 
-After running the executable of the Ant Media Unity WebRTC Sample Application you will get the following screen.
-
-## Unity WebRTC SDK Sample Application
-
-This Sample Application has 3 modes. You can select the mode you want to test from the Dropdown menu.
-
-### Publish Mode
-
-Opens the camera and publishes it as a WebRTC stream to AMS.
-
-You can play the stream at:
-`https://{AMS_URL}:5443/WebRTCAppEE/play.html?streamId={STREAM_ID_YOU_SET}`
-
-### Play Mode
-
-In this mode, Sample Application starts to play a stream on the AMS with WebRTC. So you can create a stream (with the stream id that you set in the SDK) on AMS as written here. Then when you click Start Sample Application will play it in the second player.
-
-### Peer Mode
-
-In this mode, Sample Application publishes the camera as a WebRTC stream and plays the other peer's WebRTC stream at the same time. After clicking the start button your camera will appear in the first player. Then you can add the second peer from:
-`https://{AMS_URL}:5443/WebRTCAppEE/peer.html` by setting the stream id as you set. Then Sample Application will play the other peer's stream in the second player.
-
-## Congratulations!
-
-You have successfully set up the Ant Media Unity WebRTC SDK, built the sample application, and tested publishing, playing, and peer-to-peer WebRTC streams. You can now explore all three modes, interact with other peers, and integrate WebRTC streaming into your own Unity projects. Enjoy real-time streaming and communication in your Unity applications!
+See the [SDK overview](/guides/developer-sdk-and-api/sdk-integration/) for licensing and platform comparison.
