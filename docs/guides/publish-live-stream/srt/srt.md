@@ -13,7 +13,7 @@ To enable this feature, we utilized Haivision's official [SRT library](https://g
 
 Below is a guide on how to publish an SRT stream to the Ant Media Server.
 
-## Pushing SRT Stream with FFmpeg
+## Publish SRT Stream with FFmpeg
 
 Assuming you have installed and launched Ant Media Server v2.4.3 or later, you can use FFmpeg to push the SRT stream. 
 
@@ -35,7 +35,7 @@ In that case, you can verify if FFmpeg has SRT protocol support or not by runnin
 ffmpeg -protocols
 ```
 
-## Publishing SRT Stream With OBS
+## Publish SRT Stream With OBS
 
 If you don’t have command-line experience and prefer a graphical interface, you can use OBS (Open Broadcaster Software) to push an SRT stream to Ant Media Server. If you are unfamiliar with OBS, you can look at this blog post [How to use OBS with Ant Media Server](https://antmedia.io/how-to-use-obs-with-ant-media-server/). 
 
@@ -51,7 +51,7 @@ srt://ant.media.server.address:4200?streamid=live/streamId,token=tokenId
 
 In order to generate the tokens, check out the stream security [documentation](/category/stream-security/).
 
-### Publishing SRT Stream Without StreamId
+### Publish SRT Stream Without StreamId
 
 :::info
 Starting from version 2.8.0 and above, Ant Media Server supports SRT publishing without the explicit need for streamId.
