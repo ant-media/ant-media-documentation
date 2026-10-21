@@ -1,6 +1,6 @@
 ---
 title: Which Playback Method Should I Use?
-description: A quick decision guide to the playback protocol that fits your latency and compatibility needs — WebRTC, LL-HLS, HLS, or CMAF (DASH).
+description: A quick decision guide to the playback protocol that fits your latency and compatibility needs — WebRTC, LL-HLS, HLS, CMAF (DASH), or RTSP.
 keywords: [Playback protocols, WebRTC vs HLS vs LL-HLS vs DASH, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 1
 ---
@@ -34,6 +34,10 @@ flowchart TD
 ## DASH / ABR-Focused Delivery
 
 - **[CMAF (DASH) Playback](/guides/playing-live-stream/dash-playing-cmaf/)** — delivers around 3-5 second latency using the same segment format DASH and HLS both build on, which makes it a good fit if your player stack or CDN is already built around MPEG-DASH rather than HLS.
+
+## RTSP Players and VMS Software
+
+- **[RTSP Output](/guides/playing-live-stream/rtsp-output/)** — a plugin that exposes each published stream (and each transcoded rendition) as its own RTSP URL on port `8554`. Use it when the player is VLC, ffplay, GStreamer, or a VMS, not a browser. Linux x86_64 only, and the URL has to point at the origin in a cluster.
 
 ## Once You're Playing
 
