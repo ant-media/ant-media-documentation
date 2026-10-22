@@ -111,16 +111,19 @@ AMS polls the relay for names ending in `/publish` and picks the stream up as a 
 
 ![](@site/static/img/publish-live-stream/moq-player.webp)
 
+MoQ broadcast names include the application name, stream ID, and track name, in the format <applicationName>/<streamId>/<trackName>.
+For example, in the live application, the broadcast names for a stream with ID moqtest are:
+```
+live/moqtest/source
+live/moqtest/720p
+live/moqtest/publish
+```
+Replace live with your application name if you're using a different application. The available tracks depend on how the stream is published and configured.
+
 4. The stream is now playing live with MoQ.
 
 ![](@site/static/img/publish-live-stream/moq-play.webp)
 
-Broadcast names always include the application name:
-```
-live/<streamId>/source
-live/<streamId>/720p
-live/<streamId>/publish
-```
 
 ## Stream through a MoQ CDN
 
