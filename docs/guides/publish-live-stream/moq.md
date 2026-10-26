@@ -49,12 +49,17 @@ sudo chmod +x install-moq-plugin.sh
 sudo ./install-moq-plugin.sh
 ```
 
-**3. Copy the MoQ player pages to your AMS application**
+### 3. Copy the MoQ player pages to your AMS application
+
+Run the following commands from the directory containing `moq-ams-player-build`:
 
 ```bash
-sudo rm -rf /usr/local/antmedia/webapps/live/moq/*
-sudo cp -r moq-ams-player-build /usr/local/antmedia/webapps/live/moq
+sudo rm -rf /usr/local/antmedia/webapps/live/moq
+sudo mkdir -p /usr/local/antmedia/webapps/live/moq
+sudo cp -r moq-ams-player-build/* /usr/local/antmedia/webapps/live/moq/
 ```
+
+These commands remove the existing MoQ player directory, recreate it, and copy the new player files into your Ant Media Server application. Replacing the directory ensures that outdated, hashed assets are removed and prevents browsers from loading a stale mix of files.
 
 Replace the whole directory instead of copying over it. Asset filenames are hashed, so old ones stick around and the browser can pick up a stale mix.
 
