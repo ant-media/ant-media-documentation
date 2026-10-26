@@ -61,8 +61,6 @@ sudo cp -r moq-ams-player-build/* /usr/local/antmedia/webapps/live/moq/
 
 These commands remove the existing MoQ player directory, recreate it, and copy the new player files into your Ant Media Server application. Replacing the directory ensures that outdated, hashed assets are removed and prevents browsers from loading a stale mix of files.
 
-Replace the whole directory instead of copying over it. Asset filenames are hashed, so old ones stick around and the browser can pick up a stale mix.
-
 **4. Restart AMS**
 
 ```bash
