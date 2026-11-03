@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="430" viewBox="0 0 1000 430" role="img" aria-labelledby="title description">
+  <title id="title">Three ways to monitor Ant Media Server with Prometheus</title>
+  <desc id="description">Part 1, standalone: Prometheus and Grafana run on the AMS server. Part 2, manual cluster: a separate monitoring server collects from a fixed list of AMS nodes. Part 3, autoscaling cluster: the monitoring server reads the node list from MongoDB, so new nodes are added automatically.</desc>
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2167a6"/>
+    </marker>
+    <marker id="arr-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#62748a"/>
+    </marker>
+  </defs>
+  <rect width="1000" height="430" rx="16" fill="#ffffff"/>
+  <g font-family="Arial, Helvetica, sans-serif" text-anchor="middle" fill="#172b4d">
+
+    <!-- Panel 1 -->
+    <rect x="15" y="15" width="310" height="400" rx="14" fill="#f7f9fc" stroke="#d5dde8" stroke-width="2"/>
+    <text x="170" y="50" font-size="20" font-weight="700">Part 1: Standalone</text>
+    <text x="170" y="74" font-size="14" fill="#62748a">One AMS server</text>
+    <rect x="45" y="110" width="250" height="210" rx="12" fill="#ffffff" stroke="#62748a" stroke-width="2" stroke-dasharray="7 5"/>
+    <text x="170" y="134" font-size="14" font-weight="700" fill="#62748a">Your AMS server</text>
+    <rect x="70" y="150" width="200" height="40" rx="8" fill="#eaf4ff" stroke="#2167a6" stroke-width="2"/>
+    <text x="170" y="176" font-size="15" font-weight="700">Ant Media Server</text>
+    <rect x="70" y="210" width="200" height="40" rx="8" fill="#fff3e8" stroke="#c75b12" stroke-width="2"/>
+    <text x="170" y="236" font-size="15" font-weight="700">Prometheus</text>
+    <rect x="70" y="270" width="200" height="40" rx="8" fill="#fff8db" stroke="#b28704" stroke-width="2"/>
+    <text x="170" y="296" font-size="15" font-weight="700">Grafana</text>
+    <line x1="170" y1="191" x2="170" y2="207" stroke="#2167a6" stroke-width="2.5" marker-end="url(#arr)"/>
+    <line x1="170" y1="251" x2="170" y2="267" stroke="#2167a6" stroke-width="2.5" marker-end="url(#arr)"/>
+    <text x="170" y="360" font-size="14">Everything on one machine.</text>
+    <text x="170" y="380" font-size="14">Quickest to set up.</text>
+
+    <!-- Panel 2 -->
+    <rect x="345" y="15" width="310" height="400" rx="14" fill="#f7f9fc" stroke="#d5dde8" stroke-width="2"/>
+    <text x="500" y="50" font-size="20" font-weight="700">Part 2: Manual cluster</text>
+    <text x="500" y="74" font-size="14" fill="#62748a">A fixed set of AMS nodes</text>
+    <rect x="370" y="110" width="110" height="40" rx="8" fill="#eaf4ff" stroke="#2167a6" stroke-width="2"/>
+    <text x="425" y="136" font-size="15" font-weight="700">Node 1</text>
+    <rect x="520" y="110" width="110" height="40" rx="8" fill="#eaf4ff" stroke="#2167a6" stroke-width="2"/>
+    <text x="575" y="136" font-size="15" font-weight="700">Node 2</text>
+    <rect x="375" y="200" width="250" height="140" rx="12" fill="#ffffff" stroke="#62748a" stroke-width="2" stroke-dasharray="7 5"/>
+    <text x="500" y="330" font-size="14" font-weight="700" fill="#62748a">Monitoring server</text>
+    <rect x="400" y="215" width="200" height="34" rx="8" fill="#fff3e8" stroke="#c75b12" stroke-width="2"/>
+    <text x="500" y="238" font-size="14" font-weight="700">Prometheus + node list</text>
+    <rect x="400" y="262" width="200" height="34" rx="8" fill="#fff8db" stroke="#b28704" stroke-width="2"/>
+    <text x="500" y="285" font-size="14" font-weight="700">Grafana</text>
+    <line x1="425" y1="151" x2="470" y2="212" stroke="#2167a6" stroke-width="2.5" marker-end="url(#arr)"/>
+    <line x1="575" y1="151" x2="530" y2="212" stroke="#2167a6" stroke-width="2.5" marker-end="url(#arr)"/>
+    <text x="500" y="370" font-size="14">You list the nodes once.</text>
+    <text x="500" y="390" font-size="14">Edit the list if nodes change.</text>
+
+    <!-- Panel 3 -->
+    <rect x="675" y="15" width="310" height="400" rx="14" fill="#f7f9fc" stroke="#d5dde8" stroke-width="2"/>
+    <text x="830" y="50" font-size="20" font-weight="700">Part 3: Autoscaling</text>
+    <text x="830" y="74" font-size="14" fill="#62748a">Nodes come and go</text>
+    <rect x="690" y="110" width="80" height="40" rx="8" fill="#eaf4ff" stroke="#2167a6" stroke-width="2"/>
+    <text x="730" y="136" font-size="14" font-weight="700">Node 1</text>
+    <rect x="780" y="110" width="80" height="40" rx="8" fill="#eaf4ff" stroke="#2167a6" stroke-width="2"/>
+    <text x="820" y="136" font-size="14" font-weight="700">Node 2</text>
+    <rect x="870" y="110" width="100" height="40" rx="8" fill="#eaf4ff" stroke="#2167a6" stroke-width="2" stroke-dasharray="5 4"/>
+    <text x="920" y="136" font-size="14" font-weight="700">Node N…</text>
+    <rect x="890" y="170" width="80" height="36" rx="8" fill="#eef7ea" stroke="#3f8f3a" stroke-width="2"/>
+    <text x="930" y="193" font-size="14" font-weight="700">MongoDB</text>
+    <rect x="700" y="225" width="260" height="135" rx="12" fill="#ffffff" stroke="#62748a" stroke-width="2" stroke-dasharray="7 5"/>
+    <text x="830" y="350" font-size="14" font-weight="700" fill="#62748a">Monitoring server</text>
+    <rect x="715" y="240" width="230" height="34" rx="8" fill="#fff3e8" stroke="#c75b12" stroke-width="2"/>
+    <text x="830" y="263" font-size="14" font-weight="700">Prometheus + discovery</text>
+    <rect x="715" y="285" width="230" height="34" rx="8" fill="#fff8db" stroke="#b28704" stroke-width="2"/>
+    <text x="830" y="308" font-size="14" font-weight="700">Grafana</text>
+    <line x1="730" y1="151" x2="760" y2="237" stroke="#2167a6" stroke-width="2.5" marker-end="url(#arr)"/>
+    <line x1="820" y1="151" x2="815" y2="237" stroke="#2167a6" stroke-width="2.5" marker-end="url(#arr)"/>
+    <line x1="930" y1="207" x2="900" y2="237" stroke="#62748a" stroke-width="2.5" stroke-dasharray="6 4" marker-end="url(#arr-g)"/>
+    <text x="830" y="385" font-size="14">New nodes are found</text>
+    <text x="830" y="405" font-size="14">automatically from MongoDB.</text>
+  </g>
+</svg>
