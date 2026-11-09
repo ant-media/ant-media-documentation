@@ -35,10 +35,10 @@ Codecs outside this list (e.g., VP8, AV1) are not yet supported.
 
 **1. Download and unzip the plugin**
 
-[Download MoQPlugin-release.zip](https://drive.google.com/file/d/1X9ymWsDjfdNdcXH2h0y2Ak2IWpmnkijk/view?usp=sharing) and upload it to your Ant Media Server, then run:
+[Download MoQPlugin-release-3.1.0.zip](https://drive.google.com/file/d/1_5oZ_O2mCgrQZhx8QQ457qVZfjvu8qv_/view) and upload it to your Ant Media Server, then run:
 
 ```bash
-sudo unzip MoQPlugin-release.zip
+sudo unzip MoQPlugin-release-3.1.0.zip
 cd MoQ-Plugin
 ```
 
