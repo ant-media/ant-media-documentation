@@ -261,6 +261,20 @@ https://YOUR_DOMAIN:5443/live/whip.html
 
 File: `/usr/local/antmedia/webapps/live/whip.html`
 
+## Play with WHEP
+
+:::info
+Enterprise Edition
+:::
+
+Play a stream in the browser using WHEP. See [WHEP](/guides/playing-live-stream/whep/) for details.
+
+```text
+https://YOUR_DOMAIN:5443/live/whep.html
+```
+
+File: `/usr/local/antmedia/webapps/live/whep.html`
+
 ## Publish with virtual background
 
 :::info
