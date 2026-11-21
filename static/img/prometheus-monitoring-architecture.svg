@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="480" viewBox="0 0 1000 480" role="img" aria-labelledby="title description">
+  <title id="title">Ant Media Server monitoring with Prometheus and Grafana</title>
+  <desc id="description">Prometheus pulls metrics from AMS nodes and Grafana queries Prometheus. Choose target addresses from a static list, cloud service discovery, or MongoDB node registrations read by an exporter and written to a JSON file.</desc>
+  <defs>
+    <marker id="data-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2167a6"/>
+    </marker>
+    <marker id="target-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#62748a"/>
+    </marker>
+  </defs>
+  <rect width="1000" height="480" rx="16" fill="#ffffff"/>
+  <g font-family="Arial, Helvetica, sans-serif" text-anchor="middle" fill="#172b4d">
+    <text x="500" y="38" font-size="23" font-weight="700">Metrics collection and visualization</text>
+    <rect x="30" y="100" width="250" height="120" rx="12" fill="#eaf4ff" stroke="#2167a6" stroke-width="2"/>
+    <text x="155" y="137" font-size="21" font-weight="700">AMS nodes</text>
+    <text x="155" y="168" font-size="17">Expose metrics</text>
+    <text x="155" y="195" font-size="17">:9090/metrics</text>
+    <rect x="375" y="100" width="250" height="120" rx="12" fill="#fff1e8" stroke="#ba4c13" stroke-width="2"/>
+    <text x="500" y="137" font-size="21" font-weight="700">Prometheus</text>
+    <text x="500" y="168" font-size="17">Scrapes every 15 seconds</text>
+    <text x="500" y="195" font-size="17">Stores time series</text>
+    <rect x="720" y="100" width="250" height="120" rx="12" fill="#fff6de" stroke="#a86d00" stroke-width="2"/>
+    <text x="845" y="137" font-size="21" font-weight="700">Grafana</text>
+    <text x="845" y="168" font-size="17">Queries Prometheus</text>
+    <text x="845" y="195" font-size="17">Displays dashboards</text>
+    <path d="M 280 160 H 370" fill="none" stroke="#2167a6" stroke-width="2.5" marker-end="url(#data-arrow)"/>
+    <text x="327" y="130" font-size="14">Pulled</text>
+    <text x="327" y="148" font-size="14">metrics</text>
+    <path d="M 625 160 H 715" fill="none" stroke="#2167a6" stroke-width="2.5" marker-end="url(#data-arrow)"/>
+    <text x="672" y="130" font-size="14">Query</text>
+    <text x="672" y="148" font-size="14">results</text>
+    <g fill="none" stroke="#62748a" stroke-width="2" stroke-dasharray="6 5">
+      <path d="M 155 325 V 280 H 500"/>
+      <path d="M 845 325 V 280 H 500"/>
+      <path d="M 500 325 V 225" marker-end="url(#target-arrow)"/>
+    </g>
+    <text x="520" y="255" text-anchor="start" font-size="16" fill="#42566f">Target addresses (choose one source)</text>
+    <rect x="30" y="325" width="250" height="125" rx="12" fill="#f4f7fa" stroke="#a4b1c1"/>
+    <text x="155" y="357" font-size="19" font-weight="700">Static list</text>
+    <text x="155" y="387" font-size="16">One server or fixed cluster</text>
+    <text x="155" y="419" font-size="16">Addresses in prometheus.yml</text>
+    <rect x="375" y="325" width="250" height="125" rx="12" fill="#f4f7fa" stroke="#a4b1c1"/>
+    <text x="500" y="357" font-size="19" font-weight="700">Cloud discovery</text>
+    <text x="500" y="387" font-size="16">AWS · Azure · GCP · OVH</text>
+    <text x="500" y="419" font-size="16">Provider API → target list</text>
+    <rect x="720" y="325" width="250" height="125" rx="12" fill="#f4f7fa" stroke="#a4b1c1"/>
+    <text x="845" y="357" font-size="19" font-weight="700">MongoDB alternative</text>
+    <text x="845" y="387" font-size="16">Node registry → exporter</text>
+    <text x="845" y="419" font-size="16">→ JSON file → file discovery</text>
+  </g>
+</svg>
