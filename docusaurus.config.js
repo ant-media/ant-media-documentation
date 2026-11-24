@@ -133,9 +133,7 @@ scripts: [
           showLastUpdateTime: true,
           lastVersion:
               isDev ? 'current' : getLastStableVersion(),
-          onlyIncludeVersions: (() => {
-                return [ ...(isDev ? ['current'] : []), ...versions.slice(0, 4)];
-            })(),
+          onlyIncludeVersions: [...(isDev ? ['current'] : []), ...versions],
           versions: {
              current: {
                 label: `${getNextVersionName()} 🚧`,
@@ -252,14 +250,10 @@ scripts: [
     {
       createRedirects(existingPath) {
         // Keep /3.1.0/... bookmarks after renaming the frozen version to 3.1.
-        if (
-          existingPath.startsWith('/2.') ||
-          existingPath.startsWith('/3.0/') ||
-          existingPath.startsWith('/3.1/')
-        ) {
-          return undefined;
+        if (existingPath === '/3.1' || existingPath.startsWith('/3.1/')) {
+          return [`/3.1.0${existingPath.slice('/3.1'.length)}`];
         }
-        return [`/3.1.0${existingPath}`];
+        return undefined;
       },
       redirects: [
         {
