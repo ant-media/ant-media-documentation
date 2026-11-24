@@ -1,6 +1,6 @@
 ---
 title: Which Playback Method Should I Use?
-description: A quick decision guide to the playback protocol that fits your latency and compatibility needs: WebRTC, LL-HLS, HLS, CMAF (DASH), or RTSP.
+description: A quick decision guide to the playback protocol that fits your latency and compatibility needs, covering WebRTC, LL-HLS, HLS, CMAF (DASH), and RTSP.
 keywords: [Playback protocols, WebRTC vs HLS vs LL-HLS vs DASH, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 1
 ---
