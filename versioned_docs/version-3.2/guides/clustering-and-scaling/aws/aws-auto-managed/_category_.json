@@ -1,0 +1,8 @@
+{
+  "label": "Auto Managed",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "Auto Managed Service on AWS for Ant Media Server."
+  }
+}
