@@ -1,6 +1,6 @@
 ---
 title: Which Playback Method Should I Use?
-description: A quick decision guide to the playback protocol that fits your latency and compatibility needs — WebRTC, LL-HLS, HLS, CMAF (DASH), or RTSP.
+description: A quick decision guide to the playback protocol that fits your latency and compatibility needs: WebRTC, LL-HLS, HLS, CMAF (DASH), or RTSP.
 keywords: [Playback protocols, WebRTC vs HLS vs LL-HLS vs DASH, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 1
 ---
@@ -37,7 +37,7 @@ flowchart TD
 
 ## RTSP Players and VMS Software
 
-- **[RTSP Output](/guides/playing-live-stream/rtsp-output/)** — a plugin that exposes each published stream (and each transcoded rendition) as its own RTSP URL on port `8554`. Use it when the player is VLC, ffplay, GStreamer, or a VMS, not a browser. Linux x86_64 only, and the URL has to point at the origin in a cluster.
+- **[RTSP Output](/guides/playing-live-stream/rtsp-output/)**: a plugin that gives every published stream its own RTSP URL on port `8554`. Use it when the player is VLC, ffplay, GStreamer, or VMS software instead of a web browser. Linux x86_64 only, and not supported in a cluster.
 
 ## Once You're Playing
 
