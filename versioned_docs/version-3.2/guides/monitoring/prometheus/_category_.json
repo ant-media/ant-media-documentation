@@ -1,6 +1,6 @@
 {
   "label": "Prometheus and Grafana",
-  "position": 6,
+  "position": 0,
   "link": {
     "type": "generated-index",
     "description": "See every Ant Media Server metric on a live Grafana dashboard. Start with Choose Your Setup, then follow the guide for a standalone server, a manual cluster, or an autoscaling cluster."
