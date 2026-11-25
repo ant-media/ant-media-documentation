@@ -77,6 +77,81 @@ In AMS, the multitrack playback works with both WebRTC & HLS.
 
 ![](@site/static/img/publish-live-stream/srt/multitrack-playback.png)
 
+## Encrypt SRT Ingest with a Passphrase
+
+:::info
+SRT passphrase encryption is available starting with Ant Media Server 3.2.0.
+:::
+
+SRT can encrypt the stream between the publisher and Ant Media Server with a shared passphrase. The publisher and the server must use the same passphrase. If they don't match, the server rejects the connection and nothing is published.
+
+The passphrase must be **10 to 80 characters** long. Use only letters and numbers, so you can put it in the SRT URL as it is. To generate a random passphrase, run:
+
+```bash
+openssl rand -hex 20
+```
+
+You can set a passphrase for one stream, or for every stream in an application.
+
+### Set a Passphrase for One Stream
+
+1. Create the stream with a passphrase. Run this command on your Ant Media Server. Replace `stream1` with your stream ID and `yourpassphrase` with your passphrase:
+
+   ```bash
+   curl -X POST -H "Content-Type: application/json" \
+     -d '{"streamId":"stream1","srtPassphraseOverride":"yourpassphrase"}' \
+     http://localhost:5080/live/rest/v2/broadcasts/create
+   ```
+
+   **You should see** a JSON response that includes `"streamId":"stream1"`. If the passphrase is shorter than 10 or longer than 80 characters, you see `SRT passphrase must be 10 to 80 characters` instead, and the stream is not created.
+
+   The field for a single stream is named `srtPassphraseOverride`. The name `srtPassphrase` is only used for the application setting below. If you send `srtPassphrase` here, the server answers with `Unrecognized field "srtPassphrase"` and does not create the stream.
+
+   To call the REST API from another machine, you must allow that machine first. See [Secure with IP Filter](/guides/developer-sdk-and-api/rest-api-guide/securing-rest-apis/).
+
+2. Publish with the same passphrase. Add `&passphrase=` and your passphrase to the end of the SRT URL. Put the URL in double quotes, because the shell treats `&` as a special character:
+
+   ```bash
+   ffmpeg -re -i {INPUT} -vcodec libx264 -profile:v baseline -g 60 -acodec aac -f mpegts "srt://ant.media.server.address:4200?streamid=live/stream1&passphrase=yourpassphrase"
+   ```
+
+### Set a Passphrase for a Whole Application
+
+1. Open the Ant Media Server web panel.
+2. Select your application on the left, for example `live`.
+3. Go to **Settings → Advanced**.
+4. Find **`srtPassphrase`** and enter your passphrase:
+
+   ```json
+   "srtPassphrase": "yourpassphrase"
+   ```
+
+5. Save the settings.
+
+The change applies right away, without a restart. Every SRT stream published to this application now needs this passphrase in its SRT URL.
+
+### Which Passphrase Is Used
+
+A passphrase set on a stream always takes priority over the application passphrase. A stream with its own passphrase does not accept the application passphrase.
+
+| Stream passphrase | Application passphrase | The publisher must use |
+| --- | --- | --- |
+| Set | Set or empty | The stream passphrase |
+| Empty | Set | The application passphrase |
+| Empty | Empty | No passphrase. The stream is not encrypted. |
+
+:::tip Only allow streams you created
+Set the application passphrase to a long random value and don't share it with anyone. Then give each stream its own passphrase when you create it. A publisher can then only publish to streams you created, because nobody can use the application passphrase.
+:::
+
+### If the Publisher Is Rejected
+
+When the passphrase is missing or wrong, the server rejects the SRT connection and FFmpeg stops. The FFmpeg output shows why:
+
+| FFmpeg output contains | Cause |
+| --- | --- |
+| `ERROR:UNSECURE` | The stream needs a passphrase, but the SRT URL has none. Add `&passphrase=` to the URL. |
+| `ERROR:BADSECRET` | The passphrase in the SRT URL is wrong. Check which passphrase applies in the table above. |
 
 ## Play SRT with Ant Media Server
 
@@ -103,3 +178,7 @@ SRT is enabled by default in Ant Media Server and communicates via UDP port 4200
 :::info
 SRT support is available for both x86_64 and ARM architectures, starting with Ant Media Server version 2.6.0. For versions below 2.6.0 (till v2.5.3), SRT support is available for the x86_64 architecture only.
 :::
+
+## Need Help?
+
+If FFmpeg or OBS can't reach the SRT port, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
