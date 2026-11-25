@@ -15,20 +15,20 @@ Start by deciding what you want to look at. Monitoring options fall into two gro
 After that, the decision tree asks where AMS runs and what tools you already use.
 
 ```mermaid
-%%{init: {'flowchart': {'curve': 'linear', 'nodeSpacing': 80, 'rankSpacing': 80}}}%%
+%%{init: {'flowchart': {'curve': 'linear', 'nodeSpacing': 12, 'rankSpacing': 45, 'padding': 8}}}%%
 flowchart TD
-    A{"What do you want to look at?"}
-    A -->|"Metrics on a dashboard: streams, viewers, CPU"| M{"Where does AMS run?"}
-    A -->|"Logs to troubleshoot problems"| L{"Who will read the logs?"}
-    M -->|"Kubernetes"| K8S["Kubernetes Logs & Metrics"]
-    M -->|"Linux servers or VMs"| MT{"What do you already use?"}
-    MT -->|"Nothing yet, start fresh"| PROM["Prometheus and Grafana"]
-    MT -->|"A New Relic account"| NR["New Relic"]
-    MT -->|"Kafka and Elasticsearch"| KAFKA["Grafana with Kafka"]
-    L -->|"The Ant Media support team"| CL["Centralized Logging"]
-    L -->|"My own team"| LW{"Where does AMS run?"}
-    LW -->|"Kubernetes"| K8S2["Kubernetes Logs & Metrics"]
-    LW -->|"Linux servers or VMs"| GL["AMS Cluster Logs with Graylog"]
+    A{"What do you want<br/>to look at?"}
+    A -->|"Metrics"| M{"Where does<br/>AMS run?"}
+    A -->|"Logs"| L{"Who reads<br/>the logs?"}
+    M -->|"Kubernetes"| K8S["Kubernetes<br/>Logs & Metrics"]
+    M -->|"Linux or VMs"| MT{"What do you<br/>already use?"}
+    MT -->|"Nothing yet"| PROM["Prometheus<br/>and Grafana"]
+    MT -->|"New Relic"| NR["New Relic"]
+    MT -->|"Kafka and<br/>Elasticsearch"| KAFKA["Grafana<br/>with Kafka"]
+    L -->|"Ant Media<br/>support"| CL["Centralized<br/>Logging"]
+    L -->|"My own team"| LW{"Where does<br/>AMS run?"}
+    LW -->|"Kubernetes"| K8S2["Kubernetes<br/>Logs & Metrics"]
+    LW -->|"Linux or VMs"| GL["AMS Cluster<br/>Logs (Graylog)"]
 ```
 
 - **[Prometheus and Grafana](/category/prometheus-and-grafana/):** the recommended starting point for metrics on Linux servers. AMS already publishes its metrics, so you only add Prometheus and Grafana. It works for a single server, a manual cluster, and an autoscaling cluster, where new nodes are found automatically. If you're not sure which metrics option to use, start here.
