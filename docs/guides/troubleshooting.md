@@ -25,6 +25,7 @@ If you experience a choppy stream, check the following:
 
 *   Make sure that your connection quality is good enough. To do that, Ant Media Server has a built-in test page. You can access it and start testing from ```https://{YOUR_DOMAIN_NAME}:5443/live/webrtc-test-tool.html```
 *   If your use case is RTMP to WebRTC streaming, check if your stream has B-Frames. WebRTC doesn't accept B-Frames and if your video has them the stream will be choppy. To avoid B-Frames h264 baseline should be main.
+*   To see what happens inside the WebRTC session itself, open `chrome://webrtc-internals` while the issue occurs, download the dump and load it into [rtcStats](https://rtcstats.com) for a visual breakdown of bitrate, packet loss, jitter and connection state.
 
 ### I see a high CPU usage
 

@@ -11,3 +11,6 @@
 # Triggered by pull requests, includes 'Next' version
 [context.deploy-preview]
   command = "npm run build -- --dev"
+
+[context.deploy-preview.environment]
+  NODE_OPTIONS = "--max-old-space-size=4096"
