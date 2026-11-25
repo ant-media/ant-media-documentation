@@ -1,0 +1,49 @@
+import CodeBlock from '@theme/CodeBlock';
+
+**{props.step}a. Allow port 3000 from your own IP address**
+
+Grafana runs on port **3000**. Allow it only from your own IP address.
+
+On AWS, go to **EC2 → Security Groups**, select the security group of {props.server}, then click **Edit inbound rules → Add rule**. Set **Type** to **Custom TCP**, **Port range** to **3000**, and **Source** to **My IP**, then click **Save rules**. Other cloud providers have the same setting in their firewall.
+
+![AWS inbound rule: TCP 3000 from My IP](@site/static/img/monitoring/prometheus/aws-security-group-port-3000.png)
+
+Also check the firewall on the server itself:
+
+<CodeBlock language="bash" title={props.where}>{String.raw`sudo ufw status`}</CodeBlock>
+
+If the output is `Status: inactive`, there is nothing to do. This is the default on Ubuntu, including on AWS. If it is `Status: active`, run `sudo ufw allow from YOUR_OWN_IP to any port 3000 proto tcp`.
+
+**{props.step}b. Sign in to Grafana**
+
+Open `http://SERVER_PUBLIC_IP:3000` in your browser, using the public IP address of {props.server}. Sign in with username **admin** and password **admin**.
+
+![Grafana sign-in page](@site/static/img/monitoring/prometheus/grafana-login.png)
+
+Grafana then asks you to choose a new password. Enter it twice and click **Submit**. Do not click **Skip**, because anyone who can reach port 3000 could then sign in with `admin` / `admin`.
+
+**{props.step}c. Connect Grafana to Prometheus**
+
+1. In the left menu, click **Connections** to open it, then click **Data sources**.
+2. Click **Add data source**, then click **Prometheus**.
+3. In **Prometheus server URL**, enter `http://127.0.0.1:9091`.
+
+   ![Prometheus server URL set to http://127.0.0.1:9091](@site/static/img/monitoring/prometheus/grafana-data-source-url.png)
+
+4. Scroll to the bottom of the page and click **Save & test**.
+
+**You should see** a green box with **Successfully queried the Prometheus API.** Grafana names the new data source `prometheus`.
+
+![Grafana confirms the connection to Prometheus](@site/static/img/monitoring/prometheus/grafana-data-source-success.png)
+
+**{props.step}d. Import the Ant Media dashboard**
+
+1. Download **[ams-prometheus-grafana-dashboard.json](pathname:///files/ams-prometheus-grafana-dashboard.json)** to your computer.
+2. In Grafana, click **Dashboards** in the left menu, then click **New → Import dashboard**.
+3. Click the upload area and select the file you downloaded.
+4. Under **DS_PROMETHEUS**, click the box and choose **prometheus**. The box shows grey hint text until you choose, so make sure **prometheus** with the Prometheus logo is shown, as in the picture below.
+5. Click **Import**.
+
+![Importing the dashboard with the prometheus data source selected](@site/static/img/monitoring/prometheus/grafana-import-dashboard.png)
+
+**You should see** the **Ant Media Server - All Prometheus Metrics** dashboard, with **Scrape target up** showing **1**.
