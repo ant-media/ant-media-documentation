@@ -2,18 +2,24 @@
 title: Monitoring Ant Media Server with Prometheus
 description: Step by step, see every Ant Media Server metric on a live Grafana dashboard, for a single server, a manual cluster, or an autoscaling cluster.
 keywords: [Prometheus, Grafana, monitoring, metrics, dashboard, cluster, autoscaling, MongoDB, Ant Media Server]
+sidebar_position: 6
+sidebar_label: Prometheus
 ---
 
 # Monitoring Ant Media Server with Prometheus
 
-Ant Media Server (AMS) constantly measures what it is doing: live streams, viewers, CPU, memory and much more. In this guide you'll turn those numbers into a **live dashboard in your browser**, using two free tools:
+Ant Media Server (AMS) measures what it is doing all the time: live streams, viewers, CPU, memory and more. In this guide you turn those numbers into a **live dashboard in your browser**, using two free tools:
 
 - **Prometheus** collects the numbers every 15 seconds and keeps 15 days of history.
-- **Grafana** draws them as graphs, with a ready-made Ant Media dashboard.
+- **Grafana** draws them as graphs, using a ready-made Ant Media dashboard.
 
 ![The finished Ant Media Server dashboard in Grafana](@site/static/img/monitoring/prometheus/grafana-ams-dashboard-overview.png)
 
-At the end you'll be able to answer questions such as *"How many people are watching right now?"*, *"Is my server running out of CPU or disk?"* and *"Which node in my cluster is struggling?"* at a glance.
+When you finish, you can see at a glance how many people are watching, whether a server is running out of CPU or disk, and which node in your cluster is struggling.
+
+:::note
+This guide reads metrics directly from AMS and needs no extra services. If you already send AMS statistics to Kafka and Elasticsearch, see [Monitoring with Grafana](/guides/monitoring/monitoring-ams-with-grafana/) instead.
+:::
 
 ## Choose your setup
 
@@ -25,29 +31,33 @@ At the end you'll be able to answer questions such as *"How many people are watc
 | A cluster with a fixed set of nodes | [Part 2: Manual cluster](#part-2-manual-cluster) | 20 min |
 | A cluster that adds and removes nodes automatically | [Part 3: Autoscaling cluster](#part-3-autoscaling-cluster) | 30 min |
 
-Parts 2 and 3 reuse steps from Part 1, so it helps to read Part 1 first.
+Parts 2 and 3 reuse steps from Part 1, so read Part 1 first even if you have a cluster.
 
-**You'll need:** Ubuntu 24.04 servers, SSH access with `sudo`, and permission to change your firewall or cloud security groups.
+### Requirements
+
+- Servers running **Ubuntu 24.04** on **x86_64**. To check, run `uname -m` on each server. The output must be `x86_64`.
+- SSH access to each server with `sudo` rights.
+- Permission to change your firewall or cloud security groups.
 
 :::tip How to read the commands
-Each code block's title says **where** to run it. After each step, compare your output with **You should see**. Replace anything written like `THIS` with your own value.
+Each code block's title says **where** to run it. After each step, compare your output with **You should see**. Replace anything written in capitals, like `YOUR_SERVER_IP`, with your own value.
 :::
 
 ---
 
 ## Part 1: Standalone server {#part-1-standalone-server}
 
-Everything runs on your AMS server.
+In this part, Prometheus and Grafana run on your AMS server.
 
 ### Step 1: Check that AMS publishes metrics
 
-AMS publishes its metrics on port **9090**. This is switched on by default.
+AMS publishes its metrics on port **9090**. This is turned on by default.
 
 ```bash title="Run on your AMS server"
 curl -s http://127.0.0.1:9090/metrics | grep "^antmedia_streams_live"
 ```
 
-**You should see** a line ending in a number, the live streams right now:
+**You should see** one line ending in a number, which is the number of live streams right now:
 
 ```text
 antmedia_streams_live{antmedia_instance_id="…",antmedia_instance_ip="…",antmedia_private_ip="…"} 0.0
@@ -57,17 +67,35 @@ antmedia_streams_live{antmedia_instance_id="…",antmedia_instance_ip="…",antm
 Make sure `/usr/local/antmedia/conf/red5.properties` contains `prometheus.enabled=true` and `prometheus.port=9090`, then run `sudo systemctl restart antmedia` and try again.
 :::
 
+:::warning Keep port 9090 closed to the internet
+The metrics page has no password, and AMS answers on port 9090 on every network interface. Do **not** open port 9090 in your firewall or security group for the standalone setup. Prometheus reads it from inside the server.
+:::
+
 ### Step 2: Install Prometheus and Grafana {#install}
 
-Paste this whole block. It installs Prometheus 3.14.0 (and checks that the download isn't damaged) and Grafana:
+Prometheus runs on port **9091**, inside the server only, because AMS already uses port 9090.
+
+#### 2a. Download Prometheus and check the file
 
 ```bash title="Run on your AMS server"
-# --- Prometheus ---
 cd ~
 sudo apt-get update
 sudo apt-get install -y curl ca-certificates apt-transport-https wget gnupg
 curl -fLO https://github.com/prometheus/prometheus/releases/download/v3.14.0/prometheus-3.14.0.linux-amd64.tar.gz
 printf '%s\n' 'f665c6da19eb7ba399c915d30c7d9793c9b417bf8a749b504bc470678631478d  prometheus-3.14.0.linux-amd64.tar.gz' | sha256sum -c -
+```
+
+**You should see** this as the last line:
+
+```text
+prometheus-3.14.0.linux-amd64.tar.gz: OK
+```
+
+If you see `FAILED`, the download is damaged. Delete the file with `rm prometheus-3.14.0.linux-amd64.tar.gz` and run the block again.
+
+#### 2b. Install Prometheus as a service
+
+```bash title="Run on your AMS server"
 tar -xzf prometheus-3.14.0.linux-amd64.tar.gz
 sudo install -m 755 prometheus-3.14.0.linux-amd64/prometheus prometheus-3.14.0.linux-amd64/promtool /usr/local/bin/
 id prometheus >/dev/null 2>&1 || sudo useradd --system --no-create-home --shell /usr/sbin/nologin prometheus
@@ -89,24 +117,29 @@ Restart=on-failure
 [Install]
 WantedBy=multi-user.target
 EOF
+sudo systemctl daemon-reload
+prometheus --version | head -n 1
+```
 
-# --- Grafana ---
+**You should see** `prometheus, version 3.14.0`. Prometheus starts in Step 3, after you tell it what to watch.
+
+:::info Disk space
+Prometheus keeps up to **15 GB** of history. If `df -h /` shows less than 20 GB free, change `15GB` in `/etc/systemd/system/prometheus.service` to about half of your free space, then run `sudo systemctl daemon-reload`.
+:::
+
+#### 2c. Install Grafana
+
+```bash title="Run on your AMS server"
 sudo mkdir -p /etc/apt/keyrings/
 wget -q -O - https://apt.grafana.com/gpg.key | gpg --dearmor | sudo tee /etc/apt/keyrings/grafana.gpg > /dev/null
 echo "deb [signed-by=/etc/apt/keyrings/grafana.gpg] https://apt.grafana.com stable main" | sudo tee /etc/apt/sources.list.d/grafana.list
 sudo apt-get update
 sudo apt-get install -y grafana
-sudo systemctl daemon-reload
 sudo systemctl enable --now grafana-server
 systemctl is-active grafana-server
 ```
 
-**You should see** `prometheus-3.14.0.linux-amd64.tar.gz: OK` near the top and `active` at the end.
-
-:::info Good to know
-- Prometheus listens on **9091**, inside the server only, because AMS already uses 9090.
-- Prometheus keeps up to **15 GB** of history. If `df -h /` shows less than 20 GB free, change `15GB` to about half your free space in `/etc/systemd/system/prometheus.service`.
-:::
+**You should see** `active` as the last line.
 
 ### Step 3: Tell Prometheus what to watch
 
@@ -142,38 +175,80 @@ curl -s http://127.0.0.1:9091/api/v1/targets | grep -o '"scrapeUrl":"[^"]*"\|"he
 
 ### Step 4: Open Grafana and import the dashboard {#grafana}
 
-**1. Allow port 3000 from your own IP address.** On AWS: **EC2 → Security Groups →** your server's group **→ Edit inbound rules → Add rule**, then set **Custom TCP**, port **3000**, source **My IP**, and save. Other clouds have the same setting in their firewall.
+#### 4a. Allow port 3000 from your own IP address
+
+Grafana runs on port **3000**. Allow it only from your own IP address.
+
+On AWS, go to **EC2 → Security Groups**, select your server's security group, then click **Edit inbound rules → Add rule**. Set **Type** to **Custom TCP**, **Port range** to **3000**, and **Source** to **My IP**, then click **Save rules**. Other cloud providers have the same setting in their firewall.
 
 ![AWS inbound rule: TCP 3000 from My IP](@site/static/img/monitoring/prometheus/aws-security-group-port-3000.png)
 
-**2. Sign in.** Open `http://YOUR_SERVER_IP:3000`, sign in with **admin** / **admin**, and choose a new password.
+Also check the firewall on the server itself:
+
+```bash title="Run on your AMS server"
+sudo ufw status
+```
+
+If the output is `Status: inactive`, there is nothing to do. This is the default on Ubuntu, including on AWS. If it is `Status: active`, run `sudo ufw allow from YOUR_OWN_IP to any port 3000 proto tcp`.
+
+#### 4b. Sign in to Grafana
+
+Open `http://YOUR_SERVER_IP:3000` in your browser. Sign in with username **admin** and password **admin**.
 
 ![Grafana sign-in page](@site/static/img/monitoring/prometheus/grafana-login.png)
 
-**3. Connect Prometheus.** Go to **Connections → Data sources → Add new data source → Prometheus**. Enter `http://127.0.0.1:9091` as the **Prometheus server URL**, scroll down, and click **Save & test**. A green success message appears.
+Grafana then asks you to choose a new password. Enter it twice and click **Submit**. Do not click **Skip**, because anyone who can reach port 3000 could then sign in with `admin` / `admin`.
 
-![Prometheus server URL set to http://127.0.0.1:9091](@site/static/img/monitoring/prometheus/grafana-data-source-url.png)
+#### 4c. Connect Grafana to Prometheus
 
-**4. Import the Ant Media dashboard.** Download **[ams-prometheus-grafana-dashboard.json](pathname:///files/ams-prometheus-grafana-dashboard.json)**. In Grafana, go to **Dashboards → New → Import**, upload the file, choose your **Prometheus** data source, and click **Import**.
+1. In the left menu, click **Connections** to open it, then click **Data sources**.
+2. Click **Add data source**, then click **Prometheus**.
+3. In **Prometheus server URL**, enter `http://127.0.0.1:9091`.
 
-![Importing the dashboard file in Grafana](@site/static/img/monitoring/prometheus/grafana-import-dashboard.png)
+   ![Prometheus server URL set to http://127.0.0.1:9091](@site/static/img/monitoring/prometheus/grafana-data-source-url.png)
 
-### 🎉 Step 5: Watch it come alive {#come-alive}
+4. Scroll to the bottom of the page and click **Save & test**.
 
-Send a 2-minute test stream to your server:
+**You should see** a green box with **Successfully queried the Prometheus API.** Grafana names the new data source `prometheus`.
+
+![Grafana confirms the connection to Prometheus](@site/static/img/monitoring/prometheus/grafana-data-source-success.png)
+
+#### 4d. Import the Ant Media dashboard
+
+1. Download **[ams-prometheus-grafana-dashboard.json](pathname:///files/ams-prometheus-grafana-dashboard.json)** to your computer.
+2. In Grafana, click **Dashboards** in the left menu, then click **New → Import dashboard**.
+3. Click the upload area and select the file you downloaded.
+4. Under **DS_PROMETHEUS**, click the box and choose **prometheus**. The box shows grey hint text until you choose, so make sure **prometheus** with the Prometheus logo is shown, as in the picture below.
+5. Click **Import**.
+
+![Importing the dashboard with the prometheus data source selected](@site/static/img/monitoring/prometheus/grafana-import-dashboard.png)
+
+**You should see** the **Ant Media Server - All Prometheus Metrics** dashboard, with **Scrape target up** showing **1**.
+
+### Step 5: Send a test stream {#come-alive}
+
+Send a 2-minute test stream to the `live` application:
 
 ```bash title="Run on your AMS server"
 sudo apt-get install -y ffmpeg
 timeout 120 ffmpeg -re -f lavfi -i testsrc=size=640x360:rate=25 -f lavfi -i sine=frequency=440 \
   -c:v libx264 -preset veryfast -tune zerolatency -g 50 -c:a aac \
-  -f flv rtmp://127.0.0.1/LiveApp/test-stream
+  -f flv rtmp://127.0.0.1/live/test-stream
 ```
 
-Within 30 seconds, **Live streams** on your dashboard jumps from **0** to **1**. Open the stream in the AMS web panel and the **viewer** count rises too.
+Within 30 seconds, **Live streams** on your dashboard changes from **0** to **1**.
+
+To see the viewer count change too, open this page in your browser while the stream runs:
+
+```text
+http://YOUR_SERVER_IP:5080/live/play.html?id=test-stream
+```
+
+**WebRTC viewers** rises to **1**. If UDP ports 50000 to 60000 are closed to you, the player falls back to HLS and **HLS viewers** rises instead.
 
 ![Live streams rising to 1 during the test stream](@site/static/img/monitoring/prometheus/grafana-ams-dashboard-streaming.png)
 
-**That's it, your server is monitored.** Prometheus keeps recording in the background, even after reboots. Come back to this dashboard any time to see how your server is doing now, or how it did last week.
+Your server is now monitored. Prometheus keeps recording in the background, also after a reboot. Open the dashboard any time to see how the server is doing now, or how it did over the last 15 days.
 
 ---
 
@@ -203,11 +278,11 @@ Find each node's **private IP** by running `hostname -I` on it. The first addres
 curl -s -m 5 http://NODE_PRIVATE_IP:9090/metrics | grep -c "^antmedia_"
 ```
 
-**You should see** a number, about `12`, for every node. `0` after a 5-second pause means port 9090 is still blocked.
+**You should see** `12` for every node. If you see `0` after a 5-second pause, port 9090 is still blocked.
 
 ### Step 2: Install Prometheus and Grafana
 
-On the **monitoring server**, run the block from [Part 1, Step 2](#install).
+On the **monitoring server**, run Steps 2a, 2b and 2c from [Part 1, Step 2](#install).
 
 ### Step 3: List your nodes
 
@@ -245,9 +320,13 @@ When you add or remove a node later, edit this file and run `sudo systemctl relo
 
 Follow [Part 1, Step 4](#grafana), using the **monitoring server's** public IP and security group.
 
-### 🎉 Your whole cluster on one screen
+### Step 5: See your whole cluster
 
-The **Instance** menu at the top of the dashboard now lists **every node**. Choose **All** to compare them side by side, or pick one to focus on it. Run the test stream from [Part 1, Step 5](#come-alive) on two nodes and watch **Live streams** add up to **2**.
+The **Instance** menu at the top of the dashboard lists **every node**. Choose **All** to compare them side by side, or pick one node to focus on it.
+
+To check that every node is counted, send a test stream to two nodes. Run the test stream command from [Part 1, Step 5](#come-alive) on the first node. On the second node, run the same command but change `test-stream` to `test-stream-2`. Two streams in one cluster cannot share a stream ID. If you use the same name, the second command stops with `Input/output error`.
+
+**You should see** **Live streams** on the dashboard rise to **2**.
 
 ![Instance menu listing every node in the cluster](@site/static/img/monitoring/prometheus/cluster-grafana-instance-dropdown.png)
 
@@ -510,20 +589,37 @@ EOF
 sudo systemctl daemon-reload
 sudo systemctl start ams-prometheus-discovery.service
 sudo systemctl enable --now ams-prometheus-discovery.timer
-sudo journalctl -u ams-prometheus-discovery.service -n 1 --no-pager -o cat
+sudo journalctl -u ams-prometheus-discovery.service --no-pager -o cat | grep Exported | tail -n 1
 sudo -u prometheus cat /var/lib/prometheus/file_sd/antmedia.json
 ```
 
 </details>
 
-**You should see** `Exported 2 AMS targets` (one per running node), followed by a list of your nodes' private IPs, like this:
+**You should see** `Exported 2 AMS targets` (one per running node), followed by the list of your nodes' private IPs:
 
-```json
+```text
+Exported 2 AMS targets
 [
-  { "targets": ["172.31.1.195:9090"], "labels": { "ams_node_ip": "172.31.1.195" } },
-  { "targets": ["172.31.36.209:9090"], "labels": { "ams_node_ip": "172.31.36.209" } }
+  {
+    "targets": [
+      "172.31.10.186:9090"
+    ],
+    "labels": {
+      "ams_node_ip": "172.31.10.186"
+    }
+  },
+  {
+    "targets": [
+      "172.31.15.191:9090"
+    ],
+    "labels": {
+      "ams_node_ip": "172.31.15.191"
+    }
+  }
 ]
 ```
+
+The program now runs every 30 seconds by itself. You do not need to start it again.
 
 ### Step 4: Point Prometheus at the discovered nodes
 
@@ -554,36 +650,42 @@ curl -s http://127.0.0.1:9091/api/v1/targets | grep -o '"scrapeUrl":"[^"]*"\|"he
 
 **You should see** every node with `"health":"up"`. Then open Grafana as in [Part 1, Step 4](#grafana).
 
-### 🎉 Watch your monitoring follow the cluster
+:::note Moving from Part 2 to Part 3 on the same monitoring server
+If this monitoring server used the fixed node list from Part 2 before, the dashboard can show each node twice, and totals such as **Live streams** can be too high, for up to 5 minutes after this step. This is old data from the fixed list. It clears by itself.
+:::
 
-This is the reward. Stop AMS on one node:
+### Step 5: Check that monitoring follows the cluster
+
+Stop AMS on one node:
 
 ```bash title="Run on any AMS node"
 sudo systemctl stop antmedia
 ```
 
-Within **30 seconds** the node disappears from the dashboard. Nothing to edit, nothing to reload.
+Within **30 seconds**, the node disappears from the **Overview** row at the top of the dashboard. You do not need to edit or reload anything. The graphs below still show the node's history, and the node stays in the **Instance** menu until it is older than the time range you are viewing.
 
 ![The dashboard after one node was stopped](@site/static/img/monitoring/prometheus/cluster-grafana-node-removed.png)
 
-Start it again with `sudo systemctl start antmedia`, and within 30 seconds it's back. New nodes created by autoscaling appear the same way. **Your monitoring now grows and shrinks with your cluster, on its own.**
+Start AMS again with `sudo systemctl start antmedia`. Within about a minute, the node is back on the dashboard. New nodes created by autoscaling appear the same way, so your monitoring now grows and shrinks with your cluster.
 
 :::tip If a node crashes
-A node that stops normally disappears right away. A node that **crashes** stays on the dashboard with **Scrape target up = 0** for 5 minutes before it is removed, so you notice it. That's a good moment to [create a Grafana alert](https://grafana.com/docs/grafana/latest/alerting/) on `up{job="antmedia"} == 0`.
+A node that stops normally disappears within 30 seconds. A node that **crashes** or freezes stays on the dashboard with **Scrape target up** showing **0** for 5 minutes before it is removed, so you notice it. To be told when this happens, [create a Grafana alert](https://grafana.com/docs/grafana/latest/alerting/) on `up{job="antmedia"} == 0`.
 :::
 
 ---
 
 ## What's on the dashboard
 
-The dashboard shows every metric AMS publishes. Use **Instance** to pick a server and the time picker (top right) to look back up to 15 days.
+The dashboard shows every metric AMS publishes. Use **Instance** to pick a server, and the time picker at the top right to look back up to 15 days. The **Overview** row always shows the current values. The other rows show graphs over the selected time range.
 
 | Section | What it tells you | Watch out for |
 | --- | --- | --- |
 | **Overview** | Up/down, streams, viewers, CPU, uptime | **Scrape target up** = `0`: Prometheus can't reach that server |
 | **Streaming** | Streams, viewers per protocol, encoder problems, publish timeouts | Blocked encoders or publish timeouts above `0` |
 | **System / host** | CPU, load, memory, disk, open files | CPU near 100% or disk almost full |
-| **JVM memory & GC** | Memory and pauses inside the Java engine that runs AMS | Heap **used** close to **max**; long GC pauses |
+| **JVM memory** | Memory used inside the Java engine that runs AMS | Heap **used** close to **max** |
+| **JVM garbage collection** | How often and how long Java pauses to free memory | Long or frequent GC pauses |
+| **JVM threads, classes, JIT** | Threads, loaded classes and code compilation | Thread count that keeps growing |
 | **Logging** | Error and warning messages per second | A sudden rise in **error** |
 
 To see the raw numbers, run `curl -s http://127.0.0.1:9090/metrics` on any AMS server.
@@ -594,8 +696,10 @@ To see the raw numbers, run `curl -s http://127.0.0.1:9090/metrics` on any AMS s
 | --- | --- |
 | A target shows `"health":"down"` | AMS is stopped on that server, or port 9090 is blocked from Prometheus. Run `systemctl is-active antmedia` on the node and recheck the security group. |
 | Grafana doesn't open on port 3000 | Check the port 3000 rule and that it uses your **current** IP. Check `systemctl is-active grafana-server`. |
+| Dashboard panels show **No data** or a data source error right after importing | The **DS_PROMETHEUS** box was left empty during import. Import the file again and choose **prometheus** in that box, as in [Step 4d](#grafana). |
 | **Save & test** fails in Grafana | The URL must be exactly `http://127.0.0.1:9091`, and `systemctl is-active prometheus` must say `active`. |
 | Dashboard says **No data** | Set **Instance** to **All** and the time range to **Last 15 minutes**. Make sure you picked the Prometheus data source when importing. |
+| Nodes appear twice, or totals are too high, right after Part 3 Step 4 | The monitoring server used the fixed node list from Part 2 before. Wait 5 minutes and it clears by itself. |
 | `Discovery failed (ServerSelectionTimeoutError)` | The monitoring server can't reach MongoDB on 27017. Check MongoDB's security group. |
 | `Discovery failed (OperationFailure)` | The saved `ams_discovery` password is wrong. Check it with [Step 2e](#discovery-login), then run Step 3b again to save the right one. |
 | A security-group IP range doesn't work | The range must contain the servers' **private** IPs: `172.0.0.0/16` does **not** include `172.31.5.10`, but `172.31.0.0/16` does. Using a security group as the source avoids this. |

@@ -109,7 +109,9 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "expr": "max by (instance) (up{job=\"antmedia\",instance=~\"$instance\"})",
-          "legendFormat": "{{instance}}"
+          "legendFormat": "{{instance}}",
+          "instant": true,
+          "range": false
         }
       ],
       "options": {
@@ -119,7 +121,7 @@
           ]
         },
         "colorMode": "value",
-        "graphMode": "area"
+        "graphMode": "none"
       }
     },
     {
@@ -150,7 +152,9 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "expr": "sum(antmedia_streams_live{job=\"antmedia\",instance=~\"$instance\"})",
-          "legendFormat": "{{instance}}"
+          "legendFormat": "{{instance}}",
+          "instant": true,
+          "range": false
         }
       ],
       "options": {
@@ -160,7 +164,7 @@
           ]
         },
         "colorMode": "value",
-        "graphMode": "area"
+        "graphMode": "none"
       }
     },
     {
@@ -191,7 +195,9 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "expr": "sum(antmedia_streams_webrtc_live{job=\"antmedia\",instance=~\"$instance\"})",
-          "legendFormat": "{{instance}}"
+          "legendFormat": "{{instance}}",
+          "instant": true,
+          "range": false
         }
       ],
       "options": {
@@ -201,7 +207,7 @@
           ]
         },
         "colorMode": "value",
-        "graphMode": "area"
+        "graphMode": "none"
       }
     },
     {
@@ -232,7 +238,9 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "expr": "sum(antmedia_viewers_webrtc{job=\"antmedia\",instance=~\"$instance\"})",
-          "legendFormat": "{{instance}}"
+          "legendFormat": "{{instance}}",
+          "instant": true,
+          "range": false
         }
       ],
       "options": {
@@ -242,7 +250,7 @@
           ]
         },
         "colorMode": "value",
-        "graphMode": "area"
+        "graphMode": "none"
       }
     },
     {
@@ -273,7 +281,9 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "expr": "sum(antmedia_viewers_hls{job=\"antmedia\",instance=~\"$instance\"})",
-          "legendFormat": "{{instance}}"
+          "legendFormat": "{{instance}}",
+          "instant": true,
+          "range": false
         }
       ],
       "options": {
@@ -283,7 +293,7 @@
           ]
         },
         "colorMode": "value",
-        "graphMode": "area"
+        "graphMode": "none"
       }
     },
     {
@@ -314,7 +324,9 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "expr": "sum(antmedia_viewers_dash{job=\"antmedia\",instance=~\"$instance\"})",
-          "legendFormat": "{{instance}}"
+          "legendFormat": "{{instance}}",
+          "instant": true,
+          "range": false
         }
       ],
       "options": {
@@ -324,7 +336,7 @@
           ]
         },
         "colorMode": "value",
-        "graphMode": "area"
+        "graphMode": "none"
       }
     },
     {
@@ -355,7 +367,9 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "expr": "max by (instance) (process_cpu_usage{job=\"antmedia\",instance=~\"$instance\"})",
-          "legendFormat": "{{instance}}"
+          "legendFormat": "{{instance}}",
+          "instant": true,
+          "range": false
         }
       ],
       "options": {
@@ -365,7 +379,7 @@
           ]
         },
         "colorMode": "value",
-        "graphMode": "area"
+        "graphMode": "none"
       }
     },
     {
@@ -396,7 +410,9 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "expr": "max by (instance) (system_cpu_usage{job=\"antmedia\",instance=~\"$instance\"})",
-          "legendFormat": "{{instance}}"
+          "legendFormat": "{{instance}}",
+          "instant": true,
+          "range": false
         }
       ],
       "options": {
@@ -406,7 +422,7 @@
           ]
         },
         "colorMode": "value",
-        "graphMode": "area"
+        "graphMode": "none"
       }
     },
     {
@@ -437,7 +453,9 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "expr": "max by (instance) (system_cpu_count{job=\"antmedia\",instance=~\"$instance\"})",
-          "legendFormat": "{{instance}}"
+          "legendFormat": "{{instance}}",
+          "instant": true,
+          "range": false
         }
       ],
       "options": {
@@ -447,7 +465,7 @@
           ]
         },
         "colorMode": "value",
-        "graphMode": "area"
+        "graphMode": "none"
       }
     },
     {
@@ -478,7 +496,9 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "expr": "max by (instance) (antmedia_gpu_count{job=\"antmedia\",instance=~\"$instance\"})",
-          "legendFormat": "{{instance}}"
+          "legendFormat": "{{instance}}",
+          "instant": true,
+          "range": false
         }
       ],
       "options": {
@@ -488,7 +508,7 @@
           ]
         },
         "colorMode": "value",
-        "graphMode": "area"
+        "graphMode": "none"
       }
     },
     {
@@ -519,7 +539,9 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "expr": "max by (instance) (process_uptime_seconds{job=\"antmedia\",instance=~\"$instance\"})",
-          "legendFormat": "{{instance}}"
+          "legendFormat": "{{instance}}",
+          "instant": true,
+          "range": false
         }
       ],
       "options": {
@@ -529,7 +551,7 @@
           ]
         },
         "colorMode": "value",
-        "graphMode": "area"
+        "graphMode": "none"
       }
     },
     {
@@ -560,7 +582,9 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "expr": "max by (instance) (process_start_time_seconds{job=\"antmedia\",instance=~\"$instance\"} * 1000)",
-          "legendFormat": "{{instance}}"
+          "legendFormat": "{{instance}}",
+          "instant": true,
+          "range": false
         }
       ],
       "options": {
@@ -570,7 +594,7 @@
           ]
         },
         "colorMode": "value",
-        "graphMode": "area"
+        "graphMode": "none"
       }
     },
     {
