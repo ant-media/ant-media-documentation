@@ -36,7 +36,7 @@ https://<DOMAIN_NAME>:5443/live/play.html?id=<STREAM_ID>
 
 ![play-bunny](https://github.com/user-attachments/assets/7b479b66-7c2c-45cf-8f63-311e47c58db1)
 
-See [Embedded Web Player](/guides/playing-live-stream/embedded-web-player/) for more on embedding this into your own site.
+See [Embedded Web Player](/guides/playing-live-stream/embedded-web-player/) for more on embedding this into your own site. If you need standards-based signaling instead, see [WHEP](/guides/playing-live-stream/whep/).
 
 You're now playing a live stream back with WebRTC at sub-second latency.
 
