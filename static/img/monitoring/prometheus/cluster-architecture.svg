@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="560" viewBox="0 0 1000 560" role="img" aria-labelledby="title description">
+  <title id="title">Monitoring an Ant Media Server cluster with Prometheus and Grafana</title>
+  <desc id="description">Two Ant Media Server nodes register themselves in MongoDB. On a separate monitoring server, a discovery program reads the node list from MongoDB every 30 seconds and writes it to a file. Prometheus reads that file, collects metrics from every node on port 9090, and Grafana shows them in your browser on port 3000.</desc>
+  <defs>
+    <marker id="a-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2167a6"/>
+    </marker>
+    <marker id="a-grey" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#62748a"/>
+    </marker>
+  </defs>
+  <rect width="1000" height="560" rx="16" fill="#ffffff"/>
+  <g font-family="Arial, Helvetica, sans-serif" text-anchor="middle" fill="#172b4d">
+    <text x="500" y="38" font-size="23" font-weight="700">What you will build</text>
+
+    <!-- AMS nodes -->
+    <rect x="30" y="80" width="230" height="110" rx="12" fill="#eaf4ff" stroke="#2167a6" stroke-width="2"/>
+    <text x="145" y="118" font-size="20" font-weight="700">AMS node 1</text>
+    <text x="145" y="146" font-size="15">Publishes metrics</text>
+    <text x="145" y="168" font-size="15">port 9090</text>
+
+    <rect x="30" y="230" width="230" height="110" rx="12" fill="#eaf4ff" stroke="#2167a6" stroke-width="2"/>
+    <text x="145" y="268" font-size="20" font-weight="700">AMS node 2</text>
+    <text x="145" y="296" font-size="15">Publishes metrics</text>
+    <text x="145" y="318" font-size="15">port 9090</text>
+
+    <!-- MongoDB -->
+    <rect x="30" y="410" width="230" height="110" rx="12" fill="#eef7ea" stroke="#3f8f3a" stroke-width="2"/>
+    <text x="145" y="448" font-size="20" font-weight="700">MongoDB</text>
+    <text x="145" y="476" font-size="15">List of cluster nodes</text>
+    <text x="145" y="498" font-size="15">port 27017</text>
+
+    <!-- nodes register -->
+    <path d="M 30 135 H 14 V 465 H 26" stroke="#62748a" stroke-width="2.5" stroke-dasharray="7 5" fill="none" marker-end="url(#a-grey)"/>
+    <path d="M 30 285 H 14" stroke="#62748a" stroke-width="2.5" stroke-dasharray="7 5" fill="none"/>
+    <text x="145" y="378" font-size="13" fill="#62748a">each node registers itself</text>
+    <text x="145" y="394" font-size="13" fill="#62748a">and sends a heartbeat</text>
+
+    <!-- Monitoring server boundary -->
+    <rect x="380" y="70" width="400" height="460" rx="16" fill="#f7f9fc" stroke="#62748a" stroke-width="2" stroke-dasharray="8 6"/>
+    <text x="580" y="100" font-size="17" font-weight="700" fill="#62748a">Monitoring server</text>
+
+    <rect x="430" y="410" width="300" height="90" rx="12" fill="#f3eefc" stroke="#6b46c1" stroke-width="2"/>
+    <text x="580" y="444" font-size="19" font-weight="700">Discovery program</text>
+    <text x="580" y="470" font-size="14">every 30 s: reads the node list,</text>
+    <text x="580" y="488" font-size="14">writes antmedia.json</text>
+
+    <rect x="430" y="235" width="300" height="110" rx="12" fill="#fff3e8" stroke="#c75b12" stroke-width="2"/>
+    <text x="580" y="272" font-size="20" font-weight="700">Prometheus</text>
+    <text x="580" y="298" font-size="14">collects every node every 15 s</text>
+    <text x="580" y="320" font-size="14">port 9091 (private)</text>
+
+    <rect x="430" y="120" width="300" height="80" rx="12" fill="#fff8db" stroke="#b28704" stroke-width="2"/>
+    <text x="580" y="155" font-size="20" font-weight="700">Grafana</text>
+    <text x="580" y="180" font-size="14">dashboards, port 3000</text>
+
+    <!-- You -->
+    <rect x="840" y="120" width="130" height="80" rx="12" fill="#eaf7ee" stroke="#2e7d32" stroke-width="2"/>
+    <text x="905" y="155" font-size="19" font-weight="700">You</text>
+    <text x="905" y="178" font-size="14">web browser</text>
+
+    <!-- MongoDB -> discovery -->
+    <line x1="262" y1="465" x2="428" y2="455" stroke="#62748a" stroke-width="2.5" stroke-dasharray="7 5" marker-end="url(#a-grey)"/>
+    <text x="345" y="448" font-size="13" fill="#62748a">reads list</text>
+    <!-- discovery -> prometheus -->
+    <line x1="580" y1="408" x2="580" y2="348" stroke="#62748a" stroke-width="2.5" stroke-dasharray="7 5" marker-end="url(#a-grey)"/>
+    <text x="640" y="382" font-size="13" fill="#62748a">which nodes</text>
+
+    <!-- metrics nodes -> prometheus -->
+    <line x1="262" y1="135" x2="428" y2="270" stroke="#2167a6" stroke-width="3" marker-end="url(#a-blue)"/>
+    <line x1="262" y1="285" x2="428" y2="290" stroke="#2167a6" stroke-width="3" marker-end="url(#a-blue)"/>
+    <text x="330" y="232" font-size="13" fill="#2167a6">metrics</text>
+    <!-- prometheus -> grafana -->
+    <line x1="580" y1="233" x2="580" y2="203" stroke="#2167a6" stroke-width="3" marker-end="url(#a-blue)"/>
+    <!-- grafana -> you -->
+    <line x1="732" y1="160" x2="838" y2="160" stroke="#2167a6" stroke-width="3" marker-end="url(#a-blue)"/>
+
+    <text x="880" y="300" font-size="14" fill="#2167a6">Blue: metrics</text>
+    <text x="880" y="322" font-size="14" fill="#62748a">Grey dashed: node list</text>
+  </g>
+</svg>

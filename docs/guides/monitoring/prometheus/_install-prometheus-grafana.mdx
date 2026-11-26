@@ -1,0 +1,63 @@
+import CodeBlock from '@theme/CodeBlock';
+
+Prometheus runs on port **9091**, inside the server only. Port 9090 stays free because that is the port AMS uses for its metrics.
+
+**{props.step}a. Download Prometheus and check the file**
+
+<CodeBlock language="bash" title={props.where}>{String.raw`cd ~
+sudo apt-get update
+sudo apt-get install -y curl ca-certificates apt-transport-https wget gnupg
+curl -fLO https://github.com/prometheus/prometheus/releases/download/v3.14.0/prometheus-3.14.0.linux-amd64.tar.gz
+printf '%s\n' 'f665c6da19eb7ba399c915d30c7d9793c9b417bf8a749b504bc470678631478d  prometheus-3.14.0.linux-amd64.tar.gz' | sha256sum -c -`}</CodeBlock>
+
+**You should see** this as the last line:
+
+```text
+prometheus-3.14.0.linux-amd64.tar.gz: OK
+```
+
+If you see `FAILED`, the download is damaged. Delete the file with `rm prometheus-3.14.0.linux-amd64.tar.gz` and run the block again.
+
+**{props.step}b. Install Prometheus as a service**
+
+<CodeBlock language="bash" title={props.where}>{String.raw`tar -xzf prometheus-3.14.0.linux-amd64.tar.gz
+sudo install -m 755 prometheus-3.14.0.linux-amd64/prometheus prometheus-3.14.0.linux-amd64/promtool /usr/local/bin/
+id prometheus >/dev/null 2>&1 || sudo useradd --system --no-create-home --shell /usr/sbin/nologin prometheus
+sudo install -d -o root -g prometheus -m 750 /etc/prometheus
+sudo install -d -o prometheus -g prometheus -m 750 /var/lib/prometheus
+sudo tee /etc/systemd/system/prometheus.service > /dev/null <<'EOF'
+[Unit]
+Description=Prometheus
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=prometheus
+Group=prometheus
+ExecStart=/usr/local/bin/prometheus --config.file=/etc/prometheus/prometheus.yml --storage.tsdb.path=/var/lib/prometheus --storage.tsdb.retention.time=15d --storage.tsdb.retention.size=15GB --web.listen-address=127.0.0.1:9091
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+EOF
+sudo systemctl daemon-reload
+prometheus --version | head -n 1`}</CodeBlock>
+
+**You should see** `prometheus, version 3.14.0`. Prometheus starts in Step 3, after you tell it what to watch.
+
+:::info Disk space
+Prometheus keeps up to **15 GB** of history. If `df -h /` shows less than 20 GB free, change `15GB` in `/etc/systemd/system/prometheus.service` to about half of your free space, then run `sudo systemctl daemon-reload`.
+:::
+
+**{props.step}c. Install Grafana**
+
+<CodeBlock language="bash" title={props.where}>{String.raw`sudo mkdir -p /etc/apt/keyrings/
+wget -q -O - https://apt.grafana.com/gpg.key | gpg --dearmor | sudo tee /etc/apt/keyrings/grafana.gpg > /dev/null
+echo "deb [signed-by=/etc/apt/keyrings/grafana.gpg] https://apt.grafana.com stable main" | sudo tee /etc/apt/sources.list.d/grafana.list
+sudo apt-get update
+sudo apt-get install -y grafana
+sudo systemctl enable --now grafana-server
+systemctl is-active grafana-server`}</CodeBlock>
+
+**You should see** `active` as the last line.
