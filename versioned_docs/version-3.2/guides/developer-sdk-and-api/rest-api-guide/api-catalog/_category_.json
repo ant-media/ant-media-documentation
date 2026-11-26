@@ -1,0 +1,8 @@
+{
+  "label": "API Catalog",
+  "position": 5,
+  "link": {
+    "type": "doc",
+    "id": "guides/developer-sdk-and-api/rest-api-guide/api-catalog/index"
+  }
+}

@@ -1,0 +1,13 @@
+Every node needs to accept port **9090** from the monitoring server, **and nobody else**, because the metrics page has no password.
+
+On AWS, add this inbound rule to the security group of your **AMS nodes**: **Custom TCP**, port **9090**, source = the **monitoring server's security group** (or its private IP followed by `/32`).
+
+![AMS nodes security group: TCP 9090 allowed from the monitoring server](@site/static/img/monitoring/prometheus/cluster-sg-ams-nodes.png)
+
+Find each node's **private IP** by running `hostname -I` on it. The first address is the private IP. Then, from the monitoring server, test every node:
+
+```bash title="Run on the monitoring server"
+curl -s -m 5 http://NODE_PRIVATE_IP:9090/metrics | grep -c "^antmedia_"
+```
+
+**You should see** `12` for every node. If you see `0` after a 5-second pause, port 9090 is still blocked.

@@ -1,0 +1,112 @@
+---
+title: Monitor a Manual Cluster with Prometheus
+description: Step by step, run Prometheus and Grafana on a separate monitoring server and watch every node of a fixed Ant Media Server cluster on one dashboard.
+keywords: [Prometheus, Grafana, monitoring, metrics, dashboard, cluster, Ant Media Server]
+sidebar_position: 3
+sidebar_label: Manual Cluster
+---
+
+import AllowPort9090 from './_allow-port-9090.mdx';
+import InstallPrometheusGrafana from './_install-prometheus-grafana.mdx';
+import OpenGrafana from './_open-grafana.mdx';
+
+# Monitor a Manual Cluster with Prometheus
+
+A **cluster** is a group of AMS servers (*nodes*) that share the streaming load and a common database. In a **manual cluster** you decide which servers belong to it, and that list rarely changes.
+
+Already have a cluster? Continue below. If not, set one up first:
+
+- [Clustering and Scaling](/guides/clustering-and-scaling/) explains how a cluster works.
+- [Cluster Installation](/guides/clustering-and-scaling/manual-configuration/cluster-installation/) is the step-by-step setup.
+- [Self-Managed MongoDB](/guides/clustering-and-scaling/supported-databases/scaling-with-mongodb/) sets up the shared database.
+
+For a cluster, run Prometheus and Grafana on a **separate monitoring server**, for example 2 vCPU, 2 GB RAM and a 30 GB disk. If a node crashes, your monitoring keeps running and shows you which one went down. Put it in the **same private network** (on AWS, the same VPC) as your nodes.
+
+If your cluster adds and removes nodes automatically, follow [Autoscaling Cluster](./autoscaling-cluster.mdx) instead.
+
+:::tip How to read the commands
+Each code block's title says **where** to run it. After each step, compare your output with **You should see**. Replace anything written in capitals, like `NODE_PRIVATE_IP`, with your own value.
+:::
+
+## Step 1: Let the monitoring server read each node
+
+<AllowPort9090 />
+
+## Step 2: Install Prometheus and Grafana
+
+<InstallPrometheusGrafana step="2" where="Run on the monitoring server" />
+
+## Step 3: List your nodes
+
+Add one entry per node, using **private** IPs. Never list the load balancer.
+
+```bash title="Run on the monitoring server"
+sudo tee /etc/prometheus/prometheus.yml > /dev/null <<'EOF'
+global:
+  scrape_interval: 15s
+  scrape_timeout: 5s
+
+scrape_configs:
+  - job_name: antmedia
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['NODE1_PRIVATE_IP:9090']
+      - targets: ['NODE2_PRIVATE_IP:9090']
+EOF
+sudo chown root:prometheus /etc/prometheus/prometheus.yml
+sudo chmod 640 /etc/prometheus/prometheus.yml
+sudo systemctl enable prometheus && sudo systemctl restart prometheus
+```
+
+Wait **20 seconds**, then check:
+
+```bash title="Run on the monitoring server"
+curl -s http://127.0.0.1:9091/api/v1/targets | grep -o '"scrapeUrl":"[^"]*"\|"health":"[a-z]*"'
+```
+
+**You should see** every node with `"health":"up"`.
+
+When you add or remove a node later, edit this file and run `sudo systemctl reload prometheus`.
+
+## Step 4: Open Grafana and import the dashboard
+
+<OpenGrafana step="4" server="the monitoring server" where="Run on the monitoring server" />
+
+## Step 5: See your whole cluster
+
+The **Instance** menu at the top of the dashboard lists **every node**. Choose **All** to compare them side by side, or pick one node to focus on it.
+
+To check that every node is counted, send a 2-minute test stream to two nodes. Each node needs its own stream ID, because two streams in one cluster cannot share one.
+
+```bash title="Run on the first AMS node"
+sudo apt-get install -y ffmpeg
+timeout 120 ffmpeg -re -f lavfi -i testsrc=size=640x360:rate=25 -f lavfi -i sine=frequency=440 \
+  -c:v libx264 -preset veryfast -tune zerolatency -g 50 -c:a aac \
+  -f flv rtmp://127.0.0.1/live/test-stream-1
+```
+
+```bash title="Run on the second AMS node"
+sudo apt-get install -y ffmpeg
+timeout 120 ffmpeg -re -f lavfi -i testsrc=size=640x360:rate=25 -f lavfi -i sine=frequency=440 \
+  -c:v libx264 -preset veryfast -tune zerolatency -g 50 -c:a aac \
+  -f flv rtmp://127.0.0.1/live/test-stream-2
+```
+
+If both nodes use the same stream ID, the second command stops with `Input/output error`.
+
+**You should see** **Live streams** on the dashboard rise to **2**.
+
+![Instance menu listing every node in the cluster](@site/static/img/monitoring/prometheus/cluster-grafana-instance-dropdown.png)
+
+To learn what each part of the dashboard shows, see [What is on the dashboard](./choose-your-setup.md#whats-on-the-dashboard).
+
+## Troubleshooting
+
+| Problem | Fix |
+| --- | --- |
+| A target shows `"health":"down"` | AMS is stopped on that server, or port 9090 is blocked from Prometheus. Run `systemctl is-active antmedia` on the node and recheck the security group. |
+| Grafana doesn't open on port 3000 | Check the port 3000 rule and that it uses your **current** IP. Check `systemctl is-active grafana-server`. |
+| Dashboard panels show **No data** or a data source error right after importing | The **DS_PROMETHEUS** box was left empty during import. Import the file again and choose **prometheus** in that box, as in [Step 4d](#step-4-open-grafana-and-import-the-dashboard). |
+| **Save & test** fails in Grafana | The URL must be exactly `http://127.0.0.1:9091`, and `systemctl is-active prometheus` must say `active`. |
+| Dashboard says **No data** | Set **Instance** to **All** and the time range to **Last 15 minutes**. Make sure you picked the Prometheus data source when importing. |
+| A security-group IP range doesn't work | The range must contain the servers' **private** IPs: `172.0.0.0/16` does **not** include `172.31.5.10`, but `172.31.0.0/16` does. Using a security group as the source avoids this. |
