@@ -1,0 +1,117 @@
+---
+title: Monitor a Standalone Server with Prometheus
+description: Step by step, install Prometheus and Grafana on your Ant Media Server and see every metric on a live dashboard.
+keywords: [Prometheus, Grafana, monitoring, metrics, dashboard, standalone, Ant Media Server]
+sidebar_position: 2
+sidebar_label: Standalone Server
+---
+
+import InstallPrometheusGrafana from './_install-prometheus-grafana.mdx';
+import OpenGrafana from './_open-grafana.mdx';
+
+# Monitor a Standalone Server with Prometheus
+
+In this guide, Prometheus and Grafana run on your AMS server, next to Ant Media Server. If you have a cluster, see [Choose Your Setup](./choose-your-setup.md) instead.
+
+:::tip How to read the commands
+Each code block's title says **where** to run it. After each step, compare your output with **You should see**. Replace anything written in capitals, like `YOUR_SERVER_IP`, with your own value.
+:::
+
+## Step 1: Check that AMS publishes metrics
+
+AMS publishes its metrics on port **9090**. This is turned on by default.
+
+```bash title="Run on your AMS server"
+curl -s http://127.0.0.1:9090/metrics | grep "^antmedia_streams_live"
+```
+
+**You should see** one line ending in a number, which is the number of live streams right now:
+
+```text
+antmedia_streams_live{antmedia_instance_id="…",antmedia_instance_ip="…",antmedia_private_ip="…"} 0.0
+```
+
+:::info Nothing printed?
+Make sure `/usr/local/antmedia/conf/red5.properties` contains `prometheus.enabled=true` and `prometheus.port=9090`, then run `sudo systemctl restart antmedia` and try again.
+:::
+
+:::warning Keep port 9090 closed to the internet
+The metrics page has no password, and AMS answers on port 9090 on every network interface. Do **not** open port 9090 in your firewall or security group for the standalone setup. Prometheus reads it from inside the server.
+:::
+
+## Step 2: Install Prometheus and Grafana
+
+<InstallPrometheusGrafana step="2" where="Run on your AMS server" />
+
+## Step 3: Tell Prometheus what to watch
+
+```bash title="Run on your AMS server"
+sudo tee /etc/prometheus/prometheus.yml > /dev/null <<'EOF'
+global:
+  scrape_interval: 15s
+  scrape_timeout: 5s
+
+scrape_configs:
+  - job_name: antmedia
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['127.0.0.1:9090']
+EOF
+sudo chown root:prometheus /etc/prometheus/prometheus.yml
+sudo chmod 640 /etc/prometheus/prometheus.yml
+sudo systemctl enable prometheus && sudo systemctl restart prometheus
+```
+
+Wait **20 seconds**, then check that Prometheus can read AMS:
+
+```bash title="Run on your AMS server"
+curl -s http://127.0.0.1:9091/api/v1/targets | grep -o '"scrapeUrl":"[^"]*"\|"health":"[a-z]*"'
+```
+
+**You should see:**
+
+```text
+"scrapeUrl":"http://127.0.0.1:9090/metrics"
+"health":"up"
+```
+
+## Step 4: Open Grafana and import the dashboard
+
+<OpenGrafana step="4" server="your AMS server" where="Run on your AMS server" />
+
+## Step 5: Send a test stream
+
+Send a 2-minute test stream to the `live` application:
+
+```bash title="Run on your AMS server"
+sudo apt-get install -y ffmpeg
+timeout 120 ffmpeg -re -f lavfi -i testsrc=size=640x360:rate=25 -f lavfi -i sine=frequency=440 \
+  -c:v libx264 -preset veryfast -tune zerolatency -g 50 -c:a aac \
+  -f flv rtmp://127.0.0.1/live/test-stream
+```
+
+Within 30 seconds, **Live streams** on your dashboard changes from **0** to **1**.
+
+To see the viewer count change too, open this page in your browser while the stream runs:
+
+```text
+http://YOUR_SERVER_IP:5080/live/play.html?id=test-stream
+```
+
+**WebRTC viewers** rises to **1**. If UDP ports 50000 to 60000 are closed to you, the player falls back to HLS and **HLS viewers** rises instead.
+
+![Live streams rising to 1 during the test stream](@site/static/img/monitoring/prometheus/grafana-ams-dashboard-streaming.png)
+
+Your server is now monitored. Prometheus keeps recording in the background, also after a reboot. Open the dashboard any time to see how the server is doing now, or how it did over the last 15 days.
+
+To learn what each part of the dashboard shows, see [What is on the dashboard](./choose-your-setup.md#whats-on-the-dashboard).
+
+## Troubleshooting
+
+| Problem | Fix |
+| --- | --- |
+| A target shows `"health":"down"` | AMS is stopped. Run `systemctl is-active antmedia` and start it with `sudo systemctl start antmedia` if needed. |
+| Grafana doesn't open on port 3000 | Check the port 3000 rule and that it uses your **current** IP. Check `systemctl is-active grafana-server`. |
+| Dashboard panels show **No data** or a data source error right after importing | The **DS_PROMETHEUS** box was left empty during import. Import the file again and choose **prometheus** in that box, as in [Step 4d](#step-4-open-grafana-and-import-the-dashboard). |
+| **Save & test** fails in Grafana | The URL must be exactly `http://127.0.0.1:9091`, and `systemctl is-active prometheus` must say `active`. |
+| Dashboard says **No data** | Set **Instance** to **All** and the time range to **Last 15 minutes**. Make sure you picked the Prometheus data source when importing. |

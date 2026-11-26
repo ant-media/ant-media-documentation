@@ -3,7 +3,7 @@ title: Monitoring with Grafana
 description: Monitor Ant Media Server instance statistics on VMs with Apache Kafka, Elasticsearch, Logstash, and Grafana.
 keywords: [Monitoring AMS with Grafana, Grafana, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 5
-sidebar_label: Grafana
+sidebar_label: Grafana with Kafka
 ---
 
 # Monitoring with Grafana
