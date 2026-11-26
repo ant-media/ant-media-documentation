@@ -9,13 +9,13 @@ sidebar_position: 3
 
 WHEP (WebRTC-HTTP Egress Protocol) is the playback counterpart of [WHIP](/guides/publish-live-stream/webrtc/whip/). Instead of Ant Media Server's WebSocket signaling, a WHEP player sets up the WebRTC session with plain HTTP requests: it sends an SDP offer with `POST`, gets the SDP answer back in the response, and ends the session with `DELETE`. Any player or library that supports WHEP can play streams from Ant Media Server without the Ant Media WebRTC SDK.
 
-Ant Media Server supports WHEP playback starting with version 4.0.
+Ant Media Server supports WHEP playback starting with version 3.2.
 
 By the end of this guide, you'll be playing a live stream over WHEP, either from the sample page or from your own JavaScript.
 
 ## Requirements
 
-- Ant Media Server **Enterprise Edition** v4.0 or later. Community Edition rejects WHEP requests with `403`.
+- Ant Media Server **Enterprise Edition** v3.2 or later. WHEP is not supported in **Community Edition**.
 - UDP ports `50000-60000` open on your server's firewall for WebRTC traffic.
 - An active stream already broadcasting on the server. See [WebRTC Publishing](/guides/publish-live-stream/webrtc/) or [WHIP](/guides/publish-live-stream/webrtc/whip/) if you haven't started one yet.
 - A [TURN server](/guides/advanced-usage/turn-installation/coturn-quick-installation/) if viewers are behind restrictive corporate firewalls (optional).
