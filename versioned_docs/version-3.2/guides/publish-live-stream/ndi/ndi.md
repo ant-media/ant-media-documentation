@@ -1,111 +1,85 @@
 ---
 title: NDI® Ingest Guide
-description: Discover and ingest an NDI® video source into Ant Media Server over your local network.
-keywords: [NDI, NDI Ingest, Ant Media Server Documentation, Ant Media Server Tutorials]
+description: Discover an NDI® source, add it to Ant Media Server, and watch the live feed over WebRTC.
+keywords: [NDI, NDI Ingest, WebRTC, Ant Media Server Documentation, Ant Media Server Tutorials]
 sidebar_position: 1
 ---
 
 # NDI® Ingest
 
-[NDI® (Network Device Interface) is a proprietary media delivery protocol](https://docs.ndi.video/all/getting-started/what-is-ndi) over IP developed by [Vizrt NDI AB](https://www.newtek.com/). NDI® is a registered trademark of Vizrt NDI AB. Ant Media Server supports ingesting NDI® signals and muxing them into any of its supported output formats.
-
-By the end of this guide, you'll be discovering an NDI® test source on your network and ingesting it into Ant Media Server as a live stream.
+Ant Media Server (AMS) Enterprise can ingest live video and audio from an NDI® camera, switcher, or software sender. This guide takes you from discovery on your local network to WebRTC playback in the browser.
 
 ## Requirements
 
-- Ant Media Server **4.0.0+** running on Ubuntu 20.04+ with systemd and `sudo` access. The NDI SDK ships bundled with AMS, so no separate SDK install is needed.
-- A sender machine on the **same local network** as the AMS server, with [NDI Tools](https://ndi.video/tools/) installed. This guide uses NDI Tools' **Test Patterns** app to generate a source to ingest.
-- UDP port 5353 open between the two machines for mDNS discovery.
+- **Ant Media Server Enterprise Edition 3.1.0 or later** and access to its web panel. The Ubuntu discovery steps require `sudo` access.
+- An active NDI sender on the same local network as the AMS server.
+- A network that allows mDNS multicast on UDP port `5353` for discovery and allows the [NDI media traffic](https://docs.ndi.video/all/getting-started/white-paper/ndi-related-network-ports) between the sender and AMS. For a server on another network, see [Cloud and Remote Networking](#cloud-and-remote-networking).
 
-:::info
-NDI discovery relies on local network multicast, so it doesn't work out of the box across cloud regions or over the public internet. If your AMS server and NDI source can't be on the same LAN, see [Cloud and Remote Networking](#cloud-and-remote-networking) below.
-:::
+## Step 1. Enable NDI discovery
 
-## Step 1: Install avahi-daemon
-
-Ant Media Server uses `avahi-daemon` for mDNS-based NDI source discovery, so it needs to be installed and running on the server before AMS can see anything on the network.
+Run these commands on the Ubuntu server to install Avahi and start its mDNS service.
 
 ```bash
+sudo apt update
 sudo apt install -y avahi-daemon avahi-utils
 sudo systemctl enable --now avahi-daemon
 ```
 
-Confirm it's running:
+## Step 2. Start an NDI source
 
-```bash
-sudo systemctl status avahi-daemon
+For a phone camera, join the same local network as AMS over Wi-Fi, open your NDI camera app, and start broadcasting. You can also enable NDI output on a camera, switcher, or production application.
+
+To test without a camera, open **Test Patterns** from the [NDI Tools](https://ndi.video/tools/) launcher on a computer connected to the same network. Keep the sender running through discovery and playback.
+
+![NDI Tools launcher with the Test Patterns tile in the left column](/img/ndi/ndi-tools.png)
+
+## Step 3. Open the NDI stream form
+
+1. Sign in to the AMS web panel and open your application under **Applications**. This example uses `LiveApp`.
+2. Open the **Live Streams** tab. Select **New Live Stream**, then **NDI Stream**.
+
+![The New Live Stream menu in LiveApp with NDI Stream highlighted](/img/ndi/create-new-ndi-stream.webp)
+
+## Step 4. Select a discovered source and add it
+
+1. In the **New NDI Stream** form, open **NDI Source Name** and select your sender, such as `LOCALHOST (NDI Camera)`. If the sender has just started, click **Reload** and check the list again.
+2. Enter a unique stream ID, such as `camera1`, or leave the field blank to let AMS generate an ID.
+3. Click **Add**. In **Live Streams**, wait for the new stream to show **Broadcasting**.
+
+![The NDI Source Name dropdown showing a discovered camera and the Add button below](/img/ndi/discovered-ndi-sources.webp)
+
+## Step 5. Play the stream over WebRTC
+
+1. Open the action menu for the **Broadcasting** stream and choose **Play With WebRTC**.
+
+   ![The stream camera1 showing Broadcasting with Play With WebRTC highlighted in its action menu](/img/ndi/ndi-camera-broadcasting.webp)
+
+2. In the player, click **Play** if playback does not start automatically. Confirm that you see the live camera feed or test pattern. Check the audio if your source sends it.
+
+   ![A live NDI camera feed playing in the Ant Media Server web player over WebRTC](/img/ndi/ndi-webrtc-playback.webp)
+
+You can also open the web player directly. Replace the example hostname, application name, and stream ID with yours.
+
+```text
+https://ams.example.com:5443/LiveApp/play.html?id=camera1&playOrder=webrtc
 ```
 
-## Step 2: Start an NDI Test Source
-
-On a Windows or macOS machine on the same network as your AMS server, install [NDI Tools](https://ndi.video/tools/) and launch **Test Patterns** from the NDI Tools Launcher. Leave it running — it immediately starts broadcasting a synthetic NDI source for AMS to discover.
-
-![NDI Test pattern](/img/ndi/ndi-tools.png)
-
-Note the source name it's broadcasting under — it will look something like `<SENDER_HOSTNAME> (Test Pattern)`. You'll need this in Step 4.
-
-## Step 3: Verify NDI Discovery
-
-Back on the AMS server, confirm the source is actually visible over mDNS before touching any AMS configuration:
-
-```bash
-avahi-browse _ndi._tcp --terminate
-```
-
-You should see an entry for the Test Pattern source, e.g.:
-
-```
-+ eth0 IPv4 DESKTOP-XXXX (Test Pattern) _ndi._tcp local
-```
-
-If nothing appears, confirm both machines are on the same network and that `avahi-daemon` is running before continuing.
-
-## Step 4: Configure ndiSources in AMS
-
-Each NDI source is picked up by exactly one AMS application, mapped through the `ndiSources` parameter in that application's `red5-web.properties` file. Set it from the web panel rather than editing the file directly:
-
-1. Go to the application's **Settings → Advanced** page. `ndiSources` isn't listed there by default, but AMS lets you add any property that isn't — doing so writes it into `red5-web.properties`, the same as editing the file by hand.
-2. Add a new property with key `ndiSources`, mapping the NDI source name from Step 2 to the stream ID you want AMS to publish it as:
-
-```
-{"<SENDER_HOSTNAME> (Test Pattern)": "<STREAM_ID>"}
-```
-
-See [AMS Application Configuration](/guides/configuration-and-testing/ams-application-configuration/#adding-additional-settings) for the general steps on adding settings this way.
-
-:::info
-To match multiple sources by pattern instead of listing them individually, use a regex key — `ndiSources={"regex:studio-camera-(\d+)": "cam-$1"}` maps `studio-camera-1` to `cam-1`, `studio-camera-2` to `cam-2`, and so on.
-:::
-
-## Step 5: Restart Ant Media Server
-
-```bash
-sudo service antmedia restart
-```
-
-## Step 6: Verify the Stream
-
-Open the AMS web panel and go to the application you configured. The stream should appear under **Live Streams** with the `<STREAM_ID>` you chose, showing as **Broadcasting**. It can take 5-10 seconds after restart for the stream to show up, so give it a moment before assuming something's wrong.
+See [WebRTC Playback](../../playing-live-stream/webrtc-playback.md) for browser-to-server connectivity and other playback options.
 
 ## Cloud and Remote Networking
 
-NDI's mDNS discovery doesn't cross network boundaries, so if your AMS server is on a cloud host (AWS, GCP, etc.) and your NDI source is elsewhere, none of the steps above work until the two are put on what looks like the same network:
+The default mDNS discovery works within a local network. For senders on a different network from AMS, plan how the server will find the source and receive its media.
 
-- **VPN, e.g. Tailscale** — install Tailscale on both the server and the sender machine, sign in to the same account on both, and use the Tailscale IP of the server in place of its local IP. Everything else in this guide works unchanged once that's in place.
-- **NDI Discovery Server** — for production setups, point both AMS and the sender at a dedicated discovery server via the NDI config file at `$HOME/.ndi/ndi-config.v1.json`. See the [NDI SDK configuration docs](https://docs.ndi.video/all/developing-with-ndi/sdk/configuration-files) for the file format.
-- **NDI Bridge** — included with NDI Tools, tunnels NDI streams over the internet between two locations that each run it. Workable for occasional remote use, but not a substitute for a VPN or discovery server in production.
+- **NDI Discovery Server**. Configure the sender and receiver to use the same discovery server and ensure the receiver can reach the sender for media. See the [NDI Discovery Server documentation](https://docs.ndi.video/all/getting-started/white-paper/discovery-and-registration/discovery-server).
+- **NDI Bridge**. Connect remote NDI environments and make the remote feed available on the receiving network. See the [NDI Bridge overview](https://docs.ndi.video/all/getting-started/glossary/ndi-terminology#bridge).
+- **VPN**. Use it for media connectivity between networks. Verify that your VPN carries mDNS multicast or configure a separate discovery method.
 
 ## Troubleshooting
 
-| Symptom | Fix |
-|---|---|
-| `avahi-browse` returns no NDI sources | Confirm `avahi-daemon` is running and that both machines are on the same network. |
-| Stream doesn't appear in the AMS dashboard | Check that the `ndiSources` name exactly matches what `avahi-browse` shows — it's case-sensitive. |
-| Stream appears but drops intermittently | Switch the sender from Wi-Fi to a wired Ethernet connection. |
-| CUDA/GPU warning in the AMS logs | Harmless on machines without an NVIDIA GPU — AMS falls back to CPU encoding automatically. |
+- **The source is missing from NDI Source Name.** Confirm that the sender is running and click **Reload**. On the AMS host, run `systemctl is-active avahi-daemon` to check Avahi and `avahi-browse _ndi._tcp --terminate` to check which sources are visible over mDNS. If your source is missing there too, check that the devices share a local network and that multicast traffic can reach AMS.
+- **The source is listed but the stream does not reach Broadcasting.** Verify that the sender is still active and that AMS can reach its NDI media ports.
+- **The stream is Broadcasting but the player stays blank.** Check WebRTC connectivity between the browser and AMS, including the firewall requirements in the [WebRTC Playback guide](../../playing-live-stream/webrtc-playback.md).
 
-You're now discovering an NDI® source over mDNS and ingesting it into Ant Media Server as a live stream. From here, head to the [playback guide](/category/play-live-streams/) to view it.
+For further help, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or email [Technical Support](mailto:support@antmedia.io).
 
-## Need Help?
-
-If `avahi-browse` can't find your NDI source or AMS won't pick up the stream, reach out on [GitHub Discussions](https://github.com/orgs/ant-media/discussions) or contact [Technical Support](mailto:support@antmedia.io).
+NDI® is a registered trademark of Vizrt NDI AB.
